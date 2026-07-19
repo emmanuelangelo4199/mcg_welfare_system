@@ -1,13 +1,23 @@
 # Python
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
 .Python
-env/
 e-venv/
 .venv
 
 # Node / Tailwind
 node_modules/
 npm-debug.log*
+
+# Django
+*.sqlite3
+*.db
+.env
+
+# Static & media
+staticfiles/
+media/
+
+# Logs & OS
+*.log
+.DS_Store
