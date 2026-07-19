@@ -12,7 +12,7 @@ npm-debug.log*
 # Django
 *.sqlite3
 *.db
-.env
+*.env
 
 # Static & media
 staticfiles/

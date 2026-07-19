@@ -1,0 +1,30 @@
+{
+  "name": "mcg_welfare",
+  "version": "1.0.0",
+  "description": "<!-- pip freeze > requirements.txt -->",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tailwindcss -i ./static/src/input.css -o ./static/css/dist.css --watch",
+    "build": "tailwindcss -i ./static/src/input.css -o ./static/css/dist.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmanuelangelo4199/mcg_welfare_system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/emmanuelangelo4199/mcg_welfare_system/issues"
+  },
+  "homepage": "https://github.com/emmanuelangelo4199/mcg_welfare_system#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.5.2",
+    "postcss": "^8.5.18",
+    "tailwindcss": "^4.3.3"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3"
+  }
+}
