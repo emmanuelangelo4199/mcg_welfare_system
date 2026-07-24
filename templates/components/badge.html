@@ -1,0 +1,17 @@
+{% load badges %}
+{% comment %}
+Status badge — for membership/record STATE only (Active, Pending, Inactive,
+Transferred, Visitor, Deceased, Catechumen, Suspended, Approved, Rejected).
+
+Do NOT reuse this for document types (Receipt/Voucher — use document_badge.html)
+or module-specific type badges (Organisation Type, Case Type, Message Type,
+Event Type, Meeting Type). Those use their own colour tables so they can
+never be visually confused with a status. See core/templatetags/badges.py.
+
+Usage:
+  {% include "components/badge.html" with label="Active" status="active" %}
+  {% include "components/badge.html" with label="Pending Regularisation" status="pending" %}
+{% endcomment %}
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap {% status_badge_classes status %}">
+  {{ label }}
+</span>

@@ -1,0 +1,20 @@
+{% comment %}
+Sidebar nav item — desktop only, one row per module in the left nav.
+Centralises the active/inactive visual state so it's never hand-duplicated
+across 70+ screens' copies of the sidebar. This is the direct structural
+fix for the exact drift the consistency audit caught in Module C, where
+early screens had Settings/Logout in a different order than Module N.
+
+Usage (inside base.html's <nav> only):
+  {% include "components/nav_item.html" with key="dashboard" label="Dashboard" icon_name="dashboard" url="/" %}
+
+`active_nav` comes from the page's own context — each view sets it (e.g.
+active_nav="members") and it's visible here because Django shares one
+context across the full {% extends %} chain. If a view forgets to set it,
+every item just renders inactive — a safe default, never a wrong highlight.
+{% endcomment %}
+<a href="{{ url }}"
+   class="flex items-center gap-3 py-3 px-6 transition-all duration-200 {% if active_nav == key %}border-l-4 border-gold bg-primary-light/20 text-white translate-x-1{% else %}text-white/85 border-l-4 border-transparent hover:bg-primary-light/10{% endif %}">
+  <span class="material-symbols-outlined text-[18px]"{% if active_nav == key %} style="font-variation-settings: 'FILL' 1;"{% endif %}>{{ icon_name }}</span>
+  <span class="text-sm font-medium">{{ label }}</span>
+</a>

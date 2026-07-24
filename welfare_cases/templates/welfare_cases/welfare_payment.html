@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Welfare Payment Record (J-05) - MCG-SMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Lora:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .slide-over-enter {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-out;
+        }
+        .slide-over-enter-active {
+            transform: translateX(0);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+        }
+        .maroon-gradient {
+            background: linear-gradient(135deg, #5c0219 0%, #a33a49 100%);
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #5c0219 !important;
+            box-shadow: 0 0 0 2px rgba(92, 2, 25, 0.1);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "danger": "#DC2626",
+                        "on-tertiary-fixed-variant": "#464746",
+                        "border": "#E4E2DD",
+                        "primary-fixed": "#ffdadb",
+                        "on-secondary-fixed": "#251a00",
+                        "outline": "#897172",
+                        "info": "#2563EB",
+                        "secondary": "#775a00",
+                        "on-background": "#1e1b19",
+                        "inverse-surface": "#33302d",
+                        "on-tertiary-container": "#adadab",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "text-secondary": "#6B7280",
+                        "on-primary-fixed-variant": "#832233",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "secondary-fixed": "#ffdf9a",
+                        "inverse-primary": "#ffb2b7",
+                        "on-primary-container": "#ff8a95",
+                        "on-tertiary-fixed": "#1a1c1b",
+                        "surface-container": "#f4ece8",
+                        "tertiary-fixed-dim": "#c7c6c5",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#eee7e3",
+                        "surface-variant": "#e9e1dd",
+                        "primary-container": "#7b1c2d",
+                        "error-container": "#ffdad6",
+                        "background": "#fff8f5",
+                        "primary-muted": "#F5EAEC",
+                        "surface-bright": "#fff8f5",
+                        "surface-container-lowest": "#ffffff",
+                        "card": "#FFFFFF",
+                        "on-secondary": "#ffffff",
+                        "warning": "#D97706",
+                        "on-primary-fixed": "#40000e",
+                        "error": "#ba1a1a",
+                        "primary": "#5c0219",
+                        "surface-tint": "#a33a49",
+                        "tertiary-container": "#404140",
+                        "primary-fixed-dim": "#ffb2b7",
+                        "gold-muted": "#FDF6E3",
+                        "secondary-fixed-dim": "#eec04f",
+                        "surface-dim": "#e0d8d5",
+                        "tertiary": "#2a2b2a",
+                        "surface-container-low": "#faf2ee",
+                        "on-surface": "#1e1b19",
+                        "on-surface-variant": "#564243",
+                        "primary-light": "#A3283F",
+                        "tertiary-fixed": "#e3e2e0",
+                        "outline-variant": "#dcc0c1",
+                        "surface": "#F8F7F5",
+                        "success": "#16A34A",
+                        "surface-container-highest": "#e9e1dd",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f7efeb",
+                        "secondary-container": "#fece5b",
+                        "on-secondary-container": "#745700"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sidebar-width": "256px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "base": "8px",
+                        "xl": "32px",
+                        "header-height": "64px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Lora"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "data-display": ["JetBrains Mono"],
+                        "data-label": ["JetBrains Mono"],
+                        "headline-lg": ["Lora"]
+                    },
+                    "fontSize": {
+                        "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                        "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen overflow-x-hidden">
+<!-- Top AppBar (from JSON) -->
+<header class="fixed top-0 right-0 left-0 h-header-height z-40 bg-surface-container-lowest dark:bg-surface-dim shadow-sm flex justify-between items-center px-xl ml-sidebar-width w-[calc(100%-theme(spacing.sidebar-width))]">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md font-black text-primary">MCG-SMS</span>
+<div class="h-6 w-px bg-border mx-sm"></div>
+<h1 class="font-headline-md text-headline-md text-primary">Welfare Management</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative group">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full p-2 transition-opacity active:opacity-80">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-danger rounded-full"></span>
+</div>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full p-2 transition-opacity active:opacity-80">help_outline</span>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-muted ml-sm cursor-pointer hover:ring-2 hover:ring-primary transition-all">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a Ghanaian church administrator, middle-aged with a dignified expression, wearing a formal suit. The background is a soft-focus office setting with warm mahogany tones and traditional Methodist insignia on the wall. The lighting is soft and flattering, emphasizing a mood of reliability and spiritual leadership." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7euoZ-SVj8VrX5sCThFrQJy7sN4_YSNa68uMwteEFtN7vYuw9TVVZiKLr2CXn9tv7ayzP_yNXNP8ZBt1ywsu8RFz1XMxeGSA0p_fO0NfCKQDaELfn8JgPCYCcgrDmAr8RtaT27kYzWmBIuGWKsY6pqBbytlf_UcPdeQYSRLbt5P4VG9XsWqQRcfpsayqGGSxIzCZczgp_OgYhgqYlOZytJFQCHjmB5nXKL7ipTNGjAJovGyGxnoOVEyGfu6je_S42gPHBsn9I382M"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar (from JSON) -->
+<nav class="fixed left-0 top-0 h-full w-sidebar-width z-50 bg-primary dark:bg-primary-container shadow-sm dark:shadow-none flex flex-col py-lg">
+<div class="px-lg mb-xl">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 maroon-gradient rounded-lg flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">church</span>
+</div>
+<div>
+<div class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</div>
+<div class="text-xs text-on-primary/70 font-medium">Methodist Church Ghana</div>
+</div>
+</div>
+</div>
+<div class="flex-1 space-y-xs px-sm">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg border-l-[3px] border-secondary-container bg-primary-light/10 text-on-primary font-bold transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-md text-label-md">Members</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md text-label-md">Classes</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Finance</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+</div>
+<div class="mt-auto px-sm pt-lg border-t border-on-primary/10">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-sidebar-width pt-header-height min-h-screen">
+<div class="p-xl max-w-7xl mx-auto">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-sm text-text-secondary mb-lg">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Finance</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Welfare Fund</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary">Disbursements</span>
+</div>
+<!-- Dashboard Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xl">
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary transition-transform hover:scale-[1.01]">
+<div class="text-text-secondary font-label-md text-label-md mb-xs">Monthly Welfare Payout</div>
+<div class="font-data-display text-data-display text-primary">GH₵ 12,450.00</div>
+<div class="mt-sm flex items-center gap-xs text-success text-xs">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>4% from last month</span>
+</div>
+</div>
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-primary transition-transform hover:scale-[1.01]">
+<div class="text-text-secondary font-label-md text-label-md mb-xs">Active Beneficiaries</div>
+<div class="font-data-display text-data-display text-primary">42 Members</div>
+<div class="mt-sm flex items-center gap-xs text-text-secondary text-xs">
+<span class="material-symbols-outlined text-sm">group</span>
+<span>Societies covered: 12</span>
+</div>
+</div>
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-success transition-transform hover:scale-[1.01]">
+<div class="text-text-secondary font-label-md text-label-md mb-xs">Current Fund Balance</div>
+<div class="font-data-display text-data-display text-primary">GH₵ 84,210.50</div>
+<div class="mt-sm flex items-center gap-xs text-info text-xs">
+<span class="material-symbols-outlined text-sm">account_balance_wallet</span>
+<span>Reserved: GH₵ 20,000.00</span>
+</div>
+</div>
+</div>
+<!-- Records List (Background UI) -->
+<div class="bg-card rounded-xl shadow-sm overflow-hidden border border-border">
+<div class="px-lg py-md border-b border-border flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-primary">Recent Welfare Payments</h2>
+<button class="bg-primary hover:bg-primary-light text-on-primary px-lg py-sm rounded-lg font-medium flex items-center gap-sm transition-all shadow-md active:scale-95" id="openSlideOver">
+<span class="material-symbols-outlined">add_circle</span>
+                        Record New Payment (J-05)
+                    </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low text-text-secondary">
+<tr>
+<th class="px-lg py-md font-label-md text-label-md">Date</th>
+<th class="px-lg py-md font-label-md text-label-md">Recipient</th>
+<th class="px-lg py-md font-label-md text-label-md">Type</th>
+<th class="px-lg py-md font-label-md text-label-md text-right">Amount / Details</th>
+<th class="px-lg py-md font-label-md text-label-md">Authorized By</th>
+<th class="px-lg py-md font-label-md text-label-md">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md text-body-md">Oct 24, 2023</td>
+<td class="px-lg py-md font-medium">Bro. Kofi Mensah</td>
+<td class="px-lg py-md">Medical Relief</td>
+<td class="px-lg py-md text-right font-data-label text-data-label">GH₵ 1,200.00</td>
+<td class="px-lg py-md text-body-md">Rev. S. Appiah</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 bg-success/10 text-success rounded-full text-xs font-bold uppercase tracking-wider">Paid</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors border-l-4 border-l-danger">
+<td class="px-lg py-md text-body-md">Oct 22, 2023</td>
+<td class="px-lg py-md font-medium">Sis. Mary Ofori</td>
+<td class="px-lg py-md">Bereavement Support</td>
+<td class="px-lg py-md text-right font-data-label text-data-label">GH₵ 2,500.00</td>
+<td class="px-lg py-md text-body-md">Alice Boateng (Treas.)</td>
+<td class="px-lg py-md flex items-center gap-2">
+<span class="px-sm py-1 bg-success/10 text-success rounded-full text-xs font-bold uppercase tracking-wider">Paid</span>
+<span class="material-symbols-outlined text-danger text-sm" title="Privacy Flagged">lock</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- Slide-Over Backdrop -->
+<div class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[60] hidden opacity-0 transition-opacity duration-300" id="backdrop"></div>
+<!-- Slide-Over Panel: Welfare Payment Record (J-05) -->
+<div class="fixed right-0 top-0 h-full w-full max-w-lg z-[70] translate-x-full transition-transform duration-300 ease-in-out glass-panel shadow-2xl flex flex-col" id="slideOver">
+<!-- Header -->
+<div class="px-lg py-xl border-b border-border maroon-gradient text-on-primary">
+<div class="flex justify-between items-start">
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest opacity-80">Form J-05</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg">Welfare Payment Record</h2>
+<p class="text-on-primary/70 text-body-md mt-xs italic">Record of spiritual and financial stewardship</p>
+</div>
+<button class="p-2 hover:bg-white/10 rounded-full transition-colors" id="closeSlideOver">
+<span class="material-symbols-outlined text-on-primary">close</span>
+</button>
+</div>
+</div>
+<!-- Form Body -->
+<div class="flex-1 overflow-y-auto px-lg py-xl space-y-lg">
+<!-- Privacy Notice -->
+<div class="bg-gold-muted border border-secondary/20 p-md rounded-lg flex gap-md">
+<span class="material-symbols-outlined text-secondary">info</span>
+<p class="text-xs text-on-secondary-fixed-variant leading-relaxed">
+                    This record is categorized under <strong>Confidential Welfare</strong>. Access is restricted to the Society Steward and Authorized Welfare Committee members.
+                </p>
+</div>
+<form class="space-y-md" id="welfareForm">
+<div class="grid grid-cols-2 gap-md">
+<!-- Date -->
+<div class="space-y-xs col-span-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Date of Payment</label>
+<input class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg text-body-md focus:ring-primary focus:border-primary" type="date"/>
+</div>
+<!-- Payment Type -->
+<div class="space-y-xs col-span-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Payment Type</label>
+<select class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg text-body-md focus:ring-primary focus:border-primary">
+<option>Cash Disbursement</option>
+<option>Bank Transfer</option>
+<option>In-Kind Support</option>
+<option>Cheque (Society A/C)</option>
+</select>
+</div>
+</div>
+<!-- Amount / Description Toggle logic via JS -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant" id="amountLabel">Amount (GH₵)</label>
+<div class="relative">
+<span class="absolute left-md top-1/2 -translate-y-1/2 font-data-label text-text-secondary">GH₵</span>
+<input class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border border-border rounded-lg font-data-display text-data-display text-primary placeholder:text-outline-variant" placeholder="0.00" step="0.01" type="number"/>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Item Description (If In-Kind)</label>
+<input class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg text-body-md placeholder:text-outline-variant" placeholder="e.g. 2 Bags of Rice, Medical Supplies" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<!-- Authorized By -->
+<div class="space-y-xs col-span-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Authorised By</label>
+<input class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg text-body-md" placeholder="Full name" type="text"/>
+</div>
+<!-- Received By -->
+<div class="space-y-xs col-span-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Received By</label>
+<input class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg text-body-md" placeholder="Full name" type="text"/>
+</div>
+</div>
+<!-- Notes -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Confidential Notes / Reason</label>
+<textarea class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg text-body-md resize-none" placeholder="Brief context for the welfare committee..." rows="3"></textarea>
+</div>
+<!-- Privacy & Expense Checkbox -->
+<div class="bg-surface-container rounded-lg p-md mt-lg space-y-sm">
+<label class="flex items-start gap-md cursor-pointer group">
+<div class="relative flex items-center mt-1">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary-light transition-all cursor-pointer" type="checkbox"/>
+</div>
+<div class="flex-1">
+<span class="font-label-md text-label-md text-primary font-bold">Also record as Society expense</span>
+<p class="text-[11px] text-on-surface-variant/80 mt-1 leading-normal italic">
+                                * To maintain member privacy in general ledger reports, the linked expense purpose will be automatically masked as "Confidential Welfare Outreach".
+                            </p>
+</div>
+</label>
+</div>
+</form>
+</div>
+<!-- Footer -->
+<div class="px-lg py-lg bg-surface-container-low border-t border-border flex gap-md">
+<button class="flex-1 py-md rounded-lg border border-border font-label-md text-label-md text-on-surface hover:bg-surface transition-colors active:scale-95" id="cancelSlideOver">
+                Cancel
+            </button>
+<button class="flex-[2] py-md rounded-lg bg-primary text-on-primary font-label-md text-label-md font-bold shadow-md hover:bg-primary-light transition-all active:scale-[0.98]">
+                Save Record (J-05)
+            </button>
+</div>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+        const backdrop = document.getElementById('backdrop');
+        const slideOver = document.getElementById('slideOver');
+        const openBtn = document.getElementById('openSlideOver');
+        const closeBtn = document.getElementById('closeSlideOver');
+        const cancelBtn = document.getElementById('cancelSlideOver');
+
+        function toggleSlideOver(show) {
+            if (show) {
+                backdrop.classList.remove('hidden');
+                setTimeout(() => {
+                    backdrop.classList.add('opacity-100');
+                    slideOver.classList.remove('translate-x-full');
+                }, 10);
+                document.body.classList.add('overflow-hidden');
+            } else {
+                backdrop.classList.remove('opacity-100');
+                slideOver.classList.add('translate-x-full');
+                setTimeout(() => {
+                    backdrop.classList.add('hidden');
+                }, 300);
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        openBtn.addEventListener('click', () => toggleSlideOver(true));
+        closeBtn.addEventListener('click', () => toggleSlideOver(false));
+        cancelBtn.addEventListener('click', () => toggleSlideOver(false));
+        backdrop.addEventListener('click', () => toggleSlideOver(false));
+
+        // Keyboard support
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') toggleSlideOver(false);
+        });
+
+        // Form Submit Simulation
+        const saveBtn = document.querySelector('button.flex-\\[2\\]');
+        saveBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            saveBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> Processing...';
+            setTimeout(() => {
+                saveBtn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Saved Successfully';
+                saveBtn.classList.replace('bg-primary', 'bg-success');
+                setTimeout(() => {
+                    toggleSlideOver(false);
+                    // Reset button for next time
+                    setTimeout(() => {
+                        saveBtn.innerHTML = 'Save Record (J-05)';
+                        saveBtn.classList.replace('bg-success', 'bg-primary');
+                    }, 500);
+                }, 1000);
+            }, 800);
+        });
+    </script>
+</body></html>

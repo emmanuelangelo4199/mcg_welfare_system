@@ -1,0 +1,465 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Dues &amp; Contributions Recording</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#404140",
+                      "on-secondary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "success": "#16A34A",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed": "#1a1c1b",
+                      "on-primary-container": "#ff8a95",
+                      "on-primary-fixed": "#40000e",
+                      "surface-container-low": "#faf2ee",
+                      "background": "#fff8f5",
+                      "secondary-container": "#fece5b",
+                      "surface-container": "#f4ece8",
+                      "inverse-primary": "#ffb2b7",
+                      "tertiary-fixed": "#e3e2e0",
+                      "surface-container-high": "#eee7e3",
+                      "danger": "#DC2626",
+                      "on-surface": "#1e1b19",
+                      "secondary-fixed-dim": "#eec04f",
+                      "surface-tint": "#a33a49",
+                      "on-tertiary": "#ffffff",
+                      "on-surface-variant": "#564243",
+                      "outline": "#897172",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed-dim": "#c7c6c5",
+                      "on-tertiary-fixed-variant": "#464746",
+                      "secondary": "#775a00",
+                      "primary": "#5c0219",
+                      "tertiary": "#2a2b2a",
+                      "surface-bright": "#fff8f5",
+                      "gold-muted": "#FDF6E3",
+                      "outline-variant": "#dcc0c1",
+                      "info": "#2563EB",
+                      "error": "#ba1a1a",
+                      "warning": "#D97706",
+                      "secondary-fixed": "#ffdf9a",
+                      "primary-light": "#A3283F",
+                      "card": "#FFFFFF",
+                      "surface-variant": "#e9e1dd",
+                      "surface-dim": "#e0d8d5",
+                      "surface-container-highest": "#e9e1dd",
+                      "on-secondary-fixed": "#251a00",
+                      "primary-fixed": "#ffdadb",
+                      "on-primary": "#ffffff",
+                      "on-secondary-container": "#745700",
+                      "inverse-surface": "#33302d",
+                      "on-secondary-fixed-variant": "#5a4300",
+                      "primary-fixed-dim": "#ffb2b7",
+                      "on-tertiary-container": "#adadab",
+                      "inverse-on-surface": "#f7efeb",
+                      "on-background": "#1e1b19",
+                      "primary-muted": "#F5EAEC",
+                      "surface": "#F8F7F5",
+                      "text-secondary": "#6B7280",
+                      "border": "#E4E2DD",
+                      "primary-container": "#7b1c2d",
+                      "on-primary-fixed-variant": "#832233",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "lg": "24px",
+                      "xl": "32px",
+                      "sidebar-width": "256px",
+                      "sm": "8px",
+                      "md": "16px",
+                      "header-height": "64px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "data-label": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-lg-mobile": [
+                              "Lora"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "data-display": [
+                              "JetBrains Mono"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Lora"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "data-label": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.0",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "data-display": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.0",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "13px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Subtle fade-in animation for toast */
+        @keyframes toast-slide-in {
+            from { transform: translateY(100%) translateX(-50%); opacity: 0; }
+            to { transform: translateY(0) translateX(-50%); opacity: 1; }
+        }
+        .toast-enter {
+            animation: toast-slide-in 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen">
+<!-- TopAppBar -->
+
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-sidebar-width bg-primary text-on-primary flex flex-col h-full py-lg shadow-sm z-50 hidden md:flex">
+<div class="px-lg mb-xl flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest overflow-hidden flex items-center justify-center text-primary font-bold shadow-sm">
+<img alt="Church Logo" class="w-full h-full object-cover" data-alt="A minimalist and dignified logo emblem representing the Methodist Church Ghana, featuring subtle traditional motifs blended with modern clean lines, rendered in deep maroon and gold tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcpxbjLSKMGDaUyzWThiqe6BJ4XgLPthnDHLpFaNAYbdgw9PZt8vop-HFwiBaX4zUJNHfWt-0pMZ3YOgTWk_PMMrwUi6dH44gb3P1ukCMQU2T3ni7gjcJZokA8SOXrprbn-wS3mysCh0n378bAx5ORN94b-1dljkN9gInhRP0NYhE93wCbeJKBGz0qF-0PITP6gKZ2OVD-8n4svNAB8IPzstYAvDMrpq9iPZ0qn1jnubmMnlLJ4XJj-uXRGPiXTyUDihzGvJeEEYl3">
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-on-primary tracking-tight">MCG-SMS</h1>
+<p class="text-label-sm font-label-sm text-on-primary/80">Methodist Church Ghana</p>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-2 px-md">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span class="">Members</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">school</span>
+<span class="">Classes</span>
+</a>
+<!-- Active State Navigation (Finance -> Dues & Contributions) -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg border-l-[3px] border-secondary-container bg-primary-light/10 text-on-primary font-bold scale-[0.98] transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px] icon-fill">payments</span>
+<span class="">Finance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">assessment</span>
+<span class="">Reports</span>
+</a>
+</div>
+<div class="px-md mt-auto flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="md:ml-sidebar-width md:mt-header-height p-lg md:p-xl max-w-[1600px] mx-auto min-h-[calc(100vh-theme(spacing.header-height))] flex flex-col gap-lg">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Dues &amp; Contributions</h2>
+<p class="text-text-secondary mt-1">Record payments and manage organizational dues ledger.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 border border-border rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors text-label-md font-label-md">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                    Download Dues Report (PDF / Excel)
+                </button>
+</div>
+</div>
+<!-- Top Section: Record a Payment Form (Glassmorphism inspired card) -->
+<div class="bg-card rounded-xl shadow-sm border border-border p-lg relative overflow-hidden">
+<!-- Decorative background element for form -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary-muted rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md relative z-10 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">add_circle</span>
+                Record a Payment
+            </h3>
+<form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-md relative z-10">
+<!-- Organisation Dropdown -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Organisation</label>
+<div class="relative">
+<select class="w-full bg-surface border border-border rounded-lg px-4 py-2.5 appearance-none focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-body-md">
+<option>Men's Fellowship</option>
+<option>Women's Fellowship</option>
+<option>Youth Guild</option>
+<option>Choir</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-text-secondary">expand_more</span>
+</div>
+</div>
+<!-- Member Search (Autocomplete simulation) -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Member</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary">person_search</span>
+<input class="w-full bg-surface border border-border rounded-lg pl-10 pr-4 py-2.5 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-body-md" placeholder="Search by name or ID..." type="text" value="Kwame Mensah">
+<!-- Simulated autocomplete dropdown -->
+<div class="absolute top-full left-0 w-full mt-1 bg-surface-container-lowest border border-border rounded-lg shadow-md z-20 hidden">
+<!-- items would go here -->
+</div>
+</div>
+</div>
+<!-- Period (Month/Year) -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Period</label>
+<input class="w-full bg-surface border border-border rounded-lg px-4 py-2.5 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-body-md" type="month" value="2023-10">
+</div>
+<!-- Amount -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Amount</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary font-data-label text-data-label">GH₵</span>
+<input class="w-full bg-surface border border-border rounded-lg pl-12 pr-4 py-2.5 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-data-label text-data-label" placeholder="0.00" step="0.01" type="number" value="50.00">
+</div>
+</div>
+<!-- Payment Method -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Payment Method</label>
+<div class="relative">
+<select class="w-full bg-surface border border-border rounded-lg px-4 py-2.5 appearance-none focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-body-md">
+<option>Cash</option>
+<option>Mobile Money</option>
+<option>Bank Transfer</option>
+<option>Cheque</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-text-secondary">expand_more</span>
+</div>
+</div>
+<!-- Date Received -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Date Received</label>
+<input class="w-full bg-surface border border-border rounded-lg px-4 py-2.5 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-body-md" type="date" value="2023-10-24">
+</div>
+<!-- Recorded By (Auto-filled) -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Recorded By</label>
+<input class="w-full bg-surface-container-high border border-border rounded-lg px-4 py-2.5 text-text-secondary cursor-not-allowed text-body-md" disabled="" type="text" value="Admin User">
+</div>
+<!-- Remarks -->
+<div class="flex flex-col gap-2 lg:col-span-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Remarks (Optional)</label>
+<input class="w-full bg-surface border border-border rounded-lg px-4 py-2.5 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-body-md" placeholder="Add any notes here..." type="text">
+</div>
+<!-- Submit Action -->
+<div class="lg:col-span-4 flex justify-end mt-2">
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md text-label-md hover:bg-primary-light transition-colors shadow-sm flex items-center gap-2" onclick="showToast()" type="button">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                        Record Payment
+                    </button>
+</div>
+</form>
+</div>
+<!-- Bottom Section: Dues Ledger (Bento grid style structural container) -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-surface">Men's Fellowship - Dues Ledger</h3>
+<!-- Quick Summary Stats above table -->
+<div class="flex gap-4">
+<div class="bg-surface-container-lowest border border-border rounded-lg px-4 py-2 flex items-center gap-3 shadow-sm border-l-4 border-l-success">
+<div class="text-label-sm font-label-sm text-text-secondary uppercase tracking-wider">Total Collected</div>
+<div class="font-data-display text-data-display text-on-surface font-semibold">GH₵ 4,250.00</div>
+</div>
+<div class="bg-surface-container-lowest border border-border rounded-lg px-4 py-2 flex items-center gap-3 shadow-sm border-l-4 border-l-danger">
+<div class="text-label-sm font-label-sm text-text-secondary uppercase tracking-wider">Outstanding</div>
+<div class="font-data-display text-data-display text-on-surface font-semibold">GH₵ 1,150.00</div>
+</div>
+</div>
+</div>
+<!-- Ledger Table Container -->
+<div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider border-b border-border">
+<th class="p-4 font-medium">Member Name</th>
+<th class="p-4 font-medium">Period</th>
+<th class="p-4 font-medium text-right">Amount Paid</th>
+<th class="p-4 font-medium">Date Paid</th>
+<th class="p-4 font-medium">Payment Method</th>
+<th class="p-4 font-medium">Recorded By</th>
+<th class="p-4 font-medium text-right">Balance</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border text-body-md font-body-md text-on-surface">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="p-4 font-medium">Kwame Mensah</td>
+<td class="p-4 text-text-secondary">Oct 2023</td>
+<td class="p-4 text-right font-data-label text-data-label">GH₵ 50.00</td>
+<td class="p-4 text-text-secondary">24 Oct, 2023</td>
+<td class="p-4"><span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-surface-container text-label-sm font-label-sm"><span class="material-symbols-outlined text-[14px]">payments</span>Cash</span></td>
+<td class="p-4 text-text-secondary">Admin User</td>
+<td class="p-4 text-right font-data-label text-data-label text-success">Settled</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors bg-error-container/20">
+<td class="p-4 font-medium">Kofi Osei</td>
+<td class="p-4 text-text-secondary">Oct 2023</td>
+<td class="p-4 text-right font-data-label text-data-label">GH₵ 0.00</td>
+<td class="p-4 text-text-secondary">-</td>
+<td class="p-4 text-text-secondary">-</td>
+<td class="p-4 text-text-secondary">-</td>
+<td class="p-4 text-right font-data-label text-data-label text-danger">- GH₵ 50.00</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="p-4 font-medium">Abena Appiah</td>
+<td class="p-4 text-text-secondary">Oct 2023</td>
+<td class="p-4 text-right font-data-label text-data-label">GH₵ 50.00</td>
+<td class="p-4 text-text-secondary">22 Oct, 2023</td>
+<td class="p-4"><span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-info/10 text-info text-label-sm font-label-sm"><span class="material-symbols-outlined text-[14px]">smartphone</span>MoMo</span></td>
+<td class="p-4 text-text-secondary">System</td>
+<td class="p-4 text-right font-data-label text-data-label text-success">Settled</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="p-4 font-medium">Yaw Ansah</td>
+<td class="p-4 text-text-secondary">Oct 2023</td>
+<td class="p-4 text-right font-data-label text-data-label">GH₵ 25.00</td>
+<td class="p-4 text-text-secondary">20 Oct, 2023</td>
+<td class="p-4"><span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-surface-container text-label-sm font-label-sm"><span class="material-symbols-outlined text-[14px]">account_balance</span>Bank</span></td>
+<td class="p-4 text-text-secondary">Admin User</td>
+<td class="p-4 text-right font-data-label text-data-label text-warning">- GH₵ 25.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="border-t border-border p-4 flex items-center justify-between bg-surface-container-lowest">
+<span class="text-label-sm font-label-sm text-text-secondary">Showing 1-4 of 120 members</span>
+<div class="flex gap-2">
+<button class="p-1 rounded hover:bg-surface-container text-text-secondary disabled:opacity-50" disabled=""><span class="material-symbols-outlined text-[20px]">chevron_left</span></button>
+<button class="p-1 rounded hover:bg-surface-container text-text-secondary"><span class="material-symbols-outlined text-[20px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Success Toast Notification (Hidden by default) -->
+<div class="fixed bottom-lg left-1/2 -translate-x-1/2 hidden z-50" id="toast-success">
+<div class="bg-success text-on-primary px-6 py-3 rounded-lg shadow-lg flex items-center gap-3 font-body-md text-body-md">
+<span class="material-symbols-outlined icon-fill">check_circle</span>
+<span class="">Payment recorded for <strong>Kwame Mensah</strong></span>
+<button class="ml-4 hover:opacity-80" onclick="hideToast()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<script>
+        function showToast() {
+            const toast = document.getElementById('toast-success');
+            toast.classList.remove('hidden');
+            toast.classList.add('toast-enter');
+            
+            // Auto hide after 3 seconds
+            setTimeout(() => {
+                hideToast();
+            }, 3000);
+        }
+
+        function hideToast() {
+            const toast = document.getElementById('toast-success');
+            toast.classList.add('hidden');
+            toast.classList.remove('toast-enter');
+        }
+    </script>
+
+
+</body></html>
