@@ -1,0 +1,453 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Services &amp; Events Calendar | Methodist Church Ghana</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Load Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "gold-muted": "#FDF6E3",
+                    "outline-variant": "#dcc0c1",
+                    "tertiary-container": "#404140",
+                    "surface-container": "#f4ece8",
+                    "on-secondary-fixed-variant": "#5a4300",
+                    "success": "#16A34A",
+                    "surface-variant": "#e9e1dd",
+                    "surface": "#F8F7F5",
+                    "on-surface-variant": "#564243",
+                    "border": "#E4E2DD",
+                    "outline": "#897172",
+                    "surface-container-low": "#faf2ee",
+                    "info": "#2563EB",
+                    "text-secondary": "#6B7280",
+                    "surface-container-highest": "#e9e1dd",
+                    "surface-bright": "#fff8f5",
+                    "on-secondary-fixed": "#251a00",
+                    "inverse-surface": "#33302d",
+                    "secondary-fixed": "#ffdf9a",
+                    "tertiary-fixed-dim": "#c7c6c5",
+                    "primary-container": "#7b1c2d",
+                    "on-primary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f7efeb",
+                    "primary-fixed": "#ffdadb",
+                    "surface-dim": "#e0d8d5",
+                    "on-secondary-container": "#745700",
+                    "on-surface": "#1e1b19",
+                    "secondary-fixed-dim": "#eec04f",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#e3e2e0",
+                    "warning": "#D97706",
+                    "primary-muted": "#F5EAEC",
+                    "on-primary-fixed": "#40000e",
+                    "inverse-primary": "#ffb2b7",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#eee7e3",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed-variant": "#832233",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#1e1b19",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#adadab",
+                    "card": "#FFFFFF",
+                    "tertiary": "#2a2b2a",
+                    "danger": "#DC2626",
+                    "primary-light": "#A3283F",
+                    "on-tertiary-fixed-variant": "#464746",
+                    "secondary": "#775a00",
+                    "primary-fixed-dim": "#ffb2b7",
+                    "secondary-container": "#fece5b",
+                    "background": "#fff8f5",
+                    "on-primary-container": "#ff8a95",
+                    "surface-tint": "#a33a49",
+                    "primary": "#5c0219",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#1a1c1b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "lg": "24px",
+                    "base": "8px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "sidebar-width": "256px",
+                    "header-height": "64px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "data-display": ["JetBrains Mono"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "data-label": ["JetBrains Mono"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Lora"],
+                    "body-md": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { background-color: #F8F7F5; font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .calendar-grid { grid-template-columns: repeat(7, 1fr); }
+        .calendar-day { min-height: 120px; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-on-surface overflow-hidden">
+<!-- TopAppBar -->
+
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width flex flex-col z-40 bg-primary-container text-on-primary-container shadow-lg pt-header-height">
+<div class="p-lg">
+<div class="font-headline-md text-headline-md text-secondary-fixed font-bold leading-tight">Methodist Church Ghana</div>
+<div class="text-[11px] opacity-80 font-label-sm uppercase tracking-wider mt-1">Society Management System</div>
+</div>
+<nav class="flex-1 px-0 mt-md">
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md border-l-4 border-secondary-container bg-primary-light/20 text-secondary-fixed py-md px-lg transition-all translate-x-1" href="#">
+<span class="material-symbols-outlined">church</span>
+<span class="font-label-md text-label-md font-bold">Classes</span>
+</a>
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md text-label-md">Members</span>
+</a>
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Finance</span>
+</a>
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+</nav>
+<div class="p-lg mt-auto border-t border-primary-light/20">
+<a class="flex items-center gap-md text-on-primary py-sm hover:opacity-80" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md text-on-primary py-sm hover:opacity-80 mt-2" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-sidebar-width pt-header-height h-screen overflow-y-auto bg-surface">
+<div class="p-xl max-w-7xl mx-auto">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-2 mb-lg text-on-surface-variant font-label-md text-label-md">
+<span class="">Dashboard</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Services &amp; Programmes</span>
+</nav>
+<!-- Calendar Controls -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-lg mb-xl">
+<div class="flex items-center gap-md">
+<button class="p-2 border border-border rounded-lg bg-card hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<h2 class="font-headline-lg text-headline-lg text-on-surface min-w-[220px] text-center">October 2025</h2>
+<button class="p-2 border border-border rounded-lg bg-card hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex p-1 bg-surface-container rounded-xl">
+<button class="px-md py-2 rounded-lg bg-card shadow-sm text-primary font-bold font-label-md text-label-md flex items-center gap-2" id="view-calendar">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+                            Calendar
+                        </button>
+<button class="px-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md flex items-center gap-2 transition-all" id="view-list">
+<span class="material-symbols-outlined text-[18px]">list</span>
+                            List
+                        </button>
+</div>
+<button class="px-lg py-2.5 bg-primary-container text-white rounded-lg shadow-sm hover:bg-primary-light transition-all flex items-center gap-2 font-label-md text-label-md">
+<span class="material-symbols-outlined">add</span>
+                        Add Service / Event
+                    </button>
+</div>
+</div>
+<!-- Calendar View Container -->
+<div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden" id="calendar-view">
+<!-- Day Headers -->
+<div class="grid calendar-grid border-b border-border bg-surface-container-low">
+<div class="py-3 text-center font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Sun</div>
+<div class="py-3 text-center font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Mon</div>
+<div class="py-3 text-center font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Tue</div>
+<div class="py-3 text-center font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Wed</div>
+<div class="py-3 text-center font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Thu</div>
+<div class="py-3 text-center font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Fri</div>
+<div class="py-3 text-center font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Sat</div>
+</div>
+<!-- Calendar Grid -->
+<div class="grid calendar-grid">
+<!-- Week 1 (Mock) -->
+<div class="calendar-day p-2 border-r border-b border-border opacity-40 bg-surface-container-low">28</div>
+<div class="calendar-day p-2 border-r border-b border-border opacity-40 bg-surface-container-low">29</div>
+<div class="calendar-day p-2 border-r border-b border-border opacity-40 bg-surface-container-low">30</div>
+<div class="calendar-day p-2 border-r border-b border-border">
+<span class="font-data-label text-data-label p-1">1</span>
+</div>
+<div class="calendar-day p-2 border-r border-b border-border">
+<span class="font-data-label text-data-label p-1">2</span>
+</div>
+<div class="calendar-day p-2 border-r border-b border-border">
+<span class="font-data-label text-data-label p-1">3</span>
+</div>
+<div class="calendar-day p-2 border-b border-border">
+<span class="font-data-label text-data-label p-1">4</span>
+</div>
+<!-- Week 4 (With Data) -->
+<!-- Row October 19-25 -->
+<div class="calendar-day p-2 border-r border-b border-border">
+<span class="font-data-label text-data-label p-1">19</span>
+<div class="mt-2 space-y-1">
+<button class="w-full text-left px-2 py-1 bg-primary-container text-white rounded text-[10px] font-bold truncate" onclick="showPopover(event)">Sunday Service</button>
+</div>
+</div>
+<div class="calendar-day p-2 border-r border-b border-border">
+<span class="font-data-label text-data-label p-1">20</span>
+</div>
+<div class="calendar-day p-2 border-r border-b border-border">
+<span class="font-data-label text-data-label p-1">21</span>
+<div class="mt-2 space-y-1">
+<div class="w-full text-left px-2 py-1 bg-[#F3F4F6] text-[#374151] border border-border rounded text-[10px] font-bold truncate">Finance Meeting</div>
+</div>
+</div>
+<div class="calendar-day p-2 border-r border-b border-border">
+<span class="font-data-label text-data-label p-1">22</span>
+<div class="mt-2 space-y-1">
+<div class="w-full text-left px-2 py-1 bg-[#DBEAFE] text-[#1D4ED8] rounded text-[10px] font-bold truncate">Bible Study</div>
+</div>
+</div>
+<div class="calendar-day p-2 border-r border-b border-border">
+<span class="font-data-label text-data-label p-1">23</span>
+</div>
+<div class="calendar-day p-2 border-r border-b border-border relative bg-primary-muted">
+<span class="w-7 h-7 flex items-center justify-center bg-primary text-white rounded-full font-data-label text-data-label">24</span>
+<div class="mt-2 space-y-1">
+<div class="w-full text-left px-2 py-1 bg-[#FDF6E3] text-[#C49A2B] border border-[#fece5b] rounded text-[10px] font-bold truncate">Choir Rehearsal</div>
+</div>
+</div>
+<div class="calendar-day p-2 border-b border-border">
+<span class="font-data-label text-data-label p-1">25</span>
+<div class="mt-2 space-y-1">
+<div class="w-full text-left px-2 py-1 bg-[#EDE9FE] text-[#6D28D9] rounded text-[10px] font-bold truncate">Wedding: Mensah &amp; Quaye</div>
+</div>
+</div>
+<!-- Row 26-31 (Filling) -->
+<div class="calendar-day p-2 border-r border-border"><span class="font-data-label text-data-label p-1">26</span>
+<div class="mt-2 space-y-1">
+<div class="w-full text-left px-2 py-1 bg-primary-container text-white rounded text-[10px] font-bold truncate">Harvest Sunday</div>
+</div>
+</div>
+<div class="calendar-day p-2 border-r border-border"><span class="font-data-label text-data-label p-1">27</span></div>
+<div class="calendar-day p-2 border-r border-border"><span class="font-data-label text-data-label p-1">28</span></div>
+<div class="calendar-day p-2 border-r border-border"><span class="font-data-label text-data-label p-1">29</span></div>
+<div class="calendar-day p-2 border-r border-border"><span class="font-data-label text-data-label p-1">30</span></div>
+<div class="calendar-day p-2 border-r border-border"><span class="font-data-label text-data-label p-1">31</span></div>
+<div class="calendar-day p-2 opacity-40 bg-surface-container-low">1</div>
+</div>
+</div>
+<!-- List View Container (Hidden by default) -->
+<div class="hidden bg-card rounded-xl shadow-sm border border-border overflow-hidden" id="list-view">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-border">
+<tr>
+<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant">Date</th>
+<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant">Day</th>
+<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant">Event Name</th>
+<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant">Type</th>
+<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant">Venue</th>
+<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant">Preacher</th>
+<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-4 font-body-md text-body-md">Oct 19, 2025</td>
+<td class="px-lg py-4 font-body-md text-body-md">Sunday</td>
+<td class="px-lg py-4 font-body-md text-body-md font-bold">Divine Service</td>
+<td class="px-lg py-4">
+<span class="px-3 py-1 bg-primary-container text-white rounded-full text-[11px] font-bold">Sunday Service</span>
+</td>
+<td class="px-lg py-4 font-body-md text-body-md">Main Sanctuary</td>
+<td class="px-lg py-4 font-body-md text-body-md">Very Rev. K. Appiah</td>
+<td class="px-lg py-4">
+<button class="text-primary hover:underline font-label-md text-label-md">Details</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-4 font-body-md text-body-md">Oct 22, 2025</td>
+<td class="px-lg py-4 font-body-md text-body-md">Wednesday</td>
+<td class="px-lg py-4 font-body-md text-body-md font-bold">Midweek Bible Study</td>
+<td class="px-lg py-4">
+<span class="px-3 py-1 bg-[#DBEAFE] text-[#1D4ED8] rounded-full text-[11px] font-bold">Midweek</span>
+</td>
+<td class="px-lg py-4 font-body-md text-body-md">Hall A</td>
+<td class="px-lg py-4 font-body-md text-body-md">Bro. Samuel Mensah</td>
+<td class="px-lg py-4">
+<button class="text-primary hover:underline font-label-md text-label-md">Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Legend Strip -->
+<div class="mt-lg flex flex-wrap items-center gap-xl bg-card p-md rounded-lg border border-border shadow-sm">
+<span class="font-label-md text-label-md text-on-surface-variant">LEGEND:</span>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<span class="font-label-sm text-label-sm">Sunday Service</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#DBEAFE] border border-[#1D4ED8]/20"></div>
+<span class="font-label-sm text-label-sm">Midweek</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#FDF6E3] border border-[#C49A2B]/20"></div>
+<span class="font-label-sm text-label-sm">Programme</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#F3F4F6] border border-[#374151]/20"></div>
+<span class="font-label-sm text-label-sm">Meeting</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#EDE9FE] border border-[#6D28D9]/20"></div>
+<span class="font-label-sm text-label-sm">Rites</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Event Popover (Floating) -->
+<div class="hidden fixed z-[60] w-72 bg-white rounded-xl shadow-xl border border-border overflow-hidden" id="event-popover">
+<div class="p-4 bg-primary-container text-white">
+<div class="flex justify-between items-start">
+<h4 class="font-headline-md text-headline-md font-bold">Sunday Service</h4>
+<button class="opacity-70 hover:opacity-100" onclick="closePopover()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<span class="inline-block mt-2 px-2 py-0.5 bg-white/20 rounded text-[10px] font-bold uppercase">Sunday Service</span>
+</div>
+<div class="p-4 space-y-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline text-[18px]">schedule</span>
+<span class="font-body-md text-body-md">08:00 AM - 11:30 AM</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline text-[18px]">location_on</span>
+<span class="font-body-md text-body-md">Main Sanctuary</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline text-[18px]">person</span>
+<span class="font-body-md text-body-md">Very Rev. K. Appiah</span>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-4">
+<a class="flex items-center justify-center gap-1 py-2 bg-surface-container-low text-primary rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                    F-03 Details
+                </a>
+<a class="flex items-center justify-center gap-1 py-2 bg-surface-container-low text-primary rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+                    F-02 Edit
+                </a>
+</div>
+</div>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest pb-safe md:hidden h-[56px] border-t border-border shadow-[0_-1px_3px_rgba(0,0,0,0.06)]">
+<a class="flex flex-col items-center justify-center text-primary font-bold" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person_search</span>
+<span class="font-label-sm text-label-sm">Members</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Finance</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-sm text-label-sm">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">menu</span>
+<span class="font-label-sm text-label-sm">More</span>
+</a>
+</nav>
+<script>
+        // Toggle View Logic
+        const calendarBtn = document.getElementById('view-calendar');
+        const listBtn = document.getElementById('view-list');
+        const calendarView = document.getElementById('calendar-view');
+        const listView = document.getElementById('list-view');
+
+        calendarBtn.addEventListener('click', () => {
+            calendarView.classList.remove('hidden');
+            listView.classList.add('hidden');
+            calendarBtn.classList.add('bg-card', 'shadow-sm', 'text-primary', 'font-bold');
+            calendarBtn.classList.remove('text-on-surface-variant');
+            listBtn.classList.remove('bg-card', 'shadow-sm', 'text-primary', 'font-bold');
+            listBtn.classList.add('text-on-surface-variant');
+        });
+
+        listBtn.addEventListener('click', () => {
+            listView.classList.remove('hidden');
+            calendarView.classList.add('hidden');
+            listBtn.classList.add('bg-card', 'shadow-sm', 'text-primary', 'font-bold');
+            listBtn.classList.remove('text-on-surface-variant');
+            calendarBtn.classList.remove('bg-card', 'shadow-sm', 'text-primary', 'font-bold');
+            calendarBtn.classList.add('text-on-surface-variant');
+        });
+
+        // Popover Logic
+        const popover = document.getElementById('event-popover');
+        
+        function showPopover(event) {
+            event.stopPropagation();
+            const rect = event.target.getBoundingClientRect();
+            popover.style.left = `${rect.left}px`;
+            popover.style.top = `${rect.bottom + 10}px`;
+            popover.classList.remove('hidden');
+        }
+
+        function closePopover() {
+            popover.classList.add('hidden');
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!popover.contains(e.target)) {
+                closePopover();
+            }
+        });
+    </script>
+
+
+
+
+</body></html>

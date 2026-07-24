@@ -1,0 +1,391 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MCG-SMS | Add Service or Programme</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #dcc0c1;
+            border-radius: 10px;
+        }
+        .focus-ring:focus {
+            outline: none;
+            border-color: #5c0219;
+            box-shadow: 0 0 0 2px rgba(92, 2, 25, 0.1);
+        }
+        /* Mobile-friendly adjustments */
+        @media (max-width: 768px) {
+            .sidebar-collapsed { width: 0; transform: translateX(-100%); }
+            .main-content { margin-left: 0 !important; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "gold-muted": "#FDF6E3",
+                        "outline-variant": "#dcc0c1",
+                        "tertiary-container": "#404140",
+                        "surface-container": "#f4ece8",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "success": "#16A34A",
+                        "surface-variant": "#e9e1dd",
+                        "surface": "#F8F7F5",
+                        "on-surface-variant": "#564243",
+                        "border": "#E4E2DD",
+                        "outline": "#897172",
+                        "surface-container-low": "#faf2ee",
+                        "info": "#2563EB",
+                        "text-secondary": "#6B7280",
+                        "surface-container-highest": "#e9e1dd",
+                        "surface-bright": "#fff8f5",
+                        "on-secondary-fixed": "#251a00",
+                        "inverse-surface": "#33302d",
+                        "secondary-fixed": "#ffdf9a",
+                        "tertiary-fixed-dim": "#c7c6c5",
+                        "primary-container": "#7b1c2d",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f7efeb",
+                        "primary-fixed": "#ffdadb",
+                        "surface-dim": "#e0d8d5",
+                        "on-secondary-container": "#745700",
+                        "on-surface": "#1e1b19",
+                        "secondary-fixed-dim": "#eec04f",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#e3e2e0",
+                        "warning": "#D97706",
+                        "primary-muted": "#F5EAEC",
+                        "on-primary-fixed": "#40000e",
+                        "inverse-primary": "#ffb2b7",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#eee7e3",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#832233",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1e1b19",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#adadab",
+                        "card": "#FFFFFF",
+                        "tertiary": "#2a2b2a",
+                        "danger": "#DC2626",
+                        "primary-light": "#A3283F",
+                        "on-tertiary-fixed-variant": "#464746",
+                        "secondary": "#775a00",
+                        "primary-fixed-dim": "#ffb2b7",
+                        "secondary-container": "#fece5b",
+                        "background": "#fff8f5",
+                        "on-primary-container": "#ff8a95",
+                        "surface-tint": "#a33a49",
+                        "primary": "#5c0219",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#1a1c1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "lg": "24px",
+                        "base": "8px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "sidebar-width": "256px",
+                        "header-height": "64px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "data-display": ["JetBrains Mono"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "data-label": ["JetBrains Mono"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Lora"],
+                        "headline-lg": ["Lora"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                        "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                        "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                        "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<!-- Desktop Sidebar (Anchor) -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width flex flex-col z-40 bg-primary-container dark:bg-primary shadow-lg hidden md:flex">
+<div class="p-lg flex flex-col gap-xs">
+<h1 class="font-headline-md text-headline-md text-secondary-fixed font-bold leading-tight">Methodist Church Ghana</h1>
+<p class="font-label-md text-label-md text-on-primary-container opacity-80">Society Management System</p>
+</div>
+<nav class="flex-1 mt-md custom-scrollbar overflow-y-auto">
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md border-l-4 border-secondary-container bg-primary-light/20 text-secondary-fixed py-md px-lg translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">church</span>
+<span class="font-label-md text-label-md">Classes</span>
+</a>
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md text-label-md">Members</span>
+</a>
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Finance</span>
+</a>
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-primary-light/20 p-md">
+<button class="w-full bg-secondary-container text-on-secondary-container py-md rounded-lg font-label-md flex items-center justify-center gap-sm mb-md hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span> Quick Actions
+            </button>
+<a class="flex items-center gap-md text-on-primary py-md px-md hover:bg-primary-light/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md text-on-primary py-md px-md hover:bg-primary-light/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-sidebar-width flex flex-col min-h-screen">
+<!-- Top App Bar -->
+<header class="fixed top-0 right-0 left-0 md:left-sidebar-width z-50 flex justify-between items-center px-lg h-header-height bg-surface-container-lowest border-b border-border shadow-sm">
+<div class="flex items-center gap-md">
+<button class="md:hidden p-sm hover:bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold text-primary">MCG-SMS</span>
+</div>
+
+</header>
+<!-- Page Canvas -->
+<div class="mt-header-height p-lg max-w-5xl mx-auto w-full pb-xl">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-xs text-on-surface-variant font-label-md mb-md">
+<a class="hover:text-primary" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary" href="#">Services &amp; Programmes</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-bold">New Event</span>
+</nav>
+<!-- Page Title -->
+<header class="mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-xs">Add New Service / Programme</h2>
+<p class="text-on-surface-variant font-body-md">Schedule a new spiritual gathering or administrative meeting for the society.</p>
+</header>
+<!-- Info Banner -->
+<div class="bg-info/10 border-l-4 border-info p-md mb-lg rounded-r-lg flex items-start gap-md">
+<span class="material-symbols-outlined text-info">info</span>
+<div>
+<p class="text-info font-label-md font-bold mb-xs">Registration Notice</p>
+<p class="text-on-surface-variant font-body-md">Attendance and collection figures are recorded separately after the event concludes via the 'Post-Service Report' tool.</p>
+</div>
+</div>
+<form class="space-y-lg">
+<!-- Section 1: Event Details -->
+<section class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+<div class="bg-surface-container-low px-lg py-md border-b border-border flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+<h3 class="font-headline-md text-headline-md text-primary">Event Details</h3>
+</div>
+</div>
+<div class="p-lg grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Event Name -->
+<div class="md:col-span-2">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Event Name <span class="text-error">*</span></label>
+<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" placeholder="e.g. Annual Harvest Thanksgiving Service" required="" type="text">
+</div>
+<!-- Event Type -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Event Type <span class="text-error">*</span></label>
+<select class="w-full border border-border rounded-lg p-md font-body-md focus-ring appearance-none bg-white transition-all">
+<option disabled="" selected="" value="">Select event type...</option>
+<option>Sunday Main Service</option>
+<option>Midweek Prayer Meeting</option>
+<option>Rite (Baptism/Confirmation)</option>
+<option>Wedding Service</option>
+<option>Funeral Service</option>
+<option>Society Council Meeting</option>
+<option>Youth Fellowship</option>
+</select>
+</div>
+<!-- Date -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Date <span class="text-error">*</span></label>
+<div class="relative">
+<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" type="date">
+</div>
+</div>
+<!-- Time Range -->
+<div class="grid grid-cols-2 gap-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Start Time</label>
+<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" type="time">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">End Time</label>
+<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" type="time">
+</div>
+</div>
+<!-- Venue -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Venue <span class="text-error">*</span></label>
+<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" placeholder="e.g. Main Sanctuary" type="text">
+</div>
+<!-- Theme -->
+<div class="md:col-span-2">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Theme / Scriptural Text</label>
+<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" placeholder="e.g. The Grace of Giving (2 Corinthians 9:7)" type="text">
+</div>
+</div>
+</section>
+<!-- Section 2: People & Notes -->
+<section class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+<div class="bg-surface-container-low px-lg py-md border-b border-border flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">groups_2</span>
+<h3 class="font-headline-md text-headline-md text-primary">People &amp; Notes</h3>
+</div>
+</div>
+<div class="p-lg space-y-lg">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Preacher -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface-variant">Preacher / Speaker</label>
+<label class="flex items-center gap-xs cursor-pointer select-none">
+<input class="rounded text-primary focus:ring-primary-light" type="checkbox">
+<span class="font-label-sm text-label-sm text-on-surface-variant">External Speaker</span>
+</label>
+</div>
+<div class="relative">
+<input class="w-full border border-border rounded-lg p-md pl-10 font-body-md focus-ring transition-all" placeholder="Search members or enter name..." type="text">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+</div>
+</div>
+<!-- Presiding Minister -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface-variant">Presiding Minister</label>
+<label class="flex items-center gap-xs cursor-pointer select-none">
+<input class="rounded text-primary focus:ring-primary-light" type="checkbox">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Manual Entry</span>
+</label>
+</div>
+<div class="relative">
+<input class="w-full border border-border rounded-lg p-md pl-10 font-body-md focus-ring transition-all" placeholder="Search clergy records..." type="text">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">verified_user</span>
+</div>
+</div>
+</div>
+<!-- Notes Area -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Announcements / Special Notes</label>
+<textarea class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all resize-none" placeholder="Mention specific announcements, litany details, or logistics..." rows="4"></textarea>
+</div>
+</div>
+</section>
+<!-- Footer Actions -->
+<div class="flex flex-col md:flex-row items-center justify-end gap-md pt-lg border-t border-border mt-xl">
+<a class="text-on-surface-variant hover:text-error transition-colors px-lg py-md font-label-md order-3 md:order-1" href="#">Cancel and Discard</a>
+<div class="flex flex-col md:flex-row gap-md w-full md:w-auto order-1 md:order-2">
+<button class="border-2 border-primary-light text-primary-light font-label-md px-lg py-md rounded-lg hover:bg-primary-muted transition-all active:scale-95" type="button">
+                            Save and Add Another
+                        </button>
+<button class="bg-primary text-on-primary font-label-md px-xl py-md rounded-lg shadow-md hover:bg-primary-light transition-all active:scale-95 flex items-center justify-center gap-sm" type="submit">
+<span class="material-symbols-outlined">save</span> Save Event
+                        </button>
+</div>
+</div>
+</form>
+</div>
+</main>
+<!-- Mobile Navigation (Anchor) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest pb-safe md:hidden border-t border-border shadow-[0_-1px_3px_rgba(0,0,0,0.06)] h-[56px]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm-mobile text-label-sm-mobile">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold active:bg-surface-container-high scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">church</span>
+<span class="font-label-sm-mobile text-label-sm-mobile">Services</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-sm-mobile text-label-sm-mobile">Finance</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-sm-mobile text-label-sm-mobile">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform" href="#">
+<span class="material-symbols-outlined">menu</span>
+<span class="font-label-sm-mobile text-label-sm-mobile">More</span>
+</a>
+</nav>
+<script>
+        // Simple UI Micro-interactions
+        document.querySelectorAll('input, select, textarea').forEach(element => {
+            element.addEventListener('focus', () => {
+                element.parentElement.querySelector('label')?.classList.add('text-primary');
+            });
+            element.addEventListener('blur', () => {
+                element.parentElement.querySelector('label')?.classList.remove('text-primary');
+            });
+        });
+
+        // Form Submission Intercept
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> Saving...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Service successfully scheduled!');
+                btn.innerHTML = originalHtml;
+                btn.disabled = false;
+            }, 1200);
+        });
+    </script>
+
+
+</body></html>

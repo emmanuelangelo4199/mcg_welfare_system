@@ -1,0 +1,40 @@
+{% comment %}
+Page header — the title/description/breadcrumb/action block at the top of
+every screen (Section 3.5 of the design brief).
+
+Usage:
+  {% include "components/page_header.html" with title="Member Directory" description="Browse and search all registered members." breadcrumbs=breadcrumbs action_label="Add Member" action_url="/members/new/" %}
+
+`breadcrumbs` is a list of dicts: [{"label": "Dashboard", "url": "/"}, {"label": "Members", "url": "/members/"}, {"label": "Member Directory", "url": ""}]
+The last item always renders as plain text (current page), even if it has a url.
+
+Omit action_label/action_url on screens with no primary action (e.g. N-04 Audit Log).
+{% endcomment %}
+<div class="mb-8">
+  {% if breadcrumbs %}
+    <nav class="mb-2 text-[13px]" aria-label="Breadcrumb">
+      {% for crumb in breadcrumbs %}
+        {% if not forloop.last %}
+          <a href="{{ crumb.url }}" class="text-ink-secondary hover:text-primary">{{ crumb.label }}</a>
+          <span class="text-gold mx-1.5" aria-hidden="true">&rsaquo;</span>
+        {% else %}
+          <span class="text-ink font-medium">{{ crumb.label }}</span>
+        {% endif %}
+      {% endfor %}
+    </nav>
+  {% endif %}
+  <div class="flex items-start justify-between gap-4 flex-wrap">
+    <div>
+      <h1 class="font-display font-bold text-[28px] text-primary leading-tight">{{ title }}</h1>
+      {% if description %}
+        <p class="mt-1 text-sm text-ink-secondary">{{ description }}</p>
+      {% endif %}
+    </div>
+    {% if action_url and action_label %}
+      <a href="{{ action_url }}"
+         class="shrink-0 inline-flex items-center px-5 py-2 rounded-control bg-primary text-white text-sm font-semibold hover:bg-primary-light transition-colors duration-150">
+        {{ action_label }}
+      </a>
+    {% endif %}
+  </div>
+</div>

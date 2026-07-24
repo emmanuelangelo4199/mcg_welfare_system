@@ -1,0 +1,482 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Organisation Detail - MCG-SMS</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config from Guidelines -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#404140",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "success": "#16A34A",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#1a1c1b",
+                    "on-primary-container": "#ff8a95",
+                    "on-primary-fixed": "#40000e",
+                    "surface-container-low": "#faf2ee",
+                    "background": "#fff8f5",
+                    "secondary-container": "#fece5b",
+                    "surface-container": "#f4ece8",
+                    "inverse-primary": "#ffb2b7",
+                    "tertiary-fixed": "#e3e2e0",
+                    "surface-container-high": "#eee7e3",
+                    "danger": "#DC2626",
+                    "on-surface": "#1e1b19",
+                    "secondary-fixed-dim": "#eec04f",
+                    "surface-tint": "#a33a49",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#564243",
+                    "outline": "#897172",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#c7c6c5",
+                    "on-tertiary-fixed-variant": "#464746",
+                    "secondary": "#775a00",
+                    "primary": "#5c0219",
+                    "tertiary": "#2a2b2a",
+                    "surface-bright": "#fff8f5",
+                    "gold-muted": "#FDF6E3",
+                    "outline-variant": "#dcc0c1",
+                    "info": "#2563EB",
+                    "error": "#ba1a1a",
+                    "warning": "#D97706",
+                    "secondary-fixed": "#ffdf9a",
+                    "primary-light": "#A3283F",
+                    "card": "#FFFFFF",
+                    "surface-variant": "#e9e1dd",
+                    "surface-dim": "#e0d8d5",
+                    "surface-container-highest": "#e9e1dd",
+                    "on-secondary-fixed": "#251a00",
+                    "primary-fixed": "#ffdadb",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#745700",
+                    "inverse-surface": "#33302d",
+                    "on-secondary-fixed-variant": "#5a4300",
+                    "primary-fixed-dim": "#ffb2b7",
+                    "on-tertiary-container": "#adadab",
+                    "inverse-on-surface": "#f7efeb",
+                    "on-background": "#1e1b19",
+                    "primary-muted": "#F5EAEC",
+                    "surface": "#F8F7F5",
+                    "text-secondary": "#6B7280",
+                    "border": "#E4E2DD",
+                    "primary-container": "#7b1c2d",
+                    "on-primary-fixed-variant": "#832233",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "lg": "24px",
+                    "xl": "32px",
+                    "sidebar-width": "256px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "header-height": "64px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "data-label": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Lora"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "data-display": ["JetBrains Mono"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Lora"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Custom scrollbar for tabs and main content area if needed */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #E4E2DD; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #dcc0c1; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen">
+<!-- JSON Component: SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary dark:bg-primary-container shadow-sm dark:shadow-none z-40 hidden md:flex flex-col py-lg transition-transform duration-300">
+<!-- Brand Logo -->
+<div class="px-lg mb-xl flex flex-col gap-xs">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center overflow-hidden">
+<img class="w-8 h-8 object-contain" data-alt="A clean, minimalist logo mark for a modern religious institution, featuring a subtle cross motif in deep maroon against a crisp white background. High resolution, corporate vector style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtn7OWWgQZk37fYHNzsCgTBYtmyJqSUQ9zcxMmWaXW2YzxN8LJksZJSm7M9epXc_ixcbewbdxr69b50ESJZHqoulOKM5cO0Zln3zggZu7ResxVWQ4LqlDiZ9e3NthGRVgDIHLYkTnZTZZoquVdumSfd9Pdz9Y8OwTZAfqPCz_KPGPu7qpKTBvsfln-3zW12N46Xs3JAVMXd-8sv9KMMHfHxb0ZapitY0Emezxb36h_YN0HupGRS3dLjX2Sva3O90ZUAovQ1cN4n6lp">
+</div>
+<h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</h1>
+</div>
+<p class="font-label-sm text-label-sm text-on-primary/70 ml-14">Methodist Church Ghana</p>
+</div>
+<!-- Navigation Links -->
+<!-- Logic: Intent of page is 'Organisation Detail' which manages a subset of members. Active tab: Members -->
+<nav class="flex-1 px-sm flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg border-l-[3px] border-secondary-container bg-primary-light/10 text-on-primary font-bold hover:bg-primary-light transition-colors duration-200 scale-[0.98] transition-transform" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Members</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md text-label-md">Classes</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Finance</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+</nav>
+<!-- Footer Links -->
+<div class="mt-auto px-sm flex flex-col gap-xs pt-lg border-t border-on-primary/10">
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- JSON Component: TopAppBar -->
+<header class="docked full-width top-0 bg-surface-container-lowest dark:bg-surface-dim shadow-sm flex justify-between items-center h-header-height px-xl ml-0 md:ml-sidebar-width md:w-[calc(100%-theme(spacing.sidebar-width))] fixed z-30">
+<!-- Search Bar (on_left configuration) -->
+<div class="flex-1 flex items-center">
+<div class="relative w-full max-w-md hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50" style="font-size: 20px;">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface rounded-full border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-body-md transition-all" placeholder="Search members, organisations..." type="text">
+</div>
+<!-- Mobile Menu Toggle (placeholder) -->
+<button class="md:hidden p-2 text-primary hover:bg-surface-container rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<!-- Trailing Icon Actions & Profile -->
+
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-header-height ml-0 md:ml-sidebar-width min-h-screen p-md transition-all duration-300 md:p-lg">
+<!-- Page Breadcrumb/Header (Optional but good for context) -->
+<div class="flex items-center gap-2 text-label-md text-text-secondary mb-md">
+<a class="hover:text-primary transition-colors" href="#">Organisations</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface font-medium">Christ Little Band</span>
+</div>
+<!-- Dual Panel Layout -->
+<div class="flex flex-col lg:flex-row gap-lg items-start">
+<!-- Left Panel: 1/3 Sticky Info Card -->
+<div class="w-full lg:w-[320px] flex-shrink-0 lg:sticky lg:top-[calc(theme(spacing.header-height)+theme(spacing.xl))]">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-border overflow-hidden">
+<!-- Decorative Header Image / Accent -->
+<div class="w-full bg-cover bg-center bg-surface-variant h-16" data-alt="A beautifully composed abstract architectural shot of an old stone church wall illuminated by warm golden hour sunlight, creating interesting shadows and a serene, traditional yet dignified atmosphere." style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAyjkhCk0dgY1DCcenIr9sXtunWYnUZrs4-013ivTUtfOxQpUeyYvvs4UPRFqJRfYBA5qNUFDumUxzuBXIOr1785CmQz1NFrwvnweC_naXicoawbf7stwWpZP1vTfn84oQ0jU5IbKoOQHUUN2Enkq1jO9WOFQo3M33NgF3iiynd-ELXLbkeyjv4NOIFZQkgyV-J0-YikNL2anQe72rz6iTrUQXKg0g7cNb-ZIFiCwZrBtAGkGthIyZ6xi6H-PACHPOzTobygecmqw_V&quot;);">
+<div class="w-full h-full bg-gradient-to-t from-surface-container-lowest/90 to-transparent"></div>
+</div>
+<div class="p-lg pt-0 relative -mt-6">
+<!-- Type Badge -->
+<div class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm uppercase tracking-wider mb-sm shadow-sm">
+<span class="material-symbols-outlined text-[14px] mr-1">diversity_3</span>
+                            Generational Group
+                        </div>
+<!-- Organisation Name -->
+<h2 class="font-headline-lg text-headline-lg text-primary mb-md leading-tight">Christ Little Band</h2>
+<!-- Core Stats / Status -->
+<div class="flex items-center justify-between bg-surface rounded-lg border border-border/50 p-2 mb-md">
+<div>
+<p class="font-label-sm text-text-secondary mb-1 uppercase tracking-wide">Total Members</p>
+<p class="font-data-display text-data-display text-on-surface">142</p>
+</div>
+<div class="w-px h-8 bg-border"></div>
+<div class="text-right">
+<p class="font-label-sm text-text-secondary mb-1 uppercase tracking-wide">Status</p>
+<div class="inline-flex items-center text-success font-label-md gap-1">
+<span class="w-2 h-2 rounded-full bg-success"></span>
+                                    Active
+                                </div>
+</div>
+</div>
+<!-- Info Sections -->
+<div class="space-y-md">
+<!-- Meeting Details -->
+<div>
+<h3 class="font-label-md text-text-secondary uppercase tracking-wide mb-sm border-b border-border pb-1">Meeting Details</h3>
+<ul class="space-y-sm">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline text-[20px]">event</span>
+<span class="font-body-md text-on-surface">Every Thursday, 6:00 PM</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline text-[20px]">location_on</span>
+<span class="font-body-md text-on-surface">Main Chapel, Left Wing</span>
+</li>
+</ul>
+</div>
+<!-- Leadership -->
+<div>
+<h3 class="font-label-md text-text-secondary uppercase tracking-wide mb-sm border-b border-border pb-1">Leadership</h3>
+<ul class="mt-sm space-y-1">
+<!-- Leader -->
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover border border-border" data-alt="A close-up portrait of an elegant elderly African woman wearing traditional vibrant attire, conveying wisdom and leadership. The lighting is soft and flattering, set against a muted beige background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2wxn4aPKl3qsWFA1Y6c5Q813xT-DGUaPdchypv3uTNHSV_8-JVcMH3F_TLBpwRxtbjHNiLVEXj-8lWbTSXuipvPoi6ueRdWUWX1d2bcGfp51SUSghrL6_WNrIXtBCnWXb1ruvoSWeqGQj2uckYqC3ZZx_4yCPoVbEcTcc-p6AgzNwrTVlaoMp4jodJdEGFfcyqf5iBr4_-NpSAHRJfuZVAsfF6bCLgA8afyz-ETlcDzrv28xmlCyUZ1VrdIelUi7uQXeTYFqewe3S">
+<div>
+<p class="font-body-md font-medium text-on-surface leading-tight">Mrs. Grace Ansah</p>
+<p class="font-label-sm text-text-secondary">President</p>
+</div>
+</div>
+</li>
+<!-- Secretary -->
+<li class="flex items-center justify-between pl-11">
+<div>
+<p class="font-body-md text-on-surface leading-tight">Mr. Kwasi Mensah</p>
+<p class="font-label-sm text-text-secondary">Secretary</p>
+</div>
+</li>
+<!-- Treasurer -->
+<li class="flex items-center justify-between pl-11">
+<div>
+<p class="font-body-md text-on-surface leading-tight">Auntie Mary Osei</p>
+<p class="font-label-sm text-text-secondary">Treasurer</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: 2/3 Content Area with Tabs -->
+<div class="flex-1 w-full min-w-0">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-border flex flex-col h-full min-h-[600px]">
+<!-- Tabs Header -->
+<div class="px-md pt-sm border-b border-border overflow-x-auto hide-scrollbar">
+<nav aria-label="Tabs" class="flex gap-md min-w-max">
+<!-- Active Tab: Members -->
+<button class="relative flex items-center gap-2 px-4 py-3 text-primary font-medium hover:bg-surface-container/50 rounded-t-lg transition-colors group">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span class="font-label-md">Members</span>
+<!-- Active Indicator -->
+<span class="absolute bottom-0 left-0 w-full h-[3px] bg-primary rounded-t-sm"></span>
+</button>
+<!-- Inactive Tabs -->
+<button class="relative flex items-center gap-2 px-4 py-3 text-text-secondary hover:text-on-surface hover:bg-surface-container/50 rounded-t-lg transition-colors group">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+<span class="font-label-md">Attendance</span>
+</button>
+<button class="relative flex items-center gap-2 px-4 py-3 text-text-secondary hover:text-on-surface hover:bg-surface-container/50 rounded-t-lg transition-colors group">
+<span class="material-symbols-outlined text-[20px]">assignment</span>
+<span class="font-label-md">Activities &amp; Reports</span>
+</button>
+<button class="relative flex items-center gap-2 px-4 py-3 text-text-secondary hover:text-on-surface hover:bg-surface-container/50 rounded-t-lg transition-colors group">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<span class="font-label-md">Dues</span>
+</button>
+</nav>
+</div>
+<!-- Tab Content Area (Members View Active) -->
+<div class="p-lg flex-1 flex flex-col">
+<!-- Toolbar (Search & Actions) -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md mb-lg">
+<div class="relative w-full sm:w-72">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full pl-9 pr-3 py-2 bg-surface border border-border rounded-lg focus:border-primary focus:ring-1 focus:ring-primary text-body-md transition-shadow" placeholder="Search members..." type="text">
+</div>
+<div class="flex items-center gap-sm self-end sm:self-auto">
+<button class="flex items-center gap-2 px-4 py-2 border border-border bg-surface-container-lowest text-on-surface font-label-md rounded-lg hover:bg-surface transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                                    Filter
+                                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary font-label-md rounded-lg hover:bg-primary-light transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+                                    Add Member
+                                </button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-surface-container-lowest border border-border rounded-lg overflow-hidden flex-1 flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface border-b border-border">
+<th class="py-3 px-4 font-label-sm text-text-secondary uppercase tracking-wider font-medium">Name</th>
+<th class="py-3 px-4 font-label-sm text-text-secondary uppercase tracking-wider font-medium w-24">Gender</th>
+<th class="py-3 px-4 font-label-sm text-text-secondary uppercase tracking-wider font-medium w-32">Joined</th>
+<th class="py-3 px-4 font-label-sm text-text-secondary uppercase tracking-wider font-medium w-48">Attendance Rate</th>
+<th class="py-3 px-4 font-label-sm text-text-secondary uppercase tracking-wider font-medium w-16 text-center">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="py-3 px-4">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover bg-surface-variant" data-alt="A tiny thumbnail portrait of an African man with glasses, smiling softly. Plain grey background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgKNB8yKhLi-FLYuayEiWvvtXmAriPzjMf4b81nzNp9BaIEU-hM2vGiNAmxa2qVaPGaWk_Jj6g-kTSgv-UlXbH4lWWpcAAx2x7ago0L29IXqpyY5Wqti8cW3L56edeHVQXIgm4mngaWWm_8rea5W4B7xFIxoP2RN23lvmotuRVrmt7FWamlCO4TFSi1MNL85rNMic7dQQ81iyl-66BbvSR1xgvN3JZOh7JT3I-qB_pKhD6u6QTa1_AKDz1Vtre8UjyNFt1EBUiWDHK">
+<span class="font-body-md font-medium text-on-surface">Ebenezer Ofori</span>
+</div>
+</td>
+<td class="py-3 px-4">
+<span class="font-body-md text-on-surface-variant">Male</span>
+</td>
+<td class="py-3 px-4">
+<span class="font-data-label text-on-surface-variant">12 Mar 2021</span>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-3">
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-success rounded-full" style="width: 92%;"></div>
+</div>
+<span class="font-data-label text-success">92%</span>
+</div>
+</td>
+<td class="py-3 px-4 text-center">
+<button class="text-outline hover:text-danger p-1 rounded transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100" title="Remove Member">
+<span class="material-symbols-outlined text-[20px]">person_remove</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="py-3 px-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-muted text-primary flex items-center justify-center font-label-md font-bold">JA</div>
+<span class="font-body-md font-medium text-on-surface">Joyce Asamoah</span>
+</div>
+</td>
+<td class="py-3 px-4">
+<span class="font-body-md text-on-surface-variant">Female</span>
+</td>
+<td class="py-3 px-4">
+<span class="font-data-label text-on-surface-variant">05 Jan 2019</span>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-3">
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-warning rounded-full" style="width: 65%;"></div>
+</div>
+<span class="font-data-label text-warning">65%</span>
+</div>
+</td>
+<td class="py-3 px-4 text-center">
+<button class="text-outline hover:text-danger p-1 rounded transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100" title="Remove Member">
+<span class="material-symbols-outlined text-[20px]">person_remove</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="py-3 px-4">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover bg-surface-variant" data-alt="A tiny thumbnail portrait of a young African woman with braided hair. Plain light background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqDc08qPOIMjxdfPCh5gMJ3W8K8i1L0Sg7-H9y6tGAiAMm8B8WzM6CAWcnMB_b9H_wQkzDEFp2lYWNE8Zq3VGdTPd6sX8uh6aep167XS13E86H9GPYxbOmgZIK2aYphpEpSVzYMoH4x_d-TttiC8978MPsCRm1fLqqa-B41-PHVy0Oac_5KfCkS3kFHS3m0qpAcsBwpYU1sthiBJMk61gI06UXDwYqz3iN4zuAdQRJMiWnzU2E-O1cAysWQ7w8aII4pUV9u1vZEczn">
+<span class="font-body-md font-medium text-on-surface">Sarah Koomson</span>
+</div>
+</td>
+<td class="py-3 px-4">
+<span class="font-body-md text-on-surface-variant">Female</span>
+</td>
+<td class="py-3 px-4">
+<span class="font-data-label text-on-surface-variant">22 Nov 2022</span>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-3">
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-danger rounded-full" style="width: 30%;"></div>
+</div>
+<span class="font-data-label text-danger">30%</span>
+</div>
+</td>
+<td class="py-3 px-4 text-center">
+<button class="text-outline hover:text-danger p-1 rounded transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100" title="Remove Member">
+<span class="material-symbols-outlined text-[20px]">person_remove</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="py-3 px-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center font-label-md font-bold">DA</div>
+<span class="font-body-md font-medium text-on-surface">Daniel Appiah</span>
+</div>
+</td>
+<td class="py-3 px-4">
+<span class="font-body-md text-on-surface-variant">Male</span>
+</td>
+<td class="py-3 px-4">
+<span class="font-data-label text-on-surface-variant">10 Feb 2023</span>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-3">
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-success rounded-full" style="width: 100%;"></div>
+</div>
+<span class="font-data-label text-success">100%</span>
+</div>
+</td>
+<td class="py-3 px-4 text-center">
+<button class="text-outline hover:text-danger p-1 rounded transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100" title="Remove Member">
+<span class="material-symbols-outlined text-[20px]">person_remove</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination/Footer -->
+<div class="mt-auto p-4 border-t border-border bg-surface flex items-center justify-between">
+<span class="font-label-sm text-text-secondary">Showing 1-4 of 142 members</span>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded text-outline hover:bg-border disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-1 rounded text-on-surface hover:bg-border">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+
+
+
+</body></html>
