@@ -1,0 +1,312 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Membership Status Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#33302d",
+                        "inverse-on-surface": "#f7efeb",
+                        "surface-tint": "#a33a49",
+                        "on-surface-variant": "#564243",
+                        "surface-dim": "#e0d8d5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#40000e",
+                        "on-secondary-fixed": "#251a00",
+                        "warning": "#D97706",
+                        "on-secondary-container": "#745700",
+                        "outline": "#897172",
+                        "tertiary": "#2a2b2a",
+                        "primary": "#5c0219",
+                        "on-background": "#1e1b19",
+                        "primary-muted": "#F5EAEC",
+                        "on-tertiary-container": "#adadab",
+                        "on-tertiary-fixed": "#1a1c1b",
+                        "primary-light": "#A3283F",
+                        "surface-bright": "#fff8f5",
+                        "card": "#FFFFFF",
+                        "tertiary-container": "#404140",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "info": "#2563EB",
+                        "secondary-fixed": "#ffdf9a",
+                        "gold-muted": "#FDF6E3",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "primary-container": "#7b1c2d",
+                        "surface-container-low": "#faf2ee",
+                        "on-secondary": "#ffffff",
+                        "text-secondary": "#6B7280",
+                        "tertiary-fixed": "#e3e2e0",
+                        "surface-container-high": "#eee7e3",
+                        "on-primary-fixed-variant": "#832233",
+                        "on-primary-container": "#ff8a95",
+                        "secondary": "#775a00",
+                        "error-container": "#ffdad6",
+                        "surface": "#F8F7F5",
+                        "secondary-fixed-dim": "#eec04f",
+                        "on-surface": "#1e1b19",
+                        "inverse-primary": "#ffb2b7",
+                        "on-tertiary-fixed-variant": "#464746",
+                        "on-tertiary": "#ffffff",
+                        "background": "#fff8f5",
+                        "surface-container": "#f4ece8",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e9e1dd",
+                        "tertiary-fixed-dim": "#c7c6c5",
+                        "primary-fixed": "#ffdadb",
+                        "primary-fixed-dim": "#ffb2b7",
+                        "success": "#16A34A",
+                        "danger": "#DC2626",
+                        "surface-container-highest": "#e9e1dd",
+                        "outline-variant": "#dcc0c1",
+                        "border": "#E4E2DD",
+                        "secondary-container": "#fece5b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "sidebar-width": "256px",
+                        "header-height": "64px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Lora"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Lora"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "data-label": ["JetBrains Mono"],
+                        "data-display": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "label-md": ["13px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "label-sm": ["11px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-md": ["20px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "data-label": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }],
+                        "data-display": ["18px", { "lineHeight": "1.0", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-col md:flex-row">
+<!-- Desktop Sidebar (Hidden on Mobile) -->
+<nav class="hidden md:flex fixed left-0 top-0 h-full w-sidebar-width flex-col z-40 bg-primary-container shadow-lg pt-[80px]">
+<div class="px-lg pb-md mb-md border-b border-primary/20">
+<div class="flex items-center gap-sm mb-2">
+<div class="w-8 h-8 rounded bg-white flex items-center justify-center text-primary font-bold text-xs">MCG</div>
+<div class="font-headline-md text-headline-md text-secondary-fixed font-bold leading-tight">Methodist Church Ghana</div>
+</div>
+<div class="text-on-primary-container text-xs opacity-80">Society Management System</div>
+</div>
+<div class="px-lg mb-md">
+<button class="w-full bg-primary text-white rounded-lg py-2 px-4 font-label-md text-label-md flex justify-center items-center gap-2 hover:bg-primary-light transition-colors shadow-[0_1px_3px_rgba(0,0,0,0.1)] border border-primary/50">
+<span class="material-symbols-outlined text-[18px]">add</span> Quick Actions
+            </button>
+</div>
+<div class="flex-1 overflow-y-auto space-y-1">
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-md border-l-4 border-secondary-container bg-primary-light/20 text-secondary-fixed py-md px-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="groups">groups</span>
+                Members
+            </a>
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="church">church</span>
+                Classes
+            </a>
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="payments">payments</span>
+                Finance
+            </a>
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="assessment">assessment</span>
+                Reports
+            </a>
+</div>
+<div class="mt-auto border-t border-primary/20 py-md space-y-1">
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Top App Bar (Desktop) -->
+
+<!-- Mobile Top App Bar -->
+<header class="md:hidden fixed top-0 left-0 w-full z-40 h-header-height bg-surface-container-lowest flex justify-between items-center px-lg border-b border-border shadow-sm">
+<span class="font-headline-md text-headline-md font-bold text-primary">MCG-SMS</span>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-sm rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 w-full md:pl-sidebar-width pt-header-height md:pt-header-height pb-[76px] md:pb-0 px-lg md:px-xl py-lg">
+<!-- Page Header -->
+<div class="mb-lg flex flex-col gap-xs">
+<div class="flex items-center gap-sm text-on-surface-variant">
+<a class="hover:text-primary transition-colors font-label-md text-label-md" href="#">Members</a>
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+<span class="font-label-md text-label-md text-on-surface">Status Management</span>
+</div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mt-sm">Update Membership Status</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Modify a member's active standing within the society. This action requires administrative clearance.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Left Column: Search & Current Status -->
+<div class="lg:col-span-4 flex flex-col gap-lg">
+<!-- Search Card -->
+<div class="bg-card rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-lg border border-border">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">Locate Member</h3>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface border border-border rounded-DEFAULT py-[10px] pl-[40px] pr-md font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all placeholder:text-on-surface-variant/60" placeholder="Search by name, ID, or phone..." type="text" value="John K. Mensah">
+</div>
+</div>
+<!-- Member Context Card -->
+<div class="bg-card rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-lg border border-border relative overflow-hidden group hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] transition-shadow">
+<div class="absolute left-0 top-0 bottom-0 w-[4px] bg-secondary-container"></div>
+<div class="flex items-start gap-md">
+<div class="w-[48px] h-[48px] rounded-full overflow-hidden bg-surface-container shrink-0">
+<img alt="Member Photo" class="w-full h-full object-cover" data-alt="A professional headshot of an African man in his 50s, wearing a neat suit and tie, smiling warmly. Clean, light background. Used as a member profile picture in a dignified administrative interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYEf_EF1JbSlGOfT0Lh1x16a8u-50Yiok6YwQRBAlMfOCJNx8IspsFXwg9su4tmJ5FLwjlVkEdWwOF1ydCgHhO6oMv3iEmU2Tp7w8l83BA5p1Yojcb26Cv6k8c7qO7Fyoy5xlXQnyAiTD2Ta3w6uXvNAdejwgfIci0zBZqE2mdl-hWAZFLIRwZruvjEK7h7Ev3TGJpe19VroCDvJbw1Uie7Se6WTojSxLVhpch6Mze-jExer3U4m9t9Cpktwintb4YUsxNvocA56Sy">
+</div>
+<div class="flex-1">
+<h4 class="font-headline-md text-headline-md text-on-surface">John K. Mensah</h4>
+<div class="flex items-center gap-sm mt-xs">
+<span class="font-data-label text-data-label text-on-surface-variant">ID: MCG-0942</span>
+<span class="w-[4px] h-[4px] rounded-full bg-border"></span>
+<span class="font-body-md text-body-md text-on-surface-variant">Wesley Society</span>
+</div>
+</div>
+</div>
+<div class="mt-lg pt-md border-t border-border flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface-variant">Current Status</span>
+<span class="inline-flex items-center px-sm py-[2px] rounded-full bg-[#E8F5E9] text-[#1B5E20] font-label-md text-label-md border border-[#C8E6C9]">
+<span class="w-[6px] h-[6px] rounded-full bg-[#4CAF50] mr-xs"></span>
+                            Active Full Member
+                        </span>
+</div>
+</div>
+</div>
+<!-- Right Column: Status Update Form -->
+<div class="lg:col-span-8">
+<div class="bg-card rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-lg border border-border">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-lg border-b border-border pb-sm">Status Modification Details</h3>
+<form class="flex flex-col gap-md">
+<!-- Warning Banner -->
+<div class="bg-gold-muted border border-secondary-container/50 rounded-DEFAULT p-md flex items-start gap-md">
+<span class="material-symbols-outlined text-warning shrink-0 mt-[2px]" data-icon="warning">warning</span>
+<div>
+<p class="font-label-md text-label-md text-on-secondary-container font-bold">Important Notice</p>
+<p class="font-body-md text-body-md text-on-secondary-container mt-xs">This change will be logged and cannot be undone without administrator approval. Ensure all supporting documents are filed.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md mt-sm">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface">New Status <span class="text-danger">*</span></label>
+<div class="relative">
+<select class="w-full bg-surface border border-border rounded-DEFAULT py-[10px] px-md font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary appearance-none transition-all">
+<option value="">Select new status...</option>
+<option value="suspended">Suspended</option>
+<option value="transferred">Transferred Out</option>
+<option value="deceased">Deceased</option>
+<option value="inactive">Inactive</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface">Effective Date <span class="text-danger">*</span></label>
+<input class="w-full bg-surface border border-border rounded-DEFAULT py-[10px] px-md font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all" type="date">
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface">Reason for Change <span class="text-danger">*</span></label>
+<textarea class="w-full bg-surface border border-border rounded-DEFAULT py-sm px-md font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary resize-none transition-all" placeholder="Provide a detailed explanation for this status update..." rows="3"></textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface">Authorised By <span class="text-danger">*</span></label>
+<div class="relative">
+<select class="w-full bg-surface border border-border rounded-DEFAULT py-[10px] px-md font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary appearance-none transition-all">
+<option value="">Select authorising officer...</option>
+<option value="minister">Rev. Superintendent Minister</option>
+<option value="steward">Society Steward</option>
+<option value="leader">Leaders Meeting</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface">Supporting Note Reference</label>
+<input class="w-full bg-surface border border-border rounded-DEFAULT py-[10px] px-md font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="e.g. Minutes of Leaders Meeting (12/10/23)" type="text">
+</div>
+</div>
+<div class="flex justify-end gap-md mt-lg pt-lg border-t border-border">
+<button class="px-lg py-[10px] border border-border bg-surface text-on-surface font-label-md text-label-md rounded-DEFAULT hover:bg-surface-variant transition-colors" type="button">Cancel</button>
+<button class="px-lg py-[10px] bg-primary text-on-primary font-label-md text-label-md rounded-DEFAULT shadow-sm hover:bg-primary-light transition-colors font-bold flex items-center gap-sm" type="submit">
+<span class="material-symbols-outlined text-[18px]" data-icon="save">save</span>
+                                Update Status
+                            </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Nav -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest pb-safe border-t border-border shadow-[0_-1px_3px_rgba(0,0,0,0.06)] h-[56px]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant w-full h-full active:bg-surface-container-high transition-transform scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm-mobile text-label-sm-mobile">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold w-full h-full active:bg-surface-container-high transition-transform scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="person_search" style="font-variation-settings: 'FILL' 1;">person_search</span>
+<span class="font-label-sm-mobile text-label-sm-mobile">Members</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant w-full h-full active:bg-surface-container-high transition-transform scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm-mobile text-label-sm-mobile">Finance</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant w-full h-full active:bg-surface-container-high transition-transform scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-sm-mobile text-label-sm-mobile">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant w-full h-full active:bg-surface-container-high transition-transform scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+<span class="font-label-sm-mobile text-label-sm-mobile">More</span>
+</a>
+</nav>
+
+
+</body></html>

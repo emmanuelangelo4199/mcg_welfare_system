@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Dashboard{% endblock %} · MCG-SMS</title>
+  {% load static %}
+  {# Compiled build, not the Tailwind CDN script — see README for the watch command. #}
+  <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Lora:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  </style>
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-surface text-ink font-sans antialiased min-h-screen">
+
+<!-- Top header -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-card border-b border-border">
+  <div class="flex items-center gap-3 md:pl-64">
+    <span class="font-display font-bold text-xl text-primary">MCG-SMS</span>
+  </div>
+  <div class="flex items-center gap-4">
+    {# TODO: swap for {% url 'notifications:inbox' %} once that app's urls.py exists #}
+    <a href="#" class="relative p-2 text-ink-secondary hover:bg-surface rounded-full transition-colors">
+      <span class="material-symbols-outlined">notifications</span>
+    </a>
+    <div class="w-8 h-8 rounded-full bg-primary-muted text-primary flex items-center justify-center text-xs font-semibold shrink-0">
+      {{ user_initials|default:"?" }}
+    </div>
+  </div>
+</header>
+
+<!-- Desktop sidebar -->
+<nav class="fixed left-0 top-0 h-full w-64 hidden md:flex flex-col z-40 shadow-sidebar bg-primary">
+  <div class="h-16 flex items-center px-6 border-b border-white/10 shrink-0">
+    <div class="flex items-center gap-2 overflow-hidden">
+      {# Inline placeholder crest — swap for a commissioned logo file later; avoids hotlinking Stitch's temp CDN image. #}
+      <svg class="w-8 h-8 shrink-0" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Methodist Church Ghana crest">
+        <circle cx="16" cy="16" r="16" fill="white"/>
+        <rect x="14.5" y="7" width="3" height="14" rx="1" fill="#7B1C2D"/>
+        <rect x="9" y="11.5" width="14" height="3" rx="1" fill="#7B1C2D"/>
+        <path d="M16 21c-1.8 0-3 1.6-3 3.2 0 1.5 1.3 2.8 3 2.8s3-1.3 3-2.8c0-1.6-1.2-3.2-3-3.2z" fill="#C49A2B"/>
+      </svg>
+      <div class="flex flex-col overflow-hidden">
+        <span class="font-display text-sm text-white font-bold truncate leading-tight">Methodist Church Ghana</span>
+        <span class="text-[11px] text-white/70 truncate">Society Management System</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-1 overflow-y-auto py-4 flex flex-col">
+    {% include "components/nav_item.html" with key="dashboard" label="Dashboard" icon_name="dashboard" url="/" %}
+    {% include "components/nav_item.html" with key="members" label="Members" icon_name="groups" url="/members/" %}
+    {% include "components/nav_item.html" with key="classes" label="Bible Study Classes" icon_name="menu_book" url="/classes/" %}
+    {% include "components/nav_item.html" with key="organisations" label="Organisations" icon_name="diversity_3" url="/organisations/" %}
+    {% include "components/nav_item.html" with key="services" label="Services & Programmes" icon_name="calendar_month" url="/services/" %}
+    {% include "components/nav_item.html" with key="attendance" label="Attendance" icon_name="fact_check" url="/attendance/" %}
+    {% include "components/nav_item.html" with key="finance" label="Finance" icon_name="payments" url="/finance/" %}
+    {% include "components/nav_item.html" with key="meetings" label="Leaders' Meeting" icon_name="gavel" url="/meetings/" %}
+    {% include "components/nav_item.html" with key="welfare" label="Welfare" icon_name="volunteer_activism" url="/welfare/" %}
+    {% include "components/nav_item.html" with key="communications" label="Communications" icon_name="campaign" url="/communications/" %}
+    {% include "components/nav_item.html" with key="reports" label="Reports" icon_name="assessment" url="/reports/" %}
+  </div>
+
+  <div class="border-t border-white/10 py-2 shrink-0">
+    {% include "components/nav_item.html" with key="settings" label="Settings" icon_name="settings" url="/settings/" %}
+    {# TODO: swap for {% url 'accounts:logout' %} once accounts/urls.py exists #}
+    <a href="/accounts/logout/" class="flex items-center gap-3 py-3 px-6 text-white/85 hover:bg-primary-light/10 transition-colors">
+      <span class="material-symbols-outlined text-[18px]">logout</span>
+      <span class="text-sm font-medium">Logout</span>
+    </a>
+  </div>
+</nav>
+
+<!-- Mobile bottom nav -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-card md:hidden h-14 shadow-sidebar border-t border-border">
+  <a href="/" class="flex flex-col items-center justify-center gap-0.5 w-full h-full {% if active_nav == 'dashboard' %}text-primary{% else %}text-ink-secondary{% endif %}">
+    <span class="material-symbols-outlined text-xl"{% if active_nav == 'dashboard' %} style="font-variation-settings: 'FILL' 1;"{% endif %}>home</span>
+    <span class="text-[10px] font-medium">Home</span>
+  </a>
+  <a href="/members/" class="flex flex-col items-center justify-center gap-0.5 w-full h-full {% if active_nav == 'members' %}text-primary{% else %}text-ink-secondary{% endif %}">
+    <span class="material-symbols-outlined text-xl">groups</span>
+    <span class="text-[10px] font-medium">Members</span>
+  </a>
+  <a href="/finance/" class="flex flex-col items-center justify-center gap-0.5 w-full h-full {% if active_nav == 'finance' %}text-primary{% else %}text-ink-secondary{% endif %}">
+    <span class="material-symbols-outlined text-xl">payments</span>
+    <span class="text-[10px] font-medium">Finance</span>
+  </a>
+  <a href="/reports/" class="flex flex-col items-center justify-center gap-0.5 w-full h-full {% if active_nav == 'reports' %}text-primary{% else %}text-ink-secondary{% endif %}">
+    <span class="material-symbols-outlined text-xl">assessment</span>
+    <span class="text-[10px] font-medium">Reports</span>
+  </a>
+  <a href="/settings/" class="flex flex-col items-center justify-center gap-0.5 w-full h-full {% if active_nav == 'settings' %}text-primary{% else %}text-ink-secondary{% endif %}">
+    <span class="material-symbols-outlined text-xl">menu</span>
+    <span class="text-[10px] font-medium">More</span>
+  </a>
+</nav>
+
+<main class="pt-24 md:pl-72 md:pr-8 pl-4 pr-4 pb-24 md:pb-8 max-w-[1600px] mx-auto min-h-screen">
+  {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>

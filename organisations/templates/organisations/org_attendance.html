@@ -1,0 +1,383 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Record Organisation Attendance</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#404140",
+                      "on-secondary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "success": "#16A34A",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed": "#1a1c1b",
+                      "on-primary-container": "#ff8a95",
+                      "on-primary-fixed": "#40000e",
+                      "surface-container-low": "#faf2ee",
+                      "background": "#fff8f5",
+                      "secondary-container": "#fece5b",
+                      "surface-container": "#f4ece8",
+                      "inverse-primary": "#ffb2b7",
+                      "tertiary-fixed": "#e3e2e0",
+                      "surface-container-high": "#eee7e3",
+                      "danger": "#DC2626",
+                      "on-surface": "#1e1b19",
+                      "secondary-fixed-dim": "#eec04f",
+                      "surface-tint": "#a33a49",
+                      "on-tertiary": "#ffffff",
+                      "on-surface-variant": "#564243",
+                      "outline": "#897172",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed-dim": "#c7c6c5",
+                      "on-tertiary-fixed-variant": "#464746",
+                      "secondary": "#775a00",
+                      "primary": "#5c0219",
+                      "tertiary": "#2a2b2a",
+                      "surface-bright": "#fff8f5",
+                      "gold-muted": "#FDF6E3",
+                      "outline-variant": "#dcc0c1",
+                      "info": "#2563EB",
+                      "error": "#ba1a1a",
+                      "warning": "#D97706",
+                      "secondary-fixed": "#ffdf9a",
+                      "primary-light": "#A3283F",
+                      "card": "#FFFFFF",
+                      "surface-variant": "#e9e1dd",
+                      "surface-dim": "#e0d8d5",
+                      "surface-container-highest": "#e9e1dd",
+                      "on-secondary-fixed": "#251a00",
+                      "primary-fixed": "#ffdadb",
+                      "on-primary": "#ffffff",
+                      "on-secondary-container": "#745700",
+                      "inverse-surface": "#33302d",
+                      "on-secondary-fixed-variant": "#5a4300",
+                      "primary-fixed-dim": "#ffb2b7",
+                      "on-tertiary-container": "#adadab",
+                      "inverse-on-surface": "#f7efeb",
+                      "on-background": "#1e1b19",
+                      "primary-muted": "#F5EAEC",
+                      "surface": "#F8F7F5",
+                      "text-secondary": "#6B7280",
+                      "border": "#E4E2DD",
+                      "primary-container": "#7b1c2d",
+                      "on-primary-fixed-variant": "#832233",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "lg": "24px",
+                      "xl": "32px",
+                      "sidebar-width": "256px",
+                      "sm": "8px",
+                      "md": "16px",
+                      "header-height": "64px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "data-label": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-lg-mobile": [
+                              "Lora"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "data-display": [
+                              "JetBrains Mono"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Lora"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "data-label": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.0",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "data-display": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.0",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "13px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex">
+<!-- Sidebar Navigation -->
+<nav class="fixed left-0 top-0 h-full w-sidebar-width bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container shadow-sm dark:shadow-none flex flex-col h-full py-lg hidden md:flex z-20">
+<div class="px-lg mb-xl">
+<h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</h1>
+<p class="font-label-sm text-label-sm text-on-primary/70 uppercase tracking-widest mt-1">Methodist Church Ghana</p>
+</div>
+<div class="flex-1 overflow-y-auto px-md space-y-sm">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Members</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg border-l-[3px] border-secondary-container bg-primary-light/10 text-on-primary font-bold hover:bg-primary-light transition-colors duration-200 scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="school">school</span>
+<span class="font-label-md text-label-md">Classes</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md">Finance</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="assessment">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+</div>
+<div class="px-md mt-auto pt-lg border-t border-primary-light/20 space-y-sm">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 md:ml-sidebar-width flex flex-col min-h-screen">
+<!-- Top App Bar -->
+<header class="docked full-width top-0 bg-surface-container-lowest dark:bg-surface-dim shadow-sm flex justify-between items-center h-header-height px-xl z-10 sticky">
+<div class="flex items-center gap-md">
+<!-- Mobile Menu Button -->
+<button class="md:hidden p-2 rounded-full hover:bg-surface-container text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="font-headline-lg text-headline-lg text-primary md:hidden">MCG-SMS</h2>
+<h2 class="font-headline-md text-headline-md font-semibold text-on-surface hidden md:block">Record Organisation Attendance</h2>
+</div>
+
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 p-md lg:p-xl flex flex-col gap-lg max-w-7xl mx-auto w-full">
+<!-- Controls Bar -->
+<div class="bg-card rounded-xl p-md shadow-sm border border-border flex flex-col sm:flex-row gap-md items-end justify-between">
+<div class="flex flex-col sm:flex-row gap-md w-full sm:w-auto">
+<div class="w-full sm:w-64">
+<label class="block font-label-sm text-label-sm text-text-secondary mb-1">Organisation</label>
+<div class="relative">
+<select class="w-full bg-surface border border-border rounded-lg px-3 py-2 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary appearance-none pr-8">
+<option>Choir</option>
+<option>Youth Fellowship</option>
+<option>Men's Fellowship</option>
+<option>Women's Fellowship</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="w-full sm:w-48">
+<label class="block font-label-sm text-label-sm text-text-secondary mb-1">Date</label>
+<input class="w-full bg-surface border border-border rounded-lg px-3 py-2 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" type="date" value="2023-10-24">
+</div>
+</div>
+<button class="w-full sm:w-auto bg-primary text-on-primary font-label-md text-label-md px-6 py-2 rounded-lg hover:bg-primary-light transition-colors shadow-sm">
+                    Load Class List
+                </button>
+</div>
+<!-- Two Panel Layout -->
+<div class="flex flex-col lg:flex-row gap-lg flex-1 min-h-0">
+<!-- Left Panel: Checklist -->
+<div class="flex-1 bg-card rounded-xl shadow-sm border border-border flex flex-col overflow-hidden min-w-[300px]">
+<div class="p-md border-b border-border bg-surface-container-lowest">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Members List</h3>
+<span class="font-data-label text-data-label bg-surface-variant text-on-surface-variant px-2 py-1 rounded-full">45 Total</span>
+</div>
+<div class="flex gap-md">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full bg-surface border border-border rounded-lg pl-9 pr-3 py-2 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Search members..." type="text">
+</div>
+<button class="text-primary font-label-md text-label-md hover:bg-primary-muted px-3 py-2 rounded-lg transition-colors whitespace-nowrap">
+                                Check All
+                            </button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-md space-y-1 bg-surface-container-lowest">
+<!-- Member Item (Present) -->
+<label class="flex items-center p-3 rounded-lg hover:bg-surface transition-colors cursor-pointer border border-transparent hover:border-border group">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary accent-primary mr-4" type="checkbox">
+<div class="flex-1">
+<p class="font-body-md text-body-md font-medium text-on-surface group-hover:text-primary transition-colors">Abigail Mensah</p>
+<p class="font-label-sm text-label-sm text-text-secondary">Soprano</p>
+</div>
+<span class="font-label-sm text-label-sm text-success bg-success/10 px-2 py-1 rounded">Present</span>
+</label>
+<!-- Member Item (Absent) -->
+<label class="flex items-center p-3 rounded-lg hover:bg-surface transition-colors cursor-pointer border border-transparent hover:border-border group bg-surface/50">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary accent-primary mr-4" type="checkbox">
+<div class="flex-1">
+<p class="font-body-md text-body-md font-medium text-on-surface group-hover:text-primary transition-colors">Kwame Osei</p>
+<p class="font-label-sm text-label-sm text-text-secondary">Tenor</p>
+</div>
+</label>
+<!-- Member Item (Present) -->
+<label class="flex items-center p-3 rounded-lg hover:bg-surface transition-colors cursor-pointer border border-transparent hover:border-border group">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary accent-primary mr-4" type="checkbox">
+<div class="flex-1">
+<p class="font-body-md text-body-md font-medium text-on-surface group-hover:text-primary transition-colors">Akua Serwaa</p>
+<p class="font-label-sm text-label-sm text-text-secondary">Alto</p>
+</div>
+<span class="font-label-sm text-label-sm text-success bg-success/10 px-2 py-1 rounded">Present</span>
+</label>
+</div>
+</div>
+<!-- Right Panel: Summary & Details -->
+<div class="w-full lg:w-96 flex flex-col gap-lg">
+<!-- Stats / Live Summary -->
+<div class="bg-card rounded-xl shadow-sm border border-border p-md grid grid-cols-2 gap-md">
+<div class="bg-surface rounded-lg p-md border-l-4 border-success flex flex-col justify-center">
+<p class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wide">Present</p>
+<p class="font-data-display text-[32px] text-on-surface font-semibold mt-1">42</p>
+</div>
+<div class="bg-surface rounded-lg p-md border-l-4 border-danger flex flex-col justify-center">
+<p class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wide">Absent</p>
+<p class="font-data-display text-[32px] text-on-surface font-semibold mt-1">3</p>
+</div>
+</div>
+<!-- Details Form -->
+<div class="bg-card rounded-xl shadow-sm border border-border flex-1 flex flex-col overflow-hidden">
+<div class="p-md border-b border-border bg-surface-container-lowest">
+<h3 class="font-headline-md text-headline-md text-on-surface">Meeting Details</h3>
+</div>
+<div class="p-md space-y-md flex-1 overflow-y-auto">
+<div>
+<label class="block font-label-sm text-label-sm text-text-secondary mb-1">Activity / Programme Name</label>
+<input class="w-full bg-surface border border-border rounded-lg px-3 py-2 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="e.g., Weekly Rehearsal" type="text">
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-text-secondary mb-1">Meeting Notes</label>
+<textarea class="w-full bg-surface border border-border rounded-lg px-3 py-2 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary resize-none" placeholder="Brief notes about the meeting..." rows="4"></textarea>
+</div>
+<div class="pt-2">
+<h4 class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wide mb-2">Absent List Preview</h4>
+<div class="bg-surface rounded-lg p-3 border border-border">
+<ul class="font-body-md text-body-md text-on-surface-variant space-y-1 list-disc list-inside">
+<li class="">Kwame Osei</li>
+<li class="">Ama Boakye</li>
+<li class="">Yaw Mensah</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="p-md border-t border-border bg-surface-container-lowest">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded-lg hover:bg-primary-light transition-colors shadow-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                                Save Attendance
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Tip -->
+<div class="text-center py-2">
+<p class="font-label-sm text-label-sm text-text-secondary">Tip: Press <kbd class="px-2 py-1 bg-surface border border-border rounded text-xs font-data-label">Space</kbd> to toggle, <kbd class="px-1 py-1 bg-surface border border-border rounded text-xs font-data-label">↑</kbd><kbd class="px-1 py-1 bg-surface border border-border rounded text-xs font-data-label">↓</kbd> to move between members.</p>
+</div>
+</main>
+</div>
+<!-- Auto-save Warning Toast -->
+<div class="fixed bottom-lg right-lg bg-inverse-surface text-inverse-on-surface rounded-lg shadow-lg px-4 py-3 flex items-center gap-3 z-50 transform transition-transform duration-300 translate-y-0" id="toast">
+<span class="material-symbols-outlined text-secondary-container">warning</span>
+<div>
+<p class="font-label-md text-label-md font-semibold">Unsaved Changes</p>
+<p class="font-label-sm text-label-sm text-inverse-on-surface/80">Your attendance sheet is auto-saving locally.</p>
+</div>
+<button class="ml-4 text-inverse-on-surface/60 hover:text-inverse-on-surface" onclick="document.getElementById('toast').style.display='none'">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+
+
+</body></html>

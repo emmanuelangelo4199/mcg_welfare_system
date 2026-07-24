@@ -1,0 +1,58 @@
+{% comment %}
+Component gallery — not part of the shipped app. A living reference page
+you can point a browser at during development to sanity-check that every
+badge, card, and modal still matches the design brief after edits.
+Delete or keep behind an admin-only URL once the real screens are built.
+{% endcomment %}
+<div class="bg-surface p-8 space-y-12 font-sans">
+
+  {% include "components/page_header.html" with title="Member Directory" description="Browse and search all registered members." breadcrumbs=breadcrumbs action_label="Add Member" action_url="#" %}
+
+  <section>
+    <h2 class="font-display text-lg text-ink mb-3">Stat cards</h2>
+    <div class="grid grid-cols-3 gap-4">
+      {% include "components/stat_card.html" with value="1,204" label="Total Members" icon="👥" %}
+      {% include "components/stat_card.html" with value="GH₵ 4,850.00" label="Income This Month" icon="💰" trend="6.1%" trend_positive=True %}
+      {% include "components/stat_card.html" with value="3" label="Statutory Payments Overdue" icon="⚠️" border_color="border-danger" trend="2" trend_positive=False %}
+    </div>
+  </section>
+
+  <section>
+    <h2 class="font-display text-lg text-ink mb-3">Status badges</h2>
+    <div class="flex flex-wrap gap-2">
+      {% include "components/badge.html" with label="Active" status="active" %}
+      {% include "components/badge.html" with label="Pending" status="pending" %}
+      {% include "components/badge.html" with label="Inactive" status="inactive" %}
+      {% include "components/badge.html" with label="Transferred" status="transferred" %}
+      {% include "components/badge.html" with label="Visitor" status="visitor" %}
+      {% include "components/badge.html" with label="Deceased" status="deceased" %}
+      {% include "components/badge.html" with label="Catechumen" status="catechumen" %}
+    </div>
+  </section>
+
+  <section>
+    <h2 class="font-display text-lg text-ink mb-3">Document badges (H-10 fix — must never match the blue above)</h2>
+    <div class="flex flex-wrap gap-2">
+      {% include "components/document_badge.html" with label="Receipt" doc_type="receipt" %}
+      {% include "components/document_badge.html" with label="Voucher" doc_type="voucher" %}
+    </div>
+  </section>
+
+  <section>
+    <h2 class="font-display text-lg text-ink mb-3">Empty state</h2>
+    <div class="bg-card rounded-card shadow-card">
+      {% include "components/empty_state.html" with icon="📋" heading="No members found" subtext="Try adjusting your filters." action_label="Add Member" action_url="#" %}
+    </div>
+  </section>
+
+  <section>
+    <h2 class="font-display text-lg text-ink mb-3">Confirm modal</h2>
+    <button type="button"
+            onclick="document.getElementById('delete-member-demo').showModal()"
+            class="px-5 py-2 rounded-control bg-danger text-white text-sm font-semibold hover:bg-red-700">
+      Delete Member
+    </button>
+    {% include "components/confirm_modal.html" with modal_id="delete-member-demo" title="Delete this member?" body="This will permanently remove" subject="Abena Mensah" body_suffix="and cannot be undone." confirm_label="Delete Member" confirm_url="#" danger=True %}
+  </section>
+
+</div>

@@ -1,0 +1,458 @@
+
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Take Attendance - MCG-SMS</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for checklist to keep panel heights manageable */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #dcc0c1; /* outline-variant */
+            border-radius: 10px;
+        }
+    </style>
+<!-- Tailwind Config injected from instructions -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "border": "#E4E2DD",
+                        "surface-bright": "#fff8f5",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#c7c6c5",
+                        "surface-container-low": "#faf2ee",
+                        "on-tertiary-fixed": "#1a1c1b",
+                        "on-secondary-fixed": "#251a00",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#745700",
+                        "surface-tint": "#a33a49",
+                        "surface-container-high": "#eee7e3",
+                        "success": "#16A34A",
+                        "surface-variant": "#e9e1dd",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#dcc0c1",
+                        "primary": "#5c0219",
+                        "surface-dim": "#e0d8d5",
+                        "warning": "#D97706",
+                        "background": "#fff8f5",
+                        "tertiary-container": "#404140",
+                        "on-surface": "#1e1b19",
+                        "secondary-fixed": "#ffdf9a",
+                        "card": "#FFFFFF",
+                        "secondary": "#775a00",
+                        "primary-container": "#7b1c2d",
+                        "info": "#2563EB",
+                        "danger": "#DC2626",
+                        "gold-muted": "#FDF6E3",
+                        "primary-fixed-dim": "#ffb2b7",
+                        "outline": "#897172",
+                        "secondary-fixed-dim": "#eec04f",
+                        "on-tertiary-fixed-variant": "#464746",
+                        "inverse-primary": "#ffb2b7",
+                        "tertiary": "#2a2b2a",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "on-surface-variant": "#564243",
+                        "on-primary-fixed": "#40000e",
+                        "surface-container-highest": "#e9e1dd",
+                        "on-tertiary-container": "#adadab",
+                        "inverse-surface": "#33302d",
+                        "primary-fixed": "#ffdadb",
+                        "surface-container": "#f4ece8",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-muted": "#F5EAEC",
+                        "primary-light": "#A3283F",
+                        "on-primary-container": "#ff8a95",
+                        "inverse-on-surface": "#f7efeb",
+                        "on-primary-fixed-variant": "#832233",
+                        "text-secondary": "#6B7280",
+                        "secondary-container": "#fece5b",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface": "#F8F7F5",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#e3e2e0",
+                        "on-background": "#1e1b19"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "base": "8px",
+                        "header-height": "64px",
+                        "sidebar-width": "256px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Lora"],
+                        "headline-lg-mobile": ["Lora"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "data-display": ["JetBrains Mono"],
+                        "data-label": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-sm": ["11px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "label-md": ["13px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "data-display": ["18px", { "lineHeight": "1.0", "fontWeight": "500" }],
+                        "data-label": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md antialiased flex min-h-screen">
+<!-- SideNavBar (Shared Component) -->
+<nav class="fixed left-0 top-0 h-full w-sidebar-width bg-primary dark:bg-primary-container shadow-sm dark:shadow-none flex flex-col py-lg z-20">
+<!-- Header -->
+<div class="px-lg pb-xl border-b border-on-primary/10 mb-md flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A minimalist, professional corporate logo design suitable for a church administration system. Clean lines, dark maroon and gold colors, white background. Light mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8a0XeRLQk0w7VBrsG3ITSxE9at02_KJ3RYR466_fQXKwfieS5itLh0-UUmbtLOyDa0twcasPkJ_pCmzGbhA8BZj5D8WPCzt7iEJsW1Od37_9WA4vI12ZR-W1vu5yOf0i9LS4Z04Zc5iv6LCaghZgr1nBTRQNMVNbTqW0KB2gWcmc3YsfYtc3j8tEqgdsBwxdNjAiG5r7th6Q82lSW8WgWcznSW1orzFFYLvMsN-mwVsXqfADK2gudWmqRtigu-PgnKDtEiAe_Iwdo">
+</div>
+<div class="flex flex-col">
+<span class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</span>
+<span class="text-label-sm font-label-sm text-on-primary/70">Methodist Church Ghana</span>
+</div>
+</div>
+<!-- Main Nav Tabs -->
+<div class="flex-1 overflow-y-auto custom-scrollbar px-sm">
+<ul class="space-y-sm">
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="">Dashboard</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="">Members</span>
+</a>
+</li>
+<!-- ACTIVE NAV ITEM (Classes) -->
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg border-l-[3px] border-secondary-container bg-primary-light/10 text-on-primary font-bold hover:bg-primary-light transition-colors duration-200 scale-[0.98]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="">Classes</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="">Finance</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="">Reports</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Footer Nav Tabs -->
+<div class="px-sm pt-md border-t border-on-primary/10 mt-auto">
+<ul class="space-y-sm">
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="">Settings</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="">Logout</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-sidebar-width flex flex-col min-h-screen relative">
+<!-- TopAppBar (Shared Component) -->
+<header class="docked full-width top-0 bg-surface-container-lowest dark:bg-surface-dim shadow-sm flex justify-between items-center h-header-height px-xl z-10 w-full sticky">
+<div class="flex items-center gap-md">
+<!-- Search bar on left logic from JSON (implied visual structure) -->
+<div class="relative hidden lg:block text-text-secondary focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-[20px]">search</span>
+<input class="pl-xl pr-md py-sm rounded-lg border-border bg-surface focus:bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all w-64 text-body-md font-body-md text-on-surface" placeholder="Global search..." type="text">
+</div>
+</div>
+
+</header>
+<!-- Page Content -->
+<main class="flex-1 p-xl max-w-7xl mx-auto w-full flex flex-col gap-lg">
+<!-- Header Section -->
+<div>
+<nav aria-label="Breadcrumb" class="flex text-label-md font-label-md text-text-secondary mb-sm">
+<ol class="flex items-center space-x-2">
+<li class=""><a class="hover:text-primary transition-colors" href="#">Dashboard</a></li>
+<li><span class="material-symbols-outlined text-[16px]">chevron_right</span></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Classes</a></li>
+<li><span class="material-symbols-outlined text-[16px]">chevron_right</span></li>
+<li aria-current="page" class="text-on-surface">Take Attendance</li>
+</ol>
+</nav>
+<h1 class="text-headline-lg font-headline-lg text-primary m-0">Take Attendance</h1>
+</div>
+<!-- Top Bar Controls -->
+<div class="bg-card rounded-xl shadow-sm border border-border p-md flex flex-wrap items-end gap-md">
+<div class="flex-1 min-w-[200px] flex flex-col gap-xs">
+<label class="text-label-md font-label-md text-on-surface-variant" for="class-select">Select Class</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface border border-border rounded-lg px-md py-sm text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary pr-xl" id="class-select">
+<option value="bible-study">Adult Bible Study - Group A</option>
+<option value="youth-fellowship">Youth Fellowship</option>
+<option value="mens-fellowship">Men's Fellowship</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-text-secondary">arrow_drop_down</span>
+</div>
+</div>
+<div class="flex-1 min-w-[200px] flex flex-col gap-xs">
+<label class="text-label-md font-label-md text-on-surface-variant" for="date-picker">Date</label>
+<input class="w-full bg-surface border border-border rounded-lg px-md py-sm text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" id="date-picker" type="date" value="2023-10-24">
+</div>
+<div class="flex-none">
+<button class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md text-label-md hover:bg-primary-light transition-colors shadow-sm flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+                        Load Class List
+                    </button>
+</div>
+</div>
+<!-- Two-Panel Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg flex-1 min-h-[500px]">
+<!-- Left Panel: Member Checklist -->
+<div class="lg:col-span-8 bg-card rounded-xl shadow-sm border border-border flex flex-col overflow-hidden">
+<!-- Search and Actions Header -->
+<div class="p-lg border-b border-border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md bg-surface-container-lowest">
+<div class="relative w-full sm:w-64 text-text-secondary focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-[20px]">search</span>
+<input class="w-full pl-xl pr-md py-sm rounded-lg border-border bg-surface focus:bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-body-md font-body-md text-on-surface" id="memberSearch" placeholder="Search members..." type="text">
+</div>
+<div class="flex items-center gap-md text-label-md font-label-md">
+<button class="text-primary hover:text-primary-light transition-colors" onclick="toggleAll(true)">Check All</button>
+<span class="text-border">|</span>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors" onclick="toggleAll(false)">Uncheck All</button>
+</div>
+</div>
+<!-- List container -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-0 m-0">
+<ul class="divide-y divide-border m-0 p-0 list-none" id="memberList">
+<!-- List Item 1 -->
+<li class="hover:bg-surface-container-low transition-colors group cursor-pointer" onclick="toggleCheckbox('check1')">
+<label class="flex items-center gap-md p-lg cursor-pointer w-full">
+<input checked="" class="w-5 h-5 rounded border-border text-primary focus:ring-primary transition-colors cursor-pointer" id="check1" onclick="event.stopPropagation()" type="checkbox">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-variant shrink-0 border border-border/50">
+<img class="w-full h-full object-cover" data-alt="Portrait of an older Ghanaian man with grey hair wearing a traditional patterned shirt. Friendly expression, bright natural lighting, professional headshot style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD55-GdghWgozzq8kJZ-qKMaaFi-vOrmpuXhsH71fx1ECE2OcYoeIZFSVz22-XhQjeVsYzjSPuWQ71XAgTs_d4Oj90-PAFSnDBTTR1fCYK60MGR4iFRaav5y_ekxkpYGpwQCLP5RgGJxQ05wpI7m07-6nfBWeVeW2ZXhmAb45soM8NZvENKK6B0vP7xna-zqFK6LByXRFzW7QFgKh_1Na1FSsl8VTqF2h19BQ0pM2EMqfq_RXCSohFRUBuVimqCGgp-TmZSjjaIIuId">
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-body-lg font-body-lg text-on-surface font-medium truncate m-0">Kwame Mensah</p>
+<p class="text-label-sm font-label-sm text-text-secondary m-0">Last seen: 17 Oct 2023</p>
+</div>
+</label>
+</li>
+<!-- List Item 2 -->
+<li class="hover:bg-surface-container-low transition-colors group cursor-pointer" onclick="toggleCheckbox('check2')">
+<label class="flex items-center gap-md p-lg cursor-pointer w-full">
+<input checked="" class="w-5 h-5 rounded border-border text-primary focus:ring-primary transition-colors cursor-pointer" id="check2" onclick="event.stopPropagation()" type="checkbox">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-variant shrink-0 border border-border/50">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young Ghanaian woman with braided hair, wearing a neat blouse. Warm smile, soft studio lighting, professional corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-6O2XUhkalv3k9_Tu5q9kykZY6WnRxJ6S8RqT_wUsOg8h9NhTuP204RjbML6IyCfco6pKIRNwDCoq3tFNil3d-D0y-s0xP9ERn_8F-0C8nW8OvgaAs22WxCdE99CzCyOWMH-LTuvHtVeRoxtWY9U_vw-1QCP6ubXw_GH5XnoRVQObGadtK-PZxR5u4fi2KCmPv2gqso20jwQ7qJQcGPiCymxnSpHulE-g-g31rhTa6Qq6Ul4RodtJRBmii44QQRWatsOjlXZvHuT1">
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-body-lg font-body-lg text-on-surface font-medium truncate m-0">Ama Osei</p>
+<p class="text-label-sm font-label-sm text-text-secondary m-0">Last seen: 10 Oct 2023</p>
+</div>
+</label>
+</li>
+<!-- List Item 3 -->
+<li class="hover:bg-surface-container-low transition-colors group cursor-pointer" onclick="toggleCheckbox('check3')">
+<label class="flex items-center gap-md p-lg cursor-pointer w-full">
+<input class="w-5 h-5 rounded border-border text-primary focus:ring-primary transition-colors cursor-pointer" id="check3" onclick="event.stopPropagation()" type="checkbox">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-variant shrink-0 border border-border/50">
+<img class="w-full h-full object-cover" data-alt="Portrait of a middle-aged Ghanaian man wearing glasses and a suit jacket. Serious but approachable expression. Crisp lighting, plain background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxU8U7wCJcHrmDOEzQ9cOgVYSc4BkPKoOKB0YVFi0RS7Sm3CNfwUuG7hy_3isKNFHZAfIqdQL3dLqB_mIPCT3oLGKi4k7eR4wutbiNHdz5IQy_8uYtoDT4Ebxetq0JVfU4O-LcD5dc_RpYDW3NzvsMqBl0h8ydvEqpHOafLXFYzOinBMGcQvSzwthzpkwJfYeh9_5VuYpqNZ9UTNCtGJ-_mtAQaBhiGKXXEDDakji4SWoOiPqzDBzSIJPymd9bEx8jR8GE9qEJnrEM">
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-body-lg font-body-lg text-on-surface font-medium truncate m-0">Kofi Annan</p>
+<p class="text-label-sm font-label-sm text-warning m-0 flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                                            Missed last 2 classes
+                                        </p>
+</div>
+</label>
+</li>
+<!-- List Item 4 -->
+<li class="hover:bg-surface-container-low transition-colors group cursor-pointer" onclick="toggleCheckbox('check4')">
+<label class="flex items-center gap-md p-lg cursor-pointer w-full">
+<input checked="" class="w-5 h-5 rounded border-border text-primary focus:ring-primary transition-colors cursor-pointer" id="check4" onclick="event.stopPropagation()" type="checkbox">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-variant shrink-0 border border-border/50 flex items-center justify-center text-primary-light font-bold text-lg">
+                                        EA
+                                    </div>
+<div class="flex-1 min-w-0">
+<p class="text-body-lg font-body-lg text-on-surface font-medium truncate m-0">Esi Appiah</p>
+<p class="text-label-sm font-label-sm text-text-secondary m-0">Last seen: 17 Oct 2023</p>
+</div>
+</label>
+</li>
+<!-- List Item 5 -->
+<li class="hover:bg-surface-container-low transition-colors group cursor-pointer" onclick="toggleCheckbox('check5')">
+<label class="flex items-center gap-md p-lg cursor-pointer w-full">
+<input class="w-5 h-5 rounded border-border text-primary focus:ring-primary transition-colors cursor-pointer" id="check5" onclick="event.stopPropagation()" type="checkbox">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-variant shrink-0 border border-border/50 flex items-center justify-center text-primary-light font-bold text-lg">
+                                        YB
+                                    </div>
+<div class="flex-1 min-w-0">
+<p class="text-body-lg font-body-lg text-on-surface font-medium truncate m-0">Yaw Baah</p>
+<p class="text-label-sm font-label-sm text-text-secondary m-0">Last seen: 03 Oct 2023</p>
+</div>
+</label>
+</li>
+</ul>
+</div>
+</div>
+<!-- Right Panel: Live Summary -->
+<div class="lg:col-span-4 bg-card rounded-xl shadow-sm border border-border flex flex-col overflow-hidden relative">
+<div class="p-lg flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-lg">
+<!-- Stats Area (Bento style block) -->
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-surface rounded-lg p-md border-l-4 border-success relative overflow-hidden">
+<div class="absolute right-[-10px] top-[-10px] opacity-5">
+<span class="material-symbols-outlined text-[80px]">check_circle</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase mb-xs relative z-10">Present</p>
+<p class="text-headline-lg font-headline-lg text-success font-data-display m-0 relative z-10" id="presentCount">3</p>
+</div>
+<div class="bg-surface rounded-lg p-md border-l-4 border-error relative overflow-hidden">
+<div class="absolute right-[-10px] top-[-10px] opacity-5">
+<span class="material-symbols-outlined text-[80px]">cancel</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase mb-xs relative z-10">Absent</p>
+<p class="text-headline-lg font-headline-lg text-error font-data-display m-0 relative z-10" id="absentCount">2</p>
+</div>
+</div>
+<!-- Absent List Summary -->
+<div>
+<h3 class="text-label-md font-label-md text-on-surface font-bold mb-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">person_off</span>
+                                Absent Members
+                            </h3>
+<div class="bg-surface-container-low rounded-lg p-sm border border-border max-h-40 overflow-y-auto custom-scrollbar">
+<ul class="text-body-sm font-body-md text-on-surface-variant space-y-xs list-none m-0 p-1" id="absentListDisplay">
+<li class="flex items-center gap-xs"><span class="w-1.5 h-1.5 rounded-full bg-error inline-block"></span> Kofi Annan</li>
+<li class="flex items-center gap-xs"><span class="w-1.5 h-1.5 rounded-full bg-error inline-block"></span> Yaw Baah</li>
+</ul>
+</div>
+</div>
+<!-- Meeting Notes -->
+<div class="flex-1 flex flex-col min-h-[150px]">
+<label class="text-label-md font-label-md text-on-surface font-bold mb-sm flex items-center gap-xs" for="notes">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+                                Meeting Notes
+                            </label>
+<textarea class="w-full flex-1 bg-surface border border-border rounded-lg p-md text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary resize-none custom-scrollbar" id="notes" placeholder="Add remarks about the class, apologies received, or general observations..."></textarea>
+</div>
+</div>
+<!-- Sticky Footer -->
+<div class="p-lg border-t border-border bg-surface-container-lowest mt-auto z-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.02)]">
+<button class="w-full bg-primary text-on-primary py-md rounded-lg font-label-md text-label-md hover:bg-primary-light transition-colors shadow-sm flex items-center justify-center gap-sm group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">save</span>
+                            Save Attendance
+                        </button>
+</div>
+</div>
+</div>
+<!-- Footer Note -->
+<div class="flex items-center justify-center text-label-sm font-label-sm text-text-secondary py-sm opacity-60">
+<span class="material-symbols-outlined text-[14px] mr-xs">keyboard</span>
+                Tip: Use <kbd class="px-1 py-0.5 rounded bg-surface border border-border font-data-display text-[10px]">Space</kbd> to toggle check, <kbd class="px-1 py-0.5 rounded bg-surface border border-border font-data-display text-[10px]">↑</kbd> <kbd class="px-1 py-0.5 rounded bg-surface border border-border font-data-display text-[10px]">↓</kbd> to navigate list.
+            </div>
+</main>
+</div>
+<!-- Minimal Script to handle micro-interactions for demonstration -->
+<script>
+        function toggleCheckbox(id) {
+            const cb = document.getElementById(id);
+            if(cb) {
+                cb.checked = !cb.checked;
+                updateStats();
+            }
+        }
+
+        function toggleAll(state) {
+            const checkboxes = document.querySelectorAll('#memberList input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                cb.checked = state;
+            });
+            updateStats();
+        }
+
+        function updateStats() {
+            const checkboxes = document.querySelectorAll('#memberList input[type="checkbox"]');
+            let present = 0;
+            let absent = 0;
+            
+            checkboxes.forEach(cb => {
+                if (cb.checked) present++;
+                else absent++;
+            });
+
+            document.getElementById('presentCount').innerText = present;
+            document.getElementById('absentCount').innerText = absent;
+            
+            // Note: In a real app, the absent list text would update here based on DOM traversal.
+            // Keeping script lightweight as per instructions.
+        }
+
+        // Search Filter (Visual only for demo)
+        document.getElementById('memberSearch').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            const items = document.querySelectorAll('#memberList li');
+            
+            items.forEach(item => {
+                const name = item.querySelector('.font-medium').innerText.toLowerCase();
+                if(name.includes(term)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+
+
+</body></html>

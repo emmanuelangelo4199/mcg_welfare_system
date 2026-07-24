@@ -1,0 +1,469 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="light" lang="en" style="">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Member Directory - MCG-SMS</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "secondary-fixed-dim": "#eec04f",
+              "secondary-fixed": "#ffdf9a",
+              "error-container": "#ffdad6",
+              "surface-variant": "#e9e1dd",
+              "secondary-container": "#fece5b",
+              "on-tertiary-container": "#adadab",
+              "surface-container-high": "#eee7e3",
+              "on-secondary": "#ffffff",
+              "tertiary": "#2a2b2a",
+              "background": "#fff8f5",
+              "on-surface": "#1e1b19",
+              "surface-container": "#f4ece8",
+              "primary-light": "#A3283F",
+              "border": "#E4E2DD",
+              "danger": "#DC2626",
+              "on-secondary-container": "#745700",
+              "on-error-container": "#93000a",
+              "info": "#2563EB",
+              "primary-container": "#7b1c2d",
+              "tertiary-container": "#404140",
+              "surface-tint": "#a33a49",
+              "on-error": "#ffffff",
+              "warning": "#D97706",
+              "surface-container-highest": "#e9e1dd",
+              "primary-muted": "#F5EAEC",
+              "on-tertiary-fixed-variant": "#464746",
+              "gold-muted": "#FDF6E3",
+              "inverse-primary": "#ffb2b7",
+              "primary-fixed-dim": "#ffb2b7",
+              "on-primary-fixed-variant": "#832233",
+              "text-secondary": "#6B7280",
+              "surface-bright": "#fff8f5",
+              "success": "#16A34A",
+              "surface-container-lowest": "#ffffff",
+              "surface-dim": "#e0d8d5",
+              "on-secondary-fixed": "#251a00",
+              "tertiary-fixed-dim": "#c7c6c5",
+              "surface-container-low": "#faf2ee",
+              "tertiary-fixed": "#e3e2e0",
+              "on-primary-container": "#ff8a95",
+              "on-surface-variant": "#564243",
+              "outline": "#897172",
+              "primary": "#5c0219",
+              "primary-fixed": "#ffdadb",
+              "on-primary-fixed": "#40000e",
+              "secondary": "#775a00",
+              "inverse-surface": "#33302d",
+              "card": "#FFFFFF",
+              "on-secondary-fixed-variant": "#5a4300",
+              "outline-variant": "#dcc0c1",
+              "error": "#ba1a1a",
+              "on-primary": "#ffffff",
+              "on-background": "#1e1b19",
+              "on-tertiary-fixed": "#1a1c1b",
+              "surface": "#F8F7F5",
+              "on-tertiary": "#ffffff",
+              "inverse-on-surface": "#f7efeb"
+            },
+            "borderRadius": {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
+            },
+            "spacing": {
+              "md": "16px",
+              "xs": "4px",
+              "header-height": "64px",
+              "lg": "24px",
+              "sm": "8px",
+              "xl": "32px",
+              "sidebar-width": "256px",
+              "base": "8px"
+            },
+            "fontFamily": {
+              "headline-lg": ["Lora"],
+              "label-md": ["Inter"],
+              "body-md": ["Inter"],
+              "headline-lg-mobile": ["Lora"],
+              "headline-md": ["Inter"],
+              "body-lg": ["Inter"],
+              "label-sm": ["Inter"],
+              "data-display": ["JetBrains Mono"],
+              "data-label": ["JetBrains Mono"]
+            },
+            "fontSize": {
+              "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+              "label-md": ["13px", { "lineHeight": "1.2", "fontWeight": "500" }],
+              "body-md": ["14px", { "lineHeight": "1.6", "fontWeight": "400" }],
+              "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+              "headline-md": ["20px", { "lineHeight": "1.3", "fontWeight": "600" }],
+              "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+              "label-sm": ["11px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+              "data-display": ["18px", { "lineHeight": "1.0", "fontWeight": "500" }],
+              "data-label": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      body { background-color: theme('colors.surface'); color: theme('colors.on-surface'); }
+    </style>
+  </head>
+  <body class="font-body-md text-body-md antialiased flex">
+    <!-- SideNavBar -->
+    <nav class="hidden md:flex fixed left-0 top-0 h-full w-sidebar-width flex-col z-40 bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary shadow-lg dark:shadow-none">
+      <div class="p-lg flex items-center gap-md">
+        <div>
+          <h1 class="font-headline-md text-headline-md text-secondary-fixed font-bold truncate w-full" title="Methodist Church Ghana">
+            Methodist Church<div class="">&nbsp;Ghana</div>
+          </h1>
+          <p class="font-label-md text-label-md opacity-80 truncate w-full">Society Management System</p>
+        </div>
+      </div>
+      <div class="px-md pb-md">
+        <button class="w-full bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed transition-colors py-sm px-md rounded-lg font-label-md flex justify-center items-center gap-sm shadow-sm">
+          <span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+          Quick Actions
+        </button>
+      </div>
+      <ul class="flex-1 overflow-y-auto py-sm space-y-xs">
+        <li class="">
+          <a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+            <span class="material-symbols-outlined" style="font-size: 18px;">dashboard</span>
+            <span class="font-label-md text-label-md">Dashboard</span>
+          </a>
+        </li>
+        <li class="">
+          <a class="flex items-center gap-md border-l-4 border-secondary-container bg-primary-light/20 text-secondary-fixed py-md px-lg translate-x-1 duration-200" href="#">
+            <span class="material-symbols-outlined" style="font-size: 18px; font-variation-settings: 'FILL' 1;">groups</span>
+            <span class="font-label-md text-label-md">Members</span>
+          </a>
+        </li>
+        <li class="">
+          <a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+            <span class="material-symbols-outlined" style="font-size: 18px;">church</span>
+            <span class="font-label-md text-label-md">Classes</span>
+          </a>
+        </li>
+        <li class="">
+          <a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+            <span class="material-symbols-outlined" style="font-size: 18px;">payments</span>
+            <span class="font-label-md text-label-md">Finance</span>
+          </a>
+        </li>
+        <li class="">
+          <a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+            <span class="material-symbols-outlined" style="font-size: 18px;">assessment</span>
+            <span class="font-label-md text-label-md">Reports</span>
+          </a>
+        </li>
+      </ul>
+      <div class="mt-auto border-t border-primary-light/30">
+        <ul class="py-sm space-y-xs">
+          <li class="">
+            <a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+              <span class="material-symbols-outlined" style="font-size: 18px;">settings</span>
+              <span class="font-label-md text-label-md">Settings</span>
+            </a>
+          </li>
+          <li class="">
+            <a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 opacity-80 hover:opacity-100" href="#">
+              <span class="material-symbols-outlined" style="font-size: 18px;">logout</span>
+              <span class="font-label-md text-label-md">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Main Content Wrapper -->
+    <div class="flex-1 flex flex-col min-h-screen md:ml-sidebar-width">
+      <!-- TopAppBar -->
+      <header class="hidden md:flex fixed top-0 left-0 w-full z-30 justify-between items-center px-lg h-header-height bg-surface-container-lowest dark:bg-surface-dim border-b border-border dark:border-outline-variant shadow-sm dark:shadow-none pl-[calc(theme(spacing.sidebar-width)+theme(spacing.lg))]">
+        <div class="flex items-center gap-md">
+          <span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">MCG-SMS</span>
+        </div>
+        <div class="flex items-center gap-lg">
+          <button class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-tertiary-container transition-colors p-sm rounded-full active:opacity-80 active:scale-95 transition-all">
+            <span class="material-symbols-outlined">notifications</span>
+          </button>
+          <img alt="User profile avatar" class="w-8 h-8 rounded-full border border-border object-cover cursor-pointer hover:opacity-90 transition-opacity" data-alt="Professional headshot of a church administrator, mature adult, welcoming expression, well-lit studio photography, soft lighting, neutral background, suitable for a user profile avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7PiHWwxVPTsfDxtFA8dtGRgNAWvvu4bcxxh3lUxk1WzHUWYqQ0P4pJUseUfcgDZ8_ZdXFoReUqfnLO-4tz8ioEoiZuPVzko6tc117M_UJxP3rI4dJXy2-I0vX6ISl8_x92xSTQ6FoxGsMXmM6sPu4GOdzWYcs_VyAxaiorbY39fDZwiIkvDnghJ3nt6oXLR2shCEg2SNd-JgnngBo7wKV80w769FNmNyvhCEic43L2K4Ufb-VfURBINc3-5H97tN3Aa-bvx3zL6N9">
+        </div>
+      </header>
+      <!-- Page Content -->
+      <main class="flex-1 p-lg mt-header-height md:mt-header-height overflow-y-auto pb-24 md:pb-lg">
+        <!-- Page Header -->
+        <div class="flex flex-col md:flex-row md:items-start justify-between gap-md mb-xl">
+          <div>
+            <nav aria-label="Breadcrumb" class="flex text-on-surface-variant text-label-sm font-label-sm mb-sm">
+              <ol class="flex items-center space-x-2">
+                <li class=""><a class="hover:text-primary transition-colors" href="#">Dashboard</a></li>
+                <li><span class="material-symbols-outlined text-[14px]">chevron_right</span></li>
+                <li aria-current="page" class="text-on-surface font-semibold">Members</li>
+              </ol>
+            </nav>
+            <h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Member Directory</h1>
+            <p class="text-on-surface-variant font-body-md max-w-2xl">Manage society members, view detailed profiles, and organize classes.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-sm items-center">
+            <button class="w-full sm:w-auto px-md py-sm bg-card border border-border text-on-surface font-label-md rounded-lg flex items-center justify-center gap-sm hover:bg-surface-container-low transition-colors shadow-sm">
+              <span class="material-symbols-outlined" style="font-size: 18px;">download</span>
+              Export
+            </button>
+            <button class="w-full sm:w-auto px-md py-sm bg-primary text-on-primary font-label-md rounded-lg flex items-center justify-center gap-sm hover:bg-primary-light transition-colors shadow-sm">
+              <span class="material-symbols-outlined" style="font-size: 18px;">person_add</span>
+              Add Member
+            </button>
+          </div>
+        </div>
+        <!-- Main Card Container -->
+        <div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+          <!-- Filters -->
+          <div class="p-md border-b border-border bg-surface-container-lowest flex flex-col lg:flex-row gap-md items-end">
+            <div class="w-full lg:w-1/3">
+              <label class="sr-only" for="search">Search</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <span class="material-symbols-outlined text-on-surface-variant" style="font-size: 20px;">search</span>
+                </div>
+                <input class="block w-full pl-10 pr-3 py-2 border border-border rounded-lg leading-5 bg-surface-container-lowest placeholder-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition-shadow font-body-md" id="search" name="search" placeholder="Search by name or number..." type="text">
+              </div>
+            </div>
+            <div class="w-full lg:w-1/6">
+              <label class="block text-label-sm font-label-sm text-on-surface-variant mb-xs" for="status">Status</label>
+              <select class="block w-full pl-3 pr-10 py-2 text-body-md border-border focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm rounded-lg bg-surface-container-lowest" id="status" name="status">
+                <option>All Statuses</option>
+                <option>Active</option>
+                <option>Pending</option>
+                <option>Suspended</option>
+              </select>
+            </div>
+            <div class="w-full lg:w-1/6">
+              <label class="block text-label-sm font-label-sm text-on-surface-variant mb-xs" for="class">Class</label>
+              <select class="block w-full pl-3 pr-10 py-2 text-body-md border-border focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm rounded-lg bg-surface-container-lowest" id="class" name="class">
+                <option>All Classes</option>
+                <option>Wesley</option>
+                <option>Asbury</option>
+                <option>Coke</option>
+              </select>
+            </div>
+            <div class="w-full lg:w-1/6">
+              <label class="block text-label-sm font-label-sm text-on-surface-variant mb-xs">Gender</label>
+              <div class="flex items-center space-x-4 h-[38px]">
+                <label class="flex items-center">
+                  <input checked="" class="focus:ring-primary h-4 w-4 text-primary border-border" name="gender" type="radio" value="all">
+                  <span class="ml-2 text-body-md text-on-surface">All</span>
+                </label>
+                <label class="flex items-center">
+                  <input class="focus:ring-primary h-4 w-4 text-primary border-border" name="gender" type="radio" value="m">
+                  <span class="ml-2 text-body-md text-on-surface">M</span>
+                </label>
+                <label class="flex items-center">
+                  <input class="focus:ring-primary h-4 w-4 text-primary border-border" name="gender" type="radio" value="f">
+                  <span class="ml-2 text-body-md text-on-surface">F</span>
+                </label>
+              </div>
+            </div>
+            <div class="w-full lg:w-auto">
+              <button class="w-full px-md py-sm bg-surface-container text-on-surface font-label-md rounded-lg border border-border hover:bg-surface-container-high transition-colors h-[38px]">
+                Apply Filters
+              </button>
+            </div>
+          </div>
+          <!-- Data Table -->
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-border">
+              <thead class="bg-surface-container-low">
+                <tr>
+                  <th class="px-md py-sm text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider w-12" scope="col"></th>
+                  <th class="px-md py-sm text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Membership No.</th>
+                  <th class="px-md py-sm text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Full Name</th>
+                  <th class="px-md py-sm text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Status</th>
+                  <th class="px-md py-sm text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Class</th>
+                  <th class="px-md py-sm text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Gender</th>
+                  <th class="px-md py-sm text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Date Joined</th>
+                  <th class="relative px-md py-sm" scope="col">
+                    <span class="sr-only">Actions</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="bg-card divide-y divide-border">
+                <!-- Row 1 -->
+                <tr class="hover:bg-primary-muted/30 transition-colors h-[48px] group cursor-pointer">
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <img class="h-8 w-8 rounded-full object-cover" data-alt="Portrait of a Ghanaian man, middle-aged, wearing a formal suit, warm smile, professional headshot style, well-lit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlKjFu0z6agqESK9oNUH2SgnYzXwHBqOT2v5riBSGMeaU0wMuoHf7Au15YgagKyfvY_9pE7Kor42Bn9o2uaQs-ew27vk7PMDpETdCuGBYlG6RJ7LpvMh0mLISTyw0yQ0N0HTJbPC8ZDaZvYHUdcLAFpSJA96Nz1oerd1_lT4AEcM8GJcjQs3j2yPFB1wQItUQmmNeLxRV93_x22guBzHcAWL6trY5qzP-iZbtZUsHVAaM96_gKsdw4gBgYmHQTo05HtfNDgKl_nLZ6">
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <span class="font-data-label text-data-label text-on-surface">MCG-00142</span>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <div class="font-label-md text-on-surface font-semibold">Kwame Mensah</div>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#DCFCE7] text-[#15803D]">
+                      Active
+                    </span>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">Wesley</td>
+                  <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">Male</td>
+                  <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">12 Oct 2018</td>
+                  <td class="px-md py-xs whitespace-nowrap text-right text-sm font-medium">
+                    <button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded hover:bg-surface-container">
+                      <span class="material-symbols-outlined" style="font-size: 20px;">more_vert</span>
+                    </button>
+                  </td>
+                </tr>
+                <!-- Row 2 -->
+                <tr class="hover:bg-primary-muted/30 transition-colors h-[48px] group cursor-pointer">
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <div class="h-8 w-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant font-label-md font-bold">
+                      AA
+                    </div>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <span class="font-data-label text-data-label text-on-surface">MCG-00143</span>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <div class="font-label-md text-on-surface font-semibold">Abena Appiah</div>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#FEF9C3] text-[#A16207]">
+                      Pending
+                    </span>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">Asbury</td>
+                  <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">Female</td>
+                  <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">05 Jan 2023</td>
+                  <td class="px-md py-xs whitespace-nowrap text-right text-sm font-medium">
+                    <button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded hover:bg-surface-container">
+                      <span class="material-symbols-outlined" style="font-size: 20px;">more_vert</span>
+                    </button>
+                  </td>
+                </tr>
+                <!-- Row 3 -->
+                <tr class="hover:bg-primary-muted/30 transition-colors h-[48px] group cursor-pointer">
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <img class="h-8 w-8 rounded-full object-cover" data-alt="Portrait of an elderly Ghanaian woman, wearing traditional kente cloth, dignified expression, studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRHfsxhHtEVnEAPBjAZ-NoUiD9zpDLtoIydyvJyeSCUbXNuI-mbky8D4HKMj1dzmJkmUFWk6DxyUPj1WAXAEOdVdJ72uMXy0EhOHRjwMrdsK5YrA_XDdtD0DlkA4zANHgmvOYjqts_NhKxBXjXH-St6TfB_gU4Zwv2fkJWA52FqVOo95nfLNwKEPXxFSP-6tPimGwjqeVsAiz74q15SqjBkQSE2YY58FW3FVRIQCOoVxnQnUimHCNBVBI0AkcIKonUumRrPrXF4NSM">
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <span class="font-data-label text-data-label text-on-surface">MCG-00089</span>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <div class="font-label-md text-on-surface font-semibold">Grace Osei</div>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#DCFCE7] text-[#15803D]">
+                      Active
+                    </span>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">Coke</td>
+                  <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">Female</td>
+                  <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">22 Nov 2010</td>
+                  <td class="px-md py-xs whitespace-nowrap text-right text-sm font-medium">
+                    <button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded hover:bg-surface-container">
+                      <span class="material-symbols-outlined" style="font-size: 20px;">more_vert</span>
+                    </button>
+                  </td>
+                </tr>
+                <!-- Row 4 -->
+                <tr class="hover:bg-primary-muted/30 transition-colors h-[48px] group cursor-pointer bg-error-container/10">
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <div class="h-8 w-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant font-label-md font-bold">
+                      EK
+                    </div>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <span class="font-data-label text-data-label text-on-surface opacity-70">MCG-00112</span>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <div class="font-label-md text-on-surface font-semibold opacity-70">Emmanuel Kusi</div>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#FEE2E2] text-[#B91C1C]">
+                      Suspended
+                    </span>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant opacity-70">Wesley</td>
+                  <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant opacity-70">Male</td>
+                  <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant opacity-70">15 Mar 2015</td>
+                  <td class="px-md py-xs whitespace-nowrap text-right text-sm font-medium">
+                    <button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded hover:bg-surface-container">
+                      <span class="material-symbols-outlined" style="font-size: 20px;">more_vert</span>
+                    </button>
+                  </td>
+                </tr>
+                <!-- Row 5 -->
+                <tr class="hover:bg-primary-muted/30 transition-colors h-[48px] group cursor-pointer">
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <img class="h-8 w-8 rounded-full object-cover" data-alt="Portrait of a young Ghanaian man, casual neat attire, bright background, contemporary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBCdYSlisgnFwG0UJ5yGnzR629o4Do0K3UB9RGJOz-dA2v1vErsu5E147gu5Kd0B4UUFZA5UgcmkwVh9zGWZ2RaP54ZhQVgad-QrL91ach8Si1X0yvrs7k5i-XJ9LO0h1VEkLJB2li-CdDePebXIwB1G1lN4vYFNQTv16JFQkNHWONCWjadrwpVUp09Zhk7dykTb47xnUqfVdTofOpioYbUBntS_ftgtsHteXSDEV9TcsDY8w9qlpR4JpJQnWqHjzQDZtw6vkKl5y5">
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <span class="font-data-label text-data-label text-on-surface">MCG-00156</span>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <div class="font-label-md text-on-surface font-semibold">Samuel Tetteh</div>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#DCFCE7] text-[#15803D]">
+                      Active
+                    </span>
+                  </td>
+                  <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">Asbury</td>
+                  <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">Male</td>
+                  <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">30 Aug 2023</td>
+                  <td class="px-md py-xs whitespace-nowrap text-right text-sm font-medium">
+                    <button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded hover:bg-surface-container">
+                      <span class="material-symbols-outlined" style="font-size: 20px;">more_vert</span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Pagination -->
+          <div class="px-md py-3 flex items-center justify-between border-t border-border bg-surface-container-lowest">
+            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-end">
+              <div>
+                <p class="font-body-md text-on-surface-variant text-sm">
+                  Showing <span class="font-medium text-on-surface">1</span> to <span class="font-medium text-on-surface">20</span> of <span class="font-medium text-on-surface">143</span> records
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- BottomNavBar (Mobile Only) -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest pb-safe md:hidden border-t border-border dark:border-outline-variant shadow-[0_-1px_3px_rgba(0,0,0,0.06)] h-[56px]">
+      <a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant flex-1 h-full active:bg-surface-container-high" href="#">
+        <span class="material-symbols-outlined" style="font-size: 24px;">home</span>
+        <span class="font-label-sm-mobile text-label-sm-mobile mt-1">Home</span>
+      </a>
+      <a class="flex flex-col items-center justify-center text-primary dark:text-secondary-fixed font-bold flex-1 h-full active:bg-surface-container-high scale-90 transition-transform" href="#">
+        <span class="material-symbols-outlined" style="font-size: 24px; font-variation-settings: 'FILL' 1;">person_search</span>
+        <span class="font-label-sm-mobile text-label-sm-mobile mt-1">Members</span>
+      </a>
+      <a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant flex-1 h-full active:bg-surface-container-high" href="#">
+        <span class="material-symbols-outlined" style="font-size: 24px;">account_balance_wallet</span>
+        <span class="font-label-sm-mobile text-label-sm-mobile mt-1">Finance</span>
+      </a>
+      <a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant flex-1 h-full active:bg-surface-container-high" href="#">
+        <span class="material-symbols-outlined" style="font-size: 24px;">analytics</span>
+        <span class="font-label-sm-mobile text-label-sm-mobile mt-1">Reports</span>
+      </a>
+      <a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant flex-1 h-full active:bg-surface-container-high" href="#">
+        <span class="material-symbols-outlined" style="font-size: 24px;">menu</span>
+        <span class="font-label-sm-mobile text-label-sm-mobile mt-1">More</span>
+      </a>
+    </nav>
+  </body>
+</html>

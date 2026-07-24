@@ -1,0 +1,40 @@
+{% comment %}
+Stat card — used on B-01, B-02, B-03, G-01, H-01 and anywhere else a single
+headline figure needs a label underneath it.
+
+Usage (Material Symbols — the app's standard icon system):
+  {% include "components/stat_card.html" with value="1,240" label="Total Members" icon_name="group" %}
+  {% include "components/stat_card.html" with value="45" label="Pending" icon_name="hourglass_empty" icon_class="text-warning" %}
+
+Usage (legacy freeform slot — emoji or other short inline content, used only
+if icon_name is omitted):
+  {% include "components/stat_card.html" with value="1,204" label="Total Members" icon="👥" %}
+
+Optional:
+  icon_name      - Material Symbols Outlined identifier (preferred)
+  icon_class     - Tailwind text-colour class applied to icon_name (default: text-ink-secondary)
+  icon           - freeform fallback, only used if icon_name is not given
+  trend          - e.g. "4.2%" (don't include +/- or the arrow, those are added for you)
+  trend_positive - True/False, controls arrow direction and colour (default: True)
+  border_color   - Tailwind class for the left border accent (default: border-gold)
+{% endcomment %}
+{% with is_positive=trend_positive|default_if_none:True %}
+<div class="bg-card rounded-card shadow-card p-6 border-l-4 {{ border_color|default:"border-gold" }}">
+  <div class="flex items-start justify-between">
+    <div>
+      <div class="font-mono font-semibold text-[28px] leading-none text-ink">{{ value }}</div>
+      <div class="mt-2 text-[13px] font-medium text-ink-secondary">{{ label }}</div>
+    </div>
+    {% if icon_name %}
+      <span class="material-symbols-outlined text-[22px] {{ icon_class|default:"text-ink-secondary" }}">{{ icon_name }}</span>
+    {% elif icon %}
+      <div class="text-2xl leading-none">{{ icon }}</div>
+    {% endif %}
+  </div>
+  {% if trend %}
+    <div class="mt-3 text-xs font-medium {% if is_positive %}text-success{% else %}text-danger{% endif %}">
+      {% if is_positive %}▲{% else %}▼{% endif %} {{ trend }}
+    </div>
+  {% endif %}
+</div>
+{% endwith %}

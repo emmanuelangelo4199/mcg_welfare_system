@@ -1,0 +1,521 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Service Attendance Recording - MCG-SMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            background-color: #F8F7F5;
+            color: #1e1b19;
+            font-family: 'Inter', sans-serif;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .card-elevation {
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+        .radio-card-input:checked + .radio-card-content {
+            border-color: #5c0219;
+            background-color: #F5EAEC;
+        }
+        .sticky-footer {
+            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "gold-muted": "#FDF6E3",
+                      "outline-variant": "#dcc0c1",
+                      "tertiary-container": "#404140",
+                      "surface-container": "#f4ece8",
+                      "on-secondary-fixed-variant": "#5a4300",
+                      "success": "#16A34A",
+                      "surface-variant": "#e9e1dd",
+                      "surface": "#F8F7F5",
+                      "on-surface-variant": "#564243",
+                      "border": "#E4E2DD",
+                      "outline": "#897172",
+                      "surface-container-low": "#faf2ee",
+                      "info": "#2563EB",
+                      "text-secondary": "#6B7280",
+                      "surface-container-highest": "#e9e1dd",
+                      "surface-bright": "#fff8f5",
+                      "on-secondary-fixed": "#251a00",
+                      "inverse-surface": "#33302d",
+                      "secondary-fixed": "#ffdf9a",
+                      "tertiary-fixed-dim": "#c7c6c5",
+                      "primary-container": "#7b1c2d",
+                      "on-primary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#f7efeb",
+                      "primary-fixed": "#ffdadb",
+                      "surface-dim": "#e0d8d5",
+                      "on-secondary-container": "#745700",
+                      "on-surface": "#1e1b19",
+                      "secondary-fixed-dim": "#eec04f",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#e3e2e0",
+                      "warning": "#D97706",
+                      "primary-muted": "#F5EAEC",
+                      "on-primary-fixed": "#40000e",
+                      "inverse-primary": "#ffb2b7",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-high": "#eee7e3",
+                      "on-error": "#ffffff",
+                      "on-primary-fixed-variant": "#832233",
+                      "surface-container-lowest": "#ffffff",
+                      "on-background": "#1e1b19",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-container": "#adadab",
+                      "card": "#FFFFFF",
+                      "tertiary": "#2a2b2a",
+                      "danger": "#DC2626",
+                      "primary-light": "#A3283F",
+                      "on-tertiary-fixed-variant": "#464746",
+                      "secondary": "#775a00",
+                      "primary-fixed-dim": "#ffb2b7",
+                      "secondary-container": "#fece5b",
+                      "background": "#fff8f5",
+                      "on-primary-container": "#ff8a95",
+                      "surface-tint": "#a33a49",
+                      "primary": "#5c0219",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-fixed": "#1a1c1b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "md": "16px",
+                      "lg": "24px",
+                      "base": "8px",
+                      "sm": "8px",
+                      "xs": "4px",
+                      "xl": "32px",
+                      "sidebar-width": "256px",
+                      "header-height": "64px"
+              },
+              "fontFamily": {
+                      "label-md": ["Inter"],
+                      "data-display": ["JetBrains Mono"],
+                      "label-sm": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "data-label": ["JetBrains Mono"],
+                      "headline-md": ["Inter"],
+                      "headline-lg": ["Lora"],
+                      "body-md": ["Inter"]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-surface">
+<!-- Desktop Sidebar -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width flex flex-col z-40 bg-primary-container text-on-primary shadow-lg hidden md:flex">
+<div class="p-lg">
+<h1 class="font-headline-md text-headline-md text-secondary-fixed font-bold">Methodist Church Ghana</h1>
+<p class="font-label-sm text-label-sm opacity-80">Society Management System</p>
+</div>
+<nav class="flex-1 mt-md">
+<div class="px-lg py-sm font-label-md text-label-md opacity-60 uppercase tracking-wider">Main Navigation</div>
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md border-l-4 border-secondary-container bg-primary-light/20 text-secondary-fixed py-md px-lg translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">church</span>
+<span class="font-label-md text-label-md">Classes</span>
+</a>
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md text-label-md">Members</span>
+</a>
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Finance</span>
+</a>
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+</nav>
+<div class="p-lg">
+<button class="w-full py-md px-lg bg-secondary-container text-primary font-bold rounded-lg flex items-center justify-center gap-md hover:opacity-90 transition-all">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-md text-label-md">Quick Actions</span>
+</button>
+</div>
+<div class="mt-auto border-t border-primary-light/20 p-md">
+<a class="flex items-center gap-md text-on-primary py-sm px-lg hover:bg-primary-light/10 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md text-on-primary py-sm px-lg hover:bg-primary-light/10 rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-sidebar-width min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="fixed top-0 right-0 left-0 md:left-sidebar-width z-50 flex justify-between items-center px-lg h-header-height bg-surface-container-lowest border-b border-border shadow-sm">
+<div class="flex items-center gap-md">
+<button class="md:hidden p-sm">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex flex-col">
+<div class="flex items-center gap-xs text-on-surface-variant font-label-md text-label-md">
+<span class="">Dashboard</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="">Services &amp; Programmes</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-bold">Record Attendance</span>
+</div>
+</div>
+</div>
+
+</header>
+<div class="pt-[88px] px-lg max-w-6xl mx-auto">
+<!-- Page Header -->
+<div class="mb-xl">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-xs">Record Service Attendance</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Log attendance for today's service to maintain accurate society records.</p>
+</div>
+<!-- Top Controls: Event & Date -->
+<div class="bg-card p-lg rounded-xl card-elevation mb-lg bento-grid">
+<div class="col-span-12 md:col-span-6 lg:col-span-7">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-sm">Event / Service Name</label>
+<div class="relative">
+<select class="w-full h-12 pl-12 pr-md bg-surface border border-border rounded-lg font-body-md text-body-md appearance-none focus:ring-2 focus:ring-primary focus:border-primary">
+<option selected="">Sunday Morning Divine Service - 8:30 AM</option>
+<option>Wednesday Mid-week Prayer Meeting</option>
+<option>Friday Revival Service</option>
+<option>Youth Fellowship Meeting</option>
+</select>
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-primary">church</span>
+</div>
+</div>
+<div class="col-span-12 md:col-span-6 lg:col-span-5">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-sm">Service Date</label>
+<div class="relative">
+<input class="w-full h-12 pl-12 pr-md bg-surface border border-border rounded-lg font-body-md text-body-md focus:ring-2 focus:ring-primary focus:border-primary" type="date" value="2023-10-22">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-primary">calendar_today</span>
+</div>
+</div>
+</div>
+<!-- Recording Method Toggle -->
+<div class="mb-lg">
+<h3 class="font-label-md text-label-md font-bold text-on-surface-variant mb-md uppercase tracking-widest">Select Recording Method</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<label class="cursor-pointer group">
+<input checked="" class="hidden radio-card-input" name="method" onchange="toggleMode('count')" type="radio" value="count">
+<div class="radio-card-content p-lg bg-card border-2 border-transparent rounded-xl card-elevation flex items-center gap-lg hover:border-outline-variant transition-all">
+<div class="w-16 h-16 rounded-full bg-primary-muted flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[32px]">calculate</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md font-bold text-primary">Count Only</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Simple tallying of total heads by category.</p>
+</div>
+</div>
+</label>
+<label class="cursor-pointer group">
+<input class="hidden radio-card-input" name="method" onchange="toggleMode('named')" type="radio" value="named">
+<div class="radio-card-content p-lg bg-card border-2 border-transparent rounded-xl card-elevation flex items-center gap-lg hover:border-outline-variant transition-all">
+<div class="w-16 h-16 rounded-full bg-gold-muted flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[32px]">checklist_rtl</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md font-bold text-primary">Named List</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Mark specific members from the registry.</p>
+</div>
+</div>
+</label>
+</div>
+</div>
+<!-- Mode: Count Only -->
+<div class="animate-in fade-in duration-500" id="mode-count">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Headcounts -->
+<div class="lg:col-span-2 bg-card p-lg rounded-xl card-elevation">
+<div class="flex justify-between items-center mb-lg">
+<h3 class="font-headline-md text-headline-md text-primary">Demographic Breakdown</h3>
+<div class="flex items-center gap-sm">
+<span class="font-label-md text-label-md text-on-surface-variant">Live Total:</span>
+<span class="font-data-display text-data-display text-primary font-bold" id="total-display">0</span>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-lg">
+<div class="p-md bg-surface rounded-lg border-l-4 border-primary">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Adult Men</label>
+<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0">
+</div>
+<div class="p-md bg-surface rounded-lg border-l-4 border-primary">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Adult Women</label>
+<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0">
+</div>
+<div class="p-md bg-surface rounded-lg border-l-4 border-primary">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Young Adults</label>
+<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0">
+</div>
+<div class="p-md bg-surface rounded-lg border-l-4 border-primary-light">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Teenagers</label>
+<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0">
+</div>
+<div class="p-md bg-surface rounded-lg border-l-4 border-primary-light">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Children</label>
+<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0">
+</div>
+<div class="p-md bg-surface rounded-lg border-l-4 border-secondary-container">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Visitors</label>
+<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0">
+</div>
+</div>
+<div class="mt-lg pt-lg border-t border-border">
+<div class="flex items-start gap-md">
+<div class="flex items-center h-6">
+<input class="w-5 h-5 text-primary border-border rounded focus:ring-primary" type="checkbox">
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-primary">First-time Visitors Recorded?</span>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">Check this if any of the visitors today are attending for the first time.</p>
+<div class="flex items-center gap-md">
+<span class="font-label-sm text-label-sm">How many?</span>
+<input class="w-24 h-10 px-md border border-border rounded-lg bg-surface" placeholder="0" type="number">
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Notes/Right Panel -->
+<div class="bg-card p-lg rounded-xl card-elevation flex flex-col">
+<h3 class="font-headline-md text-headline-md text-primary mb-md">Service Notes</h3>
+<textarea class="flex-1 w-full p-md border border-border rounded-lg bg-surface font-body-md text-body-md focus:ring-2 focus:ring-primary focus:border-primary resize-none mb-md" placeholder="e.g. Special testimony shared, power outage during sermon, guest preacher details..." rows="8"></textarea>
+<div class="bg-gold-muted p-md rounded-lg border border-secondary-container/30">
+<div class="flex items-center gap-sm text-secondary mb-xs">
+<span class="material-symbols-outlined text-[18px]">info</span>
+<span class="font-label-md text-label-md font-bold">Pro-tip</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-secondary-fixed-variant">Accurate recording helps the Welfare Committee follow up with missing members.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Mode: Named List (Hidden by default) -->
+<div class="hidden animate-in slide-in-from-right duration-500" id="mode-named">
+<div class="flex flex-col lg:flex-row gap-lg">
+<!-- Left: Checklist -->
+<div class="flex-1 bg-card rounded-xl card-elevation overflow-hidden flex flex-col h-[600px]">
+<div class="p-md border-b border-border bg-surface-container-low flex items-center justify-between">
+<div class="relative flex-1 max-w-md">
+<input class="w-full pl-10 pr-md py-2 border border-border rounded-full bg-card focus:ring-2 focus:ring-primary text-body-md" placeholder="Search member name or class..." type="text">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+</div>
+<div class="flex gap-sm ml-md">
+<button class="px-md py-2 border border-border rounded-lg bg-card text-label-sm hover:bg-surface-container transition-colors">Class Alpha</button>
+<button class="px-md py-2 border border-border rounded-lg bg-card text-label-sm hover:bg-surface-container transition-colors">Womens Fellowship</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-md space-y-2">
+<!-- List Item -->
+<div class="flex items-center justify-between p-md hover:bg-primary-muted rounded-lg border border-transparent hover:border-primary-light/20 transition-all cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-primary-container text-on-primary rounded-full flex items-center justify-center font-bold">AA</div>
+<div>
+<div class="font-label-md text-label-md font-bold">Abena Appiah</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Class: Ebenezer • Adult Women</div>
+</div>
+</div>
+<input class="w-6 h-6 rounded-full text-primary border-border focus:ring-primary cursor-pointer" type="checkbox">
+</div>
+<div class="flex items-center justify-between p-md hover:bg-primary-muted rounded-lg border border-transparent hover:border-primary-light/20 transition-all cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-secondary-container text-primary rounded-full flex items-center justify-center font-bold">KB</div>
+<div>
+<div class="font-label-md text-label-md font-bold">Kwadwo Boateng</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Class: Bethel • Adult Men</div>
+</div>
+</div>
+<input checked="" class="w-6 h-6 rounded-full text-primary border-border focus:ring-primary cursor-pointer" type="checkbox">
+</div>
+<div class="flex items-center justify-between p-md hover:bg-primary-muted rounded-lg border border-transparent hover:border-primary-light/20 transition-all cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-outline text-white rounded-full flex items-center justify-center font-bold">EN</div>
+<div>
+<div class="font-label-md text-label-md font-bold">Ekua Nyarko</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Class: Unity • Young Adult</div>
+</div>
+</div>
+<input class="w-6 h-6 rounded-full text-primary border-border focus:ring-primary cursor-pointer" type="checkbox">
+</div>
+<!-- More items... -->
+<div class="flex items-center justify-between p-md hover:bg-primary-muted rounded-lg border border-transparent hover:border-primary-light/20 transition-all cursor-pointer opacity-70">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-surface-container-highest text-on-surface-variant rounded-full flex items-center justify-center font-bold">SM</div>
+<div>
+<div class="font-label-md text-label-md font-bold">Samuel Mensah</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Class: Bethel • Teenager</div>
+</div>
+</div>
+<input class="w-6 h-6 rounded-full text-primary border-border focus:ring-primary cursor-pointer" type="checkbox">
+</div>
+</div>
+</div>
+<!-- Right: Summary -->
+<div class="w-full lg:w-80 bg-card rounded-xl card-elevation flex flex-col p-lg border-l-4 border-secondary-container">
+<h3 class="font-label-md text-label-md font-bold text-primary uppercase mb-lg">Live Registry Summary</h3>
+<div class="space-y-md">
+<div class="flex justify-between items-center py-sm border-b border-border">
+<span class="font-label-md text-label-md text-on-surface-variant">Adult Men</span>
+<span class="font-data-label text-data-label font-bold text-primary">12</span>
+</div>
+<div class="flex justify-between items-center py-sm border-b border-border">
+<span class="font-label-md text-label-md text-on-surface-variant">Adult Women</span>
+<span class="font-data-label text-data-label font-bold text-primary">18</span>
+</div>
+<div class="flex justify-between items-center py-sm border-b border-border">
+<span class="font-label-md text-label-md text-on-surface-variant">Young Adults</span>
+<span class="font-data-label text-data-label font-bold text-primary">7</span>
+</div>
+<div class="flex justify-between items-center py-sm border-b border-border">
+<span class="font-label-md text-label-md text-on-surface-variant">Teenagers</span>
+<span class="font-data-label text-data-label font-bold text-primary">4</span>
+</div>
+<div class="flex justify-between items-center py-sm border-b border-border">
+<span class="font-label-md text-label-md text-on-surface-variant">Children</span>
+<span class="font-data-label text-data-label font-bold text-primary">0</span>
+</div>
+<div class="pt-lg mt-auto">
+<div class="text-center p-md bg-primary-muted rounded-lg">
+<div class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Registry Total</div>
+<div class="font-data-display text-[32px] text-primary font-bold">41</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Footer -->
+<footer class="fixed bottom-0 right-0 left-0 md:left-sidebar-width h-24 bg-surface-container-lowest sticky-footer border-t border-border z-40 px-lg flex items-center justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-sm text-on-surface-variant mb-xs">
+<span class="material-symbols-outlined text-[18px]">keyboard</span>
+<span class="font-label-sm text-label-sm">Keyboard Shortcuts</span>
+</div>
+<div class="flex gap-md">
+<span class="px-2 py-0.5 bg-surface border border-border rounded text-[10px] font-bold text-outline">CTRL + S</span>
+<span class="text-[10px] text-on-surface-variant">Save Record</span>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="px-xl py-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg">
+                    Clear Draft
+                </button>
+<button class="flex items-center gap-md px-xl py-3 bg-primary text-on-primary font-bold rounded-lg shadow-md hover:bg-primary-light active:scale-95 transition-all" onclick="saveAttendance()">
+<span class="material-symbols-outlined">save</span>
+<span class="font-label-md text-label-md">Save Attendance</span>
+</button>
+</div>
+</footer>
+<!-- Mobile Nav (Bottom) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest pb-safe border-t border-border md:hidden h-[56px]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold" href="#">
+<span class="material-symbols-outlined fill-icon">person_search</span>
+<span class="font-label-sm text-[10px]">Members</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-sm text-[10px]">Finance</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-sm text-[10px]">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">menu</span>
+<span class="font-label-sm text-[10px]">More</span>
+</a>
+</nav>
+</main>
+<script>
+        function toggleMode(mode) {
+            const countView = document.getElementById('mode-count');
+            const namedView = document.getElementById('mode-named');
+            
+            if (mode === 'count') {
+                countView.classList.remove('hidden');
+                namedView.classList.add('hidden');
+            } else {
+                countView.classList.add('hidden');
+                namedView.classList.remove('hidden');
+            }
+        }
+
+        function updateTotal() {
+            const inputs = document.querySelectorAll('.count-input');
+            let total = 0;
+            inputs.forEach(input => {
+                total += parseInt(input.value) || 0;
+            });
+            document.getElementById('total-display').innerText = total;
+        }
+
+        function saveAttendance() {
+            // Visual feedback for save action
+            const btn = event.currentTarget;
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span><span>Saving...</span>';
+            btn.disabled = true;
+            btn.classList.add('opacity-80');
+
+            setTimeout(() => {
+                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span><span>Saved!</span>';
+                btn.classList.remove('bg-primary');
+                btn.classList.add('bg-success');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalContent;
+                    btn.disabled = false;
+                    btn.classList.remove('bg-success', 'opacity-80');
+                    btn.classList.add('bg-primary');
+                }, 2000);
+            }, 1200);
+        }
+
+        // Handle Keyboard Shortcut (CTRL+S)
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                saveAttendance();
+            }
+        });
+    </script>
+
+
+</body></html>
