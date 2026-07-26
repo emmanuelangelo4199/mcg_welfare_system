@@ -1,0 +1,66 @@
+{% comment %}
+Confirmation modal — for delete, deactivate, finalise, close-case, restore,
+and other destructive/irreversible actions (Section 5.5 of the design brief).
+
+Usage (simple):
+  {% include "components/confirm_modal.html" with modal_id="bulk-delete" title="Delete 12 members?" body="This will permanently remove the selected members and cannot be undone." confirm_label="Delete Members" confirm_url="/members/bulk-delete/" danger=True %}
+
+Usage (with the record name bolded, e.g. Section 5.2's "item name in bold"):
+  {% include "components/confirm_modal.html" with modal_id="delete-member-12" title="Delete this member?" body="This will permanently remove" subject="Abena Mensah" body_suffix="and cannot be undone." confirm_label="Delete Member" confirm_url="/members/12/delete/" danger=True %}
+
+Open it from a button anywhere on the page:
+  <button type="button" onclick="document.getElementById('delete-member-12').showModal()">Delete</button>
+
+Notes:
+  - `body` and `subject` are both auto-escaped by Django as normal — there is
+    no |safe filter anywhere in this component. Pass a member's name straight
+    through `subject`; do not build a pre-formatted HTML string yourself.
+  - Built on the native <dialog> element: Escape already closes it for free.
+    A small inline script handles backdrop-click, since <dialog> doesn't do
+    that on its own.
+  - `danger=True` renders a red confirm button (delete/reject-style).
+    Omit it for a maroon confirm button (approve/finalise-style, e.g. I-03's
+    "Finalise Meeting").
+  - `confirm_url` is posted to via a plain form — point it at your view.
+  - modal_id must be unique on the page if you include this more than once.
+{% endcomment %}
+<dialog id="{{ modal_id }}" class="rounded-modal shadow-modal p-0 w-full max-w-[560px] backdrop:bg-black/50">
+  <div class="p-6">
+    <div class="flex items-start justify-between mb-3">
+      <h3 class="font-display text-xl text-ink pr-4">{{ title }}</h3>
+      <button type="button"
+              onclick="document.getElementById('{{ modal_id }}').close()"
+              aria-label="Close"
+              class="text-ink-secondary hover:text-ink text-lg leading-none">
+        ✕
+      </button>
+    </div>
+    <div class="text-sm text-ink-secondary leading-relaxed mb-6">
+      {{ body }}{% if subject %} <strong class="text-ink">{{ subject }}</strong>{% endif %}{% if body_suffix %} {{ body_suffix }}{% endif %}
+    </div>
+    <div class="flex justify-end gap-3">
+      <button type="button"
+              onclick="document.getElementById('{{ modal_id }}').close()"
+              class="px-5 py-2 rounded-control border border-border text-ink text-sm font-semibold hover:bg-surface transition-colors duration-150">
+        Cancel
+      </button>
+      <form method="post" action="{{ confirm_url }}" class="inline">
+        {% csrf_token %}
+        <button type="submit"
+                class="px-5 py-2 rounded-control text-white text-sm font-semibold transition-colors duration-150 {% if danger %}bg-danger hover:bg-red-700{% else %}bg-primary hover:bg-primary-light{% endif %}">
+          {{ confirm_label }}
+        </button>
+      </form>
+    </div>
+  </div>
+</dialog>
+<script>
+  (function () {
+    var dlg = document.getElementById('{{ modal_id }}');
+    if (dlg) {
+      dlg.addEventListener('click', function (e) {
+        if (e.target === dlg) dlg.close();
+      });
+    }
+  })();
+</script>

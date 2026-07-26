@@ -1,0 +1,435 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="light" lang="en" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Class Detail - MCG-SMS</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "border": "#E4E2DD",
+              "surface-bright": "#fff8f5",
+              "on-primary": "#ffffff",
+              "tertiary-fixed-dim": "#c7c6c5",
+              "surface-container-low": "#faf2ee",
+              "on-tertiary-fixed": "#1a1c1b",
+              "on-secondary-fixed": "#251a00",
+              "on-secondary": "#ffffff",
+              "on-secondary-container": "#745700",
+              "surface-tint": "#a33a49",
+              "surface-container-high": "#eee7e3",
+              "success": "#16A34A",
+              "surface-variant": "#e9e1dd",
+              "error": "#ba1a1a",
+              "outline-variant": "#dcc0c1",
+              "primary": "#5c0219",
+              "surface-dim": "#e0d8d5",
+              "warning": "#D97706",
+              "background": "#fff8f5",
+              "tertiary-container": "#404140",
+              "on-surface": "#1e1b19",
+              "secondary-fixed": "#ffdf9a",
+              "card": "#FFFFFF",
+              "secondary": "#775a00",
+              "primary-container": "#7b1c2d",
+              "info": "#2563EB",
+              "danger": "#DC2626",
+              "gold-muted": "#FDF6E3",
+              "primary-fixed-dim": "#ffb2b7",
+              "outline": "#897172",
+              "secondary-fixed-dim": "#eec04f",
+              "on-tertiary-fixed-variant": "#464746",
+              "inverse-primary": "#ffb2b7",
+              "tertiary": "#2a2b2a",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed-variant": "#5a4300",
+              "on-surface-variant": "#564243",
+              "on-primary-fixed": "#40000e",
+              "surface-container-highest": "#e9e1dd",
+              "on-tertiary-container": "#adadab",
+              "inverse-surface": "#33302d",
+              "primary-fixed": "#ffdadb",
+              "surface-container": "#f4ece8",
+              "surface-container-lowest": "#ffffff",
+              "primary-muted": "#F5EAEC",
+              "primary-light": "#A3283F",
+              "on-primary-container": "#ff8a95",
+              "inverse-on-surface": "#f7efeb",
+              "on-primary-fixed-variant": "#832233",
+              "text-secondary": "#6B7280",
+              "secondary-container": "#fece5b",
+              "on-error": "#ffffff",
+              "error-container": "#ffdad6",
+              "surface": "#F8F7F5",
+              "on-tertiary": "#ffffff",
+              "tertiary-fixed": "#e3e2e0",
+              "on-background": "#1e1b19"
+            },
+            "borderRadius": {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
+            },
+            "spacing": {
+              "lg": "24px",
+              "md": "16px",
+              "xl": "32px",
+              "sm": "8px",
+              "base": "8px",
+              "header-height": "64px",
+              "sidebar-width": "256px",
+              "xs": "4px"
+            },
+            "fontFamily": {
+              "headline-md": ["Inter"],
+              "label-sm": ["Inter"],
+              "headline-lg": ["Lora"],
+              "headline-lg-mobile": ["Lora"],
+              "label-md": ["Inter"],
+              "body-md": ["Inter"],
+              "body-lg": ["Inter"],
+              "data-display": ["JetBrains Mono"],
+              "data-label": ["JetBrains Mono"]
+            },
+            "fontSize": {
+              "headline-md": ["20px", { "lineHeight": "1.3", "fontWeight": "600" }],
+              "label-sm": ["11px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+              "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+              "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+              "label-md": ["13px", { "lineHeight": "1.2", "fontWeight": "500" }],
+              "body-md": ["14px", { "lineHeight": "1.6", "fontWeight": "400" }],
+              "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+              "data-display": ["18px", { "lineHeight": "1.0", "fontWeight": "500" }],
+              "data-label": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }]
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-surface text-on-surface font-body-md text-body-md h-screen overflow-hidden flex antialiased">
+    <!-- SideNavBar (Desktop) -->
+    <nav class="hidden md:flex fixed left-0 top-0 h-full w-sidebar-width flex-col z-40 bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary shadow-lg dark:shadow-none font-label-md text-label-md">
+      <!-- Header -->
+      <div class="p-lg border-b border-white/10 flex items-center gap-md">
+        <div>
+          <div class="font-headline-md text-headline-md text-secondary-fixed font-bold truncate">Methodist Church<div class="">Ghana</div></div>
+          <div class="text-on-primary/80 font-label-sm text-label-sm truncate">Society Management System</div>
+        </div>
+      </div>
+      <!-- Navigation Links -->
+      <div class="flex-1 py-lg overflow-y-auto">
+        <a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+          <span class="material-symbols-outlined text-[18px]">dashboard</span> Dashboard
+        </a>
+        <a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+          <span class="material-symbols-outlined text-[18px]">groups</span> Members
+        </a>
+        <a class="flex items-center gap-md border-l-[3px] border-secondary-container bg-primary-light/20 text-secondary-fixed py-md px-lg translate-x-1 duration-200" href="#">
+          <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">church</span> Classes
+        </a>
+        <a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+          <span class="material-symbols-outlined text-[18px]">payments</span> Finance
+        </a>
+        <a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+          <span class="material-symbols-outlined text-[18px]">assessment</span> Reports
+        </a>
+      </div>
+      <!-- CTA -->
+      <div class="p-lg mt-auto border-t border-white/10">
+        <button class="w-full bg-surface-container-lowest text-primary-container hover:bg-surface-variant font-label-md text-label-md font-bold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-sm">
+          <span class="material-symbols-outlined text-[18px]">bolt</span> Quick Actions
+        </button>
+      </div>
+      <!-- Footer Links -->
+      <div class="pb-lg">
+        <a class="flex items-center gap-md text-on-primary py-sm px-lg hover:bg-primary-light/10 transition-all duration-200 opacity-80 hover:opacity-100" href="#">
+          <span class="material-symbols-outlined text-[18px]">settings</span> Settings
+        </a>
+        <a class="flex items-center gap-md text-on-primary py-sm px-lg hover:bg-primary-light/10 transition-all duration-200 opacity-80 hover:opacity-100" href="#">
+          <span class="material-symbols-outlined text-[18px]">logout</span> Logout
+        </a>
+      </div>
+    </nav>
+    <!-- Main Content Wrapper -->
+    <div class="flex-1 flex flex-col md:ml-sidebar-width h-screen overflow-hidden bg-background">
+      <!-- TopAppBar -->
+      <header class="fixed md:relative top-0 left-0 md:left-auto w-full z-30 h-header-height bg-surface-container-lowest dark:bg-surface-dim border-b border-border dark:border-outline-variant shadow-sm dark:shadow-none flex justify-between items-center px-lg">
+        <div class="flex items-center md:hidden">
+          <span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">MCG-SMS</span>
+        </div>
+        <div class="hidden md:flex flex-1 items-center gap-md">
+          <!-- Breadcrumbs -->
+          <nav aria-label="Breadcrumb" class="flex text-on-surface-variant text-label-md font-label-md">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2">
+              <li class="inline-flex items-center">
+                <a class="inline-flex items-center hover:text-primary transition-colors" href="#">Dashboard</a>
+              </li>
+              <li class="">
+                <div class="flex items-center">
+                  <span class="material-symbols-outlined text-[16px] mx-1">chevron_right</span>
+                  <a class="hover:text-primary transition-colors" href="#">Classes</a>
+                </div>
+              </li>
+              <li aria-current="page" class="">
+                <div class="flex items-center">
+                  <span class="material-symbols-outlined text-[16px] mx-1">chevron_right</span>
+                  <span class="text-primary font-bold">Class 2</span>
+                </div>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </header>
+      <!-- Scrollable Canvas -->
+      <main class="flex-1 overflow-y-auto p-4 md:p-xl mt-header-height md:mt-0">
+        <div class="max-w-7xl mx-auto space-y-lg">
+          <!-- Page Header -->
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-lg">
+            <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Class 2 (St. Peter)</h1>
+            <div class="flex gap-md">
+              <button class="px-4 py-2 bg-surface-container-lowest border border-border text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-variant transition-colors flex items-center gap-sm">
+                <span class="material-symbols-outlined text-[18px]">edit</span> Edit
+              </button>
+              <button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-primary-light transition-colors flex items-center gap-sm shadow-sm">
+                <span class="material-symbols-outlined text-[18px]">add</span> Add Member
+              </button>
+            </div>
+          </div>
+          <!-- Two Column Layout -->
+          <div class="flex flex-col lg:flex-row gap-lg">
+            <!-- Left Panel: Class Details (Sticky on large screens) -->
+            <div class="w-full lg:w-1/3 lg:sticky lg:top-lg h-fit space-y-lg">
+              <!-- Info Card -->
+              <div class="bg-card rounded-xl p-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] border border-border/50">
+                <div class="flex items-center gap-md mb-md pb-md border-b border-border/50">
+                  <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[24px]">church</span>
+                  </div>
+                  <div>
+                    <h2 class="font-headline-md text-headline-md text-on-surface">Class Details</h2>
+                  </div>
+                </div>
+                <div class="space-y-md">
+                  <div>
+                    <span class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider block mb-1">Leader</span>
+                    <div class="flex items-center gap-sm">
+                      <div class="w-6 h-6 rounded-full bg-surface-container-high overflow-hidden">
+                        <img class="w-full h-full object-cover" data-alt="A portrait of an older African woman, dignified and warm, dressed in simple traditional or modest formal wear. Soft, natural lighting. Plain light background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGEXnao42LqBbLR02w9qg4Ogz67noti_02epoTv01ygcch2jIPRBmx3haLCJTdL4R-ohuBzKwPygUp5XQBGAVVn3RdiuTkXHGcQRJTBkJvOFyeRDbKYN7N1LKotq7ZxyG5xweoEIgW6LgdGcagaAgTkob1w_63mSDLdctXL7SwIr4zGn1ar6A3DJq3Q_7QYIFKx1z5DJywHCgaeKTm9tBUAXefVdjHwOEXoVfYWlPqpx8IEM_Lll8sjYMRbv3vb1Lu5vxac0XKAOlY">
+                      </div>
+                      <span class="font-body-md text-body-md text-on-surface font-medium">Beatrice Osei</span>
+                    </div>
+                  </div>
+                  <div>
+                    <span class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider block mb-1">Assistant Leader</span>
+                    <div class="flex items-center gap-sm">
+                      <div class="w-6 h-6 rounded-full bg-surface-container-high overflow-hidden">
+                        <img class="w-full h-full object-cover" data-alt="A portrait of a middle-aged African man in a neat suit or traditional shirt, looking professional and approachable. Plain light background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1RRBLvFn0Z1kTc7SA0XeWsKyAfPKVow_TCGEd7jYPNJy7mEai7SNsU3cskJ47UiByUnSAhmee4JPnfoRej7NOwFBCq9VGxIPDohvX736xvFMdPa7v8uDGiOR7DEkdvI-mqDJKCc13heYGB_XZgB2qZrv6jTVhibBFqXGxJUxURZbOyV9lCdO9IM8hlaPKme_WDqYnamkL1tSkd2GUo4ryVSEyS8YBkDFDg6xHnjdmfzTe4D__lstA3Q4JRNYyU849rBmVaYbAOi-h">
+                      </div>
+                      <span class="font-body-md text-body-md text-on-surface font-medium">John K. Mensah</span>
+                    </div>
+                  </div>
+                  <div class="pt-2 border-t border-border/50">
+                    <div class="flex items-start gap-sm text-on-surface-variant">
+                      <span class="material-symbols-outlined text-[18px] mt-0.5">schedule</span>
+                      <div>
+                        <span class="font-label-md text-label-md block font-medium text-on-surface">Wednesdays, 6:00 PM</span>
+                        <span class="font-body-md text-body-md text-sm">Weekly Meeting</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex items-start gap-sm text-on-surface-variant">
+                      <span class="material-symbols-outlined text-[18px] mt-0.5">location_on</span>
+                      <div>
+                        <span class="font-label-md text-label-md block font-medium text-on-surface">Society Office</span>
+                        <span class="font-body-md text-body-md text-sm">Main Block, Room 2</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Capacity Stat Card -->
+              <div class="bg-card rounded-xl p-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] border-l-4 border-l-secondary-container">
+                <span class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider block mb-2">Class Capacity</span>
+                <div class="flex items-end gap-2 mb-3">
+                  <span class="font-data-display text-data-display text-3xl font-bold text-on-surface">18</span>
+                  <span class="font-body-md text-body-md text-on-surface-variant pb-1">/ 25 members</span>
+                </div>
+                <!-- Progress Bar -->
+                <div class="w-full bg-surface-variant rounded-full h-2 mb-1 overflow-hidden">
+                  <div class="bg-primary h-2 rounded-full" style="width: 72%"></div>
+                </div>
+                <div class="text-right font-data-label text-data-label text-xs text-on-surface-variant">72% Full</div>
+              </div>
+            </div>
+            <!-- Right Panel: Tabs and Content -->
+            <div class="w-full lg:w-2/3 bg-card rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.06)] border border-border/50 overflow-hidden flex flex-col">
+              <!-- Tabs Header -->
+              <div class="flex border-b border-border bg-surface-container-lowest px-4">
+                <button class="px-md py-4 text-primary font-label-md text-label-md font-bold border-b-2 border-primary translate-y-[1px] hover:bg-surface-container-low transition-colors">Members</button>
+                <button class="px-md py-4 text-on-surface-variant font-label-md text-label-md hover:text-on-surface hover:bg-surface-container-low transition-colors">Attendance</button>
+                <button class="px-md py-4 text-on-surface-variant font-label-md text-label-md hover:text-on-surface hover:bg-surface-container-low transition-colors">Reports</button>
+              </div>
+              <!-- Tab Content: Members (Active) -->
+              <div class="p-0 flex-1 overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                  <thead class="bg-surface-container-lowest border-b border-border">
+                    <tr>
+                      <th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-medium">Name</th>
+                      <th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-medium">Gender</th>
+                      <th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-medium">Date Joined</th>
+                      <th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-medium">Attendance Rate</th>
+                      <th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-medium text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-border/50 font-body-md text-body-md">
+                    <tr class="hover:bg-surface/50 transition-colors">
+                      <td class="py-3 px-4">
+                        <div class="flex items-center gap-sm">
+                          <div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden shrink-0">
+                            <img class="w-full h-full object-cover" data-alt="A small, cropped headshot of a young African woman smiling gently. Clear lighting. Corporate or ID style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIS49dnBGD-zCnvcz91O0JG4IgxYvTmWeef__Ye5zci3QbrqHyUzyR12pSUp8BdU_l8MddoydMolY12iph6KEZZNMdZbh4o-dwlKwF2B_SV5_zYALtKpCWzxizUQjfrb3GBBEqm0Yk_3IvRSFgpoVjB3MsqXMeiuU5-pwOd3H_tjk5cXWbBNHLAObAEzIN6cy00FCdBrzZtzLqjZgQzNCizKnkGRk1igRMbmCCNsFkz7mwgrFWJasx-YoTxpQfwJ1BshnpL7KngVD2">
+                          </div>
+                          <span class="font-medium text-on-surface whitespace-nowrap">Ama Serwaa</span>
+                        </div>
+                      </td>
+                      <td class="py-3 px-4 text-on-surface-variant">Female</td>
+                      <td class="py-3 px-4 text-on-surface-variant">12 Jan, 2021</td>
+                      <td class="py-3 px-4">
+                        <div class="flex items-center gap-2">
+                          <span class="font-data-label text-data-label text-sm w-10">92%</span>
+                          <div class="w-16 bg-surface-variant rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-success h-1.5 rounded-full" style="width: 92%"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="py-3 px-4 text-right">
+                        <button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded-full hover:bg-surface-container-low">
+                          <span class="material-symbols-outlined text-[20px]">more_vert</span>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-surface/50 transition-colors">
+                      <td class="py-3 px-4">
+                        <div class="flex items-center gap-sm">
+                          <div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden shrink-0 flex items-center justify-center text-on-surface-variant bg-tertiary-fixed font-bold text-xs">KA</div>
+                          <span class="font-medium text-on-surface whitespace-nowrap">Kwame Appiah</span>
+                        </div>
+                      </td>
+                      <td class="py-3 px-4 text-on-surface-variant">Male</td>
+                      <td class="py-3 px-4 text-on-surface-variant">05 Mar, 2019</td>
+                      <td class="py-3 px-4">
+                        <div class="flex items-center gap-2">
+                          <span class="font-data-label text-data-label text-sm w-10">65%</span>
+                          <div class="w-16 bg-surface-variant rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-warning h-1.5 rounded-full" style="width: 65%"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="py-3 px-4 text-right">
+                        <button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded-full hover:bg-surface-container-low">
+                          <span class="material-symbols-outlined text-[20px]">more_vert</span>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-surface/50 transition-colors">
+                      <td class="py-3 px-4">
+                        <div class="flex items-center gap-sm">
+                          <div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden shrink-0">
+                            <img class="w-full h-full object-cover" data-alt="A small headshot of an elderly African man looking serious and dignified. Soft lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALIdkMR8WLU71U4w0mBmBzzlf_-xC40O7LUQrOuydEmRsvNW6el35ebLBUWT9LAe6TEOI_0h04iSvrRBRowBpf0z5iTQIOcLWaUrmZO3UOqboCCQiEnAC30_wquToSPFxofaowTbS5Bhbi0djxYgXz5-0AbF5-BZY1y4STASe0N1Qqbk4aDIxahJrJU7HLUH1YgTam474d6u8lxN_Hh5ZdfaMBgJcMCgw2kQPwh9ZeJ0z68yGIil20d3GZcMNqEB4cwbghbBK83GbS">
+                          </div>
+                          <span class="font-medium text-on-surface whitespace-nowrap">Emmanuel Ofori</span>
+                        </div>
+                      </td>
+                      <td class="py-3 px-4 text-on-surface-variant">Male</td>
+                      <td class="py-3 px-4 text-on-surface-variant">22 Nov, 2015</td>
+                      <td class="py-3 px-4">
+                        <div class="flex items-center gap-2">
+                          <span class="font-data-label text-data-label text-sm w-10">45%</span>
+                          <div class="w-16 bg-surface-variant rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-danger h-1.5 rounded-full" style="width: 45%"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="py-3 px-4 text-right">
+                        <button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded-full hover:bg-surface-container-low">
+                          <span class="material-symbols-outlined text-[20px]">more_vert</span>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-surface/50 transition-colors">
+                      <td class="py-3 px-4">
+                        <div class="flex items-center gap-sm">
+                          <div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden shrink-0 flex items-center justify-center text-on-surface-variant bg-tertiary-fixed font-bold text-xs">GO</div>
+                          <span class="font-medium text-on-surface whitespace-nowrap">Grace Owusu</span>
+                        </div>
+                      </td>
+                      <td class="py-3 px-4 text-on-surface-variant">Female</td>
+                      <td class="py-3 px-4 text-on-surface-variant">10 Aug, 2022</td>
+                      <td class="py-3 px-4">
+                        <div class="flex items-center gap-2">
+                          <span class="font-data-label text-data-label text-sm w-10">88%</span>
+                          <div class="w-16 bg-surface-variant rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-success h-1.5 rounded-full" style="width: 88%"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="py-3 px-4 text-right">
+                        <button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded-full hover:bg-surface-container-low">
+                          <span class="material-symbols-outlined text-[20px]">more_vert</span>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- Pagination Mockup -->
+                <div class="p-4 border-t border-border flex items-center justify-between text-sm text-on-surface-variant bg-surface-container-lowest">
+                  <span class="">Showing 1 to 4 of 18 members</span>
+                  <div class="flex gap-1">
+                    <button class="px-2 py-1 rounded hover:bg-surface-container-low disabled:opacity-50" disabled="">Prev</button>
+                    <button class="px-2 py-1 rounded bg-primary-container text-on-primary-container font-medium">1</button>
+                    <button class="px-2 py-1 rounded hover:bg-surface-container-low">2</button>
+                    <button class="px-2 py-1 rounded hover:bg-surface-container-low">3</button>
+                    <button class="px-2 py-1 rounded hover:bg-surface-container-low">Next</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- BottomNavBar (Mobile) -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest pb-safe md:hidden border-t border-border shadow-[0_-1px_3px_rgba(0,0,0,0.06)] h-[56px] font-label-sm-mobile text-label-sm-mobile">
+      <a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high w-full h-full py-1" href="#">
+        <span class="material-symbols-outlined text-[24px]">home</span>
+        <span class="">Home</span>
+      </a>
+      <a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high w-full h-full py-1" href="#">
+        <span class="material-symbols-outlined text-[24px]">person_search</span>
+        <span class="">Members</span>
+      </a>
+      <a class="flex flex-col items-center justify-center text-primary font-bold active:bg-surface-container-high scale-90 transition-transform w-full h-full py-1" href="#">
+        <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">church</span>
+        <span class="">Classes</span>
+      </a>
+      <a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high w-full h-full py-1" href="#">
+        <span class="material-symbols-outlined text-[24px]">analytics</span>
+        <span class="">Reports</span>
+      </a>
+      <a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high w-full h-full py-1" href="#">
+        <span class="material-symbols-outlined text-[24px]">menu</span>
+        <span class="">More</span>
+      </a>
+    </nav>
+    <div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div>
+  </body>
+</html>

@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Settings | MCG-SMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lora:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab {
+            border-left-width: 4px;
+            border-color: #C49A2B;
+            background-color: rgba(163, 40, 63, 0.05);
+            color: #5c0219;
+            font-weight: 600;
+        }
+        .settings-panel {
+            display: none;
+        }
+        .settings-panel.active {
+            display: block;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dcc0c1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #897172;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#2a2b2a",
+                      "primary-fixed": "#ffdadb",
+                      "primary-fixed-dim": "#ffb2b7",
+                      "on-primary-fixed-variant": "#832233",
+                      "secondary-fixed-dim": "#eec04f",
+                      "outline": "#897172",
+                      "primary-light": "#A3283F",
+                      "error": "#ba1a1a",
+                      "border": "#E4E2DD",
+                      "surface-container-highest": "#e9e1dd",
+                      "on-secondary-fixed-variant": "#5a4300",
+                      "info": "#2563EB",
+                      "danger": "#DC2626",
+                      "inverse-primary": "#ffb2b7",
+                      "surface-bright": "#fff8f5",
+                      "inverse-on-surface": "#f7efeb",
+                      "warning": "#D97706",
+                      "on-tertiary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "tertiary-container": "#404140",
+                      "on-primary-fixed": "#40000e",
+                      "surface-dim": "#e0d8d5",
+                      "surface-container-lowest": "#ffffff",
+                      "gold-muted": "#FDF6E3",
+                      "secondary-fixed": "#ffdf9a",
+                      "secondary": "#775a00",
+                      "secondary-container": "#fece5b",
+                      "surface-container": "#f4ece8",
+                      "outline-variant": "#dcc0c1",
+                      "card": "#FFFFFF",
+                      "on-surface": "#1e1b19",
+                      "surface-variant": "#e9e1dd",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#c7c6c5",
+                      "surface-tint": "#a33a49",
+                      "on-background": "#1e1b19",
+                      "surface-container-high": "#eee7e3",
+                      "primary-muted": "#F5EAEC",
+                      "on-tertiary-fixed": "#1a1c1b",
+                      "on-error": "#ffffff",
+                      "primary-container": "#7b1c2d",
+                      "on-tertiary-container": "#adadab",
+                      "text-secondary": "#6B7280",
+                      "success": "#16A34A",
+                      "error-container": "#ffdad6",
+                      "on-surface-variant": "#564243",
+                      "inverse-surface": "#33302d",
+                      "on-error-container": "#93000a",
+                      "on-secondary-container": "#745700",
+                      "surface-container-low": "#faf2ee",
+                      "on-tertiary-fixed-variant": "#464746",
+                      "surface": "#F8F7F5",
+                      "on-primary-container": "#ff8a95",
+                      "primary": "#5c0219",
+                      "background": "#fff8f5",
+                      "tertiary-fixed": "#e3e2e0",
+                      "on-secondary-fixed": "#251a00"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "sm": "8px",
+                      "xl": "32px",
+                      "sidebar-width": "256px",
+                      "md": "16px",
+                      "lg": "24px",
+                      "header-height": "64px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "data-display": ["JetBrains Mono"],
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-lg-mobile": ["Lora"],
+                      "data-label": ["JetBrains Mono"],
+                      "label-sm": ["Inter"],
+                      "headline-lg": ["Lora"],
+                      "headline-md": ["Inter"],
+                      "body-md": ["Inter"]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- Sidebar Navigation (Mandatory from JSON) -->
+<aside class="fixed left-0 top-0 bottom-0 w-sidebar-width flex flex-col py-lg z-50 bg-primary shadow-md">
+<div class="px-lg mb-xl">
+<h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG Society</h1>
+<p class="text-label-sm font-label-sm text-primary-fixed-dim opacity-80">Management System</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined mr-md">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined mr-md">groups</span>
+<span class="font-label-md">Membership</span>
+</a>
+<a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined mr-md">payments</span>
+<span class="font-label-md">Finances</span>
+</a>
+<a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined mr-md">volunteer_activism</span>
+<span class="font-label-md">Welfare</span>
+</a>
+<a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined mr-md">account_balance</span>
+<span class="font-label-md">Governance</span>
+</a>
+<a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined mr-md">assessment</span>
+<span class="font-label-md">Reports</span>
+</a>
+</nav>
+<div class="mt-auto pt-lg border-t border-primary-light/20">
+<a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined mr-md">history</span>
+<span class="font-label-md">Audit Logs</span>
+</a>
+<!-- Active State Navigation (Settings) -->
+<a class="flex items-center px-lg py-md border-l-4 border-secondary-fixed-dim bg-primary-light text-on-primary font-bold scale-x-[1.02] transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mr-md">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-sidebar-width min-h-screen">
+<!-- TopAppBar (Mandatory from JSON) -->
+<header class="flex justify-between items-center w-full px-lg h-header-height sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
+<div class="flex items-center space-x-md">
+<div class="text-primary font-bold text-headline-md">MCG-SMS</div>
+</div>
+<div class="flex items-center space-x-lg">
+<div class="relative">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">help_outline</span>
+<div class="flex items-center space-x-sm">
+<div class="w-8 h-8 rounded-full bg-primary-muted flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">person</span>
+</div>
+<span class="text-body-md font-medium">Administrator</span>
+</div>
+</div>
+</header>
+<!-- Page Header & Breadcrumbs -->
+<div class="px-xl py-lg">
+<nav class="flex mb-xs text-label-sm text-outline font-label-md">
+<span>Dashboard</span>
+<span class="mx-2">/</span>
+<span>Settings</span>
+<span class="mx-2">/</span>
+<span class="text-primary font-semibold">System Settings</span>
+</nav>
+<h2 class="text-headline-lg font-headline-lg text-primary">System Settings</h2>
+</div>
+<!-- Settings Container (Bento-style layout with side nav) -->
+<div class="px-xl pb-xl grid grid-cols-12 gap-lg">
+<!-- Category Sidebar -->
+<div class="col-span-3">
+<div class="bg-card rounded-xl shadow-sm border border-border p-sm sticky top-[88px]">
+<ul class="space-y-1" id="settings-tabs">
+<li>
+<button class="tab-btn active-tab w-full flex items-center px-md py-lg rounded-lg text-left transition-all" onclick="switchTab('society-profile')">
+<span class="material-symbols-outlined mr-sm text-lg">church</span>
+<span class="text-body-md">Society Profile</span>
+</button>
+</li>
+<li>
+<button class="tab-btn w-full flex items-center px-md py-lg rounded-lg text-left text-on-surface-variant hover:bg-surface-container-low transition-all" onclick="switchTab('financial-config')">
+<span class="material-symbols-outlined mr-sm text-lg">payments</span>
+<span class="text-body-md">Financial Configuration</span>
+</button>
+</li>
+<li>
+<button class="tab-btn w-full flex items-center px-md py-lg rounded-lg text-left text-on-surface-variant hover:bg-surface-container-low transition-all" onclick="switchTab('notification-config')">
+<span class="material-symbols-outlined mr-sm text-lg">notifications_active</span>
+<span class="text-body-md">Notifications</span>
+</button>
+</li>
+<li>
+<button class="tab-btn w-full flex items-center px-md py-lg rounded-lg text-left text-on-surface-variant hover:bg-surface-container-low transition-all" onclick="switchTab('data-backup')">
+<span class="material-symbols-outlined mr-sm text-lg">cloud_upload</span>
+<span class="text-body-md">Data Backup</span>
+</button>
+</li>
+<li>
+<button class="tab-btn w-full flex items-center px-md py-lg rounded-lg text-left text-on-surface-variant hover:bg-surface-container-low transition-all" onclick="switchTab('session-security')">
+<span class="material-symbols-outlined mr-sm text-lg">admin_panel_settings</span>
+<span class="text-body-md">Session & Security</span>
+</button>
+</li>
+</ul>
+</div>
+</div>
+<!-- Settings Panels -->
+<div class="col-span-9 space-y-lg">
+<!-- Society Profile Panel -->
+<div class="settings-panel active bg-card rounded-xl shadow-sm border border-border overflow-hidden" id="society-profile">
+<div class="px-lg py-md border-b border-border bg-surface-container-low flex justify-between items-center">
+<h3 class="text-headline-md font-headline-md text-on-surface">Society Profile</h3>
+<span class="text-label-sm text-outline uppercase tracking-wider font-bold">General Information</span>
+</div>
+<div class="p-lg">
+<div class="grid grid-cols-2 gap-lg mb-lg">
+<div class="space-y-sm">
+<label class="text-label-md font-label-md text-on-surface-variant">Society Name</label>
+<input class="w-full px-md py-sm border border-border rounded-lg focus:ring-2 focus:ring-primary-light focus:border-primary-light outline-none" type="text" value="Wesley Methodist Church"/>
+</div>
+<div class="space-y-sm">
+<label class="text-label-md font-label-md text-on-surface-variant">Founding Date</label>
+<input class="w-full px-md py-sm border border-border rounded-lg focus:ring-2 focus:ring-primary-light outline-none" type="date" value="1954-06-15"/>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-md mb-lg">
+<div class="space-y-sm p-md bg-surface-container-low rounded-lg">
+<label class="text-label-sm font-label-sm text-outline">Connexion</label>
+<div class="flex flex-wrap gap-xs">
+<span class="px-sm py-1 bg-primary text-white text-[10px] font-bold rounded-full">Ghana</span>
+</div>
+</div>
+<div class="space-y-sm p-md bg-surface-container-low rounded-lg">
+<label class="text-label-sm font-label-sm text-outline">Diocese</label>
+<div class="flex flex-wrap gap-xs">
+<span class="px-sm py-1 bg-secondary text-white text-[10px] font-bold rounded-full">Accra</span>
+</div>
+</div>
+<div class="space-y-sm p-md bg-surface-container-low rounded-lg">
+<label class="text-label-sm font-label-sm text-outline">Circuit</label>
+<div class="flex flex-wrap gap-xs">
+<span class="px-sm py-1 bg-tertiary text-white text-[10px] font-bold rounded-full">Abossey Okai</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-lg mb-lg">
+<div class="space-y-sm">
+<label class="text-label-md font-label-md text-on-surface-variant">Address</label>
+<textarea class="w-full px-md py-sm border border-border rounded-lg focus:ring-2 focus:ring-primary-light outline-none" rows="3">P.O. Box 45, Kaneshie Main Road, Accra, Ghana</textarea>
+</div>
+<div class="space-y-md">
+<div class="space-y-sm">
+<label class="text-label-md font-label-md text-on-surface-variant">Email Address</label>
+<input class="w-full px-md py-sm border border-border rounded-lg focus:ring-2 focus:ring-primary-light outline-none" type="email" value="wesley.kaneshie@methodist.org.gh"/>
+</div>
+<div class="space-y-sm">
+<label class="text-label-md font-label-md text-on-surface-variant">Phone Number</label>
+<input class="w-full px-md py-sm border border-border rounded-lg focus:ring-2 focus:ring-primary-light outline-none" type="tel" value="+233 24 456 7890"/>
+</div>
+</div>
+</div>
+<div class="flex items-center space-x-lg p-lg border-2 border-dashed border-outline-variant rounded-xl">
+<div class="w-24 h-24 rounded-lg bg-surface-container-high flex items-center justify-center relative overflow-hidden group">
+<img class="w-full h-full object-cover" data-alt="A dignified corporate logo of a Methodist church featuring the iconic cross and flame emblem in rich maroon and gold colors. The logo is displayed in a clean, high-resolution minimalist style on a soft cream background, reflecting a sense of institutional history and spiritual authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxHoNeLyMCABtJ9e6GTegKYQax0UsMBV-xJIFyttj1XAXQLiG-65HtepysSLyXcTknLLWxm4LJxm50eLOn4Rb7RU6jysm52tx4m7xn9B2igwsdyu0urp5Wu3kMacl7_hzewBbYYfHbrqyKxXJNGdXzrgTdBt848hy3NEjrydCGhCfNyl0p57PFRe1w2gnPDknprISYfpHS0OvNGvX9tor2Ezf2B_gEaWwJOlkOjm_MReEMnT1M9rRwtYcRD-l3YkjBLm8bP0pzOx2i"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-white">upload</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Society Logo</h4>
+<p class="text-body-md text-on-surface-variant">Upload a high-resolution logo (PNG or SVG). Max 2MB.</p>
+<button class="mt-md text-primary font-bold text-label-md hover:underline">Change Logo</button>
+</div>
+</div>
+</div>
+<div class="px-lg py-md bg-surface-container-low border-t border-border flex justify-end">
+<button class="bg-primary text-white px-xl py-sm rounded-lg font-bold hover:bg-primary-light transition-colors shadow-sm">Save Changes</button>
+</div>
+</div>
+<!-- Financial Configuration Panel -->
+<div class="settings-panel bg-card rounded-xl shadow-sm border border-border overflow-hidden" id="financial-config">
+<div class="px-lg py-md border-b border-border bg-surface-container-low flex justify-between items-center">
+<h3 class="text-headline-md font-headline-md text-on-surface">Financial Configuration</h3>
+<span class="text-label-sm text-outline uppercase tracking-wider font-bold">Stewardship Controls</span>
+</div>
+<div class="p-lg grid grid-cols-2 gap-lg">
+<div class="space-y-lg">
+<div class="p-lg bg-gold-muted/30 rounded-xl border-l-4 border-secondary">
+<label class="text-label-md font-bold text-secondary flex items-center mb-md">
+<span class="material-symbols-outlined mr-xs text-sm">verified_user</span>
+                                    APPROVAL THRESHOLDS
+                                </label>
+<div class="space-y-md">
+<div>
+<label class="text-body-md block mb-sm">Treasurer Limit (GH₵)</label>
+<div class="relative">
+<span class="absolute left-md top-1/2 -translate-y-1/2 font-data-label text-outline">GH₵</span>
+<input class="w-full pl-xl pr-md py-sm border border-border rounded-lg font-data-display text-on-surface outline-none" type="text" value="5,000.00"/>
+</div>
+</div>
+<div>
+<label class="text-body-md block mb-sm">Finance Committee Threshold (GH₵)</label>
+<div class="relative">
+<span class="absolute left-md top-1/2 -translate-y-1/2 font-data-label text-outline">GH₵</span>
+<input class="w-full pl-xl pr-md py-sm border border-border rounded-lg font-data-display text-on-surface outline-none" type="text" value="15,000.00"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-lg">
+<div class="p-lg bg-primary-muted rounded-xl border-l-4 border-primary">
+<label class="text-label-md font-bold text-primary flex items-center mb-md">
+<span class="material-symbols-outlined mr-xs text-sm">percent</span>
+                                    WIDER MISSION LEVIES
+                                </label>
+<div class="space-y-md">
+<div class="flex justify-between items-center">
+<span class="text-body-md">Diocese Assessment</span>
+<input class="w-20 text-center py-1 border border-border rounded-lg font-data-display" type="text" value="30%"/>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-md">Connexion Quota</span>
+<input class="w-20 text-center py-1 border border-border rounded-lg font-data-display" type="text" value="15%"/>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-md">Circuit Support</span>
+<input class="w-20 text-center py-1 border border-border rounded-lg font-data-display" type="text" value="5%"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="px-lg py-md bg-surface-container-low border-t border-border flex justify-end">
+<button class="bg-primary text-white px-xl py-sm rounded-lg font-bold hover:bg-primary-light transition-colors shadow-sm">Update Policies</button>
+</div>
+</div>
+<!-- Notifications Panel -->
+<div class="settings-panel bg-card rounded-xl shadow-sm border border-border overflow-hidden" id="notification-config">
+<div class="px-lg py-md border-b border-border bg-surface-container-low flex justify-between items-center">
+<h3 class="text-headline-md font-headline-md text-on-surface">Communication Gateways</h3>
+</div>
+<div class="p-lg space-y-lg">
+<!-- SMS Gateway -->
+<div class="flex items-center justify-between p-lg bg-surface border border-border rounded-xl">
+<div class="flex items-center space-x-lg">
+<div class="w-12 h-12 bg-info/10 text-info flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined">sms</span>
+</div>
+<div>
+<h4 class="font-bold">SMS Gateway (Arkesel)</h4>
+<p class="text-label-sm text-outline">API Key: ••••••••••••••••••••</p>
+<div class="mt-xs flex items-center space-x-md">
+<span class="inline-flex items-center text-success text-xs font-bold bg-success/10 px-2 py-0.5 rounded">
+<span class="w-2 h-2 bg-success rounded-full mr-1.5"></span>
+                                            Connected
+                                        </span>
+<span class="font-data-label text-xs">Balance: 4,502 Units</span>
+</div>
+</div>
+</div>
+<button class="px-md py-sm border border-info text-info font-bold text-label-md rounded-lg hover:bg-info/5 transition-colors">Test Connection</button>
+</div>
+<!-- Email Gateway -->
+<div class="flex items-center justify-between p-lg bg-surface border border-border rounded-xl">
+<div class="flex items-center space-x-lg">
+<div class="w-12 h-12 bg-primary/10 text-primary flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<h4 class="font-bold">SMTP Server (Office 365)</h4>
+<p class="text-label-sm text-outline">Endpoint: smtp.office365.com:587</p>
+<div class="mt-xs flex items-center space-x-md">
+<span class="inline-flex items-center text-success text-xs font-bold bg-success/10 px-2 py-0.5 rounded">
+<span class="w-2 h-2 bg-success rounded-full mr-1.5"></span>
+                                            Operational
+                                        </span>
+</div>
+</div>
+</div>
+<button class="px-md py-sm border border-primary text-primary font-bold text-label-md rounded-lg hover:bg-primary/5 transition-colors">Test Connection</button>
+</div>
+</div>
+<div class="px-lg py-md bg-surface-container-low border-t border-border flex justify-end space-x-md">
+<button class="bg-primary text-white px-xl py-sm rounded-lg font-bold hover:bg-primary-light transition-colors shadow-sm">Save Config</button>
+</div>
+</div>
+<!-- Data Backup Panel -->
+<div class="settings-panel bg-card rounded-xl shadow-sm border border-border overflow-hidden" id="data-backup">
+<div class="px-lg py-md border-b border-border bg-surface-container-low flex justify-between items-center">
+<h3 class="text-headline-md font-headline-md text-on-surface">Data Backup & Integrity</h3>
+</div>
+<div class="p-lg">
+<div class="grid grid-cols-3 gap-lg mb-xl">
+<div class="p-lg bg-surface-container rounded-xl">
+<p class="text-label-sm text-outline mb-xs">Last Successful Backup</p>
+<h4 class="font-data-display text-headline-md">2023-11-22 03:00</h4>
+</div>
+<div class="p-lg bg-surface-container rounded-xl">
+<p class="text-label-sm text-outline mb-xs">Next Scheduled Backup</p>
+<h4 class="font-data-display text-headline-md text-info">2023-11-23 03:00</h4>
+</div>
+<div class="p-lg bg-surface-container rounded-xl">
+<p class="text-label-sm text-outline mb-xs">Storage Frequency</p>
+<select class="w-full mt-xs bg-transparent border-none font-bold outline-none focus:ring-0">
+<option>Every 24 Hours</option>
+<option>Every 12 Hours</option>
+<option>Weekly</option>
+</select>
+</div>
+</div>
+<h4 class="font-bold mb-md flex items-center">
+<span class="material-symbols-outlined mr-sm">history</span>
+                            Recent Archives
+                        </h4>
+<div class="overflow-hidden border border-border rounded-lg">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-lg py-sm text-label-sm text-outline">FILENAME</th>
+<th class="px-lg py-sm text-label-sm text-outline">SIZE</th>
+<th class="px-lg py-sm text-label-sm text-outline">STATUS</th>
+<th class="px-lg py-sm text-label-sm text-outline text-right">ACTIONS</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<tr class="hover:bg-surface-container-low">
+<td class="px-lg py-md font-data-label">MCG_DB_20231122.sql</td>
+<td class="px-lg py-md font-data-label">45.2 MB</td>
+<td class="px-lg py-md">
+<span class="text-success text-xs font-bold">COMPLETED</span>
+</td>
+<td class="px-lg py-md text-right">
+<a class="text-info font-bold text-xs mr-md hover:underline" href="#">Download</a>
+<a class="text-error font-bold text-xs hover:underline" href="#">Restore</a>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low">
+<td class="px-lg py-md font-data-label">MCG_DB_20231121.sql</td>
+<td class="px-lg py-md font-data-label">44.8 MB</td>
+<td class="px-lg py-md">
+<span class="text-success text-xs font-bold">COMPLETED</span>
+</td>
+<td class="px-lg py-md text-right">
+<a class="text-info font-bold text-xs mr-md hover:underline" href="#">Download</a>
+<a class="text-error font-bold text-xs hover:underline" href="#">Restore</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Session & Security Panel -->
+<div class="settings-panel bg-card rounded-xl shadow-sm border border-border overflow-hidden" id="session-security">
+<div class="px-lg py-md border-b border-border bg-surface-container-low flex justify-between items-center">
+<h3 class="text-headline-md font-headline-md text-on-surface">Security & Privacy Controls</h3>
+</div>
+<div class="p-lg space-y-lg">
+<div class="grid grid-cols-2 gap-lg">
+<div class="space-y-sm">
+<label class="text-label-md font-label-md text-on-surface-variant">Session Timeout (Minutes)</label>
+<input class="w-full px-md py-sm border border-border rounded-lg font-data-display focus:ring-2 focus:ring-primary-light outline-none" type="number" value="30"/>
+<p class="text-[11px] text-outline">Users will be logged out after this period of inactivity.</p>
+</div>
+<div class="space-y-sm">
+<label class="text-label-md font-label-md text-on-surface-variant">Password Expiry (Days)</label>
+<input class="w-full px-md py-sm border border-border rounded-lg font-data-display focus:ring-2 focus:ring-primary-light outline-none" type="number" value="90"/>
+<p class="text-[11px] text-outline">Force password change policy cycle.</p>
+</div>
+</div>
+<div class="p-lg bg-surface border border-border rounded-xl space-y-md">
+<div class="flex items-center justify-between">
+<div>
+<h4 class="font-bold">Multi-Factor Authentication (MFA)</h4>
+<p class="text-body-md text-on-surface-variant">Require SMS/Email verification for all administrative accounts.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-success"></div>
+</label>
+</div>
+<hr class="border-border"/>
+<div class="flex items-center justify-between">
+<div>
+<h4 class="font-bold text-danger">High-Risk Confirmation Toggle</h4>
+<p class="text-body-md text-on-surface-variant">Require Master Password for data exports and welfare deletions.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-danger"></div>
+</label>
+</div>
+</div>
+<div class="space-y-sm">
+<label class="text-label-md font-bold text-on-surface-variant">Complexity Requirements</label>
+<div class="flex flex-wrap gap-sm">
+<span class="px-sm py-1 bg-surface-container-high border border-border text-[11px] font-bold rounded flex items-center">
+<span class="material-symbols-outlined text-[14px] mr-xs text-success">check_circle</span>
+                                    MIN 8 CHARS
+                                </span>
+<span class="px-sm py-1 bg-surface-container-high border border-border text-[11px] font-bold rounded flex items-center">
+<span class="material-symbols-outlined text-[14px] mr-xs text-success">check_circle</span>
+                                    SPECIAL CHAR
+                                </span>
+<span class="px-sm py-1 bg-surface-container-high border border-border text-[11px] font-bold rounded flex items-center">
+<span class="material-symbols-outlined text-[14px] mr-xs text-success">check_circle</span>
+                                    NUMERIC
+                                </span>
+<span class="px-sm py-1 bg-surface-container-high border border-border text-[11px] font-bold rounded flex items-center opacity-40">
+<span class="material-symbols-outlined text-[14px] mr-xs">circle</span>
+                                    UPPERCASE
+                                </span>
+</div>
+</div>
+</div>
+<div class="px-lg py-md bg-surface-container-low border-t border-border flex justify-end">
+<button class="bg-primary text-white px-xl py-sm rounded-lg font-bold hover:bg-primary-light transition-colors shadow-sm">Save Security Policy</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        function switchTab(tabId) {
+            // Hide all panels
+            document.querySelectorAll('.settings-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            
+            // Show selected panel
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update button styles
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active-tab');
+                btn.classList.add('text-on-surface-variant', 'hover:bg-surface-container-low');
+            });
+            
+            // Add active class to clicked button
+            const clickedBtn = event.currentTarget;
+            clickedBtn.classList.add('active-tab');
+            clickedBtn.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-low');
+        }
+
+        // Lightweight atmospheric micro-interaction for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'scale(0.98)';
+            });
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'scale(1)';
+            });
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

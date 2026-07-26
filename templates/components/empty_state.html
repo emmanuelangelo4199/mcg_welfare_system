@@ -1,0 +1,27 @@
+{% comment %}
+Empty state — used on virtually every list/table screen when no records
+exist yet (C-01, D-01, E-01, H-03, I-01, J-01, and others).
+
+Usage:
+  {% include "components/empty_state.html" with icon="📋" heading="No members found" subtext="Try adjusting your filters." action_label="Add Member" action_url="/members/new/" %}
+
+Notes:
+  - Omit action_url/action_label together to render no button at all
+    (e.g. M-01's Reports landing page, which has a fixed list, nothing to add).
+  - Keep heading/subtext factual, not celebratory, on any screen inside the
+    Welfare module — see Module J tone rules. This component doesn't enforce
+    that itself; it's on the calling template to pass calm copy in that context.
+{% endcomment %}
+<div class="flex flex-col items-center justify-center text-center py-16 px-6">
+  <div class="text-5xl mb-4 opacity-60" aria-hidden="true">{{ icon|default:"📋" }}</div>
+  <h3 class="font-display text-lg text-ink mb-1">{{ heading }}</h3>
+  {% if subtext %}
+    <p class="text-sm text-ink-secondary max-w-sm mb-6">{{ subtext }}</p>
+  {% endif %}
+  {% if action_url and action_label %}
+    <a href="{{ action_url }}"
+       class="inline-flex items-center px-5 py-2 rounded-control bg-primary text-white text-sm font-semibold hover:bg-primary-light transition-colors duration-150">
+      {{ action_label }}
+    </a>
+  {% endif %}
+</div>

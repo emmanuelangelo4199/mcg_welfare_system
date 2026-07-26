@@ -1,0 +1,320 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>MCG-SMS - Add New Class</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "border": "#E4E2DD",
+              "surface-bright": "#fff8f5",
+              "on-primary": "#ffffff",
+              "tertiary-fixed-dim": "#c7c6c5",
+              "surface-container-low": "#faf2ee",
+              "on-tertiary-fixed": "#1a1c1b",
+              "on-secondary-fixed": "#251a00",
+              "on-secondary": "#ffffff",
+              "on-secondary-container": "#745700",
+              "surface-tint": "#a33a49",
+              "surface-container-high": "#eee7e3",
+              "success": "#16A34A",
+              "surface-variant": "#e9e1dd",
+              "error": "#ba1a1a",
+              "outline-variant": "#dcc0c1",
+              "primary": "#5c0219",
+              "surface-dim": "#e0d8d5",
+              "warning": "#D97706",
+              "background": "#fff8f5",
+              "tertiary-container": "#404140",
+              "on-surface": "#1e1b19",
+              "secondary-fixed": "#ffdf9a",
+              "card": "#FFFFFF",
+              "secondary": "#775a00",
+              "primary-container": "#7b1c2d",
+              "info": "#2563EB",
+              "danger": "#DC2626",
+              "gold-muted": "#FDF6E3",
+              "primary-fixed-dim": "#ffb2b7",
+              "outline": "#897172",
+              "secondary-fixed-dim": "#eec04f",
+              "on-tertiary-fixed-variant": "#464746",
+              "inverse-primary": "#ffb2b7",
+              "tertiary": "#2a2b2a",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed-variant": "#5a4300",
+              "on-surface-variant": "#564243",
+              "on-primary-fixed": "#40000e",
+              "surface-container-highest": "#e9e1dd",
+              "on-tertiary-container": "#adadab",
+              "inverse-surface": "#33302d",
+              "primary-fixed": "#ffdadb",
+              "surface-container": "#f4ece8",
+              "surface-container-lowest": "#ffffff",
+              "primary-muted": "#F5EAEC",
+              "primary-light": "#A3283F",
+              "on-primary-container": "#ff8a95",
+              "inverse-on-surface": "#f7efeb",
+              "on-primary-fixed-variant": "#832233",
+              "text-secondary": "#6B7280",
+              "secondary-container": "#fece5b",
+              "on-error": "#ffffff",
+              "error-container": "#ffdad6",
+              "surface": "#F8F7F5",
+              "on-tertiary": "#ffffff",
+              "tertiary-fixed": "#e3e2e0",
+              "on-background": "#1e1b19"
+            },
+            "borderRadius": {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
+            },
+            "spacing": {
+              "lg": "24px",
+              "md": "16px",
+              "xl": "32px",
+              "sm": "8px",
+              "base": "8px",
+              "header-height": "64px",
+              "sidebar-width": "256px",
+              "xs": "4px"
+            },
+            "fontFamily": {
+              "headline-md": ["Inter"],
+              "label-sm": ["Inter"],
+              "headline-lg": ["Lora"],
+              "headline-lg-mobile": ["Lora"],
+              "label-md": ["Inter"],
+              "body-md": ["Inter"],
+              "body-lg": ["Inter"],
+              "data-display": ["JetBrains Mono"],
+              "data-label": ["JetBrains Mono"]
+            },
+            "fontSize": {
+              "headline-md": ["20px", { "lineHeight": "1.3", "fontWeight": "600" }],
+              "label-sm": ["11px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+              "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+              "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+              "label-md": ["13px", { "lineHeight": "1.2", "fontWeight": "500" }],
+              "body-md": ["14px", { "lineHeight": "1.6", "fontWeight": "400" }],
+              "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+              "data-display": ["18px", { "lineHeight": "1.0", "fontWeight": "500" }],
+              "data-label": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }]
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body { background-color: theme('colors.surface'); }
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+      .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+      
+      /* Custom Input Styles */
+      .form-input-focus {
+        transition: all 0.2s ease-in-out;
+      }
+      .form-input-focus:focus-within {
+        border-color: theme('colors.primary');
+        box-shadow: 0 0 0 1px theme('colors.primary'), 0 2px 4px rgba(0,0,0,0.05);
+        transform: translateY(-1px);
+      }
+    </style>
+  </head>
+  <body class="text-on-surface antialiased bg-surface min-h-screen flex overflow-hidden">
+    <!-- SIDE NAV BAR -->
+    <nav class="hidden md:flex flex-col h-full py-lg fixed left-0 top-0 w-sidebar-width bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container shadow-sm dark:shadow-none z-20">
+      <!-- Brand Header -->
+      <div class="px-lg pb-xl flex items-center gap-md">
+        <div class="w-10 h-10 rounded-full bg-surface-container-lowest/10 flex items-center justify-center overflow-hidden shrink-0">
+          <span class="material-symbols-outlined fill text-surface-container-lowest text-2xl" data-icon="church">church</span>
+        </div>
+        <div>
+          <h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</h1>
+          <p class="font-label-sm text-label-sm text-on-primary/80 uppercase tracking-widest mt-0.5">Methodist Church Ghana</p>
+        </div>
+      </div>
+      <!-- Main Navigation -->
+      <div class="flex-1 px-md space-y-sm overflow-y-auto">
+        <a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+          <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+          <span class="font-label-md text-label-md">Dashboard</span>
+        </a>
+        <a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+          <span class="material-symbols-outlined" data-icon="group">group</span>
+          <span class="font-label-md text-label-md">Members</span>
+        </a>
+        <!-- ACTIVE ITEM -->
+        <a class="flex items-center gap-md px-md py-3 rounded-lg border-l-[3px] border-secondary-container bg-primary-light/10 text-on-primary font-bold active:scale-[0.98] transition-transform" href="#">
+          <span class="material-symbols-outlined" data-icon="school">school</span>
+          <span class="font-label-md text-label-md">Classes</span>
+        </a>
+        <a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+          <span class="material-symbols-outlined" data-icon="payments">payments</span>
+          <span class="font-label-md text-label-md">Finance</span>
+        </a>
+        <a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+          <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+          <span class="font-label-md text-label-md">Reports</span>
+        </a>
+      </div>
+      <!-- Footer Navigation -->
+      <div class="px-md pt-lg mt-auto space-y-sm border-t border-on-primary/10">
+        <a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+          <span class="material-symbols-outlined" data-icon="settings">settings</span>
+          <span class="font-label-md text-label-md">Settings</span>
+        </a>
+        <a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+          <span class="material-symbols-outlined" data-icon="logout">logout</span>
+          <span class="font-label-md text-label-md">Logout</span>
+        </a>
+      </div>
+    </nav>
+    <!-- MAIN CONTENT AREA -->
+    <div class="flex-1 flex flex-col min-w-0 md:ml-sidebar-width h-screen bg-surface">
+      <!-- TOP APP BAR -->
+      <header class="flex justify-between items-center h-header-height px-xl bg-surface-container-lowest dark:bg-surface-dim shadow-sm sticky top-0 z-10 w-full">
+        <div class="flex items-center gap-md">
+          <!-- Mobile Menu Button (Visible only on small screens) -->
+          <button class="md:hidden p-2 rounded-full text-on-surface-variant hover:bg-surface-container transition-colors">
+            <span class="material-symbols-outlined" data-icon="menu">menu</span>
+          </button>
+          <div class="hidden sm:flex items-center bg-surface-container px-3 py-2 rounded-lg border border-border focus-within:border-primary focus-within:bg-surface-container-lowest transition-colors w-64">
+            <span class="material-symbols-outlined text-on-surface-variant mr-2" data-icon="search">search</span>
+            <input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md text-on-surface w-full p-0 placeholder-on-surface-variant/60" placeholder="Search..." type="text">
+          </div>
+        </div>
+      </header>
+      <!-- MAIN SCROLLABLE CANVAS -->
+      <main class="flex-1 overflow-y-auto p-4 md:p-xl">
+        <div class="max-w-3xl mx-auto space-y-lg">
+          <!-- Breadcrumb -->
+          <nav aria-label="Breadcrumb" class="flex text-label-sm font-label-sm text-on-surface-variant items-center space-x-1">
+            <a class="hover:text-primary transition-colors" href="#">Dashboard</a>
+            <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+            <a class="hover:text-primary transition-colors" href="#">Classes</a>
+            <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+            <span class="text-on-surface font-semibold">Add New Class</span>
+          </nav>
+          <!-- Page Header -->
+          <div>
+            <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight">Add New Class</h1>
+          </div>
+          <!-- Info Banner (Edit Mode Example) -->
+          <div class="bg-gold-muted border-l-4 border-secondary-container p-4 rounded-r-lg flex items-start gap-3 shadow-sm">
+            <span class="material-symbols-outlined text-secondary mt-0.5" data-icon="info">info</span>
+            <div>
+              <p class="font-body-md text-body-md text-on-secondary-container">You are editing <span class="font-semibold">Class 1 (St. Peter)</span>. Changes are saved immediately.</p>
+            </div>
+          </div>
+          <!-- FORM CARD -->
+          <div class="bg-card rounded-xl shadow-sm border border-border p-lg md:p-xl">
+            <form class="space-y-md">
+              <!-- Form Row: Class Name -->
+              <div class="flex flex-col space-y-xs">
+                <label class="font-label-md text-label-md text-on-surface-variant" for="className">Class Name <span class="text-error">*</span></label>
+                <div class="form-input-focus border border-border rounded-lg bg-surface-container-lowest flex items-center px-3 py-2 overflow-hidden">
+                  <span class="material-symbols-outlined text-on-surface-variant mr-2 opacity-50 text-[20px]" data-icon="badge">badge</span>
+                  <input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-on-surface outline-none" id="className" placeholder="e.g. Class 1 (St. Peter)" type="text" value="Class 1 (St. Peter)">
+                </div>
+              </div>
+              <!-- Form Row: Leader (Autocomplete) -->
+              <div class="flex flex-col space-y-xs relative">
+                <label class="font-label-md text-label-md text-on-surface-variant" for="leader">Leader</label>
+                <div class="form-input-focus border border-border rounded-lg bg-surface-container-lowest flex items-center p-1.5 overflow-hidden min-h-[44px]">
+                  <!-- Selected Chip -->
+                  <div class="bg-surface-container flex items-center gap-2 px-2 py-1 rounded-md border border-border/50 shrink-0">
+                    <div class="w-6 h-6 rounded-full overflow-hidden bg-primary-muted shrink-0">
+                      <img alt="Leader avatar" class="w-full h-full object-cover" data-alt="A small circular avatar portrait of a man, well-lit, professional, bright modern corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7j3gRPI76rfiAusyDsMwMJG8oGhTwpqW988FWRccRWI53E1T_AlkRePNRjhi9DcNeTWTSMlk_zKkix4PfskJ7JHtKHpfXopqjTogoJmenRTgVkp38fSGkaOzSzUi2DwiNm5nn24oAkgzUAWPbApynbuZbfwuuUcjT8xz1uVCnRyv1Yq27u1npUQMPAYfFMyWSGdYGUsM4be3DMLtRTxSVyyoTdp_YdVq1MDuylzEwtSEoW8sWomYWI3wQNJ5g1GvMkwp3or7oqGPN">
+                    </div>
+                    <span class="font-label-md text-label-md text-on-surface whitespace-nowrap">Bro. John Doe</span>
+                    <button class="text-on-surface-variant hover:text-error transition-colors rounded-full p-0.5" type="button">
+                      <span class="material-symbols-outlined text-[16px]" data-icon="close">close</span>
+                    </button>
+                  </div>
+                  <input class="w-full bg-transparent border-none px-2 py-1 focus:ring-0 text-body-md font-body-md text-on-surface outline-none" id="leader" placeholder="Search members..." type="text">
+                </div>
+              </div>
+              <!-- Form Row: Assistant Leader (Autocomplete) -->
+              <div class="flex flex-col space-y-xs">
+                <label class="font-label-md text-label-md text-on-surface-variant" for="assistantLeader">Assistant Leader</label>
+                <div class="form-input-focus border border-border rounded-lg bg-surface-container-lowest flex items-center px-3 py-2 overflow-hidden">
+                  <span class="material-symbols-outlined text-on-surface-variant mr-2 opacity-50 text-[20px]" data-icon="person_search">person_search</span>
+                  <input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-on-surface outline-none" id="assistantLeader" placeholder="Search members..." type="text">
+                </div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                <!-- Form Row: Meeting Day -->
+                <div class="flex flex-col space-y-xs">
+                  <label class="font-label-md text-label-md text-on-surface-variant" for="meetingDay">Meeting Day</label>
+                  <div class="form-input-focus border border-border rounded-lg bg-surface-container-lowest flex items-center px-3 overflow-hidden relative">
+                    <span class="material-symbols-outlined text-on-surface-variant mr-2 opacity-50 text-[20px] pointer-events-none" data-icon="calendar_today">calendar_today</span>
+                    <select class="w-full bg-transparent border-none py-3 pl-0 pr-8 focus:ring-0 text-body-md font-body-md text-on-surface outline-none appearance-none cursor-pointer" id="meetingDay">
+                      <option value="">Select a day</option>
+                      <option value="Monday">Monday</option>
+                      <option value="Tuesday">Tuesday</option>
+                      <option selected="" value="Wednesday">Wednesday</option>
+                      <option value="Thursday">Thursday</option>
+                      <option value="Friday">Friday</option>
+                      <option value="Saturday">Saturday</option>
+                      <option value="Sunday">Sunday</option>
+                    </select>
+                    <span class="material-symbols-outlined text-on-surface-variant absolute right-3 pointer-events-none" data-icon="expand_more">expand_more</span>
+                  </div>
+                </div>
+                <!-- Form Row: Meeting Time -->
+                <div class="flex flex-col space-y-xs">
+                  <label class="font-label-md text-label-md text-on-surface-variant" for="meetingTime">Meeting Time</label>
+                  <div class="form-input-focus border border-border rounded-lg bg-surface-container-lowest flex items-center px-3 py-2 overflow-hidden">
+                    <span class="material-symbols-outlined text-on-surface-variant mr-2 opacity-50 text-[20px]" data-icon="schedule">schedule</span>
+                    <input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-on-surface outline-none cursor-pointer" id="meetingTime" type="time" value="18:30">
+                  </div>
+                </div>
+              </div>
+              <!-- Form Row: Meeting Location -->
+              <div class="flex flex-col space-y-xs">
+                <label class="font-label-md text-label-md text-on-surface-variant" for="location">Meeting Location</label>
+                <div class="form-input-focus border border-border rounded-lg bg-surface-container-lowest flex items-center px-3 py-2 overflow-hidden">
+                  <span class="material-symbols-outlined text-on-surface-variant mr-2 opacity-50 text-[20px]" data-icon="location_on">location_on</span>
+                  <input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-on-surface outline-none" id="location" placeholder="e.g. Chapel Main Hall" type="text" value="Chapel Main Hall">
+                </div>
+              </div>
+              <!-- Form Row: Maximum Capacity -->
+              <div class="flex flex-col space-y-xs">
+                <label class="font-label-md text-label-md text-on-surface-variant" for="capacity">Maximum Capacity</label>
+                <div class="form-input-focus border border-border rounded-lg bg-surface-container-lowest flex items-center px-3 py-2 overflow-hidden max-w-[200px]">
+                  <span class="material-symbols-outlined text-on-surface-variant mr-2 opacity-50 text-[20px]" data-icon="groups">groups</span>
+                  <input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-on-surface outline-none font-data-display font-data-label" id="capacity" min="1" placeholder="0" type="number">
+                </div>
+                <p class="font-label-sm text-label-sm text-text-secondary mt-1">Leave blank for unlimited</p>
+              </div>
+              <!-- Form Row: Description -->
+              <div class="flex flex-col space-y-xs">
+                <label class="font-label-md text-label-md text-on-surface-variant" for="description">Description</label>
+                <div class="form-input-focus border border-border rounded-lg bg-surface-container-lowest overflow-hidden">
+                  <textarea class="w-full bg-transparent border-none p-3 focus:ring-0 text-body-md font-body-md text-on-surface outline-none resize-y" id="description" placeholder="Brief description of the class focus or notes..." rows="3"></textarea>
+                </div>
+              </div>
+              <!-- Form Actions -->
+              <div class="pt-lg mt-lg border-t border-border flex items-center justify-end gap-4">
+                <button class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" type="button">Cancel</button>
+                <button class="bg-primary hover:bg-primary-light text-on-primary font-label-md text-label-md px-6 py-2.5 rounded-lg shadow-sm hover:shadow transition-all duration-200 flex items-center gap-2 active:scale-[0.98]" type="submit">
+                  <span class="material-symbols-outlined text-[18px]" data-icon="save">save</span> Save Class
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

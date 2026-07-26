@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Audit Log | MCG-SMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "tertiary": "#2a2b2a",
+                "primary-fixed": "#ffdadb",
+                "primary-fixed-dim": "#ffb2b7",
+                "on-primary-fixed-variant": "#832233",
+                "secondary-fixed-dim": "#eec04f",
+                "outline": "#897172",
+                "primary-light": "#A3283F",
+                "error": "#ba1a1a",
+                "border": "#E4E2DD",
+                "surface-container-highest": "#e9e1dd",
+                "on-secondary-fixed-variant": "#5a4300",
+                "info": "#2563EB",
+                "danger": "#DC2626",
+                "inverse-primary": "#ffb2b7",
+                "surface-bright": "#fff8f5",
+                "inverse-on-surface": "#f7efeb",
+                "warning": "#D97706",
+                "on-tertiary": "#ffffff",
+                "on-primary": "#ffffff",
+                "tertiary-container": "#404140",
+                "on-primary-fixed": "#40000e",
+                "surface-dim": "#e0d8d5",
+                "surface-container-lowest": "#ffffff",
+                "gold-muted": "#FDF6E3",
+                "secondary-fixed": "#ffdf9a",
+                "secondary": "#775a00",
+                "secondary-container": "#fece5b",
+                "surface-container": "#f4ece8",
+                "outline-variant": "#dcc0c1",
+                "card": "#FFFFFF",
+                "on-surface": "#1e1b19",
+                "surface-variant": "#e9e1dd",
+                "on-secondary": "#ffffff",
+                "tertiary-fixed-dim": "#c7c6c5",
+                "surface-tint": "#a33a49",
+                "on-background": "#1e1b19",
+                "surface-container-high": "#eee7e3",
+                "primary-muted": "#F5EAEC",
+                "on-tertiary-fixed": "#1a1c1b",
+                "on-error": "#ffffff",
+                "primary-container": "#7b1c2d",
+                "on-tertiary-container": "#adadab",
+                "text-secondary": "#6B7280",
+                "success": "#16A34A",
+                "error-container": "#ffdad6",
+                "on-surface-variant": "#564243",
+                "inverse-surface": "#33302d",
+                "on-error-container": "#93000a",
+                "on-secondary-container": "#745700",
+                "surface-container-low": "#faf2ee",
+                "on-tertiary-fixed-variant": "#464746",
+                "surface": "#F8F7F5",
+                "on-primary-container": "#ff8a95",
+                "primary": "#5c0219",
+                "background": "#fff8f5",
+                "tertiary-fixed": "#e3e2e0",
+                "on-secondary-fixed": "#251a00"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "xs": "4px",
+                "sm": "8px",
+                "xl": "32px",
+                "sidebar-width": "256px",
+                "md": "16px",
+                "lg": "24px",
+                "header-height": "64px",
+                "base": "8px"
+            },
+            "fontFamily": {
+                "data-display": ["JetBrains Mono"],
+                "body-lg": ["Inter"],
+                "label-md": ["Inter"],
+                "headline-lg": ["Lora"],
+                "headline-md": ["Inter"],
+                "body-md": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #fff8f5;
+            color: #1e1b19;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .audit-table-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        .audit-table-container::-webkit-scrollbar-thumb {
+            background: #dcc0c1;
+            border-radius: 10px;
+        }
+        .truncate-mono {
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen overflow-x-hidden">
+<!-- SideNavBar (from Shared Components) -->
+<aside class="fixed left-0 top-0 bottom-0 w-sidebar-width flex flex-col py-lg z-50 bg-primary shadow-md">
+<div class="px-md mb-xl">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 bg-secondary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">church</span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG Society</h1>
+<p class="text-label-sm font-label-sm text-primary-fixed-dim opacity-80 uppercase tracking-wider">Management System</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-xs">
+<a class="flex items-center gap-md px-md py-sm text-primary-fixed-dim opacity-80 hover:bg-primary-light transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-primary-fixed-dim opacity-80 hover:bg-primary-light transition-all" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-label-md font-label-md">Membership</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-primary-fixed-dim opacity-80 hover:bg-primary-light transition-all" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-label-md font-label-md">Finances</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-primary-fixed-dim opacity-80 hover:bg-primary-light transition-all" href="#">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span class="text-label-md font-label-md">Welfare</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-primary-fixed-dim opacity-80 hover:bg-primary-light transition-all" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="text-label-md font-label-md">Governance</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-primary-fixed-dim opacity-80 hover:bg-primary-light transition-all" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="text-label-md font-label-md">Reports</span>
+</a>
+</nav>
+<div class="mt-auto space-y-xs pt-lg border-t border-primary-light/30">
+<a class="flex items-center gap-md px-md py-sm border-l-4 border-secondary-fixed-dim bg-primary-light text-on-primary font-bold scale-x-[1.02] transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="text-label-md font-label-md">Audit Logs</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-primary-fixed-dim opacity-80 hover:bg-primary-light transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-sidebar-width min-h-screen">
+<!-- TopAppBar (from Shared Components) -->
+<header class="flex justify-between items-center w-full px-lg h-header-height sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
+<div class="flex items-center gap-md">
+<nav class="flex items-center gap-xs text-label-md font-label-md text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Settings</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Audit Log</span>
+</nav>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-md">
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<div class="h-8 w-px bg-border"></div>
+<div class="flex items-center gap-sm">
+<div class="text-right hidden sm:block">
+<p class="text-label-md font-label-md font-bold text-on-surface">Ekow Mensah</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Chief Auditor</p>
+</div>
+<img class="w-10 h-10 rounded-full border border-border object-cover" data-alt="Professional studio portrait of a mature West African man wearing a formal suit, soft natural lighting, high-end photography style, corporate but warm atmosphere, white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEqFS9e0mrqq_KB369BQTRS2rNAcV0WckthRdh8C2WNUZ9iqZgze8WjrpWcfLoWYOvrLmXpuRMLx-kfbgvR3K-R7zk1VDggHTc8mDJR9arQ6iX2_R0zdu0EKv-h-EJ_Vsmuxg1YcWGl13xxA246HjXOKtSBCQUFgYg_b4fI29d0N57ymJl7pKK5JoUxP34kSYeUW864V34FeOmO2_5zg4VuVc3NSwwg5oPhyjvYBs1zSiQ6TOVRgBXMB8O0prJEI_45kxW6pOXalW6"/>
+</div>
+</div>
+</header>
+<div class="p-xl max-w-[1400px] mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md mb-xl">
+<div>
+<h2 class="text-headline-lg font-headline-lg text-primary mb-xs">Audit Log</h2>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-xl">
+                        A complete record of administrative actions, modifications, and system events. This log provides institutional oversight and financial transparency.
+                    </p>
+</div>
+<!-- Export Button - Restricted to Auditor role -->
+<button class="flex items-center gap-sm px-lg py-sm bg-primary text-on-primary rounded-lg font-label-md hover:bg-primary-light transition-all shadow-sm">
+<span class="material-symbols-outlined">download</span>
+                    Export CSV
+                </button>
+</div>
+<!-- Filter Bar Section -->
+<div class="bg-card rounded-xl p-md shadow-sm mb-lg flex flex-wrap gap-md items-end">
+<div class="flex-1 min-w-[200px]">
+<label class="block text-label-sm font-label-sm text-on-surface-variant mb-xs">User / Performed By</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">person</span>
+<input class="w-full pl-xl pr-md py-sm rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-body-md" placeholder="Search by name..." type="text"/>
+</div>
+</div>
+<div class="w-48">
+<label class="block text-label-sm font-label-sm text-on-surface-variant mb-xs">Module</label>
+<select class="w-full px-md py-sm rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-md bg-white">
+<option>All Modules</option>
+<option>Finances</option>
+<option>Membership</option>
+<option>Welfare</option>
+<option>Governance</option>
+</select>
+</div>
+<div class="w-48">
+<label class="block text-label-sm font-label-sm text-on-surface-variant mb-xs">Action Type</label>
+<select class="w-full px-md py-sm rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-md bg-white">
+<option>All Actions</option>
+<option>Create</option>
+<option>Update</option>
+<option>Delete</option>
+<option>Status Change</option>
+</select>
+</div>
+<div class="w-48">
+<label class="block text-label-sm font-label-sm text-on-surface-variant mb-xs">Date Range</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">calendar_today</span>
+<input class="w-full pl-xl pr-md py-sm rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-md" placeholder="Select dates" type="text"/>
+</div>
+</div>
+<button class="px-lg py-sm bg-surface-container-high text-on-surface-variant rounded-lg font-label-md hover:bg-surface-container-highest transition-all flex items-center gap-xs">
+<span class="material-symbols-outlined">filter_list</span>
+                    Apply
+                </button>
+</div>
+<!-- Table Section -->
+<div class="bg-card rounded-xl shadow-sm border border-border/50 overflow-hidden">
+<div class="audit-table-container overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[1000px]">
+<thead>
+<tr class="bg-surface-container-low border-b border-border text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">
+<th class="px-lg py-md font-semibold">Timestamp</th>
+<th class="px-lg py-md font-semibold">User</th>
+<th class="px-lg py-md font-semibold">Action</th>
+<th class="px-lg py-md font-semibold">Module</th>
+<th class="px-lg py-md font-semibold">Record Affected</th>
+<th class="px-lg py-md font-semibold">Old Value</th>
+<th class="px-lg py-md font-semibold">New Value</th>
+<th class="px-lg py-md font-semibold">IP Address</th>
+</tr>
+</thead>
+<tbody class="text-body-md font-body-md divide-y divide-border">
+<!-- Row 1: Normal Update -->
+<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer group" onclick="toggleSlideOver()">
+<td class="px-lg py-md whitespace-nowrap text-on-surface-variant">2023-10-24 09:12:45</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-primary-muted text-primary flex items-center justify-center font-bold text-xs">KN</div>
+<div>
+<p class="font-semibold text-on-surface">Kofi Nimako</p>
+<span class="text-xs bg-secondary-container text-on-secondary-container px-xs rounded-xs font-label-sm">Admin</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="bg-blue-100 text-blue-800 px-sm py-xs rounded-full text-xs font-semibold">UPDATE</span>
+</td>
+<td class="px-lg py-md font-medium">Finances</td>
+<td class="px-lg py-md italic text-on-surface-variant">Tithes_Record_2039</td>
+<td class="px-lg py-md"><code class="font-data-display text-data-label truncate-mono text-error">GHS 1,200.00</code></td>
+<td class="px-lg py-md"><code class="font-data-display text-data-label truncate-mono text-success">GHS 1,500.00</code></td>
+<td class="px-lg py-md text-xs text-on-surface-variant">192.168.1.45</td>
+</tr>
+<!-- Row 2: Sensitive Welfare Case (CRITICAL Requirement) -->
+<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer border-l-4 border-l-error" onclick="toggleSlideOver()">
+<td class="px-lg py-md whitespace-nowrap text-on-surface-variant">2023-10-24 10:05:22</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-primary-muted text-primary flex items-center justify-center font-bold text-xs">SA</div>
+<div>
+<p class="font-semibold text-on-surface">Sarah Ansah</p>
+<span class="text-xs bg-secondary-container text-on-secondary-container px-xs rounded-xs font-label-sm">Coordinator</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="bg-amber-100 text-amber-800 px-sm py-xs rounded-full text-xs font-semibold">MODIFY</span>
+</td>
+<td class="px-lg py-md font-medium text-error">Welfare</td>
+<td class="px-lg py-md italic text-on-surface-variant">Case_7721_Financial_Aid</td>
+<td class="px-lg py-md"><span class="italic text-on-surface-variant text-xs opacity-70">Record modified</span></td>
+<td class="px-lg py-md"><span class="italic text-on-surface-variant text-xs opacity-70">Status changed</span></td>
+<td class="px-lg py-md text-xs text-on-surface-variant">192.168.1.112</td>
+</tr>
+<!-- Row 3: Membership -->
+<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer" onclick="toggleSlideOver()">
+<td class="px-lg py-md whitespace-nowrap text-on-surface-variant">2023-10-24 11:30:10</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-primary-muted text-primary flex items-center justify-center font-bold text-xs">JO</div>
+<div>
+<p class="font-semibold text-on-surface">John Owusu</p>
+<span class="text-xs bg-secondary-container text-on-secondary-container px-xs rounded-xs font-label-sm">Clerk</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="bg-green-100 text-green-800 px-sm py-xs rounded-full text-xs font-semibold">CREATE</span>
+</td>
+<td class="px-lg py-md font-medium">Membership</td>
+<td class="px-lg py-md italic text-on-surface-variant">Member_Alice_Appiah</td>
+<td class="px-lg py-md"><code class="font-data-display text-data-label truncate-mono text-on-surface-variant">null</code></td>
+<td class="px-lg py-md"><code class="font-data-display text-data-label truncate-mono text-success">active_member</code></td>
+<td class="px-lg py-md text-xs text-on-surface-variant">10.0.0.89</td>
+</tr>
+<!-- Row 4: System Event -->
+<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer" onclick="toggleSlideOver()">
+<td class="px-lg py-md whitespace-nowrap text-on-surface-variant">2023-10-24 12:00:00</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-xs">settings_suggest</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">System Process</p>
+<span class="text-xs bg-surface-container-highest text-on-surface-variant px-xs rounded-xs font-label-sm">Automatic</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="bg-gray-100 text-gray-800 px-sm py-xs rounded-full text-xs font-semibold">BACKUP</span>
+</td>
+<td class="px-lg py-md font-medium">Governance</td>
+<td class="px-lg py-md italic text-on-surface-variant">Nightly_Global_Sync</td>
+<td class="px-lg py-md"><code class="font-data-display text-data-label truncate-mono text-on-surface-variant">pending</code></td>
+<td class="px-lg py-md"><code class="font-data-display text-data-label truncate-mono text-success">completed</code></td>
+<td class="px-lg py-md text-xs text-on-surface-variant">127.0.0.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-lg py-md flex items-center justify-between bg-surface-container-low border-t border-border">
+<p class="text-label-sm font-label-sm text-on-surface-variant">Showing 1-10 of 1,248 entries</p>
+<div class="flex items-center gap-xs">
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">first_page</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="flex items-center gap-xs mx-md">
+<button class="w-8 h-8 rounded bg-primary text-on-primary font-bold text-xs">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant font-bold text-xs">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant font-bold text-xs">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant font-bold text-xs">125</button>
+</div>
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined">last_page</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Slide-over Overlay -->
+<div class="fixed inset-0 bg-black/50 z-[60] hidden opacity-0 transition-opacity duration-300 pointer-events-none" id="slide-over-bg" onclick="toggleSlideOver()"></div>
+<!-- Slide-over Component -->
+<div class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-card shadow-2xl z-[70] translate-x-full transition-transform duration-300 ease-in-out" id="slide-over">
+<div class="h-full flex flex-col">
+<div class="p-lg border-b border-border flex items-center justify-between">
+<div>
+<h3 class="text-headline-md font-headline-md text-primary">Audit Details</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Log ID: #AL-20231024-001</p>
+</div>
+<button class="p-sm hover:bg-surface-container-low rounded-full transition-colors" onclick="toggleSlideOver()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-lg space-y-lg">
+<section>
+<h4 class="text-label-sm font-bold uppercase tracking-widest text-outline mb-md">Actor Information</h4>
+<div class="bg-surface-container-low rounded-xl p-md flex items-center gap-md">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Close-up avatar of a professional church administrator, friendly expression, clean lighting, blurred ecclesiastical background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb7Zeimp0IyHzx3xNCbbqrcltS5ajPy5F2zoa9dq_9gOHPqLY6bLlbBIMZfcpH0249ze79KdtW5S0N16X6tMAzdw4vqC5wD2cjiurBa3auo-iKcNYOUsi9uaCyjLrEBvTBBn-GyvrhnjVmcejPG8-TVn2r6Sh0jWFE0N8KJPbWFmG-wxhkcXz661AquIKgTB524h7ozLdNaBLjjubLZPg4kwaPmdRA-nBzUniJcJPGohNZfILhUpeHPWl0O1O9vKY8aAwYhHJFc9kx"/>
+<div>
+<p class="text-body-lg font-bold text-on-surface">Kofi Nimako</p>
+<p class="text-label-md text-on-surface-variant">Administrator • k.nimako@mcg.org</p>
+<p class="text-label-sm font-data-display text-primary mt-xs">IP: 192.168.1.45</p>
+</div>
+</div>
+</section>
+<section>
+<h4 class="text-label-sm font-bold uppercase tracking-widest text-outline mb-md">Action Context</h4>
+<div class="grid grid-cols-2 gap-md">
+<div class="p-md border border-border rounded-lg">
+<p class="text-label-sm text-on-surface-variant mb-xs">Module</p>
+<p class="text-body-md font-bold">Finances</p>
+</div>
+<div class="p-md border border-border rounded-lg">
+<p class="text-label-sm text-on-surface-variant mb-xs">Action Type</p>
+<span class="bg-blue-100 text-blue-800 px-sm py-xs rounded-full text-xs font-semibold">UPDATE</span>
+</div>
+</div>
+</section>
+<section>
+<h4 class="text-label-sm font-bold uppercase tracking-widest text-outline mb-md">Modification Delta</h4>
+<div class="space-y-md">
+<div>
+<p class="text-label-sm text-on-surface-variant mb-xs">Previous State</p>
+<div class="p-md bg-red-50/30 border border-red-100 rounded-lg">
+<pre class="font-data-display text-xs text-error overflow-x-auto">{
+  "amount": 1200.00,
+  "currency": "GHS",
+  "status": "pending",
+  "last_verified": "2023-10-23"
+}</pre>
+</div>
+</div>
+<div class="flex justify-center py-xs">
+<span class="material-symbols-outlined text-outline">arrow_downward</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant mb-xs">New State</p>
+<div class="p-md bg-green-50/30 border border-green-100 rounded-lg">
+<pre class="font-data-display text-xs text-success overflow-x-auto">{
+  "amount": 1500.00,
+  "currency": "GHS",
+  "status": "confirmed",
+  "last_verified": "2023-10-24"
+}</pre>
+</div>
+</div>
+</div>
+</section>
+<div class="p-md bg-gold-muted rounded-lg border border-secondary-fixed-dim/30 flex gap-sm">
+<span class="material-symbols-outlined text-secondary">info</span>
+<p class="text-label-sm text-on-secondary-container">This audit entry is verified by the central governance module and cannot be altered or purged from the database.</p>
+</div>
+</div>
+<div class="p-lg border-t border-border flex gap-md">
+<button class="flex-1 px-lg py-sm bg-primary text-on-primary rounded-lg font-label-md hover:bg-primary-light transition-all">Verify Hash</button>
+<button class="px-lg py-sm border border-border text-on-surface-variant rounded-lg font-label-md hover:bg-surface-container-low transition-all">Report Error</button>
+</div>
+</div>
+</div>
+<script>
+        function toggleSlideOver() {
+            const slideOver = document.getElementById('slide-over');
+            const slideOverBg = document.getElementById('slide-over-bg');
+            
+            if (slideOver.classList.contains('translate-x-full')) {
+                slideOver.classList.remove('translate-x-full');
+                slideOverBg.classList.remove('hidden');
+                setTimeout(() => {
+                    slideOverBg.classList.remove('opacity-0');
+                    slideOverBg.classList.add('opacity-100', 'pointer-events-auto');
+                }, 10);
+            } else {
+                slideOver.classList.add('translate-x-full');
+                slideOverBg.classList.remove('opacity-100');
+                slideOverBg.classList.add('opacity-0');
+                slideOverBg.classList.remove('pointer-events-auto');
+                setTimeout(() => {
+                    slideOverBg.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Simulate tooltips or subtle hover effects
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.transform = 'translateX(4px)';
+                row.style.transition = 'transform 0.2s ease';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.style.transform = 'translateX(0)';
+            });
+        });
+    </script>
+</body>
+</html>
