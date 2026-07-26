@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MCG-SMS | Budget Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline": "#897172",
+                      "on-tertiary-fixed-variant": "#464746",
+                      "tertiary": "#2a2b2a",
+                      "surface-bright": "#fff8f5",
+                      "on-primary-fixed": "#40000e",
+                      "inverse-on-surface": "#f7efeb",
+                      "on-surface": "#1e1b19",
+                      "on-primary-container": "#ff8a95",
+                      "primary": "#5c0219",
+                      "primary-fixed-dim": "#ffb2b7",
+                      "on-tertiary-fixed": "#1a1c1b",
+                      "error-container": "#ffdad6",
+                      "warning": "#D97706",
+                      "text-secondary": "#6B7280",
+                      "surface-tint": "#a33a49",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-container": "#fece5b",
+                      "surface-container": "#f4ece8",
+                      "primary-light": "#A3283F",
+                      "on-secondary-fixed": "#251a00",
+                      "surface-container-highest": "#e9e1dd",
+                      "info": "#2563EB",
+                      "secondary-fixed-dim": "#eec04f",
+                      "primary-muted": "#F5EAEC",
+                      "card": "#FFFFFF",
+                      "error": "#ba1a1a",
+                      "surface-dim": "#e0d8d5",
+                      "gold-muted": "#FDF6E3",
+                      "surface-container-low": "#faf2ee",
+                      "on-surface-variant": "#564243",
+                      "on-error-container": "#93000a",
+                      "on-error": "#ffffff",
+                      "surface-container-high": "#eee7e3",
+                      "on-background": "#1e1b19",
+                      "on-tertiary": "#ffffff",
+                      "surface-variant": "#e9e1dd",
+                      "on-secondary-fixed-variant": "#5a4300",
+                      "inverse-primary": "#ffb2b7",
+                      "tertiary-fixed-dim": "#c7c6c5",
+                      "primary-container": "#7b1c2d",
+                      "danger": "#DC2626",
+                      "tertiary-container": "#404140",
+                      "background": "#fff8f5",
+                      "secondary-fixed": "#ffdf9a",
+                      "on-tertiary-container": "#adadab",
+                      "tertiary-fixed": "#e3e2e0",
+                      "surface": "#F8F7F5",
+                      "on-secondary-container": "#745700",
+                      "border": "#E4E2DD",
+                      "success": "#16A34A",
+                      "on-primary-fixed-variant": "#832233",
+                      "secondary": "#775a00",
+                      "on-secondary": "#ffffff",
+                      "inverse-surface": "#33302d",
+                      "on-primary": "#ffffff",
+                      "outline-variant": "#dcc0c1",
+                      "primary-fixed": "#ffdadb"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "base": "8px",
+                      "xs": "4px",
+                      "header-height": "64px",
+                      "sm": "8px",
+                      "md": "16px",
+                      "xl": "32px",
+                      "sidebar-width": "256px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "data-label": ["JetBrains Mono"],
+                      "data-display": ["JetBrains Mono"],
+                      "headline-lg-mobile": ["Lora"],
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Lora"],
+                      "label-sm": ["Inter"],
+                      "headline-md": ["Inter"]
+              },
+              "fontSize": {
+                      "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                      "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                      "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .sidebar-active-indicator {
+            box-shadow: -3px 0 0 0 #fece5b inset;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F8F7F5;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #dcc0c1;
+            border-radius: 10px;
+        }
+        .row-hover:hover {
+            background-color: rgba(92, 2, 25, 0.02);
+        }
+        .over-budget-tint {
+            background-color: rgba(186, 26, 26, 0.05);
+        }
+        .warning-budget-tint {
+            background-color: rgba(217, 119, 6, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface custom-scrollbar">
+<!-- Sidebar Navigation Shell -->
+<aside class="flex flex-col h-full w-sidebar-width fixed left-0 top-0 z-40 bg-primary dark:bg-primary-container shadow-md">
+<div class="p-lg flex items-center gap-3">
+<div class="w-10 h-10 bg-on-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-headline-md">church</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary dark:text-on-primary-container leading-none">MCG-SMS</h1>
+<p class="text-label-sm text-on-primary/60 uppercase tracking-widest mt-1">Methodist Church Ghana</p>
+</div>
+</div>
+<nav class="flex-1 mt-md space-y-1"><a class="flex items-center gap-3 px-lg py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors group" href="#"><span class="material-symbols-outlined">dashboard</span><span class="font-body-md">Dashboard</span></a><div class="group/section"><div class="flex items-center justify-between px-lg py-3 bg-primary-light/20 border-l-[3px] border-secondary-fixed cursor-pointer"><div class="flex items-center gap-3 text-on-primary"><span class="material-symbols-outlined">payments</span><span class="font-body-md font-bold">Finance</span></div><span class="material-symbols-outlined text-on-primary/60">expand_more</span></div><div class="bg-primary-container/30 py-1"><a class="flex items-center gap-3 pl-xl pr-lg py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors" href="#"><span class="font-body-md">Finance Overview</span></a><a class="flex items-center gap-3 pl-xl pr-lg py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors" href="#"><span class="font-body-md">Record Income</span></a><a class="flex items-center gap-3 pl-xl pr-lg py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors" href="#"><span class="font-body-md">Income Ledger</span></a><a class="flex items-center gap-3 pl-xl pr-lg py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors" href="#"><span class="font-body-md">Record Expense</span></a><a class="flex items-center gap-3 pl-xl pr-lg py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors" href="#"><span class="font-body-md">Expense Ledger</span></a><a class="flex items-center gap-3 pl-xl pr-lg py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors" href="#"><span class="font-body-md">Expense Approval</span></a><a class="flex items-center gap-3 pl-xl pr-lg py-2 text-secondary-fixed font-bold bg-primary-light/20" href="#"><span class="font-body-md">Budget Management</span></a><a class="flex items-center gap-3 pl-xl pr-lg py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors" href="#"><span class="font-body-md">Cashbook</span></a><a class="flex items-center gap-3 pl-xl pr-lg py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors" href="#"><span class="font-body-md">Statutory Payments</span></a><a class="flex items-center gap-3 pl-xl pr-lg py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors" href="#"><span class="font-body-md">Receipts &amp; Vouchers</span></a></div></div><a class="flex items-center gap-3 px-lg py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors group" href="#"><span class="material-symbols-outlined">volunteer_activism</span><span class="font-body-md">Welfare</span></a><a class="flex items-center gap-3 px-lg py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors group" href="#"><span class="material-symbols-outlined">settings</span><span class="font-body-md">Settings</span></a></nav>
+<div class="p-lg mt-auto border-t border-on-primary/10">
+<a class="flex items-center gap-3 px-md py-2 text-on-primary/70 hover:text-on-primary transition-colors mb-2" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-md">Support</span>
+</a>
+<a class="flex items-center gap-3 px-md py-2 text-on-primary/70 hover:text-on-primary transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Top AppBar -->
+<header class="flex justify-between items-center h-header-height w-full pl-[256px] pr-lg sticky top-0 z-30 bg-surface dark:bg-surface-dim shadow-sm">
+<div class="flex items-center gap-lg">
+<h2 class="font-headline-md text-headline-md font-black text-primary">Budget Management</h2>
+<div class="flex items-center gap-base">
+<select class="bg-surface-container border-none rounded-lg text-label-md font-medium px-4 py-2 focus:ring-2 focus:ring-primary">
+<option>FY 2023-2024</option>
+<option selected="">FY 2024-2025</option>
+<option>FY 2025-2026</option>
+</select>
+<button class="flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md hover:bg-primary-light transition-all active:scale-95 shadow-sm" id="toggleEdit">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+<span>Set/Edit Budget</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-md border-r border-outline-variant pr-md mr-md">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Audit Trail</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Vouchers</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Receipts</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border-2 border-primary-fixed cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A professional close-up headshot of a Methodist church administrator, middle-aged with a warm and welcoming expression, wearing a clerical collar and a dark suit. The lighting is soft and natural, against a blurred library background of leather-bound books and warm wood paneling, reflecting wisdom and institutional trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrT8r0Xq4AZFTIlS43WAxCx7uKNm60tl2dzl0epckodIsFoqLCh-fNGwIcnhxAiivw9FFnuGCjaULaacfytuzwNujCqUFcpdyOmuV5AA4Ee_OALpsdgo2HIK0AqmHp1lnvos0FFTu5vGWtuojSwjp2PCUUDivgeiWpnJVzuduRTuN6FpjZngHJ8b4_no7Rpc7-nKxAwJ1NAxPzZ9QtZfNR4LALsnp1YIFApwd9xtsLwcbqWGj0iVqOpneRbrKzkWWuStrO2XPOsWDY"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[256px] p-lg">
+<!-- Summary Dashboard Section (Bento Inspired) -->
+<div class="grid grid-cols-12 gap-lg mb-xl">
+<!-- Large Summary Card -->
+<div class="col-span-8 bg-card rounded-xl p-lg shadow-sm border-l-4 border-secondary flex items-center gap-xl relative overflow-hidden">
+<div class="flex-1 space-y-6">
+<div>
+<p class="text-label-sm text-text-secondary uppercase tracking-widest mb-1">Current Financial Pulse</p>
+<h3 class="font-headline-lg text-headline-lg text-primary">Budget Overview</h3>
+</div>
+<div class="grid grid-cols-3 gap-lg">
+<div>
+<p class="text-label-sm text-text-secondary mb-1">Total Budgeted</p>
+<p class="font-data-display text-data-display text-on-surface">GH₵ 1,450,000.00</p>
+</div>
+<div>
+<p class="text-label-sm text-text-secondary mb-1">Total Spent</p>
+<p class="font-data-display text-data-display text-primary">GH₵ 1,120,450.25</p>
+</div>
+<div>
+<p class="text-label-sm text-text-secondary mb-1">Remaining Balance</p>
+<p class="font-data-display text-data-display text-success">GH₵ 329,549.75</p>
+</div>
+</div>
+</div>
+<!-- Circular Progress -->
+<div class="relative w-40 h-40 flex items-center justify-center">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-surface-container-highest stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-width="8"></circle>
+<circle class="text-primary stroke-current progress-ring__circle" cx="50" cy="50" fill="transparent" r="40" stroke-dasharray="251.2" stroke-dashoffset="57.77" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-data-display text-headline-md font-bold text-primary">77%</span>
+<span class="text-label-sm text-text-secondary">Utilized</span>
+</div>
+</div>
+<!-- Abstract Decorative Element -->
+<div class="absolute -bottom-8 -right-8 opacity-5">
+<span class="material-symbols-outlined text-[160px] text-primary">account_balance</span>
+</div>
+</div>
+<!-- Mini Insights Card -->
+<div class="col-span-4 grid grid-rows-2 gap-md">
+<div class="bg-card rounded-xl p-md shadow-sm flex items-center justify-between border border-outline-variant/30">
+<div>
+<p class="text-label-sm text-text-secondary">Critical Thresholds</p>
+<p class="font-headline-md text-danger">3 Over-Budget</p>
+</div>
+<span class="material-symbols-outlined text-danger text-[32px]">warning</span>
+</div>
+<div class="bg-gold-muted rounded-xl p-md shadow-sm flex items-center justify-between border border-secondary-fixed/50">
+<div>
+<p class="text-label-sm text-on-secondary-container">Upcoming Review</p>
+<p class="font-headline-md text-on-secondary-container">15 Days Left</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-[32px]">event</span>
+</div>
+</div>
+</div>
+<!-- Budget Table Container -->
+<div class="bg-card rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Category</th>
+<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Budgeted (GH₵)</th>
+<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Spent (GH₵)</th>
+<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Remaining (GH₵)</th>
+<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-center" style="width: 200px;">% Used</th>
+</tr>
+</thead>
+<!-- INCOME BUDGET -->
+<tbody class="group/section">
+<tr class="bg-surface-container-highest/30 cursor-pointer hover:bg-surface-container-highest transition-colors" onclick="toggleSection('income-rows')">
+<td class="px-lg py-3" colspan="5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary section-chevron transition-transform duration-200" id="income-chevron">expand_more</span>
+<span class="font-headline-md text-primary">Income Budget</span>
+</div>
+</td>
+</tr>
+<tr class="row-hover border-b border-outline-variant/30 income-rows">
+<td class="px-lg py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-text-secondary">church</span>
+<span>Tithe &amp; Offertory</span>
+</div>
+</td>
+<td class="px-lg py-4 font-data-label text-on-surface budget-cell">800,000.00</td>
+<td class="px-lg py-4 font-data-label text-on-surface">620,000.00</td>
+<td class="px-lg py-4 font-data-label text-success">180,000.00</td>
+<td class="px-lg py-4">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-success rounded-full" style="width: 77.5%;"></div>
+</div>
+<span class="text-label-sm font-bold text-text-secondary">77%</span>
+</div>
+</td>
+</tr>
+<tr class="row-hover border-b border-outline-variant/30 income-rows">
+<td class="px-lg py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-text-secondary">volunteer_activism</span>
+<span>Special Donations</span>
+</div>
+</td>
+<td class="px-lg py-4 font-data-label text-on-surface budget-cell">200,000.00</td>
+<td class="px-lg py-4 font-data-label text-on-surface">195,000.00</td>
+<td class="px-lg py-4 font-data-label text-warning">5,000.00</td>
+<td class="px-lg py-4 warning-budget-tint">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-warning rounded-full" style="width: 97.5%;"></div>
+</div>
+<span class="text-label-sm font-bold text-warning">97%</span>
+</div>
+</td>
+</tr>
+</tbody>
+<!-- EXPENSE BUDGET -->
+<tbody class="group/section">
+<tr class="bg-surface-container-highest/30 cursor-pointer hover:bg-surface-container-highest transition-colors" onclick="toggleSection('expense-rows')">
+<td class="px-lg py-3 border-t border-outline-variant" colspan="5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary section-chevron transition-transform duration-200" id="expense-chevron">expand_more</span>
+<span class="font-headline-md text-primary">Expense Budget</span>
+</div>
+</td>
+</tr>
+<tr class="row-hover border-b border-outline-variant/30 expense-rows">
+<td class="px-lg py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-text-secondary">home_repair_service</span>
+<span>Property Maintenance</span>
+</div>
+</td>
+<td class="px-lg py-4 font-data-label text-on-surface budget-cell">150,000.00</td>
+<td class="px-lg py-4 font-data-label text-error">162,500.00</td>
+<td class="px-lg py-4 font-data-label text-error">-12,500.00</td>
+<td class="px-lg py-4 over-budget-tint">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 100%;"></div>
+</div>
+<span class="text-label-sm font-bold text-error">108%</span>
+</div>
+</td>
+</tr>
+<tr class="row-hover border-b border-outline-variant/30 expense-rows">
+<td class="px-lg py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-text-secondary">groups</span>
+<span>Clerical Stipends</span>
+</div>
+</td>
+<td class="px-lg py-4 font-data-label text-on-surface budget-cell">250,000.00</td>
+<td class="px-lg py-4 font-data-label text-error">125,000.00</td>
+<td class="px-lg py-4 font-data-label text-success">125,000.00</td>
+<td class="px-lg py-4">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-success rounded-full" style="width: 50%;"></div>
+</div>
+<span class="text-label-sm font-bold text-text-secondary">50%</span>
+</div>
+</td>
+</tr>
+<tr class="row-hover border-b border-outline-variant/30 expense-rows">
+<td class="px-lg py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-text-secondary">school</span>
+<span>Education Fund</span>
+</div>
+</td>
+<td class="px-lg py-4 font-data-label text-on-surface budget-cell">50,000.00</td>
+<td class="px-lg py-4 font-data-label text-error">43,500.00</td>
+<td class="px-lg py-4 font-data-label text-warning">6,500.00</td>
+<td class="px-lg py-4 warning-budget-tint">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-warning rounded-full" style="width: 87%;"></div>
+</div>
+<span class="text-label-sm font-bold text-warning">87%</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-lg bg-surface-container-low flex justify-between items-center">
+<p class="text-label-sm text-text-secondary">Last updated: Today at 09:42 AM by Admin</p>
+<div class="flex items-center gap-md">
+<button class="px-4 py-2 border border-outline text-on-surface-variant rounded-lg font-label-md hover:bg-surface-variant transition-colors">Export Report</button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-md shadow hover:bg-primary-light transition-all">Publish Budget</button>
+</div>
+</div>
+</div>
+</main>
+<script>
+        function toggleSection(className) {
+            const rows = document.querySelectorAll('.' + className);
+            const chevron = document.getElementById(className.split('-')[0] + '-chevron');
+            
+            rows.forEach(row => {
+                row.classList.toggle('hidden');
+            });
+            
+            if (chevron.style.transform === 'rotate(-90deg)') {
+                chevron.style.transform = 'rotate(0deg)';
+            } else {
+                chevron.style.transform = 'rotate(-90deg)';
+            }
+        }
+
+        // Inline Editing Logic
+        const toggleEditBtn = document.getElementById('toggleEdit');
+        const budgetCells = document.querySelectorAll('.budget-cell');
+        let isEditing = false;
+
+        toggleEditBtn.addEventListener('click', () => {
+            isEditing = !isEditing;
+            
+            if (isEditing) {
+                toggleEditBtn.innerHTML = `
+                    <span class="material-symbols-outlined text-[18px]">save</span>
+                    <span>Save Changes</span>
+                `;
+                toggleEditBtn.classList.replace('bg-primary', 'bg-success');
+                
+                budgetCells.forEach(cell => {
+                    cell.setAttribute('contenteditable', 'true');
+                    cell.classList.add('bg-primary-muted', 'border', 'border-primary-light/30', 'rounded-sm', 'outline-none', 'ring-2', 'ring-primary-light/10');
+                });
+            } else {
+                toggleEditBtn.innerHTML = `
+                    <span class="material-symbols-outlined text-[18px]">edit_note</span>
+                    <span>Set/Edit Budget</span>
+                `;
+                toggleEditBtn.classList.replace('bg-success', 'bg-primary');
+                
+                budgetCells.forEach(cell => {
+                    cell.setAttribute('contenteditable', 'false');
+                    cell.classList.remove('bg-primary-muted', 'border', 'border-primary-light/30', 'rounded-sm', 'outline-none', 'ring-2', 'ring-primary-light/10');
+                    // Add micro-feedback on save
+                    cell.classList.add('bg-success/10');
+                    setTimeout(() => cell.classList.remove('bg-success/10'), 1000);
+                });
+            }
+        });
+
+        // Initialize chevrons
+        document.addEventListener('DOMContentLoaded', () => {
+            const chevrons = document.querySelectorAll('.section-chevron');
+            chevrons.forEach(c => c.style.transform = 'rotate(0deg)');
+        });
+    </script>
+</body></html>

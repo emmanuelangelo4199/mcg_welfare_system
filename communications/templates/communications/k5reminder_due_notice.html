@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Reminders &amp; Automated Notices</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#F8F7F5",
+                        "surface-container-highest": "#e9e1dd",
+                        "primary-fixed": "#ffdadb",
+                        "on-secondary-fixed": "#251a00",
+                        "primary": "#5c0219",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "text-secondary": "#6B7280",
+                        "warning": "#D97706",
+                        "on-surface": "#1e1b19",
+                        "inverse-on-surface": "#f7efeb",
+                        "on-primary-fixed": "#40000e",
+                        "tertiary-fixed-dim": "#c7c6c5",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "surface-container": "#f4ece8",
+                        "info": "#2563EB",
+                        "outline-variant": "#dcc0c1",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#e0d8d5",
+                        "on-tertiary-container": "#adadab",
+                        "on-primary-container": "#ff8a95",
+                        "primary-light": "#A3283F",
+                        "on-background": "#1e1b19",
+                        "surface-bright": "#fff8f5",
+                        "inverse-surface": "#33302d",
+                        "primary-muted": "#F5EAEC",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#eec04f",
+                        "success": "#16A34A",
+                        "secondary-fixed": "#ffdf9a",
+                        "gold-muted": "#FDF6E3",
+                        "on-primary-fixed-variant": "#832233",
+                        "primary-container": "#7b1c2d",
+                        "outline": "#897172",
+                        "background": "#fff8f5",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#fece5b",
+                        "tertiary-container": "#404140",
+                        "secondary": "#775a00",
+                        "on-surface-variant": "#564243",
+                        "surface-container-low": "#faf2ee",
+                        "on-tertiary-fixed-variant": "#464746",
+                        "surface-tint": "#a33a49",
+                        "surface-variant": "#e9e1dd",
+                        "inverse-primary": "#ffb2b7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#eee7e3",
+                        "on-tertiary-fixed": "#1a1c1b",
+                        "danger": "#DC2626",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#2a2b2a",
+                        "card": "#FFFFFF",
+                        "tertiary-fixed": "#e3e2e0",
+                        "border": "#E4E2DD",
+                        "primary-fixed-dim": "#ffb2b7",
+                        "on-secondary-container": "#745700"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "data-label": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "data-display": ["JetBrains Mono"],
+                        "headline-lg": ["Lora"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff8f5;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+        .sidebar-container {
+            width: 280px;
+            flex-shrink: 0;
+        }
+        .custom-toggle:checked + .toggle-slider {
+            background-color: #5c0219;
+        }
+        .custom-toggle:checked + .toggle-slider:before {
+            transform: translateX(20px);
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<div class="flex min-h-screen">
+<!-- Sidebar Component (Shared - Adapted to Layout) -->
+<aside class="sidebar-container border-r border-outline-variant bg-primary-container hidden md:flex flex-col w-[256px]">
+<div class="p-6 flex flex-col gap-8 h-full">
+<!-- Admin Header -->
+<div class="flex flex-col gap-2 mb-4"><div class="flex items-center gap-3"><div class="size-10 bg-white rounded-lg flex items-center justify-center text-primary font-bold text-xl">MCG</div><div class="flex flex-col"><h1 class="text-white text-sm font-bold leading-tight">Methodist Church Ghana</h1><p class="text-white/70 text-[10px] font-medium uppercase tracking-wider">MCG-SMS</p></div></div></div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-2"><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#"><span class="material-symbols-outlined">grid_view</span><p class="text-sm font-medium">Dashboard</p></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#"><span class="material-symbols-outlined">groups</span><p class="text-sm font-medium">Members</p></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#"><span class="material-symbols-outlined">church</span><p class="text-sm font-medium">Classes</p></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#"><span class="material-symbols-outlined">account_tree</span><p class="text-sm font-medium">Organisations</p></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#"><span class="material-symbols-outlined">event</span><p class="text-sm font-medium">Services</p></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#"><span class="material-symbols-outlined">fact_check</span><p class="text-sm font-medium">Attendance</p></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#"><span class="material-symbols-outlined">payments</span><p class="text-sm font-medium">Finance</p></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#"><span class="material-symbols-outlined">groups_2</span><p class="text-sm font-medium">Meetings</p></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#"><span class="material-symbols-outlined">volunteer_activism</span><p class="text-sm font-medium">Welfare</p></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-r-lg bg-white/10 text-white font-semibold border-l-[3px] border-secondary-fixed" href="#"><span class="material-symbols-outlined">campaign</span><p class="text-sm">Comms</p></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#"><span class="material-symbols-outlined">assessment</span><p class="text-sm font-medium">Reports</p></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#"><span class="material-symbols-outlined">settings</span><p class="text-sm font-medium">Settings</p></a></nav>
+<!-- Bottom Illustration Space -->
+<div class="mt-auto rounded-xl bg-white/5 p-4 relative overflow-hidden border border-white/10">
+<p class="text-[10px] font-bold text-white/50 uppercase tracking-widest mb-1">System Health</p>
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-success"></div>
+<p class="text-xs text-white/90 font-medium">All automations active</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto bg-background">
+<!-- Breadcrumbs & Header -->
+<header class="max-w-6xl mx-auto px-6 py-8">
+<nav class="flex items-center gap-2 text-sm font-medium text-on-surface-variant mb-6">
+<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Comms</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-bold">Reminders</span>
+</nav>
+<h2 class="text-headline-lg text-primary mb-2">Reminders &amp; Automated Notices</h2>
+<p class="text-on-surface-variant max-w-2xl">Configure automated messaging for upcoming events, membership dues, and internal meetings.</p>
+</header>
+<div class="max-w-6xl mx-auto px-6 pb-20 space-y-8">
+<!-- Section 1: Meeting Reminders -->
+<section class="bg-card rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-6 border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-primary-muted p-3 rounded-lg text-primary">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<div>
+<h3 class="text-headline-md text-on-surface">Meeting Reminders</h3>
+<p class="text-body-md text-on-surface-variant">Automated alerts for scheduled committee meetings.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer custom-toggle" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-4">
+<label class="block text-label-md text-on-surface mb-2">Send before (days)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-on-surface focus:ring-primary focus:border-primary" type="number" value="2">
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-on-surface-variant">days before</span>
+</div>
+</div>
+<div class="lg:col-span-8">
+<label class="block text-label-md text-on-surface mb-2">Template Message</label>
+<textarea class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-on-surface focus:ring-primary focus:border-primary placeholder:text-on-surface-variant" placeholder="Write your reminder template here..." rows="4">{MeetingName} is scheduled for {Date} at {Time}. Please review the attached agenda before joining.</textarea>
+<p class="mt-2 text-xs text-on-surface-variant">Supported variables: {MeetingName}, {Date}, {Time}, {Location}</p>
+</div>
+</div>
+<div class="px-6 py-4 bg-surface-container-low flex justify-end">
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-primary-light transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                        Save Meeting Reminder Settings
+                    </button>
+</div>
+</section>
+<!-- Section 2: Dues Reminders -->
+<section class="bg-card rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-6 border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-secondary-fixed p-3 rounded-lg text-secondary">
+<span class="material-symbols-outlined">request_quote</span>
+</div>
+<div>
+<h3 class="text-headline-md text-on-surface">Dues Reminders</h3>
+<p class="text-body-md text-on-surface-variant">Monthly notices for subscription and membership fees.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer custom-toggle" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-4 space-y-4">
+<div>
+<label class="block text-label-md text-on-surface mb-2">Send on day of the month</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-on-surface focus:ring-primary focus:border-primary" type="number" value="25">
+</div>
+<div class="bg-surface-container p-4 rounded-lg flex gap-3">
+<span class="material-symbols-outlined text-primary-light text-[20px]">info</span>
+<p class="text-xs text-on-surface-variant">Applies to organisations with active dues schedules. Notifications are dispatched at 09:00 AM UTC.</p>
+</div>
+</div>
+<div class="lg:col-span-8">
+<label class="block text-label-md text-on-surface mb-2">Dues Template</label>
+<textarea class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-on-surface focus:ring-primary focus:border-primary placeholder:text-on-surface-variant" placeholder="Write your dues notice here..." rows="4">Hello {UserName}, this is a reminder that your monthly dues for {Organisation} are due on the {DueDate}. Total amount: {Amount}.</textarea>
+<p class="mt-2 text-xs text-on-surface-variant">Supported variables: {UserName}, {Organisation}, {DueDate}, {Amount}</p>
+</div>
+</div>
+<div class="px-6 py-4 bg-surface-container-low flex justify-end">
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-primary-light transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                        Save Dues Reminder Settings
+                    </button>
+</div>
+</section>
+<!-- Section 3: Programme Reminders -->
+<section class="bg-card rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-6 border-b border-outline-variant">
+<div class="flex items-center gap-4">
+<div class="bg-tertiary-fixed p-3 rounded-lg text-tertiary">
+<span class="material-symbols-outlined">event_note</span>
+</div>
+<div>
+<h3 class="text-headline-md text-on-surface">Programme Reminders</h3>
+<p class="text-body-md text-on-surface-variant">Upcoming events and manual notification triggers.</p>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container text-label-sm text-on-surface-variant border-b border-outline-variant">
+<tr>
+<th class="px-6 py-4 uppercase">Date</th>
+<th class="px-6 py-4 uppercase">Event Name</th>
+<th class="px-6 py-4 uppercase text-center">Reminder Status</th>
+<th class="px-6 py-4 uppercase text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 text-body-md font-medium">Oct 12, 2023</td>
+<td class="px-6 py-4 text-body-md">Annual Gala Dinner</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full bg-success/10 text-success text-[12px] font-bold">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                        Sent
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary font-medium text-sm transition-colors">Resend</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 text-body-md font-medium">Oct 15, 2023</td>
+<td class="px-6 py-4 text-body-md">Youth Workshop Series</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full bg-warning/10 text-warning text-[12px] font-bold">
+<span class="material-symbols-outlined text-[16px]">pending</span>
+                                        Not Sent
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary-fixed text-primary px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-primary-container hover:text-on-primary-container transition-all">Send Reminder</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 text-body-md font-medium">Oct 20, 2023</td>
+<td class="px-6 py-4 text-body-md">Member Orientation</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full bg-warning/10 text-warning text-[12px] font-bold">
+<span class="material-symbols-outlined text-[16px]">pending</span>
+                                        Not Sent
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary-fixed text-primary px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-primary-container hover:text-on-primary-container transition-all">Send Reminder</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 bg-surface-container-low flex justify-end">
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-primary-light transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                        Save Programme Reminder Settings
+                    </button>
+</div>
+</section>
+</div>
+</main>
+</div>
+<script>
+    // Simple micro-interaction for toggle feedback
+    document.querySelectorAll('.custom-toggle').forEach(toggle => {
+        toggle.addEventListener('change', (e) => {
+            const card = e.target.closest('section');
+            if (!e.target.checked) {
+                card.classList.add('opacity-75');
+            } else {
+                card.classList.remove('opacity-75');
+            }
+        });
+    });
+
+    // Handle Save Button feedback
+    document.querySelectorAll('button').forEach(btn => {
+        if(btn.innerText.includes('Save')) {
+            btn.addEventListener('click', () => {
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span> Saving...';
+                btn.classList.add('pointer-events-none');
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">check</span> Saved Successfully';
+                    btn.classList.remove('bg-primary');
+                    btn.classList.add('bg-success');
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.classList.remove('bg-success', 'pointer-events-none');
+                        btn.classList.add('bg-primary');
+                    }, 2000);
+                }, 800);
+            });
+        }
+    });
+</script>
+
+
+</body>
+</html>

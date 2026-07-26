@@ -1,14 +1,15 @@
+<!DOCTYPE html>
 
-<!DOCTYPE html><html class="light" lang="en"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Take Attendance - MCG-SMS</title>
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <style>
@@ -141,7 +142,7 @@
 <!-- Header -->
 <div class="px-lg pb-xl border-b border-on-primary/10 mb-md flex items-center gap-md">
 <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm overflow-hidden shrink-0">
-<img class="w-full h-full object-cover" data-alt="A minimalist, professional corporate logo design suitable for a church administration system. Clean lines, dark maroon and gold colors, white background. Light mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8a0XeRLQk0w7VBrsG3ITSxE9at02_KJ3RYR466_fQXKwfieS5itLh0-UUmbtLOyDa0twcasPkJ_pCmzGbhA8BZj5D8WPCzt7iEJsW1Od37_9WA4vI12ZR-W1vu5yOf0i9LS4Z04Zc5iv6LCaghZgr1nBTRQNMVNbTqW0KB2gWcmc3YsfYtc3j8tEqgdsBwxdNjAiG5r7th6Q82lSW8WgWcznSW1orzFFYLvMsN-mwVsXqfADK2gudWmqRtigu-PgnKDtEiAe_Iwdo">
+<img class="w-full h-full object-cover" data-alt="A minimalist, professional corporate logo design suitable for a church administration system. Clean lines, dark maroon and gold colors, white background. Light mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8a0XeRLQk0w7VBrsG3ITSxE9at02_KJ3RYR466_fQXKwfieS5itLh0-UUmbtLOyDa0twcasPkJ_pCmzGbhA8BZj5D8WPCzt7iEJsW1Od37_9WA4vI12ZR-W1vu5yOf0i9LS4Z04Zc5iv6LCaghZgr1nBTRQNMVNbTqW0KB2gWcmc3YsfYtc3j8tEqgdsBwxdNjAiG5r7th6Q82lSW8WgWcznSW1orzFFYLvMsN-mwVsXqfADK2gudWmqRtigu-PgnKDtEiAe_Iwdo"/>
 </div>
 <div class="flex flex-col">
 <span class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</span>
@@ -164,11 +165,31 @@
 </a>
 </li>
 <!-- ACTIVE NAV ITEM (Classes) -->
-<li class="">
-<a class="flex items-center gap-md px-md py-sm rounded-lg border-l-[3px] border-secondary-container bg-primary-light/10 text-on-primary font-bold hover:bg-primary-light transition-colors duration-200 scale-[0.98]" href="#">
+<li class="group">
+<div class="flex items-center justify-between px-md py-sm rounded-lg bg-primary-light/10 border-l-[3px] border-secondary-container text-on-primary cursor-pointer transition-colors duration-200">
+<div class="flex items-center gap-md">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
-<span class="">Classes</span>
-</a>
+<span class="font-bold">Classes</span>
+</div>
+<span class="material-symbols-outlined text-[20px] transition-transform duration-200">expand_more</span>
+</div>
+<ul class="mt-xs ml-xl space-y-xs border-l border-on-primary/10 pl-md">
+<li>
+<a class="block py-1.5 text-label-md text-on-primary/70 hover:text-on-primary transition-colors" href="#">Class List</a>
+</li>
+<li>
+<a class="block py-1.5 text-label-md text-on-primary/70 hover:text-on-primary transition-colors" href="#">Class Detail</a>
+</li>
+<li>
+<a class="block py-1.5 text-label-md text-on-primary/70 hover:text-on-primary transition-colors" href="#">Add/Edit Class</a>
+</li>
+<li>
+<a class="block py-1.5 text-label-md text-secondary-container font-bold" href="#">Attendance Recording</a>
+</li>
+<li>
+<a class="block py-1.5 text-label-md text-on-primary/70 hover:text-on-primary transition-colors" href="#">Attendance Report</a>
+</li>
+</ul>
 </li>
 <li class="">
 <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
@@ -210,10 +231,9 @@
 <!-- Search bar on left logic from JSON (implied visual structure) -->
 <div class="relative hidden lg:block text-text-secondary focus-within:text-primary transition-colors">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-[20px]">search</span>
-<input class="pl-xl pr-md py-sm rounded-lg border-border bg-surface focus:bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all w-64 text-body-md font-body-md text-on-surface" placeholder="Global search..." type="text">
+<input class="pl-xl pr-md py-sm rounded-lg border-border bg-surface focus:bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all w-64 text-body-md font-body-md text-on-surface" placeholder="Global search..." type="text"/>
 </div>
 </div>
-
 </header>
 <!-- Page Content -->
 <main class="flex-1 p-xl max-w-7xl mx-auto w-full flex flex-col gap-lg">
@@ -245,7 +265,7 @@
 </div>
 <div class="flex-1 min-w-[200px] flex flex-col gap-xs">
 <label class="text-label-md font-label-md text-on-surface-variant" for="date-picker">Date</label>
-<input class="w-full bg-surface border border-border rounded-lg px-md py-sm text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" id="date-picker" type="date" value="2023-10-24">
+<input class="w-full bg-surface border border-border rounded-lg px-md py-sm text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" id="date-picker" type="date" value="2023-10-24"/>
 </div>
 <div class="flex-none">
 <button class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md text-label-md hover:bg-primary-light transition-colors shadow-sm flex items-center gap-sm">
@@ -262,7 +282,7 @@
 <div class="p-lg border-b border-border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md bg-surface-container-lowest">
 <div class="relative w-full sm:w-64 text-text-secondary focus-within:text-primary transition-colors">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-[20px]">search</span>
-<input class="w-full pl-xl pr-md py-sm rounded-lg border-border bg-surface focus:bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-body-md font-body-md text-on-surface" id="memberSearch" placeholder="Search members..." type="text">
+<input class="w-full pl-xl pr-md py-sm rounded-lg border-border bg-surface focus:bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-body-md font-body-md text-on-surface" id="memberSearch" placeholder="Search members..." type="text"/>
 </div>
 <div class="flex items-center gap-md text-label-md font-label-md">
 <button class="text-primary hover:text-primary-light transition-colors" onclick="toggleAll(true)">Check All</button>
@@ -276,9 +296,9 @@
 <!-- List Item 1 -->
 <li class="hover:bg-surface-container-low transition-colors group cursor-pointer" onclick="toggleCheckbox('check1')">
 <label class="flex items-center gap-md p-lg cursor-pointer w-full">
-<input checked="" class="w-5 h-5 rounded border-border text-primary focus:ring-primary transition-colors cursor-pointer" id="check1" onclick="event.stopPropagation()" type="checkbox">
+<input checked="" class="w-5 h-5 rounded border-border text-primary focus:ring-primary transition-colors cursor-pointer" id="check1" onclick="event.stopPropagation()" type="checkbox"/>
 <div class="w-10 h-10 rounded-full overflow-hidden bg-surface-variant shrink-0 border border-border/50">
-<img class="w-full h-full object-cover" data-alt="Portrait of an older Ghanaian man with grey hair wearing a traditional patterned shirt. Friendly expression, bright natural lighting, professional headshot style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD55-GdghWgozzq8kJZ-qKMaaFi-vOrmpuXhsH71fx1ECE2OcYoeIZFSVz22-XhQjeVsYzjSPuWQ71XAgTs_d4Oj90-PAFSnDBTTR1fCYK60MGR4iFRaav5y_ekxkpYGpwQCLP5RgGJxQ05wpI7m07-6nfBWeVeW2ZXhmAb45soM8NZvENKK6B0vP7xna-zqFK6LByXRFzW7QFgKh_1Na1FSsl8VTqF2h19BQ0pM2EMqfq_RXCSohFRUBuVimqCGgp-TmZSjjaIIuId">
+<img class="w-full h-full object-cover" data-alt="Portrait of an older Ghanaian man with grey hair wearing a traditional patterned shirt. Friendly expression, bright natural lighting, professional headshot style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD55-GdghWgozzq8kJZ-qKMaaFi-vOrmpuXhsH71fx1ECE2OcYoeIZFSVz22-XhQjeVsYzjSPuWQ71XAgTs_d4Oj90-PAFSnDBTTR1fCYK60MGR4iFRaav5y_ekxkpYGpwQCLP5RgGJxQ05wpI7m07-6nfBWeVeW2ZXhmAb45soM8NZvENKK6B0vP7xna-zqFK6LByXRFzW7QFgKh_1Na1FSsl8VTqF2h19BQ0pM2EMqfq_RXCSohFRUBuVimqCGgp-TmZSjjaIIuId"/>
 </div>
 <div class="flex-1 min-w-0">
 <p class="text-body-lg font-body-lg text-on-surface font-medium truncate m-0">Kwame Mensah</p>
@@ -289,9 +309,9 @@
 <!-- List Item 2 -->
 <li class="hover:bg-surface-container-low transition-colors group cursor-pointer" onclick="toggleCheckbox('check2')">
 <label class="flex items-center gap-md p-lg cursor-pointer w-full">
-<input checked="" class="w-5 h-5 rounded border-border text-primary focus:ring-primary transition-colors cursor-pointer" id="check2" onclick="event.stopPropagation()" type="checkbox">
+<input checked="" class="w-5 h-5 rounded border-border text-primary focus:ring-primary transition-colors cursor-pointer" id="check2" onclick="event.stopPropagation()" type="checkbox"/>
 <div class="w-10 h-10 rounded-full overflow-hidden bg-surface-variant shrink-0 border border-border/50">
-<img class="w-full h-full object-cover" data-alt="Portrait of a young Ghanaian woman with braided hair, wearing a neat blouse. Warm smile, soft studio lighting, professional corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-6O2XUhkalv3k9_Tu5q9kykZY6WnRxJ6S8RqT_wUsOg8h9NhTuP204RjbML6IyCfco6pKIRNwDCoq3tFNil3d-D0y-s0xP9ERn_8F-0C8nW8OvgaAs22WxCdE99CzCyOWMH-LTuvHtVeRoxtWY9U_vw-1QCP6ubXw_GH5XnoRVQObGadtK-PZxR5u4fi2KCmPv2gqso20jwQ7qJQcGPiCymxnSpHulE-g-g31rhTa6Qq6Ul4RodtJRBmii44QQRWatsOjlXZvHuT1">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young Ghanaian woman with braided hair, wearing a neat blouse. Warm smile, soft studio lighting, professional corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-6O2XUhkalv3k9_Tu5q9kykZY6WnRxJ6S8RqT_wUsOg8h9NhTuP204RjbML6IyCfco6pKIRNwDCoq3tFNil3d-D0y-s0xP9ERn_8F-0C8nW8OvgaAs22WxCdE99CzCyOWMH-LTuvHtVeRoxtWY9U_vw-1QCP6ubXw_GH5XnoRVQObGadtK-PZxR5u4fi2KCmPv2gqso20jwQ7qJQcGPiCymxnSpHulE-g-g31rhTa6Qq6Ul4RodtJRBmii44QQRWatsOjlXZvHuT1"/>
 </div>
 <div class="flex-1 min-w-0">
 <p class="text-body-lg font-body-lg text-on-surface font-medium truncate m-0">Ama Osei</p>
@@ -302,9 +322,9 @@
 <!-- List Item 3 -->
 <li class="hover:bg-surface-container-low transition-colors group cursor-pointer" onclick="toggleCheckbox('check3')">
 <label class="flex items-center gap-md p-lg cursor-pointer w-full">
-<input class="w-5 h-5 rounded border-border text-primary focus:ring-primary transition-colors cursor-pointer" id="check3" onclick="event.stopPropagation()" type="checkbox">
+<input class="w-5 h-5 rounded border-border text-primary focus:ring-primary transition-colors cursor-pointer" id="check3" onclick="event.stopPropagation()" type="checkbox"/>
 <div class="w-10 h-10 rounded-full overflow-hidden bg-surface-variant shrink-0 border border-border/50">
-<img class="w-full h-full object-cover" data-alt="Portrait of a middle-aged Ghanaian man wearing glasses and a suit jacket. Serious but approachable expression. Crisp lighting, plain background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxU8U7wCJcHrmDOEzQ9cOgVYSc4BkPKoOKB0YVFi0RS7Sm3CNfwUuG7hy_3isKNFHZAfIqdQL3dLqB_mIPCT3oLGKi4k7eR4wutbiNHdz5IQy_8uYtoDT4Ebxetq0JVfU4O-LcD5dc_RpYDW3NzvsMqBl0h8ydvEqpHOafLXFYzOinBMGcQvSzwthzpkwJfYeh9_5VuYpqNZ9UTNCtGJ-_mtAQaBhiGKXXEDDakji4SWoOiPqzDBzSIJPymd9bEx8jR8GE9qEJnrEM">
+<img class="w-full h-full object-cover" data-alt="Portrait of a middle-aged Ghanaian man wearing glasses and a suit jacket. Serious but approachable expression. Crisp lighting, plain background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxU8U7wCJcHrmDOEzQ9cOgVYSc4BkPKoOKB0YVFi0RS7Sm3CNfwUuG7hy_3isKNFHZAfIqdQL3dLqB_mIPCT3oLGKi4k7eR4wutbiNHdz5IQy_8uYtoDT4Ebxetq0JVfU4O-LcD5dc_RpYDW3NzvsMqBl0h8ydvEqpHOafLXFYzOinBMGcQvSzwthzpkwJfYeh9_5VuYpqNZ9UTNCtGJ-_mtAQaBhiGKXXEDDakji4SWoOiPqzDBzSIJPymd9bEx8jR8GE9qEJnrEM"/>
 </div>
 <div class="flex-1 min-w-0">
 <p class="text-body-lg font-body-lg text-on-surface font-medium truncate m-0">Kofi Annan</p>
@@ -318,7 +338,7 @@
 <!-- List Item 4 -->
 <li class="hover:bg-surface-container-low transition-colors group cursor-pointer" onclick="toggleCheckbox('check4')">
 <label class="flex items-center gap-md p-lg cursor-pointer w-full">
-<input checked="" class="w-5 h-5 rounded border-border text-primary focus:ring-primary transition-colors cursor-pointer" id="check4" onclick="event.stopPropagation()" type="checkbox">
+<input checked="" class="w-5 h-5 rounded border-border text-primary focus:ring-primary transition-colors cursor-pointer" id="check4" onclick="event.stopPropagation()" type="checkbox"/>
 <div class="w-10 h-10 rounded-full overflow-hidden bg-surface-variant shrink-0 border border-border/50 flex items-center justify-center text-primary-light font-bold text-lg">
                                         EA
                                     </div>
@@ -331,7 +351,7 @@
 <!-- List Item 5 -->
 <li class="hover:bg-surface-container-low transition-colors group cursor-pointer" onclick="toggleCheckbox('check5')">
 <label class="flex items-center gap-md p-lg cursor-pointer w-full">
-<input class="w-5 h-5 rounded border-border text-primary focus:ring-primary transition-colors cursor-pointer" id="check5" onclick="event.stopPropagation()" type="checkbox">
+<input class="w-5 h-5 rounded border-border text-primary focus:ring-primary transition-colors cursor-pointer" id="check5" onclick="event.stopPropagation()" type="checkbox"/>
 <div class="w-10 h-10 rounded-full overflow-hidden bg-surface-variant shrink-0 border border-border/50 flex items-center justify-center text-primary-light font-bold text-lg">
                                         YB
                                     </div>
@@ -452,7 +472,4 @@
             });
         });
     </script>
-
-
-
 </body></html>

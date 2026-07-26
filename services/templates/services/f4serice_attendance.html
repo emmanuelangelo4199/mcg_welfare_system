@@ -1,11 +1,13 @@
-<!DOCTYPE html><html class="light" lang="en"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Service Attendance Recording - MCG-SMS</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet"/>
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -136,29 +138,49 @@
 <h1 class="font-headline-md text-headline-md text-secondary-fixed font-bold">Methodist Church Ghana</h1>
 <p class="font-label-sm text-label-sm opacity-80">Society Management System</p>
 </div>
-<nav class="flex-1 mt-md">
-<div class="px-lg py-sm font-label-md text-label-md opacity-60 uppercase tracking-wider">Main Navigation</div>
+<nav class="flex-1 mt-md"><div class="px-lg py-sm font-label-md text-label-md opacity-60 uppercase tracking-wider">Main Navigation</div>
 <a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
 <span class="material-symbols-outlined">dashboard</span>
 <span class="font-label-md text-label-md">Dashboard</span>
 </a>
-<a class="flex items-center gap-md border-l-4 border-secondary-container bg-primary-light/20 text-secondary-fixed py-md px-lg translate-x-1 duration-200" href="#">
+<!-- Services Module (Expanded) -->
+<div class="flex flex-col">
+<button class="flex items-center justify-between w-full text-secondary-fixed py-md px-lg bg-primary-light/20 border-l-4 border-secondary-container transition-all duration-200">
+<div class="flex items-center gap-md">
 <span class="material-symbols-outlined">church</span>
-<span class="font-label-md text-label-md">Classes</span>
-</a>
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+<span class="font-label-md text-label-md">Services</span>
+</div>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+<div class="flex flex-col bg-primary-container/50">
+<a class="pl-12 py-2 pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Services &amp; Events Calendar</a>
+<a class="pl-12 py-2 pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Add / Edit Service Form</a>
+<a class="pl-12 py-2 pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Service Detail Screen</a>
+<a class="pl-12 py-2 pr-lg text-secondary-fixed font-bold bg-primary-light/10 text-label-md transition-colors" href="#">Service Attendance Recording</a>
+<a class="pl-12 py-2 pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Upcoming Events Calendar</a>
+</div>
+</div>
+<a class="flex items-center justify-between w-full text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+<div class="flex items-center gap-md">
 <span class="material-symbols-outlined">groups</span>
 <span class="font-label-md text-label-md">Members</span>
+</div>
+<span class="material-symbols-outlined">chevron_right</span>
 </a>
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+<a class="flex items-center justify-between w-full text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+<div class="flex items-center gap-md">
 <span class="material-symbols-outlined">payments</span>
 <span class="font-label-md text-label-md">Finance</span>
+</div>
+<span class="material-symbols-outlined">chevron_right</span>
 </a>
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+<a class="flex items-center justify-between w-full text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+<div class="flex items-center gap-md">
 <span class="material-symbols-outlined">assessment</span>
 <span class="font-label-md text-label-md">Reports</span>
-</a>
-</nav>
+</div>
+<span class="material-symbols-outlined">chevron_right</span>
+</a></nav>
 <div class="p-lg">
 <button class="w-full py-md px-lg bg-secondary-container text-primary font-bold rounded-lg flex items-center justify-center gap-md hover:opacity-90 transition-all">
 <span class="material-symbols-outlined">add_circle</span>
@@ -194,7 +216,6 @@
 </div>
 </div>
 </div>
-
 </header>
 <div class="pt-[88px] px-lg max-w-6xl mx-auto">
 <!-- Page Header -->
@@ -219,7 +240,7 @@
 <div class="col-span-12 md:col-span-6 lg:col-span-5">
 <label class="block font-label-md text-label-md text-on-surface-variant mb-sm">Service Date</label>
 <div class="relative">
-<input class="w-full h-12 pl-12 pr-md bg-surface border border-border rounded-lg font-body-md text-body-md focus:ring-2 focus:ring-primary focus:border-primary" type="date" value="2023-10-22">
+<input class="w-full h-12 pl-12 pr-md bg-surface border border-border rounded-lg font-body-md text-body-md focus:ring-2 focus:ring-primary focus:border-primary" type="date" value="2023-10-22"/>
 <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-primary">calendar_today</span>
 </div>
 </div>
@@ -229,7 +250,7 @@
 <h3 class="font-label-md text-label-md font-bold text-on-surface-variant mb-md uppercase tracking-widest">Select Recording Method</h3>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
 <label class="cursor-pointer group">
-<input checked="" class="hidden radio-card-input" name="method" onchange="toggleMode('count')" type="radio" value="count">
+<input checked="" class="hidden radio-card-input" name="method" onchange="toggleMode('count')" type="radio" value="count"/>
 <div class="radio-card-content p-lg bg-card border-2 border-transparent rounded-xl card-elevation flex items-center gap-lg hover:border-outline-variant transition-all">
 <div class="w-16 h-16 rounded-full bg-primary-muted flex items-center justify-center text-primary">
 <span class="material-symbols-outlined text-[32px]">calculate</span>
@@ -241,7 +262,7 @@
 </div>
 </label>
 <label class="cursor-pointer group">
-<input class="hidden radio-card-input" name="method" onchange="toggleMode('named')" type="radio" value="named">
+<input class="hidden radio-card-input" name="method" onchange="toggleMode('named')" type="radio" value="named"/>
 <div class="radio-card-content p-lg bg-card border-2 border-transparent rounded-xl card-elevation flex items-center gap-lg hover:border-outline-variant transition-all">
 <div class="w-16 h-16 rounded-full bg-gold-muted flex items-center justify-center text-secondary">
 <span class="material-symbols-outlined text-[32px]">checklist_rtl</span>
@@ -269,40 +290,40 @@
 <div class="grid grid-cols-2 sm:grid-cols-3 gap-lg">
 <div class="p-md bg-surface rounded-lg border-l-4 border-primary">
 <label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Adult Men</label>
-<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0">
+<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0"/>
 </div>
 <div class="p-md bg-surface rounded-lg border-l-4 border-primary">
 <label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Adult Women</label>
-<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0">
+<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0"/>
 </div>
 <div class="p-md bg-surface rounded-lg border-l-4 border-primary">
 <label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Young Adults</label>
-<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0">
+<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0"/>
 </div>
 <div class="p-md bg-surface rounded-lg border-l-4 border-primary-light">
 <label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Teenagers</label>
-<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0">
+<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0"/>
 </div>
 <div class="p-md bg-surface rounded-lg border-l-4 border-primary-light">
 <label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Children</label>
-<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0">
+<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0"/>
 </div>
 <div class="p-md bg-surface rounded-lg border-l-4 border-secondary-container">
 <label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Visitors</label>
-<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0">
+<input class="count-input w-full bg-transparent border-0 font-data-display text-data-display text-primary focus:ring-0" min="0" oninput="updateTotal()" type="number" value="0"/>
 </div>
 </div>
 <div class="mt-lg pt-lg border-t border-border">
 <div class="flex items-start gap-md">
 <div class="flex items-center h-6">
-<input class="w-5 h-5 text-primary border-border rounded focus:ring-primary" type="checkbox">
+<input class="w-5 h-5 text-primary border-border rounded focus:ring-primary" type="checkbox"/>
 </div>
 <div class="flex flex-col">
 <span class="font-label-md text-label-md font-bold text-primary">First-time Visitors Recorded?</span>
 <p class="font-body-md text-body-md text-on-surface-variant mb-md">Check this if any of the visitors today are attending for the first time.</p>
 <div class="flex items-center gap-md">
 <span class="font-label-sm text-label-sm">How many?</span>
-<input class="w-24 h-10 px-md border border-border rounded-lg bg-surface" placeholder="0" type="number">
+<input class="w-24 h-10 px-md border border-border rounded-lg bg-surface" placeholder="0" type="number"/>
 </div>
 </div>
 </div>
@@ -329,7 +350,7 @@
 <div class="flex-1 bg-card rounded-xl card-elevation overflow-hidden flex flex-col h-[600px]">
 <div class="p-md border-b border-border bg-surface-container-low flex items-center justify-between">
 <div class="relative flex-1 max-w-md">
-<input class="w-full pl-10 pr-md py-2 border border-border rounded-full bg-card focus:ring-2 focus:ring-primary text-body-md" placeholder="Search member name or class..." type="text">
+<input class="w-full pl-10 pr-md py-2 border border-border rounded-full bg-card focus:ring-2 focus:ring-primary text-body-md" placeholder="Search member name or class..." type="text"/>
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
 </div>
 <div class="flex gap-sm ml-md">
@@ -347,7 +368,7 @@
 <div class="font-label-sm text-label-sm text-on-surface-variant">Class: Ebenezer • Adult Women</div>
 </div>
 </div>
-<input class="w-6 h-6 rounded-full text-primary border-border focus:ring-primary cursor-pointer" type="checkbox">
+<input class="w-6 h-6 rounded-full text-primary border-border focus:ring-primary cursor-pointer" type="checkbox"/>
 </div>
 <div class="flex items-center justify-between p-md hover:bg-primary-muted rounded-lg border border-transparent hover:border-primary-light/20 transition-all cursor-pointer">
 <div class="flex items-center gap-md">
@@ -357,7 +378,7 @@
 <div class="font-label-sm text-label-sm text-on-surface-variant">Class: Bethel • Adult Men</div>
 </div>
 </div>
-<input checked="" class="w-6 h-6 rounded-full text-primary border-border focus:ring-primary cursor-pointer" type="checkbox">
+<input checked="" class="w-6 h-6 rounded-full text-primary border-border focus:ring-primary cursor-pointer" type="checkbox"/>
 </div>
 <div class="flex items-center justify-between p-md hover:bg-primary-muted rounded-lg border border-transparent hover:border-primary-light/20 transition-all cursor-pointer">
 <div class="flex items-center gap-md">
@@ -367,7 +388,7 @@
 <div class="font-label-sm text-label-sm text-on-surface-variant">Class: Unity • Young Adult</div>
 </div>
 </div>
-<input class="w-6 h-6 rounded-full text-primary border-border focus:ring-primary cursor-pointer" type="checkbox">
+<input class="w-6 h-6 rounded-full text-primary border-border focus:ring-primary cursor-pointer" type="checkbox"/>
 </div>
 <!-- More items... -->
 <div class="flex items-center justify-between p-md hover:bg-primary-muted rounded-lg border border-transparent hover:border-primary-light/20 transition-all cursor-pointer opacity-70">
@@ -378,7 +399,7 @@
 <div class="font-label-sm text-label-sm text-on-surface-variant">Class: Bethel • Teenager</div>
 </div>
 </div>
-<input class="w-6 h-6 rounded-full text-primary border-border focus:ring-primary cursor-pointer" type="checkbox">
+<input class="w-6 h-6 rounded-full text-primary border-border focus:ring-primary cursor-pointer" type="checkbox"/>
 </div>
 </div>
 </div>
@@ -516,6 +537,4 @@
             }
         });
     </script>
-
-
 </body></html>

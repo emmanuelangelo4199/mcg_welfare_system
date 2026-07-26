@@ -1,11 +1,13 @@
-<!DOCTYPE html><html class="light" lang="en"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Add / Edit Organisation Form</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -142,7 +144,58 @@
         }
     </style>
 </head>
-<body class="bg-surface text-on-surface font-body-md min-h-screen flex">
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex"><aside class="w-sidebar-width bg-primary min-h-screen flex flex-col border-r border-primary-light/20">
+<div class="p-lg flex items-center gap-md border-b border-primary-light/10">
+<div class="w-8 h-8 bg-secondary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container">church</span>
+</div>
+<span class="font-headline-md text-on-primary">ChurchOS</span>
+</div>
+<nav class="flex-1 py-md px-sm space-y-xs overflow-y-auto">
+<div class="space-y-xs">
+<button class="w-full flex items-center justify-between p-sm rounded-lg text-on-primary/70 hover:bg-primary-light/20 transition-colors">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</div>
+</button>
+</div>
+<div class="space-y-xs">
+<button class="w-full flex items-center justify-between p-sm rounded-lg bg-primary-light/20 text-on-primary transition-colors">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md">Organisations</span>
+</div>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="pl-lg space-y-xs mt-xs">
+<a class="block p-sm rounded-lg text-on-primary/70 hover:bg-primary-light/10 font-label-md" href="#">Organisation List</a>
+<a class="block p-sm rounded-lg text-on-primary/70 hover:bg-primary-light/10 font-label-md" href="#">Organisation Detail</a>
+<a class="block p-sm rounded-lg bg-secondary-container text-on-secondary-container font-label-md" href="#">Add/Edit Organisation</a>
+<a class="block p-sm rounded-lg text-on-primary/70 hover:bg-primary-light/10 font-label-md" href="#">Attendance Recording</a>
+<a class="block p-sm rounded-lg text-on-primary/70 hover:bg-primary-light/10 font-label-md" href="#">Dues &amp; Contributions</a>
+</div>
+</div>
+<div class="space-y-xs">
+<button class="w-full flex items-center justify-between p-sm rounded-lg text-on-primary/70 hover:bg-primary-light/20 transition-colors">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md">Members</span>
+</div>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</nav>
+<div class="p-md border-t border-primary-light/10">
+<div class="flex items-center gap-sm p-sm">
+<div class="w-8 h-8 rounded-full bg-primary-light flex items-center justify-center text-on-primary font-semibold">AD</div>
+<div class="flex-1 min-w-0">
+<p class="text-label-md text-on-primary truncate">Admin User</p>
+<p class="text-label-sm text-on-primary/60 truncate">admin@church.org</p>
+</div>
+</div>
+</div>
+</aside>
 <!-- SideNavBar (Suppressed for transactional form as per "Destination" Rule) -->
 <!-- TopAppBar (Suppressed for transactional form, keeping focus on canvas) -->
 <!-- Main Canvas -->
@@ -168,7 +221,7 @@
 <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
 <div class="space-y-sm">
 <label class="block font-label-md text-label-md text-on-surface font-semibold" for="orgName">Organisation Name <span class="text-danger">*</span></label>
-<input class="w-full border border-border rounded-lg px-md py-[10px] font-body-md text-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all form-input-ring" id="orgName" placeholder="e.g. Women's Fellowship" required="" type="text" value="Men's Fellowship">
+<input class="w-full border border-border rounded-lg px-md py-[10px] font-body-md text-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all form-input-ring" id="orgName" placeholder="e.g. Women's Fellowship" required="" type="text" value="Men's Fellowship"/>
 </div>
 <div class="space-y-sm">
 <label class="block font-label-md text-label-md text-on-surface font-semibold" for="orgType">Organisation Type</label>
@@ -183,7 +236,7 @@
 <!-- Hidden Other Type Input -->
 <div class="hidden space-y-sm transition-all duration-300" id="otherTypeContainer">
 <label class="block font-label-md text-label-md text-on-surface font-semibold" for="otherType">Specify Other Type</label>
-<input class="w-full border border-border rounded-lg px-md py-[10px] font-body-md text-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all form-input-ring" id="otherType" placeholder="Enter custom type" type="text">
+<input class="w-full border border-border rounded-lg px-md py-[10px] font-body-md text-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all form-input-ring" id="otherType" placeholder="Enter custom type" type="text"/>
 </div>
 <!-- Leadership Group (Bento Grid Style layout) -->
 <div class="bg-surface p-md rounded-lg border border-border mt-lg">
@@ -201,7 +254,7 @@
 <label class="block font-label-md text-label-md text-on-surface font-semibold" for="leader">Leader</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-text-secondary" style="font-size: 18px;">search</span>
-<input class="w-full border border-border rounded-lg pl-10 pr-md py-[10px] font-body-md text-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all form-input-ring" id="leader" onblur="hideAutocomplete('leader-results')" onfocus="showAutocomplete('leader-results')" placeholder="Search members..." type="text" value="John Doe">
+<input class="w-full border border-border rounded-lg pl-10 pr-md py-[10px] font-body-md text-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all form-input-ring" id="leader" onblur="hideAutocomplete('leader-results')" onfocus="showAutocomplete('leader-results')" placeholder="Search members..." type="text" value="John Doe"/>
 </div>
 <div class="autocomplete-results" id="leader-results">
 <div class="autocomplete-item font-body-md text-body-md">John Doe</div>
@@ -213,7 +266,7 @@
 <label class="block font-label-md text-label-md text-on-surface font-semibold" for="secretary">Secretary</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-text-secondary" style="font-size: 18px;">search</span>
-<input class="w-full border border-border rounded-lg pl-10 pr-md py-[10px] font-body-md text-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all form-input-ring" id="secretary" onblur="hideAutocomplete('sec-results')" onfocus="showAutocomplete('sec-results')" placeholder="Search members..." type="text">
+<input class="w-full border border-border rounded-lg pl-10 pr-md py-[10px] font-body-md text-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all form-input-ring" id="secretary" onblur="hideAutocomplete('sec-results')" onfocus="showAutocomplete('sec-results')" placeholder="Search members..." type="text"/>
 </div>
 <div class="autocomplete-results" id="sec-results">
 <div class="autocomplete-item font-body-md text-body-md">Alice Brown</div>
@@ -225,7 +278,7 @@
 <label class="block font-label-md text-label-md text-on-surface font-semibold" for="treasurer">Treasurer</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-text-secondary" style="font-size: 18px;">search</span>
-<input class="w-full border border-border rounded-lg pl-10 pr-md py-[10px] font-body-md text-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all form-input-ring" id="treasurer" onblur="hideAutocomplete('tre-results')" onfocus="showAutocomplete('tre-results')" placeholder="Search members..." type="text">
+<input class="w-full border border-border rounded-lg pl-10 pr-md py-[10px] font-body-md text-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all form-input-ring" id="treasurer" onblur="hideAutocomplete('tre-results')" onfocus="showAutocomplete('tre-results')" placeholder="Search members..." type="text"/>
 </div>
 <div class="autocomplete-results" id="tre-results">
 <div class="autocomplete-item font-body-md text-body-md">Charlie Green</div>
@@ -252,12 +305,12 @@
 <div class="space-y-sm">
 <label class="block font-label-md text-label-md text-on-surface font-semibold" for="meetingTime">Meeting Time</label>
 <div class="relative">
-<input class="w-full border border-border rounded-lg px-md py-[10px] font-body-md text-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all form-input-ring" id="meetingTime" type="time" value="16:00">
+<input class="w-full border border-border rounded-lg px-md py-[10px] font-body-md text-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all form-input-ring" id="meetingTime" type="time" value="16:00"/>
 </div>
 </div>
 <div class="space-y-sm">
 <label class="block font-label-md text-label-md text-on-surface font-semibold" for="meetingLocation">Meeting Location</label>
-<input class="w-full border border-border rounded-lg px-md py-[10px] font-body-md text-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all form-input-ring" id="meetingLocation" placeholder="e.g. Hall A" type="text" value="Main Chapel">
+<input class="w-full border border-border rounded-lg px-md py-[10px] font-body-md text-body-md text-on-surface bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all form-input-ring" id="meetingLocation" placeholder="e.g. Hall A" type="text" value="Main Chapel"/>
 </div>
 </div>
 <!-- Description -->
@@ -270,11 +323,11 @@
 <label class="block font-label-md text-label-md text-on-surface font-semibold">Status</label>
 <div class="flex gap-lg">
 <label class="flex items-center gap-xs cursor-pointer">
-<input checked="" class="text-primary focus:ring-primary border-border h-4 w-4" name="status" type="radio" value="active">
+<input checked="" class="text-primary focus:ring-primary border-border h-4 w-4" name="status" type="radio" value="active"/>
 <span class="font-body-md text-body-md text-on-surface">Active</span>
 </label>
 <label class="flex items-center gap-xs cursor-pointer">
-<input class="text-primary focus:ring-primary border-border h-4 w-4" name="status" type="radio" value="inactive">
+<input class="text-primary focus:ring-primary border-border h-4 w-4" name="status" type="radio" value="inactive"/>
 <span class="font-body-md text-body-md text-on-surface">Inactive</span>
 </label>
 </div>

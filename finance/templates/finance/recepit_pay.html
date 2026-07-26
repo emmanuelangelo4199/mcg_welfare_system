@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MCG-SMS | Receipt &amp; Payment Vouchers</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#897172",
+                    "on-tertiary-fixed-variant": "#464746",
+                    "tertiary": "#2a2b2a",
+                    "surface-bright": "#fff8f5",
+                    "on-primary-fixed": "#40000e",
+                    "inverse-on-surface": "#f7efeb",
+                    "on-surface": "#1e1b19",
+                    "on-primary-container": "#ff8a95",
+                    "primary": "#5c0219",
+                    "primary-fixed-dim": "#ffb2b7",
+                    "on-tertiary-fixed": "#1a1c1b",
+                    "error-container": "#ffdad6",
+                    "warning": "#D97706",
+                    "text-secondary": "#6B7280",
+                    "surface-tint": "#a33a49",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#fece5b",
+                    "surface-container": "#f4ece8",
+                    "primary-light": "#A3283F",
+                    "on-secondary-fixed": "#251a00",
+                    "surface-container-highest": "#e9e1dd",
+                    "info": "#2563EB",
+                    "secondary-fixed-dim": "#eec04f",
+                    "primary-muted": "#F5EAEC",
+                    "card": "#FFFFFF",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#e0d8d5",
+                    "gold-muted": "#FDF6E3",
+                    "surface-container-low": "#faf2ee",
+                    "on-surface-variant": "#564243",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#eee7e3",
+                    "on-background": "#1e1b19",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e9e1dd",
+                    "on-secondary-fixed-variant": "#5a4300",
+                    "inverse-primary": "#ffb2b7",
+                    "tertiary-fixed-dim": "#c7c6c5",
+                    "primary-container": "#7b1c2d",
+                    "danger": "#DC2626",
+                    "tertiary-container": "#404140",
+                    "background": "#fff8f5",
+                    "secondary-fixed": "#ffdf9a",
+                    "on-tertiary-container": "#adadab",
+                    "tertiary-fixed": "#e3e2e0",
+                    "surface": "#F8F7F5",
+                    "on-secondary-container": "#745700",
+                    "border": "#E4E2DD",
+                    "success": "#16A34A",
+                    "on-primary-fixed-variant": "#832233",
+                    "secondary": "#775a00",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#33302d",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#dcc0c1",
+                    "primary-fixed": "#ffdadb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "base": "8px",
+                    "xs": "4px",
+                    "header-height": "64px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "xl": "32px",
+                    "sidebar-width": "256px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "data-label": ["JetBrains Mono"],
+                    "data-display": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Lora"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Lora"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                    "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                    "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #fff8f5;
+            font-family: 'Inter', sans-serif;
+        }
+        .sidebar-active {
+            box-shadow: inset 3px 0 0 0 #C49A2B;
+        }
+        /* Custom scrollbar for better UI feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F8F7F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dcc0c1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #897172;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Sidebar Navigation Shell -->
+<nav class="flex flex-col h-full w-sidebar-width fixed left-0 top-0 z-40 bg-primary dark:bg-primary-container shadow-md"><div class="p-lg flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-contain" data-alt="Methodist Church Ghana Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZLE202oih0S27cFcP9OBU4cc9YWlE366WQMT5dItchaZCB7Iei8oPCPQfVV-E3SXLmcodZd_mFv1XPdFngZLI_lE0RH4mUXoAYfQPK1d8oGsIXMP2NV6OiAwP6tmvhNRseE3oaQ9_Hbp3CHJt7QRcXeRcAzJL2vNzL0HA0tgs7QQPyzxX_6HN80WsuHg2sETGm4u8wJMzhcYlxfCZP8NMtq8Fqyo0iKj7wPezckgm86jVV6Z3rSbAxBDDXHutl4bMkEuV5UU5m13-"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary leading-tight">MCG-SMS</h1>
+<p class="text-[10px] text-on-primary/60 font-medium tracking-wider uppercase">Methodist Church Ghana</p>
+</div>
+</div>
+<div class="flex-1 mt-md space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<div class="space-y-1">
+<button class="w-full flex items-center justify-between px-4 py-3 bg-primary-light/20 text-on-primary border-l-[3px] border-secondary-fixed transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="font-body-md text-body-md font-bold">Finance</span>
+</div>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<div class="flex flex-col">
+<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Finance Overview</a>
+<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Record Income</a>
+<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Income Ledger</a>
+<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Record Expense</a>
+<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Expense Ledger</a>
+<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Expense Approval</a>
+<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Budget Management</a>
+<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Cashbook</a>
+<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Statutory Payments</a>
+<a class="pl-12 pr-4 py-2 bg-white/10 text-on-primary font-bold text-body-md transition-colors" href="#">Receipts &amp; Vouchers</a>
+</div>
+</div>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span class="font-body-md text-body-md">Welfare</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</div>
+<div class="mt-auto border-t border-white/10 py-md">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md text-body-md">Logout</span>
+</a>
+</div></nav>
+<!-- Top AppBar Shell -->
+<header class="flex justify-between items-center h-header-height w-full pl-[256px] pr-lg sticky top-0 z-30 bg-surface dark:bg-surface-dim shadow-sm">
+<div class="flex items-center gap-md flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Search audit trail or vouchers..." type="text"/>
+</div>
+<div class="hidden md:flex items-center gap-lg ml-md">
+<a class="text-on-surface-variant font-medium font-label-md hover:text-primary-light transition-colors" href="#">Audit Trail</a>
+<a class="text-primary font-bold font-label-md border-b-2 border-secondary" href="#">Vouchers</a>
+<a class="text-on-surface-variant font-medium font-label-md hover:text-primary-light transition-colors" href="#">Receipts</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-danger rounded-full"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container rounded-full">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-muted border border-outline-variant overflow-hidden cursor-pointer hover:opacity-80 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a professional African man in a formal white clerical collar, representing a church administrator. He has a warm, dignified expression. The background is a soft-focus interior of a modern Methodist office with warm wood tones and soft natural light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTGdHjm-nEL-_-ddT2GWHYLmSrOKC-J825S4i4lt749DjyCZJePRRztC_9J0wj3EaQyOXL5dOeli8m5oVFuv-tpdf69RruQGgRI3GcVupT58eqwR_3bj1p5JkCs0DZvV4B7BDqiXGVGcKPWrqjSfoheOFkG1x-9IMmvtA4KXBZQQHIa_ZJiPcmRw-QzxwrRZfGs8d3pviLyoFWJX0PnhqQbXxxU505UqQYiK9hyCX253SdH0Sy_ntwAha6Vf9tVLsSOJRTCqj5173I"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-sidebar-width min-h-[calc(100vh-64px)] p-xl">
+<!-- Dashboard Header -->
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Receipt &amp; Payment Voucher View</h2>
+<p class="text-on-surface-variant font-body-md">Manage and review official financial documents for the society.</p>
+</div>
+<div class="flex gap-md">
+<button class="flex items-center gap-2 px-md py-base bg-white border border-outline-variant rounded-lg text-on-surface font-label-md hover:bg-surface-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                    Filter
+                </button>
+<button class="flex items-center gap-2 px-md py-base bg-primary text-white rounded-lg text-on-surface font-label-md hover:bg-primary-light transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    New Document
+                </button>
+</div>
+</div>
+<!-- Two-Panel Layout -->
+<div class="grid grid-cols-12 gap-lg items-start">
+<!-- Left Panel: Results List (35%) -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-md h-[calc(100vh-280px)]">
+<div class="bg-white rounded-xl shadow-sm border border-outline-variant overflow-hidden flex flex-col h-full">
+<div class="p-md bg-surface-container-low border-b border-outline-variant flex justify-between items-center">
+<span class="font-label-md text-on-surface-variant">24 Records Matched</span>
+<select class="bg-transparent border-none text-label-sm font-semibold text-primary outline-none cursor-pointer">
+<option>Latest First</option>
+<option>Oldest First</option>
+</select>
+</div>
+<div class="flex-1 overflow-y-auto">
+<!-- Result Items -->
+<!-- Item 1 (Selected) -->
+<div class="p-md border-b border-outline-variant bg-gold-muted/30 border-l-4 border-secondary transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="font-data-label text-data-label text-on-surface-variant">REF: OR-2023-0842</span>
+<span class="px-2 py-0.5 rounded-full bg-success/10 text-success text-[10px] font-bold uppercase tracking-wider">Receipt</span>
+</div>
+<h3 class="font-body-md font-bold text-on-surface">Kojo Mensah Thompson</h3>
+<div class="flex justify-between items-end mt-3">
+<span class="text-label-sm text-on-surface-variant italic">12 Oct, 2023</span>
+<span class="font-data-display text-data-display text-success font-bold">GHS 1,250.00</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-md border-b border-outline-variant hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="font-data-label text-data-label text-on-surface-variant">REF: PV-2023-0112</span>
+<span class="px-2 py-0.5 rounded-full bg-info/10 text-info text-[10px] font-bold uppercase tracking-wider">Voucher</span>
+</div>
+<h3 class="font-body-md font-bold text-on-surface">Priesthood Welfare Fund</h3>
+<div class="flex justify-between items-end mt-3">
+<span class="text-label-sm text-on-surface-variant italic">11 Oct, 2023</span>
+<span class="font-data-display text-data-display text-danger font-bold">GHS 4,800.00</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-md border-b border-outline-variant hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="font-data-label text-data-label text-on-surface-variant">REF: OR-2023-0841</span>
+<span class="px-2 py-0.5 rounded-full bg-success/10 text-success text-[10px] font-bold uppercase tracking-wider">Receipt</span>
+</div>
+<h3 class="font-body-md font-bold text-on-surface">Sister Mary Afriyie</h3>
+<div class="flex justify-between items-end mt-3">
+<span class="text-label-sm text-on-surface-variant italic">10 Oct, 2023</span>
+<span class="font-data-display text-data-display text-success font-bold">GHS 500.00</span>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="p-md border-b border-outline-variant hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="font-data-label text-data-label text-on-surface-variant">REF: PV-2023-0111</span>
+<span class="px-2 py-0.5 rounded-full bg-info/10 text-info text-[10px] font-bold uppercase tracking-wider">Voucher</span>
+</div>
+<h3 class="font-body-md font-bold text-on-surface">Electricity Company of Ghana</h3>
+<div class="flex justify-between items-end mt-3">
+<span class="text-label-sm text-on-surface-variant italic">09 Oct, 2023</span>
+<span class="font-data-display text-data-display text-danger font-bold">GHS 2,145.50</span>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="p-md border-b border-outline-variant hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="font-data-label text-data-label text-on-surface-variant">REF: OR-2023-0840</span>
+<span class="px-2 py-0.5 rounded-full bg-success/10 text-success text-[10px] font-bold uppercase tracking-wider">Receipt</span>
+</div>
+<h3 class="font-body-md font-bold text-on-surface">Anonymous Donation (Bldg)</h3>
+<div class="flex justify-between items-end mt-3">
+<span class="text-label-sm text-on-surface-variant italic">08 Oct, 2023</span>
+<span class="font-data-display text-data-display text-success font-bold">GHS 10,000.00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: A5 Document Preview (65%) -->
+<div class="col-span-12 lg:col-span-8 space-y-md">
+<!-- Action Bar -->
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant flex justify-between items-center">
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-md py-2 bg-primary text-white rounded-lg text-label-md font-bold hover:bg-primary-light transition-all shadow-md active:scale-95">
+<span class="material-symbols-outlined text-[20px]">print</span>
+                            Print Document
+                        </button>
+<button class="flex items-center gap-2 px-md py-2 bg-surface-container text-on-surface font-label-md font-semibold rounded-lg hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+                            Download PDF
+                        </button>
+</div>
+<button class="flex items-center gap-2 px-md py-2 text-primary font-label-md font-bold hover:bg-primary-muted rounded-lg transition-all">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+                        Email to Payee
+                    </button>
+</div>
+<!-- A5 Document Wrapper -->
+<div class="bg-surface-dim p-xl flex justify-center overflow-auto rounded-xl border border-outline-variant">
+<!-- The Actual Document -->
+<div class="bg-white w-full max-w-[595px] aspect-[1.414/1] shadow-2xl relative overflow-hidden flex flex-col p-0">
+<!-- Top Header Band -->
+<div class="bg-primary p-6 flex justify-between items-center text-white">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 bg-white p-1 rounded">
+<img class="w-full h-full object-contain" data-alt="A clean, minimalist white graphic of the Methodist Church Ghana emblem. The emblem features a cross, an open Bible, and a torch, symbolizing faith and enlightenment. The graphic is high-contrast and professionally rendered for use on official financial stationery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9wdGMwVEBxt8iqhH9X4UrX6bxR5BFK_9y9pUAY0_Y07Ns7fDvrglzdR_MTLQXGW0rGsSxlwQiQoxpzNN2_j9f4Ux-jKjMeXeOfRKZrOlVeikDHECXmt-jsOfVA8Gg5YA08_DYz_mzY_jHmuVhsC7NiQpW4KNXfE_JZxEgdzSWd7pDeWmW5tYaHfQ8GJg7ljqx2i_bEM2-K916kw3NpPrwnh-B9xkzJhjzkZFktZNz6MNq4HNI6WNt6--UHG7EMZF07xguO0PV3eX3"/>
+</div>
+<div>
+<h2 class="font-headline-md text-[20px] font-bold leading-tight">THE METHODIST CHURCH GHANA</h2>
+<p class="text-[12px] opacity-90 font-medium">Mount Zion Society - Tema Diocese</p>
+<p class="text-[10px] opacity-75">P.O. Box 24, Community 1, Tema | Tel: +233 303 200 000</p>
+</div>
+</div>
+<div class="text-right border-l border-white/20 pl-6">
+<h1 class="text-[22px] font-black tracking-widest uppercase">Official Receipt</h1>
+<p class="text-[14px] font-bold text-secondary-fixed">No. OR-2023-0842</p>
+</div>
+</div>
+<!-- Document Body -->
+<div class="flex-1 p-8 space-y-6 relative">
+<!-- Watermark -->
+<div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none">
+<span class="text-[120px] font-black rotate-[-35deg] text-primary select-none">METHODIST</span>
+</div>
+<div class="flex justify-end">
+<div class="flex items-center gap-2 border-b-2 border-primary/10 pb-1">
+<span class="text-label-sm font-bold text-on-surface-variant uppercase">Date:</span>
+<span class="font-body-md font-semibold text-on-surface">12th October, 2023</span>
+</div>
+</div>
+<div class="grid grid-cols-[150px_1fr] items-baseline gap-4">
+<span class="text-label-md font-bold text-on-surface-variant uppercase tracking-wider">Received from:</span>
+<div class="border-b border-dotted border-on-surface-variant/40 pb-1 font-body-lg text-primary font-bold">
+                                    Mr. Kojo Mensah Thompson
+                                </div>
+</div>
+<div class="grid grid-cols-[150px_1fr] items-baseline gap-4">
+<span class="text-label-md font-bold text-on-surface-variant uppercase tracking-wider">The Sum of:</span>
+<div class="border-b border-dotted border-on-surface-variant/40 pb-1 font-semibold text-on-surface text-body-lg italic">
+                                    One Thousand Two Hundred and Fifty Ghana Cedis Only
+                                </div>
+</div>
+<div class="grid grid-cols-2 gap-8 items-start">
+<div class="space-y-4">
+<div class="flex flex-col gap-1">
+<span class="text-label-sm font-bold text-on-surface-variant uppercase">Being Payment for:</span>
+<div class="font-body-md text-on-surface p-2 bg-surface-container rounded border border-outline-variant/30 min-h-[60px]">
+                                            Tithe and Special Thanksgiving Offering (Harvest 2023)
+                                        </div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-label-sm font-bold text-on-surface-variant uppercase">Method:</span>
+<div class="flex gap-4">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px] text-success" style="font-variation-settings: 'FILL' 1;">check_box</span>
+<span class="text-label-sm font-bold">Cheque (No. 4012)</span>
+</div>
+<div class="flex items-center gap-1 opacity-40">
+<span class="material-symbols-outlined text-[18px]">check_box_outline_blank</span>
+<span class="text-label-sm">Cash</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center p-6 bg-primary-muted rounded-xl border-2 border-primary/10">
+<span class="text-[12px] font-black text-primary uppercase tracking-widest mb-2">Total Amount</span>
+<div class="font-data-display text-[28px] text-success font-bold tracking-tight">
+                                        GHS 1,250.00
+                                    </div>
+</div>
+</div>
+<!-- Footer / Signatures -->
+<div class="mt-8 pt-8 border-t border-primary/10 flex justify-between items-end">
+<div class="w-48 text-center space-y-2">
+<div class="h-10 flex items-end justify-center">
+<img class="h-8 object-contain" data-alt="A clean, digitized black-ink signature on a white background, representing the society steward's authorization. The signature is flowing and professional, appearing naturally integrated into the document layout. No background or box around the signature." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYA-RJg0sPG5SylikYAUpF7mkDJK7tCGQ9wyPLg8ajLjib9MzU__EdZyrYGAUY4g70V0v0fUhcVPsfvbaI0MAZlC940Fq2G0cPtatgROiHNmzwDqnuZsCJeLJFHyySFoBr_V-vX4D2y8yIXIf3R3SRjFktuj6crqwH5Juy3TN0a_acbafd4stZ-5EwbOFIYZT2YQWFM9EV-sNXn_gx2yxsd-kpkmTWqxo0uKs1KdRsKwfjy3wyFKwSpGScZ5iYh0qWzfiORHtUspJ2"/>
+</div>
+<div class="border-t border-on-surface-variant pt-1">
+<p class="text-label-sm font-bold uppercase text-on-surface-variant">Society Steward</p>
+</div>
+</div>
+<div class="bg-surface-container-high p-2 px-4 rounded-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<div class="text-[9px] text-on-surface-variant leading-tight">
+<p class="font-bold">SYSTEM GENERATED</p>
+<p>Timestamp: 12/10/2023 14:22:05</p>
+<p>ID: V-HASH-842-X0</p>
+</div>
+</div>
+<div class="w-48 text-center space-y-2">
+<div class="h-10 border-b border-on-surface-variant/20"></div>
+<div class="pt-1">
+<p class="text-label-sm font-bold uppercase text-on-surface-variant">Receiver's Signature</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Accent -->
+<div class="h-2 bg-primary w-full"></div>
+</div>
+</div>
+<!-- Document Information Cards -->
+<div class="grid grid-cols-3 gap-md">
+<div class="bg-white p-md rounded-xl border border-outline-variant shadow-sm">
+<p class="text-label-sm font-bold text-on-surface-variant uppercase mb-1">Fiscal Year</p>
+<p class="font-headline-md text-primary">2023 / 2024</p>
+</div>
+<div class="bg-white p-md rounded-xl border border-outline-variant shadow-sm">
+<p class="text-label-sm font-bold text-on-surface-variant uppercase mb-1">Approval Status</p>
+<div class="flex items-center gap-2 text-success font-bold">
+<span class="material-symbols-outlined">check_circle</span>
+<span class="font-headline-md">Verified</span>
+</div>
+</div>
+<div class="bg-white p-md rounded-xl border border-outline-variant shadow-sm">
+<p class="text-label-sm font-bold text-on-surface-variant uppercase mb-1">Audit Trail</p>
+<p class="text-body-md text-on-surface font-semibold underline cursor-pointer hover:text-primary">View 4 History Events</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple Interaction logic for active state demo
+        document.querySelectorAll('.overflow-y-auto > div').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active classes from all
+                document.querySelectorAll('.overflow-y-auto > div').forEach(i => {
+                    i.classList.remove('bg-gold-muted/30', 'border-l-4', 'border-secondary');
+                    i.classList.add('hover:bg-surface-container');
+                });
+                // Add to clicked
+                this.classList.add('bg-gold-muted/30', 'border-l-4', 'border-secondary');
+                this.classList.remove('hover:bg-surface-container');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sunday Service Attendance Report (G-02) - MCG-SMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=Lora:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#1e1b19",
+                    "on-primary-container": "#ff8a95",
+                    "secondary": "#775a00",
+                    "error-container": "#ffdad6",
+                    "surface": "#F8F7F5",
+                    "secondary-fixed-dim": "#eec04f",
+                    "surface-container-low": "#faf2ee",
+                    "on-secondary": "#ffffff",
+                    "text-secondary": "#6B7280",
+                    "tertiary-fixed": "#e3e2e0",
+                    "surface-container-high": "#eee7e3",
+                    "on-primary-fixed-variant": "#832233",
+                    "secondary-fixed": "#ffdf9a",
+                    "gold-muted": "#FDF6E3",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "primary-container": "#7b1c2d",
+                    "secondary-container": "#fece5b",
+                    "surface-container-highest": "#e9e1dd",
+                    "outline-variant": "#dcc0c1",
+                    "border": "#E4E2DD",
+                    "success": "#16A34A",
+                    "danger": "#DC2626",
+                    "inverse-primary": "#ffb2b7",
+                    "on-tertiary-fixed-variant": "#464746",
+                    "on-tertiary": "#ffffff",
+                    "background": "#fff8f5",
+                    "surface-container": "#f4ece8",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e9e1dd",
+                    "tertiary-fixed-dim": "#c7c6c5",
+                    "primary-fixed": "#ffdadb",
+                    "primary-fixed-dim": "#ffb2b7",
+                    "surface-dim": "#e0d8d5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#40000e",
+                    "on-secondary-fixed": "#251a00",
+                    "inverse-on-surface": "#f7efeb",
+                    "surface-tint": "#a33a49",
+                    "on-surface-variant": "#564243",
+                    "inverse-surface": "#33302d",
+                    "surface-bright": "#fff8f5",
+                    "card": "#FFFFFF",
+                    "tertiary-container": "#404140",
+                    "on-secondary-fixed-variant": "#5a4300",
+                    "info": "#2563EB",
+                    "on-tertiary-fixed": "#1a1c1b",
+                    "primary-light": "#A3283F",
+                    "primary": "#5c0219",
+                    "on-background": "#1e1b19",
+                    "primary-muted": "#F5EAEC",
+                    "on-tertiary-container": "#adadab",
+                    "warning": "#D97706",
+                    "on-secondary-container": "#745700",
+                    "outline": "#897172",
+                    "tertiary": "#2a2b2a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "lg": "24px",
+                    "base": "8px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "sidebar-width": "256px",
+                    "header-height": "64px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Lora"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "data-label": ["JetBrains Mono"],
+                    "data-display": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Lora"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                    "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .glass-header {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            z-index: 50;
+        }
+        .group:hover .dropdown-content {
+            display: block;
+        }
+
+        .amber-low-attendance {
+            border-left: 4px solid #D97706 !important;
+            background-color: rgba(217, 119, 6, 0.03);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- Sidebar (Shared Component Anchor) -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary dark:bg-primary-container shadow-sm flex flex-col py-lg z-50">
+<div class="px-lg mb-xl">
+<h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</h1>
+<p class="font-label-md text-label-md text-on-primary/70">Methodist Church Ghana</p>
+</div>
+<nav class="flex-1 space-y-1"><a class="flex items-center px-lg py-3 space-x-3 text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><div class="space-y-1"><div class="flex items-center justify-between px-lg py-3 bg-primary-light/10 text-on-primary cursor-pointer"><div class="flex items-center space-x-3"><span class="material-symbols-outlined">calendar_today</span><span class="font-label-md text-label-md font-bold">Attendance</span></div><span class="material-symbols-outlined text-[20px]">expand_more</span></div><div class="bg-black/10 py-1"><a class="flex items-center pl-14 pr-lg py-2 text-on-primary/70 hover:text-on-primary hover:bg-white/5 transition-colors" href="#"><span class="font-label-md text-label-md">Attendance Overview</span></a><a class="flex items-center pl-14 pr-lg py-2 text-secondary-container font-bold bg-white/5 transition-colors" href="#"><span class="font-label-md text-label-md">Sunday Service Report</span></a><a class="flex items-center pl-14 pr-lg py-2 text-on-primary/70 hover:text-on-primary hover:bg-white/5 transition-colors" href="#"><span class="font-label-md text-label-md">Class Attendance Summary</span></a><a class="flex items-center pl-14 pr-lg py-2 text-on-primary/70 hover:text-on-primary hover:bg-white/5 transition-colors" href="#"><span class="font-label-md text-label-md">Organisation Attendance Summary</span></a><a class="flex items-center pl-14 pr-lg py-2 text-on-primary/70 hover:text-on-primary hover:bg-white/5 transition-colors" href="#"><span class="font-label-md text-label-md">Absentee Report</span></a></div></div><a class="flex items-center px-lg py-3 space-x-3 text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">group</span><span class="font-label-md text-label-md">Members</span></a><a class="flex items-center px-lg py-3 space-x-3 text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">school</span><span class="font-label-md text-label-md">Classes</span></a><a class="flex items-center px-lg py-3 space-x-3 text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">payments</span><span class="font-label-md text-label-md">Finance</span></a><a class="flex items-center px-lg py-3 space-x-3 text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">assessment</span><span class="font-label-md text-label-md">Reports</span></a></nav>
+<div class="mt-auto space-y-1">
+<a class="flex items-center px-lg py-3 space-x-3 text-on-primary/80 font-medium hover:bg-primary-light transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center px-lg py-3 space-x-3 text-on-primary/80 font-medium hover:bg-primary-light transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Top AppBar (Shared Component Anchor) -->
+<header class="fixed top-0 right-0 h-header-height flex justify-between items-center px-xl ml-sidebar-width w-[calc(100%-theme(spacing.sidebar-width))] bg-surface-container-lowest dark:bg-surface-dim shadow-sm z-40">
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-surface-container rounded-full border-none focus:ring-2 focus:ring-primary text-body-md w-64 transition-all duration-300 focus:w-80" placeholder="Search reports..." type="text"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-sidebar-width pt-header-height min-h-screen">
+<div class="p-xl space-y-lg max-w-[1600px] mx-auto">
+<!-- Breadcrumb & Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<nav aria-label="Breadcrumb" class="flex text-on-surface-variant font-label-sm mb-2">
+<span class="hover:text-primary cursor-pointer">Dashboard</span>
+<span class="mx-2">/</span>
+<span class="hover:text-primary cursor-pointer">Attendance</span>
+<span class="mx-2">/</span>
+<span class="text-primary font-bold">Sunday Service Report</span>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-primary">Sunday Service Attendance Report (G-02)</h2>
+<p class="text-on-surface-variant font-body-md">Comprehensive analysis of weekly attendance patterns and service metrics.</p>
+</div>
+<!-- Export Dropdown -->
+<div class="relative group">
+<button class="flex items-center gap-2 bg-primary text-on-primary px-lg py-2 rounded-lg font-label-md hover:bg-primary-light transition-all shadow-sm">
+<span class="material-symbols-outlined">download</span>
+<span class="">Export Report</span>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+<div class="dropdown-content mt-2 w-48 bg-white rounded-lg shadow-xl border border-border py-2">
+<a class="flex items-center gap-3 px-4 py-2 hover:bg-surface-container transition-colors text-body-md" href="#">
+<span class="material-symbols-outlined text-danger">description</span> PDF Document
+                        </a>
+<a class="flex items-center gap-3 px-4 py-2 hover:bg-surface-container transition-colors text-body-md" href="#">
+<span class="material-symbols-outlined text-success">table_view</span> Excel Sheet
+                        </a>
+<a class="flex items-center gap-3 px-4 py-2 hover:bg-surface-container transition-colors text-body-md" href="#">
+<span class="material-symbols-outlined text-info">article</span> Word Document
+                        </a>
+</div>
+</div>
+</div>
+<!-- Filter Bar -->
+<section class="bg-card rounded-xl p-lg shadow-sm border border-border">
+<form class="flex flex-wrap items-end gap-xl">
+<div class="space-y-2">
+<label class="font-label-md text-on-surface-variant">Date Range</label>
+<div class="flex items-center gap-2">
+<input class="border border-border rounded-lg px-3 py-2 text-body-md focus:ring-2 focus:ring-primary outline-none" type="date" value="2023-10-01"/>
+<span class="text-on-surface-variant">to</span>
+<input class="border border-border rounded-lg px-3 py-2 text-body-md focus:ring-2 focus:ring-primary outline-none" type="date" value="2023-12-31"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface-variant">Service Type</label>
+<div class="flex gap-lg bg-surface-container-low p-2 px-4 rounded-lg">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input checked="" class="rounded text-primary focus:ring-primary-light border-border h-4 w-4" type="checkbox"/>
+<span class="text-body-md group-hover:text-primary transition-colors">1st Service</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input checked="" class="rounded text-primary focus:ring-primary-light border-border h-4 w-4" type="checkbox"/>
+<span class="text-body-md group-hover:text-primary transition-colors">2nd Service</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded text-primary focus:ring-primary-light border-border h-4 w-4" type="checkbox"/>
+<span class="text-body-md group-hover:text-primary transition-colors">Joint</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded text-primary focus:ring-primary-light border-border h-4 w-4" type="checkbox"/>
+<span class="text-body-md group-hover:text-primary transition-colors">Other</span>
+</label>
+</div>
+</div>
+<button class="bg-primary-muted text-primary-light hover:bg-primary hover:text-white px-lg py-2 rounded-lg font-label-md transition-all h-[42px] border border-primary-light/20" type="button">
+                        Apply Filters
+                    </button>
+</form>
+</section>
+<!-- Summary Stats Strip -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
+<!-- Total Services -->
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary-container flex flex-col justify-between">
+<span class="font-label-sm text-on-surface-variant uppercase tracking-wider">Total Services</span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-data-display text-[28px] text-primary">12</span>
+<span class="text-success text-label-sm flex items-center"><span class="material-symbols-outlined text-[14px]">trending_up</span> +2</span>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full mt-4">
+<div class="bg-secondary-container h-1 rounded-full w-[80%]"></div>
+</div>
+</div>
+<!-- Average Attendance -->
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary-container flex flex-col justify-between">
+<span class="font-label-sm text-on-surface-variant uppercase tracking-wider">Avg. Attendance</span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-data-display text-[28px] text-primary">842</span>
+<span class="text-on-surface-variant text-label-sm">Per Sunday</span>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full mt-4">
+<div class="bg-secondary-container h-1 rounded-full w-[65%]"></div>
+</div>
+</div>
+<!-- Peak Sunday -->
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary-container flex flex-col justify-between">
+<span class="font-label-sm text-on-surface-variant uppercase tracking-wider">Peak Sunday</span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-data-display text-[28px] text-primary">1,152</span>
+</div>
+<div class="mt-2">
+<p class="text-label-sm text-on-surface-variant font-medium">Nov 26, 2023</p>
+</div>
+</div>
+<!-- Lowest Sunday -->
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary-container flex flex-col justify-between">
+<span class="font-label-sm text-on-surface-variant uppercase tracking-wider">Lowest Sunday</span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-data-display text-[28px] text-primary">614</span>
+</div>
+<div class="mt-2">
+<p class="text-label-sm text-on-surface-variant font-medium">Oct 08, 2023</p>
+</div>
+</div>
+</section>
+<!-- Main Table Container -->
+<section class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-border">
+<tr>
+<th class="px-lg py-4 font-label-md text-primary uppercase tracking-wider">Date</th>
+<th class="px-sm py-4 font-label-md text-primary uppercase tracking-wider text-center">Day</th>
+<th class="px-md py-4 font-label-md text-primary uppercase tracking-wider">Type</th>
+<th class="px-md py-4 font-label-md text-primary uppercase tracking-wider text-right">Men</th>
+<th class="px-md py-4 font-label-md text-primary uppercase tracking-wider text-right">Women</th>
+<th class="px-md py-4 font-label-md text-primary uppercase tracking-wider text-right">YA</th>
+<th class="px-md py-4 font-label-md text-primary uppercase tracking-wider text-right">Teens</th>
+<th class="px-md py-4 font-label-md text-primary uppercase tracking-wider text-right">Kids</th>
+<th class="px-md py-4 font-label-md text-primary uppercase tracking-wider text-right">Visitors</th>
+<th class="px-md py-4 font-label-md text-primary uppercase tracking-wider text-right">Total</th>
+<th class="px-md py-4 font-label-md text-primary uppercase tracking-wider text-right">1st-Time</th>
+<th class="px-lg py-4 font-label-md text-primary uppercase tracking-wider">Preacher</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border/50 font-body-md">
+<!-- High Attendance Row -->
+<tr class="hover:bg-surface-container/30 transition-colors">
+<td class="px-lg py-4 font-data-label">26/11/2023</td>
+<td class="px-sm py-4 text-center font-label-sm">Sun</td>
+<td class="px-md py-4">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-label-sm font-bold">1st Service</span>
+</td>
+<td class="px-md py-4 text-right font-data-label">182</td>
+<td class="px-md py-4 text-right font-data-label">345</td>
+<td class="px-md py-4 text-right font-data-label">210</td>
+<td class="px-md py-4 text-right font-data-label">94</td>
+<td class="px-md py-4 text-right font-data-label">241</td>
+<td class="px-md py-4 text-right font-data-label">80</td>
+<td class="px-md py-4 text-right font-bold text-primary text-body-lg">1,152</td>
+<td class="px-md py-4 text-right font-data-label">12</td>
+<td class="px-lg py-4 text-on-surface-variant">Very Rev. K. Mensah</td>
+</tr>
+<!-- Low Attendance Row (Visual Signal) -->
+<tr class="hover:bg-surface-container/30 transition-colors amber-low-attendance">
+<td class="px-lg py-4 font-data-label">08/10/2023</td>
+<td class="px-sm py-4 text-center font-label-sm">Sun</td>
+<td class="px-md py-4">
+<span class="px-3 py-1 bg-secondary-container/20 text-on-secondary-container rounded-full text-label-sm font-bold">2nd Service</span>
+</td>
+<td class="px-md py-4 text-right font-data-label">104</td>
+<td class="px-md py-4 text-right font-data-label">212</td>
+<td class="px-md py-4 text-right font-data-label">98</td>
+<td class="px-md py-4 text-right font-data-label">56</td>
+<td class="px-md py-4 text-right font-data-label">114</td>
+<td class="px-md py-4 text-right font-data-label">30</td>
+<td class="px-md py-4 text-right font-bold text-primary text-body-lg">614</td>
+<td class="px-md py-4 text-right font-data-label">5</td>
+<td class="px-lg py-4 text-on-surface-variant">Rev. Samuel Appiah</td>
+</tr>
+<tr class="hover:bg-surface-container/30 transition-colors">
+<td class="px-lg py-4 font-data-label">15/10/2023</td>
+<td class="px-sm py-4 text-center font-label-sm">Sun</td>
+<td class="px-md py-4">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-label-sm font-bold">1st Service</span>
+</td>
+<td class="px-md py-4 text-right font-data-label">156</td>
+<td class="px-md py-4 text-right font-data-label">302</td>
+<td class="px-md py-4 text-right font-data-label">142</td>
+<td class="px-md py-4 text-right font-data-label">78</td>
+<td class="px-md py-4 text-right font-data-label">167</td>
+<td class="px-md py-4 text-right font-data-label">42</td>
+<td class="px-md py-4 text-right font-bold text-primary text-body-lg">887</td>
+<td class="px-md py-4 text-right font-data-label">8</td>
+<td class="px-lg py-4 text-on-surface-variant">Evang. Rose Osei</td>
+</tr>
+<tr class="hover:bg-surface-container/30 transition-colors amber-low-attendance">
+<td class="px-lg py-4 font-data-label">22/10/2023</td>
+<td class="px-sm py-4 text-center font-label-sm">Sun</td>
+<td class="px-md py-4">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-label-sm font-bold">Joint</span>
+</td>
+<td class="px-md py-4 text-right font-data-label">120</td>
+<td class="px-md py-4 text-right font-data-label">250</td>
+<td class="px-md py-4 text-right font-data-label">110</td>
+<td class="px-md py-4 text-right font-data-label">65</td>
+<td class="px-md py-4 text-right font-data-label">130</td>
+<td class="px-md py-4 text-right font-data-label">25</td>
+<td class="px-md py-4 text-right font-bold text-primary text-body-lg">700</td>
+<td class="px-md py-4 text-right font-data-label">4</td>
+<td class="px-lg py-4 text-on-surface-variant">Rt. Rev. J. Nkansah</td>
+</tr>
+<tr class="hover:bg-surface-container/30 transition-colors">
+<td class="px-lg py-4 font-data-label">29/10/2023</td>
+<td class="px-sm py-4 text-center font-label-sm">Sun</td>
+<td class="px-md py-4">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-label-sm font-bold">1st Service</span>
+</td>
+<td class="px-md py-4 text-right font-data-label">168</td>
+<td class="px-md py-4 text-right font-data-label">315</td>
+<td class="px-md py-4 text-right font-data-label">180</td>
+<td class="px-md py-4 text-right font-data-label">82</td>
+<td class="px-md py-4 text-right font-data-label">194</td>
+<td class="px-md py-4 text-right font-data-label">55</td>
+<td class="px-md py-4 text-right font-bold text-primary text-body-lg">994</td>
+<td class="px-md py-4 text-right font-data-label">15</td>
+<td class="px-lg py-4 text-on-surface-variant">Very Rev. K. Mensah</td>
+</tr>
+</tbody>
+<!-- Sticky Total Row -->
+<tfoot class="sticky bottom-0 bg-primary-muted border-t-2 border-primary z-10">
+<tr class="font-bold">
+<td class="px-lg py-4 text-primary text-body-lg" colspan="3">PERIOD TOTALS</td>
+<td class="px-md py-4 text-right font-data-label">730</td>
+<td class="px-md py-4 text-right font-data-label">1,424</td>
+<td class="px-md py-4 text-right font-data-label">740</td>
+<td class="px-md py-4 text-right font-data-label">375</td>
+<td class="px-md py-4 text-right font-data-label">846</td>
+<td class="px-md py-4 text-right font-data-label">232</td>
+<td class="px-md py-4 text-right text-primary text-body-lg">4,347</td>
+<td class="px-md py-4 text-right font-data-label">44</td>
+<td class="px-lg py-4"></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</section>
+<!-- Bottom Insight Card (Asymmetric Layout Example) -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<div class="lg:col-span-2 bg-card rounded-xl p-lg shadow-sm border border-border flex flex-col md:flex-row gap-lg">
+<div class="flex-1 space-y-md">
+<h3 class="font-headline-md text-headline-md text-primary">Attendance Trend Analysis</h3>
+<p class="text-body-md text-on-surface-variant leading-relaxed">
+                            Current quarter shows a 12.4% increase in Young Adult engagement compared to last year. Peak attendance was recorded during the Anniversary Service (Nov 26). Targeted follow-up for the 44 first-timers is recommended to convert visitors to regular members.
+                        </p>
+<div class="flex gap-md pt-2">
+<button class="bg-primary-light text-white px-lg py-2 rounded-lg font-label-md hover:bg-primary transition-colors shadow-sm">View Detailed Demographics</button>
+<button class="text-primary font-label-md hover:underline">Full Analytics Dashboard</button>
+</div>
+</div>
+<div class="w-full md:w-48 flex flex-col items-center justify-center bg-gold-muted/30 rounded-lg p-md border border-secondary/10">
+<span class="text-secondary font-bold text-headline-md">86%</span>
+<span class="text-label-sm text-on-surface-variant text-center mt-2">Retention Rate (Visitor to 2nd Visit)</span>
+</div>
+</div>
+<div class="bg-primary rounded-xl p-lg shadow-lg relative overflow-hidden group">
+<!-- Subtle background interaction -->
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700"></div>
+<h3 class="font-headline-md text-headline-md text-on-primary relative z-10">Quick Actions</h3>
+<ul class="mt-lg space-y-3 relative z-10">
+<li class="">
+<a class="flex items-center gap-3 p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-on-primary" href="#">
+<span class="material-symbols-outlined">person_add</span>
+<span class="font-label-md">Register New Members</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-on-primary" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-label-md">Send Visitor Welcome SMS</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-on-primary" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-md">Schedule Service Duty</span>
+</a>
+</li>
+</ul>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Action Button - Only for Primary Action -->
+<button class="fixed bottom-lg right-lg w-14 h-14 bg-secondary-container text-on-secondary-container rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+<script>
+        // Simple interactivity for demonstration
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                // Logic for real-time filter updates would go here
+                console.log('Filter changed');
+            });
+        });
+
+        // Dropdown toggle logic enhancement if needed (standard group:hover is used)
+    </script>
+</body></html>

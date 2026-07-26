@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Income Ledger | Methodist Church Ghana</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#897172",
+                        "on-tertiary-fixed-variant": "#464746",
+                        "tertiary": "#2a2b2a",
+                        "surface-bright": "#fff8f5",
+                        "on-primary-fixed": "#40000e",
+                        "inverse-on-surface": "#f7efeb",
+                        "on-surface": "#1e1b19",
+                        "on-primary-container": "#ff8a95",
+                        "primary": "#5c0219",
+                        "primary-fixed-dim": "#ffb2b7",
+                        "on-tertiary-fixed": "#1a1c1b",
+                        "error-container": "#ffdad6",
+                        "warning": "#D97706",
+                        "text-secondary": "#6B7280",
+                        "surface-tint": "#a33a49",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#fece5b",
+                        "surface-container": "#f4ece8",
+                        "primary-light": "#A3283F",
+                        "on-secondary-fixed": "#251a00",
+                        "surface-container-highest": "#e9e1dd",
+                        "info": "#2563EB",
+                        "secondary-fixed-dim": "#eec04f",
+                        "primary-muted": "#F5EAEC",
+                        "card": "#FFFFFF",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#e0d8d5",
+                        "gold-muted": "#FDF6E3",
+                        "surface-container-low": "#faf2ee",
+                        "on-surface-variant": "#564243",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#eee7e3",
+                        "on-background": "#1e1b19",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e9e1dd",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "inverse-primary": "#ffb2b7",
+                        "tertiary-fixed-dim": "#c7c6c5",
+                        "primary-container": "#7b1c2d",
+                        "danger": "#DC2626",
+                        "tertiary-container": "#404140",
+                        "background": "#fff8f5",
+                        "secondary-fixed": "#ffdf9a",
+                        "on-tertiary-container": "#adadab",
+                        "tertiary-fixed": "#e3e2e0",
+                        "surface": "#F8F7F5",
+                        "on-secondary-container": "#745700",
+                        "border": "#E4E2DD",
+                        "success": "#16A34A",
+                        "on-primary-fixed-variant": "#832233",
+                        "secondary": "#775a00",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#33302d",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#dcc0c1",
+                        "primary-fixed": "#ffdadb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "header-height": "64px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "sidebar-width": "256px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "data-label": ["JetBrains Mono"],
+                        "data-display": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Lora"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Lora"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                        "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                        "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .ledger-table-container { height: calc(100vh - 420px); overflow-y: auto; }
+        .gold-pill { background-color: #ffdf9a; color: #745700; border: 1px solid #fece5b; }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- Side Navigation Bar -->
+<aside class="flex flex-col h-full w-sidebar-width fixed left-0 top-0 z-40 bg-primary dark:bg-primary-container shadow-md">
+<div class="p-lg flex items-center gap-4 border-b border-on-primary/10">
+<div class="w-10 h-10 rounded-lg bg-on-primary flex items-center justify-center overflow-hidden">
+<img class="w-8 h-8" data-alt="Official Methodist Church Ghana crest featuring a shield with a cross, anchor, and holy spirit symbol, rendered as a high-fidelity digital emblem with deep maroon and gold accents against a clean white background. The style is traditional yet sharp for a corporate administrative interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANIG1r3tWMbA-jxO4hPqfVjdVAdyHgEu0F4-f1AM5Bs4J3pf57guc68EG_aTR4Zn7t9kDIrO9rhbDW7XXJ4chFe_nVAoIMA2qadRKjbEqdPTOMBKm1uH3L6y4_X8eqFu9YD7tySIhi_0SUiF4hii6yavTjvSG8XvVxy97DfBFemKsRvqs1tEA3CY7IUuPxzF7FhLmETcMLPpZRIvwPP0nxKU5jXh_KY1L2YSTVDroJE5R7fxNZqxIaEanQr4xHW90E5bukUKGJkbGV"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary dark:text-on-primary-container leading-none">MCG-SMS</h1>
+<p class="text-[10px] text-on-primary/60 uppercase tracking-widest mt-1">Methodist Church Ghana</p>
+</div>
+</div>
+<nav class="flex-1 py-md space-y-1"><div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<div class="group">
+<button class="w-full flex items-center justify-between px-4 py-3 text-on-primary bg-primary-light/10 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md font-bold">Finance</span>
+</div>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="bg-primary-light/5 py-1">
+<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors text-sm" href="#">Finance Overview</a>
+<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors text-sm" href="#">Record Income</a>
+<a class="flex items-center gap-3 pl-12 pr-4 py-2 border-l-[3px] border-secondary-fixed bg-primary-light/20 text-on-primary font-bold text-sm" href="#">Income Ledger</a>
+<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors text-sm" href="#">Record Expense</a>
+<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors text-sm" href="#">Expense Ledger</a>
+<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors text-sm" href="#">Expense Approval</a>
+<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors text-sm" href="#">Budget Management</a>
+<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors text-sm" href="#">Cashbook</a>
+<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors text-sm" href="#">Statutory Payments</a>
+<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors text-sm" href="#">Receipts &amp; Vouchers</a>
+</div>
+</div>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-body-md">Financial Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span class="font-body-md">Welfare</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</div></nav>
+<div class="mt-auto py-md border-t border-on-primary/10">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-md">Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[256px] min-h-screen">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center h-header-height w-full px-lg sticky top-0 z-30 bg-surface dark:bg-surface-dim shadow-sm">
+<div class="flex items-center gap-md">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-border rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all w-80 font-body-md" placeholder="Search income records..." type="text"/>
+</div>
+<div class="hidden md:flex gap-md ml-lg">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md" href="#">Audit Trail</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md" href="#">Vouchers</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md" href="#">Receipts</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors relative">
+<span class="material-symbols-outlined text-primary">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-secondary rounded-full"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+</button>
+<div class="flex items-center gap-3 ml-2 border-l border-border pl-4">
+<div class="text-right">
+<p class="text-sm font-bold text-on-surface leading-none">Kwame Mensah</p>
+<p class="text-[11px] text-on-surface-variant mt-1">Circuit Steward</p>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary-muted overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of an African man in modern business attire, set against a soft studio background. The lighting is warm and welcoming, capturing a sense of reliability and leadership for a church administrative portal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC16w9L4SIeWJBTkoseGFmF9TI1FkB9kADOdEK9FmfMltqzq7J0zAgpZtYOA839UQYx9e3eGG-rFSPLHfEIbwSCSONwLczoyj4kRyHw31kSEZT6FRijL0tG6-fCRQt4cYHhIC_Bh-Ay3tFfxKN5I3J4M4Eum9c8gtdg21TYV6HwejHNkbUoVtasBBlASnNv53yXCVgFQGOOIvMuUXBMA0R-sBW-Itv0OcPFseIeKr_YI4fNQVulZydJpMIisOV6sBMEgZhimFJKEE1w"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Header & Filters -->
+<section class="p-lg">
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary mb-1">Income Ledger</h1>
+<p class="text-on-surface-variant">Complete historical record of all church revenue and society contributions.</p>
+</div>
+<div class="relative group" id="exportDropdown">
+<button class="flex items-center gap-2 bg-primary text-on-primary px-lg py-2.5 rounded-lg hover:bg-primary-light transition-all shadow-md">
+<span class="material-symbols-outlined text-lg">download</span>
+<span class="font-label-md">Export Ledger</span>
+<span class="material-symbols-outlined text-lg ml-2">expand_more</span>
+</button>
+<!-- Dropdown Menu (Hidden by default) -->
+<div class="absolute right-0 top-full mt-2 w-48 bg-card border border-border shadow-xl rounded-lg overflow-hidden hidden group-hover:block z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+<a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-colors border-b border-border" href="#">
+<span class="material-symbols-outlined text-danger">picture_as_pdf</span>
+<span class="font-body-md">Export as PDF</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-colors border-b border-border" href="#">
+<span class="material-symbols-outlined text-success">table_view</span>
+<span class="font-body-md">Export as Excel</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-info">csv</span>
+<span class="font-body-md">Export as CSV</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Summary Strip (Bento Style) -->
+<div class="grid grid-cols-4 gap-lg mb-lg">
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary flex flex-col justify-between">
+<p class="text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Total Ledger Income</p>
+<div class="flex items-baseline gap-2">
+<span class="text-success font-data-display text-[28px]">GH₵ 45,670.00</span>
+</div>
+</div>
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-primary/20">
+<p class="text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Record Count</p>
+<p class="font-data-display text-[28px] text-on-surface">1,428</p>
+</div>
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-primary/20">
+<p class="text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Average Transaction</p>
+<p class="font-data-display text-[28px] text-on-surface">GH₵ 32.50</p>
+</div>
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-primary/20">
+<p class="text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Largest Deposit</p>
+<p class="font-data-display text-[28px] text-on-surface">GH₵ 5,200.00</p>
+</div>
+</div>
+<!-- Two-Row Filter Bar -->
+<div class="bg-surface-container-low p-md rounded-xl border border-border space-y-md mb-lg">
+<!-- Row 1: Search & Date -->
+<div class="grid grid-cols-12 gap-md">
+<div class="col-span-5 relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">filter_alt</span>
+<input class="w-full pl-10 pr-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-secondary outline-none" placeholder="Filter by Source or Recording Officer..." type="text"/>
+</div>
+<div class="col-span-3">
+<input class="w-full px-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-secondary outline-none" type="date"/>
+</div>
+<div class="col-span-3">
+<input class="w-full px-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-secondary outline-none" type="date"/>
+</div>
+<div class="col-span-1">
+<button class="w-full h-full flex items-center justify-center bg-surface-container rounded-lg border border-border hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">refresh</span>
+</button>
+</div>
+</div>
+<!-- Row 2: Selectors -->
+<div class="grid grid-cols-12 gap-md">
+<div class="col-span-3">
+<select class="w-full px-4 py-2 border border-border rounded-lg bg-card outline-none">
+<option>All Categories</option>
+<option>Tithes</option>
+<option>Offertory</option>
+<option>Harvest</option>
+<option>Welfare Fund</option>
+</select>
+</div>
+<div class="col-span-3">
+<select class="w-full px-4 py-2 border border-border rounded-lg bg-card outline-none">
+<option>Payment Method</option>
+<option>Cash</option>
+<option>Momo</option>
+<option>Bank Transfer</option>
+</select>
+</div>
+<div class="col-span-3">
+<select class="w-full px-4 py-2 border border-border rounded-lg bg-card outline-none">
+<option>Status</option>
+<option>Verified</option>
+<option>Pending</option>
+<option>Reversed</option>
+</select>
+</div>
+<div class="col-span-3">
+<button class="w-full h-full text-secondary font-bold hover:underline transition-all">Clear All Filters</button>
+</div>
+</div>
+</div>
+<!-- Ledger Table Container -->
+<div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden flex flex-col">
+<div class="ledger-table-container scrollbar-hide">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container-high z-10">
+<tr>
+<th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Ref No</th>
+<th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Date</th>
+<th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Source</th>
+<th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Category</th>
+<th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border text-right">Amount</th>
+<th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Method</th>
+<th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Recorded By</th>
+<th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Verified By</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<!-- Entry 1 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-md font-data-label text-secondary">#INC-240901</td>
+<td class="p-md text-on-surface-variant">01 Oct 2023</td>
+<td class="p-md font-medium">Main Sunday Service</td>
+<td class="p-md">
+<span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">Offertory</span>
+</td>
+<td class="p-md text-right text-success font-data-display">1,250.00</td>
+<td class="p-md text-on-surface-variant">Cash</td>
+<td class="p-md text-on-surface-variant">A. Boateng</td>
+<td class="p-md">
+<span class="text-xs text-success flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span> K. Mensah</span>
+</td>
+</tr>
+<!-- Entry 2 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-md font-data-label text-secondary">#INC-240902</td>
+<td class="p-md text-on-surface-variant">02 Oct 2023</td>
+<td class="p-md font-medium">Individual Donation</td>
+<td class="p-md">
+<span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">Tithes</span>
+</td>
+<td class="p-md text-right text-success font-data-display">4,500.00</td>
+<td class="p-md text-on-surface-variant">Bank Transfer</td>
+<td class="p-md text-on-surface-variant">S. Appiah</td>
+<td class="p-md">
+<span class="text-xs text-success flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span> K. Mensah</span>
+</td>
+</tr>
+<!-- Entry 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-md font-data-label text-secondary">#INC-240903</td>
+<td class="p-md text-on-surface-variant">02 Oct 2023</td>
+<td class="p-md font-medium">Youth Ministry Fundraiser</td>
+<td class="p-md">
+<span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">Special Fund</span>
+</td>
+<td class="p-md text-right text-success font-data-display">850.50</td>
+<td class="p-md text-on-surface-variant">Mobile Money</td>
+<td class="p-md text-on-surface-variant">A. Boateng</td>
+<td class="p-md">
+<span class="text-xs text-warning flex items-center gap-1"><span class="material-symbols-outlined text-sm">pending</span> Unverified</span>
+</td>
+</tr>
+<!-- Entry 4 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-md font-data-label text-secondary">#INC-240904</td>
+<td class="p-md text-on-surface-variant">03 Oct 2023</td>
+<td class="p-md font-medium">Welfare Contributions</td>
+<td class="p-md">
+<span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">Welfare</span>
+</td>
+<td class="p-md text-right text-success font-data-display">2,100.00</td>
+<td class="p-md text-on-surface-variant">Cash</td>
+<td class="p-md text-on-surface-variant">M. Owusu</td>
+<td class="p-md">
+<span class="text-xs text-success flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span> K. Mensah</span>
+</td>
+</tr>
+<!-- Replicated entries for scroll simulation -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-md font-data-label text-secondary">#INC-240905</td>
+<td class="p-md text-on-surface-variant">04 Oct 2023</td>
+<td class="p-md font-medium">Sunday School Offering</td>
+<td class="p-md">
+<span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">Offertory</span>
+</td>
+<td class="p-md text-right text-success font-data-display">150.00</td>
+<td class="p-md text-on-surface-variant">Cash</td>
+<td class="p-md text-on-surface-variant">S. Appiah</td>
+<td class="p-md">
+<span class="text-xs text-success flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span> K. Mensah</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-md font-data-label text-secondary">#INC-240906</td>
+<td class="p-md text-on-surface-variant">05 Oct 2023</td>
+<td class="p-md font-medium">Building Fund Harvest</td>
+<td class="p-md">
+<span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">Harvest</span>
+</td>
+<td class="p-md text-right text-success font-data-display">12,400.00</td>
+<td class="p-md text-on-surface-variant">Bank Transfer</td>
+<td class="p-md text-on-surface-variant">K. Mensah</td>
+<td class="p-md">
+<span class="text-xs text-success flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span> Admin</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Sticky Bottom Row -->
+<div class="bg-surface-container-high border-t-2 border-primary/20 p-md flex justify-between items-center z-20">
+<div class="flex gap-lg">
+<span class="text-label-sm font-bold uppercase text-on-surface-variant">Page Totals:</span>
+<span class="text-on-surface-variant font-body-md">Rows: 1 - 25 of 1,428</span>
+</div>
+<div class="flex items-center gap-xl">
+<div class="flex gap-lg">
+<div class="text-right">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Subtotal (Verified)</p>
+<p class="font-data-display text-primary text-lg">GH₵ 21,250.50</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="px-3 py-1 rounded bg-primary text-on-primary font-bold">1</button>
+<button class="px-3 py-1 rounded hover:bg-surface-container transition-colors">2</button>
+<button class="px-3 py-1 rounded hover:bg-surface-container transition-colors">3</button>
+<span class="px-2">...</span>
+<button class="px-3 py-1 rounded hover:bg-surface-container transition-colors">58</button>
+<button class="p-2 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Micro-interaction for Export Button (Optional manual toggle if CSS hover is too brittle)
+        const exportBtn = document.getElementById('exportDropdown');
+        if (exportBtn) {
+            exportBtn.addEventListener('click', (e) => {
+                // Potential for JS menu handling if needed for mobile or complex states
+            });
+        }
+        
+        // Ledger table row interaction
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('mousedown', function() {
+                this.classList.add('scale-[0.995]');
+            });
+            row.addEventListener('mouseup', function() {
+                this.classList.remove('scale-[0.995]');
+            });
+        });
+    </script>
+</body></html>

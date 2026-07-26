@@ -1,0 +1,537 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Compose Message - MCG-SMS Communications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#745700",
+                        "primary-fixed-dim": "#ffb2b7",
+                        "border": "#E4E2DD",
+                        "tertiary-fixed": "#e3e2e0",
+                        "tertiary": "#2a2b2a",
+                        "card": "#FFFFFF",
+                        "on-tertiary": "#ffffff",
+                        "danger": "#DC2626",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#eee7e3",
+                        "on-tertiary-fixed": "#1a1c1b",
+                        "on-tertiary-fixed-variant": "#464746",
+                        "surface-variant": "#e9e1dd",
+                        "surface-tint": "#a33a49",
+                        "inverse-primary": "#ffb2b7",
+                        "surface-container-low": "#faf2ee",
+                        "on-surface-variant": "#564243",
+                        "secondary": "#775a00",
+                        "tertiary-container": "#404140",
+                        "secondary-container": "#fece5b",
+                        "on-error": "#ffffff",
+                        "primary-container": "#7b1c2d",
+                        "outline": "#897172",
+                        "background": "#fff8f5",
+                        "on-primary-fixed-variant": "#832233",
+                        "gold-muted": "#FDF6E3",
+                        "secondary-fixed": "#ffdf9a",
+                        "success": "#16A34A",
+                        "secondary-fixed-dim": "#eec04f",
+                        "primary-muted": "#F5EAEC",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#33302d",
+                        "primary-light": "#A3283F",
+                        "on-background": "#1e1b19",
+                        "surface-bright": "#fff8f5",
+                        "on-tertiary-container": "#adadab",
+                        "on-primary-container": "#ff8a95",
+                        "surface-dim": "#e0d8d5",
+                        "outline-variant": "#dcc0c1",
+                        "error": "#ba1a1a",
+                        "info": "#2563EB",
+                        "surface-container": "#f4ece8",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#c7c6c5",
+                        "on-primary-fixed": "#40000e",
+                        "inverse-on-surface": "#f7efeb",
+                        "on-surface": "#1e1b19",
+                        "warning": "#D97706",
+                        "text-secondary": "#6B7280",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "primary": "#5c0219",
+                        "on-secondary-fixed": "#251a00",
+                        "surface-container-highest": "#e9e1dd",
+                        "primary-fixed": "#ffdadb",
+                        "surface": "#F8F7F5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "header-height": "64px",
+                        "xl": "32px",
+                        "sidebar-width": "256px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "base": "8px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Lora"],
+                        "label-md": ["Inter"],
+                        "data-label": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "data-display": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Lora"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-glow {
+            box-shadow: 0 0 0 2px theme('colors.primary');
+        }
+        .sms-bubble {
+            position: relative;
+            background: #E9E9EB;
+            border-radius: 1.15rem;
+            line-height: 1.3;
+            padding: 0.5rem 0.875rem;
+            word-wrap: break-word;
+            color: black;
+        }
+        .sms-bubble::before {
+            content: "";
+            position: absolute;
+            z-index: 0;
+            bottom: 0;
+            left: -7px;
+            height: 20px;
+            width: 20px;
+            background: #E9E9EB;
+            border-bottom-right-radius: 15px;
+        }
+        .sms-bubble::after {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            bottom: 0;
+            left: -10px;
+            height: 20px;
+            width: 10px;
+            background: white;
+            border-bottom-right-radius: 10px;
+        }
+        .phone-frame {
+            border: 12px solid #1e1b19;
+            border-radius: 36px;
+            aspect-ratio: 9/19;
+            width: 100%;
+            max-width: 280px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        @media (max-width: 1024px) {
+            .sidebar-desktop { display: none; }
+            .main-content { padding-bottom: 80px; }
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<div class="flex min-h-screen">
+<!-- Sidebar (Shared Component Style) - Desktop Only -->
+<aside class="sidebar-desktop w-sidebar-width bg-primary text-on-primary flex flex-col h-screen sticky top-0 py-lg shrink-0 shadow-md">
+<div class="px-md mb-xl flex items-center gap-sm">
+<div class="w-10 h-10 bg-on-primary rounded-full flex items-center justify-center">
+<img class="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE8yU59puQwT08nCc9uVslRAqQtNHgD2NJ4dB2GClXNFBuk4tYpUOLr2FTuJLdTsEt3DEi748Pk0LmDzkYoTDWtLEhy3QUqBXJat8nOzQU_MOZOrCdgsIbCYLI0VediPGOeAvqUJkiFkf2kxl8pVWGKqmuzVmWYD7YVUn9jUWxCN4RMFXOKv3SPxkwKin1isduKVP7COOEdRzr3YuaJT4MchrpiFrH_LxxJZnezJg2oUr7svk4Z1xIeqbfF_1Haq0EhA1osgYF9TdW">
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold leading-tight">MCG Society</h1>
+<p class="text-label-sm opacity-70 uppercase tracking-wider">Management System</p>
+</div>
+</div>
+<nav class="flex-1 space-y-xs overflow-y-auto">
+<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md">Members</span>
+</a>
+<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md">Classes</span>
+</a>
+<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="font-label-md">Organisations</span>
+</a>
+<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">church</span>
+<span class="font-label-md">Services</span>
+</a>
+<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">how_to_reg</span>
+<span class="font-label-md">Attendance</span>
+</a>
+<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md">Finance</span>
+</a>
+<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md">Meetings</span>
+</a>
+<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span class="font-label-md">Welfare</span>
+</a>
+<div class="space-y-xs group/accordion">
+<button class="w-full flex items-center justify-between text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-md">Comms</span>
+</div>
+<span class="material-symbols-outlined chevron transition-transform duration-300">expand_more</span>
+</button>
+<div class="pl-xl space-y-xs transition-all duration-300">
+<a class="flex items-center gap-md text-secondary-container px-md py-1.5 font-bold bg-primary-container border-l-[3px] border-secondary-container" href="#">
+<span class="font-label-md">Compose</span>
+</a>
+<a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#">
+<span class="font-label-md">History</span>
+</a>
+<a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#">
+<span class="font-label-md">Announcement Board</span>
+</a>
+<a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#">
+<span class="font-label-md">Birthday Messages</span>
+</a>
+<a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#">
+<span class="font-label-md">Reminders &amp; Notices</span>
+</a>
+</div>
+</div>
+<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-md">Reports</span>
+</a>
+</nav>
+<div class="mt-auto px-md pt-lg border-t border-white/10">
+<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:opacity-100 mb-xs" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:opacity-100" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Log Out</span>
+</a>
+</div>
+</aside>
+<div class="flex-1 flex flex-col min-w-0 main-content">
+<!-- TopNavBar (Shared Component Style) -->
+<header class="bg-surface shadow-sm h-header-height flex justify-between items-center w-full px-4 md:px-lg sticky top-0 z-30">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md font-bold text-primary truncate">MCG-SMS Communications</span>
+</div>
+<div class="flex items-center gap-2 md:gap-lg">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container rounded-full border-none focus:ring-2 focus:ring-primary text-body-md w-64" placeholder="Search templates..." type="text">
+</div>
+<div class="flex items-center gap-1 md:gap-md">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-border cursor-pointer">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOYXYLXppOeZgA_mGrx7qr7sisNnbCHLBqPUncCAf5eIoBD8r-xcEFhTT5E9ErzIa7dCUcMroXpAYyTCjnPTh1sWErSEP17g0FVlwaEWp_IjYBx7eXA5_KWpvbPVcJqvJYyYzAHFY-fH0DUdNK9t8CwpVWIVKV4MFpVLS8Zj-8u_IjjGfSf_s0pfLShAOMdJPYrO0nRJ2opNwoGVcPAXpWPS7NIIU4-b2QIwbQ3Jw1vhYvVzGZTDyCzXyaqFnBFyLdzJg4S-sx3dos">
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 p-4 md:p-lg xl:p-xl overflow-auto">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 text-[11px] md:text-label-sm text-on-surface-variant mb-4 uppercase tracking-wider overflow-x-auto whitespace-nowrap">
+<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Comms</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Compose</span>
+</nav>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-lg">Compose Message</h1>
+<div class="flex flex-col xl:flex-row gap-lg xl:gap-xl items-start">
+<!-- Left Column: Form (2/3 width on Desktop) -->
+<div class="w-full xl:w-2/3 space-y-lg">
+<!-- Message Type Selector -->
+<section class="space-y-sm">
+<label class="text-label-md font-semibold uppercase text-on-surface-variant tracking-wide">Message Type</label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-md">
+<div class="cursor-pointer border-2 border-primary bg-white p-4 md:p-lg rounded-xl flex flex-col items-center gap-2 md:gap-md text-center transition-all shadow-sm active:scale-95" id="type-sms" onclick="setType('SMS')">
+<span class="material-symbols-outlined text-primary text-[28px] md:text-[32px]">smartphone</span>
+<span class="font-label-md font-bold text-primary">SMS</span>
+</div>
+<div class="cursor-pointer border border-border bg-white p-4 md:p-lg rounded-xl flex flex-col items-center gap-2 md:gap-md text-center transition-all hover:border-primary-light active:scale-95" id="type-email" onclick="setType('Email')">
+<span class="material-symbols-outlined text-on-surface-variant text-[28px] md:text-[32px]">email</span>
+<span class="font-label-md font-semibold text-on-surface-variant">Email</span>
+</div>
+<div class="cursor-pointer border border-border bg-white p-4 md:p-lg rounded-xl flex flex-col items-center gap-2 md:gap-md text-center transition-all hover:border-primary-light active:scale-95" id="type-whatsapp" onclick="setType('WhatsApp')">
+<span class="material-symbols-outlined text-on-surface-variant text-[28px] md:text-[32px]">chat_bubble</span>
+<span class="font-label-md font-semibold text-on-surface-variant leading-tight">WhatsApp</span>
+</div>
+<div class="cursor-pointer border border-border bg-white p-4 md:p-lg rounded-xl flex flex-col items-center gap-2 md:gap-md text-center transition-all hover:border-primary-light active:scale-95" id="type-announcement" onclick="setType('Announcement')">
+<span class="material-symbols-outlined text-on-surface-variant text-[28px] md:text-[32px]">campaign</span>
+<span class="font-label-md font-semibold text-on-surface-variant">Announcement</span>
+</div>
+</div>
+</section>
+<!-- Recipient Group Picker -->
+<section class="bg-card p-4 md:p-lg rounded-xl shadow-sm border border-border space-y-md">
+<label class="text-label-md font-semibold uppercase text-on-surface-variant tracking-wide block">Recipient Groups</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 md:px-md py-1.5 md:py-2 rounded-full border border-primary bg-primary-muted text-primary text-label-md flex items-center gap-sm">
+<span class="">All Members</span>
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+<button class="px-3 md:px-md py-1.5 md:py-2 rounded-full border border-border bg-surface text-on-surface-variant text-label-md hover:border-primary-light transition-colors">
+                                    Youth Fellowship
+                                </button>
+<button class="px-3 md:px-md py-1.5 md:py-2 rounded-full border border-border bg-surface text-on-surface-variant text-label-md hover:border-primary-light transition-colors">
+                                    Ebenezer Class
+                                </button>
+<button class="px-3 md:px-md py-1.5 md:py-2 rounded-full border border-border border-dashed bg-surface text-on-surface-variant text-label-md hover:border-primary-light transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                                    Add Custom
+                                </button>
+</div>
+<div class="flex items-center gap-sm text-info font-medium">
+<span class="material-symbols-outlined text-[20px]">info</span>
+<span class="text-body-md">Approx. 84 members will receive this.</span>
+</div>
+</section>
+<!-- Subject (Hidden for SMS) -->
+<section class="hidden space-y-sm" id="subject-field">
+<label class="text-label-md font-semibold uppercase text-on-surface-variant tracking-wide block">Email Subject</label>
+<input class="w-full rounded-lg border-border focus:ring-2 focus:ring-primary focus:border-primary px-md py-3 text-body-md" placeholder="Enter message subject..." type="text">
+</section>
+<!-- Message Body -->
+<section class="space-y-sm">
+<label class="text-label-md font-semibold uppercase text-on-surface-variant tracking-wide block">Message Content</label>
+<div class="relative">
+<textarea class="w-full rounded-lg border-border focus:ring-2 focus:ring-primary focus:border-primary px-md py-3 text-body-md resize-none" id="message-input" placeholder="Type your message here..." rows="6">The Methodist Church Ghana invites you to the upcoming Society meeting this Sunday at 8:00 AM. Your presence and contribution are highly valued in our mission.</textarea>
+<div class="absolute bottom-3 right-3 flex items-center gap-2">
+<span class="font-data-label text-warning px-2 py-0.5 rounded bg-gold-muted border border-secondary-fixed text-[12px]" id="char-count">142/160</span>
+</div>
+</div>
+<p class="text-label-sm text-on-surface-variant italic">
+<span class="font-bold">160</span> chars/SMS. Sent as <span class="text-warning font-bold">2 messages</span>.
+                            </p>
+</section>
+<!-- Send Timing -->
+<section class="bg-card p-4 md:p-lg rounded-xl shadow-sm border border-border space-y-md">
+<label class="text-label-md font-semibold uppercase text-on-surface-variant tracking-wide block">Scheduling</label>
+<div class="flex flex-col sm:flex-row gap-4 sm:gap-xl">
+<label class="flex items-center gap-md cursor-pointer group">
+<div class="relative w-5 h-5 flex items-center justify-center">
+<input checked="" class="peer appearance-none w-5 h-5 border-2 border-border rounded-full checked:border-primary transition-all" name="timing" type="radio" value="now">
+<div class="w-2.5 h-2.5 bg-primary rounded-full scale-0 peer-checked:scale-100 transition-transform"></div>
+</div>
+<span class="text-body-md font-medium text-on-surface group-hover:text-primary transition-colors">Send now</span>
+</label>
+<label class="flex items-center gap-md cursor-pointer group">
+<div class="relative w-5 h-5 flex items-center justify-center">
+<input class="peer appearance-none w-5 h-5 border-2 border-border rounded-full checked:border-primary transition-all" name="timing" type="radio" value="later">
+<div class="w-2.5 h-2.5 bg-primary rounded-full scale-0 peer-checked:scale-100 transition-transform"></div>
+</div>
+<span class="text-body-md font-medium text-on-surface group-hover:text-primary transition-colors">Schedule for later</span>
+</label>
+</div>
+<div class="hidden pt-2" id="date-picker-area">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md">
+<div>
+<label class="text-label-sm text-on-surface-variant block mb-1">Date</label>
+<input class="w-full rounded-lg border-border focus:ring-primary py-2 px-3" type="date">
+</div>
+<div>
+<label class="text-label-sm text-on-surface-variant block mb-1">Time</label>
+<input class="w-full rounded-lg border-border focus:ring-primary py-2 px-3" type="time">
+</div>
+</div>
+</div>
+</section>
+<!-- Branding Notice (Moves below for smaller screens) -->
+<div class="xl:hidden p-4 bg-gold-muted border border-secondary-fixed-dim rounded-xl">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-secondary">verified</span>
+<div>
+<p class="text-label-md font-bold text-on-secondary-container">Branding Notice</p>
+<p class="text-body-md text-on-secondary-container opacity-80">All outgoing SMS will be prefixed with 'MCG-SMS' as per the Society ID.</p>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<footer class="flex flex-col sm:flex-row items-stretch sm:items-center gap-md pt-4">
+<button class="bg-primary hover:bg-primary-light text-white px-xl py-3 rounded-lg font-bold shadow-md transition-all active:scale-95 flex items-center justify-center gap-md">
+<span class="material-symbols-outlined">send</span>
+                                Send Message
+                            </button>
+<button class="border-2 border-primary text-primary hover:bg-primary-muted px-xl py-3 rounded-lg font-bold transition-all flex items-center justify-center gap-md">
+<span class="material-symbols-outlined">drafts</span>
+                                Save as Draft
+                            </button>
+</footer>
+</div>
+<!-- Right Column: Preview Pane (1/3 width on Desktop, Sticky) -->
+<div class="w-full xl:w-1/3 xl:sticky xl:top-[100px]">
+<div class="bg-white rounded-xl shadow-md border border-border overflow-hidden">
+<div class="p-lg border-b border-border bg-surface-container-low flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-on-surface">Preview</h2>
+<span class="bg-primary-muted text-primary text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">Live View</span>
+</div>
+<div class="p-8 flex justify-center bg-slate-50 min-h-[400px] items-start">
+<!-- Smartphone Mockup -->
+<div class="phone-frame shadow-2xl">
+<!-- Phone Header -->
+<div class="bg-[#f9f9f9] pt-10 pb-4 px-4 text-center border-b border-slate-200">
+<div class="w-10 h-10 bg-slate-300 rounded-full mx-auto mb-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-white">person</span>
+</div>
+<p class="text-[12px] font-bold text-slate-800">MCG-SMS</p>
+<p class="text-[9px] text-slate-500 uppercase">Text Message</p>
+</div>
+<!-- Phone Content -->
+<div class="p-4 space-y-4 h-full">
+<div class="flex justify-center mb-6">
+<span class="text-[9px] text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full uppercase tracking-tighter">Today 10:42 AM</span>
+</div>
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="sms-bubble text-[13px]" id="preview-bubble">
+                                                The Methodist Church Ghana invites you to the upcoming Society meeting this Sunday at 8:00 AM. Your presence and contribution are highly valued in our mission.
+                                            </div>
+</div>
+</div>
+<!-- Phone Input area (visual only) -->
+<div class="absolute bottom-0 left-0 w-full p-4 bg-white flex items-center gap-2 border-t border-slate-100">
+<div class="w-6 h-6 rounded-full bg-slate-100"></div>
+<div class="flex-1 h-8 bg-slate-50 rounded-2xl border border-slate-200"></div>
+</div>
+</div>
+</div>
+<!-- Branding Notice (Desktop Version) -->
+<div class="hidden xl:block p-lg bg-gold-muted border-t border-secondary-fixed-dim">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-secondary">verified</span>
+<div>
+<p class="text-label-md font-bold text-on-secondary-container">Branding Notice</p>
+<p class="text-body-md text-on-secondary-container opacity-80">All outgoing SMS will be prefixed with 'MCG-SMS' as per the registered Society alpha-numeric ID.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+<!-- Mobile Bottom Navigation (Visible on md and below) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full bg-primary border-t border-white/10 flex justify-around items-center h-16 z-50 px-4">
+<a class="flex flex-col items-center text-on-primary opacity-60" href="#">
+<span class="material-symbols-outlined text-[24px]">dashboard</span>
+<span class="text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center text-on-primary opacity-60" href="#">
+<span class="material-symbols-outlined text-[24px]">group</span>
+<span class="text-[10px]">Members</span>
+</a>
+<a class="flex flex-col items-center text-secondary-container" href="#">
+<span class="material-symbols-outlined text-[24px]">chat</span>
+<span class="text-[10px]">Comms</span>
+</a>
+<a class="flex flex-col items-center text-on-primary opacity-60" href="#">
+<span class="material-symbols-outlined text-[24px]">payments</span>
+<span class="text-[10px]">Finance</span>
+</a>
+<a class="flex flex-col items-center text-on-primary opacity-60" href="#">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="text-[10px]">Settings</span>
+</a>
+</nav>
+<script>
+        const messageInput = document.getElementById('message-input');
+        const charCount = document.getElementById('char-count');
+        const previewBubble = document.getElementById('preview-bubble');
+        const subjectField = document.getElementById('subject-field');
+        const datePickerArea = document.getElementById('date-picker-area');
+        
+        // Sync preview and count
+        messageInput.addEventListener('input', (e) => {
+            const text = e.target.value;
+            previewBubble.innerText = text || '...';
+            charCount.innerText = `${text.length}/160`;
+            
+            if (text.length > 160) {
+                charCount.classList.replace('text-warning', 'text-danger');
+            } else {
+                charCount.classList.replace('text-danger', 'text-warning');
+            }
+        });
+
+        // Type selection logic
+        function setType(type) {
+            const ids = ['type-sms', 'type-email', 'type-whatsapp', 'type-announcement'];
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                el.classList.remove('border-primary', 'bg-white', 'border-2');
+                el.classList.add('border-border', 'bg-white', 'border');
+                el.querySelector('span:first-child').classList.replace('text-primary', 'text-on-surface-variant');
+                el.querySelector('span:last-child').classList.replace('text-primary', 'text-on-surface-variant');
+                el.querySelector('span:last-child').classList.replace('font-bold', 'font-semibold');
+            });
+
+            const active = document.getElementById(`type-${type.toLowerCase().split(' ')[0]}`);
+            active.classList.add('border-primary', 'border-2');
+            active.querySelector('span:first-child').classList.replace('text-on-surface-variant', 'text-primary');
+            active.querySelector('span:last-child').classList.replace('text-on-surface-variant', 'text-primary');
+            active.querySelector('span:last-child').classList.add('font-bold');
+
+            // Toggle subject field
+            if (type === 'Email') {
+                subjectField.classList.remove('hidden');
+            } else {
+                subjectField.classList.add('hidden');
+            }
+        }
+
+        // Timing selection logic
+        const timingRadios = document.querySelectorAll('input[name="timing"]');
+        timingRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.value === 'later') {
+                    datePickerArea.classList.remove('hidden');
+                } else {
+                    datePickerArea.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+
+
+</body></html>

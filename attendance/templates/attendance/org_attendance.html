@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MCG-SMS | Organisation Attendance Summary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Lora:ital,wght@0,400;0,700;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#1e1b19",
+                    "on-primary-container": "#ff8a95",
+                    "secondary": "#775a00",
+                    "error-container": "#ffdad6",
+                    "surface": "#F8F7F5",
+                    "secondary-fixed-dim": "#eec04f",
+                    "surface-container-low": "#faf2ee",
+                    "on-secondary": "#ffffff",
+                    "text-secondary": "#6B7280",
+                    "tertiary-fixed": "#e3e2e0",
+                    "surface-container-high": "#eee7e3",
+                    "on-primary-fixed-variant": "#832233",
+                    "secondary-fixed": "#ffdf9a",
+                    "gold-muted": "#FDF6E3",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "primary-container": "#7b1c2d",
+                    "secondary-container": "#fece5b",
+                    "surface-container-highest": "#e9e1dd",
+                    "outline-variant": "#dcc0c1",
+                    "border": "#E4E2DD",
+                    "success": "#16A34A",
+                    "danger": "#DC2626",
+                    "inverse-primary": "#ffb2b7",
+                    "on-tertiary-fixed-variant": "#464746",
+                    "on-tertiary": "#ffffff",
+                    "background": "#fff8f5",
+                    "surface-container": "#f4ece8",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e9e1dd",
+                    "tertiary-fixed-dim": "#c7c6c5",
+                    "primary-fixed": "#ffdadb",
+                    "primary-fixed-dim": "#ffb2b7",
+                    "surface-dim": "#e0d8d5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#40000e",
+                    "on-secondary-fixed": "#251a00",
+                    "inverse-on-surface": "#f7efeb",
+                    "surface-tint": "#a33a49",
+                    "on-surface-variant": "#564243",
+                    "inverse-surface": "#33302d",
+                    "surface-bright": "#fff8f5",
+                    "card": "#FFFFFF",
+                    "tertiary-container": "#404140",
+                    "on-secondary-fixed-variant": "#5a4300",
+                    "info": "#2563EB",
+                    "on-tertiary-fixed": "#1a1c1b",
+                    "primary-light": "#A3283F",
+                    "primary": "#5c0219",
+                    "on-background": "#1e1b19",
+                    "primary-muted": "#F5EAEC",
+                    "on-tertiary-container": "#adadab",
+                    "warning": "#D97706",
+                    "on-secondary-container": "#745700",
+                    "outline": "#897172",
+                    "tertiary": "#2a2b2a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "lg": "24px",
+                    "base": "8px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "sidebar-width": "256px",
+                    "header-height": "64px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Lora"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "data-label": ["JetBrains Mono"],
+                    "data-display": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Lora"],
+                    "body-lg": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+        }
+        .sidebar-active {
+            border-left: 3px solid #fece5b;
+            background-color: rgba(163, 40, 63, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary shadow-sm flex flex-col py-lg z-50">
+<div class="px-md mb-xl">
+<h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</h1>
+<p class="font-label-md text-label-md text-on-primary/60">Methodist Church Ghana</p>
+</div>
+<nav class="flex-1 space-y-xs px-xs"><a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">group</span><span class="font-label-md text-label-md">Members</span></a><div class="space-y-xs"><button class="w-full flex items-center justify-between px-md py-sm rounded-lg text-on-primary font-bold bg-primary-light/10 transition-colors duration-200"><div class="flex items-center gap-md"><span class="material-symbols-outlined">assessment</span><span class="font-label-md text-label-md">Attendance</span></div><span class="material-symbols-outlined text-sm">expand_more</span></button><div class="pl-xl space-y-xs mt-xs"><a class="block px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors font-label-md text-label-md" href="#">Attendance Overview</a><a class="block px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors font-label-md text-label-md" href="#">Sunday Service Report</a><a class="block px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors font-label-md text-label-md" href="#">Class Attendance Summary</a><a class="block px-md py-2 rounded-lg text-secondary-container bg-primary-light/20 font-bold transition-colors font-label-md text-label-md" href="#">Organisation Attendance Summary</a><a class="block px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 transition-colors font-label-md text-label-md" href="#">Absentee Report</a></div></div><a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">school</span><span class="font-label-md text-label-md">Classes</span></a><a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">payments</span><span class="font-label-md text-label-md">Finance</span></a></nav>
+<div class="mt-auto px-xs space-y-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 h-header-height flex justify-between items-center px-xl ml-sidebar-width w-[calc(100%-theme(spacing.sidebar-width))] bg-surface-container-lowest shadow-sm z-40">
+<div class="flex items-center gap-md">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant material-symbols-outlined">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container rounded-full border-none focus:ring-2 focus:ring-primary text-sm w-64" placeholder="Search organisations..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="relative hover:bg-surface-container rounded-full p-2 text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border-2 border-surface-container-lowest"></span>
+</button>
+<button class="hover:bg-surface-container rounded-full p-2 text-on-surface-variant">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="flex items-center gap-sm border-l pl-lg border-border">
+<div class="text-right">
+<p class="font-label-md text-label-md font-bold text-primary">Very Rev. K. Mensah</p>
+<p class="text-[11px] text-on-surface-variant">Synod Secretary</p>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-muted flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A dignified professional portrait of an elderly African clergyman in official Methodist clerical attire, set against a soft-focus interior background of a traditional church office. The lighting is warm and respectful, emphasizing a sense of wisdom and spiritual leadership. The style is high-quality digital photography with a corporate yet sacred aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0K1FqEDNvuhGGC4wFUGzmhULqYlOAq1BytMoSKMqdIhg3JKdZe2dTYzPxAVO3YeVfXKhaMXcYuWZZeTnonxrukfChsRytaPxgvsiiqHBXHV87oc4w9z-U6Lk2WkNQC9EdkMQOiIHcWN3DS7qTV7Y1TG6po7B7gMyuk51hCW0m3x7PKe0LnUoq-NRwfWfLufTGJGMABVn70BBhIu10jGjeBc7tiO3sq1axYSFuQvJ4-QDtvZJBoovfogb7Bf02MjRFg-4IwGQ01Fub"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-sidebar-width pt-[calc(theme(spacing.header-height)+32px)] px-xl pb-xl min-h-screen">
+<!-- Breadcrumb & Header -->
+<div class="mb-lg">
+<nav class="flex mb-base text-on-surface-variant">
+<ol class="flex items-center gap-xs font-label-md text-label-md">
+<li><a class="hover:text-primary" href="#">Dashboard</a></li>
+<li><span class="material-symbols-outlined text-sm">chevron_right</span></li>
+<li><a class="hover:text-primary" href="#">Attendance</a></li>
+<li><span class="material-symbols-outlined text-sm">chevron_right</span></li>
+<li class="font-bold text-primary">Organisation Attendance Summary</li>
+</ol>
+</nav>
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Organisation Attendance Summary</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Consolidated metrics for all service organisations within the society.</p>
+</div>
+<div class="flex gap-base">
+<select class="rounded-lg border-border bg-card font-label-md text-label-md focus:ring-primary focus:border-primary">
+<option>All Organisations</option>
+<option>Christ's Little Band</option>
+<option>Women's Fellowship</option>
+<option>Men's Fellowship</option>
+<option>Youth Fellowship</option>
+</select>
+<button class="bg-primary hover:bg-primary-light text-on-primary px-lg py-sm rounded-lg font-label-md text-label-md flex items-center gap-xs transition-colors">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        Advanced Filters
+                    </button>
+</div>
+</div>
+</div>
+<!-- Top Stat Cards (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg mb-xl">
+<!-- Avg Attendance -->
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-base">
+<span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Avg. Organisation Presence</span>
+<span class="material-symbols-outlined text-secondary">groups</span>
+</div>
+<div class="font-data-display text-headline-lg text-primary">84.2%</div>
+</div>
+<div class="mt-md flex items-center gap-xs text-success font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+3.2% vs last month</span>
+</div>
+</div>
+<!-- Most Active Organisation -->
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-success flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-base">
+<span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Most Active Organisation</span>
+<span class="material-symbols-outlined text-success">verified</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface">Women's Fellowship</div>
+</div>
+<div class="mt-md">
+<p class="font-label-sm text-label-sm text-on-surface-variant">96% Average Attendance</p>
+</div>
+</div>
+<!-- Needing Attention -->
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-error flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-base">
+<span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Needs Attention</span>
+<span class="material-symbols-outlined text-error">warning</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface">Men's Fellowship</div>
+</div>
+<div class="mt-md">
+<p class="font-label-sm text-label-sm text-on-surface-variant">61% Average Attendance (-12%)</p>
+</div>
+</div>
+<!-- Quick Action Card -->
+<div class="bg-primary p-lg rounded-xl shadow-sm text-on-primary flex flex-col justify-between">
+<p class="font-headline-md text-headline-md leading-tight">Generate Quarterly Review</p>
+<button class="mt-md w-full bg-secondary text-on-secondary font-bold py-2 rounded-lg hover:bg-secondary-fixed-dim transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-sm">file_download</span>
+                    Download PDF
+                </button>
+</div>
+</div>
+<!-- Middle Comparison Table -->
+<div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden mb-xl">
+<div class="p-lg border-b border-border flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-primary">Organisation Comparative Analysis</h3>
+<div class="flex gap-sm">
+<span class="flex items-center gap-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-3 h-3 rounded-full bg-success"></span> Above Target
+                    </span>
+<span class="flex items-center gap-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-3 h-3 rounded-full bg-warning"></span> At Risk
+                    </span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low font-label-md text-label-md text-on-surface-variant">
+<tr>
+<th class="px-lg py-md border-b border-border">Organisation Name</th>
+<th class="px-lg py-md border-b border-border text-right">Registered Strength</th>
+<th class="px-lg py-md border-b border-border text-right">Current Attendance</th>
+<th class="px-lg py-md border-b border-border text-right">Variance (%)</th>
+<th class="px-lg py-md border-b border-border text-center">Engagement Status</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md divide-y divide-border">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md font-bold">Women's Fellowship</td>
+<td class="px-lg py-md text-right font-data-label">142</td>
+<td class="px-lg py-md text-right font-data-label">136</td>
+<td class="px-lg py-md text-right font-data-label text-success">+4.2%</td>
+<td class="px-lg py-md text-center">
+<span class="bg-success/10 text-success px-3 py-1 rounded-full font-label-sm text-label-sm">Active</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md font-bold">Christ's Little Band</td>
+<td class="px-lg py-md text-right font-data-label">88</td>
+<td class="px-lg py-md text-right font-data-label">72</td>
+<td class="px-lg py-md text-right font-data-label text-warning">-18.1%</td>
+<td class="px-lg py-md text-center">
+<span class="bg-warning/10 text-warning px-3 py-1 rounded-full font-label-sm text-label-sm">Monitoring</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md font-bold">Men's Fellowship</td>
+<td class="px-lg py-md text-right font-data-label">65</td>
+<td class="px-lg py-md text-right font-data-label">40</td>
+<td class="px-lg py-md text-right font-data-label text-danger">-38.4%</td>
+<td class="px-lg py-md text-center">
+<span class="bg-error/10 text-error px-3 py-1 rounded-full font-label-sm text-label-sm">Critical</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md font-bold">Youth Fellowship</td>
+<td class="px-lg py-md text-right font-data-label">210</td>
+<td class="px-lg py-md text-right font-data-label">198</td>
+<td class="px-lg py-md text-right font-data-label text-success">+2.1%</td>
+<td class="px-lg py-md text-center">
+<span class="bg-success/10 text-success px-3 py-1 rounded-full font-label-sm text-label-sm">Active</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Bottom Cross-Tab Matrix -->
+<div class="bg-card rounded-xl shadow-sm border border-border mb-lg">
+<div class="p-lg border-b border-border">
+<h3 class="font-headline-md text-headline-md text-primary">Cross-Organisational Weekly Matrix</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Tracking attendance density across the last 4 meeting cycles.</p>
+</div>
+<div class="p-lg overflow-x-auto">
+<div class="grid grid-cols-5 gap-xs min-w-[800px]">
+<!-- Labels Column -->
+<div class="space-y-xs pt-10">
+<div class="h-12 flex items-center font-label-md text-label-md">Women's Fellowship</div>
+<div class="h-12 flex items-center font-label-md text-label-md">Men's Fellowship</div>
+<div class="h-12 flex items-center font-label-md text-label-md">Christ's Little Band</div>
+<div class="h-12 flex items-center font-label-md text-label-md">Youth Fellowship</div>
+<div class="h-12 flex items-center font-label-md text-label-md">Girls Brigade</div>
+</div>
+<!-- Week 1 -->
+<div class="flex flex-col items-center gap-xs">
+<div class="h-10 font-label-sm text-label-sm text-on-surface-variant uppercase">Week 1</div>
+<div class="w-full h-12 bg-primary/80 rounded-md flex items-center justify-center text-on-primary font-data-label">92%</div>
+<div class="w-full h-12 bg-primary/20 rounded-md flex items-center justify-center text-primary font-data-label">62%</div>
+<div class="w-full h-12 bg-primary/50 rounded-md flex items-center justify-center text-on-primary font-data-label">78%</div>
+<div class="w-full h-12 bg-primary rounded-md flex items-center justify-center text-on-primary font-data-label">98%</div>
+<div class="w-full h-12 bg-primary/40 rounded-md flex items-center justify-center text-on-primary font-data-label">74%</div>
+</div>
+<!-- Week 2 -->
+<div class="flex flex-col items-center gap-xs">
+<div class="h-10 font-label-sm text-label-sm text-on-surface-variant uppercase">Week 2</div>
+<div class="w-full h-12 bg-primary/90 rounded-md flex items-center justify-center text-on-primary font-data-label">95%</div>
+<div class="w-full h-12 bg-primary/10 rounded-md flex items-center justify-center text-primary font-data-label">58%</div>
+<div class="w-full h-12 bg-primary/60 rounded-md flex items-center justify-center text-on-primary font-data-label">82%</div>
+<div class="w-full h-12 bg-primary/90 rounded-md flex items-center justify-center text-on-primary font-data-label">94%</div>
+<div class="w-full h-12 bg-primary/50 rounded-md flex items-center justify-center text-on-primary font-data-label">79%</div>
+</div>
+<!-- Week 3 -->
+<div class="flex flex-col items-center gap-xs">
+<div class="h-10 font-label-sm text-label-sm text-on-surface-variant uppercase">Week 3</div>
+<div class="w-full h-12 bg-primary rounded-md flex items-center justify-center text-on-primary font-data-label">97%</div>
+<div class="w-full h-12 bg-primary/30 rounded-md flex items-center justify-center text-primary font-data-label">65%</div>
+<div class="w-full h-12 bg-primary/40 rounded-md flex items-center justify-center text-on-primary font-data-label">72%</div>
+<div class="w-full h-12 bg-primary/80 rounded-md flex items-center justify-center text-on-primary font-data-label">91%</div>
+<div class="w-full h-12 bg-primary/60 rounded-md flex items-center justify-center text-on-primary font-data-label">84%</div>
+</div>
+<!-- Week 4 -->
+<div class="flex flex-col items-center gap-xs">
+<div class="h-10 font-label-sm text-label-sm text-on-surface-variant uppercase text-primary font-bold">Trend</div>
+<div class="w-full h-12 bg-success/20 rounded-md flex items-center justify-center text-success"><span class="material-symbols-outlined">trending_up</span></div>
+<div class="w-full h-12 bg-error/20 rounded-md flex items-center justify-center text-error"><span class="material-symbols-outlined">trending_down</span></div>
+<div class="w-full h-12 bg-surface-container-high rounded-md flex items-center justify-center text-on-surface-variant"><span class="material-symbols-outlined">trending_flat</span></div>
+<div class="w-full h-12 bg-surface-container-high rounded-md flex items-center justify-center text-on-surface-variant"><span class="material-symbols-outlined">trending_flat</span></div>
+<div class="w-full h-12 bg-success/20 rounded-md flex items-center justify-center text-success"><span class="material-symbols-outlined">trending_up</span></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Single Org Correlation Banner (Dynamic Injection Mockup) -->
+<div class="bg-gold-muted border border-secondary/30 rounded-xl p-lg flex items-center justify-between gap-xl" id="correlation-banner">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">insights</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-secondary">Dues Correlation Insight</h4>
+<p class="font-body-md text-body-md text-on-secondary-container max-w-2xl">
+                        A strong positive correlation (0.84) exists between attendance and dues payment for <span class="font-bold">Women's Fellowship</span>. Regular attendees are 70% more likely to be up-to-date with their assessments.
+                    </p>
+</div>
+</div>
+<a class="whitespace-nowrap px-lg py-sm bg-secondary text-on-secondary rounded-lg font-bold hover:bg-on-secondary-container transition-colors flex items-center gap-xs" href="#e-02-dues-tab">
+                View Dues Status
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</main>
+<script>
+        // Simple micro-interaction for the stats cards
+        document.querySelectorAll('.bg-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('scale-[1.01]');
+                card.style.transition = 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('scale-[1.01]');
+            });
+        });
+
+        // Mock search interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.classList.add('w-80');
+            searchInput.style.transition = 'width 0.3s ease';
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.classList.remove('w-80');
+        });
+    </script>
+</body></html>

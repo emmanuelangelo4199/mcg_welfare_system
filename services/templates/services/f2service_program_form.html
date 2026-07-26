@@ -1,11 +1,13 @@
-<!DOCTYPE html><html class="light" lang="en"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>MCG-SMS | Add Service or Programme</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet"/>
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -146,28 +148,68 @@
 <h1 class="font-headline-md text-headline-md text-secondary-fixed font-bold leading-tight">Methodist Church Ghana</h1>
 <p class="font-label-md text-label-md text-on-primary-container opacity-80">Society Management System</p>
 </div>
-<nav class="flex-1 mt-md custom-scrollbar overflow-y-auto">
+<nav class="flex-1 mt-md custom-scrollbar overflow-y-auto"><!-- Dashboard -->
 <a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
 <span class="material-symbols-outlined">dashboard</span>
 <span class="font-label-md text-label-md">Dashboard</span>
 </a>
-<a class="flex items-center gap-md border-l-4 border-secondary-container bg-primary-light/20 text-secondary-fixed py-md px-lg translate-x-1 duration-200" href="#">
+<!-- Classes (Collapsed) -->
+<div class="group">
+<button class="w-full flex items-center justify-between text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200">
+<div class="flex items-center gap-md">
 <span class="material-symbols-outlined">church</span>
 <span class="font-label-md text-label-md">Classes</span>
-</a>
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+</div>
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:rotate-90">chevron_right</span>
+</button>
+</div>
+<!-- Services (Expanded & Active) -->
+<div class="bg-primary-light/10">
+<button class="w-full flex items-center justify-between border-l-4 border-secondary-container bg-primary-light/20 text-secondary-fixed py-md px-lg transition-all duration-200">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-label-md text-label-md">Services</span>
+</div>
+<span class="material-symbols-outlined text-[20px] rotate-90">chevron_right</span>
+</button>
+<div class="flex flex-col bg-black/10">
+<a class="py-sm pl-[60px] pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-sm transition-colors" href="#">Services &amp; Events Calendar</a>
+<a class="py-sm pl-[60px] pr-lg text-secondary-fixed font-bold bg-primary-light/20 text-label-sm transition-colors" href="#">Add / Edit Service or Programme Form</a>
+<a class="py-sm pl-[60px] pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-sm transition-colors" href="#">Service Detail Screen</a>
+<a class="py-sm pl-[60px] pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-sm transition-colors" href="#">Service Attendance Recording</a>
+<a class="py-sm pl-[60px] pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-sm transition-colors" href="#">Upcoming Events / Programme Calendar</a>
+</div>
+</div>
+<!-- Members (Collapsed) -->
+<div class="group">
+<button class="w-full flex items-center justify-between text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200">
+<div class="flex items-center gap-md">
 <span class="material-symbols-outlined">groups</span>
 <span class="font-label-md text-label-md">Members</span>
-</a>
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+</div>
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:rotate-90">chevron_right</span>
+</button>
+</div>
+<!-- Finance (Collapsed) -->
+<div class="group">
+<button class="w-full flex items-center justify-between text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200">
+<div class="flex items-center gap-md">
 <span class="material-symbols-outlined">payments</span>
 <span class="font-label-md text-label-md">Finance</span>
-</a>
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+</div>
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:rotate-90">chevron_right</span>
+</button>
+</div>
+<!-- Reports (Collapsed) -->
+<div class="group">
+<button class="w-full flex items-center justify-between text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200">
+<div class="flex items-center gap-md">
 <span class="material-symbols-outlined">assessment</span>
 <span class="font-label-md text-label-md">Reports</span>
-</a>
-</nav>
+</div>
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:rotate-90">chevron_right</span>
+</button>
+</div></nav>
 <div class="mt-auto border-t border-primary-light/20 p-md">
 <button class="w-full bg-secondary-container text-on-secondary-container py-md rounded-lg font-label-md flex items-center justify-center gap-sm mb-md hover:opacity-90 active:scale-95 transition-all">
 <span class="material-symbols-outlined">add</span> Quick Actions
@@ -192,7 +234,6 @@
 </button>
 <span class="font-headline-md text-headline-md font-bold text-primary">MCG-SMS</span>
 </div>
-
 </header>
 <!-- Page Canvas -->
 <div class="mt-header-height p-lg max-w-5xl mx-auto w-full pb-xl">
@@ -230,7 +271,7 @@
 <!-- Event Name -->
 <div class="md:col-span-2">
 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Event Name <span class="text-error">*</span></label>
-<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" placeholder="e.g. Annual Harvest Thanksgiving Service" required="" type="text">
+<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" placeholder="e.g. Annual Harvest Thanksgiving Service" required="" type="text"/>
 </div>
 <!-- Event Type -->
 <div>
@@ -250,29 +291,29 @@
 <div>
 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Date <span class="text-error">*</span></label>
 <div class="relative">
-<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" type="date">
+<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" type="date"/>
 </div>
 </div>
 <!-- Time Range -->
 <div class="grid grid-cols-2 gap-md">
 <div>
 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Start Time</label>
-<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" type="time">
+<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" type="time"/>
 </div>
 <div>
 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">End Time</label>
-<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" type="time">
+<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" type="time"/>
 </div>
 </div>
 <!-- Venue -->
 <div>
 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Venue <span class="text-error">*</span></label>
-<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" placeholder="e.g. Main Sanctuary" type="text">
+<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" placeholder="e.g. Main Sanctuary" type="text"/>
 </div>
 <!-- Theme -->
 <div class="md:col-span-2">
 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Theme / Scriptural Text</label>
-<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" placeholder="e.g. The Grace of Giving (2 Corinthians 9:7)" type="text">
+<input class="w-full border border-border rounded-lg p-md font-body-md focus-ring transition-all" placeholder="e.g. The Grace of Giving (2 Corinthians 9:7)" type="text"/>
 </div>
 </div>
 </section>
@@ -291,12 +332,12 @@
 <div class="flex justify-between items-center">
 <label class="font-label-md text-label-md text-on-surface-variant">Preacher / Speaker</label>
 <label class="flex items-center gap-xs cursor-pointer select-none">
-<input class="rounded text-primary focus:ring-primary-light" type="checkbox">
+<input class="rounded text-primary focus:ring-primary-light" type="checkbox"/>
 <span class="font-label-sm text-label-sm text-on-surface-variant">External Speaker</span>
 </label>
 </div>
 <div class="relative">
-<input class="w-full border border-border rounded-lg p-md pl-10 font-body-md focus-ring transition-all" placeholder="Search members or enter name..." type="text">
+<input class="w-full border border-border rounded-lg p-md pl-10 font-body-md focus-ring transition-all" placeholder="Search members or enter name..." type="text"/>
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
 </div>
 </div>
@@ -305,12 +346,12 @@
 <div class="flex justify-between items-center">
 <label class="font-label-md text-label-md text-on-surface-variant">Presiding Minister</label>
 <label class="flex items-center gap-xs cursor-pointer select-none">
-<input class="rounded text-primary focus:ring-primary-light" type="checkbox">
+<input class="rounded text-primary focus:ring-primary-light" type="checkbox"/>
 <span class="font-label-sm text-label-sm text-on-surface-variant">Manual Entry</span>
 </label>
 </div>
 <div class="relative">
-<input class="w-full border border-border rounded-lg p-md pl-10 font-body-md focus-ring transition-all" placeholder="Search clergy records..." type="text">
+<input class="w-full border border-border rounded-lg p-md pl-10 font-body-md focus-ring transition-all" placeholder="Search clergy records..." type="text"/>
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">verified_user</span>
 </div>
 </div>
@@ -386,6 +427,4 @@
             }, 1200);
         });
     </script>
-
-
 </body></html>

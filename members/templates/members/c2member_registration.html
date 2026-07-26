@@ -1,391 +1,622 @@
-<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>New Member Registration</title>
-<!-- Fonts & Icons -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<!-- Tailwind CSS -->
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>New Member Registration - MCG-SMS</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Theme Configuration -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "secondary-fixed": "#ffdf9a",
-                    "background": "#fff8f5",
-                    "on-primary": "#ffffff",
-                    "surface-tint": "#a33a49",
-                    "tertiary": "#2a2b2a",
-                    "on-primary-fixed-variant": "#832233",
-                    "inverse-surface": "#33302d",
-                    "on-secondary": "#ffffff",
-                    "tertiary-fixed": "#e3e2e0",
-                    "primary-light": "#A3283F",
-                    "on-primary-container": "#ff8a95",
-                    "on-surface-variant": "#564243",
-                    "primary-container": "#7b1c2d",
-                    "on-tertiary-fixed-variant": "#464746",
-                    "surface-dim": "#e0d8d5",
-                    "on-error-container": "#93000a",
-                    "surface-container-high": "#eee7e3",
-                    "warning": "#D97706",
-                    "surface": "#F8F7F5",
-                    "on-tertiary-container": "#adadab",
-                    "outline-variant": "#dcc0c1",
-                    "surface-container-highest": "#e9e1dd",
-                    "on-secondary-fixed-variant": "#5a4300",
-                    "surface-bright": "#fff8f5",
-                    "surface-container": "#f4ece8",
-                    "surface-container-low": "#faf2ee",
-                    "tertiary-container": "#404140",
-                    "on-tertiary-fixed": "#1a1c1b",
-                    "on-secondary-fixed": "#251a00",
-                    "primary-fixed-dim": "#ffb2b7",
-                    "primary-fixed": "#ffdadb",
-                    "border": "#E4E2DD",
-                    "on-primary-fixed": "#40000e",
-                    "card": "#FFFFFF",
-                    "error": "#ba1a1a",
-                    "on-surface": "#1e1b19",
-                    "text-secondary": "#6B7280",
-                    "on-error": "#ffffff",
-                    "on-tertiary": "#ffffff",
-                    "inverse-on-surface": "#f7efeb",
-                    "gold-muted": "#FDF6E3",
-                    "secondary-fixed-dim": "#eec04f",
-                    "secondary-container": "#fece5b",
-                    "info": "#2563EB",
-                    "tertiary-fixed-dim": "#c7c6c5",
-                    "danger": "#DC2626",
-                    "secondary": "#775a00",
-                    "primary-muted": "#F5EAEC",
-                    "primary": "#5c0219",
-                    "surface-container-lowest": "#ffffff",
-                    "inverse-primary": "#ffb2b7",
-                    "outline": "#897172",
-                    "on-secondary-container": "#745700",
-                    "error-container": "#ffdad6",
-                    "surface-variant": "#e9e1dd",
-                    "on-background": "#1e1b19",
-                    "success": "#16A34A"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "lg": "24px",
-                    "base": "8px",
-                    "xl": "32px",
-                    "md": "16px",
-                    "header-height": "64px",
-                    "sidebar-width": "256px",
-                    "sm": "8px",
-                    "xs": "4px"
-            },
-            "fontFamily": {
-                    "label-sm": ["Inter", "sans-serif"],
-                    "data-label": ["JetBrains Mono", "monospace"],
-                    "data-display": ["JetBrains Mono", "monospace"],
-                    "headline-lg": ["Lora", "serif"],
-                    "label-md": ["Inter", "sans-serif"],
-                    "body-md": ["Inter", "sans-serif"],
-                    "headline-md": ["Inter", "sans-serif"],
-                    "body-lg": ["Inter", "sans-serif"],
-                    "headline-lg-mobile": ["Lora", "serif"]
-            },
-            "fontSize": {
-                    "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
-                    "headline-md": ["20px", { "lineHeight": "1.3", "fontWeight": "600" }],
-                    "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                    "body-md": ["14px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                    "label-md": ["13px", { "lineHeight": "1.2", "fontWeight": "500" }],
-                    "label-sm": ["11px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }]
-            }
-          }
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-surface": "#33302d",
+                      "inverse-on-surface": "#f7efeb",
+                      "surface-tint": "#a33a49",
+                      "on-surface-variant": "#564243",
+                      "surface-dim": "#e0d8d5",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-fixed": "#40000e",
+                      "on-secondary-fixed": "#251a00",
+                      "warning": "#D97706",
+                      "on-secondary-container": "#745700",
+                      "outline": "#897172",
+                      "tertiary": "#2a2b2a",
+                      "primary": "#5c0219",
+                      "on-background": "#1e1b19",
+                      "primary-muted": "#F5EAEC",
+                      "on-tertiary-container": "#adadab",
+                      "on-tertiary-fixed": "#1a1c1b",
+                      "primary-light": "#A3283F",
+                      "surface-bright": "#fff8f5",
+                      "card": "#FFFFFF",
+                      "tertiary-container": "#404140",
+                      "on-secondary-fixed-variant": "#5a4300",
+                      "info": "#2563EB",
+                      "secondary-fixed": "#ffdf9a",
+                      "gold-muted": "#FDF6E3",
+                      "on-primary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "error": "#ba1a1a",
+                      "primary-container": "#7b1c2d",
+                      "surface-container-low": "#faf2ee",
+                      "on-secondary": "#ffffff",
+                      "text-secondary": "#6B7280",
+                      "tertiary-fixed": "#e3e2e0",
+                      "surface-container-high": "#eee7e3",
+                      "on-primary-fixed-variant": "#832233",
+                      "on-primary-container": "#ff8a95",
+                      "secondary": "#775a00",
+                      "error-container": "#ffdad6",
+                      "surface": "#F8F7F5",
+                      "secondary-fixed-dim": "#eec04f",
+                      "on-surface": "#1e1b19",
+                      "inverse-primary": "#ffb2b7",
+                      "on-tertiary-fixed-variant": "#464746",
+                      "on-tertiary": "#ffffff",
+                      "background": "#fff8f5",
+                      "surface-container": "#f4ece8",
+                      "on-error": "#ffffff",
+                      "surface-variant": "#e9e1dd",
+                      "tertiary-fixed-dim": "#c7c6c5",
+                      "primary-fixed": "#ffdadb",
+                      "primary-fixed-dim": "#ffb2b7",
+                      "success": "#16A34A",
+                      "danger": "#DC2626",
+                      "surface-container-highest": "#e9e1dd",
+                      "outline-variant": "#dcc0c1",
+                      "border": "#E4E2DD",
+                      "secondary-container": "#fece5b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "sidebar-width": "256px",
+                      "header-height": "64px",
+                      "xl": "32px",
+                      "lg": "24px",
+                      "base": "8px",
+                      "xs": "4px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Lora"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Lora"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "data-label": [
+                              "JetBrains Mono"
+                      ],
+                      "data-display": [
+                              "JetBrains Mono"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "13px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "data-label": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.0",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "data-display": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.0",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
         }
-      }
     </script>
 <style>
-        .nav-link.active {
-            background-color: theme('colors.primary-container');
-            color: theme('colors.on-primary');
-            font-weight: 600;
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-        .nav-link.active .material-symbols-outlined {
-            font-variation-settings: 'FILL' 1;
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-        /* Custom scrollbar for webkit */
+        /* Hide scrollbar for clean look but allow scrolling */
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: theme('colors.background'); 
+            background: transparent;
         }
         ::-webkit-scrollbar-thumb {
-            background: theme('colors.surface-variant'); 
+            background: #E4E2DD;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: theme('colors.outline-variant'); 
+            background: #dcc0c1;
         }
     </style>
 </head>
-<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
-<!-- Minimal Header (Back-to-Main Exception applied) -->
-<header class="h-header-height bg-surface border-b border-border flex items-center px-6 sticky top-0 z-50">
-<button aria-label="Go back" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-variant transition-colors mr-4">
-<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col md:flex-row">
+<!-- TopAppBar (Mobile) -->
+<header class="md:hidden fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg h-header-height bg-surface-container-lowest dark:bg-surface-dim border-b border-border dark:border-outline-variant shadow-sm dark:shadow-none">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">MCG-SMS</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-tertiary-container transition-colors p-sm rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
 </button>
-<div class="flex flex-col">
-<h1 class="font-headline-md text-on-surface leading-tight">Member Registration</h1>
-<span class="font-label-sm text-text-secondary">Save your progress at any time</span>
+<img alt="User profile avatar" class="w-[32px] h-[32px] rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0N9EJMIM6B-LxEO6rsuP-O63dUJAv7FnAyxKwavGsdyKtoUczAsCYiElz12sCoBa9b2xJe20NQwWGyK4md--TiCve35Zp1DIDv7-3BO9zOS_AU2hfVHdBUmtqixRGgXtBDW_TxVFXB3Sdf7bhhnb6Hiti_Mz69Bx2cbO5jmnvyqYwsnBLHRWOL2QkHs3u8w8J0mynpJPk3zXFQ_XZTpoVPcuqbMKXyjdsviY4azF-WuTK7a1yl1E9UoIOHdjzaK_dFvcigxEpORdb"/>
 </div>
 </header>
-<!-- Main Content Area -->
-<main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-8 flex flex-col lg:flex-row gap-8 items-start">
-<!-- Left: Form Content -->
-<div class="flex-1 w-full flex flex-col gap-8">
-<form class="flex flex-col gap-8" id="registration-form">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex fixed left-0 top-0 h-full w-sidebar-width flex-col z-40 bg-primary-container dark:bg-primary shadow-lg text-on-primary-container dark:text-on-primary">
+<!-- Header -->
+<div class="p-lg border-b border-on-primary/10 flex items-center gap-md">
+<div class="w-[40px] h-[40px] bg-white rounded-full flex items-center justify-center text-primary font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A small, elegant circular logo featuring a stylized white dove and a maroon cross against a clean white background. The design is modern, professional, and subtle, fitting for a prestigious religious institution's administrative portal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoD4Ru_BAmc37rSPE9UnpijEGwVP61yflI-rgUJG8sAAzaFhpD8yJE4oBdZjoDoXNTDk0lvmSkHTA79n9GrV3zGPasXWygcVZEW_W99352ODEPAcNGSCOKn1Xx70qCZiHoNh2CeJ9GILu__Bbg4ddyPIiSnQHv5tyONoZfZNS1xKQN5NVGnjJVqOWrdrkoExpxOIKFuzRQ_Dotud2w0QEZhhmJBNLoqsxO2KusogrledvUBA7MKQ1VIph7RHcbGAZACklb7ANJVRC4"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-secondary-fixed font-bold leading-tight">Methodist Church Ghana</h1>
+<p class="font-label-sm text-label-sm text-on-primary/70 mt-xs uppercase tracking-wider">Society Management System</p>
+</div>
+</div>
+<!-- Main Navigation -->
+<div class="flex-1 py-lg flex flex-col gap-sm overflow-y-auto font-label-md text-label-md"><div class="flex flex-col gap-xs">
+<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+</div>
+<div class="flex flex-col">
+<button class="flex items-center justify-between w-full text-secondary-fixed bg-primary-light/20 py-md px-lg border-l-4 border-secondary-container transition-all duration-200 group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-bold">Members</span>
+</div>
+<span class="material-symbols-outlined transition-transform duration-200" data-icon="expand_more">expand_more</span>
+</button>
+<div class="flex flex-col bg-primary-container/50">
+<a class="pl-[64px] py-sm pr-lg text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-colors" href="#">Directory</a>
+<a class="pl-[64px] py-sm pr-lg text-secondary-fixed font-bold bg-primary-light/10" href="#">New Member</a>
+<a class="pl-[64px] py-sm pr-lg text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-colors" href="#">Member Profile</a>
+<a class="pl-[64px] py-sm pr-lg text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-colors" href="#">Edit Member</a>
+<a class="pl-[64px] py-sm pr-lg text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-colors" href="#">Pending Members</a>
+<a class="pl-[64px] py-sm pr-lg text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-colors" href="#">Member Regularisation</a>
+<a class="pl-[64px] py-sm pr-lg text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-colors" href="#">Member Transfers</a>
+<a class="pl-[64px] py-sm pr-lg text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-colors" href="#">Status Management</a>
+</div>
+</div>
+<div class="flex flex-col">
+<button class="flex items-center justify-between w-full text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined" data-icon="church">church</span>
+<span>Classes</span>
+</div>
+<span class="material-symbols-outlined text-on-primary/50" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<div class="flex flex-col">
+<button class="flex items-center justify-between w-full text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>Finance</span>
+</div>
+<span class="material-symbols-outlined text-on-primary/50" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<div class="flex flex-col">
+<button class="flex items-center justify-between w-full text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span>Reports</span>
+</div>
+<span class="material-symbols-outlined text-on-primary/50" data-icon="chevron_right">chevron_right</span>
+</button>
+</div></div>
+<!-- CTA & Footer -->
+<div class="p-lg border-t border-on-primary/10">
+<button class="w-full bg-secondary-fixed text-on-secondary-fixed font-label-md py-sm rounded-DEFAULT mb-md hover:bg-secondary-container transition-colors shadow-sm">
+                Quick Actions
+            </button>
+<div class="flex flex-col gap-sm font-label-md text-label-md">
+<a class="flex items-center gap-md text-on-primary/80 hover:text-on-primary transition-colors py-sm px-sm" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-md text-on-primary/80 hover:text-on-primary transition-colors py-sm px-sm" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="flex-1 md:ml-sidebar-width pt-header-height md:pt-0 p-lg md:p-xl flex gap-xl max-w-7xl mx-auto w-full relative">
+<!-- Left Column: Form Content -->
+<div class="flex-1 w-full flex flex-col gap-xl">
+<!-- Page Header -->
+<div class="flex items-center justify-between border-b border-border pb-md">
+<div>
+<div class="flex items-center gap-sm text-on-surface-variant font-label-sm text-label-sm mb-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_back">arrow_back</span>
+<a class="hover:text-primary transition-colors" href="#">Back to Members</a>
+</div>
+<h2 class="font-headline-lg md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">New Member Registration</h2>
+<p class="text-on-surface-variant mt-sm">Complete the form below to register a new society member. Fields marked with <span class="text-error">*</span> are required.</p>
+</div>
+<div class="hidden lg:flex items-center gap-sm">
+<button class="bg-surface-container text-on-surface font-label-md text-label-md px-md py-sm rounded-lg border border-border hover:bg-surface-container-highest transition-colors">
+                        Save as Draft
+                    </button>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-md py-sm rounded-lg hover:bg-primary-light transition-colors shadow-sm">
+                        Submit for Regularisation
+                    </button>
+</div>
+</div>
+<!-- Form Cards Container -->
+<form class="flex flex-col gap-lg" id="registrationForm">
 <!-- Section 1: Personal Details -->
-<section class="bg-card rounded-xl shadow-sm border border-border p-6 md:p-8 scroll-mt-24" id="section-personal">
-<h2 class="font-headline-lg text-primary mb-6">Personal Details</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-<label class="flex flex-col gap-2">
-<span class="font-label-md text-on-surface">First Name</span>
-<input class="rounded-lg border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-primary h-12 px-4" placeholder="Enter first name" type="text">
-</label>
-<label class="flex flex-col gap-2">
-<span class="font-label-md text-on-surface">Middle Name</span>
-<input class="rounded-lg border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-primary h-12 px-4" placeholder="Enter middle name" type="text">
-</label>
-<label class="flex flex-col gap-2">
-<span class="font-label-md text-on-surface">Last Name</span>
-<input class="rounded-lg border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-primary h-12 px-4" placeholder="Enter last name" type="text">
-</label>
+<div class="bg-card rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-lg scroll-mt-24 border-l-4 border-secondary-container" id="section-personal">
+<div class="flex items-center gap-md mb-lg border-b border-border pb-sm">
+<div class="w-8 h-8 rounded-full bg-primary-muted text-primary flex items-center justify-center font-bold">1</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Personal Details</h3>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-<div class="flex flex-col gap-3">
-<span class="font-label-md text-on-surface">Gender</span>
-<div class="flex gap-4 h-12 items-center">
-<label class="flex items-center gap-2 cursor-pointer">
-<input class="text-primary focus:ring-primary" name="gender" type="radio" value="male">
-<span class="font-body-md">Male</span>
-</label>
-<label class="flex items-center gap-2 cursor-pointer">
-<input class="text-primary focus:ring-primary" name="gender" type="radio" value="female">
-<span class="font-body-md">Female</span>
-</label>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md mb-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">First Name <span class="text-error">*</span></label>
+<input class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="John" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Middle Name</label>
+<input class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Kwame" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Last Name <span class="text-error">*</span></label>
+<input class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Doe" type="text"/>
 </div>
 </div>
-<label class="flex flex-col gap-2">
-<span class="font-label-md text-on-surface">Date of Birth</span>
-<input class="rounded-lg border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-primary h-12 px-4 text-on-surface" type="date">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Gender <span class="text-error">*</span></label>
+<div class="flex items-center gap-lg mt-sm">
+<label class="flex items-center gap-xs cursor-pointer">
+<input class="text-primary focus:ring-primary" name="gender" type="radio"/>
+<span class="font-body-md text-body-md">Male</span>
+</label>
+<label class="flex items-center gap-xs cursor-pointer">
+<input class="text-primary focus:ring-primary" name="gender" type="radio"/>
+<span class="font-body-md text-body-md">Female</span>
 </label>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<label class="flex flex-col gap-2">
-<span class="font-label-md text-on-surface">Marital Status</span>
-<select class="rounded-lg border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-primary h-12 px-4">
-<option disabled="" selected="" value="">Select status</option>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Date of Birth <span class="text-error">*</span></label>
+<div class="relative">
+<input class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all pl-xl text-on-surface" type="date"/>
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="calendar_today">calendar_today</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Marital Status</label>
+<select class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none">
+<option value="">Select status...</option>
 <option value="single">Single</option>
 <option value="married">Married</option>
-<option value="divorced">Divorced</option>
 <option value="widowed">Widowed</option>
+<option value="divorced">Divorced</option>
 </select>
-</label>
-<label class="flex flex-col gap-2">
-<span class="font-label-md text-on-surface">Occupation</span>
-<input class="rounded-lg border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-primary h-12 px-4" placeholder="e.g. Teacher, Engineer" type="text">
-</label>
-<label class="flex flex-col gap-2">
-<span class="font-label-md text-on-surface">Hometown</span>
-<input class="rounded-lg border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-primary h-12 px-4" placeholder="City, Region" type="text">
-</label>
 </div>
-</section>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Occupation</label>
+<input class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="e.g. Teacher" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Hometown</label>
+<input class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="e.g. Kumasi" type="text"/>
+</div>
+</div>
+</div>
 <!-- Section 2: Contact & Address -->
-<section class="bg-card rounded-xl shadow-sm border border-border p-6 md:p-8 scroll-mt-24" id="section-contact">
-<h2 class="font-headline-lg text-primary mb-6">Contact &amp; Address</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-<label class="flex flex-col gap-2">
-<span class="font-label-md text-on-surface">Primary Phone</span>
-<input class="rounded-lg border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-primary h-12 px-4" placeholder="+233 24 456 231" type="tel">
-</label>
-<label class="flex flex-col gap-2">
-<span class="font-label-md text-on-surface">Email Address</span>
-<input class="rounded-lg border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-primary h-12 px-4" placeholder="name@example.com" type="email">
-</label>
+<div class="bg-card rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-lg scroll-mt-24 border-l-4 border-transparent transition-colors hover:border-surface-tint/30" id="section-contact">
+<div class="flex items-center gap-md mb-lg border-b border-border pb-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-bold">2</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Contact &amp; Address</h3>
 </div>
-<label class="flex flex-col gap-2">
-<span class="font-label-md text-on-surface">Residential Address</span>
-<textarea class="rounded-lg border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-primary p-4" placeholder="Enter full address" rows="3"></textarea>
-</label>
-</section>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Primary Phone <span class="text-error">*</span></label>
+<div class="relative">
+<input class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all pl-xl" placeholder="024 XXX XXXX" type="tel"/>
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="phone">phone</span>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Email Address</label>
+<div class="relative">
+<input class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all pl-xl" placeholder="john@example.com" type="email"/>
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="mail">mail</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-xs mb-md">
+<label class="font-label-md text-label-md text-on-surface-variant">Residential Address <span class="text-error">*</span></label>
+<textarea class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all min-h-[80px]" placeholder="House Number, Street Name, Area..."></textarea>
+</div>
+</div>
 <!-- Section 3: Church Details -->
-<section class="bg-card rounded-xl shadow-sm border border-border p-6 md:p-8 scroll-mt-24" id="section-church">
-<h2 class="font-headline-lg text-primary mb-6">Church Details</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<label class="flex flex-col gap-2">
-<span class="font-label-md text-on-surface">Date of Baptism</span>
-<input class="rounded-lg border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-primary h-12 px-4" type="date">
-</label>
-<label class="flex flex-col gap-2">
-<span class="font-label-md text-on-surface">Previous Assembly (If any)</span>
-<input class="rounded-lg border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-primary h-12 px-4" placeholder="Name of previous church" type="text">
-</label>
+<div class="bg-card rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-lg scroll-mt-24 border-l-4 border-transparent transition-colors hover:border-surface-tint/30" id="section-church">
+<div class="flex items-center gap-md mb-lg border-b border-border pb-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-bold">3</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Church Details</h3>
 </div>
-</section>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Membership Status <span class="text-error">*</span></label>
+<select class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+<option value="full">Full Member</option>
+<option value="on-trial">Member on Trial</option>
+<option value="adherent">Adherent</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Date of Baptism</label>
+<input class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" type="date"/>
+</div>
+</div>
+</div>
 <!-- Section 4: Class & Organisations -->
-<section class="bg-card rounded-xl shadow-sm border border-border p-6 md:p-8 scroll-mt-24" id="section-class">
-<h2 class="font-headline-lg text-primary mb-6">Class &amp; Organisations</h2>
-<p class="font-body-md text-text-secondary mb-4">Select the groups you are currently active in or wish to join.</p>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-<label class="flex items-center gap-3 p-4 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors">
-<input class="text-primary focus:ring-primary rounded" type="checkbox">
-<span class="font-body-md font-medium">Men's Ministry</span>
-</label>
-<label class="flex items-center gap-3 p-4 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors">
-<input class="text-primary focus:ring-primary rounded" type="checkbox">
-<span class="font-body-md font-medium">Women's Ministry</span>
-</label>
-<label class="flex items-center gap-3 p-4 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors">
-<input class="text-primary focus:ring-primary rounded" type="checkbox">
-<span class="font-body-md font-medium">Youth Fellowship</span>
-</label>
-<label class="flex items-center gap-3 p-4 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors">
-<input class="text-primary focus:ring-primary rounded" type="checkbox">
-<span class="font-body-md font-medium">Choir</span>
-</label>
+<div class="bg-card rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-lg scroll-mt-24 border-l-4 border-transparent transition-colors hover:border-surface-tint/30" id="section-class">
+<div class="flex items-center gap-md mb-lg border-b border-border pb-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-bold">4</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Class &amp; Organisations</h3>
 </div>
-</section>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Bible Class <span class="text-error">*</span></label>
+<select class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+<option value="">Select a class...</option>
+<option value="1">Class 1 - St. John</option>
+<option value="2">Class 2 - St. Peter</option>
+<option value="3">Class 3 - St. Paul</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Organisations (Select multiple)</label>
+<select class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all h-[100px]" multiple="">
+<option value="myf">Methodist Youth Fellowship</option>
+<option value="wgf">Women's Fellowship</option>
+<option value="mgf">Men's Fellowship</option>
+<option value="choir">Church Choir</option>
+</select>
+<span class="font-label-sm text-label-sm text-on-surface-variant/70">Hold Ctrl/Cmd to select multiple</span>
+</div>
+</div>
+</div>
 <!-- Section 5: Emergency Contact -->
-<section class="bg-card rounded-xl shadow-sm border border-border p-6 md:p-8 scroll-mt-24" id="section-emergency">
-<h2 class="font-headline-lg text-primary mb-6">Emergency Contact</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<label class="flex flex-col gap-2">
-<span class="font-label-md text-on-surface">Contact Name</span>
-<input class="rounded-lg border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-primary h-12 px-4" placeholder="Full name" type="text">
-</label>
-<label class="flex flex-col gap-2">
-<span class="font-label-md text-on-surface">Relationship</span>
-<input class="rounded-lg border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-primary h-12 px-4" placeholder="e.g. Spouse, Sibling" type="text">
-</label>
-<label class="flex flex-col gap-2">
-<span class="font-label-md text-on-surface">Phone Number</span>
-<input class="rounded-lg border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-primary h-12 px-4" placeholder="Contact number" type="tel">
-</label>
+<div class="bg-card rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-lg scroll-mt-24 border-l-4 border-transparent transition-colors hover:border-surface-tint/30" id="section-emergency">
+<div class="flex items-center gap-md mb-lg border-b border-border pb-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-bold">5</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Emergency Contact</h3>
 </div>
-</section>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md mb-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Contact Name <span class="text-error">*</span></label>
+<input class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Relationship <span class="text-error">*</span></label>
+<input class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Phone Number <span class="text-error">*</span></label>
+<input class="w-full bg-surface rounded-DEFAULT border border-border px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" type="tel"/>
+</div>
+</div>
+</div>
 <!-- Section 6: Documents -->
-<section class="bg-card rounded-xl shadow-sm border border-border p-6 md:p-8 scroll-mt-24" id="section-documents">
-<h2 class="font-headline-lg text-primary mb-6">Documents</h2>
-<div class="flex flex-col gap-4">
-<span class="font-label-md text-on-surface">Passport Photograph</span>
-<p class="font-body-md text-text-secondary text-sm">Please upload a clear, recent passport-sized photograph. Max size 2MB (JPG/PNG).</p>
-<!-- Drag and Drop Zone -->
-<div class="mt-2 flex justify-center rounded-xl border border-dashed border-outline px-6 py-10 hover:bg-surface-container-low transition-colors cursor-pointer group">
-<div class="text-center">
-<span class="material-symbols-outlined text-4xl text-text-secondary group-hover:text-primary transition-colors mb-3">cloud_upload</span>
-<div class="mt-2 flex text-sm leading-6 text-on-surface justify-center">
-<label class="relative cursor-pointer rounded-md bg-transparent font-semibold text-primary focus-within:outline-none focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 hover:text-primary-light" for="file-upload">
-<span>Upload a file</span>
-<input accept="image/jpeg, image/png" class="sr-only" id="file-upload" name="file-upload" type="file">
-</label>
-<p class="pl-1">or drag and drop</p>
+<div class="bg-card rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-lg scroll-mt-24 border-l-4 border-transparent transition-colors hover:border-surface-tint/30 mb-xl" id="section-documents">
+<div class="flex items-center gap-md mb-lg border-b border-border pb-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-bold">6</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Documents</h3>
 </div>
-<p class="text-xs leading-5 text-text-secondary">PNG, JPG up to 2MB</p>
+<div class="flex flex-col gap-sm">
+<label class="font-label-md text-label-md text-on-surface-variant">Passport Photo</label>
+<div class="w-full border-2 border-dashed border-outline-variant rounded-lg p-xl flex flex-col items-center justify-center bg-surface hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded-full bg-primary-muted flex items-center justify-center mb-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px] text-primary" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface mb-xs"><span class="text-primary font-bold">Click to upload</span> or drag and drop</p>
+<p class="font-body-sm text-on-surface-variant text-center max-w-sm">SVG, PNG, JPG or GIF (max. 800x400px)</p>
 </div>
 </div>
 </div>
-</section>
+<!-- Mobile Action Buttons (Sticky Bottom) -->
+<div class="lg:hidden fixed bottom-0 left-0 w-full bg-surface-container-lowest border-t border-border p-md flex gap-sm z-30 pb-safe">
+<button class="flex-1 bg-surface-container text-on-surface font-label-md text-label-md px-sm py-md rounded-lg border border-border">
+                        Draft
+                    </button>
+<button class="flex-[2] bg-primary text-on-primary font-label-md text-label-md px-sm py-md rounded-lg shadow-sm">
+                        Submit
+                    </button>
+</div>
 </form>
 </div>
-<!-- Right: Sticky Section Navigation (Maroon Sidebar) -->
-<aside class="hidden lg:block w-[280px] shrink-0 sticky top-24">
-<div class="bg-primary rounded-xl shadow-lg overflow-hidden flex flex-col">
-<div class="p-6 border-b border-primary-light/30">
-<h3 class="font-headline-md text-on-primary">Form Sections</h3>
-<p class="font-label-sm text-primary-fixed-dim mt-1">Track your progress</p>
+<!-- Right Column: Sticky Navigation Panel -->
+<aside class="hidden lg:block w-[280px] shrink-0 relative">
+<div class="sticky top-[100px] bg-card rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] p-lg border border-border/50">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-md">Form Sections</h4>
+<div class="flex flex-col gap-sm relative before:content-[''] before:absolute before:left-[11px] before:top-[16px] before:bottom-[16px] before:w-[2px] before:bg-surface-variant z-0">
+<a class="flex items-center gap-md group relative z-10" href="#section-personal">
+<div class="w-6 h-6 rounded-full bg-secondary-container border-2 border-card flex items-center justify-center transition-colors">
+<div class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></div>
 </div>
-<nav class="flex flex-col p-3 gap-1" id="section-nav">
-<a class="nav-link active flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed-dim hover:bg-primary-container hover:text-on-primary transition-all" href="#section-personal">
-<span class="material-symbols-outlined">person</span>
-<span class="font-label-md">Personal Details</span>
+<span class="font-label-md text-label-md text-primary font-bold">Personal Details</span>
 </a>
-<a class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed-dim hover:bg-primary-container hover:text-on-primary transition-all" href="#section-contact">
-<span class="material-symbols-outlined">location_on</span>
-<span class="font-label-md">Contact &amp; Address</span>
+<a class="flex items-center gap-md group relative z-10" href="#section-contact">
+<div class="w-6 h-6 rounded-full bg-surface-variant border-2 border-card flex items-center justify-center group-hover:bg-outline-variant transition-colors"></div>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface transition-colors">Contact &amp; Address</span>
 </a>
-<a class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed-dim hover:bg-primary-container hover:text-on-primary transition-all" href="#section-church">
-<span class="material-symbols-outlined">church</span>
-<span class="font-label-md">Church Details</span>
+<a class="flex items-center gap-md group relative z-10" href="#section-church">
+<div class="w-6 h-6 rounded-full bg-surface-variant border-2 border-card flex items-center justify-center group-hover:bg-outline-variant transition-colors"></div>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface transition-colors">Church Details</span>
 </a>
-<a class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed-dim hover:bg-primary-container hover:text-on-primary transition-all" href="#section-class">
-<span class="material-symbols-outlined">group</span>
-<span class="font-label-md">Class &amp; Organisations</span>
+<a class="flex items-center gap-md group relative z-10" href="#section-class">
+<div class="w-6 h-6 rounded-full bg-surface-variant border-2 border-card flex items-center justify-center group-hover:bg-outline-variant transition-colors"></div>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface transition-colors">Class &amp; Org.</span>
 </a>
-<a class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed-dim hover:bg-primary-container hover:text-on-primary transition-all" href="#section-emergency">
-<span class="material-symbols-outlined">emergency</span>
-<span class="font-label-md">Emergency Contact</span>
+<a class="flex items-center gap-md group relative z-10" href="#section-emergency">
+<div class="w-6 h-6 rounded-full bg-surface-variant border-2 border-card flex items-center justify-center group-hover:bg-outline-variant transition-colors"></div>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface transition-colors">Emergency Contact</span>
 </a>
-<a class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed-dim hover:bg-primary-container hover:text-on-primary transition-all" href="#section-documents">
-<span class="material-symbols-outlined">description</span>
-<span class="font-label-md">Documents</span>
+<a class="flex items-center gap-md group relative z-10" href="#section-documents">
+<div class="w-6 h-6 rounded-full bg-surface-variant border-2 border-card flex items-center justify-center group-hover:bg-outline-variant transition-colors"></div>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface transition-colors">Documents</span>
 </a>
-</nav>
+</div>
+<div class="mt-xl pt-md border-t border-border">
+<div class="flex items-center gap-sm text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-warning" data-icon="info">info</span>
+<span>Ensure all required fields (*) are filled before submitting.</span>
+</div>
+</div>
 </div>
 </aside>
 </main>
-<!-- Footer Actions (Sticky Bottom) -->
-<footer class="bg-surface border-t border-border mt-auto sticky bottom-0 z-40 p-4 md:px-8">
-<div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-end items-center gap-4">
-<button class="w-full sm:w-auto px-6 py-3 rounded-lg border border-outline text-on-surface font-label-md hover:bg-surface-variant transition-colors focus:ring-2 focus:ring-primary focus:outline-none" type="button">
-                Save as Draft
-            </button>
-<button class="w-full sm:w-auto px-6 py-3 rounded-lg bg-primary text-on-primary font-label-md hover:bg-primary-light transition-colors shadow-sm focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none" type="button">
-                Submit for Regularisation
-            </button>
-</div>
-</footer>
-<!-- Script for active state on scroll -->
+<!-- BottomNavBar (Mobile) - Hidden on this specific task-focused form screen to prioritize canvas as per rules, but included if needed globally -->
+<nav class="hidden">
+<!-- Kept hidden as per The "Semantic Shell" Mandate: Linear/Transactional/Task-focused screens should suppress global nav -->
+</nav>
 <script>
+        // Simple scroll spy for the side navigation
         document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('form > div[id^="section-"]');
+            const navLinks = document.querySelectorAll('aside a[href^="#section-"]');
             
+            // Highlight section on scroll
             const observerOptions = {
                 root: null,
                 rootMargin: '-20% 0px -60% 0px',
                 threshold: 0
             };
 
-            const observerCallback = (entries) => {
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        const activeId = entry.target.id;
+                        const id = entry.target.getAttribute('id');
+                        
+                        // Update nav links styling
                         navLinks.forEach(link => {
-                            if (link.getAttribute('href') === `#${activeId}`) {
-                                link.classList.add('active');
-                                link.classList.remove('text-primary-fixed-dim');
+                            const icon = link.querySelector('div.w-6');
+                            const text = link.querySelector('span');
+                            
+                            if (link.getAttribute('href') === `#${id}`) {
+                                // Active state
+                                icon.classList.remove('bg-surface-variant', 'group-hover:bg-outline-variant');
+                                icon.classList.add('bg-secondary-container');
+                                icon.innerHTML = '<div class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></div>';
+                                
+                                text.classList.remove('text-on-surface-variant', 'group-hover:text-on-surface');
+                                text.classList.add('text-primary', 'font-bold');
+                                
+                                // Update section border
+                                entry.target.classList.remove('border-transparent');
+                                entry.target.classList.add('border-secondary-container');
                             } else {
-                                link.classList.remove('active');
-                                link.classList.add('text-primary-fixed-dim');
+                                // Inactive state
+                                icon.classList.remove('bg-secondary-container');
+                                icon.classList.add('bg-surface-variant', 'group-hover:bg-outline-variant');
+                                icon.innerHTML = '';
+                                
+                                text.classList.remove('text-primary', 'font-bold');
+                                text.classList.add('text-on-surface-variant', 'group-hover:text-on-surface');
+                                
+                                // Reset section border for non-active
+                                const otherSection = document.querySelector(link.getAttribute('href'));
+                                if(otherSection) {
+                                    otherSection.classList.remove('border-secondary-container');
+                                    otherSection.classList.add('border-transparent');
+                                }
                             }
                         });
                     }
                 });
-            };
+            }, observerOptions);
 
-            const observer = new IntersectionObserver(observerCallback, observerOptions);
             sections.forEach(section => observer.observe(section));
         });
     </script>
