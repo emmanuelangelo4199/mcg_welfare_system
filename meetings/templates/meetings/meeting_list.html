@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><meta charset="utf-8"/><script id="tailwind-config">try{
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "error-container": "#ffdad6",
+            "on-primary-container": "#ff8a95",
+            "surface-variant": "#e9e1dd",
+            "surface-container": "#f4ece8",
+            "on-tertiary-container": "#adadab",
+            "primary-container": "#7b1c2d",
+            "surface-tint": "#a33a49",
+            "gold-muted": "#FDF6E3",
+            "danger": "#DC2626",
+            "secondary": "#775a00",
+            "background": "#fff8f5",
+            "tertiary-container": "#404140",
+            "secondary-fixed": "#ffdf9a",
+            "secondary-fixed-dim": "#eec04f",
+            "error": "#ba1a1a",
+            "primary-fixed-dim": "#ffb2b7",
+            "outline": "#897172",
+            "on-error": "#ffffff",
+            "inverse-on-surface": "#f7efeb",
+            "on-primary-fixed": "#40000e",
+            "on-primary-fixed-variant": "#832233",
+            "success": "#16A34A",
+            "on-secondary-container": "#745700",
+            "secondary-container": "#fece5b",
+            "on-tertiary-fixed": "#1a1c1b",
+            "primary-light": "#A3283F",
+            "tertiary-fixed": "#e3e2e0",
+            "surface-container-high": "#eee7e3",
+            "surface-dim": "#e0d8d5",
+            "on-primary": "#ffffff",
+            "surface-bright": "#fff8f5",
+            "surface-container-highest": "#e9e1dd",
+            "on-secondary-fixed": "#251a00",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-fixed-variant": "#464746",
+            "primary-muted": "#F5EAEC",
+            "tertiary-fixed-dim": "#c7c6c5",
+            "primary-fixed": "#ffdadb",
+            "surface": "#F8F7F5",
+            "warning": "#D97706",
+            "on-error-container": "#93000a",
+            "card": "#FFFFFF",
+            "inverse-surface": "#33302d",
+            "on-secondary-fixed-variant": "#5a4300",
+            "inverse-primary": "#ffb2b7",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#faf2ee",
+            "primary": "#5c0219",
+            "info": "#2563EB",
+            "on-surface-variant": "#564243",
+            "tertiary": "#2a2b2a",
+            "on-background": "#1e1b19",
+            "border": "#E4E2DD",
+            "on-secondary": "#ffffff",
+            "on-surface": "#1e1b19",
+            "text-secondary": "#6B7280",
+            "outline-variant": "#dcc0c1"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "lg": "24px",
+            "xl": "32px",
+            "sidebar-width": "256px",
+            "md": "16px",
+            "xs": "4px",
+            "sm": "8px",
+            "base": "8px",
+            "header-height": "64px"
+          },
+          "fontFamily": {
+            "label-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "data-label": ["JetBrains Mono"],
+            "headline-lg-mobile": ["Lora"],
+            "headline-md": ["Inter"],
+            "data-display": ["JetBrains Mono"],
+            "headline-lg": ["Lora"],
+            "label-sm": ["Inter"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "label-md": ["13px", { "lineHeight": "1.2", "fontWeight": "500" }],
+            "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "data-label": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+            "headline-md": ["20px", { "lineHeight": "1.3", "fontWeight": "600" }],
+            "data-display": ["18px", { "lineHeight": "1.0", "fontWeight": "500" }],
+            "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+            "body-md": ["14px", { "lineHeight": "1.6", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  }catch(_e){}</script></head><body class="bg-surface text-on-surface font-body-md overflow-hidden h-screen flex">
+<!-- Sidebar (SideNavBar) -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary dark:bg-primary-container text-on-primary shadow-sm dark:shadow-none flex flex-col py-lg z-50">
+<!-- Header/Logo Area -->
+<div class="px-lg mb-xl flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-on-primary/10 flex items-center justify-center overflow-hidden">
+<img class="w-8 h-8 object-contain" data-alt="A clean, vector-style logo for the Methodist Church Ghana, featuring a traditional cross and stylized waves in ivory white against a deep maroon background. The design is elegant and symmetrical, reflecting spiritual dignity and institutional heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz4pXHVZ2gsP83s8jcQGItgGOCd9H6Bu-96Ua7oByYQIeSS6k6t6ij4cd-VRLGBSJZ20V_c7YLD9i2W599Z-Po_SbO5OwFqlUkLtaOC0f5EGuO94WdUQCA5eg-ZUmXpq_gMPRoaT0wN5VeYVjpISaStKI3O0YEvD0-IdVpVg1Nq5BqQUnKu_YR3E7SBgWoOJpE66EP4hQwmhwpehCmMmTekq4PKln-HZMGLAVFztklZhV1zETqYii-tyj-cnEqCh0qsay4BiqCRDhT"/>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-on-primary leading-tight">MCG-SMS</h1>
+<p class="text-label-sm text-on-primary/70 uppercase tracking-wider">Methodist Church Ghana</p>
+</div>
+</div>
+<!-- Main Navigation -->
+<nav class="flex-1 px-sm overflow-y-auto space-y-xs scrollbar-hide"><!-- Dashboard -->
+<a class="flex items-center gap-md px-md py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<!-- Members -->
+<a class="flex items-center gap-md px-md py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md">Members</span>
+</a>
+<!-- Classes -->
+<a class="flex items-center gap-md px-md py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md">Classes</span>
+</a>
+<!-- Governance Accordion (Expanded) -->
+<div class="space-y-xs">
+<button class="w-full flex items-center justify-between px-md py-sm text-on-primary font-bold bg-primary-light/20 rounded-lg transition-all duration-200">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">gavel</span>
+<span class="font-label-md">Governance</span>
+</div>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<!-- Sub-links -->
+<div class="pl-10 space-y-xs mt-1">
+<a class="flex items-center py-2 px-3 rounded-lg bg-secondary-fixed text-on-secondary-fixed font-bold text-label-md transition-colors" href="#">
+      Meetings List
+    </a>
+<a class="flex items-center py-2 px-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">
+      Schedule a Meeting
+    </a>
+<a class="flex items-center py-2 px-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">
+      Meeting Detail
+    </a>
+<a class="flex items-center py-2 px-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">
+      Action Items Tracker
+    </a>
+<a class="flex items-center py-2 px-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">
+      Minutes Editor
+    </a>
+</div>
+</div>
+<!-- Finance -->
+<a class="flex items-center gap-md px-md py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md">Finance</span>
+</a>
+<!-- Reports -->
+<a class="flex items-center gap-md px-md py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-md">Reports</span>
+</a></nav>
+<!-- Footer Navigation -->
+<div class="mt-auto px-sm pt-md border-t border-on-primary/10">
+<a class="flex items-center gap-md px-md py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 ml-sidebar-width h-full overflow-y-auto bg-surface-container-low">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest dark:bg-surface-dim shadow-sm flex justify-between items-center h-header-height px-xl">
+<div class="flex items-center gap-md">
+<!-- Search bar (on left) -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container rounded-full border-none focus:ring-2 focus:ring-primary text-body-md w-64 transition-all duration-200" placeholder="Search meetings..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="relative hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full p-2 transition-colors">
+<span class="material-symbols-outlined text-primary" data-original-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full p-2 transition-colors">
+<span class="material-symbols-outlined text-primary" data-original-icon="help_outline">help_outline</span>
+</button>
+<div class="flex items-center gap-sm pl-md border-l border-outline/20">
+<div class="text-right hidden sm:block">
+<p class="text-label-md font-bold text-on-surface">Very Rev. K. Mensah</p>
+<p class="text-label-sm text-on-surface-variant">Superintendent</p>
+</div>
+<div class="w-9 h-9 rounded-full bg-primary-muted border-2 border-primary/10 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of a middle-aged Ghanaian male minister wearing a white clerical collar. The lighting is soft and professional, capturing a warm, trustworthy expression. The background is a blurred ivory wall, maintaining a dignified and corporate aesthetic consistent with institutional leadership." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvJyJXAxf4T_feQFBYeitmt2dZl-rvebHj54Znjq3812H3Lxzdy_h2MYTlRc8MWhWG-7DsRQ0zjejS340IYQsF6Pc7jndO6m42LfbJ8lQB1va6hHQbEJa609xfmrbt3CBaWht5E3Z8h8XaaUdNN13VQ6zie615fTSBbM8-jAZEvCJ0-Sv8IuLdTGib5XxT6XH99ptX4ePYJyAgFxzjuZfDJEuIklvIrGM9ADS_pcAavBQTsxF3LjNcRkL119p-bCBdElg9x88xgJZm"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="px-xl py-lg">
+<!-- Breadcrumbs & Title Row -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-xl">
+<div>
+<nav class="flex items-center gap-xs text-on-surface-variant mb-xs">
+<span class="text-label-md">Dashboard</span>
+<span class="material-symbols-outlined text-[16px]" data-original-icon="chevron_right">chevron_right</span>
+<span class="text-label-md text-primary font-bold">Leaders' Meetings</span>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-primary">Meetings List</h2>
+</div>
+<button class="flex items-center gap-sm bg-primary text-on-primary px-lg py-md rounded-lg font-bold hover:bg-primary-light transition-all active:scale-[0.98] shadow-md">
+<span class="material-symbols-outlined">add</span>
+<span class="font-label-md">Schedule Meeting</span>
+</button>
+</div>
+<!-- Filter-->
+<div class="bg-card p-md rounded-xl shadow-ambient mb-lg flex flex-wrap items-center gap-md">
+<div class="flex-1 min-w-[200px]">
+<label class="block text-label-sm text-on-surface-variant mb-1 ml-1">Meeting Type</label>
+<select class="w-full bg-surface-container-low border border-border rounded-lg px-md py-2 text-body-md focus:ring-2 focus:ring-primary focus:border-primary">
+<option>All Types</option>
+<option>Ordinary Leaders' Meeting</option>
+<option>Emergency Meeting</option>
+<option>Society Meeting</option>
+<option>Annual General Meeting (AGM)</option>
+</select>
+</div>
+<div class="flex-1 min-w-[200px]">
+<label class="block text-label-sm text-on-surface-variant mb-1 ml-1">Date Range</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-border rounded-lg pl-md pr-10 py-2 text-body-md focus:ring-2 focus:ring-primary focus:border-primary" type="text" value="Oct 01, 2023 - Dec 31, 2023"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant flex items-center">calendar_today</span>
+</div>
+</div>
+<div class="flex-1 min-w-[200px]">
+<label class="block text-label-sm text-on-surface-variant mb-1 ml-1">Status</label>
+<select class="w-full bg-surface-container-low border border-border rounded-lg px-md py-2 text-body-md focus:ring-2 focus:ring-primary focus:border-primary">
+<option>All Statuses</option>
+<option>Scheduled</option>
+<option>Minutes Drafted</option>
+<option>Finalised</option>
+</select>
+</div>
+<div class="flex items-end h-full mt-4">
+<button class="bg-surface-container-high text-on-surface hover:bg-surface-variant px-lg py-2.5 rounded-lg font-bold transition-colors">
+            Reset Filters
+          </button>
+</div>
+</div>
+<!-- Meetings Table -->
+<div class="bg-card rounded-xl shadow-ambient overflow-hidden border border-border">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-border">
+<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Date</th>
+<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Meeting Type</th>
+<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Venue</th>
+<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Convened By</th>
+<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider text-center">Agenda</th>
+<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Attendees</th>
+<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<!-- Row 1: Scheduled (Overdue items) -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md">
+<div class="font-data-label text-data-label text-on-surface">24 Oct 2023</div>
+<div class="text-label-sm text-on-surface-variant">14:00 GMT</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm">Ordinary Leaders'</span>
+</td>
+<td class="px-lg py-md font-label-md text-on-surface">Wesley Hall</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-2">
+<span class="text-body-md">Rev. John Opoku</span>
+</div>
+</td>
+<td class="px-lg py-md text-center">
+<span class="font-data-label text-data-label bg-surface-container-high px-2 py-0.5 rounded">05</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-2">
+<span class="font-data-label text-data-label">-- / 24</span>
+<div class="w-16 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-outline-variant h-full" style="width: 0%"></div>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded-full bg-info/10 text-info font-bold text-[11px] uppercase tracking-tighter flex items-center gap-1">
+                      Scheduled
+                    </span>
+<div class="w-2 h-2 bg-error rounded-full animate-pulse" title="Overdue action items"></div>
+</div>
+</td>
+<td class="px-lg py-md">
+<button class="text-primary hover:text-primary-light font-bold text-label-md flex items-center gap-1">
+                    View <span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Drafted -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md">
+<div class="font-data-label text-data-label text-on-surface">15 Oct 2023</div>
+<div class="text-label-sm text-on-surface-variant">10:30 GMT</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-3 py-1 rounded-full bg-error-container text-on-error-container font-label-sm">Emergency</span>
+</td>
+<td class="px-lg py-md font-label-md text-on-surface">Main Chapel</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-2">
+<span class="text-body-md">Sis. Mary Addo</span>
+</div>
+</td>
+<td class="px-lg py-md text-center">
+<span class="font-data-label text-data-label bg-surface-container-high px-2 py-0.5 rounded">02</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-2">
+<span class="font-data-label text-data-label">18 / 22</span>
+<div class="w-16 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-warning h-full" style="width: 81%"></div>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-3 py-1 rounded-full bg-warning/10 text-warning font-bold text-[11px] uppercase tracking-tighter">Drafted</span>
+</td>
+<td class="px-lg py-md">
+<button class="text-primary hover:text-primary-light font-bold text-label-md flex items-center gap-1">
+                    View <span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Finalised -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md">
+<div class="font-data-label text-data-label text-on-surface">02 Oct 2023</div>
+<div class="text-label-sm text-on-surface-variant">09:00 GMT</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm">Society</span>
+</td>
+<td class="px-lg py-md font-label-md text-on-surface">Social Centre</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-2">
+<span class="text-body-md">Rev. K. Mensah</span>
+</div>
+</td>
+<td class="px-lg py-md text-center">
+<span class="font-data-label text-data-label bg-surface-container-high px-2 py-0.5 rounded">12</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-2">
+<span class="font-data-label text-data-label">45 / 50</span>
+<div class="w-16 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-success h-full" style="width: 90%"></div>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-3 py-1 rounded-full bg-success/10 text-success font-bold text-[11px] uppercase tracking-tighter">Finalised</span>
+</td>
+<td class="px-lg py-md">
+<button class="text-primary hover:text-primary-light font-bold text-label-md flex items-center gap-1">
+                    View <span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination/Footer -->
+<div class="px-lg py-md bg-surface-container-low flex justify-between items-center border-t border-border">
+<p class="text-label-sm text-on-surface-variant">Showing 1 to 3 of 12 meetings</p>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-border text-on-surface-variant hover:bg-surface-variant transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-on-primary font-data-label text-data-label">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-border text-on-surface-variant hover:bg-surface-variant transition-colors font-data-label text-data-label">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-border text-on-surface-variant hover:bg-surface-variant transition-colors font-data-label text-data-label">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-border text-on-surface-variant hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Empty State Illustration (Hidden by default, shown for concept) -->
+<div class="hidden flex-col items-center justify-center py-24 text-center">
+<div class="w-48 h-48 bg-primary-muted rounded-full flex items-center justify-center mb-lg">
+<span class="material-symbols-outlined text-[64px] text-primary" style="font-variation-settings: 'wght' 200;">gavel</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">No meetings scheduled yet.</h3>
+<p class="text-body-lg text-on-surface-variant mb-xl max-w-md">Start organizing your society's governance by scheduling the next leaders' meeting or AGM.</p>
+<button class="flex items-center gap-sm bg-primary text-on-primary px-xl py-lg rounded-lg font-bold hover:bg-primary-light transition-all active:scale-[0.98] shadow-md">
+<span class="material-symbols-outlined">add</span>
+<span class="font-label-md">Schedule Meeting</span>
+</button>
+</div>
+</div>
+</main>
+<script>
+    // Micro-interactions for table rows
+    document.querySelectorAll('tbody tr').forEach(row => {
+      row.addEventListener('click', () => {
+        // In a real app, this would navigate to the detail view
+        console.log('Navigating to meeting details...');
+      });
+    });
+
+    // Theme toggle mock (for demonstration)
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
+    }
+  </script>
+</body></html>

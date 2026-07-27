@@ -160,82 +160,186 @@
 <!-- Sidebar (Shared Component Style) - Desktop Only -->
 <aside class="sidebar-desktop w-sidebar-width bg-primary text-on-primary flex flex-col h-screen sticky top-0 py-lg shrink-0 shadow-md">
 <div class="px-md mb-xl flex items-center gap-sm">
-<div class="w-10 h-10 bg-on-primary rounded-full flex items-center justify-center">
-<img class="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE8yU59puQwT08nCc9uVslRAqQtNHgD2NJ4dB2GClXNFBuk4tYpUOLr2FTuJLdTsEt3DEi748Pk0LmDzkYoTDWtLEhy3QUqBXJat8nOzQU_MOZOrCdgsIbCYLI0VediPGOeAvqUJkiFkf2kxl8pVWGKqmuzVmWYD7YVUn9jUWxCN4RMFXOKv3SPxkwKin1isduKVP7COOEdRzr3YuaJT4MchrpiFrH_LxxJZnezJg2oUr7svk4Z1xIeqbfF_1Haq0EhA1osgYF9TdW">
-</div>
+
 <div>
-<h1 class="font-headline-md text-headline-md font-bold leading-tight">MCG Society</h1>
-<p class="text-label-sm opacity-70 uppercase tracking-wider">Management System</p>
+<h1 class="font-headline-md text-headline-md font-bold leading-tight">Methodis Church Ghana </h1>
+<p class="text-label-sm opacity-70 capitalize tracking-wider">Society Management System</p>
 </div>
 </div>
 <nav class="flex-1 space-y-xs overflow-y-auto">
-<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-label-md">Dashboard</span>
-</a>
-<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined">group</span>
-<span class="font-label-md">Members</span>
-</a>
-<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined">school</span>
-<span class="font-label-md">Classes</span>
-</a>
-<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined">account_balance</span>
-<span class="font-label-md">Organisations</span>
-</a>
-<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined">church</span>
-<span class="font-label-md">Services</span>
-</a>
-<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined">how_to_reg</span>
-<span class="font-label-md">Attendance</span>
-</a>
-<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined">payments</span>
-<span class="font-label-md">Finance</span>
-</a>
-<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined">groups</span>
-<span class="font-label-md">Meetings</span>
-</a>
-<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined">volunteer_activism</span>
-<span class="font-label-md">Welfare</span>
-</a>
+<!-- Dashboard -->
 <div class="space-y-xs group/accordion">
-<button class="w-full flex items-center justify-between text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">chat</span>
-<span class="font-label-md">Comms</span>
+    <button class="w-full flex items-center justify-between text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-md">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="font-label-md">Dashboard</span>
+        </div>
+        <span class="material-symbols-outlined chevron transition-transform duration-300">expand_more</span>
+    </button>
+    <div class="hidden pl-xl space-y-xs">
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Overview</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Analytics</span></a>
+    </div>
 </div>
-<span class="material-symbols-outlined chevron transition-transform duration-300">expand_more</span>
-</button>
-<div class="pl-xl space-y-xs transition-all duration-300">
-<a class="flex items-center gap-md text-secondary-container px-md py-1.5 font-bold bg-primary-container border-l-[3px] border-secondary-container" href="#">
-<span class="font-label-md">Compose</span>
-</a>
-<a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#">
-<span class="font-label-md">History</span>
-</a>
-<a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#">
-<span class="font-label-md">Announcement Board</span>
-</a>
-<a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#">
-<span class="font-label-md">Birthday Messages</span>
-</a>
-<a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#">
-<span class="font-label-md">Reminders &amp; Notices</span>
-</a>
+
+<!-- Members -->
+<div class="space-y-xs group/accordion">
+    <button class="w-full flex items-center justify-between text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-md">
+            <span class="material-symbols-outlined">group</span>
+            <span class="font-label-md">Members</span>
+        </div>
+        <span class="material-symbols-outlined chevron transition-transform duration-300">expand_more</span>
+    </button>
+    <div class="hidden pl-xl space-y-xs">
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Directory</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">New Registration</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Pending Approval</span></a>
+    </div>
 </div>
+
+<!-- Classes -->
+<div class="space-y-xs group/accordion">
+    <button class="w-full flex items-center justify-between text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-md">
+            <span class="material-symbols-outlined">school</span>
+            <span class="font-label-md">Classes</span>
+        </div>
+        <span class="material-symbols-outlined chevron transition-transform duration-300">expand_more</span>
+    </button>
+    <div class="hidden pl-xl space-y-xs">
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Class List</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Assignments</span></a>
+    </div>
 </div>
-<a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined">assessment</span>
-<span class="font-label-md">Reports</span>
-</a>
-</nav>
+
+<!-- Organisations -->
+<div class="space-y-xs group/accordion">
+    <button class="w-full flex items-center justify-between text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-md">
+            <span class="material-symbols-outlined">account_balance</span>
+            <span class="font-label-md">Organisations</span>
+        </div>
+        <span class="material-symbols-outlined chevron transition-transform duration-300">expand_more</span>
+    </button>
+    <div class="hidden pl-xl space-y-xs">
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Guilds</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Committees</span></a>
+    </div>
+</div>
+
+<!-- Services -->
+<div class="space-y-xs group/accordion">
+    <button class="w-full flex items-center justify-between text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-md">
+            <span class="material-symbols-outlined">church</span>
+            <span class="font-label-md">Services</span>
+        </div>
+        <span class="material-symbols-outlined chevron transition-transform duration-300">expand_more</span>
+    </button>
+    <div class="hidden pl-xl space-y-xs">
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Service Schedule</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Liturgies</span></a>
+    </div>
+</div>
+
+<!-- Attendance -->
+<div class="space-y-xs group/accordion">
+    <button class="w-full flex items-center justify-between text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-md">
+            <span class="material-symbols-outlined">how_to_reg</span>
+            <span class="font-label-md">Attendance</span>
+        </div>
+        <span class="material-symbols-outlined chevron transition-transform duration-300">expand_more</span>
+    </button>
+    <div class="hidden pl-xl space-y-xs">
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Mark Attendance</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Records</span></a>
+    </div>
+</div>
+
+<!-- Finance -->
+<div class="space-y-xs group/accordion">
+    <button class="w-full flex items-center justify-between text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-md">
+            <span class="material-symbols-outlined">payments</span>
+            <span class="font-label-md">Finance</span>
+        </div>
+        <span class="material-symbols-outlined chevron transition-transform duration-300">expand_more</span>
+    </button>
+    <div class="hidden pl-xl space-y-xs">
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Tithes &amp; Offerings</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Expenditure</span></a>
+    </div>
+</div>
+
+<!-- Meetings -->
+<div class="space-y-xs group/accordion">
+    <button class="w-full flex items-center justify-between text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-md">
+            <span class="material-symbols-outlined">groups</span>
+            <span class="font-label-md">Meetings</span>
+        </div>
+        <span class="material-symbols-outlined chevron transition-transform duration-300">expand_more</span>
+    </button>
+    <div class="hidden pl-xl space-y-xs">
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Minutes</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Agenda</span></a>
+    </div>
+</div>
+
+<!-- Welfare -->
+<div class="space-y-xs group/accordion">
+    <button class="w-full flex items-center justify-between text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-md">
+            <span class="material-symbols-outlined">volunteer_activism</span>
+            <span class="font-label-md">Welfare</span>
+        </div>
+        <span class="material-symbols-outlined chevron transition-transform duration-300">expand_more</span>
+    </button>
+    <div class="hidden pl-xl space-y-xs">
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Support Requests</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Donations</span></a>
+    </div>
+</div>
+
+<!-- Comms (Expanded by default) -->
+<div class="space-y-xs group/accordion">
+    <button class="w-full flex items-center justify-between text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-md">
+            <span class="material-symbols-outlined">chat</span>
+            <span class="font-label-md">Comms</span>
+        </div>
+        <span class="material-symbols-outlined chevron transition-transform duration-300 rotate-180">expand_more</span>
+    </button>
+    <div class="pl-xl space-y-xs transition-all duration-300">
+        <a class="flex items-center gap-md text-secondary-container px-md py-1.5 font-bold bg-primary-container border-l-[3px] border-secondary-container" href="#">
+            <span class="font-label-md">Compose</span>
+        </a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">History</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Announcement Board</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Birthday Messages</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Reminders &amp; Notices</span></a>
+    </div>
+</div>
+
+<!-- Reports -->
+<div class="space-y-xs group/accordion">
+    <button class="w-full flex items-center justify-between text-on-primary px-md py-sm opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-md">
+            <span class="material-symbols-outlined">assessment</span>
+            <span class="font-label-md">Reports</span>
+        </div>
+        <span class="material-symbols-outlined chevron transition-transform duration-300">expand_more</span>
+    </button>
+    <div class="hidden pl-xl space-y-xs">
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Membership Reports</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Attendance Reports</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Financial Reports</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Welfare Report</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="#"><span class="font-label-md">Annual / Quarterly Society Report</span></a>
+    </div>
+</div></nav>
 <div class="mt-auto px-md pt-lg border-t border-white/10">
 <a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:opacity-100 mb-xs" href="#">
 <span class="material-symbols-outlined">settings</span>

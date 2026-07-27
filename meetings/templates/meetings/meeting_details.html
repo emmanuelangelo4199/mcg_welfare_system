@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Meeting Detail - MCG-SMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Lora:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .collapsible-content {
+            transition: max-height 0.3s ease-out;
+            overflow: hidden;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e4e2dd;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #c49a2b;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#ff8a95",
+                        "surface-variant": "#e9e1dd",
+                        "surface-container": "#f4ece8",
+                        "on-tertiary-container": "#adadab",
+                        "primary-container": "#7b1c2d",
+                        "surface-tint": "#a33a49",
+                        "gold-muted": "#FDF6E3",
+                        "danger": "#DC2626",
+                        "secondary": "#775a00",
+                        "background": "#fff8f5",
+                        "tertiary-container": "#404140",
+                        "secondary-fixed": "#ffdf9a",
+                        "secondary-fixed-dim": "#eec04f",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#ffb2b7",
+                        "outline": "#897172",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f7efeb",
+                        "on-primary-fixed": "#40000e",
+                        "on-primary-fixed-variant": "#832233",
+                        "success": "#16A34A",
+                        "on-secondary-container": "#745700",
+                        "secondary-container": "#fece5b",
+                        "on-tertiary-fixed": "#1a1c1b",
+                        "primary-light": "#A3283F",
+                        "tertiary-fixed": "#e3e2e0",
+                        "surface-container-high": "#eee7e3",
+                        "surface-dim": "#e0d8d5",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fff8f5",
+                        "surface-container-highest": "#e9e1dd",
+                        "on-secondary-fixed": "#251a00",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#464746",
+                        "primary-muted": "#F5EAEC",
+                        "tertiary-fixed-dim": "#c7c6c5",
+                        "primary-fixed": "#ffdadb",
+                        "surface": "#F8F7F5",
+                        "warning": "#D97706",
+                        "on-error-container": "#93000a",
+                        "card": "#FFFFFF",
+                        "inverse-surface": "#33302d",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "inverse-primary": "#ffb2b7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#faf2ee",
+                        "primary": "#5c0219",
+                        "info": "#2563EB",
+                        "on-surface-variant": "#564243",
+                        "tertiary": "#2a2b2a",
+                        "on-background": "#1e1b19",
+                        "border": "#E4E2DD",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#1e1b19",
+                        "text-secondary": "#6B7280",
+                        "outline-variant": "#dcc0c1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xl": "32px",
+                        "sidebar-width": "256px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "base": "8px",
+                        "header-height": "64px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "data-label": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Lora"],
+                        "headline-md": ["Inter"],
+                        "data-display": ["JetBrains Mono"],
+                        "headline-lg": ["Lora"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary shadow-sm flex flex-col py-lg z-50">
+<div class="px-md mb-xl">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">church</span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</h1>
+<p class="text-label-sm text-on-primary/60 uppercase tracking-wider">Methodist Church Ghana</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1"><a class="flex items-center gap-md px-lg py-sm text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><a class="flex items-center gap-md px-lg py-sm text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">group</span><span class="font-label-md text-label-md">Members</span></a><div class="space-y-1"><button class="w-full flex items-center justify-between px-lg py-sm text-on-primary font-bold bg-primary-light/10 border-l-[3px] border-secondary-container"><div class="flex items-center gap-md"><span class="material-symbols-outlined">gavel</span><span class="font-label-md text-label-md">Governance</span></div><span class="material-symbols-outlined text-[20px]">expand_more</span></button><div class="pl-xl space-y-1 mt-1"><a class="block py-2 px-lg text-label-md text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 rounded-l-full transition-colors" href="#">Meetings List</a><a class="block py-2 px-lg text-label-md text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 rounded-l-full transition-colors" href="#">Schedule a Meeting</a><a class="block py-2 px-lg text-label-md text-secondary-container font-bold bg-secondary-container/10 rounded-l-full border-r-4 border-secondary-container" href="#">Meeting Detail</a><a class="block py-2 px-lg text-label-md text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 rounded-l-full transition-colors" href="#">Action Items Tracker</a><a class="block py-2 px-lg text-label-md text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 rounded-l-full transition-colors" href="#">Minutes Editor</a></div></div><a class="flex items-center gap-md px-lg py-sm text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">school</span><span class="font-label-md text-label-md">Classes</span></a><a class="flex items-center gap-md px-lg py-sm text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">payments</span><span class="font-label-md text-label-md">Finance</span></a><a class="flex items-center gap-md px-lg py-sm text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">assessment</span><span class="font-label-md text-label-md">Reports</span></a></nav>
+<div class="mt-auto pt-lg border-t border-white/10">
+<a class="flex items-center gap-md px-lg py-sm text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Top App Bar -->
+<header class="fixed top-0 left-sidebar-width right-0 h-header-height bg-surface-container-lowest shadow-sm flex justify-between items-center px-xl z-40">
+<div class="flex items-center gap-md">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/60">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-label-md focus:ring-2 focus:ring-primary w-64" placeholder="Search records..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="hover:bg-surface-container rounded-full p-2 text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:bg-surface-container rounded-full p-2 text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="flex items-center gap-sm pl-4 border-l border-border">
+<div class="text-right">
+<p class="font-label-md text-label-md text-on-surface font-bold leading-none">Bro. Samuel Appiah</p>
+<p class="text-[11px] text-on-surface-variant">Circuit Secretary</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary-light object-cover" data-alt="A professional headshot of a middle-aged Ghanaian man wearing a formal suit and a modest clerical collar, set against a warm, soft-focus background of a church interior with wooden pews and stained glass. The lighting is natural and dignified, reflecting a corporate yet spiritual leadership role." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSfSluO-qC4VzmPTHVHBw665yQbt-EtyrlfShNQYR8zHaVqVsFmd2RHSsDJsGNDdqo_DoXeejfOs7QAAGF60BUMhtoXdkjyH0EleYGPeRdr_PNoq43otFan3THxR6vhJCN2tUAmsxeIJKLQhuzR9VpMDHTm14vB2-9rp3NlKPHt4PkzIy1PZPvH_oGf2JoVKtx653SSPpt_07iHHGtNa135u9AyLheBO_CBfN0RT0Wz6iQdXI4gTzd9d0KAc4J6pY39f3wpAd0e5vQ"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-sidebar-width pt-header-height min-h-screen bg-surface">
+<div class="p-xl max-w-[1400px] mx-auto">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 mb-lg text-on-surface-variant font-label-md text-label-md">
+<a class="hover:text-primary" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary" href="#">Leaders' Meetings</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-bold text-on-surface">Meeting Detail</span>
+</nav>
+<!-- Header Card (Aggregation Hub) -->
+<div class="bg-card rounded-xl shadow-sm border-l-4 border-secondary p-lg mb-xl relative overflow-hidden">
+<div class="flex flex-col lg:flex-row justify-between items-start gap-lg relative z-10">
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-sm">
+<span class="bg-primary-muted text-primary px-3 py-1 rounded-full text-label-sm font-bold uppercase tracking-wide">Quarterly General Meeting</span>
+<span class="bg-success/10 text-success px-3 py-1 rounded-full text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                ACTIVE
+                            </span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-md">Leaders' Meeting — Q3 2023</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-xl">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Date</p>
+<p class="font-label-md text-on-surface font-bold">Sept 24, 2023</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Time</p>
+<p class="font-label-md text-on-surface font-bold">14:00 GMT</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Venue</p>
+<p class="font-label-md text-on-surface font-bold">Calvary Society Chapel</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Convened By</p>
+<p class="font-label-md text-on-surface font-bold">Rev. Dr. Isaac Mensah</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row lg:flex-col gap-sm w-full lg:w-auto">
+<button class="flex items-center justify-center gap-sm bg-primary text-on-primary px-lg py-md rounded-lg font-bold hover:bg-primary-light transition-all active:scale-[0.98] shadow-sm">
+<span class="material-symbols-outlined">edit_note</span>
+                            Record / Edit Minutes
+                        </button>
+<button class="flex items-center justify-center gap-sm border border-border bg-white text-on-surface-variant px-lg py-md rounded-lg font-bold hover:bg-surface transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">edit</span>
+                            Edit Meeting Info
+                        </button>
+<button class="flex items-center justify-center gap-sm border border-secondary text-secondary px-lg py-md rounded-lg font-bold hover:bg-gold-muted transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">lock_open</span>
+                            Finalise Meeting
+                        </button>
+</div>
+</div>
+</div>
+<!-- Dashboard Content: Collapsible Sections -->
+<div class="space-y-lg">
+<!-- 1. Attendance Section -->
+<section class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+<button class="w-full flex items-center justify-between px-lg py-md bg-surface-container-low hover:bg-surface-container transition-colors" onclick="toggleSection('attendance-section')">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">groups</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Attendance</h3>
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-label-sm font-bold">18/22 Present</span>
+</div>
+<span class="material-symbols-outlined transition-transform duration-300" id="icon-attendance-section">expand_more</span>
+</button>
+<div class="collapsible-content" id="attendance-section">
+<div class="p-lg overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border text-on-surface-variant uppercase font-label-sm text-label-sm">
+<th class="py-md pr-lg font-bold">Leader Name</th>
+<th class="py-md px-lg font-bold">Role</th>
+<th class="py-md px-lg font-bold">Status</th>
+<th class="py-md pl-lg font-bold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<tr class="group hover:bg-surface-container-lowest transition-colors">
+<td class="py-md pr-lg">
+<div class="flex items-center gap-sm">
+<img class="w-8 h-8 rounded-full" data-alt="A portrait of an elderly man with silver hair and a kind expression, wearing traditional Ghanaian Kente cloth over a white shirt. The background is a soft, neutral studio setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDPezrCrUNMGwRIY85Imgs-4PxDkWuCGVFlZlUQv1u5S0PGxke89d8NA7bUnlDv4DQj2f8jbZd6wNUK5Bp-dsSdkmv5OLwIkUYisCFZfgCrocfYAanHAKshdi1QMVu9xyf5c_pqNcEROsd9sJGYpDDnFYfOOM0FMZTg0ctvy82armBhCTF5o_dBCPhmdRUHtmYXhbbQQV52DBu8UzEmAQoGNBdapyshlxqtuSBNw-M7vLZmXzq-p_TNc8XfRicIYXkv_KWlMh5Bmt0"/>
+<span class="font-label-md text-label-md font-bold text-on-surface">Opanin Kwesi Amoah</span>
+</div>
+</td>
+<td class="py-md px-lg text-label-md text-on-surface-variant">Society Steward</td>
+<td class="py-md px-lg">
+<span class="bg-success/10 text-success text-[11px] font-bold px-2 py-1 rounded">PRESENT</span>
+</td>
+<td class="py-md pl-lg text-right">
+<button class="text-primary-light hover:underline text-label-sm font-bold">Toggle Status</button>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-lowest transition-colors">
+<td class="py-md pr-lg">
+<div class="flex items-center gap-sm">
+<img class="w-8 h-8 rounded-full" data-alt="A portrait of a young woman with a focused, intelligent gaze, wearing a professional navy blue blouse and modest gold earrings. The background is a clean, modern church office." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWVkhiK_PsX1JCuED-YJf58Eptf0BSmXciFzBWjyoCxon_EOs89ZfxPSa3d4yseQzMteNihNhSAOuZRugCQKzknFJmDeAkIiFCAcnqVBiRCA_GvJDh8o-QjsiFALgiwNGbX_Nm-aWTaCIYtjc3LkgPzPVE5i479lGSURXewN8RW0yfK4pKgDFzaVXJweXc9NGLZaaS2Ra4rxXtoGt0vKuM2nMCrOMCuS1P2bkvboTazp3eiLOFvLtF-mYgNzVFjjE3-HbYwcLoYswQ"/>
+<span class="font-label-md text-label-md font-bold text-on-surface">Sis. Efua Mensah</span>
+</div>
+</td>
+<td class="py-md px-lg text-label-md text-on-surface-variant">Class Leader (Adults)</td>
+<td class="py-md px-lg">
+<span class="bg-error-container text-error text-[11px] font-bold px-2 py-1 rounded">ABSENT</span>
+</td>
+<td class="py-md pl-lg text-right">
+<button class="text-primary-light hover:underline text-label-sm font-bold">Toggle Status</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="mt-lg flex justify-end">
+<button class="flex items-center gap-sm bg-surface-container-highest text-primary px-lg py-sm rounded-lg font-bold hover:bg-primary-muted transition-colors">
+<span class="material-symbols-outlined text-[20px]">how_to_reg</span>
+                                    Take Attendance
+                                </button>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Agenda & Minutes Section -->
+<section class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+<button class="w-full flex items-center justify-between px-lg py-md bg-surface-container-low hover:bg-surface-container transition-colors" onclick="toggleSection('agenda-section')">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">assignment</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Agenda &amp; Minutes</h3>
+</div>
+<span class="material-symbols-outlined transition-transform duration-300" id="icon-agenda-section">expand_more</span>
+</button>
+<div class="collapsible-content" id="agenda-section">
+<div class="p-lg space-y-md">
+<!-- Agenda Item 1 -->
+<div class="p-md rounded-lg border border-border hover:border-primary/30 transition-all">
+<div class="flex justify-between items-start mb-sm">
+<h4 class="font-label-md text-label-md font-bold text-primary">01. Review of Previous Minutes</h4>
+<span class="text-[11px] text-on-surface-variant bg-surface px-2 py-1 rounded border border-border uppercase">Completed</span>
+</div>
+<p class="text-body-md text-on-surface-variant mb-md leading-relaxed">
+                                    The minutes of the previous meeting held on June 15th were read by the Circuit Secretary. A few corrections were noted regarding the spelling of the welfare beneficiary names.
+                                </p>
+<div class="bg-gold-muted border-l-4 border-secondary p-sm mb-md">
+<p class="text-label-sm font-bold text-secondary uppercase mb-xs">Decision</p>
+<p class="text-body-md text-on-surface font-bold">Minutes approved as the correct record of the meeting after cited corrections.</p>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="flex -space-x-2">
+<img class="w-6 h-6 rounded-full border-2 border-white" data-alt="A portrait of a dignified middle-aged man with a graying beard and glasses, wearing a white shirt and a maroon tie. The background is a softly lit church hall." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACdpNH9mKaMrSJ31l-0wCNtnIxGKyvLB09VQrzoldQmVtMlz6dJPbCrxTWtgxTNczb_hGUqrcjJckzw0Q8pksfi8towkLb6UaEHwZBNPLXfC97b-Yc3ZeltniHLHRawnNz7EbiNXQcSn6zrEIhE2sIutdqSOmIPhZN3XtLfJgnJgsNfcjWo0drBzDKRAmil16Rgt7f4w50kQ1-3IgARFl7jEHVIGUdwghJtxWeVFLzCMWHSuw80OE0arDVYQFIyVVZLxpKhyyEH1PZ"/>
+</div>
+<span class="text-label-sm text-on-surface-variant">Secretary (Action Lead)</span>
+</div>
+<span class="text-label-sm text-on-surface-variant font-data-label">Due: Oct 01, 2023</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Member Regularisations Section -->
+<section class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+<button class="w-full flex items-center justify-between px-lg py-md bg-surface-container-low hover:bg-surface-container transition-colors" onclick="toggleSection('member-reg-section')">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">person_add_alt</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Member Regularisations</h3>
+</div>
+<span class="material-symbols-outlined transition-transform duration-300" id="icon-member-reg-section">expand_more</span>
+</button>
+<div class="collapsible-content" id="member-reg-section">
+<div class="p-lg">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border text-on-surface-variant uppercase font-label-sm text-label-sm">
+<th class="py-md pr-lg font-bold">Name</th>
+<th class="py-md px-lg font-bold">Category</th>
+<th class="py-md px-lg font-bold">Decision</th>
+<th class="py-md px-lg font-bold">Assigned Class</th>
+<th class="py-md pl-lg font-bold">Remarks</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<tr>
+<td class="py-md pr-lg font-label-md text-on-surface font-bold">Kojo Antwi-Boasiako</td>
+<td class="py-md px-lg text-label-md text-on-surface-variant">Transfer In</td>
+<td class="py-md px-lg">
+<span class="bg-success/10 text-success text-[11px] font-bold px-2 py-1 rounded">APPROVED</span>
+</td>
+<td class="py-md px-lg text-label-md text-on-surface-variant">Class 14 (Evening)</td>
+<td class="py-md pl-lg text-label-md text-on-surface-variant">Documents verified from Kumasi Diocese.</td>
+</tr>
+<tr>
+<td class="py-md pr-lg font-label-md text-on-surface font-bold">Abena Serwaa</td>
+<td class="py-md px-lg text-label-md text-on-surface-variant">Full Membership</td>
+<td class="py-md px-lg">
+<span class="bg-secondary-container/20 text-on-secondary-container text-[11px] font-bold px-2 py-1 rounded">DEFERRED</span>
+</td>
+<td class="py-md px-lg text-label-md text-on-surface-variant">—</td>
+<td class="py-md pl-lg text-label-md text-on-surface-variant">Await baptismal certificate copy.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<button class="mt-lg w-full py-md border-2 border-dashed border-border rounded-lg text-on-surface-variant font-bold hover:bg-surface-container-low transition-all">
+                                + Regularise a Member at this Meeting
+                            </button>
+</div>
+</div>
+</section>
+<!-- 4. Financial Approvals Section -->
+<section class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+<button class="w-full flex items-center justify-between px-lg py-md bg-surface-container-low hover:bg-surface-container transition-colors" onclick="toggleSection('finance-section')">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">payments</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Financial Approvals</h3>
+</div>
+<span class="material-symbols-outlined transition-transform duration-300" id="icon-finance-section">expand_more</span>
+</button>
+<div class="collapsible-content" id="finance-section">
+<div class="p-lg">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border text-on-surface-variant uppercase font-label-sm text-label-sm">
+<th class="py-md pr-lg font-bold">Payee</th>
+<th class="py-md px-lg font-bold">Purpose</th>
+<th class="py-md px-lg font-bold">Amount (GHS)</th>
+<th class="py-md px-lg font-bold">Status</th>
+<th class="py-md pl-lg font-bold">Approved By</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<tr>
+<td class="py-md pr-lg font-label-md text-on-surface font-bold">Society Transport Dept</td>
+<td class="py-md px-lg text-label-md text-on-surface-variant">Maintenance for Circuit Bus</td>
+<td class="py-md px-lg font-data-display text-danger font-bold">1,450.00</td>
+<td class="py-md px-lg">
+<span class="bg-success/10 text-success text-[11px] font-bold px-2 py-1 rounded">APPROVED</span>
+</td>
+<td class="py-md pl-lg text-label-md text-on-surface-variant">Fin. Committee</td>
+</tr>
+<tr>
+<td class="py-md pr-lg font-label-md text-on-surface font-bold">Local Choir</td>
+<td class="py-md px-lg text-label-md text-on-surface-variant">New Robes (Deposit)</td>
+<td class="py-md px-lg font-data-display text-danger font-bold">3,000.00</td>
+<td class="py-md px-lg">
+<span class="bg-secondary-container/20 text-on-secondary-container text-[11px] font-bold px-2 py-1 rounded">PENDING</span>
+</td>
+<td class="py-md pl-lg text-label-md text-on-surface-variant">—</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Welfare Decisions Section -->
+<section class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+<button class="w-full flex items-center justify-between px-lg py-md bg-surface-container-low hover:bg-surface-container transition-colors" onclick="toggleSection('welfare-section')">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">volunteer_activism</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Welfare Decisions</h3>
+</div>
+<span class="material-symbols-outlined transition-transform duration-300" id="icon-welfare-section">expand_more</span>
+</button>
+<div class="collapsible-content" id="welfare-section">
+<div class="p-lg">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border text-on-surface-variant uppercase font-label-sm text-label-sm">
+<th class="py-md pr-lg font-bold">Case Ref</th>
+<th class="py-md px-lg font-bold">Decision</th>
+<th class="py-md pl-lg font-bold">Notes (Confidential)</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<tr class="border-l-4 border-error">
+<td class="py-md pr-lg font-data-label text-on-surface font-bold">WEL-2023-089</td>
+<td class="py-md px-lg text-label-md text-on-surface-variant">Grant GHS 500.00</td>
+<td class="py-md pl-lg">
+<div class="flex items-center gap-xs text-on-surface-variant/40 select-none">
+<span class="material-symbols-outlined text-[16px]">visibility_off</span>
+<span class="italic text-label-sm">Sensitivity Level: High — Masked for non-welfare committee members.</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Action Items Summary -->
+<section class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+<button class="w-full flex items-center justify-between px-lg py-md bg-surface-container-low hover:bg-surface-container transition-colors" onclick="toggleSection('action-items-section')">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">task_alt</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Action Items Summary</h3>
+</div>
+<span class="material-symbols-outlined transition-transform duration-300" id="icon-action-items-section">expand_more</span>
+</button>
+<div class="collapsible-content" id="action-items-section">
+<div class="p-lg">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border text-on-surface-variant uppercase font-label-sm text-label-sm">
+<th class="py-md pr-lg font-bold">Action</th>
+<th class="py-md px-lg font-bold">Responsible</th>
+<th class="py-md px-lg font-bold">Due Date</th>
+<th class="py-md pl-lg font-bold">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<tr>
+<td class="py-md pr-lg text-label-md text-on-surface">Update member roll for Class 4</td>
+<td class="py-md px-lg">
+<div class="flex items-center gap-xs">
+<div class="w-5 h-5 bg-primary/20 rounded-full flex items-center justify-center text-[10px] font-bold text-primary">SA</div>
+<span class="text-label-sm text-on-surface-variant">S. Appiah</span>
+</div>
+</td>
+<td class="py-md px-lg font-data-label text-on-surface-variant">2023-10-15</td>
+<td class="py-md pl-lg">
+<span class="bg-warning/10 text-warning text-[11px] font-bold px-2 py-1 rounded">IN PROGRESS</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-lg pt-md border-t border-border flex justify-center">
+<a class="text-primary font-bold hover:underline flex items-center gap-xs text-label-md" href="#">
+                                    View Full Action Items Tracker
+                                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Meta -->
+<footer class="mt-xl pb-xl flex justify-between items-center text-label-sm text-on-surface-variant">
+<p>System Ref: MCG-MET-00392 / Generated on: 2023-09-24 18:45</p>
+<div class="flex gap-md">
+<button class="hover:text-primary transition-colors">Export as PDF</button>
+<span class="text-border">|</span>
+<button class="hover:text-primary transition-colors">Print Record</button>
+</div>
+</footer>
+</div>
+</main>
+<script>
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const icon = document.getElementById('icon-' + sectionId);
+            
+            if (section.style.maxHeight) {
+                section.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                section.style.maxHeight = section.scrollHeight + "px";
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Initialize expanded state by default
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = ['attendance-section', 'agenda-section', 'member-reg-section', 'finance-section', 'welfare-section', 'action-items-section'];
+            sections.forEach(id => {
+                const section = document.getElementById(id);
+                const icon = document.getElementById('icon-' + id);
+                if (section) {
+                    section.style.maxHeight = section.scrollHeight + "px";
+                    if (icon) icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+    </script>
+</body></html>

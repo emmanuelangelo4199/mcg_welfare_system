@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Schedule a Meeting | MCG-SMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#ff8a95",
+                        "surface-variant": "#e9e1dd",
+                        "surface-container": "#f4ece8",
+                        "on-tertiary-container": "#adadab",
+                        "primary-container": "#7b1c2d",
+                        "surface-tint": "#a33a49",
+                        "gold-muted": "#FDF6E3",
+                        "danger": "#DC2626",
+                        "secondary": "#775a00",
+                        "background": "#fff8f5",
+                        "tertiary-container": "#404140",
+                        "secondary-fixed": "#ffdf9a",
+                        "secondary-fixed-dim": "#eec04f",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#ffb2b7",
+                        "outline": "#897172",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f7efeb",
+                        "on-primary-fixed": "#40000e",
+                        "on-primary-fixed-variant": "#832233",
+                        "success": "#16A34A",
+                        "on-secondary-container": "#745700",
+                        "secondary-container": "#fece5b",
+                        "on-tertiary-fixed": "#1a1c1b",
+                        "primary-light": "#A3283F",
+                        "tertiary-fixed": "#e3e2e0",
+                        "surface-container-high": "#eee7e3",
+                        "surface-dim": "#e0d8d5",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fff8f5",
+                        "surface-container-highest": "#e9e1dd",
+                        "on-secondary-fixed": "#251a00",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#464746",
+                        "primary-muted": "#F5EAEC",
+                        "tertiary-fixed-dim": "#c7c6c5",
+                        "primary-fixed": "#ffdadb",
+                        "surface": "#F8F7F5",
+                        "warning": "#D97706",
+                        "on-error-container": "#93000a",
+                        "card": "#FFFFFF",
+                        "inverse-surface": "#33302d",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "inverse-primary": "#ffb2b7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#faf2ee",
+                        "primary": "#5c0219",
+                        "info": "#2563EB",
+                        "on-surface-variant": "#564243",
+                        "tertiary": "#2a2b2a",
+                        "on-background": "#1e1b19",
+                        "border": "#E4E2DD",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#1e1b19",
+                        "text-secondary": "#6B7280",
+                        "outline-variant": "#dcc0c1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xl": "32px",
+                        "sidebar-width": "256px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "base": "8px",
+                        "header-height": "64px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "data-label": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Lora"],
+                        "headline-md": ["Inter"],
+                        "data-display": ["JetBrains Mono"],
+                        "headline-lg": ["Lora"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .agenda-row:hover .drag-handle { opacity: 1; }
+        .drag-handle { opacity: 0.4; transition: opacity 0.2s; cursor: grab; }
+        input:focus, select:focus, textarea:focus {
+            outline: none !important;
+            border-color: #5c0219 !important;
+            box-shadow: 0 0 0 2px rgba(92, 2, 25, 0.1) !important;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary dark:bg-primary-container flex flex-col h-full py-lg shadow-sm dark:shadow-none z-50">
+<div class="px-md mb-xl">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">church</span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</h1>
+<p class="text-label-sm text-on-primary/70 uppercase tracking-wider">Methodist Church Ghana</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1 px-sm"><a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">group</span><span class="font-label-md text-label-md">Members</span></a><div class="space-y-1"><button class="w-full flex items-center justify-between px-md py-sm rounded-lg text-on-primary font-bold bg-primary-light/10 transition-colors duration-200" type="button"><div class="flex items-center gap-md"><span class="material-symbols-outlined">gavel</span><span class="font-label-md text-label-md">Governance</span></div><span class="material-symbols-outlined text-[18px]">expand_more</span></button><div class="pl-xl space-y-1 mt-1"><a class="block px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors text-label-md" href="#">Meetings List</a><a class="block px-md py-2 rounded-lg bg-secondary-container text-on-secondary-container font-bold text-label-md" href="#">Schedule a Meeting</a><a class="block px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors text-label-md" href="#">Meeting Detail</a><a class="block px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors text-label-md" href="#">Action Items Tracker</a><a class="block px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors text-label-md" href="#">Minutes Editor</a></div></div><a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">payments</span><span class="font-label-md text-label-md">Finance</span></a><a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">assessment</span><span class="font-label-md text-label-md">Reports</span></a></nav>
+<div class="mt-auto px-sm space-y-1">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Top App Bar -->
+<header class="flex justify-between items-center h-header-height px-xl ml-sidebar-width w-[calc(100%-theme(spacing.sidebar-width))] bg-surface-container-lowest dark:bg-surface-dim shadow-sm fixed top-0 z-40">
+<div class="flex items-center gap-md">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container border-none rounded-full text-body-md focus:ring-1 focus:ring-primary" placeholder="Search activities..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex gap-sm">
+<button class="hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full p-2 transition-opacity">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+<button class="hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full p-2 transition-opacity">
+<span class="material-symbols-outlined text-primary">help_outline</span>
+</button>
+</div>
+<div class="flex items-center gap-sm pl-md border-l border-outline-variant">
+<div class="text-right">
+<p class="font-label-md text-label-md text-on-surface">Very Rev. K. Mensah</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Superintendent Minister</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary-fixed bg-surface-container" data-alt="A professional portrait of a distinguished male church leader in traditional clerical clothing, smiling warmly against a soft studio backdrop with warm tones and professional lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmDthXL6FRcgBXqnzG5zoL1c7eM9p_SerJj7isGrIllBJKBdZH5ExWYLBMS-JwZ8DzFh5pXfKYV9oCy6cJAISd3o9cFmGXlA_EKGYuLLvEhxrk4zuaU-IedwxToCnb3LLFPzmCzVCSPLBp6W4yWXxL30ViVApmaDgzixkACk4uX9tU_mWBEEqerte924E2TWM4pX3bRsITnyV3o1zxfCVArGZuDnSUSLYYZumP5juuFUe7kToJpxJ38OD_02ckg4uEr29vx3qA5L0z"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-sidebar-width pt-header-height min-h-screen">
+<div class="p-xl max-w-5xl mx-auto">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-xs text-on-surface-variant mb-md">
+<a class="text-label-md hover:text-primary transition-colors" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="text-label-md hover:text-primary transition-colors" href="#">Leaders' Meetings</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-label-md font-bold text-primary">Schedule Meeting</span>
+</nav>
+<!-- Page Title -->
+<h2 class="font-headline-lg text-headline-lg text-primary mb-xl">Schedule a Meeting</h2>
+<!-- Form Card -->
+<div class="bg-card rounded-xl shadow-sm p-lg border border-surface-container-high">
+<form class="space-y-lg" id="meetingForm">
+<!-- Basic Information -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Meeting Type</label>
+<select class="w-full bg-white border border-border rounded-lg px-md py-sm font-body-md text-on-surface focus:ring-primary">
+<option>Ordinary</option>
+<option>Emergency</option>
+<option>Society</option>
+<option>AGM</option>
+<option>Other</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Date</label>
+<input class="w-full bg-white border border-border rounded-lg px-md py-sm font-body-md text-on-surface" type="date"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Time</label>
+<input class="w-full bg-white border border-border rounded-lg px-md py-sm font-body-md text-on-surface" type="time"/>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Venue</label>
+<input class="w-full bg-white border border-border rounded-lg px-md py-sm font-body-md text-on-surface" placeholder="e.g. Society Hall or Online" type="text"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Convened by</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">person_search</span>
+<input class="w-full pl-10 pr-4 py-sm bg-white border border-border rounded-lg font-body-md text-on-surface" placeholder="Search members by name or ID..." type="text"/>
+</div>
+<p class="text-[11px] text-on-surface-variant/80 italic">Only authorized officers can convene this meeting type.</p>
+</div>
+</div>
+<!-- Agenda Items -->
+<div class="space-y-md pt-md">
+<div class="flex items-center justify-between border-b border-surface-container pb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">Agenda Items</h3>
+<button class="flex items-center gap-xs text-primary font-label-md hover:bg-primary-muted px-md py-1.5 rounded-full transition-colors" onclick="addAgendaItem()" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Add Agenda Item</span>
+</button>
+</div>
+<div class="space-y-sm" id="agendaList">
+<!-- Agenda Row Template -->
+<div class="agenda-row group flex items-center gap-md bg-surface-container-low p-sm rounded-lg border border-transparent hover:border-outline-variant hover:bg-white transition-all">
+<div class="drag-handle">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div class="w-8 h-8 flex items-center justify-center bg-primary text-on-primary font-data-label text-data-label rounded-md">
+                                    1
+                                </div>
+<input class="flex-1 bg-transparent border-none p-0 focus:ring-0 text-body-md" placeholder="Item title (e.g. Financial Update)" type="text" value="Opening Prayer"/>
+<button class="text-on-surface-variant hover:text-danger p-1 rounded-full hover:bg-error-container transition-colors" type="button">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<div class="agenda-row group flex items-center gap-md bg-surface-container-low p-sm rounded-lg border border-transparent hover:border-outline-variant hover:bg-white transition-all">
+<div class="drag-handle">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div class="w-8 h-8 flex items-center justify-center bg-primary text-on-primary font-data-label text-data-label rounded-md">
+                                    2
+                                </div>
+<input class="flex-1 bg-transparent border-none p-0 focus:ring-0 text-body-md" placeholder="Item title (e.g. Financial Update)" type="text" value="Minutes of the Last Meeting"/>
+<button class="text-on-surface-variant hover:text-danger p-1 rounded-full hover:bg-error-container transition-colors" type="button">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Notes -->
+<div class="space-y-xs pt-md">
+<label class="font-label-md text-label-md text-on-surface-variant">Notes / Special Instructions</label>
+<textarea class="w-full bg-white border border-border rounded-lg px-md py-sm font-body-md text-on-surface focus:ring-primary" placeholder="Additional details for attendees..." rows="4"></textarea>
+</div>
+<!-- Info Banner -->
+<div class="flex items-center gap-md bg-info/10 border-l-4 border-info p-md rounded-r-lg">
+<span class="material-symbols-outlined text-info">calendar_today</span>
+<p class="text-body-md text-info font-medium">This meeting will also appear on the Society's Events Calendar (Module F).</p>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-xl pt-xl border-t border-surface-container">
+<button class="bg-primary text-on-primary px-xl py-md rounded-lg font-label-md text-label-md hover:bg-primary-light transition-all active:scale-[0.98] shadow-sm" type="submit">
+                            Schedule Meeting
+                        </button>
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md underline underline-offset-4 transition-colors" href="#">
+                            Cancel
+                        </a>
+</div>
+</form>
+</div>
+</div>
+</main>
+<script>
+        function addAgendaItem() {
+            const list = document.getElementById('agendaList');
+            const rowCount = list.children.length + 1;
+            
+            const newRow = document.createElement('div');
+            newRow.className = "agenda-row group flex items-center gap-md bg-surface-container-low p-sm rounded-lg border border-transparent hover:border-outline-variant hover:bg-white transition-all animate-in fade-in slide-in-from-top-2 duration-300";
+            
+            newRow.innerHTML = `
+                <div class="drag-handle">
+                    <span class="material-symbols-outlined">drag_indicator</span>
+                </div>
+                <div class="w-8 h-8 flex items-center justify-center bg-primary text-on-primary font-data-label text-data-label rounded-md">
+                    ${rowCount}
+                </div>
+                <input type="text" placeholder="Item title (e.g. Financial Update)" class="flex-1 bg-transparent border-none p-0 focus:ring-0 text-body-md">
+                <button type="button" onclick="this.parentElement.remove(); updateNumbers();" class="text-on-surface-variant hover:text-danger p-1 rounded-full hover:bg-error-container transition-colors">
+                    <span class="material-symbols-outlined">delete</span>
+                </button>
+            `;
+            
+            list.appendChild(newRow);
+            newRow.querySelector('input').focus();
+        }
+
+        function updateNumbers() {
+            const items = document.querySelectorAll('#agendaList .agenda-row');
+            items.forEach((item, index) => {
+                const numDiv = item.querySelector('.font-data-label');
+                if (numDiv) numDiv.textContent = index + 1;
+            });
+        }
+
+        // Form submission prevention for demo
+        document.getElementById('meetingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Meeting scheduled successfully. It will now reflect on the Society Calendar.');
+        });
+    </script>
+</body></html>

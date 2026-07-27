@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MCG-SMS | Visitation Record J-04</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "danger": "#DC2626",
+                "on-tertiary-fixed-variant": "#464746",
+                "border": "#E4E2DD",
+                "primary-fixed": "#ffdadb",
+                "on-secondary-fixed": "#251a00",
+                "outline": "#897172",
+                "info": "#2563EB",
+                "secondary": "#775a00",
+                "on-background": "#1e1b19",
+                "inverse-surface": "#33302d",
+                "on-tertiary-container": "#adadab",
+                "on-primary": "#ffffff",
+                "on-error": "#ffffff",
+                "text-secondary": "#6B7280",
+                "on-primary-fixed-variant": "#832233",
+                "on-secondary-fixed-variant": "#5a4300",
+                "secondary-fixed": "#ffdf9a",
+                "inverse-primary": "#ffb2b7",
+                "on-primary-container": "#ff8a95",
+                "on-tertiary-fixed": "#1a1c1b",
+                "surface-container": "#f4ece8",
+                "tertiary-fixed-dim": "#c7c6c5",
+                "on-tertiary": "#ffffff",
+                "surface-container-high": "#eee7e3",
+                "surface-variant": "#e9e1dd",
+                "primary-container": "#7b1c2d",
+                "error-container": "#ffdad6",
+                "background": "#fff8f5",
+                "primary-muted": "#F5EAEC",
+                "surface-bright": "#fff8f5",
+                "surface-container-lowest": "#ffffff",
+                "card": "#FFFFFF",
+                "on-secondary": "#ffffff",
+                "warning": "#D97706",
+                "on-primary-fixed": "#40000e",
+                "error": "#ba1a1a",
+                "primary": "#5c0219",
+                "surface-tint": "#a33a49",
+                "tertiary-container": "#404140",
+                "primary-fixed-dim": "#ffb2b7",
+                "gold-muted": "#FDF6E3",
+                "secondary-fixed-dim": "#eec04f",
+                "surface-dim": "#e0d8d5",
+                "tertiary": "#2a2b2a",
+                "surface-container-low": "#faf2ee",
+                "on-surface": "#1e1b19",
+                "on-surface-variant": "#564243",
+                "primary-light": "#A3283F",
+                "tertiary-fixed": "#e3e2e0",
+                "outline-variant": "#dcc0c1",
+                "surface": "#F8F7F5",
+                "success": "#16A34A",
+                "surface-container-highest": "#e9e1dd",
+                "on-error-container": "#93000a",
+                "inverse-on-surface": "#f7efeb",
+                "secondary-container": "#fece5b",
+                "on-secondary-container": "#745700"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "sidebar-width": "256px",
+                "xs": "4px",
+                "md": "16px",
+                "sm": "8px",
+                "base": "8px",
+                "xl": "32px",
+                "header-height": "64px",
+                "lg": "24px"
+            },
+            "fontFamily": {
+                "label-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "headline-lg-mobile": ["Lora"],
+                "body-md": ["Inter"],
+                "headline-md": ["Inter"],
+                "label-sm": ["Inter"],
+                "data-display": ["JetBrains Mono"],
+                "data-label": ["JetBrains Mono"],
+                "headline-lg": ["Lora"]
+            },
+            "fontSize": {
+                "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .slide-over-enter { transform: translateX(100%); }
+        .slide-over-enter-active { transform: translateX(0); transition: transform 300ms ease-in-out; }
+        .slide-over-exit { transform: translateX(0); }
+        .slide-over-exit-active { transform: translateX(100%); transition: transform 300ms ease-in-out; }
+        
+        /* Custom scrollbar for clean UI */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #E4E2DD; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d1cfc9; }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary dark:bg-primary-container shadow-sm flex flex-col py-lg z-20" style="background-color: #7B1C2D;"><div class="px-lg mb-xl"><h1 class="text-headline-md font-headline-md font-black text-on-primary">MCG-SMS</h1><p class="font-label-md text-label-md text-on-primary/70">Methodist Church Ghana</p></div><nav class="flex-1 space-y-1"><a class="flex items-center px-lg py-3 text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined mr-md">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><a class="flex items-center px-lg py-3 text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined mr-md">group</span><span class="font-label-md text-label-md">Members</span></a><div class="group"><button class="w-full flex items-center justify-between px-lg py-3 bg-primary-light/10 text-on-primary font-bold transition-colors duration-200"><div class="flex items-center"><span class="material-symbols-outlined mr-md">volunteer_activism</span><span class="font-label-md text-label-md">Welfare</span></div><span class="material-symbols-outlined text-sm transition-transform duration-200">expand_more</span></button><div class="bg-black/10 py-1"><a class="flex items-center pl-12 pr-lg py-2 text-on-primary/70 hover:text-on-primary text-label-sm transition-colors" href="#">Welfare Cases List</a><a class="flex items-center pl-12 pr-lg py-2 text-on-primary/70 hover:text-on-primary text-label-sm transition-colors" href="#">Open New Case</a><a class="flex items-center pl-12 pr-lg py-2 text-on-primary/70 hover:text-on-primary text-label-sm transition-colors" href="#">Case Detail</a><a class="flex items-center pl-12 pr-lg py-2 font-bold text-label-sm transition-colors" href="#" style="color: #C49A2B;">Visitation Record</a><a class="flex items-center pl-12 pr-lg py-2 text-on-primary/70 hover:text-on-primary text-label-sm transition-colors" href="#">Payment Record</a><a class="flex items-center pl-12 pr-lg py-2 text-on-primary/70 hover:text-on-primary text-label-sm transition-colors" href="#">Case Closure</a></div></div><a class="flex items-center px-lg py-3 text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined mr-md">payments</span><span class="font-label-md text-label-md">Finance</span></a><a class="flex items-center px-lg py-3 text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined mr-md">assessment</span><span class="font-label-md text-label-md">Reports</span></a></nav><div class="mt-auto px-lg space-y-1"><a class="flex items-center py-2 text-on-primary/70 hover:text-on-primary transition-colors" href="#"><span class="material-symbols-outlined mr-md">settings</span><span class="font-label-md text-label-md">Settings</span></a><a class="flex items-center py-2 text-on-primary/70 hover:text-on-primary transition-colors" href="#"><span class="material-symbols-outlined mr-md">logout</span><span class="font-label-md text-label-md">Logout</span></a></div></aside>
+<!-- Main Content Area -->
+<main class="ml-sidebar-width min-h-screen relative">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center h-header-height px-xl bg-surface-container-lowest shadow-sm sticky top-0 z-10">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-primary mr-sm" data-weight="fill">account_circle</span>
+<h2 class="font-headline-md text-headline-md font-black text-primary">Case Details</h2>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative">
+<input class="pl-10 pr-4 py-2 bg-surface-container rounded-full border-none focus:ring-2 focus:ring-primary text-body-md w-64" placeholder="Search records..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+</div>
+<button class="hover:bg-surface-container rounded-full p-2 text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full border-2 border-primary overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a senior church administrator, middle-aged with a dignified expression, wearing a clerical collar. The lighting is soft and natural, emphasizing a calm and trustworthy presence. The background is a blurred office with mahogany textures and warm tones, maintaining the corporate yet traditional Methodist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxQgLNgvEaXT-3awEHdPI2pX4bt99dXaTi4CxLtxQUYTvtd6vrchGMMw_s84UFdGjqX0Rap2zwbYfRlvLGiEPe0GOpbwfjWorsmVPWLRgPFZy4Xxz_Ryn95rBFwJT1NUHk_9ggTJr8q_VtRb4tc6J5QgQ-vikjHb539YS68tYuyAppZzqLH-4qT5ixWFLQJknWb9tNjeig_xX5z48EFcjpODEwoQyW6H3dKvRcflyXE80p3dx9ajFmQo-SYeQbFRF2BCRJ5-spXk7C"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas (Case Detail View) -->
+<div class="p-xl space-y-lg max-w-7xl mx-auto">
+<!-- Header Section -->
+<div class="bg-card rounded-xl shadow-sm p-lg flex justify-between items-start border-l-4 border-secondary-container">
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<span class="bg-primary-muted text-primary px-3 py-1 rounded-full text-label-sm font-bold">CASE #7721-B</span>
+<span class="bg-success/10 text-success px-3 py-1 rounded-full text-label-sm font-bold">ACTIVE</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Member Welfare: Brother Emmanuel Kwesi</h3>
+<p class="text-text-secondary font-body-md">Assigned Class: Calvary Soc. 4 • Last Updated: 2 days ago</p>
+</div>
+<button class="bg-primary hover:bg-primary-light text-on-primary px-6 py-2 rounded-lg font-label-md flex items-center gap-2 transition-transform active:scale-[0.98]" onclick="toggleSlideOver()">
+<span class="material-symbols-outlined">add</span>
+                    Record New Visit
+                </button>
+</div>
+<!-- Bento Grid Content -->
+<div class="grid grid-cols-12 gap-lg">
+<!-- Case Summary -->
+<div class="col-span-8 space-y-lg">
+<div class="bg-card rounded-xl shadow-sm p-lg">
+<h4 class="font-headline-md text-headline-md mb-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">description</span>
+                            Case Narrative
+                        </h4>
+<p class="text-body-lg text-on-surface-variant">
+                            Brother Emmanuel has been unable to attend service for three consecutive months due to post-operative recovery. He requested spiritual support and communion visits. The welfare committee has flagged this for bi-weekly check-ins.
+                        </p>
+</div>
+<div class="bg-card rounded-xl shadow-sm p-lg overflow-hidden">
+<h4 class="font-headline-md text-headline-md mb-md">Visitation History</h4>
+<div class="space-y-4">
+<!-- History Item -->
+<div class="flex items-start gap-md p-md hover:bg-surface-container-low rounded-lg transition-colors border border-transparent hover:border-border">
+<div class="w-12 h-12 rounded-full bg-gold-muted flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-secondary">history</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<span class="font-label-md text-on-surface">May 12, 2024</span>
+<span class="text-label-sm text-text-secondary">Conducted by Rev. J. Mensah</span>
+</div>
+<p class="text-body-md text-on-surface-variant mt-1 italic">"Spirits were high; recovery is progressing well. No urgent needs reported."</p>
+</div>
+</div>
+<!-- History Item -->
+<div class="flex items-start gap-md p-md hover:bg-surface-container-low rounded-lg transition-colors border border-transparent hover:border-border">
+<div class="w-12 h-12 rounded-full bg-gold-muted flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-secondary">history</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<span class="font-label-md text-on-surface">April 28, 2024</span>
+<span class="text-label-sm text-text-secondary">Conducted by Sis. Mary Baidoo</span>
+</div>
+<p class="text-body-md text-on-surface-variant mt-1 italic">"Member still in some pain. Welfare contribution delivered. Follow-up required."</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Stats -->
+<div class="col-span-4 space-y-lg">
+<div class="bg-card rounded-xl shadow-sm p-lg border-l-4 border-secondary-container">
+<span class="text-label-sm text-text-secondary font-bold uppercase tracking-wider">Total Visits</span>
+<div class="text-headline-lg font-data-display text-primary mt-xs">12</div>
+<div class="mt-md pt-md border-t border-border flex items-center justify-between">
+<span class="text-label-md text-text-secondary">Frequency</span>
+<span class="text-label-md font-bold text-on-surface">Bi-Weekly</span>
+</div>
+</div>
+<div class="bg-card rounded-xl shadow-sm p-lg overflow-hidden relative group">
+<div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-5 transition-opacity"></div>
+<h4 class="font-label-md text-text-secondary mb-md uppercase font-bold">Current Location</h4>
+<div class="w-full h-48 bg-surface-container rounded-lg overflow-hidden border border-border">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist digital map view of a residential suburb in Accra, Ghana, showing organized street grids and green spaces. The map uses a soft ivory and grey color scheme to match the UI, with a single maroon pin indicating a location. The style is professional and clear, suitable for administrative church software." data-location="Accra, Ghana" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxlfeTJdIyR3Y8gW_hROf7aymDDovo_Z4L9fA4ph6BMn38WjBUsMKAHsnQf2WhPf9JCkDmEy1b4CnehghS8G_WKtsZ92sy34smoDF7bFJ33W9WVRr_PTuj4zY-xvreaI_e-m7jH_8ewXS3j6SZFozgzpp1ylSSGlJg2HOnz8KGcsbcx4MohiG9jDO9L5yzVSMsaWxcBw0FYPvI0jh3aWOca26O-1YjmHmaqhKgOX14ywjAoCtiRUhK35JlPK8V4k9odnhLJxO7G8my"/>
+</div>
+<p class="text-label-sm text-center mt-3 text-text-secondary">Dansoman Estates, House No. B12/4</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide-over Panel (Visitation Record Form J-04) -->
+<div class="fixed inset-0 bg-on-background/40 backdrop-blur-sm z-30 hidden transition-opacity opacity-0 duration-300 pointer-events-none" id="slideOverBackdrop" onclick="toggleSlideOver()"></div>
+<div class="fixed top-0 right-0 h-full w-[480px] bg-surface-container-lowest shadow-2xl z-40 translate-x-full transition-transform duration-300 ease-in-out border-l border-border flex flex-col" id="slideOverPanel">
+<!-- Header -->
+<div class="px-xl py-lg bg-surface-dim flex items-center justify-between"><div><h3 class="font-headline-md text-headline-md text-primary">Visitation Record</h3><p class="text-label-sm text-danger font-bold">FORM J-04 • CONFIDENTIAL</p></div><button class="p-2 hover:bg-surface-container-high rounded-full transition-colors" onclick="toggleSlideOver()"><span class="material-symbols-outlined text-on-surface-variant">close</span></button></div>
+<!-- Form Content -->
+<form class="flex-1 overflow-y-auto p-xl space-y-lg">
+<!-- Date of Visit -->
+<div class="space-y-sm">
+<label class="block font-label-md text-on-surface">Date of Visit</label>
+<div class="relative">
+<input class="w-full h-11 px-md rounded-lg border-border focus:border-primary focus:ring-1 focus:ring-primary text-body-md bg-surface-container-lowest" type="date" value="2024-05-26"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">calendar_today</span>
+</div>
+</div>
+<!-- Visited By -->
+<div class="space-y-sm">
+<label class="block font-label-md text-on-surface">Visited By</label>
+<input class="w-full h-11 px-md rounded-lg border-border bg-surface-container-low text-text-secondary text-body-md font-medium cursor-not-allowed" readonly="" type="text" value="Brother Administrator (Soc. Sec.)"/>
+<p class="text-[11px] text-text-secondary italic">Auto-filled based on your current session.</p>
+</div>
+<!-- Members Present -->
+<div class="space-y-sm">
+<label class="block font-label-md text-on-surface">Members Present (Family/Friends)</label>
+<div class="relative">
+<input class="w-full h-11 px-md rounded-lg border-border focus:border-primary focus:ring-1 focus:ring-primary text-body-md" placeholder="e.g. Mrs. Jane Kwesi, Son" type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant">person_add</span>
+</div>
+</div>
+<!-- Observations -->
+<div class="space-y-sm">
+<label class="block font-label-md text-on-surface flex justify-between">
+                        Observations
+                        <span class="text-label-sm text-danger font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-weight="fill">lock</span> Confidential
+                        </span>
+</label>
+<textarea class="w-full p-md rounded-lg border-border focus:border-primary focus:ring-1 focus:ring-primary text-body-md resize-none" placeholder="Document physical health, spiritual state, and any requests made..." rows="5"></textarea>
+</div>
+<!-- Follow-up required -->
+<div class="p-md bg-gold-muted/30 rounded-lg border border-secondary-fixed-dim/30 flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">notifications_active</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Follow-up Required?</p>
+<p class="text-label-sm text-text-secondary">Alert welfare team for next week</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" id="followUpToggle" onchange="toggleNextVisit()" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Next Visit Date (Conditional) -->
+<div class="space-y-sm transition-all duration-300 opacity-30 pointer-events-none" id="nextVisitContainer">
+<label class="block font-label-md text-on-surface">Suggested Next Visit Date</label>
+<div class="relative">
+<input class="w-full h-11 px-md rounded-lg border-border focus:border-primary focus:ring-1 focus:ring-primary text-body-md" type="date"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">event_repeat</span>
+</div>
+</div>
+</form>
+<!-- Actions -->
+<div class="px-xl py-lg border-t border-border flex items-center gap-md bg-surface-container-low">
+<button class="flex-1 h-11 rounded-lg border border-border font-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors" onclick="toggleSlideOver()">
+                    Cancel
+                </button>
+<button class="flex-[2] h-11 bg-primary hover:bg-primary-light text-on-primary font-label-md rounded-lg transition-transform active:scale-[0.98] shadow-sm" onclick="saveRecord()">
+                    Save Record
+                </button>
+</div>
+</div>
+</main>
+<script>
+        function toggleSlideOver() {
+            const panel = document.getElementById('slideOverPanel');
+            const backdrop = document.getElementById('slideOverBackdrop');
+            const isOpen = panel.classList.contains('translate-x-0');
+
+            if (isOpen) {
+                panel.classList.remove('translate-x-0');
+                panel.classList.add('translate-x-full');
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => backdrop.classList.add('hidden'), 300);
+            } else {
+                backdrop.classList.remove('hidden');
+                setTimeout(() => {
+                    panel.classList.remove('translate-x-full');
+                    panel.classList.add('translate-x-0');
+                    backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                    backdrop.classList.add('opacity-100');
+                }, 10);
+            }
+        }
+
+        function toggleNextVisit() {
+            const checkbox = document.getElementById('followUpToggle');
+            const container = document.getElementById('nextVisitContainer');
+            if (checkbox.checked) {
+                container.classList.remove('opacity-30', 'pointer-events-none');
+            } else {
+                container.classList.add('opacity-30', 'pointer-events-none');
+            }
+        }
+
+        function saveRecord() {
+            // Simple visual feedback
+            const saveBtn = event.target;
+            const originalText = saveBtn.innerText;
+            saveBtn.innerText = 'Saving...';
+            saveBtn.disabled = true;
+            
+            setTimeout(() => {
+                toggleSlideOver();
+                saveBtn.innerText = originalText;
+                saveBtn.disabled = false;
+                // In a real app, logic to append history would go here
+            }, 1000);
+        }
+    </script>
+</body></html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Open New Welfare Case (J-02) | MCG-SMS</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Design System Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "danger": "#DC2626",
+                    "on-tertiary-fixed-variant": "#464746",
+                    "border": "#E4E2DD",
+                    "primary-fixed": "#ffdadb",
+                    "on-secondary-fixed": "#251a00",
+                    "outline": "#897172",
+                    "info": "#2563EB",
+                    "secondary": "#775a00",
+                    "on-background": "#1e1b19",
+                    "inverse-surface": "#33302d",
+                    "on-tertiary-container": "#adadab",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "text-secondary": "#6B7280",
+                    "on-primary-fixed-variant": "#832233",
+                    "on-secondary-fixed-variant": "#5a4300",
+                    "secondary-fixed": "#ffdf9a",
+                    "inverse-primary": "#ffb2b7",
+                    "on-primary-container": "#ff8a95",
+                    "on-tertiary-fixed": "#1a1c1b",
+                    "surface-container": "#f4ece8",
+                    "tertiary-fixed-dim": "#c7c6c5",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#eee7e3",
+                    "surface-variant": "#e9e1dd",
+                    "primary-container": "#7b1c2d",
+                    "error-container": "#ffdad6",
+                    "background": "#fff8f5",
+                    "primary-muted": "#F5EAEC",
+                    "surface-bright": "#fff8f5",
+                    "surface-container-lowest": "#ffffff",
+                    "card": "#FFFFFF",
+                    "on-secondary": "#ffffff",
+                    "warning": "#D97706",
+                    "on-primary-fixed": "#40000e",
+                    "error": "#ba1a1a",
+                    "primary": "#5c0219",
+                    "surface-tint": "#a33a49",
+                    "tertiary-container": "#404140",
+                    "primary-fixed-dim": "#ffb2b7",
+                    "gold-muted": "#FDF6E3",
+                    "secondary-fixed-dim": "#eec04f",
+                    "surface-dim": "#e0d8d5",
+                    "tertiary": "#2a2b2a",
+                    "surface-container-low": "#faf2ee",
+                    "on-surface": "#1e1b19",
+                    "on-surface-variant": "#564243",
+                    "primary-light": "#A3283F",
+                    "tertiary-fixed": "#e3e2e0",
+                    "outline-variant": "#dcc0c1",
+                    "surface": "#F8F7F5",
+                    "success": "#16A34A",
+                    "surface-container-highest": "#e9e1dd",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#f7efeb",
+                    "secondary-container": "#fece5b",
+                    "on-secondary-container": "#745700"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sidebar-width": "256px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "base": "8px",
+                    "xl": "32px",
+                    "header-height": "64px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Lora"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "data-display": ["JetBrains Mono"],
+                    "data-label": ["JetBrains Mono"],
+                    "headline-lg": ["Lora"]
+            },
+            "fontSize": {
+                    "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                    "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .form-input-focus:focus {
+            outline: none;
+            border-color: #5c0219;
+            box-shadow: 0 0 0 2px rgba(92, 2, 25, 0.1);
+        }
+        .bento-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            transition: all 0.2s ease;
+        }
+        .bento-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex">
+<!-- SideNavBar (Execution from JSON) -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary-container text-on-primary flex flex-col py-lg shadow-sm z-50">
+<div class="px-md mb-xl">
+<h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</h1>
+<p class="text-label-sm opacity-80">Methodist Church Ghana</p>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Members</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md text-label-md">Classes</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Finance</span>
+</a>
+<!-- Welfare Accordion (Active) -->
+<div class="space-y-1">
+<button class="w-full flex items-center justify-between px-md py-sm bg-primary-light/20 text-on-primary font-bold border-l-[3px] border-secondary-container">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span class="font-label-md text-label-md">Welfare</span>
+</div>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="bg-primary-container/50">
+<a class="flex items-center gap-md pl-xl pr-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors" href="#">
+<span class="font-label-md text-label-md">Welfare Cases List</span>
+</a>
+<a class="flex items-center gap-md pl-xl pr-md py-sm text-secondary-container font-bold bg-primary-light/10" href="#">
+<span class="font-label-md text-label-md">Open New Case</span>
+</a>
+<a class="flex items-center gap-md pl-xl pr-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors" href="#">
+<span class="font-label-md text-label-md">Case Detail</span>
+</a>
+<a class="flex items-center gap-md pl-xl pr-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors" href="#">
+<span class="font-label-md text-label-md">Visitation Record</span>
+</a>
+<a class="flex items-center gap-md pl-xl pr-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors" href="#">
+<span class="font-label-md text-label-md">Payment Record</span>
+</a>
+<a class="flex items-center gap-md pl-xl pr-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors" href="#">
+<span class="font-label-md text-label-md">Case Closure</span>
+</a>
+</div>
+</div>
+<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+</nav>
+<div class="mt-auto space-y-1 border-t border-on-primary/10 pt-lg">
+<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-sidebar-width flex flex-col">
+<!-- TopAppBar (Execution from JSON) -->
+<header class="h-header-height px-xl flex justify-between items-center sticky top-0 z-40 bg-surface-container-lowest dark:bg-surface-dim shadow-sm">
+<div class="flex items-center gap-lg">
+<h2 class="text-headline-md font-headline-md font-black text-primary">MCG-SMS</h2>
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-xl pr-md py-xs bg-surface-container rounded-full border-none text-body-md focus:ring-2 focus:ring-primary w-64 transition-all" placeholder="Search members or records..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full p-2 text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full p-2 text-on-surface-variant">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-border">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a mature African church administrator with a calm and dignified expression, wearing a clerical collar. The lighting is soft and corporate, set against a blurred office background with warm wooden tones. The overall aesthetic is trustworthy and serious, consistent with a Methodist church identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb-8ixtipbdTyaXIzKRoOYN512CScxeRs3dZ8pvPIz4HdKvQbxBMx_AiR84xli1PiN9SUQhAVmElaFbVNjpWXkHv7jWXX8Xx6Nhg7jkTkwdFP-TuVP83UO4qqLjJ7L_-YbJMK1HHxCVWjRyK3MaY-PKdnQJfnQf4hu3_uozDfGFhN7X0bt197Yelao54RQaxc-VaHr-gWH0EDv1zhTv9rbTAWvtQwSkUaYP-0nu1CzNUWgdegVBzMtuvkkYVOoy97kTWbKELp_Twew"/>
+</div>
+</div>
+</header>
+<!-- Canvas Area -->
+<main class="p-xl max-w-5xl mx-auto w-full">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-sm mb-lg text-label-md text-on-surface-variant">
+<span>Welfare</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-bold">New Welfare Case</span>
+</nav>
+<div class="flex flex-col gap-lg">
+<!-- Page Header & Confidentiality Banner -->
+<div class="flex flex-col gap-md">
+<div class="flex justify-between items-end">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-primary">Open New Welfare Case</h3>
+<p class="text-body-md text-on-surface-variant max-w-2xl">Establish a new support record for a member in need. Ensure all sensitive information is documented accurately and respectfully.</p>
+</div>
+<div class="flex items-center gap-xs px-md py-xs bg-error/10 border border-error/20 text-error rounded-lg">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="font-label-md">Case ID: J-02</span>
+</div>
+</div>
+<!-- Confidentiality Banner -->
+<div class="bg-danger/5 border-l-4 border-danger p-md rounded-r-lg flex items-start gap-md">
+<span class="material-symbols-outlined text-danger mt-1">security</span>
+<div class="space-y-1">
+<h4 class="font-label-md text-danger uppercase tracking-wider">Confidentiality Protocol Active</h4>
+<p class="text-body-md text-on-surface-variant">Welfare records are strictly confidential. By proceeding, you acknowledge that access to this case is restricted to authorized officers and relevant society leadership only. Unauthorized disclosure is a breach of trust and church policy.</p>
+</div>
+</div>
+</div>
+<!-- Main Form (Bento Layout) -->
+<form class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Primary Details Card -->
+<section class="md:col-span-8 bento-card p-lg space-y-lg">
+<h4 class="font-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">person_search</span>
+                            Member &amp; Case Info
+                        </h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Member Search -->
+<div class="md:col-span-2">
+<label class="block font-label-md text-on-surface-variant mb-xs">Search Member</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-xl pr-md py-sm border border-border rounded-lg form-input-focus text-body-md" placeholder="Type name or membership ID..." type="text"/>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-1 italic">Note: Only active society members can be selected for welfare cases.</p>
+</div>
+<!-- Case Type Dropdown -->
+<div>
+<label class="block font-label-md text-on-surface-variant mb-xs">Case Type</label>
+<select class="w-full py-sm px-md border border-border rounded-lg form-input-focus text-body-md">
+<option disabled="" selected="" value="">Select category</option>
+<option value="illness">Illness / Hospitalization</option>
+<option value="bereavement">Bereavement</option>
+<option value="financial">Financial Hardship</option>
+<option value="unemployment">Unemployment</option>
+<option value="disability">Disability Support</option>
+<option value="other">Other Pastoral Need</option>
+</select>
+</div>
+<!-- Priority -->
+<div>
+<label class="block font-label-md text-on-surface-variant mb-xs">Priority Level</label>
+<div class="flex gap-sm">
+<label class="flex-1 cursor-pointer">
+<input checked="" class="hidden peer" name="priority" type="radio" value="normal"/>
+<div class="text-center py-sm border border-border rounded-lg peer-checked:bg-primary-muted peer-checked:border-primary peer-checked:text-primary transition-all text-label-md">Normal</div>
+</label>
+<label class="flex-1 cursor-pointer">
+<input class="hidden peer" name="priority" type="radio" value="urgent"/>
+<div class="text-center py-sm border border-border rounded-lg peer-checked:bg-danger/10 peer-checked:border-danger peer-checked:text-danger transition-all text-label-md">Urgent</div>
+</label>
+</div>
+</div>
+<!-- Date Identified -->
+<div>
+<label class="block font-label-md text-on-surface-variant mb-xs">Date Identified</label>
+<input class="w-full py-sm px-md border border-border rounded-lg form-input-focus text-body-md" type="date"/>
+</div>
+<!-- Assigned Officer -->
+<div>
+<label class="block font-label-md text-on-surface-variant mb-xs">Assigned Welfare Officer</label>
+<select class="w-full py-sm px-md border border-border rounded-lg form-input-focus text-body-md">
+<option>Bro. Ebenezer Mensah</option>
+<option>Sis. Abigail Forson</option>
+<option>Very Rev. Kofi Antwi</option>
+</select>
+</div>
+</div>
+<!-- Description -->
+<div>
+<div class="flex items-center justify-between mb-xs">
+<label class="block font-label-md text-on-surface-variant">Case Description &amp; Background</label>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" title="Encrypted field">lock</span>
+</div>
+<textarea class="w-full py-sm px-md border border-border rounded-lg form-input-focus text-body-md resize-none" placeholder="Provide factual details regarding the member's situation..." rows="4"></textarea>
+</div>
+</section>
+<!-- Sidebar Configuration Card -->
+<div class="md:col-span-4 flex flex-col gap-lg">
+<!-- Actions & Follow-up -->
+<section class="bento-card p-lg space-y-md border-l-4 border-secondary-container">
+<h4 class="font-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary">assignment_turned_in</span>
+                                Action Plan
+                            </h4>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-xs">Initial Action Taken</label>
+<input class="w-full py-sm px-md border border-border rounded-lg form-input-focus text-body-md" placeholder="e.g., Initial visit made" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-xs">Follow-up Date</label>
+<input class="w-full py-sm px-md border border-border rounded-lg form-input-focus text-body-md" type="date"/>
+</div>
+<div class="pt-sm">
+<label class="flex items-center gap-sm cursor-pointer group">
+<div class="relative flex items-center">
+<input class="w-5 h-5 rounded border-border text-primary focus:ring-primary" type="checkbox"/>
+</div>
+<span class="text-body-md text-on-surface group-hover:text-primary transition-colors">Notify Society Class Leader</span>
+</label>
+</div>
+</section>
+<!-- Context Info (Empty state illustrative card) -->
+<div class="bento-card p-lg bg-gold-muted/30 border border-secondary-fixed/30">
+<div class="flex items-center gap-sm text-secondary mb-sm">
+<span class="material-symbols-outlined">info</span>
+<span class="font-label-md uppercase tracking-wider">Guidelines</span>
+</div>
+<ul class="text-label-md space-y-2 text-on-surface-variant">
+<li class="flex gap-2">
+<span class="text-secondary">•</span>
+<span>Maintain neutral language.</span>
+</li>
+<li class="flex gap-2">
+<span class="text-secondary">•</span>
+<span>Avoid clinical diagnoses unless documented.</span>
+</li>
+<li class="flex gap-2">
+<span class="text-secondary">•</span>
+<span>Update follow-up dates weekly.</span>
+</li>
+</ul>
+</div>
+<!-- Visual Anchor -->
+<div class="rounded-xl overflow-hidden h-32 relative">
+<img class="w-full h-full object-cover" data-alt="A serene, high-resolution photograph of a sunlit stained-glass window inside a Methodist chapel. The light creates colorful reflections on a polished wooden pew. The scene is quiet, contemplative, and dignified, reinforcing a sense of pastoral care and spiritual sanctuary. The color palette emphasizes warm golds, deep maroons, and soft architectural shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7eafQKQfcGRwWBIWiDgKo4ieLoze_LkZUKMwraAcyqf5zxPUDxMoenG3B9XUzeS6tV6u2y9onu9fIc_YVOEWETOSYeg4Y4H2McTaZTSvsSsNSxZOLcSg7E7LfZkLapx_koYKjDkNneL5Hmy5ds91y-NRwSSwTVSXsTyEaqb62IRxPMOyoGxUvrzYQPy-j1BsWND2jSBkeyGGfkjJ6Gf85U68FuHM7rEy-rwODZtKNn6sFBubzyMFWyaZO2wq8qH6rehYXLhZF4g5E"/>
+<div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+</div>
+</div>
+</form>
+<!-- Sticky Footer Actions -->
+<div class="mt-lg pt-lg border-t border-border flex justify-between items-center">
+<button class="px-xl py-sm text-primary font-bold hover:bg-primary-muted rounded-lg transition-colors flex items-center gap-sm" type="button">
+<span class="material-symbols-outlined">close</span>
+                        Cancel
+                    </button>
+<button class="px-xl py-sm bg-primary text-on-primary font-bold rounded-lg shadow-sm hover:bg-primary-light transition-all flex items-center gap-sm active:scale-[0.98]" type="submit">
+<span class="material-symbols-outlined">assignment_add</span>
+                        Open Case
+                    </button>
+</div>
+</div>
+</main>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Subtle form interaction feedback
+            const inputs = document.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.parentElement.classList.add('scale-[1.01]');
+                    input.parentElement.style.transition = 'transform 0.2s ease';
+                });
+                input.addEventListener('blur', () => {
+                    input.parentElement.classList.remove('scale-[1.01]');
+                });
+            });
+
+            // Handle date defaults (Today for 'Date Identified')
+            const dateInput = document.querySelector('input[type="date"]');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.value = today;
+            }
+        });
+    </script>
+</body></html>
