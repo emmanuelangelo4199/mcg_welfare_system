@@ -5,9 +5,9 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Membership Reports | MCG-SMS</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lora:wght@100..900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -136,49 +136,62 @@
         }
     </style>
 </head>
-<body class="bg-surface font-body-md text-on-surface custom-scrollbar">
+<body class="bg-surface font-body-md text-on-surface custom-scrollbar text-[13px] capitalize">
 <!-- Sidebar Navigation -->
 <aside class="flex flex-col h-full w-sidebar-width fixed left-0 top-0 z-50 bg-primary dark:bg-on-primary-fixed shadow-lg hidden md:flex">
 <div class="p-lg">
 <h1 class="font-headline-md text-headline-md font-bold text-on-primary">MCG-SMS</h1>
 <p class="font-label-md text-label-md text-on-primary/70">Administration</p>
 </div>
-<nav class="flex-1 mt-md">
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all duration-200" href="#">
-<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-<span class="font-label-md text-label-md">Reporting Hub</span>
+<nav class="flex-1 mt-md overflow-y-auto custom-scrollbar">
+<div class="space-y-xs">
+<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
 </a>
-<a class="flex items-center gap-md border-l-4 border-secondary-container bg-primary-container/20 text-secondary-container py-md px-lg" href="#">
+<div class="group">
+<button class="w-full flex items-center justify-between text-secondary-container bg-primary-container/20 py-md px-lg transition-all">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</div>
+<span class="material-symbols-outlined text-sm transition-transform duration-200 rotate-180" data-icon="expand_more">expand_more</span>
+</button>
+<div class="bg-primary-container/10 py-xs">
+<a class="flex items-center gap-md text-on-primary/70 py-sm pl-xl pr-lg hover:text-on-primary transition-all" href="#">
+<span class="text-xs font-data-label">R-01</span>
+<span class="font-label-md text-label-md">Financial Summaries</span>
+</a>
+<a class="flex items-center gap-md text-secondary-container bg-secondary-container/10 py-sm pl-xl pr-lg border-r-4 border-secondary-container transition-all" href="#">
+<span class="text-xs font-data-label">M-02</span>
+<span class="font-label-md text-label-md">Membership Reports</span>
+</a>
+<a class="flex items-center gap-md text-on-primary/70 py-sm pl-xl pr-lg hover:text-on-primary transition-all" href="#">
+<span class="text-xs font-data-label">W-03</span>
+<span class="font-label-md text-label-md">Welfare Distribution</span>
+</a>
+</div>
+</div>
+<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
 <span class="material-symbols-outlined" data-icon="group">group</span>
 <span class="font-label-md text-label-md">Membership</span>
 </a>
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all duration-200" href="#">
+<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
 <span class="material-symbols-outlined" data-icon="payments">payments</span>
 <span class="font-label-md text-label-md">Financials</span>
 </a>
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all duration-200" href="#">
-<span class="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
-<span class="font-label-md text-label-md">Welfare</span>
-</a>
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all duration-200" href="#">
-<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
-<span class="font-label-md text-label-md">Governance</span>
-</a>
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all duration-200" href="#">
+<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
 <span class="font-label-md text-label-md">Settings</span>
 </a>
+</div>
 </nav>
 <div class="mt-auto border-t border-on-primary/10 p-md">
 <button class="w-full bg-secondary-container text-on-secondary-container py-sm px-md rounded-lg font-label-md flex items-center justify-center gap-sm hover:opacity-90 transition-all">
 <span class="material-symbols-outlined" data-icon="add">add</span>
-                Generate New Report
-            </button>
+      Generate New Report
+    </button>
 <div class="mt-lg">
-<a class="flex items-center gap-md text-on-primary/80 py-sm px-lg hover:text-on-primary" href="#">
-<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
-<span class="font-label-md text-label-md">Support</span>
-</a>
 <a class="flex items-center gap-md text-on-primary/80 py-sm px-lg hover:text-on-primary" href="#">
 <span class="material-symbols-outlined" data-icon="logout">logout</span>
 <span class="font-label-md text-label-md">Sign Out</span>
@@ -253,7 +266,7 @@
 <div class="lg:col-span-8 bg-card p-lg rounded-xl shadow-sm border border-outline-variant/30 relative overflow-hidden">
 <div class="flex justify-between items-start mb-lg">
 <div>
-<h4 class="font-headline-md text-headline-md text-primary">Filters & Parameters</h4>
+<h4 class="font-headline-md text-headline-md text-primary">Filters &amp; Parameters</h4>
 <p class="text-on-surface-variant">Narrow down the results by specific criteria.</p>
 </div>
 <button class="text-primary font-label-md flex items-center gap-xs hover:underline">

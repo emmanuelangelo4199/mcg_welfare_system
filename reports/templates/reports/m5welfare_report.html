@@ -1,11 +1,13 @@
-<!DOCTYPE html><html class="light" lang="en"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>M-05 — Welfare Report | MCG-SMS</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -127,49 +129,59 @@
         }
     </style>
 </head>
-<body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed">
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed text-[13px] capitalize">
 <!-- Sidebar (Shared Component) -->
 <aside class="flex flex-col h-full w-sidebar-width fixed left-0 top-0 z-50 bg-primary dark:bg-on-primary-fixed shadow-lg">
 <div class="p-lg flex flex-col gap-xs">
 <h1 class="font-headline-md text-headline-md font-bold text-on-primary">MCG-SMS</h1>
 <span class="text-on-primary/60 font-label-sm uppercase tracking-wider">Administration</span>
 </div>
-<nav class="flex-1 mt-md">
-<div class="px-lg mb-sm">
-
+<nav class="flex-1 mt-md overflow-y-auto custom-scrollbar">
+<div class="space-y-xs">
+<!-- Dashboard -->
+<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<!-- Reports (Active Parent) -->
+<div class="flex flex-col">
+<button class="flex items-center justify-between w-full text-secondary-container py-md px-lg bg-primary-container/20 transition-all">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md font-bold">Reports</span>
 </div>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+<div class="flex flex-col bg-primary-container/10">
+<a class="pl-[64px] py-sm text-on-primary/80 hover:text-secondary-container transition-colors font-label-md" href="#">Financial Summary</a>
+<a class="pl-[64px] py-sm text-secondary-container font-bold border-l-4 border-secondary-container bg-primary-container/20 font-label-md" href="#">Welfare Report (M-05)</a>
+<a class="pl-[64px] py-sm text-on-primary/80 hover:text-secondary-container transition-colors font-label-md" href="#">Governance Audit</a>
+</div>
+</div>
+<!-- Societies -->
 <a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-<span class="font-label-md">Reporting Hub</span>
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md">Societies</span>
 </a>
+<!-- Circuits -->
 <a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="payments">payments</span>
-<span class="font-label-md">Financials</span>
+<span class="material-symbols-outlined">account_tree</span>
+<span class="font-label-md">Circuits</span>
 </a>
-<a class="flex items-center gap-md border-l-4 border-secondary-container bg-primary-container/20 text-secondary-container py-md px-lg transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
-<span class="font-label-md font-bold">Welfare</span>
-</a>
+<!-- Settings -->
 <a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
-<span class="font-label-md">Governance</span>
-</a>
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="history">history</span>
-<span class="font-label-md">Audit Trail</span>
-</a>
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="material-symbols-outlined">settings</span>
 <span class="font-label-md">Settings</span>
 </a>
+</div>
 </nav>
 <div class="mt-auto border-t border-on-primary/10">
 <a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span class="material-symbols-outlined">contact_support</span>
 <span class="font-label-md">Support</span>
 </a>
 <a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all mb-lg" href="#">
-<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="material-symbols-outlined">logout</span>
 <span class="font-label-md">Sign Out</span>
 </a>
 </div>
@@ -188,12 +200,12 @@
 <div class="flex items-center gap-md">
 <div class="relative w-64">
 <span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
-<input class="w-full bg-surface-container-low border-none rounded-full pl-xl py-xs text-body-md focus:ring-2 focus:ring-primary/20" placeholder="Search case files..." type="text">
+<input class="w-full bg-surface-container-low border-none rounded-full pl-xl py-xs text-body-md focus:ring-2 focus:ring-primary/20" placeholder="Search case files..." type="text"/>
 </div>
 <button class="material-symbols-outlined text-on-surface-variant hover:text-primary" data-icon="notifications">notifications</button>
 <button class="material-symbols-outlined text-on-surface-variant hover:text-primary" data-icon="help">help</button>
 <div class="w-8 h-8 rounded-full bg-primary-fixed overflow-hidden border border-outline-variant">
-<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a Ghanaian man in a formal white shirt, representing a senior administrator of the Methodist Church. The lighting is soft and warm, reflecting a dignified and trustworthy persona. The background is a blurred corporate office setting with subtle wooden textures and a warm ambient glow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYnjYyg1KzTs9DOhBfrbn4AxW1_qMHJt6WPSqsRhc8a5GzGy9YtumkwA4iQbqlhgnBFlPouA_6KzfYck-YXxRCN9IOdgbepfoXzkyAEO3VtmqZHaU6rxk9LFBWw_yWiBSKuc9VeEzPkplOZwoVXYF8Vr_nCc64lX783pTBQxh6UKyZunkBgiP1JOYdQGw3ggQR4VKkrUiv2vNyC9spAvZbWQtawY0-poqZL6SCc0TpuwXb0TM8tr4rdNFka1tINMjNklSfapLj2V3p">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a Ghanaian man in a formal white shirt, representing a senior administrator of the Methodist Church. The lighting is soft and warm, reflecting a dignified and trustworthy persona. The background is a blurred corporate office setting with subtle wooden textures and a warm ambient glow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYnjYyg1KzTs9DOhBfrbn4AxW1_qMHJt6WPSqsRhc8a5GzGy9YtumkwA4iQbqlhgnBFlPouA_6KzfYck-YXxRCN9IOdgbepfoXzkyAEO3VtmqZHaU6rxk9LFBWw_yWiBSKuc9VeEzPkplOZwoVXYF8Vr_nCc64lX783pTBQxh6UKyZunkBgiP1JOYdQGw3ggQR4VKkrUiv2vNyC9spAvZbWQtawY0-poqZL6SCc0TpuwXb0TM8tr4rdNFka1tINMjNklSfapLj2V3p"/>
 </div>
 </div>
 </header>
@@ -259,7 +271,7 @@
 <h5 class="text-on-surface font-bold font-label-md uppercase mb-md">Cases by Category</h5>
 <div class="flex-1 flex items-center justify-center relative">
 <!-- SVG Chart Mock -->
-<svg class="w-40 h-40 transform -rotate-90" viewBox="0 0 100 100">
+<svg class="w-40 h-40 transform -rotate-90" viewbox="0 0 100 100">
 <circle cx="50" cy="50" fill="transparent" r="40" stroke="#E4E2DD" stroke-width="8"></circle>
 <circle cx="50" cy="50" fill="transparent" r="40" stroke="#5c0219" stroke-dasharray="160 251.2" stroke-linecap="round" stroke-width="8"></circle>
 <circle cx="50" cy="50" fill="transparent" r="40" stroke="#fece5b" stroke-dasharray="60 251.2" stroke-dashoffset="-160" stroke-linecap="round" stroke-width="8"></circle>
@@ -412,7 +424,7 @@
 <div class="flex items-center gap-lg">
 <label class="flex items-center gap-sm cursor-pointer group">
 <div class="relative">
-<input class="peer sr-only" id="fullDetailsExport" type="checkbox">
+<input class="peer sr-only" id="fullDetailsExport" type="checkbox"/>
 <div class="w-10 h-5 bg-surface-variant rounded-full peer-checked:bg-primary transition-all"></div>
 <div class="absolute left-1 top-1 w-3 h-3 bg-white rounded-full transition-all peer-checked:translate-x-5"></div>
 </div>
@@ -516,7 +528,4 @@
             banner.style.transform = 'translateY(0)';
         });
     </script>
-
-
-</body>
-</html>
+</body></html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Reset Password | MCG-SMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "card": "#FFFFFF",
+                    "secondary-container": "#fece5b",
+                    "gold-muted": "#FDF6E3",
+                    "error-container": "#ffdad6",
+                    "info": "#2563EB",
+                    "on-primary-container": "#ff8a95",
+                    "surface-container-highest": "#e9e1dd",
+                    "surface-bright": "#fff8f5",
+                    "inverse-on-surface": "#f7efeb",
+                    "inverse-primary": "#ffb2b7",
+                    "on-error": "#ffffff",
+                    "on-background": "#1e1b19",
+                    "secondary-fixed-dim": "#eec04f",
+                    "tertiary-fixed-dim": "#c7c6c5",
+                    "inverse-surface": "#33302d",
+                    "on-primary-fixed": "#40000e",
+                    "tertiary": "#2a2b2a",
+                    "primary-fixed-dim": "#ffb2b7",
+                    "on-secondary-fixed": "#251a00",
+                    "error": "#ba1a1a",
+                    "surface-container": "#f4ece8",
+                    "outline-variant": "#dcc0c1",
+                    "primary-light": "#A3283F",
+                    "on-surface": "#1e1b19",
+                    "border": "#E4E2DD",
+                    "on-secondary-container": "#745700",
+                    "on-surface-variant": "#564243",
+                    "surface-container-high": "#eee7e3",
+                    "secondary-fixed": "#ffdf9a",
+                    "danger": "#DC2626",
+                    "tertiary-fixed": "#e3e2e0",
+                    "surface-tint": "#a33a49",
+                    "success": "#16A34A",
+                    "primary-muted": "#F5EAEC",
+                    "background": "#fff8f5",
+                    "on-tertiary-container": "#adadab",
+                    "on-primary": "#ffffff",
+                    "outline": "#897172",
+                    "surface-variant": "#e9e1dd",
+                    "surface": "#F8F7F5",
+                    "on-tertiary-fixed-variant": "#464746",
+                    "on-primary-fixed-variant": "#832233",
+                    "surface-container-lowest": "#ffffff",
+                    "warning": "#D97706",
+                    "primary-container": "#7b1c2d",
+                    "on-tertiary-fixed": "#1a1c1b",
+                    "surface-container-low": "#faf2ee",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#404140",
+                    "primary-fixed": "#ffdadb",
+                    "secondary": "#775a00",
+                    "on-secondary-fixed-variant": "#5a4300",
+                    "primary": "#5c0219",
+                    "surface-dim": "#e0d8d5",
+                    "text-secondary": "#6B7280",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "sidebar-width": "256px",
+                    "sm": "8px",
+                    "header-height": "64px",
+                    "base": "8px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Lora"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Lora"],
+                    "data-label": ["JetBrains Mono"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "data-display": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                    "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .password-strength-segment {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .success-toast {
+            animation: slideIn 0.5s ease forwards;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="h-full bg-background selection:bg-primary-muted selection:text-primary">
+<main class="flex h-full w-full overflow-hidden">
+<!-- Left Panel: 40% Branding -->
+<section class="hidden lg:flex lg:w-[40%] bg-primary-container relative flex-col items-center justify-center p-xl overflow-hidden">
+<!-- Animated Subtle Texture -->
+
+<!-- Branding Content -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-32 h-32 mb-lg rounded-full bg-white/10 flex items-center justify-center p-4 backdrop-blur-sm shadow-xl border border-white/20">
+<img class="w-full h-full object-contain" data-alt="Official logo of the Methodist Church Ghana, featuring a gold emblem with a cross and traditional Ghanaian symbols, designed with high-fidelity corporate aesthetic, gold on a transparent background, centered and elegant." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA09o22nY_yHovuYRT2YM6OSF5vQJlc0_ANk9FlJs5h3uhOBrc1bf3X1GcZSwwR1dUc5C5gewqm08yzwe1lFrTLXoZ2sa0eTeNGqGhuHceAeQ_nj2yr-DFNLgML8cOItzsWhdPN3ZovWhDefAEFp-C4M3MkkBMkuBmC0BlavZM64lgAxtH_Qeo0QwqUzA3cxT721xO-IDPtJto05UPqAZNgL1EQBd9IOaixZYyzSdcfjXYxPXbtunZpYnN6jIpYsj2ZuP4QRL839a_">
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-primary-fixed mb-sm">MCG Society</h1>
+<p class="font-body-lg text-body-lg text-on-primary-container opacity-90 max-w-xs">
+                    Institutional Governance &amp; Financial Stewardship for Methodism in Ghana.
+                </p>
+</div>
+<!-- Bottom Information -->
+<div class="absolute bottom-xl left-0 w-full px-xl text-center">
+<p class="font-label-sm text-label-sm text-on-primary-container/60 uppercase tracking-widest">
+                    The Methodist Church Ghana • Management System
+                </p>
+</div>
+</section>
+<!-- Right Panel: 60% Form Content -->
+<section class="flex-1 bg-white flex flex-col items-center justify-center p-md sm:p-xl relative">
+<!-- Success Toast (Initially Hidden) -->
+<div class="hidden absolute top-8 left-1/2 -translate-x-1/2 success-toast z-50" id="success-toast">
+<div class="flex items-center gap-3 bg-success text-white px-lg py-sm rounded-lg shadow-xl">
+<span class="material-symbols-outlined">check_circle</span>
+<span class="font-label-md text-label-md">Password updated. Please sign in.</span>
+</div>
+</div>
+<div class="w-full max-w-[420px] space-y-lg">
+<!-- Header -->
+<div class="text-center sm:text-left">
+<h2 class="font-headline-lg text-[26px] text-primary mb-2">Set a new password</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Please choose a password that is secure and easy for you to remember.</p>
+</div>
+<!-- Form -->
+<form class="space-y-md" id="reset-password-form" onsubmit="handleFormSubmit(event)">
+<!-- New Password -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface" for="new-password">New Password</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border-border rounded-lg py-3 px-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-on-surface" id="new-password" oninput="updateStrength(this.value)" placeholder="••••••••" required="" type="password">
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors" onclick="togglePassword('new-password', this)" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+</div>
+<!-- Password Strength Bar -->
+<div class="flex gap-1 h-1.5 mt-2">
+<div class="password-strength-segment flex-1 rounded-full bg-surface-variant" id="strength-1"></div>
+<div class="password-strength-segment flex-1 rounded-full bg-surface-variant" id="strength-2"></div>
+<div class="password-strength-segment flex-1 rounded-full bg-surface-variant" id="strength-3"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1" id="strength-text">Password strength</p>
+</div>
+<!-- Confirm Password -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface" for="confirm-password">Confirm New Password</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border-border rounded-lg py-3 px-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-on-surface" id="confirm-password" placeholder="••••••••" required="" type="password">
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors" onclick="togglePassword('confirm-password', this)" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Rules List -->
+<div class="space-y-2 pt-2">
+<div class="flex items-center gap-2 group">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant/40" data-icon="circle" id="rule-length">circle</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">8+ characters</span>
+</div>
+<div class="flex items-center gap-2 group">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant/40" data-icon="circle" id="rule-uppercase">circle</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">1 uppercase letter</span>
+</div>
+<div class="flex items-center gap-2 group">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant/40" data-icon="circle" id="rule-number">circle</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">1 number</span>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full bg-primary hover:bg-primary-light text-white font-headline-md text-headline-md py-4 rounded-lg shadow-md hover:shadow-lg transition-all active:scale-[0.98] mt-lg" type="submit">
+                        Update password
+                    </button>
+<div class="text-center pt-md">
+<a class="font-label-md text-label-md text-primary hover:text-primary-light transition-colors flex items-center justify-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-[18px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                            Back to login
+                        </a>
+</div>
+</form>
+</div>
+<!-- Footer Logo (Mobile Only) -->
+<div class="lg:hidden absolute bottom-8 left-0 w-full flex justify-center">
+<img class="h-8 opacity-40" data-alt="A small, stylized version of the Methodist Church Ghana crest in deep maroon, placed at the bottom of a white screen, very clean and minimalist, signifying authority and tradition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf4Rsy3lQhX6RhR1X4Bh9wI63ywlmP-5oE4YuVR44qEH5YN_LC_xaCZD8K_0l-59DazoigpB3s-EHXEFHTlUqM519--L5RlsPdwVYI69pFnkZ2S3YkRXnKyHfIu_2lJk6mGJCjreYZuqeCR3qk_UCbfQJYq5PvmVtjy9qvco6OxTY-HQJz5-3B1v6tww-gGf2JmBcKD8CzyZSsoZBtXXJhIKhPHCPIpfvFrA_AFerkAFitqa09ZOohzxiEWeVyjCNh_LOrNBcVPb1o">
+</div>
+</section>
+</main>
+<script>
+        function togglePassword(id, btn) {
+            const input = document.getElementById(id);
+            const icon = btn.querySelector('.material-symbols-outlined');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.innerText = 'visibility';
+            } else {
+                input.type = 'password';
+                icon.innerText = 'visibility_off';
+            }
+        }
+
+        function updateStrength(value) {
+            const s1 = document.getElementById('strength-1');
+            const s2 = document.getElementById('strength-2');
+            const s3 = document.getElementById('strength-3');
+            const stText = document.getElementById('strength-text');
+            
+            const ruleLength = document.getElementById('rule-length');
+            const ruleUpper = document.getElementById('rule-uppercase');
+            const ruleNumber = document.getElementById('rule-number');
+
+            // Reset
+            [s1, s2, s3].forEach(el => el.className = 'password-strength-segment flex-1 rounded-full bg-surface-variant');
+            [ruleLength, ruleUpper, ruleNumber].forEach(el => {
+                el.innerText = 'circle';
+                el.classList.remove('text-success', 'text-danger');
+                el.classList.add('text-on-surface-variant/40');
+                el.style.fontVariationSettings = "'FILL' 0";
+            });
+
+            let strength = 0;
+            
+            // Check Rules
+            if (value.length >= 8) {
+                strength++;
+                markRule(ruleLength, true);
+            }
+            if (/[A-Z]/.test(value)) {
+                strength++;
+                markRule(ruleUpper, true);
+            }
+            if (/[0-9]/.test(value)) {
+                strength++;
+                markRule(ruleNumber, true);
+            }
+
+            // Visual Strength
+            if (strength === 1) {
+                s1.classList.add('bg-danger');
+                stText.innerText = 'Weak';
+                stText.classList.replace('text-on-surface-variant', 'text-danger');
+            } else if (strength === 2) {
+                s1.classList.add('bg-warning');
+                s2.classList.add('bg-warning');
+                stText.innerText = 'Fair';
+                stText.classList.replace('text-danger', 'text-warning');
+                stText.classList.add('text-warning');
+            } else if (strength === 3) {
+                s1.classList.add('bg-success');
+                s2.classList.add('bg-success');
+                s3.classList.add('bg-success');
+                stText.innerText = 'Strong';
+                stText.classList.replace('text-warning', 'text-success');
+                stText.classList.add('text-success');
+            } else {
+                stText.innerText = 'Password strength';
+                stText.className = 'font-label-sm text-label-sm text-on-surface-variant mt-1';
+            }
+        }
+
+        function markRule(el, valid) {
+            if (valid) {
+                el.innerText = 'check_circle';
+                el.classList.remove('text-on-surface-variant/40');
+                el.classList.add('text-success');
+                el.style.fontVariationSettings = "'FILL' 1";
+            }
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const toast = document.getElementById('success-toast');
+            toast.classList.remove('hidden');
+            
+            // Simulate navigation after delay
+            setTimeout(() => {
+                console.log('Redirecting to Sign In...');
+                toast.querySelector('.font-label-md').innerText = "Redirecting to Login...";
+            }, 2500);
+        }
+    </script>
+</body></html>

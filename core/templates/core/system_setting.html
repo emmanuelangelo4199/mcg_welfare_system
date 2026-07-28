@@ -5,9 +5,9 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>System Settings | MCG-SMS</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lora:wght@100..900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet"/>
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -135,51 +135,9 @@
         }
     </script>
 </head>
-<body class="bg-surface font-body-md text-on-surface">
+<body class="bg-surface font-body-md text-on-surface capitalize" style="font-size: 13px;">
 <!-- Sidebar Navigation (Mandatory from JSON) -->
-<aside class="fixed left-0 top-0 bottom-0 w-sidebar-width flex flex-col py-lg z-50 bg-primary shadow-md">
-<div class="px-lg mb-xl">
-<h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG Society</h1>
-<p class="text-label-sm font-label-sm text-primary-fixed-dim opacity-80">Management System</p>
-</div>
-<nav class="flex-1 space-y-1">
-<a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined mr-md">dashboard</span>
-<span class="font-label-md">Dashboard</span>
-</a>
-<a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined mr-md">groups</span>
-<span class="font-label-md">Membership</span>
-</a>
-<a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined mr-md">payments</span>
-<span class="font-label-md">Finances</span>
-</a>
-<a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined mr-md">volunteer_activism</span>
-<span class="font-label-md">Welfare</span>
-</a>
-<a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined mr-md">account_balance</span>
-<span class="font-label-md">Governance</span>
-</a>
-<a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined mr-md">assessment</span>
-<span class="font-label-md">Reports</span>
-</a>
-</nav>
-<div class="mt-auto pt-lg border-t border-primary-light/20">
-<a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined mr-md">history</span>
-<span class="font-label-md">Audit Logs</span>
-</a>
-<!-- Active State Navigation (Settings) -->
-<a class="flex items-center px-lg py-md border-l-4 border-secondary-fixed-dim bg-primary-light text-on-primary font-bold scale-x-[1.02] transition-transform duration-200" href="#">
-<span class="material-symbols-outlined mr-md">settings</span>
-<span class="font-label-md">Settings</span>
-</a>
-</div>
-</aside>
+<aside class="fixed left-0 top-0 bottom-0 w-sidebar-width flex flex-col py-lg z-50 bg-primary shadow-md"><div class="px-lg mb-xl"><h1 class="text-headline-md font-headline-md font-bold text-on-primary capitalize">MCG Society</h1><p class="text-label-sm font-label-sm text-primary-fixed-dim opacity-80 capitalize">Management System</p></div><nav class="flex-1 space-y-1"><a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">dashboard</span><span class="font-label-md capitalize">Dashboard</span></a><a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">groups</span><span class="font-label-md capitalize">Membership</span></a><a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">payments</span><span class="font-label-md capitalize">Finances</span></a><a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">volunteer_activism</span><span class="font-label-md capitalize">Welfare</span></a><div class="space-y-1"><button class="w-full flex items-center justify-between px-lg py-md text-on-primary bg-primary-light font-bold transition-all"><div class="flex items-center"><span class="material-symbols-outlined mr-md">account_balance</span><span class="font-label-md capitalize">Governance</span></div><span class="material-symbols-outlined text-sm">expand_more</span></button><div class="bg-primary/20 py-1"><a class="flex items-center pl-xl pr-lg py-sm border-l-4 border-secondary-fixed-dim bg-primary-light/30 text-on-primary font-semibold" href="#"><span class="font-label-md capitalize">System Settings</span></a><a class="flex items-center pl-xl pr-lg py-sm text-primary-fixed-dim opacity-80 hover:text-on-primary hover:opacity-100" href="#"><span class="font-label-md capitalize">User Management</span></a><a class="flex items-center pl-xl pr-lg py-sm text-primary-fixed-dim opacity-80 hover:text-on-primary hover:opacity-100" href="#"><span class="font-label-md capitalize">Role &amp; Permission Management</span></a><a class="flex items-center pl-xl pr-lg py-sm text-primary-fixed-dim opacity-80 hover:text-on-primary hover:opacity-100" href="#"><span class="font-label-md capitalize">Audit Log</span></a><a class="flex items-center pl-xl pr-lg py-sm text-primary-fixed-dim opacity-80 hover:text-on-primary hover:opacity-100" href="#"><span class="font-label-md capitalize">My Profile</span></a></div></div><a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">assessment</span><span class="font-label-md capitalize">Reports</span></a></nav></aside>
 <!-- Main Content Area -->
 <main class="ml-sidebar-width min-h-screen">
 <!-- TopAppBar (Mandatory from JSON) -->
@@ -203,14 +161,14 @@
 </header>
 <!-- Page Header & Breadcrumbs -->
 <div class="px-xl py-lg">
-<nav class="flex mb-xs text-label-sm text-outline font-label-md">
+<nav class="flex mb-xs text-label-sm text-outline font-label-md capitalize">
 <span>Dashboard</span>
 <span class="mx-2">/</span>
 <span>Settings</span>
 <span class="mx-2">/</span>
 <span class="text-primary font-semibold">System Settings</span>
 </nav>
-<h2 class="text-headline-lg font-headline-lg text-primary">System Settings</h2>
+<h2 class="text-headline-lg font-headline-lg text-primary capitalize">System Settings</h2>
 </div>
 <!-- Settings Container (Bento-style layout with side nav) -->
 <div class="px-xl pb-xl grid grid-cols-12 gap-lg">
@@ -245,7 +203,7 @@
 <li>
 <button class="tab-btn w-full flex items-center px-md py-lg rounded-lg text-left text-on-surface-variant hover:bg-surface-container-low transition-all" onclick="switchTab('session-security')">
 <span class="material-symbols-outlined mr-sm text-lg">admin_panel_settings</span>
-<span class="text-body-md">Session & Security</span>
+<span class="text-body-md">Session &amp; Security</span>
 </button>
 </li>
 </ul>
@@ -256,35 +214,35 @@
 <!-- Society Profile Panel -->
 <div class="settings-panel active bg-card rounded-xl shadow-sm border border-border overflow-hidden" id="society-profile">
 <div class="px-lg py-md border-b border-border bg-surface-container-low flex justify-between items-center">
-<h3 class="text-headline-md font-headline-md text-on-surface">Society Profile</h3>
+<h3 class="text-headline-md font-headline-md text-on-surface capitalize">Society Profile</h3>
 <span class="text-label-sm text-outline uppercase tracking-wider font-bold">General Information</span>
 </div>
 <div class="p-lg">
 <div class="grid grid-cols-2 gap-lg mb-lg">
 <div class="space-y-sm">
-<label class="text-label-md font-label-md text-on-surface-variant">Society Name</label>
+<label class="text-label-md font-label-md text-on-surface-variant capitalize">Society Name</label>
 <input class="w-full px-md py-sm border border-border rounded-lg focus:ring-2 focus:ring-primary-light focus:border-primary-light outline-none" type="text" value="Wesley Methodist Church"/>
 </div>
 <div class="space-y-sm">
-<label class="text-label-md font-label-md text-on-surface-variant">Founding Date</label>
+<label class="text-label-md font-label-md text-on-surface-variant capitalize">Founding Date</label>
 <input class="w-full px-md py-sm border border-border rounded-lg focus:ring-2 focus:ring-primary-light outline-none" type="date" value="1954-06-15"/>
 </div>
 </div>
 <div class="grid grid-cols-3 gap-md mb-lg">
 <div class="space-y-sm p-md bg-surface-container-low rounded-lg">
-<label class="text-label-sm font-label-sm text-outline">Connexion</label>
+<label class="text-label-sm font-label-sm text-outline capitalize">Connexion</label>
 <div class="flex flex-wrap gap-xs">
 <span class="px-sm py-1 bg-primary text-white text-[10px] font-bold rounded-full">Ghana</span>
 </div>
 </div>
 <div class="space-y-sm p-md bg-surface-container-low rounded-lg">
-<label class="text-label-sm font-label-sm text-outline">Diocese</label>
+<label class="text-label-sm font-label-sm text-outline capitalize">Diocese</label>
 <div class="flex flex-wrap gap-xs">
 <span class="px-sm py-1 bg-secondary text-white text-[10px] font-bold rounded-full">Accra</span>
 </div>
 </div>
 <div class="space-y-sm p-md bg-surface-container-low rounded-lg">
-<label class="text-label-sm font-label-sm text-outline">Circuit</label>
+<label class="text-label-sm font-label-sm text-outline capitalize">Circuit</label>
 <div class="flex flex-wrap gap-xs">
 <span class="px-sm py-1 bg-tertiary text-white text-[10px] font-bold rounded-full">Abossey Okai</span>
 </div>
@@ -292,16 +250,16 @@
 </div>
 <div class="grid grid-cols-2 gap-lg mb-lg">
 <div class="space-y-sm">
-<label class="text-label-md font-label-md text-on-surface-variant">Address</label>
+<label class="text-label-md font-label-md text-on-surface-variant capitalize">Address</label>
 <textarea class="w-full px-md py-sm border border-border rounded-lg focus:ring-2 focus:ring-primary-light outline-none" rows="3">P.O. Box 45, Kaneshie Main Road, Accra, Ghana</textarea>
 </div>
 <div class="space-y-md">
 <div class="space-y-sm">
-<label class="text-label-md font-label-md text-on-surface-variant">Email Address</label>
+<label class="text-label-md font-label-md text-on-surface-variant capitalize">Email Address</label>
 <input class="w-full px-md py-sm border border-border rounded-lg focus:ring-2 focus:ring-primary-light outline-none" type="email" value="wesley.kaneshie@methodist.org.gh"/>
 </div>
 <div class="space-y-sm">
-<label class="text-label-md font-label-md text-on-surface-variant">Phone Number</label>
+<label class="text-label-md font-label-md text-on-surface-variant capitalize">Phone Number</label>
 <input class="w-full px-md py-sm border border-border rounded-lg focus:ring-2 focus:ring-primary-light outline-none" type="tel" value="+233 24 456 7890"/>
 </div>
 </div>
@@ -314,7 +272,7 @@
 </div>
 </div>
 <div>
-<h4 class="font-bold text-on-surface">Society Logo</h4>
+<h4 class="font-bold text-on-surface capitalize">Society Logo</h4>
 <p class="text-body-md text-on-surface-variant">Upload a high-resolution logo (PNG or SVG). Max 2MB.</p>
 <button class="mt-md text-primary font-bold text-label-md hover:underline">Change Logo</button>
 </div>
@@ -327,26 +285,26 @@
 <!-- Financial Configuration Panel -->
 <div class="settings-panel bg-card rounded-xl shadow-sm border border-border overflow-hidden" id="financial-config">
 <div class="px-lg py-md border-b border-border bg-surface-container-low flex justify-between items-center">
-<h3 class="text-headline-md font-headline-md text-on-surface">Financial Configuration</h3>
+<h3 class="text-headline-md font-headline-md text-on-surface capitalize">Financial Configuration</h3>
 <span class="text-label-sm text-outline uppercase tracking-wider font-bold">Stewardship Controls</span>
 </div>
 <div class="p-lg grid grid-cols-2 gap-lg">
 <div class="space-y-lg">
 <div class="p-lg bg-gold-muted/30 rounded-xl border-l-4 border-secondary">
-<label class="text-label-md font-bold text-secondary flex items-center mb-md">
+<label class="text-label-md font-bold text-secondary flex items-center mb-md capitalize">
 <span class="material-symbols-outlined mr-xs text-sm">verified_user</span>
                                     APPROVAL THRESHOLDS
                                 </label>
 <div class="space-y-md">
 <div>
-<label class="text-body-md block mb-sm">Treasurer Limit (GH₵)</label>
+<label class="text-body-md block mb-sm capitalize">Treasurer Limit (GH₵)</label>
 <div class="relative">
 <span class="absolute left-md top-1/2 -translate-y-1/2 font-data-label text-outline">GH₵</span>
 <input class="w-full pl-xl pr-md py-sm border border-border rounded-lg font-data-display text-on-surface outline-none" type="text" value="5,000.00"/>
 </div>
 </div>
 <div>
-<label class="text-body-md block mb-sm">Finance Committee Threshold (GH₵)</label>
+<label class="text-body-md block mb-sm capitalize">Finance Committee Threshold (GH₵)</label>
 <div class="relative">
 <span class="absolute left-md top-1/2 -translate-y-1/2 font-data-label text-outline">GH₵</span>
 <input class="w-full pl-xl pr-md py-sm border border-border rounded-lg font-data-display text-on-surface outline-none" type="text" value="15,000.00"/>
@@ -357,7 +315,7 @@
 </div>
 <div class="space-y-lg">
 <div class="p-lg bg-primary-muted rounded-xl border-l-4 border-primary">
-<label class="text-label-md font-bold text-primary flex items-center mb-md">
+<label class="text-label-md font-bold text-primary flex items-center mb-md capitalize">
 <span class="material-symbols-outlined mr-xs text-sm">percent</span>
                                     WIDER MISSION LEVIES
                                 </label>
@@ -385,7 +343,7 @@
 <!-- Notifications Panel -->
 <div class="settings-panel bg-card rounded-xl shadow-sm border border-border overflow-hidden" id="notification-config">
 <div class="px-lg py-md border-b border-border bg-surface-container-low flex justify-between items-center">
-<h3 class="text-headline-md font-headline-md text-on-surface">Communication Gateways</h3>
+<h3 class="text-headline-md font-headline-md text-on-surface capitalize">Communication Gateways</h3>
 </div>
 <div class="p-lg space-y-lg">
 <!-- SMS Gateway -->
@@ -395,7 +353,7 @@
 <span class="material-symbols-outlined">sms</span>
 </div>
 <div>
-<h4 class="font-bold">SMS Gateway (Arkesel)</h4>
+<h4 class="font-bold capitalize">SMS Gateway (Arkesel)</h4>
 <p class="text-label-sm text-outline">API Key: ••••••••••••••••••••</p>
 <div class="mt-xs flex items-center space-x-md">
 <span class="inline-flex items-center text-success text-xs font-bold bg-success/10 px-2 py-0.5 rounded">
@@ -415,7 +373,7 @@
 <span class="material-symbols-outlined">mail</span>
 </div>
 <div>
-<h4 class="font-bold">SMTP Server (Office 365)</h4>
+<h4 class="font-bold capitalize">SMTP Server (Office 365)</h4>
 <p class="text-label-sm text-outline">Endpoint: smtp.office365.com:587</p>
 <div class="mt-xs flex items-center space-x-md">
 <span class="inline-flex items-center text-success text-xs font-bold bg-success/10 px-2 py-0.5 rounded">
@@ -435,17 +393,17 @@
 <!-- Data Backup Panel -->
 <div class="settings-panel bg-card rounded-xl shadow-sm border border-border overflow-hidden" id="data-backup">
 <div class="px-lg py-md border-b border-border bg-surface-container-low flex justify-between items-center">
-<h3 class="text-headline-md font-headline-md text-on-surface">Data Backup & Integrity</h3>
+<h3 class="text-headline-md font-headline-md text-on-surface capitalize">Data Backup &amp; Integrity</h3>
 </div>
 <div class="p-lg">
 <div class="grid grid-cols-3 gap-lg mb-xl">
 <div class="p-lg bg-surface-container rounded-xl">
 <p class="text-label-sm text-outline mb-xs">Last Successful Backup</p>
-<h4 class="font-data-display text-headline-md">2023-11-22 03:00</h4>
+<h4 class="font-data-display text-headline-md capitalize">2023-11-22 03:00</h4>
 </div>
 <div class="p-lg bg-surface-container rounded-xl">
 <p class="text-label-sm text-outline mb-xs">Next Scheduled Backup</p>
-<h4 class="font-data-display text-headline-md text-info">2023-11-23 03:00</h4>
+<h4 class="font-data-display text-headline-md text-info capitalize">2023-11-23 03:00</h4>
 </div>
 <div class="p-lg bg-surface-container rounded-xl">
 <p class="text-label-sm text-outline mb-xs">Storage Frequency</p>
@@ -456,7 +414,7 @@
 </select>
 </div>
 </div>
-<h4 class="font-bold mb-md flex items-center">
+<h4 class="font-bold mb-md flex items-center capitalize">
 <span class="material-symbols-outlined mr-sm">history</span>
                             Recent Archives
                         </h4>
@@ -501,17 +459,17 @@
 <!-- Session & Security Panel -->
 <div class="settings-panel bg-card rounded-xl shadow-sm border border-border overflow-hidden" id="session-security">
 <div class="px-lg py-md border-b border-border bg-surface-container-low flex justify-between items-center">
-<h3 class="text-headline-md font-headline-md text-on-surface">Security & Privacy Controls</h3>
+<h3 class="text-headline-md font-headline-md text-on-surface capitalize">Security &amp; Privacy Controls</h3>
 </div>
 <div class="p-lg space-y-lg">
 <div class="grid grid-cols-2 gap-lg">
 <div class="space-y-sm">
-<label class="text-label-md font-label-md text-on-surface-variant">Session Timeout (Minutes)</label>
+<label class="text-label-md font-label-md text-on-surface-variant capitalize">Session Timeout (Minutes)</label>
 <input class="w-full px-md py-sm border border-border rounded-lg font-data-display focus:ring-2 focus:ring-primary-light outline-none" type="number" value="30"/>
 <p class="text-[11px] text-outline">Users will be logged out after this period of inactivity.</p>
 </div>
 <div class="space-y-sm">
-<label class="text-label-md font-label-md text-on-surface-variant">Password Expiry (Days)</label>
+<label class="text-label-md font-label-md text-on-surface-variant capitalize">Password Expiry (Days)</label>
 <input class="w-full px-md py-sm border border-border rounded-lg font-data-display focus:ring-2 focus:ring-primary-light outline-none" type="number" value="90"/>
 <p class="text-[11px] text-outline">Force password change policy cycle.</p>
 </div>
@@ -519,10 +477,10 @@
 <div class="p-lg bg-surface border border-border rounded-xl space-y-md">
 <div class="flex items-center justify-between">
 <div>
-<h4 class="font-bold">Multi-Factor Authentication (MFA)</h4>
+<h4 class="font-bold capitalize">Multi-Factor Authentication (MFA)</h4>
 <p class="text-body-md text-on-surface-variant">Require SMS/Email verification for all administrative accounts.</p>
 </div>
-<label class="relative inline-flex items-center cursor-pointer">
+<label class="relative inline-flex items-center cursor-pointer capitalize">
 <input checked="" class="sr-only peer" type="checkbox"/>
 <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-success"></div>
 </label>
@@ -530,17 +488,17 @@
 <hr class="border-border"/>
 <div class="flex items-center justify-between">
 <div>
-<h4 class="font-bold text-danger">High-Risk Confirmation Toggle</h4>
+<h4 class="font-bold text-danger capitalize">High-Risk Confirmation Toggle</h4>
 <p class="text-body-md text-on-surface-variant">Require Master Password for data exports and welfare deletions.</p>
 </div>
-<label class="relative inline-flex items-center cursor-pointer">
+<label class="relative inline-flex items-center cursor-pointer capitalize">
 <input checked="" class="sr-only peer" type="checkbox"/>
 <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-danger"></div>
 </label>
 </div>
 </div>
 <div class="space-y-sm">
-<label class="text-label-md font-bold text-on-surface-variant">Complexity Requirements</label>
+<label class="text-label-md font-bold text-on-surface-variant capitalize">Complexity Requirements</label>
 <div class="flex flex-wrap gap-sm">
 <span class="px-sm py-1 bg-surface-container-high border border-border text-[11px] font-bold rounded flex items-center">
 <span class="material-symbols-outlined text-[14px] mr-xs text-success">check_circle</span>
@@ -603,5 +561,4 @@
             });
         });
     </script>
-</body>
-</html>
+</body></html>

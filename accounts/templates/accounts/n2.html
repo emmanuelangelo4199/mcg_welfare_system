@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Management | MCG-SMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .sidebar-active-indicator {
+            position: absolute;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: #C49A2B;
+        }
+        .slide-over-enter {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-out;
+        }
+        .slide-over-enter-active {
+            transform: translateX(0);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #E4E2DD;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#2a2b2a",
+                        "primary-fixed": "#ffdadb",
+                        "primary-fixed-dim": "#ffb2b7",
+                        "on-primary-fixed-variant": "#832233",
+                        "secondary-fixed-dim": "#eec04f",
+                        "outline": "#897172",
+                        "primary-light": "#A3283F",
+                        "error": "#ba1a1a",
+                        "border": "#E4E2DD",
+                        "surface-container-highest": "#e9e1dd",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "info": "#2563EB",
+                        "danger": "#DC2626",
+                        "inverse-primary": "#ffb2b7",
+                        "surface-bright": "#fff8f5",
+                        "inverse-on-surface": "#f7efeb",
+                        "warning": "#D97706",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#404140",
+                        "on-primary-fixed": "#40000e",
+                        "surface-dim": "#e0d8d5",
+                        "surface-container-lowest": "#ffffff",
+                        "gold-muted": "#FDF6E3",
+                        "secondary-fixed": "#ffdf9a",
+                        "secondary": "#775a00",
+                        "secondary-container": "#fece5b",
+                        "surface-container": "#f4ece8",
+                        "outline-variant": "#dcc0c1",
+                        "card": "#FFFFFF",
+                        "on-surface": "#1e1b19",
+                        "surface-variant": "#e9e1dd",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#c7c6c5",
+                        "surface-tint": "#a33a49",
+                        "on-background": "#1e1b19",
+                        "surface-container-high": "#eee7e3",
+                        "primary-muted": "#F5EAEC",
+                        "on-tertiary-fixed": "#1a1c1b",
+                        "on-error": "#ffffff",
+                        "primary-container": "#7b1c2d",
+                        "on-tertiary-container": "#adadab",
+                        "text-secondary": "#6B7280",
+                        "success": "#16A34A",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#564243",
+                        "inverse-surface": "#33302d",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#745700",
+                        "surface-container-low": "#faf2ee",
+                        "on-tertiary-fixed-variant": "#464746",
+                        "surface": "#F8F7F5",
+                        "on-primary-container": "#ff8a95",
+                        "primary": "#5c0219",
+                        "background": "#fff8f5",
+                        "tertiary-fixed": "#e3e2e0",
+                        "on-secondary-fixed": "#251a00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "sidebar-width": "256px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "header-height": "64px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "data-display": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Lora"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface custom-scrollbar overflow-x-hidden" style="font-size: 13px;">
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 bottom-0 w-sidebar-width bg-primary flex flex-col py-lg z-50 shadow-md dark:shadow-none"><div class="px-lg mb-xl"><div class="flex items-center gap-md"><div class="w-10 h-10 bg-on-primary rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">church</span></div><div><h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG Society</h1><p class="text-label-sm font-label-sm text-primary-fixed-dim opacity-80 uppercase tracking-wider">Management System</p></div></div></div><nav class="flex-1 space-y-1"><a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">groups</span><span class="font-label-md text-label-md">Membership</span></a><a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">payments</span><span class="font-label-md text-label-md">Finances</span></a><a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">volunteer_activism</span><span class="font-label-md text-label-md">Welfare</span></a><div class="space-y-1"><button class="w-full group relative flex items-center px-lg py-md text-on-primary bg-primary-light font-bold transition-all"><span class="material-symbols-outlined mr-md">account_balance</span><span class="font-label-md text-label-md flex-1 text-left">Governance</span><span class="material-symbols-outlined">expand_more</span></button><div class="bg-primary-container/30 py-xs"><a class="flex items-center pl-xl pr-lg py-sm text-primary-fixed-dim opacity-80 hover:opacity-100 hover:text-on-primary transition-all" href="#"><span class="font-label-md text-label-md">Committees</span></a><a class="flex items-center pl-xl pr-lg py-sm text-on-primary bg-primary-light/50 border-l-4 border-secondary-fixed-dim font-bold transition-all" href="#"><span class="font-label-md text-label-md">User Management</span></a><a class="flex items-center pl-xl pr-lg py-sm text-primary-fixed-dim opacity-80 hover:opacity-100 hover:text-on-primary transition-all" href="#"><span class="font-label-md text-label-md">System Settings</span></a></div></div><a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">assessment</span><span class="font-label-md text-label-md">Reports</span></a></nav><div class="mt-auto space-y-1"><a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">history</span><span class="font-label-md text-label-md">Audit Logs</span></a></div></aside>
+<!-- Top App Bar -->
+<header class="fixed top-0 right-0 left-sidebar-width h-header-height bg-surface-container-lowest flex justify-between items-center px-lg z-40 shadow-sm">
+<div class="flex items-center gap-md">
+<div class="bg-surface-container-low flex items-center px-md py-sm rounded-lg w-96 transition-colors focus-within:ring-2 focus-within:ring-primary-light">
+<span class="material-symbols-outlined text-on-surface-variant mr-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-full placeholder:text-on-surface-variant" placeholder="Search system functions..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="text-on-surface-variant hover:bg-surface-container-low p-sm rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full border-2 border-surface-container-lowest"></span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-sm rounded-full transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-px bg-border mx-sm"></div>
+<div class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-low p-xs rounded-lg transition-colors">
+<div class="w-9 h-9 rounded-full bg-primary-muted overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged Ghanaian administrator in a well-lit office. He is wearing a formal white shirt and has a gentle, trustworthy expression. The lighting is soft and natural, emphasizing a high-end corporate administrative environment with the Methodist Church branding subtly visible in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy44Q5O1BCvv4zTCZRx8PS7lzXte4amxJvljk-R764OydYhAYzbsAQ0JriTnJerSlPreFSH4xPdccuzzI4nxoZVyDnyaudxtPgfTQRlUaWUBm7-66mT2jZ9wh-eTJP8wdhEpYAIWHSD2OAxrrPTZ4199V5TfK7ycBGKyUQtRdN1NXeHPMYI7tym6CUe08DzVIImJn_qt6Ec-vV5yXjHqd3XFCRlzszNNpxi7d0uAj7KFUrmNW94wsvSC4-rR9b76IJxlL1tfdfc9eO"/>
+</div>
+<div class="text-right">
+<p class="text-label-md font-bold leading-none">Kwesi Mensah</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">System Admin</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-sidebar-width mt-header-height p-xl min-h-screen">
+<!-- Breadcrumbs & Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-xl gap-lg">
+<div>
+<nav class="flex text-label-sm text-on-surface-variant mb-xs gap-sm items-center">
+<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Settings</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Users</span>
+</nav>
+<h2 class="text-headline-lg font-headline-lg text-primary capitalize">User Management</h2>
+<p class="text-body-md text-on-surface-variant mt-xs">Manage system access levels, roles, and connected member profiles.</p>
+</div>
+<button class="bg-primary hover:bg-primary-light text-on-primary px-lg py-md rounded-lg font-bold flex items-center gap-sm transition-all shadow-sm active:scale-95" onclick="toggleSlideOver()">
+<span class="material-symbols-outlined">person_add</span>
+                Add User
+            </button>
+</div>
+<!-- Filter Bar -->
+<section class="bg-card rounded-xl shadow-sm border border-border p-md mb-lg flex flex-wrap items-center gap-md">
+<div class="flex-1 min-w-[280px] relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-xl pr-md py-md border-border rounded-lg focus:ring-primary-light focus:border-primary-light text-body-md" placeholder="Search by name, email or role..." type="text"/>
+</div>
+<div class="flex items-center gap-md">
+<select class="border-border rounded-lg focus:ring-primary-light focus:border-primary-light text-body-md py-md px-lg min-w-[160px]">
+<option value="">All Roles</option>
+<option value="admin">Administrator</option>
+<option value="treasurer">Treasurer</option>
+<option value="clerk">Clerk</option>
+</select>
+<div class="flex items-center bg-surface-container-low px-md py-md rounded-lg border border-border">
+<span class="text-label-md font-semibold mr-md text-on-surface-variant">Status:</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-success"></div>
+<span class="ml-sm text-label-md font-medium text-on-surface">Active Only</span>
+</label>
+</div>
+<button class="p-md border border-border rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</section>
+<!-- Users Table -->
+<div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-border">
+<th class="px-lg py-md text-label-md font-bold text-on-surface tracking-wider capitalize">User</th>
+<th class="px-lg py-md text-label-md font-bold text-on-surface tracking-wider capitalize">Role</th>
+<th class="px-lg py-md text-label-md font-bold text-on-surface tracking-wider capitalize">Linked Member</th>
+<th class="px-lg py-md text-label-md font-bold text-on-surface tracking-wider capitalize">Last Login</th>
+<th class="px-lg py-md text-label-md font-bold text-on-surface tracking-wider text-center capitalize">Status</th>
+<th class="px-lg py-md text-label-md font-bold text-on-surface tracking-wider text-right capitalize">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-muted flex-shrink-0 flex items-center justify-center">
+<img class="w-full h-full object-cover rounded-full" data-alt="A professional avatar of a female church clerk, featuring a confident smile and traditional Ghanaian kente pattern scarf. The setting is a bright, organized administrative office with soft natural lighting and a high-end corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFAlL7v2QzhyUV5qFhFvE8QGZZquX8HZFdZBV00nL5WkcW4dQRC1bUS9so4J3nMxTaHnSb4UkZvW_Hgpu_Vz5B7snjEczBACBBCwddTfuBln93sjrkYkbfvyR7--OamZB6gNqQQDWq7Qg7aiLXa-ZdeJo6tdH3lo195_3Gggdx1uzprZ-0nostzbQNZX0vXLVuLTnKPos8PpnQyubMPb5MboW8qToVbuZfBrfVy6oZcn4WUuPteK_E5yZtnNOXY4p0Rb3JWFCbFyQ9"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Abena Ofori</p>
+<p class="text-label-sm text-on-surface-variant">a.ofori@mcg-society.gh</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="bg-primary-muted text-primary text-label-sm px-sm py-xs rounded-full font-bold uppercase tracking-tight">Clerk</span>
+</td>
+<td class="px-lg py-md">
+<a class="inline-flex items-center gap-xs px-sm py-xs bg-surface-container rounded border border-border text-label-sm hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span>
+                                Abena Ofori (MEM-0042)
+                            </a>
+</td>
+<td class="px-lg py-md">
+<p class="text-body-md font-data-display text-data-display">Today, 09:12 AM</p>
+</td>
+<td class="px-lg py-md text-center">
+<span class="bg-success/10 text-success text-label-sm font-bold px-sm py-xs rounded-full inline-block">Active</span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-xs">
+<button class="p-xs hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" title="Edit"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-xs hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" title="Reset Password"><span class="material-symbols-outlined">lock_reset</span></button>
+<button class="p-xs hover:bg-error/10 hover:text-error rounded transition-colors text-on-surface-variant" title="Deactivate"><span class="material-symbols-outlined">person_off</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-muted flex-shrink-0 flex items-center justify-center">
+<img class="w-full h-full object-cover rounded-full" data-alt="A clean, professional portrait of a senior male treasurer for a church organization. He has a distinguished appearance and is wearing a dark suit with a subtle pattern. The lighting is soft and focused, creating a sense of reliability and administrative expertise within a modern, light-mode interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgFR04zG3yHwioJzcdqY4zzCJ7qcSeL_E0MdbPcsTtipxXqLGMaB-B2WvIzURTP6z6BKQJJnCKNP1LfYPXOvptBLqUk0GC1Pv5EkvSwDUwMvsd8fv9FpSqYLyqdkzWtnUoBXu8qTq6KOaT1AlmmyMEH356z8TVmAXJMj72_q0YUu7xNRjodJBJa3jeEx3ibJHYB2zvUgY6GOkstX024Q0AUjQXY5jpepxfsncBOKG5Si2pCljmDAWLmp1J95b8CC6u_TCNWYu-0xNx"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Kofi Boateng</p>
+<p class="text-label-sm text-on-surface-variant">k.boateng@mcg-society.gh</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="bg-secondary-container text-on-secondary-container text-label-sm px-sm py-xs rounded-full font-bold uppercase tracking-tight">Treasurer</span>
+</td>
+<td class="px-lg py-md">
+<a class="inline-flex items-center gap-xs px-sm py-xs bg-surface-container rounded border border-border text-label-sm hover:bg-surface-container-high transition-colors text-on-surface" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span>
+                                Kofi A. Boateng (MEM-0012)
+                            </a>
+</td>
+<td class="px-lg py-md">
+<p class="text-body-md font-data-display text-data-display">24 Oct 2023</p>
+</td>
+<td class="px-lg py-md text-center">
+<span class="bg-surface-container-highest text-on-surface-variant text-label-sm font-bold px-sm py-xs rounded-full inline-block">Inactive</span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-xs">
+<button class="p-xs hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" title="Edit"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-xs hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" title="Reset Password"><span class="material-symbols-outlined">lock_reset</span></button>
+<button class="p-xs hover:bg-success/10 hover:text-success rounded transition-colors text-on-surface-variant" title="Activate"><span class="material-symbols-outlined">person_check</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-muted flex-shrink-0 flex items-center justify-center">
+<div class="text-primary font-bold text-headline-md">EM</div>
+</div>
+<div>
+<p class="font-bold text-on-surface">Ekow Mensah</p>
+<p class="text-label-sm text-on-surface-variant">e.mensah@mcg-society.gh</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="bg-primary text-on-primary text-label-sm px-sm py-xs rounded-full font-bold uppercase tracking-tight">Admin</span>
+</td>
+<td class="px-lg py-md">
+<span class="text-label-sm text-on-surface-variant italic">No member linked</span>
+</td>
+<td class="px-lg py-md">
+<p class="text-body-md font-data-display text-data-display">Yesterday, 4:45 PM</p>
+</td>
+<td class="px-lg py-md text-center">
+<span class="bg-success/10 text-success text-label-sm font-bold px-sm py-xs rounded-full inline-block">Active</span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-xs">
+<button class="p-xs hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" title="Edit"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-xs hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" title="Reset Password"><span class="material-symbols-outlined">lock_reset</span></button>
+<button class="p-xs hover:bg-error/10 hover:text-error rounded transition-colors text-on-surface-variant" title="Deactivate"><span class="material-symbols-outlined">person_off</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-lg py-md bg-surface-container-low flex justify-between items-center border-t border-border">
+<p class="text-label-md text-on-surface-variant">Showing <span class="font-bold">3</span> of <span class="font-bold">12</span> users</p>
+<div class="flex gap-sm">
+<button class="px-md py-sm border border-border rounded-lg bg-surface-container-lowest text-label-md font-bold opacity-50 cursor-not-allowed">Previous</button>
+<button class="px-md py-sm border border-border rounded-lg bg-surface-container-lowest text-label-md font-bold hover:bg-surface-container-high transition-colors">Next</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Slide-over Form Overlay -->
+<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-[60] hidden transition-opacity duration-300 opacity-0" id="slideOverOverlay" onclick="toggleSlideOver()"></div>
+<!-- Slide-over Content -->
+<div class="fixed top-0 right-0 h-full w-full max-w-md bg-card shadow-2xl z-[70] translate-x-full transition-transform duration-300 ease-in-out flex flex-col" id="slideOver">
+<div class="p-lg border-b border-border flex justify-between items-center bg-surface-container-low">
+<div>
+<h3 class="text-headline-md font-headline-md text-primary capitalize">Add New User</h3>
+<p class="text-label-md text-on-surface-variant">Configure system access for a new official.</p>
+</div>
+<button class="p-sm rounded-full hover:bg-surface-container-highest transition-colors" onclick="toggleSlideOver()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-lg custom-scrollbar">
+<form class="space-y-lg" id="addUserForm">
+<!-- User Details -->
+<div class="space-y-md">
+<label class="block">
+<span class="text-label-md font-bold text-on-surface capitalize">Full Name</span>
+<input class="mt-xs block w-full border-border rounded-lg focus:ring-primary-light focus:border-primary-light text-body-md py-md px-md" placeholder="Enter user's full name" type="text"/>
+</label>
+<label class="block">
+<span class="text-label-md font-bold text-on-surface capitalize">Email Address</span>
+<input class="mt-xs block w-full border-border rounded-lg focus:ring-primary-light focus:border-primary-light text-body-md py-md px-md" placeholder="official.email@mcg-society.gh" type="email"/>
+</label>
+<label class="block">
+<span class="text-label-md font-bold text-on-surface capitalize">Role</span>
+<select class="mt-xs block w-full border-border rounded-lg focus:ring-primary-light focus:border-primary-light text-body-md py-md px-md">
+<option value="">Select a role...</option>
+<option value="admin">System Administrator</option>
+<option value="clerk">Church Clerk</option>
+<option value="treasurer">Treasurer</option>
+<option value="viewer">Viewer (Read-only)</option>
+</select>
+</label>
+</div>
+<!-- Member Link -->
+<div class="pt-md border-t border-border">
+<span class="text-label-md font-bold text-on-surface">Linked Member (Optional)</span>
+<div class="mt-xs relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="block w-full pl-xl pr-md py-md border-border rounded-lg focus:ring-primary-light focus:border-primary-light text-body-md" placeholder="Search members by name or ID..." type="text"/>
+</div>
+<p class="mt-sm text-label-sm text-on-surface-variant">Link this user to an existing church member record.</p>
+</div>
+<!-- Account Setup -->
+<div class="pt-md border-t border-border">
+<span class="text-label-md font-bold text-on-surface">Account Setup</span>
+<div class="mt-md space-y-md">
+<label class="flex items-start gap-md cursor-pointer group">
+<input checked="" class="mt-xs text-primary focus:ring-primary-light" name="setup" type="radio"/>
+<div>
+<p class="text-body-md font-bold text-on-surface">Send invitation link</p>
+<p class="text-label-sm text-on-surface-variant">User will receive an email to set their own password.</p>
+</div>
+</label>
+<label class="flex items-start gap-md cursor-pointer group">
+<input class="mt-xs text-primary focus:ring-primary-light" name="setup" type="radio"/>
+<div>
+<p class="text-body-md font-bold text-on-surface">Generate temporary password</p>
+<p class="text-label-sm text-on-surface-variant">System will create a password for you to share manually.</p>
+</div>
+</label>
+</div>
+</div>
+<!-- Account Status -->
+<div class="pt-md border-t border-border">
+<label class="flex items-center gap-md cursor-pointer">
+<input checked="" class="w-5 h-5 text-primary border-border rounded focus:ring-primary-light" type="checkbox"/>
+<span class="text-body-md font-bold text-on-surface capitalize">Activate user immediately</span>
+</label>
+</div>
+</form>
+</div>
+<div class="p-lg border-t border-border bg-surface-container-low flex gap-md">
+<button class="flex-1 py-md px-lg border border-border rounded-lg font-bold text-on-surface hover:bg-surface-container-highest transition-colors" onclick="toggleSlideOver()">
+                Cancel
+            </button>
+<button class="flex-1 py-md px-lg bg-primary text-on-primary rounded-lg font-bold hover:bg-primary-light transition-all shadow-sm" onclick="submitUser()">
+                Create User
+            </button>
+</div>
+</div>
+<!-- Toast Notification (Hidden by default) -->
+<div class="fixed bottom-lg right-lg z-[100] transform translate-y-20 opacity-0 transition-all duration-300" id="toast">
+<div class="bg-inverse-surface text-inverse-on-surface px-lg py-md rounded-lg shadow-xl flex items-center gap-md">
+<span class="material-symbols-outlined text-success">check_circle</span>
+<span class="text-body-md font-bold" id="toastMessage">User created successfully!</span>
+</div>
+</div>
+<script>
+        function toggleSlideOver() {
+            const overlay = document.getElementById('slideOverOverlay');
+            const slideOver = document.getElementById('slideOver');
+            const isHidden = slideOver.classList.contains('translate-x-full');
+
+            if (isHidden) {
+                overlay.classList.remove('hidden');
+                setTimeout(() => {
+                    overlay.classList.add('opacity-100');
+                    slideOver.classList.remove('translate-x-full');
+                }, 10);
+            } else {
+                slideOver.classList.add('translate-x-full');
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => {
+                    overlay.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function submitUser() {
+            // Mock submission
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Processing...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                toggleSlideOver();
+                showToast('New user has been successfully created.');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                document.getElementById('addUserForm').reset();
+            }, 1500);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body></html>

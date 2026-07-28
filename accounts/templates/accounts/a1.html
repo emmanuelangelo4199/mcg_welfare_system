@@ -1,0 +1,234 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Login - MCG-SMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#eec04f",
+                        "secondary-fixed": "#ffdf9a",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e9e1dd",
+                        "secondary-container": "#fece5b",
+                        "on-tertiary-container": "#adadab",
+                        "surface-container-high": "#eee7e3",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#2a2b2a",
+                        "background": "#fff8f5",
+                        "on-surface": "#1e1b19",
+                        "surface-container": "#f4ece8",
+                        "primary-light": "#A3283F",
+                        "border": "#E4E2DD",
+                        "danger": "#DC2626",
+                        "on-secondary-container": "#745700",
+                        "on-error-container": "#93000a",
+                        "info": "#2563EB",
+                        "primary-container": "#7b1c2d",
+                        "tertiary-container": "#404140",
+                        "surface-tint": "#a33a49",
+                        "on-error": "#ffffff",
+                        "warning": "#D97706",
+                        "surface-container-highest": "#e9e1dd",
+                        "primary-muted": "#F5EAEC",
+                        "on-tertiary-fixed-variant": "#464746",
+                        "gold-muted": "#FDF6E3",
+                        "inverse-primary": "#ffb2b7",
+                        "primary-fixed-dim": "#ffb2b7",
+                        "on-primary-fixed-variant": "#832233",
+                        "text-secondary": "#6B7280",
+                        "surface-bright": "#fff8f5",
+                        "success": "#16A34A",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#e0d8d5",
+                        "on-secondary-fixed": "#251a00",
+                        "tertiary-fixed-dim": "#c7c6c5",
+                        "surface-container-low": "#faf2ee",
+                        "tertiary-fixed": "#e3e2e0",
+                        "on-primary-container": "#ff8a95",
+                        "on-surface-variant": "#564243",
+                        "outline": "#897172",
+                        "primary": "#5c0219",
+                        "primary-fixed": "#ffdadb",
+                        "on-primary-fixed": "#40000e",
+                        "secondary": "#775a00",
+                        "inverse-surface": "#33302d",
+                        "card": "#FFFFFF",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "outline-variant": "#dcc0c1",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1e1b19",
+                        "on-tertiary-fixed": "#1a1c1b",
+                        "surface": "#F8F7F5",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f7efeb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xs": "4px",
+                        "header-height": "64px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "sidebar-width": "256px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Lora", "serif"],
+                        "label-md": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-lg-mobile": ["Lora", "serif"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "label-sm": ["Inter", "sans-serif"],
+                        "data-display": ["JetBrains Mono", "monospace"],
+                        "data-label": ["JetBrains Mono", "monospace"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "label-md": ["13px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-sm": ["11px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "data-display": ["18px", { "lineHeight": "1.0", "fontWeight": "500" }],
+                        "data-label": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .cross-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 20v8h-8v4h8v16h4V32h8v-4h-8v-8h-4z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md h-screen w-full overflow-hidden flex selection:bg-primary-muted selection:text-primary">
+<!-- Left Panel (Maroon) - Hidden on Mobile, 40% on Desktop -->
+<div class="hidden md:flex flex-col w-[40%] bg-primary-container relative cross-pattern">
+<!-- Overlay gradient to soften pattern -->
+<div class="absolute inset-0 bg-gradient-to-b from-primary-container/80 to-primary-container"></div>
+<div class="relative z-10 p-xl flex flex-col h-full justify-between">
+<!-- Brand -->
+<div class="flex items-center gap-md">
+<!-- SVG Logo representing Methodist Cross and Flame (Stylized) -->
+<svg class="text-secondary-fixed" fill="none" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4V18M10 18H38M24 18V44" stroke="currentColor" stroke-linecap="round" stroke-width="4"></path>
+<path d="M24 44C16 44 14 30 14 30C14 30 18 36 24 36C30 36 34 30 34 30C34 30 32 44 24 44Z" fill="currentColor" fill-opacity="0.8"></path>
+<path d="M34 26C34 26 28 32 24 32C20 32 14 26 14 26C14 26 18 20 24 20C30 20 34 26 34 26Z" fill="currentColor" fill-opacity="0.4"></path>
+</svg>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-primary">Methodist Church Ghana</span>
+<span class="font-label-md text-label-md text-on-primary/80">Society Management System</span>
+</div>
+</div>
+<!-- Bottom Graphic / Text -->
+<div class="mt-auto max-w-sm">
+<h2 class="font-headline-lg text-headline-lg text-on-primary mb-md leading-tight">Dignified Stewardship</h2>
+<p class="font-body-md text-body-md text-on-primary/80">
+                    A secure and comprehensive administrative tool designed specifically for local society governance and financial oversight.
+                </p>
+</div>
+</div>
+</div>
+<!-- Right Panel (White) - 100% on Mobile, 60% on Desktop -->
+<div class="flex-1 bg-surface-container-lowest flex flex-col items-center justify-center relative overflow-y-auto">
+<!-- Mobile Header (Visible only on small screens) -->
+<div class="md:hidden absolute top-0 left-0 w-full p-lg flex justify-center items-center gap-sm bg-primary-container text-on-primary shadow-sm">
+<svg class="text-secondary-fixed" fill="none" height="24" viewBox="0 0 48 48" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4V18M10 18H38M24 18V44" stroke="currentColor" stroke-linecap="round" stroke-width="4"></path>
+<path d="M24 44C16 44 14 30 14 30C14 30 18 36 24 36C30 36 34 30 34 30C34 30 32 44 24 44Z" fill="currentColor" fill-opacity="0.8"></path>
+</svg>
+<span class="font-headline-md text-headline-md">MCG-SMS</span>
+</div>
+<div class="w-full max-w-md px-lg md:px-0 py-xl mt-16 md:mt-0">
+<!-- Login Form Header -->
+<div class="mb-xl text-center md:text-left">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-xs">Welcome back</h1>
+<p class="font-body-md text-body-md text-text-secondary">Sign in to manage your Society</p>
+</div>
+<!-- The Form -->
+<form action="#" class="space-y-md" method="POST">
+<!-- Email Field -->
+<div class="space-y-xs">
+<label class="block font-label-md text-label-md text-on-surface" for="email">Email address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-sm flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-text-secondary" style="font-size: 20px;">mail</span>
+</div>
+<input class="block w-full pl-[36px] pr-sm py-[10px] bg-surface border border-border rounded-lg font-body-md text-body-md text-on-surface placeholder:text-text-secondary focus:ring-0 focus:border-primary focus:border-2 transition-all outline-none" id="email" name="email" placeholder="your@email.com" required="" tabindex="1" type="email">
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-xs">
+<label class="block font-label-md text-label-md text-on-surface" for="password">Password</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-sm flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-text-secondary" style="font-size: 20px;">lock</span>
+</div>
+<input class="block w-full pl-[36px] pr-xl py-[10px] bg-surface border border-border rounded-lg font-body-md text-body-md text-on-surface placeholder:text-text-secondary focus:ring-0 focus:border-primary focus:border-2 transition-all outline-none" id="password" name="password" placeholder="••••••••" required="" tabindex="2" type="password">
+<button class="absolute inset-y-0 right-0 pr-sm flex items-center text-text-secondary hover:text-primary transition-colors focus:outline-none focus:text-primary" onclick="togglePasswordVisibility()" type="button">
+<span class="material-symbols-outlined" id="password-toggle-icon" style="font-size: 20px;">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Utilities (Remember me & Forgot password) -->
+<div class="flex items-center justify-between pt-xs pb-sm">
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-border text-primary focus:ring-primary focus:ring-offset-surface-container-lowest bg-surface cursor-pointer" id="remember-me" name="remember-me" tabindex="3" type="checkbox">
+<label class="ml-2 block font-label-md text-label-md text-on-surface-variant cursor-pointer" for="remember-me">
+                            Remember me
+                        </label>
+</div>
+<div class="text-sm">
+<a class="font-label-md text-label-md text-secondary-fixed-dim hover:text-secondary-fixed transition-colors underline-offset-2 hover:underline" href="#">
+                            Forgot password?
+                        </a>
+</div>
+</div>
+<!-- Submit Button -->
+<div>
+<button class="w-full flex justify-center items-center py-[12px] px-md border border-transparent rounded-lg shadow-sm font-label-md text-label-md text-on-primary bg-primary hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-surface-container-lowest transition-all active:scale-[0.98]" tabindex="4" type="submit">
+                        Sign in
+                    </button>
+</div>
+</form>
+</div>
+<!-- Footer Footer -->
+<div class="absolute bottom-md text-center w-full px-lg">
+<p class="font-label-sm text-label-sm text-text-secondary">
+                MCG Society Management System v1.0 · Methodist Church Ghana
+            </p>
+</div>
+</div>
+<!-- Simple Script for Password Toggle -->
+<script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const icon = document.getElementById('password-toggle-icon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.textContent = 'visibility';
+            } else {
+                passwordInput.type = 'password';
+                icon.textContent = 'visibility_off';
+            }
+        }
+    </script>
+</body></html>

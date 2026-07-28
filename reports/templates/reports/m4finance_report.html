@@ -5,9 +5,9 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>MCG-SMS | Financial Reports</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lora:wght@100..900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -134,54 +134,64 @@
         }
     </style>
 </head>
-<body class="bg-background text-on-surface font-body-md">
+<body class="bg-background text-on-surface font-body-md text-[13px] capitalize">
 <!-- SideNavBar -->
 <aside class="flex flex-col h-full w-sidebar-width fixed left-0 top-0 z-50 bg-primary dark:bg-on-primary-fixed shadow-lg">
 <div class="p-lg flex flex-col gap-xs">
 <h1 class="font-headline-md text-headline-md font-bold text-on-primary">MCG-SMS</h1>
 <p class="text-on-primary/60 font-label-sm uppercase tracking-wider">Administration</p>
 </div>
-<nav class="flex-1 mt-md">
-<!-- Analytics/Reporting (Active) -->
-<a class="flex items-center gap-md border-l-4 border-secondary-container bg-primary-container/20 text-secondary-container py-md px-lg transition-all duration-200 ease-in-out" href="#">
+<nav class="flex-1 mt-md overflow-y-auto">
+<!-- Dashboard -->
+<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<!-- Reports (Active Parent) -->
+<div class="bg-primary-container/20">
+<button class="w-full flex items-center justify-between text-secondary-container py-md px-lg transition-all">
+<div class="flex items-center gap-md">
 <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-<span class="font-label-md text-label-md">Reporting Hub</span>
-</a>
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all duration-200 ease-in-out" href="#">
+<span class="font-label-md">Reports</span>
+</div>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+<div class="flex flex-col bg-primary/10">
+<a class="pl-[64px] py-sm text-on-primary/80 hover:text-on-primary hover:bg-primary-light transition-all" href="#">Circuit Summary</a>
+<a class="pl-[64px] py-sm text-secondary-container font-bold bg-primary-light/30" href="#">Financial Reports (M-04)</a>
+<a class="pl-[64px] py-sm text-on-primary/80 hover:text-on-primary hover:bg-primary-light transition-all" href="#">Welfare Ledger</a>
+</div>
+</div>
+<!-- Financials -->
+<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all" href="#">
 <span class="material-symbols-outlined" data-icon="payments">payments</span>
-<span class="font-label-md text-label-md">Financials</span>
+<span class="font-label-md">Financials</span>
 </a>
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
-<span class="font-label-md text-label-md">Welfare</span>
-</a>
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all duration-200 ease-in-out" href="#">
+<!-- Governance -->
+<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all" href="#">
 <span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
-<span class="font-label-md text-label-md">Governance</span>
+<span class="font-label-md">Governance</span>
 </a>
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined" data-icon="history">history</span>
-<span class="font-label-md text-label-md">Audit Trail</span>
-</a>
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all duration-200 ease-in-out" href="#">
+<!-- Settings -->
+<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all" href="#">
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
+<span class="font-label-md">Settings</span>
 </a>
 </nav>
 <div class="px-lg py-xl">
 <button class="w-full bg-secondary-container text-on-secondary-container font-bold py-md px-md rounded-lg flex items-center justify-center gap-sm shadow-md hover:opacity-90 transition-all">
 <span class="material-symbols-outlined" data-icon="add">add</span>
-                Generate New Report
-            </button>
+      Generate New Report
+    </button>
 </div>
 <div class="mt-auto border-t border-on-primary/10">
 <a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all" href="#">
 <span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
-<span class="font-label-md text-label-md">Support</span>
+<span class="font-label-md">Support</span>
 </a>
 <a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all" href="#">
 <span class="material-symbols-outlined" data-icon="logout">logout</span>
-<span class="font-label-md text-label-md">Sign Out</span>
+<span class="font-label-md">Sign Out</span>
 </a>
 </div>
 </aside>
