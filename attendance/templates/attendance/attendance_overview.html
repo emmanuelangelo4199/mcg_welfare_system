@@ -1,5 +1,5 @@
+{% load static %}
 <!DOCTYPE html>
-
 <html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="icon" type="icon-image" href="{% static 'img/Methodist Church Ghana Logo.png' %}">
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -147,82 +148,82 @@
 </head>
 <body class="bg-background text-on-surface font-body-md text-body-md overflow-x-hidden">
 <!-- SideNavBar -->
-<aside class="fixed left-0 top-0 h-full w-sidebar-width flex flex-col z-40 bg-primary-container dark:bg-primary shadow-lg">
-<div class="p-lg flex flex-col gap-xs">
-<h1 class="font-headline-md text-headline-md text-secondary-fixed font-bold">Methodist Church Ghana</h1>
-<p class="text-on-primary opacity-80 text-label-sm font-label-sm uppercase tracking-wider">Society Management System</p>
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary dark:bg-primary-container shadow-sm flex flex-col py-lg z-50">
+<div class="px-md mb-xl flex items-center gap-base">
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-on-primary leading-tight">Methodist Church Ghana</h1>
+<p class="text-label-sm text-on-primary/70 capitalize tracking-wider">System Management System</p>
 </div>
-<nav class="flex-1 mt-md"><ul class="flex flex-col gap-xs px-sm">
-<li>
-<a class="flex items-center gap-md text-on-primary py-md px-md hover:bg-primary-light/10 rounded-lg transition-all duration-200" href="#">
+</div>
+<nav class="flex-1 space-y-xs px-sm"><div class="space-y-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'dashboard:dashboard' %}">
 <span class="material-symbols-outlined">dashboard</span>
 <span class="font-label-md text-label-md">Dashboard</span>
 </a>
-</li>
-<li>
-<a class="flex items-center gap-md text-on-primary py-md px-md hover:bg-primary-light/10 rounded-lg transition-all duration-200" href="#">
-<span class="material-symbols-outlined">groups</span>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'members:member_directory' %}">
+<span class="material-symbols-outlined">group</span>
 <span class="font-label-md text-label-md">Members</span>
 </a>
-</li>
-<li>
-<div class="flex flex-col">
-<button class="flex items-center justify-between w-full text-secondary-fixed py-md px-md bg-primary-light/20 rounded-t-lg transition-all duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">church</span>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'classes:class_list' %}">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md text-label-md">Classes</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'services:upcoming_events' %}">
+<span class="material-symbols-outlined">event</span>
 <span class="font-label-md text-label-md">Services</span>
-</div>
-<span class="material-symbols-outlined">expand_more</span>
-</button>
-<div class="flex flex-col bg-primary-light/10 rounded-b-lg overflow-hidden">
-<a class="pl-[48px] py-sm pr-md text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Services &amp; Events Calendar</a>
-<a class="pl-[48px] py-sm pr-md text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Add / Edit Service or Programme Form</a>
-<a class="pl-[48px] py-sm pr-md text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Service Detail Screen</a>
-<a class="pl-[48px] py-sm pr-md text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Service Attendance Recording</a>
-<a class="pl-[48px] py-sm pr-md text-secondary-fixed bg-primary-light/20 font-bold text-label-md border-l-4 border-secondary-container transition-colors" href="#">Upcoming Events / Programme Calendar</a>
-</div>
-</div>
-</li>
-<li>
-<button class="flex items-center justify-between w-full text-on-primary py-md px-md hover:bg-primary-light/10 rounded-lg transition-all duration-200">
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'organisations:org_list' %}">
+<span class="material-symbols-outlined">business</span>
+<span class="font-label-md text-label-md">Organisations</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'welfare_cases:welfare_cases_list' %}">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span class="font-label-md text-label-md">Welfare Cases</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'meetings:meeting_list' %}">
+<span class="material-symbols-outlined">meeting_room</span>
+<span class="font-label-md text-label-md">Meetings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'communications:compose_message' %}">
+<span class="material-symbols-outlined">forum</span>
+<span class="font-label-md text-label-md">Communications</span>
+</a>
+<div class="space-y-xs">
+<details class="group" open>
+<summary class="w-full flex items-center justify-between px-md py-sm rounded-lg text-on-primary font-medium hover:bg-primary-light transition-colors duration-200 cursor-pointer list-none" style="list-style:none;">
 <div class="flex items-center gap-md">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-md text-label-md">Attendance</span>
+</div>
+<span class="material-symbols-outlined text-sm transition-transform duration-200 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="ml-xl mt-1 space-y-xs border-l border-on-primary/20 pl-md py-1">
+<a class="block py-2 text-label-sm text-secondary-container font-bold" href="{% url 'attendance:overview' %}">Attendance Overview</a>
+<a class="block py-2 text-label-sm text-on-primary/70 hover:text-on-primary transition-colors" href="{% url 'attendance:service_attendance' %}">Sunday Service Report</a>
+<a class="block py-2 text-label-sm text-on-primary/70 hover:text-on-primary transition-colors" href="{% url 'attendance:class_attendance' %}">Class Attendance Summary</a>
+<a class="block py-2 text-label-sm text-on-primary/70 hover:text-on-primary transition-colors" href="{% url 'attendance:org_attendance' %}">Organisation Attendance Summary</a>
+<a class="block py-2 text-label-sm text-on-primary/70 hover:text-on-primary transition-colors" href="{% url 'attendance:absentee_report' %}">Absentee Report</a>
+</div>
+</details>
+</div>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'finance:dashboard' %}">
 <span class="material-symbols-outlined">payments</span>
 <span class="font-label-md text-label-md">Finance</span>
-</div>
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-</li>
-<li>
-<button class="flex items-center justify-between w-full text-on-primary py-md px-md hover:bg-primary-light/10 rounded-lg transition-all duration-200">
-<div class="flex items-center gap-md">
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'reports:reports_hub' %}">
 <span class="material-symbols-outlined">assessment</span>
 <span class="font-label-md text-label-md">Reports</span>
-</div>
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-</li>
-</ul>
-<div class="px-md mt-xl">
-<button class="w-full bg-secondary-container text-on-secondary-container font-label-md text-label-md py-sm rounded-lg shadow-sm hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-xs">
-<span class="material-symbols-outlined text-[18px]">add</span>
-    Quick Actions
-  </button>
+</a>
 </div></nav>
-<div class="mt-auto border-t border-primary-light/20 p-md">
-<ul class="flex flex-col gap-xs">
-<li class="">
-<a class="flex items-center gap-md text-on-primary/70 py-sm px-md hover:bg-primary-light/10 rounded transition-all" href="#">
+<div class="mt-auto px-sm space-y-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
 <span class="material-symbols-outlined">settings</span>
 <span class="font-label-md text-label-md">Settings</span>
 </a>
-</li>
-<li class="">
-<a class="flex items-center gap-md text-on-primary/70 py-sm px-md hover:bg-primary-light/10 rounded transition-all" href="#">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
 <span class="material-symbols-outlined">logout</span>
 <span class="font-label-md text-label-md">Logout</span>
 </a>
-</li>
-</ul>
 </div>
 </aside>
 <!-- TopAppBar -->

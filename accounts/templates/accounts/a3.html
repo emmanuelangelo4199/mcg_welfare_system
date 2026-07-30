@@ -1,4 +1,7 @@
-<!DOCTYPE html><html class="h-full" lang="en"><head>
+{% load static %}
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+    <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Reset Password | MCG-SMS</title>
@@ -6,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link type="icon-image" rel="icon" href="{% static 'img/Methodist Church Ghana Logo.png' %}">
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -137,8 +141,12 @@
 
 <!-- Branding Content -->
 <div class="relative z-10 flex flex-col items-center text-center">
-<div class="w-32 h-32 mb-lg rounded-full bg-white/10 flex items-center justify-center p-4 backdrop-blur-sm shadow-xl border border-white/20">
-<img class="w-full h-full object-contain" data-alt="Official logo of the Methodist Church Ghana, featuring a gold emblem with a cross and traditional Ghanaian symbols, designed with high-fidelity corporate aesthetic, gold on a transparent background, centered and elegant." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA09o22nY_yHovuYRT2YM6OSF5vQJlc0_ANk9FlJs5h3uhOBrc1bf3X1GcZSwwR1dUc5C5gewqm08yzwe1lFrTLXoZ2sa0eTeNGqGhuHceAeQ_nj2yr-DFNLgML8cOItzsWhdPN3ZovWhDefAEFp-C4M3MkkBMkuBmC0BlavZM64lgAxtH_Qeo0QwqUzA3cxT721xO-IDPtJto05UPqAZNgL1EQBd9IOaixZYyzSdcfjXYxPXbtunZpYnN6jIpYsj2ZuP4QRL839a_">
+<div class="w-32 h-32 mb-lg flex items-center justify-center rounded-full bg-primary shadow-xl border-4 border-secondary-fixed">
+<svg class="text-secondary-fixed" fill="none" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4V18M10 18H38M24 18V44" stroke="currentColor" stroke-linecap="round" stroke-width="4"></path>
+<path d="M24 44C16 44 14 30 14 30C14 30 18 36 24 36C30 36 34 30 34 30C34 30 32 44 24 44Z" fill="currentColor" fill-opacity="0.8"></path>
+<path d="M34 26C34 26 28 32 24 32C20 32 14 26 14 26C14 26 18 20 24 20C30 20 34 26 34 26Z" fill="currentColor" fill-opacity="0.4"></path>
+</svg>
 </div>
 <h1 class="font-headline-lg text-headline-lg text-on-primary-fixed mb-sm">MCG Society</h1>
 <p class="font-body-lg text-body-lg text-on-primary-container opacity-90 max-w-xs">
@@ -168,7 +176,8 @@
 <p class="font-body-md text-body-md text-on-surface-variant">Please choose a password that is secure and easy for you to remember.</p>
 </div>
 <!-- Form -->
-<form class="space-y-md" id="reset-password-form" onsubmit="handleFormSubmit(event)">
+<form class="space-y-md" id="reset-password-form" method="POST" onsubmit="handleFormSubmit(event)">
+{% csrf_token %}
 <!-- New Password -->
 <div class="space-y-xs">
 <label class="font-label-md text-label-md text-on-surface" for="new-password">New Password</label>
@@ -216,7 +225,7 @@
                         Update password
                     </button>
 <div class="text-center pt-md">
-<a class="font-label-md text-label-md text-primary hover:text-primary-light transition-colors flex items-center justify-center gap-1 group" href="#">
+<a class="font-label-md text-label-md text-primary hover:text-primary-light transition-colors flex items-center justify-center gap-1 group" href="{% url 'accounts:login' %}">
 <span class="material-symbols-outlined text-[18px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
                             Back to login
                         </a>

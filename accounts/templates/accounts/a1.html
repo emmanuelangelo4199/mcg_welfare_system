@@ -1,4 +1,7 @@
-<!DOCTYPE html><html class="light" lang="en"><head>
+{% load static %}
+<!DOCTYPE html>
+<html class="light" lang="en">
+    <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Login - MCG-SMS</title>
@@ -6,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="{% static 'img/Methodist Church Ghana Logo.png' %}" type="icon-image" rel="icon">
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -164,6 +168,7 @@
 </div>
 <!-- The Form -->
 <form action="#" class="space-y-md" method="POST">
+{% csrf_token %}
 <!-- Email Field -->
 <div class="space-y-xs">
 <label class="block font-label-md text-label-md text-on-surface" for="email">Email address</label>
@@ -196,7 +201,7 @@
                         </label>
 </div>
 <div class="text-sm">
-<a class="font-label-md text-label-md text-secondary-fixed-dim hover:text-secondary-fixed transition-colors underline-offset-2 hover:underline" href="#">
+<a class="font-label-md text-label-md text-secondary-fixed-dim hover:text-secondary-fixed transition-colors underline-offset-2 hover:underline" href="{% url 'accounts:password_reset' %}">
                             Forgot password?
                         </a>
 </div>

@@ -1,146 +1,200 @@
+{% load static %}
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>User Management | MCG-SMS</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            vertical-align: middle;
-        }
-        .sidebar-active-indicator {
-            position: absolute;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background-color: #C49A2B;
-        }
-        .slide-over-enter {
-            transform: translateX(100%);
-            transition: transform 0.3s ease-out;
-        }
-        .slide-over-enter-active {
-            transform: translateX(0);
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #E4E2DD;
-            border-radius: 10px;
-        }
-    </style>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "tertiary": "#2a2b2a",
-                        "primary-fixed": "#ffdadb",
-                        "primary-fixed-dim": "#ffb2b7",
-                        "on-primary-fixed-variant": "#832233",
-                        "secondary-fixed-dim": "#eec04f",
-                        "outline": "#897172",
-                        "primary-light": "#A3283F",
-                        "error": "#ba1a1a",
-                        "border": "#E4E2DD",
-                        "surface-container-highest": "#e9e1dd",
-                        "on-secondary-fixed-variant": "#5a4300",
-                        "info": "#2563EB",
-                        "danger": "#DC2626",
-                        "inverse-primary": "#ffb2b7",
-                        "surface-bright": "#fff8f5",
-                        "inverse-on-surface": "#f7efeb",
-                        "warning": "#D97706",
-                        "on-tertiary": "#ffffff",
-                        "on-primary": "#ffffff",
-                        "tertiary-container": "#404140",
-                        "on-primary-fixed": "#40000e",
-                        "surface-dim": "#e0d8d5",
-                        "surface-container-lowest": "#ffffff",
-                        "gold-muted": "#FDF6E3",
-                        "secondary-fixed": "#ffdf9a",
-                        "secondary": "#775a00",
-                        "secondary-container": "#fece5b",
-                        "surface-container": "#f4ece8",
-                        "outline-variant": "#dcc0c1",
-                        "card": "#FFFFFF",
-                        "on-surface": "#1e1b19",
-                        "surface-variant": "#e9e1dd",
-                        "on-secondary": "#ffffff",
-                        "tertiary-fixed-dim": "#c7c6c5",
-                        "surface-tint": "#a33a49",
-                        "on-background": "#1e1b19",
-                        "surface-container-high": "#eee7e3",
-                        "primary-muted": "#F5EAEC",
-                        "on-tertiary-fixed": "#1a1c1b",
-                        "on-error": "#ffffff",
-                        "primary-container": "#7b1c2d",
-                        "on-tertiary-container": "#adadab",
-                        "text-secondary": "#6B7280",
-                        "success": "#16A34A",
-                        "error-container": "#ffdad6",
-                        "on-surface-variant": "#564243",
-                        "inverse-surface": "#33302d",
-                        "on-error-container": "#93000a",
-                        "on-secondary-container": "#745700",
-                        "surface-container-low": "#faf2ee",
-                        "on-tertiary-fixed-variant": "#464746",
-                        "surface": "#F8F7F5",
-                        "on-primary-container": "#ff8a95",
-                        "primary": "#5c0219",
-                        "background": "#fff8f5",
-                        "tertiary-fixed": "#e3e2e0",
-                        "on-secondary-fixed": "#251a00"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "xs": "4px",
-                        "sm": "8px",
-                        "xl": "32px",
-                        "sidebar-width": "256px",
-                        "md": "16px",
-                        "lg": "24px",
-                        "header-height": "64px",
-                        "base": "8px"
-                    },
-                    "fontFamily": {
-                        "data-display": ["JetBrains Mono"],
-                        "body-lg": ["Inter"],
-                        "label-md": ["Inter"],
-                        "headline-lg": ["Lora"],
-                        "headline-md": ["Inter"],
-                        "body-md": ["Inter"]
+<html class="light" lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <title>User Management | MCG-SMS</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet"/>
+        <link type="icon-image" rel="icon" href="{% static 'img/Methodist Church Ghana Logo.png' %}">
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+                vertical-align: middle;
+            }
+            .sidebar-active-indicator {
+                position: absolute;
+                left: 0;
+                width: 4px;
+                height: 100%;
+                background-color: #C49A2B;
+            }
+            .slide-over-enter {
+                transform: translateX(100%);
+                transition: transform 0.3s ease-out;
+            }
+            .slide-over-enter-active {
+                transform: translateX(0);
+            }
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 6px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: #E4E2DD;
+                border-radius: 10px;
+            }
+        </style>
+        <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "tertiary": "#2a2b2a",
+                            "primary-fixed": "#ffdadb",
+                            "primary-fixed-dim": "#ffb2b7",
+                            "on-primary-fixed-variant": "#832233",
+                            "secondary-fixed-dim": "#eec04f",
+                            "outline": "#897172",
+                            "primary-light": "#A3283F",
+                            "error": "#ba1a1a",
+                            "border": "#E4E2DD",
+                            "surface-container-highest": "#e9e1dd",
+                            "on-secondary-fixed-variant": "#5a4300",
+                            "info": "#2563EB",
+                            "danger": "#DC2626",
+                            "inverse-primary": "#ffb2b7",
+                            "surface-bright": "#fff8f5",
+                            "inverse-on-surface": "#f7efeb",
+                            "warning": "#D97706",
+                            "on-tertiary": "#ffffff",
+                            "on-primary": "#ffffff",
+                            "tertiary-container": "#404140",
+                            "on-primary-fixed": "#40000e",
+                            "surface-dim": "#e0d8d5",
+                            "surface-container-lowest": "#ffffff",
+                            "gold-muted": "#FDF6E3",
+                            "secondary-fixed": "#ffdf9a",
+                            "secondary": "#775a00",
+                            "secondary-container": "#fece5b",
+                            "surface-container": "#f4ece8",
+                            "outline-variant": "#dcc0c1",
+                            "card": "#FFFFFF",
+                            "on-surface": "#1e1b19",
+                            "surface-variant": "#e9e1dd",
+                            "on-secondary": "#ffffff",
+                            "tertiary-fixed-dim": "#c7c6c5",
+                            "surface-tint": "#a33a49",
+                            "on-background": "#1e1b19",
+                            "surface-container-high": "#eee7e3",
+                            "primary-muted": "#F5EAEC",
+                            "on-tertiary-fixed": "#1a1c1b",
+                            "on-error": "#ffffff",
+                            "primary-container": "#7b1c2d",
+                            "on-tertiary-container": "#adadab",
+                            "text-secondary": "#6B7280",
+                            "success": "#16A34A",
+                            "error-container": "#ffdad6",
+                            "on-surface-variant": "#564243",
+                            "inverse-surface": "#33302d",
+                            "on-error-container": "#93000a",
+                            "on-secondary-container": "#745700",
+                            "surface-container-low": "#faf2ee",
+                            "on-tertiary-fixed-variant": "#464746",
+                            "surface": "#F8F7F5",
+                            "on-primary-container": "#ff8a95",
+                            "primary": "#5c0219",
+                            "background": "#fff8f5",
+                            "tertiary-fixed": "#e3e2e0",
+                            "on-secondary-fixed": "#251a00"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                        },
+                        "spacing": {
+                            "xs": "4px",
+                            "sm": "8px",
+                            "xl": "32px",
+                            "sidebar-width": "256px",
+                            "md": "16px",
+                            "lg": "24px",
+                            "header-height": "64px",
+                            "base": "8px"
+                        },
+                        "fontFamily": {
+                            "data-display": ["JetBrains Mono"],
+                            "body-lg": ["Inter"],
+                            "label-md": ["Inter"],
+                            "headline-lg": ["Lora"],
+                            "headline-md": ["Inter"],
+                            "body-md": ["Inter"]
+                        }
                     }
                 }
             }
-        }
-    </script>
-</head>
+        </script>
+    </head>
 <body class="bg-surface font-body-md text-on-surface custom-scrollbar overflow-x-hidden" style="font-size: 13px;">
 <!-- Side Navigation Bar -->
-<aside class="fixed left-0 top-0 bottom-0 w-sidebar-width bg-primary flex flex-col py-lg z-50 shadow-md dark:shadow-none"><div class="px-lg mb-xl"><div class="flex items-center gap-md"><div class="w-10 h-10 bg-on-primary rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">church</span></div><div><h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG Society</h1><p class="text-label-sm font-label-sm text-primary-fixed-dim opacity-80 uppercase tracking-wider">Management System</p></div></div></div><nav class="flex-1 space-y-1"><a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">groups</span><span class="font-label-md text-label-md">Membership</span></a><a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">payments</span><span class="font-label-md text-label-md">Finances</span></a><a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">volunteer_activism</span><span class="font-label-md text-label-md">Welfare</span></a><div class="space-y-1"><button class="w-full group relative flex items-center px-lg py-md text-on-primary bg-primary-light font-bold transition-all"><span class="material-symbols-outlined mr-md">account_balance</span><span class="font-label-md text-label-md flex-1 text-left">Governance</span><span class="material-symbols-outlined">expand_more</span></button><div class="bg-primary-container/30 py-xs"><a class="flex items-center pl-xl pr-lg py-sm text-primary-fixed-dim opacity-80 hover:opacity-100 hover:text-on-primary transition-all" href="#"><span class="font-label-md text-label-md">Committees</span></a><a class="flex items-center pl-xl pr-lg py-sm text-on-primary bg-primary-light/50 border-l-4 border-secondary-fixed-dim font-bold transition-all" href="#"><span class="font-label-md text-label-md">User Management</span></a><a class="flex items-center pl-xl pr-lg py-sm text-primary-fixed-dim opacity-80 hover:opacity-100 hover:text-on-primary transition-all" href="#"><span class="font-label-md text-label-md">System Settings</span></a></div></div><a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">assessment</span><span class="font-label-md text-label-md">Reports</span></a></nav><div class="mt-auto space-y-1"><a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">history</span><span class="font-label-md text-label-md">Audit Logs</span></a></div></aside>
+<aside class="fixed left-0 top-0 bottom-0 w-sidebar-width bg-primary flex flex-col py-lg z-50 shadow-md dark:shadow-none">
+    <div class="px-lg mb-xl">
+        <div class="flex items-center gap-md">
+                <div>
+                    <h1 class="text-headline-md font-headline-md font-bold text-on-primary text-xl">Methodist Church Ghana </h1>
+                    <p class="text-label-sm font-label-sm text-primary-fixed-dim opacity-80 capitalize tracking-wider">Society Management System</p>
+                </div>
+            </div>
+        </div>
+        <nav class="flex-1 space-y-1">
+            <a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+                <span class="material-symbols-outlined mr-md">dashboard</span>
+                <span class="font-label-md text-label-md">Dashboard</span>
+            </a>
+            <a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+                <span class="material-symbols-outlined mr-md">groups</span>
+                <span class="font-label-md text-label-md">Membership</span>
+            </a>
+            <a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+                <span class="material-symbols-outlined mr-md">payments</span>
+                <span class="font-label-md text-label-md">Finances</span>
+            </a>
+            <a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+                <span class="material-symbols-outlined mr-md">volunteer_activism</span>
+                <span class="font-label-md text-label-md">Welfare</span>
+            </a>
+            <div class="space-y-1">
+                <button class="w-full group relative flex items-center px-lg py-md text-on-primary bg-primary-light font-bold transition-all">
+                    <span class="material-symbols-outlined mr-md">account_balance</span>
+                    <span class="font-label-md text-label-md flex-1 text-left">Governance</span>
+                    <span class="material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="bg-primary-container/30 py-xs">
+                    <a class="flex items-center pl-xl pr-lg py-sm text-primary-fixed-dim opacity-80 hover:opacity-100 hover:text-on-primary transition-all" href="#">
+                        <span class="font-label-md text-label-md">Committees</span>
+                    </a>
+                    <a class="flex items-center pl-xl pr-lg py-sm text-on-primary bg-primary-light/50 border-l-4 border-secondary-fixed-dim font-bold transition-all" href="#">
+                        <span class="font-label-md text-label-md">User Management</span>
+                    </a>
+                    <a class="flex items-center pl-xl pr-lg py-sm text-primary-fixed-dim opacity-80 hover:opacity-100 hover:text-on-primary transition-all" href="#">
+                        <span class="font-label-md text-label-md">System Settings</span>
+                    </a>
+                </div>
+            </div>
+            <a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+                <span class="material-symbols-outlined mr-md">assessment</span>
+                <span class="font-label-md text-label-md">Reports</span>
+            </a>
+        </nav>
+        <div class="mt-auto space-y-1">
+            <a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
+                <span class="material-symbols-outlined mr-md">history</span>
+                <span class="font-label-md text-label-md">Audit Logs</span>
+            </a>
+        </div>
+    </aside>
 <!-- Top App Bar -->
 <header class="fixed top-0 right-0 left-sidebar-width h-header-height bg-surface-container-lowest flex justify-between items-center px-lg z-40 shadow-sm">
 <div class="flex items-center gap-md">
-<div class="bg-surface-container-low flex items-center px-md py-sm rounded-lg w-96 transition-colors focus-within:ring-2 focus-within:ring-primary-light">
-<span class="material-symbols-outlined text-on-surface-variant mr-sm">search</span>
-<input class="bg-transparent border-none focus:ring-0 text-body-md w-full placeholder:text-on-surface-variant" placeholder="Search system functions..." type="text"/>
-</div>
+
 </div>
 <div class="flex items-center gap-lg">
 <button class="text-on-surface-variant hover:bg-surface-container-low p-sm rounded-full transition-colors relative">
@@ -151,7 +205,7 @@
 <span class="material-symbols-outlined">help_outline</span>
 </button>
 <div class="h-8 w-px bg-border mx-sm"></div>
-<div class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-low p-xs rounded-lg transition-colors">
+{% comment %} <div class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-low p-xs rounded-lg transition-colors">
 <div class="w-9 h-9 rounded-full bg-primary-muted overflow-hidden flex items-center justify-center">
 <img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged Ghanaian administrator in a well-lit office. He is wearing a formal white shirt and has a gentle, trustworthy expression. The lighting is soft and natural, emphasizing a high-end corporate administrative environment with the Methodist Church branding subtly visible in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy44Q5O1BCvv4zTCZRx8PS7lzXte4amxJvljk-R764OydYhAYzbsAQ0JriTnJerSlPreFSH4xPdccuzzI4nxoZVyDnyaudxtPgfTQRlUaWUBm7-66mT2jZ9wh-eTJP8wdhEpYAIWHSD2OAxrrPTZ4199V5TfK7ycBGKyUQtRdN1NXeHPMYI7tym6CUe08DzVIImJn_qt6Ec-vV5yXjHqd3XFCRlzszNNpxi7d0uAj7KFUrmNW94wsvSC4-rR9b76IJxlL1tfdfc9eO"/>
 </div>
@@ -160,7 +214,7 @@
 <p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">System Admin</p>
 </div>
 </div>
-</div>
+</div> {% endcomment %}
 </header>
 <!-- Main Content Area -->
 <main class="ml-sidebar-width mt-header-height p-xl min-h-screen">
@@ -352,7 +406,8 @@
 </button>
 </div>
 <div class="flex-1 overflow-y-auto p-lg custom-scrollbar">
-<form class="space-y-lg" id="addUserForm">
+<form class="space-y-lg" id="addUserForm" method="post">
+    {% csrf_token %}
 <!-- User Details -->
 <div class="space-y-md">
 <label class="block">

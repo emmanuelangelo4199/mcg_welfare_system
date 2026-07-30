@@ -1,6 +1,7 @@
+{% load static %}
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
+<html class="light" lang="en">
+    <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Role &amp; Permission Management | MCG-SMS</title>
@@ -8,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="icon" type="icon-image" href="{% static 'img/Methodist Church Ghana Logo.png' %}">
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -150,8 +152,8 @@
 <!-- SideNavBar -->
 <aside class="fixed left-0 top-0 bottom-0 w-sidebar-width flex flex-col py-lg z-50 bg-primary dark:bg-primary-container shadow-md">
 <div class="px-lg mb-xl">
-<h1 class="text-headline-md font-headline-md font-bold text-on-primary dark:text-on-primary-container">MCG Society</h1>
-<p class="text-label-sm font-label-sm text-primary-fixed-dim opacity-80 uppercase tracking-widest">Management System</p>
+<h1 class="text-headline-md font-headline-md font-bold text-on-primary dark:text-on-primary-container">Methodist Church Ghana </h1>
+<p class="text-label-sm font-label-sm text-primary-fixed-dim opacity-80 capitalize tracking-widest">Society Management System</p>
 </div>
 <nav class="flex-1 space-y-xs"><div class="space-y-xs"><a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">dashboard</span><span class="text-label-md font-label-md capitalize">Dashboard</span></a><a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">groups</span><span class="text-label-md font-label-md capitalize">Membership</span></a><a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">payments</span><span class="text-label-md font-label-md capitalize">Finances</span></a><a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">volunteer_activism</span><span class="text-label-md font-label-md capitalize">Welfare</span></a><div class="bg-primary-light/20"><button class="w-full flex items-center justify-between px-lg py-md text-on-primary font-bold transition-all"><div class="flex items-center"><span class="material-symbols-outlined mr-md">account_balance</span><span class="text-label-md font-label-md capitalize">Governance</span></div><span class="material-symbols-outlined">expand_more</span></button><div class="pl-xl pb-sm space-y-xs"><a class="flex items-center px-lg py-sm text-primary-fixed-dim opacity-80 hover:text-on-primary transition-all" href="#"><span class="text-label-md font-label-md capitalize">Minutes</span></a><a class="flex items-center px-lg py-sm text-primary-fixed-dim opacity-80 hover:text-on-primary transition-all" href="#"><span class="text-label-md font-label-md capitalize">Agendas</span></a><a class="flex items-center px-lg py-sm border-l-4 border-secondary-fixed-dim bg-primary-light text-on-primary font-bold transition-all" href="#"><span class="text-label-md font-label-md capitalize">Role &amp; Permission Management</span></a></div></div><a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">assessment</span><span class="text-label-md font-label-md capitalize">Reports</span></a></div></nav>
 <div class="mt-auto border-t border-primary-light/30 pt-md"><a class="flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#"><span class="material-symbols-outlined mr-md">history</span><span class="text-label-md font-label-md capitalize">Audit Logs</span></a></div>
@@ -203,7 +205,7 @@
 <span class="material-symbols-outlined capitalize">add</span>
 </button>
 </div>
-<div class="flex-1 overflow-y-auto custom-scrollbar p-sm space-y-1">
+<div class="flex-1 overflow-y-auto custom-scrollbar p-sm space-y-1"> 
 <!-- Roles -->
 <button class="w-full text-left px-md py-sm rounded-lg bg-surface-container-low text-primary font-bold border-l-4 border-primary">
                         Administrator
@@ -211,17 +213,17 @@
 </button>
 <button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Superintendent Minister</button>
 <button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Society Steward</button>
-<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Treasurer</button>
+<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Leaders’ Meeting Secretary</button>
 <button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Auditor</button>
-<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Welfare Coordinator</button>
-<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Youth Coordinator</button>
-<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Music Director</button>
-<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Sunday School Head</button>
-<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Property Steward</button>
-<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Recording Steward</button>
-<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Outreach Head</button>
-<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Communications Officer</button>
-<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Ex-Officio Member</button>
+<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface"> Treasurer</button>
+<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Catechist</button>
+<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Circuit Minister </button>
+<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Bible Study Leaders</button>
+<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Class Leaders</button>
+<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Organisation Leaders</button>
+<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Financial Secretary</button>
+<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface">Society Minister</button>
+<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface"> Member</button>
 </div>
 </div>
 <!-- Right: Permission Matrix -->

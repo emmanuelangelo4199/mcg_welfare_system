@@ -1,155 +1,189 @@
+{% load static %}
 <!DOCTYPE html>
-
-<html class="light" lang="en" style=""><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><meta charset="utf-8"/><script id="tailwind-config">try{
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "on-surface": "#1e1b19",
-                        "on-primary-container": "#ff8a95",
-                        "secondary": "#775a00",
-                        "error-container": "#ffdad6",
-                        "surface": "#F8F7F5",
-                        "secondary-fixed-dim": "#eec04f",
-                        "surface-container-low": "#faf2ee",
-                        "on-secondary": "#ffffff",
-                        "text-secondary": "#6B7280",
-                        "tertiary-fixed": "#e3e2e0",
-                        "surface-container-high": "#eee7e3",
-                        "on-primary-fixed-variant": "#832233",
-                        "secondary-fixed": "#ffdf9a",
-                        "gold-muted": "#FDF6E3",
-                        "on-primary": "#ffffff",
-                        "on-error-container": "#93000a",
-                        "error": "#ba1a1a",
-                        "primary-container": "#7b1c2d",
-                        "secondary-container": "#fece5b",
-                        "surface-container-highest": "#e9e1dd",
-                        "outline-variant": "#dcc0c1",
-                        "border": "#E4E2DD",
-                        "success": "#16A34A",
-                        "danger": "#DC2626",
-                        "inverse-primary": "#ffb2b7",
-                        "on-tertiary-fixed-variant": "#464746",
-                        "on-tertiary": "#ffffff",
-                        "background": "#fff8f5",
-                        "surface-container": "#f4ece8",
-                        "on-error": "#ffffff",
-                        "surface-variant": "#e9e1dd",
-                        "tertiary-fixed-dim": "#c7c6c5",
-                        "primary-fixed": "#ffdadb",
-                        "primary-fixed-dim": "#ffb2b7",
-                        "surface-dim": "#e0d8d5",
-                        "surface-container-lowest": "#ffffff",
-                        "on-primary-fixed": "#40000e",
-                        "on-secondary-fixed": "#251a00",
-                        "inverse-on-surface": "#f7efeb",
-                        "surface-tint": "#a33a49",
-                        "on-surface-variant": "#564243",
-                        "inverse-surface": "#33302d",
-                        "surface-bright": "#fff8f5",
-                        "card": "#FFFFFF",
-                        "tertiary-container": "#404140",
-                        "on-secondary-fixed-variant": "#5a4300",
-                        "info": "#2563EB",
-                        "on-tertiary-fixed": "#1a1c1b",
-                        "primary-light": "#A3283F",
-                        "primary": "#5c0219",
-                        "on-background": "#1e1b19",
-                        "primary-muted": "#F5EAEC",
-                        "on-tertiary-container": "#adadab",
-                        "warning": "#D97706",
-                        "on-secondary-container": "#745700",
-                        "outline": "#897172",
-                        "tertiary": "#2a2b2a"
+<html class="light" lang="en" style="">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <title>MCG-SMS | Class Attendance Summary</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link rel="icon" type="icon-image" href="{% static 'img/Methodist Church Ghana Logo.png' %}">
+        <script id="tailwind-config">
+            try{
+                tailwind.config = {
+                    darkMode: "class",
+                    theme: {
+                        extend: {
+                            "colors": {
+                                "on-surface": "#1e1b19",
+                                "on-primary-container": "#ff8a95",
+                                "secondary": "#775a00",
+                                "error-container": "#ffdad6",
+                                "surface": "#F8F7F5",
+                                "secondary-fixed-dim": "#eec04f",
+                                "surface-container-low": "#faf2ee",
+                                "on-secondary": "#ffffff",
+                                "text-secondary": "#6B7280",
+                                "tertiary-fixed": "#e3e2e0",
+                                "surface-container-high": "#eee7e3",
+                                "on-primary-fixed-variant": "#832233",
+                                "secondary-fixed": "#ffdf9a",
+                                "gold-muted": "#FDF6E3",
+                                "on-primary": "#ffffff",
+                                "on-error-container": "#93000a",
+                                "error": "#ba1a1a",
+                                "primary-container": "#7b1c2d",
+                                "secondary-container": "#fece5b",
+                                "surface-container-highest": "#e9e1dd",
+                                "outline-variant": "#dcc0c1",
+                                "border": "#E4E2DD",
+                                "success": "#16A34A",
+                                "danger": "#DC2626",
+                                "inverse-primary": "#ffb2b7",
+                                "on-tertiary-fixed-variant": "#464746",
+                                "on-tertiary": "#ffffff",
+                                "background": "#fff8f5",
+                                "surface-container": "#f4ece8",
+                                "on-error": "#ffffff",
+                                "surface-variant": "#e9e1dd",
+                                "tertiary-fixed-dim": "#c7c6c5",
+                                "primary-fixed": "#ffdadb",
+                                "primary-fixed-dim": "#ffb2b7",
+                                "surface-dim": "#e0d8d5",
+                                "surface-container-lowest": "#ffffff",
+                                "on-primary-fixed": "#40000e",
+                                "on-secondary-fixed": "#251a00",
+                                "inverse-on-surface": "#f7efeb",
+                                "surface-tint": "#a33a49",
+                                "on-surface-variant": "#564243",
+                                "inverse-surface": "#33302d",
+                                "surface-bright": "#fff8f5",
+                                "card": "#FFFFFF",
+                                "tertiary-container": "#404140",
+                                "on-secondary-fixed-variant": "#5a4300",
+                                "info": "#2563EB",
+                                "on-tertiary-fixed": "#1a1c1b",
+                                "primary-light": "#A3283F",
+                                "primary": "#5c0219",
+                                "on-background": "#1e1b19",
+                                "primary-muted": "#F5EAEC",
+                                "on-tertiary-container": "#adadab",
+                                "warning": "#D97706",
+                                "on-secondary-container": "#745700",
+                                "outline": "#897172",
+                                "tertiary": "#2a2b2a"
+                            },
+                            "borderRadius": {
+                                "DEFAULT": "0.25rem",
+                                "lg": "0.5rem",
+                                "xl": "0.75rem",
+                                "full": "9999px"
+                            },
+                            "spacing": {
+                                "xl": "32px",
+                                "lg": "24px",
+                                "base": "8px",
+                                "xs": "4px",
+                                "md": "16px",
+                                "sm": "8px",
+                                "sidebar-width": "256px",
+                                "header-height": "64px"
+                            },
+                            "fontFamily": {
+                                "body-md": ["Inter"],
+                                "label-md": ["Inter"],
+                                "headline-lg": ["Lora"],
+                                "label-sm": ["Inter"],
+                                "headline-md": ["Inter"],
+                                "data-label": ["JetBrains Mono"],
+                                "data-display": ["JetBrains Mono"],
+                                "headline-lg-mobile": ["Lora"],
+                                "body-lg": ["Inter"]
+                            },
+                            "fontSize": {
+                                "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                                "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                                "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                                "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                                "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                                "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                                "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                                "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                                "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                            }
+                        },
                     },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "xl": "32px",
-                        "lg": "24px",
-                        "base": "8px",
-                        "xs": "4px",
-                        "md": "16px",
-                        "sm": "8px",
-                        "sidebar-width": "256px",
-                        "header-height": "64px"
-                    },
-                    "fontFamily": {
-                        "body-md": ["Inter"],
-                        "label-md": ["Inter"],
-                        "headline-lg": ["Lora"],
-                        "label-sm": ["Inter"],
-                        "headline-md": ["Inter"],
-                        "data-label": ["JetBrains Mono"],
-                        "data-display": ["JetBrains Mono"],
-                        "headline-lg-mobile": ["Lora"],
-                        "body-lg": ["Inter"]
-                    },
-                    "fontSize": {
-                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
-                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                        "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                        "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                        "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                        "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
-                    }
-                },
-            },
-        }
-    }catch(_e){}</script></head><body class="bg-surface font-body-md text-on-surface">
+                }
+            }
+            catch(_e){}
+        </script>
+    </head>
+<body class="bg-surface font-body-md text-on-surface">
 <!-- SIDEBAR -->
 <aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary dark:bg-primary-container shadow-sm flex flex-col py-lg z-50">
 <div class="px-md mb-xl flex items-center gap-base">
-<div class="w-10 h-10 rounded-lg bg-on-primary flex items-center justify-center overflow-hidden">
-</div>
 <div>
-<h1 class="text-headline-md font-headline-md font-bold text-on-primary leading-tight">MCG-SMS</h1>
-<p class="text-label-sm text-on-primary/70 uppercase tracking-wider">Methodist Church Ghana</p>
+<h1 class="text-headline-md font-headline-md font-bold text-on-primary leading-tight">Methodist Church Ghana</h1>
+<p class="text-label-sm text-on-primary/70 capitalize tracking-wider">System Management System</p>
 </div>
 </div>
 <nav class="flex-1 space-y-xs px-sm"><div class="space-y-xs">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'dashboard:dashboard' %}">
 <span class="material-symbols-outlined">dashboard</span>
 <span class="font-label-md text-label-md">Dashboard</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'members:member_directory' %}">
 <span class="material-symbols-outlined">group</span>
 <span class="font-label-md text-label-md">Members</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'classes:class_list' %}">
 <span class="material-symbols-outlined">school</span>
 <span class="font-label-md text-label-md">Classes</span>
 </a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'services:upcoming_events' %}">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-md text-label-md">Services</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'organisations:org_list' %}">
+<span class="material-symbols-outlined">business</span>
+<span class="font-label-md text-label-md">Organisations</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'welfare_cases:welfare_cases_list' %}">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span class="font-label-md text-label-md">Welfare Cases</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'meetings:meeting_list' %}">
+<span class="material-symbols-outlined">meeting_room</span>
+<span class="font-label-md text-label-md">Meetings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'communications:compose_message' %}">
+<span class="material-symbols-outlined">forum</span>
+<span class="font-label-md text-label-md">Communications</span>
+</a>
 <div class="space-y-xs">
-<button class="w-full flex items-center justify-between px-md py-sm rounded-lg text-on-primary font-medium hover:bg-primary-light transition-colors duration-200">
+<details class="group" open>
+<summary class="w-full flex items-center justify-between px-md py-sm rounded-lg text-on-primary font-medium hover:bg-primary-light transition-colors duration-200 cursor-pointer list-none" style="list-style:none;">
 <div class="flex items-center gap-md">
 <span class="material-symbols-outlined">calendar_today</span>
 <span class="font-label-md text-label-md">Attendance</span>
 </div>
-<span class="material-symbols-outlined text-sm">expand_more</span>
-</button>
-<div class="ml-xl space-y-xs border-l border-on-primary/20 pl-md">
-<a class="block py-2 text-label-sm text-on-primary/70 hover:text-on-primary transition-colors" href="#">Attendance Overview</a>
-<a class="block py-2 text-label-sm text-on-primary/70 hover:text-on-primary transition-colors" href="#">Sunday Service Report</a>
-<a class="block py-2 text-label-sm text-secondary-container font-bold" href="#">Class Attendance Summary</a>
-<a class="block py-2 text-label-sm text-on-primary/70 hover:text-on-primary transition-colors" href="#">Organisation Attendance Summary</a>
-<a class="block py-2 text-label-sm text-on-primary/70 hover:text-on-primary transition-colors" href="#">Absentee Report</a>
+<span class="material-symbols-outlined text-sm transition-transform duration-200 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="ml-xl mt-1 space-y-xs border-l border-on-primary/20 pl-md py-1">
+<a class="block py-2 text-label-sm text-on-primary/70 hover:text-on-primary transition-colors" href="{% url 'attendance:overview' %}">Attendance Overview</a>
+<a class="block py-2 text-label-sm text-on-primary/70 hover:text-on-primary transition-colors" href="{% url 'attendance:service_attendance' %}">Sunday Service Report</a>
+<a class="block py-2 text-label-sm text-secondary-container font-bold" href="{% url 'attendance:class_attendance' %}">Class Attendance Summary</a>
+<a class="block py-2 text-label-sm text-on-primary/70 hover:text-on-primary transition-colors" href="{% url 'attendance:org_attendance' %}">Organisation Attendance Summary</a>
+<a class="block py-2 text-label-sm text-on-primary/70 hover:text-on-primary transition-colors" href="{% url 'attendance:absentee_report' %}">Absentee Report</a>
 </div>
+</details>
 </div>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'finance:dashboard' %}">
 <span class="material-symbols-outlined">payments</span>
 <span class="font-label-md text-label-md">Finance</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'reports:reports_hub' %}">
 <span class="material-symbols-outlined">assessment</span>
 <span class="font-label-md text-label-md">Reports</span>
 </a>

@@ -132,31 +132,33 @@
 </div>
 <nav class="mt-md flex-1 overflow-y-auto hide-scrollbar">
 <div class="space-y-xs">
-<button class="w-full flex items-center justify-between text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all duration-200">
+<a class="w-full flex items-center justify-between text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all duration-200" href="{% url 'dashboard:dashboard' %}">
 <div class="flex items-center gap-md">
 <span class="material-symbols-outlined">dashboard</span>
 <span class="font-label-md text-label-md">Dashboard</span>
 </div>
-</button>
+</a>
 <div class="group">
-<button class="w-full flex items-center justify-between bg-primary-container/20 text-secondary-container py-md px-lg transition-all duration-200">
+<details class="group" open>
+<summary class="w-full flex items-center justify-between bg-primary-container/20 text-secondary-container py-md px-lg transition-all duration-200 cursor-pointer list-none" style="list-style:none;">
 <div class="flex items-center gap-md">
 <span class="material-symbols-outlined">analytics</span>
 <span class="font-label-md text-label-md">Assessment</span>
 </div>
 <span class="material-symbols-outlined">expand_more</span>
-</button>
+</summary>
 <div class="bg-primary-container/10 py-xs">
-<a class="flex items-center gap-md text-on-primary/60 py-sm pl-xl pr-lg hover:text-on-primary transition-colors" href="#">
+<a class="flex items-center gap-md text-on-primary/60 py-sm pl-xl pr-lg hover:text-on-primary transition-colors" href="{% url 'reports:finance_report' %}">
 <span class="text-label-md">Financial Reports</span>
 </a>
-<a class="flex items-center gap-md text-secondary-container py-sm pl-xl pr-lg font-bold" href="#">
+<a class="flex items-center gap-md text-secondary-container py-sm pl-xl pr-lg font-bold" href="{% url 'reports:attendance_report' %}">
 <span class="text-label-md">Attendance Reports</span>
 </a>
-<a class="flex items-center gap-md text-on-primary/60 py-sm pl-xl pr-lg hover:text-on-primary transition-colors" href="#">
+<a class="flex items-center gap-md text-on-primary/60 py-sm pl-xl pr-lg hover:text-on-primary transition-colors" href="{% url 'reports:welfare_report' %}">
 <span class="text-label-md">Welfare Reports</span>
 </a>
 </div>
+</details>
 </div>
 <button class="w-full flex items-center justify-between text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all duration-200">
 <div class="flex items-center gap-md">
@@ -529,5 +531,5 @@
                 card.style.transform = 'translateY(0)';
             });
         });
-    </script>
+    </script> 
 </body></html>

@@ -134,26 +134,28 @@
 <p class="font-label-sm text-label-sm text-on-primary/60 uppercase tracking-widest">Administration</p>
 </div>
 <nav class="flex-1 mt-md custom-scrollbar overflow-y-auto">
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all duration-200 ease-in-out" href="#">
+<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all duration-200 ease-in-out" href="{% url 'dashboard:dashboard' %}">
 <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
 <span class="font-label-md text-label-md">Dashboard</span>
 </a>
 <div class="flex flex-col">
-<button class="flex items-center justify-between w-full gap-md border-l-4 border-secondary-container bg-primary-container/20 text-secondary-container py-md px-lg transition-all duration-200 ease-in-out">
+<details class="group" open>
+<summary class="flex items-center justify-between w-full gap-md border-l-4 border-secondary-container bg-primary-container/20 text-secondary-container py-md px-lg transition-all duration-200 ease-in-out cursor-pointer list-none" style="list-style:none;">
 <div class="flex items-center gap-md">
 <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
 <span class="font-label-md text-label-md">Reports</span>
 </div>
-<span class="material-symbols-outlined">expand_more</span>
-</button>
+<span class="material-symbols-outlined text-sm transition-transform duration-200 group-open:rotate-180">expand_more</span>
+</summary>
 <div class="bg-primary-container/10 flex flex-col">
-<a class="pl-xl py-sm text-secondary font-bold border-l-4 border-secondary bg-secondary/10" href="#">Reports Landing Page</a>
-<a class="pl-xl py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light" href="#">Membership Reports</a>
-<a class="pl-xl py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light" href="#">Attendance Reports</a>
-<a class="pl-xl py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light" href="#">Financial Reports</a>
-<a class="pl-xl py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light" href="#">Welfare Report</a>
-<a class="pl-xl py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light" href="#">Annual / Quarterly Society Report</a>
+<a class="pl-xl py-sm text-secondary font-bold border-l-4 border-secondary bg-secondary/10" href="{% url 'reports:reports_hub' %}">Reports Landing Page</a>
+<a class="pl-xl py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light" href="{% url 'reports:membership_report' %}">Membership Reports</a>
+<a class="pl-xl py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light" href="{% url 'reports:attendance_report' %}">Attendance Reports</a>
+<a class="pl-xl py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light" href="{% url 'reports:finance_report' %}">Financial Reports</a>
+<a class="pl-xl py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light" href="{% url 'reports:welfare_report' %}">Welfare Report</a>
+<a class="pl-xl py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light" href="{% url 'reports:annual_report' %}">Annual / Quarterly Society Report</a>
 </div>
+</details>
 </div>
 <a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all duration-200 ease-in-out" href="#">
 <span class="material-symbols-outlined" data-icon="payments">payments</span>
@@ -442,4 +444,4 @@
             });
         });
     </script>
-</body></html>
+</body></html> 

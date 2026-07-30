@@ -139,24 +139,26 @@
 <nav class="flex-1 mt-md overflow-y-auto custom-scrollbar">
 <div class="space-y-xs">
 <!-- Dashboard -->
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
+<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="{% url 'dashboard:dashboard' %}">
 <span class="material-symbols-outlined">dashboard</span>
 <span class="font-label-md">Dashboard</span>
 </a>
 <!-- Reports (Active Parent) -->
 <div class="flex flex-col">
-<button class="flex items-center justify-between w-full text-secondary-container py-md px-lg bg-primary-container/20 transition-all">
+<details class="group" open>
+<summary class="flex items-center justify-between w-full text-secondary-container py-md px-lg bg-primary-container/20 transition-all cursor-pointer list-none" style="list-style:none;">
 <div class="flex items-center gap-md">
 <span class="material-symbols-outlined">analytics</span>
 <span class="font-label-md font-bold">Reports</span>
 </div>
 <span class="material-symbols-outlined">expand_more</span>
-</button>
+</summary>
 <div class="flex flex-col bg-primary-container/10">
-<a class="pl-[64px] py-sm text-on-primary/80 hover:text-secondary-container transition-colors font-label-md" href="#">Financial Summary</a>
-<a class="pl-[64px] py-sm text-secondary-container font-bold border-l-4 border-secondary-container bg-primary-container/20 font-label-md" href="#">Welfare Report (M-05)</a>
-<a class="pl-[64px] py-sm text-on-primary/80 hover:text-secondary-container transition-colors font-label-md" href="#">Governance Audit</a>
+<a class="pl-[64px] py-sm text-on-primary/80 hover:text-secondary-container transition-colors font-label-md" href="{% url 'reports:finance_report' %}">Financial Summary</a>
+<a class="pl-[64px] py-sm text-secondary-container font-bold border-l-4 border-secondary-container bg-primary-container/20 font-label-md" href="{% url 'reports:welfare_report' %}">Welfare Report (M-05)</a>
+<a class="pl-[64px] py-sm text-on-primary/80 hover:text-secondary-container transition-colors font-label-md" href="{% url 'reports:annual_report' %}">Governance Audit</a>
 </div>
+</details>
 </div>
 <!-- Societies -->
 <a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
@@ -528,4 +530,4 @@
             banner.style.transform = 'translateY(0)';
         });
     </script>
-</body></html>
+</body></html> 

@@ -145,32 +145,34 @@
 </div>
 <nav class="flex-1 mt-md overflow-y-auto custom-scrollbar">
 <div class="space-y-xs">
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
+<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="{% url 'dashboard:dashboard' %}">
 <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
 <span class="font-label-md text-label-md">Dashboard</span>
 </a>
 <div class="group">
-<button class="w-full flex items-center justify-between text-secondary-container bg-primary-container/20 py-md px-lg transition-all">
+<details class="group" open>
+<summary class="w-full flex items-center justify-between text-secondary-container bg-primary-container/20 py-md px-lg transition-all cursor-pointer list-none" style="list-style:none;">
 <div class="flex items-center gap-md">
 <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
 <span class="font-label-md text-label-md">Reports</span>
 </div>
-<span class="material-symbols-outlined text-sm transition-transform duration-200 rotate-180" data-icon="expand_more">expand_more</span>
-</button>
+<span class="material-symbols-outlined text-sm transition-transform duration-200 group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
 <div class="bg-primary-container/10 py-xs">
-<a class="flex items-center gap-md text-on-primary/70 py-sm pl-xl pr-lg hover:text-on-primary transition-all" href="#">
+<a class="flex items-center gap-md text-on-primary/70 py-sm pl-xl pr-lg hover:text-on-primary transition-all" href="{% url 'reports:finance_report' %}">
 <span class="text-xs font-data-label">R-01</span>
 <span class="font-label-md text-label-md">Financial Summaries</span>
 </a>
-<a class="flex items-center gap-md text-secondary-container bg-secondary-container/10 py-sm pl-xl pr-lg border-r-4 border-secondary-container transition-all" href="#">
+<a class="flex items-center gap-md text-secondary-container bg-secondary-container/10 py-sm pl-xl pr-lg border-r-4 border-secondary-container transition-all" href="{% url 'reports:membership_report' %}">
 <span class="text-xs font-data-label">M-02</span>
 <span class="font-label-md text-label-md">Membership Reports</span>
 </a>
-<a class="flex items-center gap-md text-on-primary/70 py-sm pl-xl pr-lg hover:text-on-primary transition-all" href="#">
+<a class="flex items-center gap-md text-on-primary/70 py-sm pl-xl pr-lg hover:text-on-primary transition-all" href="{% url 'reports:welfare_report' %}">
 <span class="text-xs font-data-label">W-03</span>
 <span class="font-label-md text-label-md">Welfare Distribution</span>
 </a>
 </div>
+</details>
 </div>
 <a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
 <span class="material-symbols-outlined" data-icon="group">group</span>
@@ -540,4 +542,4 @@
             });
         });
     </script>
-</body></html>
+</body></html> 

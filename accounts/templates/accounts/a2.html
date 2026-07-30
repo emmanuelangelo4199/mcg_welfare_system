@@ -1,4 +1,7 @@
-<!DOCTYPE html><html class="h-full" lang="en"><head>
+{% load static %}
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+    <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>MCG-SMS | Forgot Password</title>
@@ -6,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet">
+<link type="icon-image" rel="icon" href="{% static 'img/Methodist Church Ghana Logo.png' %}">
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -150,7 +154,11 @@
 <div class="relative z-10 flex flex-col items-center text-center p-xl">
 <!-- Methodist Church Ghana Logo (Simplified representation) -->
 <div class="w-32 h-32 mb-lg flex items-center justify-center rounded-full bg-primary shadow-xl border-4 border-secondary-fixed">
-<span class="material-symbols-outlined text-secondary-fixed text-7xl" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<svg class="text-secondary-fixed" fill="none" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4V18M10 18H38M24 18V44" stroke="currentColor" stroke-linecap="round" stroke-width="4"></path>
+<path d="M24 44C16 44 14 30 14 30C14 30 18 36 24 36C30 36 34 30 34 30C34 30 32 44 24 44Z" fill="currentColor" fill-opacity="0.8"></path>
+<path d="M34 26C34 26 28 32 24 32C20 32 14 26 14 26C14 26 18 20 24 20C30 20 34 26 34 26Z" fill="currentColor" fill-opacity="0.4"></path>
+</svg>
 </div>
 <h1 class="font-headline-lg text-headline-lg text-on-primary-fixed mb-xs tracking-tight">The Methodist Church Ghana</h1>
 <p class="font-label-md text-label-md text-on-primary-container opacity-80 tracking-widest uppercase">Christianity • Stewardship • Faith</p>
@@ -167,7 +175,8 @@
 <h2 class="font-headline-lg text-[26px] text-primary leading-tight">Reset your password</h2>
 <p class="font-body-md text-body-md text-text-secondary">Enter the email address linked to your account and we'll send reset instructions.</p>
 </header>
-<form class="space-y-md" id="forgot-password-form" onsubmit="handleResetSubmit(event)">
+<form class="space-y-md" id="forgot-password-form" method="POST" onsubmit="handleResetSubmit(event)">
+{% csrf_token %}
 <div class="space-y-xs">
 <label class="font-label-md text-label-md text-on-surface" for="email">Email address</label>
 <div class="relative">
@@ -185,7 +194,7 @@
 </button>
 </form>
 <footer class="pt-sm">
-<a class="flex items-center gap-2 font-label-md text-label-md text-secondary hover:text-on-secondary-container transition-colors group" href="A-01.html">
+<a class="flex items-center gap-2 font-label-md text-label-md text-secondary hover:text-on-secondary-container transition-colors group" href="{% url 'accounts:login' %}">
 <span class="material-symbols-outlined text-[18px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
                             Back to Sign in
                         </a>
