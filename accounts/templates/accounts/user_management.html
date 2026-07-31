@@ -168,14 +168,14 @@
                     <span class="material-symbols-outlined">expand_more</span>
                 </button>
                 <div class="bg-primary-container/30 py-xs">
-                    <a class="flex items-center pl-xl pr-lg py-sm text-primary-fixed-dim opacity-80 hover:opacity-100 hover:text-on-primary transition-all" href="#">
-                        <span class="font-label-md text-label-md">Committees</span>
+                    <a class="flex items-center pl-xl pr-lg py-sm text-primary-fixed-dim opacity-80 hover:opacity-100 hover:text-on-primary transition-all" href="{% url 'accounts:roles_permissions' %}">
+                        <span class="font-label-md text-label-md">Role Management</span>
                     </a>
-                    <a class="flex items-center pl-xl pr-lg py-sm text-on-primary bg-primary-light/50 border-l-4 border-secondary-fixed-dim font-bold transition-all" href="#">
+                    <a class="flex items-center pl-xl pr-lg py-sm text-on-primary bg-primary-light/50 border-l-4 border-secondary-fixed-dim font-bold transition-all" href="{% url 'accounts:user_list' %}">
                         <span class="font-label-md text-label-md">User Management</span>
                     </a>
-                    <a class="flex items-center pl-xl pr-lg py-sm text-primary-fixed-dim opacity-80 hover:opacity-100 hover:text-on-primary transition-all" href="#">
-                        <span class="font-label-md text-label-md">System Settings</span>
+                    <a class="flex items-center pl-xl pr-lg py-sm text-primary-fixed-dim opacity-80 hover:opacity-100 hover:text-on-primary transition-all" href="{% url 'accounts:profile' %}">
+                        <span class="font-label-md text-label-md">Profile Management</span>
                     </a>
                 </div>
             </div>

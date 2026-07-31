@@ -10,10 +10,10 @@ def password_reset_view(request):
     return render(request, "accounts/a3.html")
 
 def roles_permissions_view(request):
-    return render(request, "accounts/n2.html")
+    return render(request, "accounts/user_management.html")
 
 def user_list_view(request):
-    return render(request, "accounts/n3.html")
+    return render(request, "accounts/role_management.html")
 
 def profile_view(request):
-    return render(request, "accounts/n5.html")
+    return render(request, "accounts/my_profile.html")
