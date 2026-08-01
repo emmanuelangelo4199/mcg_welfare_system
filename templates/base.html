@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Dashboard{% endblock %} · MCG-SMS</title>
   {% load static %}
-  {# Compiled build, not the Tailwind CDN script — see README for the watch command. #}
   <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Lora:wght@700&display=swap" rel="stylesheet">
@@ -23,7 +22,7 @@
     <span class="font-display font-bold text-xl text-primary">MCG-SMS</span>
   </div>
   <div class="flex items-center gap-4">
-    {# TODO: swap for {% url 'notifications:inbox' %} once that app's urls.py exists #}
+    {# TODO:  {% url 'notifications:inbox' %} urls.py #}
     <a href="#" class="relative p-2 text-ink-secondary hover:bg-surface rounded-full transition-colors">
       <span class="material-symbols-outlined">notifications</span>
     </a>
