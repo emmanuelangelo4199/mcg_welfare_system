@@ -2,6 +2,10 @@
 
 A Django-based **Welfare Management Module** for a Methodist Church Ghana (MCG) Society Management System. It handles the end-to-end lifecycle of member welfare cases — from submission and review to approval, disbursement, and notification — within a church society context.
 
+![Python](https://img.shields.io/badge/python-3.13-blue)
+![Framework](https://img.shields.io/badge/framework-Django-0C4B33)
+![Status](https://img.shields.io/badge/status-in%20development-yellow)
+
 ## Overview
 
 MCG Welfare digitizes the welfare support process for church societies, replacing manual, paper-based tracking with a structured, auditable system. At its core is the `WelfareCase` model, which acts as the central hub connecting members, case types, approvals, disbursements, and notifications.
