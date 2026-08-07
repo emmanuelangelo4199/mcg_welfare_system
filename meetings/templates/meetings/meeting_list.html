@@ -106,86 +106,9 @@
       },
     }
   }catch(_e){}</script></head><body class="bg-surface text-on-surface font-body-md overflow-hidden h-screen flex">
-<!-- Sidebar (SideNavBar) -->
-<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary dark:bg-primary-container text-on-primary shadow-sm dark:shadow-none flex flex-col py-lg z-50">
-<!-- Header/Logo Area -->
-<div class="px-lg mb-xl flex items-center gap-md">
-<div class="w-10 h-10 rounded-lg bg-on-primary/10 flex items-center justify-center overflow-hidden">
-<img class="w-8 h-8 object-contain" data-alt="A clean, vector-style logo for the Methodist Church Ghana, featuring a traditional cross and stylized waves in ivory white against a deep maroon background. The design is elegant and symmetrical, reflecting spiritual dignity and institutional heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz4pXHVZ2gsP83s8jcQGItgGOCd9H6Bu-96Ua7oByYQIeSS6k6t6ij4cd-VRLGBSJZ20V_c7YLD9i2W599Z-Po_SbO5OwFqlUkLtaOC0f5EGuO94WdUQCA5eg-ZUmXpq_gMPRoaT0wN5VeYVjpISaStKI3O0YEvD0-IdVpVg1Nq5BqQUnKu_YR3E7SBgWoOJpE66EP4hQwmhwpehCmMmTekq4PKln-HZMGLAVFztklZhV1zETqYii-tyj-cnEqCh0qsay4BiqCRDhT"/>
-</div>
-<div>
-<h1 class="text-headline-md font-headline-md font-bold text-on-primary leading-tight">MCG-SMS</h1>
-<p class="text-label-sm text-on-primary/70 uppercase tracking-wider">Methodist Church Ghana</p>
-</div>
-</div>
-<!-- Main Navigation -->
-<nav class="flex-1 px-sm overflow-y-auto space-y-xs scrollbar-hide"><!-- Dashboard -->
-<a class="flex items-center gap-md px-md py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200 group" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-label-md">Dashboard</span>
-</a>
-<!-- Members -->
-<a class="flex items-center gap-md px-md py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200 group" href="#">
-<span class="material-symbols-outlined">group</span>
-<span class="font-label-md">Members</span>
-</a>
-<!-- Classes -->
-<a class="flex items-center gap-md px-md py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200 group" href="#">
-<span class="material-symbols-outlined">school</span>
-<span class="font-label-md">Classes</span>
-</a>
-<!-- Governance Accordion (Expanded) -->
-<div class="space-y-xs">
-<button class="w-full flex items-center justify-between px-md py-sm text-on-primary font-bold bg-primary-light/20 rounded-lg transition-all duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">gavel</span>
-<span class="font-label-md">Governance</span>
-</div>
-<span class="material-symbols-outlined text-[18px]">expand_more</span>
-</button>
-<!-- Sub-links -->
-<div class="pl-10 space-y-xs mt-1">
-<a class="flex items-center py-2 px-3 rounded-lg bg-secondary-fixed text-on-secondary-fixed font-bold text-label-md transition-colors" href="#">
-      Meetings List
-    </a>
-<a class="flex items-center py-2 px-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">
-      Schedule a Meeting
-    </a>
-<a class="flex items-center py-2 px-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">
-      Meeting Detail
-    </a>
-<a class="flex items-center py-2 px-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">
-      Action Items Tracker
-    </a>
-<a class="flex items-center py-2 px-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">
-      Minutes Editor
-    </a>
-</div>
-</div>
-<!-- Finance -->
-<a class="flex items-center gap-md px-md py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200 group" href="#">
-<span class="material-symbols-outlined">payments</span>
-<span class="font-label-md">Finance</span>
-</a>
-<!-- Reports -->
-<a class="flex items-center gap-md px-md py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200 group" href="#">
-<span class="material-symbols-outlined">assessment</span>
-<span class="font-label-md">Reports</span>
-</a></nav>
-<!-- Footer Navigation -->
-<div class="mt-auto px-sm pt-md border-t border-on-primary/10">
-<a class="flex items-center gap-md px-md py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-label-md">Settings</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-label-md">Logout</span>
-</a>
-</div>
-</aside>
+{% include 'components/sidebar.html' %}
 <!-- Main Canvas -->
-<main class="flex-1 ml-sidebar-width h-full overflow-y-auto bg-surface-container-low">
+<main class="flex-1  h-full overflow-y-auto bg-surface-container-low">
 <!-- TopAppBar -->
 <header class="sticky top-0 z-40 bg-surface-container-lowest dark:bg-surface-dim shadow-sm flex justify-between items-center h-header-height px-xl">
 <div class="flex items-center gap-md">

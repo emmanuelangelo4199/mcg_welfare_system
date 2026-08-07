@@ -129,65 +129,8 @@
         }
     </style>
 </head>
-<body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed text-[13px] capitalize">
-<!-- Sidebar (Shared Component) -->
-<aside class="flex flex-col h-full w-sidebar-width fixed left-0 top-0 z-50 bg-primary dark:bg-on-primary-fixed shadow-lg">
-<div class="p-lg flex flex-col gap-xs">
-<h1 class="font-headline-md text-headline-md font-bold text-on-primary">MCG-SMS</h1>
-<span class="text-on-primary/60 font-label-sm uppercase tracking-wider">Administration</span>
-</div>
-<nav class="flex-1 mt-md overflow-y-auto custom-scrollbar">
-<div class="space-y-xs">
-<!-- Dashboard -->
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="{% url 'dashboard:dashboard' %}">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-label-md">Dashboard</span>
-</a>
-<!-- Reports (Active Parent) -->
-<div class="flex flex-col">
-<details class="group" open>
-<summary class="flex items-center justify-between w-full text-secondary-container py-md px-lg bg-primary-container/20 transition-all cursor-pointer list-none" style="list-style:none;">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">analytics</span>
-<span class="font-label-md font-bold">Reports</span>
-</div>
-<span class="material-symbols-outlined">expand_more</span>
-</summary>
-<div class="flex flex-col bg-primary-container/10">
-<a class="pl-[64px] py-sm text-on-primary/80 hover:text-secondary-container transition-colors font-label-md" href="{% url 'reports:finance_report' %}">Financial Summary</a>
-<a class="pl-[64px] py-sm text-secondary-container font-bold border-l-4 border-secondary-container bg-primary-container/20 font-label-md" href="{% url 'reports:welfare_report' %}">Welfare Report (M-05)</a>
-<a class="pl-[64px] py-sm text-on-primary/80 hover:text-secondary-container transition-colors font-label-md" href="{% url 'reports:annual_report' %}">Governance Audit</a>
-</div>
-</details>
-</div>
-<!-- Societies -->
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
-<span class="material-symbols-outlined">groups</span>
-<span class="font-label-md">Societies</span>
-</a>
-<!-- Circuits -->
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
-<span class="material-symbols-outlined">account_tree</span>
-<span class="font-label-md">Circuits</span>
-</a>
-<!-- Settings -->
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-label-md">Settings</span>
-</a>
-</div>
-</nav>
-<div class="mt-auto border-t border-on-primary/10">
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
-<span class="material-symbols-outlined">contact_support</span>
-<span class="font-label-md">Support</span>
-</a>
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all mb-lg" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-label-md">Sign Out</span>
-</a>
-</div>
-</aside>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed text-[13px] capitalize flex min-h-screen">
+{% include 'components/sidebar.html' %}
 <!-- Top Bar (Shared Component Reference) -->
 <header class="flex justify-between items-center h-header-height px-lg w-[calc(100%-256px)] fixed top-0 right-0 z-40 bg-surface-container-lowest shadow-sm">
 <div class="flex items-center gap-lg">
@@ -212,7 +155,7 @@
 </div>
 </header>
 <!-- Main Content -->
-<main class="ml-sidebar-width pt-[calc(64px+32px)] p-xl max-w-7xl mx-auto">
+<main class=" pt-[calc(64px+32px)] p-xl max-w-7xl mx-auto">
 <!-- J-01 Confidentiality Banner -->
 <section class="mb-lg">
 <div class="border-2 border-error bg-error-container/30 rounded-xl p-md flex items-center gap-md shadow-sm">

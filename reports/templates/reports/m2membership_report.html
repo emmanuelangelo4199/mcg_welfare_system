@@ -136,73 +136,10 @@
         }
     </style>
 </head>
-<body class="bg-surface font-body-md text-on-surface custom-scrollbar text-[13px] capitalize">
-<!-- Sidebar Navigation -->
-<aside class="flex flex-col h-full w-sidebar-width fixed left-0 top-0 z-50 bg-primary dark:bg-on-primary-fixed shadow-lg hidden md:flex">
-<div class="p-lg">
-<h1 class="font-headline-md text-headline-md font-bold text-on-primary">MCG-SMS</h1>
-<p class="font-label-md text-label-md text-on-primary/70">Administration</p>
-</div>
-<nav class="flex-1 mt-md overflow-y-auto custom-scrollbar">
-<div class="space-y-xs">
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="{% url 'dashboard:dashboard' %}">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-<div class="group">
-<details class="group" open>
-<summary class="w-full flex items-center justify-between text-secondary-container bg-primary-container/20 py-md px-lg transition-all cursor-pointer list-none" style="list-style:none;">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-<span class="font-label-md text-label-md">Reports</span>
-</div>
-<span class="material-symbols-outlined text-sm transition-transform duration-200 group-open:rotate-180" data-icon="expand_more">expand_more</span>
-</summary>
-<div class="bg-primary-container/10 py-xs">
-<a class="flex items-center gap-md text-on-primary/70 py-sm pl-xl pr-lg hover:text-on-primary transition-all" href="{% url 'reports:finance_report' %}">
-<span class="text-xs font-data-label">R-01</span>
-<span class="font-label-md text-label-md">Financial Summaries</span>
-</a>
-<a class="flex items-center gap-md text-secondary-container bg-secondary-container/10 py-sm pl-xl pr-lg border-r-4 border-secondary-container transition-all" href="{% url 'reports:membership_report' %}">
-<span class="text-xs font-data-label">M-02</span>
-<span class="font-label-md text-label-md">Membership Reports</span>
-</a>
-<a class="flex items-center gap-md text-on-primary/70 py-sm pl-xl pr-lg hover:text-on-primary transition-all" href="{% url 'reports:welfare_report' %}">
-<span class="text-xs font-data-label">W-03</span>
-<span class="font-label-md text-label-md">Welfare Distribution</span>
-</a>
-</div>
-</details>
-</div>
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="group">group</span>
-<span class="font-label-md text-label-md">Membership</span>
-</a>
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="payments">payments</span>
-<span class="font-label-md text-label-md">Financials</span>
-</a>
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-</div>
-</nav>
-<div class="mt-auto border-t border-on-primary/10 p-md">
-<button class="w-full bg-secondary-container text-on-secondary-container py-sm px-md rounded-lg font-label-md flex items-center justify-center gap-sm hover:opacity-90 transition-all">
-<span class="material-symbols-outlined" data-icon="add">add</span>
-      Generate New Report
-    </button>
-<div class="mt-lg">
-<a class="flex items-center gap-md text-on-primary/80 py-sm px-lg hover:text-on-primary" href="#">
-<span class="material-symbols-outlined" data-icon="logout">logout</span>
-<span class="font-label-md text-label-md">Sign Out</span>
-</a>
-</div>
-</div>
-</aside>
+<body class="bg-surface font-body-md text-on-surface custom-scrollbar text-[13px] capitalize flex min-h-screen">
+{% include 'components/sidebar.html' %}
 <!-- Main Content Area -->
-<main class="md:ml-sidebar-width min-h-screen pb-32">
+<main class=" min-h-screen pb-32">
 <!-- Top Bar -->
 <header class="flex justify-between items-center h-header-height px-lg w-full sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
 <div class="flex items-center gap-md">

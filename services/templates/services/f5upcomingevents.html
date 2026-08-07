@@ -145,86 +145,9 @@
         }
     </style>
 </head>
-<body class="bg-background text-on-surface font-body-md text-body-md overflow-x-hidden">
+<body class="bg-background text-on-surface font-body-md text-body-md overflow-x-hidden flex min-h-screen">
 <!-- SideNavBar -->
-<aside class="fixed left-0 top-0 h-full w-sidebar-width flex flex-col z-40 bg-primary-container dark:bg-primary shadow-lg">
-<div class="p-lg flex flex-col gap-xs">
-<h1 class="font-headline-md text-headline-md text-secondary-fixed font-bold">Methodist Church Ghana</h1>
-<p class="text-on-primary opacity-80 text-label-sm font-label-sm uppercase tracking-wider">Society Management System</p>
-</div>
-<nav class="flex-1 mt-md"><ul class="flex flex-col gap-xs px-sm">
-<li>
-<a class="flex items-center gap-md text-on-primary py-md px-md hover:bg-primary-light/10 rounded-lg transition-all duration-200" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-md text-on-primary py-md px-md hover:bg-primary-light/10 rounded-lg transition-all duration-200" href="#">
-<span class="material-symbols-outlined">groups</span>
-<span class="font-label-md text-label-md">Members</span>
-</a>
-</li>
-<li>
-<div class="flex flex-col">
-<button class="flex items-center justify-between w-full text-secondary-fixed py-md px-md bg-primary-light/20 rounded-t-lg transition-all duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">church</span>
-<span class="font-label-md text-label-md">Services</span>
-</div>
-<span class="material-symbols-outlined">expand_more</span>
-</button>
-<div class="flex flex-col bg-primary-light/10 rounded-b-lg overflow-hidden">
-<a class="pl-[48px] py-sm pr-md text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Services &amp; Events Calendar</a>
-<a class="pl-[48px] py-sm pr-md text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Add / Edit Service or Programme Form</a>
-<a class="pl-[48px] py-sm pr-md text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Service Detail Screen</a>
-<a class="pl-[48px] py-sm pr-md text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Service Attendance Recording</a>
-<a class="pl-[48px] py-sm pr-md text-secondary-fixed bg-primary-light/20 font-bold text-label-md border-l-4 border-secondary-container transition-colors" href="#">Upcoming Events / Programme Calendar</a>
-</div>
-</div>
-</li>
-<li>
-<button class="flex items-center justify-between w-full text-on-primary py-md px-md hover:bg-primary-light/10 rounded-lg transition-all duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">payments</span>
-<span class="font-label-md text-label-md">Finance</span>
-</div>
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-</li>
-<li>
-<button class="flex items-center justify-between w-full text-on-primary py-md px-md hover:bg-primary-light/10 rounded-lg transition-all duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">assessment</span>
-<span class="font-label-md text-label-md">Reports</span>
-</div>
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-</li>
-</ul>
-<div class="px-md mt-xl">
-<button class="w-full bg-secondary-container text-on-secondary-container font-label-md text-label-md py-sm rounded-lg shadow-sm hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-xs">
-<span class="material-symbols-outlined text-[18px]">add</span>
-    Quick Actions
-  </button>
-</div></nav>
-<div class="mt-auto border-t border-primary-light/20 p-md">
-<ul class="flex flex-col gap-xs">
-<li class="">
-<a class="flex items-center gap-md text-on-primary/70 py-sm px-md hover:bg-primary-light/10 rounded transition-all" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-</li>
-<li class="">
-<a class="flex items-center gap-md text-on-primary/70 py-sm px-md hover:bg-primary-light/10 rounded transition-all" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</li>
-</ul>
-</div>
-</aside>
+{% include 'components/sidebar.html' %}
 <!-- TopAppBar -->
 <header class="fixed top-0 left-0 w-full z-30 flex justify-between items-center px-lg h-header-height bg-surface-container-lowest dark:bg-surface-dim border-b border-border dark:border-outline-variant shadow-sm pl-[calc(256px+24px)]">
 <div class="flex flex-col">

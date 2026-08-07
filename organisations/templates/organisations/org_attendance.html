@@ -190,67 +190,9 @@
 </head>
 <body class="bg-surface text-on-surface font-body-md min-h-screen flex">
 <!-- Sidebar Navigation -->
-<nav class="fixed left-0 top-0 h-full w-sidebar-width bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container shadow-sm dark:shadow-none flex flex-col h-full py-lg hidden md:flex z-20"><div class="px-lg mb-xl">
-<h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</h1>
-<p class="font-label-sm text-label-sm text-on-primary/70 uppercase tracking-widest mt-1">Methodist Church Ghana</p>
-</div>
-<div class="flex-1 overflow-y-auto px-md space-y-sm">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined text-[20px]">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined text-[20px]">group</span>
-<span class="font-label-md text-label-md">Members</span>
-</a>
-<!-- Organisations Accordion Module -->
-<div class="space-y-1">
-<button class="w-full flex items-center justify-between px-md py-sm rounded-lg text-on-primary font-bold bg-primary-light/10 transition-colors duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined text-[20px]">corporate_fare</span>
-<span class="font-label-md text-label-md">Organisations</span>
-</div>
-<span class="material-symbols-outlined text-[18px]">expand_more</span>
-</button>
-<div class="pl-9 space-y-1 mt-1">
-<a class="block px-md py-2 rounded-lg text-on-primary/70 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="font-label-md text-label-md">Organisation List</span>
-</a>
-<a class="block px-md py-2 rounded-lg text-on-primary/70 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="font-label-md text-label-md">Organisation Detail</span>
-</a>
-<a class="block px-md py-2 rounded-lg text-on-primary/70 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="font-label-md text-label-md">Add/Edit Organisation</span>
-</a>
-<a class="block px-md py-2 rounded-lg border-l-[3px] border-secondary-container bg-primary-light/20 text-on-primary font-bold transition-colors duration-200" href="#">
-<span class="font-label-md text-label-md">Attendance Recording</span>
-</a>
-<a class="block px-md py-2 rounded-lg text-on-primary/70 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="font-label-md text-label-md">Dues &amp; Contributions</span>
-</a>
-</div>
-</div>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined text-[20px]">payments</span>
-<span class="font-label-md text-label-md">Finance</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined text-[20px]">assessment</span>
-<span class="font-label-md text-label-md">Reports</span>
-</a>
-</div>
-<div class="px-md mt-auto pt-lg border-t border-primary-light/20 space-y-sm">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined text-[20px]">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined text-[20px]">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</div></nav>
+{% include 'components/sidebar.html' %}
 <!-- Main Content Area -->
-<div class="flex-1 md:ml-sidebar-width flex flex-col min-h-screen">
+<div class="flex-1  flex flex-col min-h-screen">
 <!-- Top App Bar -->
 <header class="docked full-width top-0 bg-surface-container-lowest dark:bg-surface-dim shadow-sm flex justify-between items-center h-header-height px-xl z-10 sticky">
 <div class="flex items-center gap-md">

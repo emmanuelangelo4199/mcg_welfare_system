@@ -136,51 +136,9 @@
 <body class="flex min-h-screen text-on-surface">
 <!-- SIDEBAR -->
 <!-- Applying style_component_shape, style_bg_color, style_shell_layout from JSON -->
-<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary dark:bg-primary-container flex flex-col h-full py-6 shadow-lg z-50">
-<div class="px-6 mb-10">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-white p-1">
-<img class="w-full h-full object-contain" data-alt="A professional, high-resolution graphic of the Methodist Church Ghana crest, featuring its traditional red and gold symbolic elements against a clean white circular background. The style is dignified and institutional, suitable for a religious administrative portal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcJXJD32onb3mGh4Qgts5axJsiJTX-MGyT6t98wA-WkuuGsLwvtcQUxJxAPjp9Hjv_p0JWaJ5sem2jdwnJGFHiRnDfBJw_DsNBzUcTOq7oXD3YXUzg8FHeqH3rZJ1QtmXXjSlz6Ylf57-Mm2hjk_zispR42wHVjPNw2IMaMvFr9Vk4DwGfp4fFGJNrmTlAXCvQ7ydaF4MTO-No7JsEzSOQp3_tpJvnEesyUIvWFybJUAB0sKe_NZOa5v0ann2ftFeGYoTscJSDAGYR">
-</div>
-<div>
-<h1 class="font-headline-md text-headline-md font-bold text-on-primary leading-tight">Methodist Church</h1>
-<p class="font-label-sm text-label-sm text-primary-fixed opacity-70">Ghana Admin</p>
-</div>
-</div>
-</div>
-<nav class="flex-grow space-y-1">
-<!-- Active State using style_active_navigation -->
-<a class="flex items-center gap-3 px-4 py-3 border-l-[3px] border-secondary-fixed bg-primary-light text-on-primary font-bold transition-transform duration-150 active:scale-95" href="#">
-<span class="material-symbols-outlined sidebar-active">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-<!-- Inactive states using style_inactive_navigation -->
-<a class="flex items-center gap-3 px-4 py-3 text-primary-fixed-dim hover:bg-primary-light hover:text-white transition-colors" href="#">
-<span class="material-symbols-outlined">menu_book</span>
-<span class="font-label-md text-label-md">Bible Study Classes</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-primary-fixed-dim hover:bg-primary-light hover:text-white transition-colors" href="#">
-<span class="material-symbols-outlined">fact_check</span>
-<span class="font-label-md text-label-md">Attendance</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-primary-fixed-dim hover:bg-primary-light hover:text-white transition-colors" href="#">
-<span class="material-symbols-outlined">chat_bubble</span>
-<span class="font-label-md text-label-md">Communications</span>
-</a>
-</nav>
-<div class="mt-auto px-4 space-y-1">
-<a class="flex items-center gap-3 px-4 py-3 text-primary-fixed-dim hover:bg-primary-light transition-colors" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-primary-fixed-dim hover:bg-primary-light transition-colors" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</div>
-</aside>
+{% include 'components/sidebar.html' %}
 <!-- MAIN CONTENT CANVAS -->
-<main class="ml-sidebar-width flex-grow min-h-screen">
+<main class=" flex-grow min-h-screen">
 <!-- TOP APP BAR -->
 <header class="flex justify-between items-center h-header-height px-lg bg-white dark:bg-surface-container-low shadow-sm sticky top-0 z-40">
 <div class="flex items-center gap-4">

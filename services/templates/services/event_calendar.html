@@ -112,70 +112,12 @@
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="text-on-surface overflow-hidden">
+<body class="text-on-surface overflow-hidden flex min-h-screen">
 <!-- TopAppBar -->
 <!-- SideNavBar -->
-<aside class="fixed left-0 top-0 h-full w-sidebar-width flex flex-col z-40 bg-primary-container text-on-primary-container shadow-lg pt-header-height">
-<div class="p-lg">
-<div class="font-headline-md text-headline-md text-secondary-fixed font-bold leading-tight">Methodist Church Ghana</div>
-<div class="text-[11px] opacity-80 font-label-sm uppercase tracking-wider mt-1">Society Management System</div>
-</div>
-<nav class="flex-1 px-0 mt-md"><div class="space-y-1">
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-<div class="bg-primary-light/20 border-l-4 border-secondary-container">
-<button class="w-full flex items-center justify-between text-secondary-fixed py-md px-lg transition-all">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">church</span>
-<span class="font-label-md text-label-md font-bold">Services</span>
-</div>
-<span class="material-symbols-outlined">expand_more</span>
-</button>
-<div class="flex flex-col pb-2">
-<a class="py-2 pl-[64px] pr-lg text-secondary-fixed font-bold text-label-md bg-primary-light/10" href="#">Services &amp; Events Calendar</a>
-<a class="py-2 pl-[64px] pr-lg text-on-primary/70 hover:text-on-primary text-label-md" href="#">Add / Edit Service or Programme Form</a>
-<a class="py-2 pl-[64px] pr-lg text-on-primary/70 hover:text-on-primary text-label-md" href="#">Service Detail Screen</a>
-<a class="py-2 pl-[64px] pr-lg text-on-primary/70 hover:text-on-primary text-label-md" href="#">Service Attendance Recording</a>
-<a class="py-2 pl-[64px] pr-lg text-on-primary/70 hover:text-on-primary text-label-md" href="#">Upcoming Events / Programme Calendar</a>
-</div>
-</div>
-<button class="w-full flex items-center justify-between text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">groups</span>
-<span class="font-label-md text-label-md">Members</span>
-</div>
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-<button class="w-full flex items-center justify-between text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">payments</span>
-<span class="font-label-md text-label-md">Finance</span>
-</div>
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-<button class="w-full flex items-center justify-between text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">assessment</span>
-<span class="font-label-md text-label-md">Reports</span>
-</div>
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-</div></nav>
-<div class="p-lg mt-auto border-t border-primary-light/20">
-<a class="flex items-center gap-md text-on-primary py-sm hover:opacity-80" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-<a class="flex items-center gap-md text-on-primary py-sm hover:opacity-80 mt-2" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</div>
-</aside>
+{% include 'components/sidebar.html' %}
 <!-- Main Content Canvas -->
-<main class="ml-sidebar-width pt-header-height h-screen overflow-y-auto bg-surface">
+<main class=" pt-header-height h-screen overflow-y-auto bg-surface">
 <div class="p-xl max-w-7xl mx-auto">
 <!-- Breadcrumb -->
 <nav class="flex items-center gap-2 mb-lg text-on-surface-variant font-label-md text-label-md">

@@ -143,62 +143,9 @@
         }
     </style>
 </head>
-<body class="bg-background text-on-surface">
+<body class="bg-background text-on-surface flex min-h-screen">
 <!-- Sidebar Navigation Shell -->
-<nav class="flex flex-col h-full w-sidebar-width fixed left-0 top-0 z-40 bg-primary dark:bg-primary-container shadow-md"><div class="p-lg flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center overflow-hidden">
-<img class="w-full h-full object-contain" data-alt="Methodist Church Ghana Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZLE202oih0S27cFcP9OBU4cc9YWlE366WQMT5dItchaZCB7Iei8oPCPQfVV-E3SXLmcodZd_mFv1XPdFngZLI_lE0RH4mUXoAYfQPK1d8oGsIXMP2NV6OiAwP6tmvhNRseE3oaQ9_Hbp3CHJt7QRcXeRcAzJL2vNzL0HA0tgs7QQPyzxX_6HN80WsuHg2sETGm4u8wJMzhcYlxfCZP8NMtq8Fqyo0iKj7wPezckgm86jVV6Z3rSbAxBDDXHutl4bMkEuV5UU5m13-"/>
-</div>
-<div>
-<h1 class="font-headline-md text-headline-md font-bold text-on-primary leading-tight">MCG-SMS</h1>
-<p class="text-[10px] text-on-primary/60 font-medium tracking-wider uppercase">Methodist Church Ghana</p>
-</div>
-</div>
-<div class="flex-1 mt-md space-y-1 overflow-y-auto">
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-body-md text-body-md">Dashboard</span>
-</a>
-<div class="space-y-1">
-<button class="w-full flex items-center justify-between px-4 py-3 bg-primary-light/20 text-on-primary border-l-[3px] border-secondary-fixed transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined">account_balance</span>
-<span class="font-body-md text-body-md font-bold">Finance</span>
-</div>
-<span class="material-symbols-outlined text-[18px]">expand_more</span>
-</button>
-<div class="flex flex-col">
-<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Finance Overview</a>
-<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Record Income</a>
-<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Income Ledger</a>
-<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Record Expense</a>
-<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Expense Ledger</a>
-<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Expense Approval</a>
-<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Budget Management</a>
-<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Cashbook</a>
-<a class="pl-12 pr-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-body-md transition-colors" href="#">Statutory Payments</a>
-<a class="pl-12 pr-4 py-2 bg-white/10 text-on-primary font-bold text-body-md transition-colors" href="#">Receipts &amp; Vouchers</a>
-</div>
-</div>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
-<span class="material-symbols-outlined">volunteer_activism</span>
-<span class="font-body-md text-body-md">Welfare</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-body-md text-body-md">Settings</span>
-</a>
-</div>
-<div class="mt-auto border-t border-white/10 py-md">
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
-<span class="material-symbols-outlined">help</span>
-<span class="font-body-md text-body-md">Support</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-body-md text-body-md">Logout</span>
-</a>
-</div></nav>
+{% include 'components/sidebar.html' %}
 <!-- Top AppBar Shell -->
 <header class="flex justify-between items-center h-header-height w-full pl-[256px] pr-lg sticky top-0 z-30 bg-surface dark:bg-surface-dim shadow-sm">
 <div class="flex items-center gap-md flex-1">
@@ -226,7 +173,7 @@
 </div>
 </header>
 <!-- Main Content Canvas -->
-<main class="ml-sidebar-width min-h-[calc(100vh-64px)] p-xl">
+<main class=" min-h-[calc(100vh-64px)] p-xl">
 <!-- Dashboard Header -->
 <div class="flex justify-between items-end mb-xl">
 <div>

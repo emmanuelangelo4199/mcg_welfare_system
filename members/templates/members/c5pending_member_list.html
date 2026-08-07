@@ -207,78 +207,9 @@
 </div>
 </header>
 <!-- SideNavBar (Desktop Only) -->
-<aside class="fixed left-0 top-0 h-full w-sidebar-width flex-col z-40 bg-primary-container text-on-primary-container shadow-lg hidden md:flex">
-<!-- Brand Area -->
-<div class="p-lg border-b border-on-primary-container/10">
-<div class="flex items-center gap-sm mb-2">
-<img alt="Church logo" class="w-8 h-8 rounded-full object-cover" data-alt="A small, stylized circular logo for a methodist church, incorporating a cross and classic typography. Maroon and gold tones, minimal and elegant." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6NKXNhFWxZ6TXcFStqu_LOS-0Ei5rI-_OFiZhq4yJYI2lX_ey3zyMqwSlLoK5AdyMBeQQaxEa7Etl22iKAcLDTopJ2mJpXtrWnA_LCRnHVpeizyRr83eObXNg5yHVOxzP2t4-HLhX4FMyKiL2PgUH5tW0n3dYc2au7hY347Mu8TndYOnsxyq5_e9gawHzRlLD9kZR3kEgjdg-oE4Mn8Nvq3-R5WlQt7WkgEY9bia18EjkROsKpiOAffV3QwS4whXN5hVFzvOUXaU1"/>
-<span class="font-headline-md text-headline-md text-secondary-fixed font-bold">MCG-SMS</span>
-</div>
-<h1 class="font-headline-md text-headline-md text-on-primary font-bold">Methodist Church Ghana</h1>
-<p class="font-label-md text-label-md text-on-primary/80 mt-1">Society Management System</p>
-</div>
-<!-- CTA -->
-<div class="p-md">
-<button class="w-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md py-2 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-secondary-fixed-dim transition-colors">
-<span class="material-symbols-outlined text-[18px]">add</span>
-                Quick Actions
-            </button>
-</div>
-<!-- Navigation Links -->
-<nav class="flex-1 overflow-y-auto py-sm flex flex-col gap-1"><!-- Dashboard -->
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined text-[18px]" data-icon="dashboard">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-<!-- Members Module (Accordion) -->
-<div class="flex flex-col">
-<button class="flex items-center justify-between w-full text-secondary-fixed bg-primary-light/20 py-md px-lg border-l-4 border-secondary-container transition-all duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined text-[18px]" data-icon="groups">groups</span>
-<span class="font-label-md text-label-md">Members</span>
-</div>
-<span class="material-symbols-outlined text-[18px]">expand_more</span>
-</button>
-<div class="flex flex-col bg-primary-container/50">
-<a class="py-2 pl-[52px] pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-sm transition-colors" href="#">Directory</a>
-<a class="py-2 pl-[52px] pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-sm transition-colors" href="#">New Member</a>
-<a class="py-2 pl-[52px] pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-sm transition-colors" href="#">Member Profile</a>
-<a class="py-2 pl-[52px] pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-sm transition-colors" href="#">Edit Member</a>
-<a class="py-2 pl-[52px] pr-lg text-secondary-fixed font-medium bg-primary-light/10 text-label-sm transition-colors" href="#">Pending Members</a>
-<a class="py-2 pl-[52px] pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-sm transition-colors" href="#">Member Regularisation</a>
-<a class="py-2 pl-[52px] pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-sm transition-colors" href="#">Member Transfers</a>
-<a class="py-2 pl-[52px] pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-sm transition-colors" href="#">Status Management</a>
-</div>
-</div>
-<!-- Classes -->
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined text-[18px]" data-icon="church">church</span>
-<span class="font-label-md text-label-md">Classes</span>
-</a>
-<!-- Finance -->
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined text-[18px]" data-icon="payments">payments</span>
-<span class="font-label-md text-label-md">Finance</span>
-</a>
-<!-- Reports -->
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined text-[18px]" data-icon="assessment">assessment</span>
-<span class="font-label-md text-label-md">Reports</span>
-</a></nav>
-<!-- Footer Links -->
-<div class="mt-auto border-t border-on-primary-container/10 py-sm flex flex-col gap-1">
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined text-[18px]" data-icon="settings">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</div>
-</aside>
+{% include 'components/sidebar.html' %}
 <!-- Main Content Area -->
-<main class="flex-1 overflow-y-auto mt-header-height md:mt-0 md:ml-sidebar-width bg-surface p-4 md:p-xl flex flex-col gap-lg pb-[80px] md:pb-xl">
+<main class="flex-1 overflow-y-auto mt-header-height md:mt-0  bg-surface p-4 md:p-xl flex flex-col gap-lg pb-[80px] md:pb-xl">
 <!-- Page Header -->
 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
 <div>

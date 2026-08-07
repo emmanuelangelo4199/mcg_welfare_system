@@ -134,57 +134,8 @@
         </style>
 
     </head>
-    <body class="bg-surface text-on-surface font-body-md min-h-screen antialiased selection:bg-primary-container selection:text-on-primary-container">
-        <!-- SideNavBar (Desktop) -->
-        <nav class="fixed left-0 top-0 h-full w-sidebar-width flex flex-col z-40 shadow-lg bg-primary-container hidden md:flex">
-        <div class="h-header-height flex items-center px-lg border-b border-primary/20 shrink-0">
-        <div class="flex items-center gap-sm">
-        <div class="w-[32px] h-[32px] flex items-center justify-center overflow-hidden shrink-0">
-            <svg class="text-secondary-fixed" fill="none" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg">
-                <path d="M24 4V18M10 18H38M24 18V44" stroke="currentColor" stroke-linecap="round" stroke-width="4"></path>
-                <path d="M24 44C16 44 14 30 14 30C14 30 18 36 24 36C30 36 34 30 34 30C34 30 32 44 24 44Z" fill="currentColor" fill-opacity="0.8"></path>
-                <path d="M34 26C34 26 28 32 24 32C20 32 14 26 14 26C14 26 18 20 24 20C30 20 34 26 34 26Z" fill="currentColor" fill-opacity="0.4"></path>
-            </svg>
-        </div>
-        <div class="flex flex-col overflow-hidden mt-5">
-        <span class="font-headline-md text-headline-md text-secondary-fixed font-bold truncate">Methodist Church <br> Ghana</span>
-        <span class="font-label-sm text-label-sm text-secondary-fixed/80 truncate">Society Management System</span>
-        </div>
-        </div>
-        </div>
-        <div class="flex-1 space-y-xs px-sm mt-9">
-        <a class="flex items-center gap-md px-md py-sm rounded-lg border-l-[3px] border-secondary-container bg-primary-light/10 text-on-primary font-bold transition-colors duration-200" href="#">
-        <span class="material-symbols-outlined">dashboard</span>
-        <span class="font-label-md text-label-md">Dashboard</span> 
-        </a>
-        <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
-        <span class="font-label-md text-label-md">Members</span>
-        </a>
-        <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-        <span class="material-symbols-outlined">school</span>
-        <span class="font-label-md text-label-md">Classes</span>
-        </a>
-        <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-        <span class="material-symbols-outlined">payments</span>
-        <span class="font-label-md text-label-md">Finance</span>
-        </a>
-        <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-        <span class="material-symbols-outlined">assessment</span>
-        <span class="font-label-md text-label-md">Reports</span>
-        </a>
-        </div>
-        <div class="mt-auto px-sm pt-lg border-t border-on-primary/10">
-        <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-        <span class="material-symbols-outlined">settings</span>
-        <span class="font-label-md text-label-md">Settings</span>
-        </a>
-        <a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-        <span class="material-symbols-outlined">logout</span>
-        <span class="font-label-md text-label-md">Logout</span>
-        </a>
-        </div>
-        </nav>
+    <body class="bg-surface text-on-surface font-body-md min-h-screen antialiased selection:bg-primary-container selection:text-on-primary-container flex min-h-screen">
+        {% include 'components/sidebar.html' %}
         <!-- BottomNavBar (Mobile) -->
         <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest pb-safe md:hidden h-[56px] shadow-[0_-1px_3px_rgba(0,0,0,0.06)] border-t border-border">
         <a class="flex flex-col items-center justify-center text-primary font-bold active:scale-90 transition-transform active:bg-surface-container-high w-full h-full" href="#">

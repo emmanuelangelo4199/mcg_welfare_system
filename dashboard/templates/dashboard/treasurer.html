@@ -137,63 +137,10 @@
         }
     </style>
 </head>
-<body class="bg-surface font-body-md text-on-surface antialiased">
-<!-- Sidebar -->
-<aside class="bg-primary dark:bg-primary-container fixed left-0 top-0 h-full w-sidebar-width shadow-lg dark:shadow-none flex flex-col h-full py-6 z-50">
-<div class="px-6 mb-8">
-<div class="flex items-center gap-3">
-<img class="w-10 h-10 object-contain" data-alt="The official crest of the Methodist Church Ghana, featuring a detailed shield with traditional symbolic icons, rendered in a high-contrast maroon and gold color scheme for a professional and dignified corporate identity. The lighting is soft and even, emphasizing the heritage and spiritual authority of the institution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOw_cEH6sKK43SYLeL6pzwDMauDfvFLM5kZb1UG2J0LleWyEtacC5cI2U3PEKTc8yRVHfkGueGJM9do9gKryMDfP1fWhPI4QnloqDYKm1e2uTGBhoilMMOSWDmY08ihokS03MlyGvdG-FayitUn7TLpLC5p4mNxqff6KssqWn9d_1WNHvulOLbpOwRV9GvJDPfW443udAWUDzeDD_ssyAXK81zvtozW_13PQXi4biFPHlVZuIacPJjRbnhMoBauQ3lcpjtIssa8CD5">
-<div>
-<h1 class="font-headline-md text-headline-md font-bold text-on-primary leading-tight">Methodist Church</h1>
-<p class="font-label-sm text-label-sm text-primary-fixed opacity-80">Ghana Admin</p>
-</div>
-</div>
-</div>
-<nav class="flex-grow flex flex-col space-y-1">
-<a class="flex items-center gap-3 px-6 py-3 text-primary-fixed-dim hover:bg-primary-light transition-colors group" href="#">
-<span class="material-symbols-outlined text-xl group-hover:text-white">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-<a class="flex items-center gap-3 px-6 py-3 text-primary-fixed-dim hover:bg-primary-light transition-colors group" href="#">
-<span class="material-symbols-outlined text-xl group-hover:text-white">group</span>
-<span class="font-label-md text-label-md">Membership</span>
-</a>
-<a class="flex items-center gap-3 px-6 py-3 border-l-[3px] border-secondary-fixed bg-primary-light text-on-primary font-bold group" href="#">
-<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">payments</span>
-<span class="font-label-md text-label-md">Finances</span>
-</a>
-<a class="flex items-center gap-3 px-6 py-3 text-primary-fixed-dim hover:bg-primary-light transition-colors group" href="#">
-<span class="material-symbols-outlined text-xl group-hover:text-white">volunteer_activism</span>
-<span class="font-label-md text-label-md">Welfare</span>
-</a>
-<a class="flex items-center gap-3 px-6 py-3 text-primary-fixed-dim hover:bg-primary-light transition-colors group" href="#">
-<span class="material-symbols-outlined text-xl group-hover:text-white">account_balance</span>
-<span class="font-label-md text-label-md">Governance</span>
-</a>
-<a class="flex items-center gap-3 px-6 py-3 text-primary-fixed-dim hover:bg-primary-light transition-colors group" href="#">
-<span class="material-symbols-outlined text-xl group-hover:text-white">assessment</span>
-<span class="font-label-md text-label-md">Reports</span>
-</a>
-</nav>
-<div class="px-4 py-4 mb-4">
-<button class="w-full bg-secondary text-on-secondary-fixed font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-secondary-fixed-dim transition-transform active:scale-95 shadow-md">
-<span class="material-symbols-outlined">add_circle</span>
-<span class="font-label-md text-label-md">Quick Action</span>
-</button>
-</div>
-<div class="mt-auto border-t border-primary-light pt-4">
-<a class="flex items-center gap-3 px-6 py-3 text-primary-fixed-dim hover:bg-primary-light transition-colors group" href="#">
-<span class="material-symbols-outlined text-xl group-hover:text-white">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-<a class="flex items-center gap-3 px-6 py-3 text-primary-fixed-dim hover:bg-primary-light transition-colors group" href="#">
-<span class="material-symbols-outlined text-xl group-hover:text-white">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</div>
-</aside>
+<body class="bg-surface font-body-md text-on-surface antialiased flex min-h-screen">
+{% include 'components/sidebar.html' %}
 <!-- Main Content Shell -->
-<main class="ml-sidebar-width min-h-screen">
+<main class=" min-h-screen">
 <!-- Top App Bar -->
 <header class="flex justify-between items-center h-header-height px-lg w-[calc(100%-var(--spacing-sidebar-width))] fixed top-0 bg-white dark:bg-surface-container-low shadow-sm z-40">
 <div class="flex items-center gap-8">

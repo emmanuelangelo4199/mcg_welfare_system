@@ -128,27 +128,10 @@
         }
     </style>
 </head>
-<body class="bg-surface font-body-md text-on-surface antialiased">
-<!-- Sidebar -->
-<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary dark:bg-primary-container shadow-sm flex flex-col h-full py-lg z-50">
-<div class="px-xl mb-xl">
-<span class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</span>
-<p class="text-on-primary/60 font-label-md text-label-sm">Methodist Church Ghana</p>
-</div>
-<nav class="flex-1 space-y-1"><a class="flex items-center px-lg py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined mr-md">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><a class="flex items-center px-lg py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined mr-md">group</span><span class="font-label-md text-label-md">Members</span></a><div class="space-y-1"><button class="w-full flex items-center justify-between px-lg py-sm text-on-primary font-bold bg-primary-light/10 transition-colors duration-200"><div class="flex items-center"><span class="material-symbols-outlined mr-md">gavel</span><span class="font-label-md text-label-md">Governance</span></div><span class="material-symbols-outlined text-[18px]">expand_more</span></button><div class="bg-primary-container/30 pb-1"><a class="flex items-center pl-[52px] pr-lg py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light/20 transition-colors duration-200" href="#"><span class="font-label-md text-label-md">Meetings List</span></a><a class="flex items-center pl-[52px] pr-lg py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light/20 transition-colors duration-200" href="#"><span class="font-label-md text-label-md">Schedule a Meeting</span></a><a class="flex items-center pl-[52px] pr-lg py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light/20 transition-colors duration-200" href="#"><span class="font-label-md text-label-md">Meeting Detail</span></a><a class="flex items-center pl-[52px] pr-lg py-sm text-secondary-container font-bold bg-primary-light/20 border-r-4 border-secondary-container transition-colors duration-200" href="#"><span class="font-label-md text-label-md">Action Items Tracker</span></a><a class="flex items-center pl-[52px] pr-lg py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light/20 transition-colors duration-200" href="#"><span class="font-label-md text-label-md">Minutes Editor</span></a></div></div><a class="flex items-center px-lg py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined mr-md">payments</span><span class="font-label-md text-label-md">Finance</span></a><a class="flex items-center px-lg py-sm text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined mr-md">assessment</span><span class="font-label-md text-label-md">Reports</span></a></nav>
-<div class="mt-auto px-lg space-y-1 border-t border-on-primary/10 pt-lg">
-<a class="flex items-center py-sm text-on-primary/80 font-medium hover:text-on-primary transition-colors duration-200" href="#">
-<span class="material-symbols-outlined mr-md">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-<a class="flex items-center py-sm text-on-primary/80 font-medium hover:text-on-primary transition-colors duration-200" href="#">
-<span class="material-symbols-outlined mr-md">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</div>
-</aside>
+<body class="bg-surface font-body-md text-on-surface antialiased flex min-h-screen">
+{% include 'components/sidebar.html' %}
 <!-- Top App Bar -->
-<header class="flex justify-between items-center h-header-height px-xl ml-sidebar-width w-[calc(100%-theme(spacing.sidebar-width))] fixed top-0 bg-surface-container-lowest dark:bg-surface-dim shadow-sm z-40">
+<header class="flex justify-between items-center h-header-height px-xl  w-[calc(100%-theme(spacing.sidebar-width))] fixed top-0 bg-surface-container-lowest dark:bg-surface-dim shadow-sm z-40">
 <div class="flex items-center">
 <span class="text-headline-md font-headline-md font-black text-primary">MCG-SMS</span>
 </div>
@@ -164,7 +147,7 @@
 </div>
 </header>
 <!-- Main Content -->
-<main class="ml-sidebar-width pt-[calc(theme(spacing.header-height)+32px)] px-xl pb-xl">
+<main class=" pt-[calc(theme(spacing.header-height)+32px)] px-xl pb-xl">
 <!-- Header & Breadcrumbs -->
 <div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-xl">
 <div>

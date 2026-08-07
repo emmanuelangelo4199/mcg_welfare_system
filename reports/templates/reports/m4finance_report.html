@@ -134,71 +134,11 @@
         }
     </style>
 </head>
-<body class="bg-background text-on-surface font-body-md text-[13px] capitalize">
+<body class="bg-background text-on-surface font-body-md text-[13px] capitalize flex min-h-screen">
 <!-- SideNavBar -->
-<aside class="flex flex-col h-full w-sidebar-width fixed left-0 top-0 z-50 bg-primary dark:bg-on-primary-fixed shadow-lg">
-<div class="p-lg flex flex-col gap-xs">
-<h1 class="font-headline-md text-headline-md font-bold text-on-primary">MCG-SMS</h1>
-<p class="text-on-primary/60 font-label-sm uppercase tracking-wider">Administration</p>
-</div>
-<nav class="flex-1 mt-md overflow-y-auto">
-<!-- Dashboard -->
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all" href="{% url 'dashboard:dashboard' %}">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-<span class="font-label-md">Dashboard</span>
-</a>
-<!-- Reports (Active Parent) -->
-<div class="bg-primary-container/20">
-<details class="group" open>
-<summary class="w-full flex items-center justify-between text-secondary-container py-md px-lg transition-all cursor-pointer list-none" style="list-style:none;">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-<span class="font-label-md">Reports</span>
-</div>
-<span class="material-symbols-outlined">expand_more</span>
-</summary>
-<div class="flex flex-col bg-primary/10">
-<a class="pl-[64px] py-sm text-on-primary/80 hover:text-on-primary hover:bg-primary-light transition-all" href="{% url 'reports:attendance_report' %}">Circuit Summary</a>
-<a class="pl-[64px] py-sm text-secondary-container font-bold bg-primary-light/30" href="{% url 'reports:finance_report' %}">Financial Reports (M-04)</a>
-<a class="pl-[64px] py-sm text-on-primary/80 hover:text-on-primary hover:bg-primary-light transition-all" href="{% url 'reports:welfare_report' %}">Welfare Ledger</a>
-</div>
-</details>
-</div>
-<!-- Financials -->
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="payments">payments</span>
-<span class="font-label-md">Financials</span>
-</a>
-<!-- Governance -->
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
-<span class="font-label-md">Governance</span>
-</a>
-<!-- Settings -->
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-<span class="font-label-md">Settings</span>
-</a>
-</nav>
-<div class="px-lg py-xl">
-<button class="w-full bg-secondary-container text-on-secondary-container font-bold py-md px-md rounded-lg flex items-center justify-center gap-sm shadow-md hover:opacity-90 transition-all">
-<span class="material-symbols-outlined" data-icon="add">add</span>
-      Generate New Report
-    </button>
-</div>
-<div class="mt-auto border-t border-on-primary/10">
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
-<span class="font-label-md">Support</span>
-</a>
-<a class="flex items-center gap-md text-on-primary/80 py-md px-lg hover:bg-primary-light hover:text-on-primary transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="logout">logout</span>
-<span class="font-label-md">Sign Out</span>
-</a>
-</div>
-</aside>
+{% include 'components/sidebar.html' %}
 <!-- Main Content Wrapper -->
-<main class="ml-sidebar-width min-h-screen flex flex-col">
+<main class=" min-h-screen flex flex-col">
 <!-- TopNavBar -->
 <header class="flex justify-between items-center h-header-height px-lg w-full sticky top-0 z-40 bg-surface-container-lowest dark:bg-inverse-surface shadow-sm">
 <div class="flex items-center gap-xl">

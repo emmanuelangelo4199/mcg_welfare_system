@@ -126,77 +126,10 @@
         }
     </script>
 </head>
-<body class="bg-surface font-body-md text-on-surface">
-<!-- Sidebar -->
-<aside class="bg-primary dark:bg-primary-container w-sidebar-width h-screen fixed left-0 top-0 shadow-md flex flex-col py-lg z-50">
-<div class="px-lg mb-xl">
-<h1 class="font-headline-md text-headline-md font-bold text-on-primary">Methodist Ghana</h1>
-<p class="font-label-md text-label-md text-primary-fixed opacity-80">Connexional Admin</p>
-</div>
-<nav class="flex-grow space-y-1 overflow-y-auto">
-<a class="flex items-center px-lg py-3 text-primary-fixed opacity-80 hover:bg-primary-light hover:opacity-100 transition-colors duration-200" href="#">
-<span class="material-symbols-outlined mr-md">dashboard</span>
-<span class="font-body-md">Dashboard</span>
-</a>
-<a class="flex items-center px-lg py-3 text-primary-fixed opacity-80 hover:bg-primary-light hover:opacity-100 transition-colors duration-200" href="#">
-<span class="material-symbols-outlined mr-md">group</span>
-<span class="font-body-md">Members</span>
-</a>
-<a class="flex items-center px-lg py-3 text-primary-fixed opacity-80 hover:bg-primary-light hover:opacity-100 transition-colors duration-200" href="#">
-<span class="material-symbols-outlined mr-md">school</span>
-<span class="font-body-md">Classes</span>
-</a>
-<a class="flex items-center px-lg py-3 text-primary-fixed opacity-80 hover:bg-primary-light hover:opacity-100 transition-colors duration-200" href="#">
-<span class="material-symbols-outlined mr-md">account_tree</span>
-<span class="font-body-md">Organisations</span>
-</a>
-<a class="flex items-center px-lg py-3 text-primary-fixed opacity-80 hover:bg-primary-light hover:opacity-100 transition-colors duration-200" href="#">
-<span class="material-symbols-outlined mr-md">church</span>
-<span class="font-body-md">Services</span>
-</a>
-<div class="space-y-1">
-<button class="w-full flex items-center justify-between px-lg py-3 text-primary-fixed opacity-80 hover:bg-primary-light hover:opacity-100 transition-colors duration-200">
-<div class="flex items-center">
-<span class="material-symbols-outlined mr-md">campaign</span>
-<span class="font-body-md text-label-md">Communications</span>
-</div>
-<span class="material-symbols-outlined text-sm">expand_more</span>
-</button>
-<div class="pl-10 space-y-1">
-<a class="flex items-center py-2 px-4 rounded-lg bg-gold-muted/30 text-secondary-fixed font-bold border-l-4 border-secondary-fixed transition-all" href="#">
-<span class="text-label-md">Notification Inbox</span>
-</a>
-<a class="flex items-center py-2 px-4 text-primary-fixed opacity-80 hover:text-on-primary transition-all" href="#">
-<span class="text-label-md">Notification Settings</span>
-</a>
-</div>
-</div>
-<a class="flex items-center px-lg py-3 text-primary-fixed opacity-80 hover:bg-primary-light hover:opacity-100 transition-colors duration-200" href="#">
-<span class="material-symbols-outlined mr-md">account_balance_wallet</span>
-<span class="font-body-md">Finance</span>
-</a>
-<a class="flex items-center px-lg py-3 text-primary-fixed opacity-80 hover:bg-primary-light hover:opacity-100 transition-colors duration-200" href="#">
-<span class="material-symbols-outlined mr-md">volunteer_activism</span>
-<span class="font-body-md">Welfare</span>
-</a>
-<a class="flex items-center px-lg py-3 text-primary-fixed opacity-80 hover:bg-primary-light hover:opacity-100 transition-colors duration-200" href="#">
-<span class="material-symbols-outlined mr-md">settings</span>
-<span class="font-body-md">Settings</span>
-</a>
-</nav>
-<div class="px-lg pt-xl border-t border-primary-light/20">
-<a class="flex items-center py-2 text-primary-fixed opacity-80 hover:opacity-100 transition-all" href="#">
-<span class="material-symbols-outlined mr-md">help</span>
-<span class="font-label-md">Support</span>
-</a>
-<a class="flex items-center py-2 text-primary-fixed opacity-80 hover:opacity-100 transition-all mt-2" href="#">
-<span class="material-symbols-outlined mr-md">logout</span>
-<span class="font-label-md">Logout</span>
-</a>
-</div>
-</aside>
+<body class="bg-surface font-body-md text-on-surface flex min-h-screen">
+{% include 'components/sidebar.html' %}
 <!-- Main Content Area -->
-<main class="ml-sidebar-width min-h-screen flex flex-col">
+<main class=" min-h-screen flex flex-col">
 <!-- Top App Bar -->
 <header class="h-header-height bg-surface shadow-sm flex items-center justify-between px-xl fixed top-0 right-0 w-[calc(100%-256px)] z-40 border-b border-border">
 <div class="flex items-center">

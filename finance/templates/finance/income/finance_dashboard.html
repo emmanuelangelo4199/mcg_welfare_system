@@ -125,90 +125,10 @@
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #E4E2DD; border-radius: 10px; }
     </style>
 </head>
-<body class="bg-surface text-on-background font-body-md overflow-x-hidden">
-<!-- Sidebar Navigation -->
-<aside class="flex flex-col h-full w-sidebar-width fixed left-0 top-0 z-40 bg-primary shadow-md">
-<div class="p-lg flex items-center gap-3">
-<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-<img class="w-8 h-8 object-contain" data-alt="A stylized logo of the Methodist Church Ghana featuring its traditional emblem with a clean, high-contrast maroon and gold color scheme. The logo is rendered in a minimalist vector style, symbolizing institutional strength and spiritual heritage against a crisp white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCQvQxdmMrdX8qDFtyhxaehny4K_OJK2drH4ldiEbNU7-olQfz_BRsqTEn3VCTmH_Fs6UTZnfoCqyWllHEkQypyWQVvHErHbAub5ChNcySElRah1ULSkKcT-UhbV5sCS0K3wtUeCf1j6-F9c4zh03tSFmmbclIuv5vizDoRRYdqyNHVtoIj5jTiMvfn4A26AfnJKlX3qeS-KqOTvc90dZChpr5UOwXSVSOQQxRsr_l_StMhIi7KQobl5GJpf3g17OJg8gNR1o_T3xl"/>
-</div>
-<div>
-<h1 class="font-headline-md text-headline-md font-bold text-on-primary">MCG-SMS</h1>
-<p class="text-[10px] text-on-primary/70 uppercase tracking-widest font-bold">Methodist Church Ghana</p>
-</div>
-</div>
-<nav class="flex-1 mt-md"><div class="space-y-1 px-2">
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-body-md">Dashboard</span>
-</a>
-<div class="group">
-<button class="w-full flex items-center justify-between px-4 py-3 bg-primary-light/10 text-on-primary font-bold border-l-[3px] border-secondary-fixed transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined">account_balance</span>
-<span class="font-body-md">Finance</span>
-</div>
-<span class="material-symbols-outlined text-sm transition-transform duration-200">expand_more</span>
-</button>
-<div class="mt-1 space-y-1">
-<a class="flex items-center gap-3 pl-12 pr-4 py-2 bg-primary-light/20 text-on-primary font-bold border-l-[3px] border-secondary-fixed" href="#">
-<span class="font-body-md">Finance Overview</span>
-</a>
-<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:bg-primary-light/10 hover:text-on-primary transition-colors" href="#">
-<span class="font-body-md">Record Income</span>
-</a>
-<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:bg-primary-light/10 hover:text-on-primary transition-colors" href="#">
-<span class="font-body-md">Income Ledger</span>
-</a>
-<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:bg-primary-light/10 hover:text-on-primary transition-colors" href="#">
-<span class="font-body-md">Record Expense</span>
-</a>
-<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:bg-primary-light/10 hover:text-on-primary transition-colors" href="#">
-<span class="font-body-md">Expense Ledger</span>
-</a>
-<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:bg-primary-light/10 hover:text-on-primary transition-colors" href="#">
-<span class="font-body-md">Expense Approval</span>
-</a>
-<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:bg-primary-light/10 hover:text-on-primary transition-colors" href="#">
-<span class="font-body-md">Budget Management</span>
-</a>
-<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:bg-primary-light/10 hover:text-on-primary transition-colors" href="#">
-<span class="font-body-md">Cashbook</span>
-</a>
-<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:bg-primary-light/10 hover:text-on-primary transition-colors" href="#">
-<span class="font-body-md">Statutory Payments</span>
-</a>
-<a class="flex items-center gap-3 pl-12 pr-4 py-2 text-on-primary/70 hover:bg-primary-light/10 hover:text-on-primary transition-colors" href="#">
-<span class="font-body-md">Receipts &amp; Vouchers</span>
-</a>
-</div>
-</div>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
-<span class="material-symbols-outlined">assessment</span>
-<span class="font-body-md">Financial Reports</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
-<span class="material-symbols-outlined">volunteer_activism</span>
-<span class="font-body-md">Welfare</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-body-md">Settings</span>
-</a>
-</div></nav>
-<div class="p-lg border-t border-on-primary/10">
-<a class="flex items-center gap-3 px-4 py-2 text-on-primary/80 hover:bg-primary-light/10 rounded-lg transition-colors mb-2" href="#">
-<span class="material-symbols-outlined">help</span>
-<span class="font-body-md">Support</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-2 text-on-primary/80 hover:bg-primary-light/10 rounded-lg transition-colors" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-body-md">Logout</span>
-</a>
-</div>
-</aside>
+<body class="bg-surface text-on-background font-body-md overflow-x-hidden flex min-h-screen">
+{% include 'components/sidebar.html' %}
 <!-- Main Content Canvas -->
-<main class="ml-sidebar-width min-h-screen">
+<main class=" min-h-screen">
 <!-- Top App Bar -->
 <header class="flex justify-between items-center h-header-height w-full px-lg sticky top-0 z-30 bg-surface shadow-sm">
 <div class="flex items-center gap-base flex-1">

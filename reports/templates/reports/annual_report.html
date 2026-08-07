@@ -128,73 +128,13 @@
         }
     </style>
 </head>
-<body class="bg-surface font-body-md text-on-surface text-[13px] capitalize">
+<body class="bg-surface font-body-md text-on-surface text-[13px] capitalize flex min-h-screen">
 <!-- Top Navigation Shell -->
 <div class="flex min-h-[calc(100vh-64px)]">
 <!-- Side Navigation Shell -->
-<aside class="flex flex-col h-screen w-sidebar-width fixed left-0 top-0 z-30 hidden md:flex bg-primary-container">
-<div class="p-lg flex flex-col gap-xs">
-<div class="mb-xl px-md">
-<h2 class="text-white font-headline-lg text-xl font-bold">MCG-SMS</h2>
-<p class="text-white/60 font-body-md text-xs">Methodist Church Ghana</p>
-</div>
-<nav class="flex flex-col gap-xs">
-<div class="group">
-<button class="w-full flex items-center justify-between text-white/80 py-md px-lg hover:bg-white/10 hover:text-white transition-all">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-label-md">Dashboard</span>
-</div>
-<span class="material-symbols-outlined text-sm">expand_more</span>
-</button>
-</div>
-<div class="group">
-<button class="w-full flex items-center justify-between bg-white/10 text-secondary-container py-md px-lg transition-all">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">analytics</span>
-<span class="font-label-md">Reports</span>
-</div>
-<span class="material-symbols-outlined text-sm">expand_less</span>
-</button>
-<div class="flex flex-col bg-black/10">
-<a class="py-sm pl-[52px] pr-lg text-secondary-container font-bold border-l-2 border-secondary-container bg-white/5" href="#">
-<span class="font-label-md">Annual / Quarterly Society Report</span>
-</a>
-<a class="py-sm pl-[52px] pr-lg text-white/60 hover:text-white hover:bg-white/5 transition-all" href="#">
-<span class="font-label-md">Circuit Assessment</span>
-</a>
-<a class="py-sm pl-[52px] pr-lg text-white/60 hover:text-white hover:bg-white/5 transition-all" href="#">
-<span class="font-label-md">Diocesan Summary</span>
-</a>
-</div>
-</div>
-<a class="flex items-center gap-md border-l-[3px] border-transparent text-white/80 py-md px-lg hover:bg-white/10 hover:text-white transition-all" href="#">
-<span class="material-symbols-outlined">payments</span>
-<span class="font-label-md">Financials</span>
-</a>
-<a class="flex items-center gap-md border-l-[3px] border-transparent text-white/80 py-md px-lg hover:bg-white/10 hover:text-white transition-all" href="#">
-<span class="material-symbols-outlined">volunteer_activism</span>
-<span class="font-label-md">Welfare</span>
-</a>
-<a class="flex items-center gap-md border-l-[3px] border-transparent text-white/80 py-md px-lg hover:bg-white/10 hover:text-white transition-all" href="#">
-<span class="material-symbols-outlined">history</span>
-<span class="font-label-md">Audit Trail</span>
-</a>
-</nav>
-</div>
-<div class="mt-auto p-lg flex flex-col gap-xs border-t border-white/10">
-<a class="flex items-center gap-md border-l-[3px] border-transparent text-white/80 py-md px-lg hover:bg-white/10 hover:text-white transition-all" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-label-md">Settings</span>
-</a>
-<a class="flex items-center gap-md border-l-[3px] border-transparent text-white/80 py-md px-lg hover:bg-white/10 hover:text-white transition-all" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-label-md">Sign Out</span>
-</a>
-</div>
-</aside>
+{% include 'components/sidebar.html' %}
 <!-- Main Content Area -->
-<main class="ml-0 md:ml-sidebar-width flex-1 p-xl">
+<main class="ml-0  flex-1 p-xl">
 <!-- Header & Wizard Progress -->
 <div class="max-w-5xl mx-auto mb-xl">
 <div class="flex justify-between items-end mb-lg">

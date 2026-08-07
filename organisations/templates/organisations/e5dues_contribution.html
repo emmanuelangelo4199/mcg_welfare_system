@@ -205,33 +205,11 @@
         }
     </style>
 </head>
-<body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen">
+<body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen flex min-h-screen">
 <!-- TopAppBar -->
-<!-- SideNavBar -->
-<nav class="fixed left-0 top-0 h-full w-sidebar-width bg-primary text-on-primary flex flex-col h-full py-lg shadow-sm z-50 hidden md:flex">
-<div class="px-lg mb-xl flex items-center gap-3">
-<div class="w-10 h-10 rounded-full bg-surface-container-lowest overflow-hidden flex items-center justify-center text-primary font-bold shadow-sm">
-<img alt="Church Logo" class="w-full h-full object-cover" data-alt="A minimalist and dignified logo emblem representing the Methodist Church Ghana, featuring subtle traditional motifs blended with modern clean lines, rendered in deep maroon and gold tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcpxbjLSKMGDaUyzWThiqe6BJ4XgLPthnDHLpFaNAYbdgw9PZt8vop-HFwiBaX4zUJNHfWt-0pMZ3YOgTWk_PMMrwUi6dH44gb3P1ukCMQU2T3ni7gjcJZokA8SOXrprbn-wS3mysCh0n378bAx5ORN94b-1dljkN9gInhRP0NYhE93wCbeJKBGz0qF-0PITP6gKZ2OVD-8n4svNAB8IPzstYAvDMrpq9iPZ0qn1jnubmMnlLJ4XJj-uXRGPiXTyUDihzGvJeEEYl3"/>
-</div>
-<div>
-<h1 class="text-headline-md font-headline-md font-bold text-on-primary tracking-tight">MCG-SMS</h1>
-<p class="text-label-sm font-label-sm text-on-primary/80">Methodist Church Ghana</p>
-</div>
-</div>
-<div class="flex-1 flex flex-col gap-2 px-md"><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Dashboard</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined text-[20px]">group</span><span>Members</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined text-[20px]">school</span><span>Classes</span></a><div class="flex flex-col gap-1"><button class="flex items-center justify-between w-full px-4 py-3 rounded-lg text-on-primary font-bold bg-primary-light/10 transition-colors"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-[20px] icon-fill">corporate_fare</span><span>Organisations</span></div><span class="material-symbols-outlined text-[18px]">expand_more</span></button><div class="flex flex-col gap-1 ml-4 mt-1"><a class="px-4 py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors text-label-md" href="#">Organisation List</a><a class="px-4 py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors text-label-md" href="#">Organisation Detail</a><a class="px-4 py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors text-label-md" href="#">Add/Edit Organisation</a><a class="px-4 py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors text-label-md" href="#">Attendance Recording</a><a class="px-4 py-2 rounded-lg bg-secondary-container text-on-secondary-container font-bold shadow-sm text-label-md" href="#">Dues &amp; Contributions</a></div></div><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined text-[20px]">assessment</span><span>Reports</span></a></div>
-<div class="px-md mt-auto flex flex-col gap-2">
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined text-[20px]">settings</span>
-<span class="">Settings</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined text-[20px]">logout</span>
-<span class="">Logout</span>
-</a>
-</div>
-</nav>
+{% include 'components/sidebar.html' %}
 <!-- Main Content Canvas -->
-<main class="md:ml-sidebar-width md:mt-header-height p-lg md:p-xl max-w-[1600px] mx-auto min-h-[calc(100vh-theme(spacing.header-height))] flex flex-col gap-lg">
+<main class=" md:mt-header-height p-lg md:p-xl max-w-[1600px] mx-auto min-h-[calc(100vh-theme(spacing.header-height))] flex flex-col gap-lg">
 <!-- Page Header -->
 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2">
 <div>

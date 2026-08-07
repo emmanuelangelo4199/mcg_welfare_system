@@ -115,38 +115,9 @@
     </script>
 </head>
 <body class="bg-surface text-on-surface font-body-md text-body-md h-screen overflow-hidden flex antialiased">
-<!-- SideNavBar (Desktop) -->
-<nav class="hidden md:flex fixed left-0 top-0 h-full w-sidebar-width flex-col z-40 bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary shadow-lg dark:shadow-none font-label-md text-label-md">
-<!-- Header -->
-<div class="p-lg border-b border-white/10 flex items-center gap-md">
-<div>
-<div class="font-headline-md text-headline-md text-secondary-fixed font-bold truncate">Methodist Church<div class="">Ghana</div></div>
-<div class="text-on-primary/80 font-label-sm text-label-sm truncate">Society Management System</div>
-</div>
-</div>
-<!-- Navigation Links -->
-<div class="flex-1 py-lg overflow-y-auto"><a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#"><span class="material-symbols-outlined text-[18px]">dashboard</span> Dashboard </a> <a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#"><span class="material-symbols-outlined text-[18px]">groups</span> Members </a> <div class="flex flex-col"> <button class="flex items-center justify-between w-full text-secondary-fixed py-md px-lg bg-primary-light/20 border-l-[3px] border-secondary-container transition-all duration-200"> <div class="flex items-center gap-md"> <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">church</span> <span class="font-bold">Classes</span> </div> <span class="material-symbols-outlined text-[18px]">expand_more</span> </button> <div class="flex flex-col bg-primary/10 py-2"> <a class="flex items-center py-2 pl-[52px] pr-lg text-on-primary/80 hover:text-secondary-fixed hover:bg-primary-light/10 transition-colors font-label-md" href="#">Class List</a> <a class="flex items-center py-2 pl-[52px] pr-lg text-secondary-fixed bg-primary-light/20 font-bold border-r-2 border-secondary-container transition-colors font-label-md" href="#">Class Detail</a> <a class="flex items-center py-2 pl-[52px] pr-lg text-on-primary/80 hover:text-secondary-fixed hover:bg-primary-light/10 transition-colors font-label-md" href="#">Add/Edit Class</a> <a class="flex items-center py-2 pl-[52px] pr-lg text-on-primary/80 hover:text-secondary-fixed hover:bg-primary-light/10 transition-colors font-label-md" href="#">Attendance Recording</a> <a class="flex items-center py-2 pl-[52px] pr-lg text-on-primary/80 hover:text-secondary-fixed hover:bg-primary-light/10 transition-colors font-label-md" href="#">Attendance Report</a> </div> </div> <a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#"><span class="material-symbols-outlined text-[18px]">payments</span> Finance </a> <a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#"><span class="material-symbols-outlined text-[18px]">assessment</span> Reports </a></div>
-<!-- CTA -->
-<div class="p-lg mt-auto border-t border-white/10">
-<button class="w-full bg-surface-container-lowest text-primary-container hover:bg-surface-variant font-label-md text-label-md font-bold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-sm">
-<span class="material-symbols-outlined text-[18px]">bolt</span>
-                Quick Actions
-            </button>
-</div>
-<!-- Footer Links -->
-<div class="pb-lg">
-<a class="flex items-center gap-md text-on-primary py-sm px-lg hover:bg-primary-light/10 transition-all duration-200 opacity-80 hover:opacity-100" href="#">
-<span class="material-symbols-outlined text-[18px]">settings</span>
-                Settings
-            </a>
-<a class="flex items-center gap-md text-on-primary py-sm px-lg hover:bg-primary-light/10 transition-all duration-200 opacity-80 hover:opacity-100" href="#">
-<span class="material-symbols-outlined text-[18px]">logout</span>
-                Logout
-            </a>
-</div>
-</nav>
+{% include 'components/sidebar.html' %}
 <!-- Main Content Wrapper -->
-<div class="flex-1 flex flex-col md:ml-sidebar-width h-screen overflow-hidden bg-background">
+<div class="flex-1 flex flex-col  h-screen overflow-hidden bg-background">
 <!-- TopAppBar -->
 <header class="fixed md:relative top-0 left-0 md:left-auto w-full z-30 h-header-height bg-surface-container-lowest dark:bg-surface-dim border-b border-border dark:border-outline-variant shadow-sm dark:shadow-none flex justify-between items-center px-lg">
 <div class="flex items-center md:hidden">

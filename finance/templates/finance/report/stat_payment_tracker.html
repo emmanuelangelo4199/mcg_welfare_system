@@ -145,30 +145,9 @@
         }
     </style>
 </head>
-<body class="bg-surface text-on-surface font-body-md">
+<body class="bg-surface text-on-surface font-body-md flex min-h-screen">
 <!-- Side Navigation Shell -->
-<aside class="flex flex-col h-full w-sidebar-width fixed left-0 top-0 z-40 bg-primary dark:bg-primary-container shadow-md">
-<div class="p-lg flex items-center gap-3">
-<div class="w-10 h-10 bg-on-primary rounded-lg flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">church</span>
-</div>
-<div>
-<h1 class="font-headline-md text-headline-md font-bold text-on-primary dark:text-on-primary-container">MCG-SMS</h1>
-<p class="text-[10px] text-on-primary/60 uppercase tracking-widest font-semibold">Methodist Church Ghana</p>
-</div>
-</div>
-<nav class="flex-1 mt-md px-base space-y-1"><a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#"><span class="material-symbols-outlined">dashboard</span><span class="font-body-md">Dashboard</span></a><div class="space-y-1"><button class="w-full flex items-center justify-between px-4 py-3 bg-primary-light/20 text-on-primary font-bold border-l-[3px] border-secondary-fixed transition-colors"><div class="flex items-center gap-3"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span><span class="font-body-md">Finance</span></div><span class="material-symbols-outlined text-sm rotate-180">expand_more</span></button><div class="pl-lg space-y-1 mt-1"><a class="flex items-center gap-3 px-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 rounded-lg transition-colors text-sm" href="#">Finance Overview</a><a class="flex items-center gap-3 px-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 rounded-lg transition-colors text-sm" href="#">Record Income</a><a class="flex items-center gap-3 px-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 rounded-lg transition-colors text-sm" href="#">Income Ledger</a><a class="flex items-center gap-3 px-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 rounded-lg transition-colors text-sm" href="#">Record Expense</a><a class="flex items-center gap-3 px-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 rounded-lg transition-colors text-sm" href="#">Expense Ledger</a><a class="flex items-center gap-3 px-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 rounded-lg transition-colors text-sm" href="#">Expense Approval</a><a class="flex items-center gap-3 px-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 rounded-lg transition-colors text-sm" href="#">Budget Management</a><a class="flex items-center gap-3 px-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 rounded-lg transition-colors text-sm" href="#">Cashbook</a><a class="flex items-center gap-3 px-4 py-2 bg-secondary-fixed text-on-secondary-fixed font-bold rounded-lg transition-colors text-sm" href="#">Statutory Payments</a><a class="flex items-center gap-3 px-4 py-2 text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 rounded-lg transition-colors text-sm" href="#">Receipts &amp; Vouchers</a></div></div><a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#"><span class="material-symbols-outlined">volunteer_activism</span><span class="font-body-md">Welfare</span></a><a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#"><span class="material-symbols-outlined">settings</span><span class="font-body-md">Settings</span></a></nav>
-<div class="mt-auto border-t border-on-primary/10 p-base space-y-1">
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
-<span class="material-symbols-outlined">help</span>
-<span class="font-body-md">Support</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-body-md">Logout</span>
-</a>
-</div>
-</aside>
+{% include 'components/sidebar.html' %}
 <!-- Top App Bar -->
 <header class="flex justify-between items-center h-header-height w-full pl-[256px] pr-lg sticky top-0 z-30 bg-surface dark:bg-surface-dim shadow-sm">
 <div class="flex items-center gap-md">
@@ -198,7 +177,7 @@
 </div>
 </header>
 <!-- Main Content Canvas -->
-<main class="ml-sidebar-width p-xl">
+<main class=" p-xl">
 <!-- Summary Cards Bento Grid -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xl">
 <!-- Circuit Card -->

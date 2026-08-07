@@ -128,36 +128,11 @@
         ::-webkit-scrollbar-thumb:hover { background: #dcc0c1; }
     </style>
 </head>
-<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen">
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex min-h-screen">
 <!-- JSON Component: SideNavBar -->
-<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary dark:bg-primary-container shadow-sm dark:shadow-none z-40 hidden md:flex flex-col py-lg transition-transform duration-300">
-<!-- Brand Logo -->
-<div class="px-lg mb-xl flex flex-col gap-xs">
-<div class="flex items-center gap-md">
-<div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center overflow-hidden">
-<img class="w-8 h-8 object-contain" data-alt="A clean, minimalist logo mark for a modern religious institution, featuring a subtle cross motif in deep maroon against a crisp white background. High resolution, corporate vector style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtn7OWWgQZk37fYHNzsCgTBYtmyJqSUQ9zcxMmWaXW2YzxN8LJksZJSm7M9epXc_ixcbewbdxr69b50ESJZHqoulOKM5cO0Zln3zggZu7ResxVWQ4LqlDiZ9e3NthGRVgDIHLYkTnZTZZoquVdumSfd9Pdz9Y8OwTZAfqPCz_KPGPu7qpKTBvsfln-3zW12N46Xs3JAVMXd-8sv9KMMHfHxb0ZapitY0Emezxb36h_YN0HupGRS3dLjX2Sva3O90ZUAovQ1cN4n6lp"/>
-</div>
-<h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</h1>
-</div>
-<p class="font-label-sm text-label-sm text-on-primary/70 ml-14">Methodist Church Ghana</p>
-</div>
-<!-- Navigation Links -->
-<!-- Logic: Intent of page is 'Organisation Detail' which manages a subset of members. Active tab: Members -->
-<nav class="flex-1 px-sm flex flex-col gap-xs"><a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><div class="space-y-1"><button class="w-full flex items-center justify-between px-md py-3 rounded-lg text-on-primary font-bold bg-primary-light/10 transition-colors duration-200"><div class="flex items-center gap-md"><span class="material-symbols-outlined">corporate_fare</span><span class="font-label-md text-label-md">Organisations</span></div><span class="material-symbols-outlined text-[20px]">expand_more</span></button><div class="flex flex-col gap-1 ml-9 mt-1"><a class="px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors text-label-md" href="#">Organisation List</a><a class="px-md py-2 rounded-lg bg-secondary-fixed text-on-secondary-fixed-variant font-bold transition-colors text-label-md" href="#">Organisation Detail</a><a class="px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors text-label-md" href="#">Add/Edit Organisation</a><a class="px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors text-label-md" href="#">Attendance Recording</a><a class="px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors text-label-md" href="#">Dues &amp; Contributions</a></div></div><a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">group</span><span class="font-label-md text-label-md">Members</span></a><a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#"><span class="material-symbols-outlined">assessment</span><span class="font-label-md text-label-md">Reports</span></a></nav>
-<!-- Footer Links -->
-<div class="mt-auto px-sm flex flex-col gap-xs pt-lg border-t border-on-primary/10">
-<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</div>
-</aside>
+{% include 'components/sidebar.html' %}
 <!-- JSON Component: TopAppBar -->
-<header class="docked full-width top-0 bg-surface-container-lowest dark:bg-surface-dim shadow-sm flex justify-between items-center h-header-height px-xl ml-0 md:ml-sidebar-width md:w-[calc(100%-theme(spacing.sidebar-width))] fixed z-30">
+<header class="docked full-width top-0 bg-surface-container-lowest dark:bg-surface-dim shadow-sm flex justify-between items-center h-header-height px-xl ml-0  md:w-[calc(100%-theme(spacing.sidebar-width))] fixed z-30">
 <!-- Search Bar (on_left configuration) -->
 <div class="flex-1 flex items-center">
 <div class="relative w-full max-w-md hidden md:block">
@@ -172,7 +147,7 @@
 <!-- Trailing Icon Actions & Profile -->
 </header>
 <!-- Main Content Canvas -->
-<main class="pt-header-height ml-0 md:ml-sidebar-width min-h-screen p-md transition-all duration-300 md:p-lg">
+<main class="pt-header-height ml-0  min-h-screen p-md transition-all duration-300 md:p-lg">
 <!-- Page Breadcrumb/Header (Optional but good for context) -->
 <div class="flex items-center gap-2 text-label-md text-text-secondary mb-md">
 <a class="hover:text-primary transition-colors" href="#">Organisations</a>

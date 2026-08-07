@@ -140,76 +140,9 @@
 </head>
 <body class="bg-surface text-on-surface font-body-md min-h-screen flex">
 <!-- SideNavBar (Execution from JSON) -->
-<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary-container text-on-primary flex flex-col py-lg shadow-sm z-50">
-<div class="px-md mb-xl">
-<h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</h1>
-<p class="text-label-sm opacity-80">Methodist Church Ghana</p>
-</div>
-<nav class="flex-1 space-y-1 overflow-y-auto">
-<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light" href="#">
-<span class="material-symbols-outlined">group</span>
-<span class="font-label-md text-label-md">Members</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light" href="#">
-<span class="material-symbols-outlined">school</span>
-<span class="font-label-md text-label-md">Classes</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light" href="#">
-<span class="material-symbols-outlined">payments</span>
-<span class="font-label-md text-label-md">Finance</span>
-</a>
-<!-- Welfare Accordion (Active) -->
-<div class="space-y-1">
-<button class="w-full flex items-center justify-between px-md py-sm bg-primary-light/20 text-on-primary font-bold border-l-[3px] border-secondary-container">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">volunteer_activism</span>
-<span class="font-label-md text-label-md">Welfare</span>
-</div>
-<span class="material-symbols-outlined text-sm">expand_more</span>
-</button>
-<div class="bg-primary-container/50">
-<a class="flex items-center gap-md pl-xl pr-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors" href="#">
-<span class="font-label-md text-label-md">Welfare Cases List</span>
-</a>
-<a class="flex items-center gap-md pl-xl pr-md py-sm text-secondary-container font-bold bg-primary-light/10" href="#">
-<span class="font-label-md text-label-md">Open New Case</span>
-</a>
-<a class="flex items-center gap-md pl-xl pr-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors" href="#">
-<span class="font-label-md text-label-md">Case Detail</span>
-</a>
-<a class="flex items-center gap-md pl-xl pr-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors" href="#">
-<span class="font-label-md text-label-md">Visitation Record</span>
-</a>
-<a class="flex items-center gap-md pl-xl pr-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors" href="#">
-<span class="font-label-md text-label-md">Payment Record</span>
-</a>
-<a class="flex items-center gap-md pl-xl pr-md py-sm text-on-primary/70 hover:text-on-primary hover:bg-primary-light transition-colors" href="#">
-<span class="font-label-md text-label-md">Case Closure</span>
-</a>
-</div>
-</div>
-<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light" href="#">
-<span class="material-symbols-outlined">assessment</span>
-<span class="font-label-md text-label-md">Reports</span>
-</a>
-</nav>
-<div class="mt-auto space-y-1 border-t border-on-primary/10 pt-lg">
-<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</div>
-</aside>
+{% include 'components/sidebar.html' %}
 <!-- Main Content Wrapper -->
-<div class="flex-1 ml-sidebar-width flex flex-col">
+<div class="flex-1  flex flex-col">
 <!-- TopAppBar (Execution from JSON) -->
 <header class="h-header-height px-xl flex justify-between items-center sticky top-0 z-40 bg-surface-container-lowest dark:bg-surface-dim shadow-sm">
 <div class="flex items-center gap-lg">

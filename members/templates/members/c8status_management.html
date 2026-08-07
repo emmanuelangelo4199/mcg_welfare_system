@@ -117,26 +117,7 @@
 </head>
 <body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-col md:flex-row">
 <!-- Desktop Sidebar (Hidden on Mobile) -->
-<nav class="hidden md:flex flex-col fixed left-0 top-0 h-screen w-sidebar-width bg-primary-container z-40 shadow-lg">
-<div class="px-lg py-xl flex flex-col items-start gap-md">
-<h1 class="font-headline-md text-headline-md text-secondary-fixed font-bold leading-tight">Methodist Church Ghana</h1>
-<p class="font-label-md text-label-md text-on-primary-container opacity-80">Society Management System</p>
-</div>
-<div class="flex-1 overflow-y-auto px-0 py-sm flex flex-col gap-xs"><a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#"><span class="material-symbols-outlined">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><div class="flex flex-col"><button class="flex items-center justify-between w-full text-secondary-fixed py-md px-lg bg-primary-light/20 border-l-4 border-secondary-container transition-all duration-200 group"><div class="flex items-center gap-md"><span class="material-symbols-outlined">groups</span><span class="font-label-md text-label-md">Members</span></div><span class="material-symbols-outlined text-[20px] transition-transform duration-200">expand_more</span></button><div class="flex flex-col bg-primary-container/50"><a class="pl-[64px] py-sm text-on-primary/70 hover:text-secondary-fixed hover:bg-primary-light/10 transition-all font-label-md text-label-md" href="#">Directory</a><a class="pl-[64px] py-sm text-on-primary/70 hover:text-secondary-fixed hover:bg-primary-light/10 transition-all font-label-md text-label-md" href="#">New Member</a><a class="pl-[64px] py-sm text-on-primary/70 hover:text-secondary-fixed hover:bg-primary-light/10 transition-all font-label-md text-label-md" href="#">Member Profile</a><a class="pl-[64px] py-sm text-on-primary/70 hover:text-secondary-fixed hover:bg-primary-light/10 transition-all font-label-md text-label-md" href="#">Edit Member</a><a class="pl-[64px] py-sm text-on-primary/70 hover:text-secondary-fixed hover:bg-primary-light/10 transition-all font-label-md text-label-md" href="#">Pending Members</a><a class="pl-[64px] py-sm text-on-primary/70 hover:text-secondary-fixed hover:bg-primary-light/10 transition-all font-label-md text-label-md" href="#">Member Regularisation</a><a class="pl-[64px] py-sm text-on-primary/70 hover:text-secondary-fixed hover:bg-primary-light/10 transition-all font-label-md text-label-md" href="#">Member Transfers</a><a class="pl-[64px] py-sm text-secondary-fixed bg-primary-light/10 font-bold transition-all font-label-md text-label-md" href="#">Status Management</a></div></div><a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#"><span class="material-symbols-outlined">church</span><span class="font-label-md text-label-md">Classes</span></a><a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#"><span class="material-symbols-outlined">payments</span><span class="font-label-md text-label-md">Finance</span></a><a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#"><span class="material-symbols-outlined">assessment</span><span class="font-label-md text-label-md">Reports</span></a></div>
-<div class="px-lg py-lg border-t border-primary-light/30 flex flex-col gap-sm">
-<button class="w-full bg-secondary-container text-on-secondary-container font-label-md text-label-md py-sm rounded-DEFAULT font-bold shadow-sm hover:bg-secondary-fixed transition-colors">Quick Actions</button>
-<div class="mt-md flex flex-col gap-xs">
-<a class="flex items-center gap-md text-on-primary py-sm px-sm hover:bg-primary-light/10 transition-all duration-200 rounded-DEFAULT" href="#">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-<a class="flex items-center gap-md text-on-primary py-sm px-sm hover:bg-primary-light/10 transition-all duration-200 rounded-DEFAULT" href="#">
-<span class="material-symbols-outlined" data-icon="logout">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</div>
-</div>
-</nav>
+{% include 'components/sidebar.html' %}
 <!-- Top App Bar (Desktop) -->
 <!-- Mobile Top App Bar -->
 <header class="md:hidden fixed top-0 left-0 w-full z-40 h-header-height bg-surface-container-lowest flex justify-between items-center px-lg border-b border-border shadow-sm">
@@ -146,7 +127,7 @@
 </button>
 </header>
 <!-- Main Content Area -->
-<main class="flex-1 w-full md:pl-sidebar-width pt-header-height md:pt-header-height pb-[76px] md:pb-0 px-lg md:px-xl py-lg">
+<main class="flex-1 w-full  pt-header-height md:pt-header-height pb-[76px] md:pb-0 px-lg md:px-xl py-lg">
 <!-- Page Header -->
 <div class="mb-lg flex flex-col gap-xs">
 <div class="flex items-center gap-sm text-on-surface-variant">

@@ -137,94 +137,9 @@
     </script>
 </head>
 <body class="bg-surface text-on-surface font-body-md text-body-md antialiased flex min-h-screen">
-<!-- SideNavBar (Shared Component) -->
-<nav class="fixed left-0 top-0 h-full w-sidebar-width bg-primary dark:bg-primary-container shadow-sm dark:shadow-none flex flex-col py-lg z-20">
-<!-- Header -->
-<div class="px-lg pb-xl border-b border-on-primary/10 mb-md flex items-center gap-md">
-<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm overflow-hidden shrink-0">
-<img class="w-full h-full object-cover" data-alt="A minimalist, professional corporate logo design suitable for a church administration system. Clean lines, dark maroon and gold colors, white background. Light mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8a0XeRLQk0w7VBrsG3ITSxE9at02_KJ3RYR466_fQXKwfieS5itLh0-UUmbtLOyDa0twcasPkJ_pCmzGbhA8BZj5D8WPCzt7iEJsW1Od37_9WA4vI12ZR-W1vu5yOf0i9LS4Z04Zc5iv6LCaghZgr1nBTRQNMVNbTqW0KB2gWcmc3YsfYtc3j8tEqgdsBwxdNjAiG5r7th6Q82lSW8WgWcznSW1orzFFYLvMsN-mwVsXqfADK2gudWmqRtigu-PgnKDtEiAe_Iwdo"/>
-</div>
-<div class="flex flex-col">
-<span class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</span>
-<span class="text-label-sm font-label-sm text-on-primary/70">Methodist Church Ghana</span>
-</div>
-</div>
-<!-- Main Nav Tabs -->
-<div class="flex-1 overflow-y-auto custom-scrollbar px-sm">
-<ul class="space-y-sm">
-<li class="">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="">Dashboard</span>
-</a>
-</li>
-<li class="">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">group</span>
-<span class="">Members</span>
-</a>
-</li>
-<!-- ACTIVE NAV ITEM (Classes) -->
-<li class="group">
-<div class="flex items-center justify-between px-md py-sm rounded-lg bg-primary-light/10 border-l-[3px] border-secondary-container text-on-primary cursor-pointer transition-colors duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
-<span class="font-bold">Classes</span>
-</div>
-<span class="material-symbols-outlined text-[20px] transition-transform duration-200">expand_more</span>
-</div>
-<ul class="mt-xs ml-xl space-y-xs border-l border-on-primary/10 pl-md">
-<li>
-<a class="block py-1.5 text-label-md text-on-primary/70 hover:text-on-primary transition-colors" href="#">Class List</a>
-</li>
-<li>
-<a class="block py-1.5 text-label-md text-on-primary/70 hover:text-on-primary transition-colors" href="#">Class Detail</a>
-</li>
-<li>
-<a class="block py-1.5 text-label-md text-on-primary/70 hover:text-on-primary transition-colors" href="#">Add/Edit Class</a>
-</li>
-<li>
-<a class="block py-1.5 text-label-md text-secondary-container font-bold" href="#">Attendance Recording</a>
-</li>
-<li>
-<a class="block py-1.5 text-label-md text-on-primary/70 hover:text-on-primary transition-colors" href="#">Attendance Report</a>
-</li>
-</ul>
-</li>
-<li class="">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">payments</span>
-<span class="">Finance</span>
-</a>
-</li>
-<li class="">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">assessment</span>
-<span class="">Reports</span>
-</a>
-</li>
-</ul>
-</div>
-<!-- Footer Nav Tabs -->
-<div class="px-sm pt-md border-t border-on-primary/10 mt-auto">
-<ul class="space-y-sm">
-<li class="">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="">Settings</span>
-</a>
-</li>
-<li class="">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:text-on-primary hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="">Logout</span>
-</a>
-</li>
-</ul>
-</div>
-</nav>
+{% include 'components/sidebar.html' %}
 <!-- Main Content Wrapper -->
-<div class="flex-1 ml-sidebar-width flex flex-col min-h-screen relative">
+<div class="flex-1  flex flex-col min-h-screen relative">
 <!-- TopAppBar (Shared Component) -->
 <header class="docked full-width top-0 bg-surface-container-lowest dark:bg-surface-dim shadow-sm flex justify-between items-center h-header-height px-xl z-10 w-full sticky">
 <div class="flex items-center gap-md">

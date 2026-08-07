@@ -108,30 +108,9 @@
     .timeline-dot::before { content: ''; position: absolute; left: -17px; top: 6px; width: 8px; height: 8px; border-radius: 50%; background: #5c0219; }
   </style>
 </head>
-<body class="bg-surface text-on-surface font-body-md selection:bg-primary-muted selection:text-primary">
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-muted selection:text-primary flex min-h-screen">
 <!-- SideNavBar -->
-<aside class="flex flex-col h-full w-sidebar-width fixed left-0 top-0 z-40 bg-primary dark:bg-primary-container shadow-md">
-<div class="p-lg flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg bg-white flex items-center justify-center overflow-hidden">
-<img class="w-8 h-8" data-alt="A minimalist logo for the Methodist Church Ghana, featuring a clean red cross and a subtle flame symbol, set against a pristine white background. The style is professional and corporate, reflecting institutional authority and religious tradition with a modern, flat-design aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbzQkwc_OeqArDFPtUlSgxvSCFrHCssBxKpnyQmGb03sI7BcXQRfJ9pp7d7DBHY4KVjAsJlmb-lO4SYNIU0tGAHn65m-XllcfDKQ-PUT79k7glIDWwUFCaqT_156zbTW-uxbgtWAEs7jt0Ob6FAJ15OmnecAwStkMmppNRiKKlY_JQDaGZB6iZI_hdaC-W1OQbe7Q3eHWBdHC0dZIKZ3cHD2q9GTAE0FNYPLuO-0jC6qoODRNFkyMFd1RWfD12TOAxAhF1m-OarBF1"/>
-</div>
-<div>
-<h1 class="font-headline-md text-headline-md font-bold text-on-primary dark:text-on-primary-container leading-none">MCG-SMS</h1>
-<p class="text-[10px] text-on-primary/60 uppercase tracking-widest mt-1">Methodist Church Ghana</p>
-</div>
-</div>
-<nav class="flex-1 mt-md space-y-1"><div class="px-4 py-2"><div class="flex items-center justify-between text-on-primary/60 mb-2 px-2"><span class="text-[10px] font-bold uppercase tracking-widest">Finance Module</span><span class="material-symbols-outlined text-[16px]">expand_more</span></div><div class="space-y-1"><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="text-body-md">Finance Overview</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">add_circle</span><span class="text-body-md">Record Income</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">menu_book</span><span class="text-body-md">Income Ledger</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">remove_circle</span><span class="text-body-md">Record Expense</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">format_list_bulleted</span><span class="text-body-md">Expense Ledger</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-secondary-fixed text-on-secondary-fixed font-bold shadow-sm" href="#"><span class="material-symbols-outlined text-[20px]">fact_check</span><span class="text-body-md">Expense Approval</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">account_balance</span><span class="text-body-md">Budget Management</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">payments</span><span class="text-body-md">Cashbook</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">gavel</span><span class="text-body-md">Statutory Payments</span></a><a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-primary/80 hover:bg-primary-light/10 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="text-body-md">Receipts &amp; Vouchers</span></a></div></div><div class="mt-4 px-4 py-2 border-t border-on-primary/10"><div class="flex items-center justify-between text-on-primary/40 px-2 mb-2"><span class="text-[10px] font-bold uppercase tracking-widest">Other Modules</span><span class="material-symbols-outlined text-[16px]">chevron_right</span></div></div></nav>
-<div class="p-4 border-t border-on-primary/10">
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary/70 hover:text-on-primary transition-colors" href="#">
-<span class="material-symbols-outlined">help</span>
-<span class="font-body-md">Support</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary/70 hover:text-on-primary transition-colors" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-body-md">Logout</span>
-</a>
-</div>
-</aside>
+{% include 'components/sidebar.html' %}
 <!-- TopAppBar -->
 <header class="flex justify-between items-center h-header-height w-full pl-[256px] pr-lg sticky top-0 z-30 bg-surface dark:bg-surface-dim shadow-sm">
 <div class="flex items-center gap-md">

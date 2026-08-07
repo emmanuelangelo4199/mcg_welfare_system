@@ -132,21 +132,11 @@
         }
     </script>
 </head>
-<body class="bg-surface font-body-md text-on-surface">
+<body class="bg-surface font-body-md text-on-surface flex min-h-screen">
 <!-- Side Navigation Shell -->
-<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary-container flex flex-col py-lg shadow-sm z-50 text-white">
-<div class="px-md mb-xl flex flex-col items-center">
-<div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-sm">
-<span class="material-symbols-outlined text-white text-[32px]">church</span>
-</div>
-<h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</h1>
-<p class="font-label-sm text-on-primary/60 tracking-wider">Methodist Church Ghana</p>
-</div>
-<nav class="flex-grow space-y-1"><div class="space-y-1"><a class="flex items-center px-lg py-md text-white/80 font-medium hover:text-white hover:bg-white/10 transition-colors duration-200" href="#"><span class="material-symbols-outlined mr-md">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><a class="flex items-center px-lg py-md text-white/80 font-medium hover:text-white hover:bg-white/10 transition-colors duration-200" href="#"><span class="material-symbols-outlined mr-md">group</span><span class="font-label-md text-label-md">Members</span></a><div class="bg-white/5"><button class="w-full flex items-center justify-between px-lg py-md text-white font-bold bg-white/10"><div class="flex items-center"><span class="material-symbols-outlined mr-md">volunteer_activism</span><span class="font-label-md text-label-md">Welfare</span></div><span class="material-symbols-outlined text-sm">expand_more</span></button><div class="flex flex-col"><a class="pl-[64px] pr-lg py-md text-white font-bold border-l-4 border-secondary-container bg-white/5" href="#"><span class="font-label-md text-label-md">Welfare Cases List</span></a><a class="pl-[64px] pr-lg py-md text-white/80 hover:text-white hover:bg-white/10 transition-colors" href="#"><span class="font-label-md text-label-md">Open New Case</span></a><a class="pl-[64px] pr-lg py-md text-white/80 hover:text-white hover:bg-white/10 transition-colors" href="#"><span class="font-label-md text-label-md">Case Detail</span></a><a class="pl-[64px] pr-lg py-md text-white/80 hover:text-white hover:bg-white/10 transition-colors" href="#"><span class="font-label-md text-label-md">Visitation Record</span></a><a class="pl-[64px] pr-lg py-md text-white/80 hover:text-white hover:bg-white/10 transition-colors" href="#"><span class="font-label-md text-label-md">Payment Record</span></a><a class="pl-[64px] pr-lg py-md text-white/80 hover:text-white hover:bg-white/10 transition-colors" href="#"><span class="font-label-md text-label-md">Case Closure</span></a></div></div><a class="flex items-center px-lg py-md text-white/80 font-medium hover:text-white hover:bg-white/10 transition-colors duration-200" href="#"><span class="material-symbols-outlined mr-md">school</span><span class="font-label-md text-label-md">Classes</span></a><a class="flex items-center px-lg py-md text-white/80 font-medium hover:text-white hover:bg-white/10 transition-colors duration-200" href="#"><span class="material-symbols-outlined mr-md">payments</span><span class="font-label-md text-label-md">Finance</span></a><a class="flex items-center px-lg py-md text-white/80 font-medium hover:text-white hover:bg-white/10 transition-colors duration-200" href="#"><span class="material-symbols-outlined mr-md">assessment</span><span class="font-label-md text-label-md">Reports</span></a></div></nav>
-<div class="mt-auto space-y-1"><a class="flex items-center px-lg py-md text-white/80 font-medium hover:text-white hover:bg-white/10 transition-colors duration-200" href="#"><span class="material-symbols-outlined mr-md">settings</span><span class="font-label-md text-label-md">Settings</span></a><a class="flex items-center px-lg py-md text-white/80 font-medium hover:text-white hover:bg-white/10 transition-colors duration-200" href="#"><span class="material-symbols-outlined mr-md">logout</span><span class="font-label-md text-label-md">Logout</span></a></div>
-</aside>
+{% include 'components/sidebar.html' %}
 <!-- Top App Bar -->
-<header class="flex justify-between items-center h-header-height px-xl ml-sidebar-width w-[calc(100%-theme(spacing.sidebar-width))] bg-surface-container-lowest dark:bg-surface-dim shadow-sm fixed top-0 z-40">
+<header class="flex justify-between items-center h-header-height px-xl  w-[calc(100%-theme(spacing.sidebar-width))] bg-surface-container-lowest dark:bg-surface-dim shadow-sm fixed top-0 z-40">
 <div class="flex items-center space-x-md">
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
@@ -172,7 +162,7 @@
 </div>
 </header>
 <!-- Main Content Canvas -->
-<main class="ml-sidebar-width pt-header-height min-h-screen bg-surface">
+<main class=" pt-header-height min-h-screen bg-surface">
 <!-- Confidentiality Banner -->
 <div class="px-xl py-md">
 <div class="bg-red-50 border-2 border-danger rounded-xl p-md flex items-center space-x-md confidential-pulse shadow-sm">

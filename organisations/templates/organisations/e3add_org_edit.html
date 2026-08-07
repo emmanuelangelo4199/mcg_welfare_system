@@ -144,58 +144,7 @@
         }
     </style>
 </head>
-<body class="bg-surface text-on-surface font-body-md min-h-screen flex"><aside class="w-sidebar-width bg-primary min-h-screen flex flex-col border-r border-primary-light/20">
-<div class="p-lg flex items-center gap-md border-b border-primary-light/10">
-<div class="w-8 h-8 bg-secondary-container rounded-lg flex items-center justify-center">
-<span class="material-symbols-outlined text-on-secondary-container">church</span>
-</div>
-<span class="font-headline-md text-on-primary">ChurchOS</span>
-</div>
-<nav class="flex-1 py-md px-sm space-y-xs overflow-y-auto">
-<div class="space-y-xs">
-<button class="w-full flex items-center justify-between p-sm rounded-lg text-on-primary/70 hover:bg-primary-light/20 transition-colors">
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-label-md">Dashboard</span>
-</div>
-</button>
-</div>
-<div class="space-y-xs">
-<button class="w-full flex items-center justify-between p-sm rounded-lg bg-primary-light/20 text-on-primary transition-colors">
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined">groups</span>
-<span class="font-label-md">Organisations</span>
-</div>
-<span class="material-symbols-outlined text-sm">expand_more</span>
-</button>
-<div class="pl-lg space-y-xs mt-xs">
-<a class="block p-sm rounded-lg text-on-primary/70 hover:bg-primary-light/10 font-label-md" href="#">Organisation List</a>
-<a class="block p-sm rounded-lg text-on-primary/70 hover:bg-primary-light/10 font-label-md" href="#">Organisation Detail</a>
-<a class="block p-sm rounded-lg bg-secondary-container text-on-secondary-container font-label-md" href="#">Add/Edit Organisation</a>
-<a class="block p-sm rounded-lg text-on-primary/70 hover:bg-primary-light/10 font-label-md" href="#">Attendance Recording</a>
-<a class="block p-sm rounded-lg text-on-primary/70 hover:bg-primary-light/10 font-label-md" href="#">Dues &amp; Contributions</a>
-</div>
-</div>
-<div class="space-y-xs">
-<button class="w-full flex items-center justify-between p-sm rounded-lg text-on-primary/70 hover:bg-primary-light/20 transition-colors">
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined">person</span>
-<span class="font-label-md">Members</span>
-</div>
-<span class="material-symbols-outlined text-sm">chevron_right</span>
-</button>
-</div>
-</nav>
-<div class="p-md border-t border-primary-light/10">
-<div class="flex items-center gap-sm p-sm">
-<div class="w-8 h-8 rounded-full bg-primary-light flex items-center justify-center text-on-primary font-semibold">AD</div>
-<div class="flex-1 min-w-0">
-<p class="text-label-md text-on-primary truncate">Admin User</p>
-<p class="text-label-sm text-on-primary/60 truncate">admin@church.org</p>
-</div>
-</div>
-</div>
-</aside>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex">{% include 'components/sidebar.html' %}
 <!-- SideNavBar (Suppressed for transactional form as per "Destination" Rule) -->
 <!-- TopAppBar (Suppressed for transactional form, keeping focus on canvas) -->
 <!-- Main Canvas -->

@@ -133,57 +133,9 @@
 </head>
 <body class="bg-background text-on-surface font-body-md overflow-hidden flex h-screen">
 <!-- SideNavBar -->
-<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary-container shadow-sm flex flex-col py-lg z-50">
-<div class="px-md mb-xl">
-<h1 class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</h1>
-<p class="font-label-sm text-on-primary/60 uppercase tracking-widest mt-xs">Methodist Church Ghana</p>
-</div>
-<nav class="flex-1 space-y-1">
-<a class="flex items-center px-lg py-sm text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined mr-md">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-<a class="flex items-center px-lg py-sm text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined mr-md">group</span>
-<span class="font-label-md text-label-md">Members</span>
-</a>
-<div class="space-y-1">
-<button class="w-full flex items-center px-lg py-sm bg-primary-light/10 text-on-primary font-bold transition-colors duration-200 border-l-[3px] border-secondary-container">
-<span class="material-symbols-outlined mr-md">volunteer_activism</span>
-<span class="font-label-md text-label-md flex-1 text-left">Welfare</span>
-<span class="material-symbols-outlined text-sm">expand_more</span>
-</button>
-<div class="bg-black/10 py-1">
-<a class="flex items-center pl-12 pr-lg py-2 text-on-primary/70 hover:text-on-primary text-label-sm transition-colors" href="#">Welfare Cases List</a>
-<a class="flex items-center pl-12 pr-lg py-2 text-on-primary/70 hover:text-on-primary text-label-sm transition-colors" href="#">Open New Case</a>
-<a class="flex items-center pl-12 pr-lg py-2 text-secondary-container font-bold text-label-sm transition-colors" href="#">Case Detail</a>
-<a class="flex items-center pl-12 pr-lg py-2 text-on-primary/70 hover:text-on-primary text-label-sm transition-colors" href="#">Visitation Record</a>
-<a class="flex items-center pl-12 pr-lg py-2 text-on-primary/70 hover:text-on-primary text-label-sm transition-colors" href="#">Payment Record</a>
-<a class="flex items-center pl-12 pr-lg py-2 text-on-primary/70 hover:text-on-primary text-label-sm transition-colors" href="#">Case Closure</a>
-</div>
-</div>
-<a class="flex items-center px-lg py-sm text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined mr-md">payments</span>
-<span class="font-label-md text-label-md">Finance</span>
-</a>
-<a class="flex items-center px-lg py-sm text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined mr-md">assessment</span>
-<span class="font-label-md text-label-md">Reports</span>
-</a>
-</nav>
-<div class="px-md mt-auto pt-lg border-t border-on-primary/10">
-<a class="flex items-center px-sm py-sm text-on-primary/80 font-medium hover:bg-primary-light rounded-lg transition-colors duration-200" href="#">
-<span class="material-symbols-outlined mr-sm">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-<a class="flex items-center px-sm py-sm text-on-primary/80 font-medium hover:bg-primary-light rounded-lg transition-colors duration-200" href="#">
-<span class="material-symbols-outlined mr-sm">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</div>
-</aside>
+{% include 'components/sidebar.html' %}
 <!-- Main Content Area -->
-<main class="ml-sidebar-width flex-1 flex flex-col h-full bg-surface">
+<main class=" flex-1 flex flex-col h-full bg-surface">
 <!-- TopAppBar -->
 <header class="flex justify-between items-center h-header-height px-xl bg-surface-container-lowest shadow-sm z-40">
 <div class="flex items-center gap-md">

@@ -204,10 +204,10 @@
         }
     </style>
 </head>
-<body class="bg-surface text-on-surface font-body-md text-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<body class="bg-surface text-on-surface font-body-md text-body-md antialiased selection:bg-primary-container selection:text-on-primary-container flex min-h-screen">
 <!-- DESKTOP TOP APP BAR -->
 <header class="hidden md:flex fixed top-0 left-0 w-full z-50 justify-between items-center px-lg h-header-height bg-surface-container-lowest border-b border-border shadow-sm">
-<div class="flex items-center gap-md ml-sidebar-width pl-lg">
+<div class="flex items-center gap-md  pl-lg">
 <button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center rounded-full p-2 hover:bg-surface-container-low" title="Go Back">
 <span class="material-symbols-outlined">arrow_back</span>
 </button>
@@ -224,96 +224,7 @@
 </div>
 </header>
 <!-- SIDE NAVIGATION BAR (Desktop) -->
-<nav class="hidden md:flex fixed left-0 top-0 h-full w-sidebar-width flex-col z-50 bg-primary-container shadow-lg"><!-- Brand Header -->
-<div class="h-header-height flex items-center px-lg border-b border-primary/20 bg-primary/10">
-<div class="flex items-center gap-sm">
-<div class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center overflow-hidden">
-<img alt="Church logo" class="w-6 h-6 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhPaeVkR37WHd178ZG6k7ZlD83xfDhuJaVdVkH1P1FjFYpdL19Jmu-inaN98g6NptGDZrlD4ZCXgtD28BM4WHVcPWyEWjb_DhyrsUKYV4_rzDkfEGNQuyTz7mO4fwStmztUWKQJnYLWR-zp5OLqpWuXzzeCkzAb49rsSZ3lmrx1lCnRpJcg0th1TyT9DZvMsOVmhShVw5E96pqtiRkhHuQPhCjZEdVUzq5FnHkKXOEyM3_7NhvTOy9OJ5l2y8YTuuQ-fXiGMWmVbd6"/>
-</div>
-<div>
-<h2 class="font-headline-md text-headline-md text-secondary-fixed font-bold leading-none tracking-tight">MCG-SMS</h2>
-</div>
-</div>
-</div>
-<!-- Primary Nav Items -->
-<div class="flex-1 py-lg overflow-y-auto">
-<ul class="space-y-sm px-sm">
-<li>
-<a class="flex items-center gap-md text-on-primary py-md px-lg rounded-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-</li>
-<!-- ACTIVE ITEM WITH ACCORDION -->
-<li class="space-y-1">
-<button class="w-full flex items-center justify-between gap-md border-l-4 border-secondary-container bg-primary-light/20 text-secondary-fixed py-md px-lg rounded-r-lg translate-x-1 duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined icon-fill" data-icon="groups">groups</span>
-<span class="font-label-md text-label-md font-bold">Members</span>
-</div>
-<span class="material-symbols-outlined text-[18px]">expand_more</span>
-</button>
-<ul class="pl-[48px] space-y-1 mt-1">
-<li><a class="block py-2 text-on-primary/80 hover:text-on-primary font-label-md text-label-md transition-colors" href="#">Directory</a></li>
-<li><a class="block py-2 text-on-primary/80 hover:text-on-primary font-label-md text-label-md transition-colors" href="#">New Member</a></li>
-<li><a class="block py-2 text-secondary-fixed font-bold font-label-md text-label-md transition-colors" href="#">Member Profile</a></li>
-<li><a class="block py-2 text-on-primary/80 hover:text-on-primary font-label-md text-label-md transition-colors" href="#">Edit Member</a></li>
-<li><a class="block py-2 text-on-primary/80 hover:text-on-primary font-label-md text-label-md transition-colors" href="#">Pending Members</a></li>
-<li><a class="block py-2 text-on-primary/80 hover:text-on-primary font-label-md text-label-md transition-colors" href="#">Member Regularisation</a></li>
-<li><a class="block py-2 text-on-primary/80 hover:text-on-primary font-label-md text-label-md transition-colors" href="#">Member Transfers</a></li>
-<li><a class="block py-2 text-on-primary/80 hover:text-on-primary font-label-md text-label-md transition-colors" href="#">Status Management</a></li>
-</ul>
-</li>
-<li>
-<button class="w-full flex items-center justify-between gap-md text-on-primary py-md px-lg rounded-lg hover:bg-primary-light/10 transition-all duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined" data-icon="church">church</span>
-<span class="font-label-md text-label-md">Classes</span>
-</div>
-<span class="material-symbols-outlined text-[18px]">chevron_right</span>
-</button>
-</li>
-<li>
-<button class="w-full flex items-center justify-between gap-md text-on-primary py-md px-lg rounded-lg hover:bg-primary-light/10 transition-all duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined" data-icon="payments">payments</span>
-<span class="font-label-md text-label-md">Finance</span>
-</div>
-<span class="material-symbols-outlined text-[18px]">chevron_right</span>
-</button>
-</li>
-<li>
-<button class="w-full flex items-center justify-between gap-md text-on-primary py-md px-lg rounded-lg hover:bg-primary-light/10 transition-all duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
-<span class="font-label-md text-label-md">Reports</span>
-</div>
-<span class="material-symbols-outlined text-[18px]">chevron_right</span>
-</button>
-</li>
-</ul>
-</div>
-<!-- Bottom Actions -->
-<div class="p-lg border-t border-primary/20">
-<button class="w-full mb-md bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed transition-colors py-sm px-md rounded-lg font-label-md text-label-md font-bold flex items-center justify-center gap-sm shadow-sm">
-<span class="material-symbols-outlined text-[18px]">add</span>
-    Quick Actions
-  </button>
-<ul class="space-y-xs">
-<li>
-<a class="flex items-center gap-md text-on-primary/80 hover:text-on-primary py-sm px-md rounded-lg hover:bg-primary-light/10 transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-md text-on-primary/80 hover:text-on-primary py-sm px-md rounded-lg hover:bg-primary-light/10 transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</li>
-</ul>
-</div></nav>
+{% include 'components/sidebar.html' %}
 <!-- MOBILE BOTTOM APP BAR -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest pb-safe md:hidden border-t border-border shadow-[0_-1px_3px_rgba(0,0,0,0.06)] h-[56px]">
 <a class="flex flex-col items-center justify-center text-on-surface-variant w-full h-full active:bg-surface-container-high transition-colors" href="#">
@@ -340,7 +251,7 @@
 </a>
 </nav>
 <!-- MAIN CONTENT CANVAS -->
-<main class="md:ml-sidebar-width pt-[16px] md:pt-[calc(64px+24px)] pb-[80px] md:pb-lg px-md md:px-xl min-h-screen">
+<main class=" pt-[16px] md:pt-[calc(64px+24px)] pb-[80px] md:pb-lg px-md md:px-xl min-h-screen">
 <div class="max-w-7xl mx-auto">
 <!-- Mobile Header (Visible only on mobile) -->
 <div class="flex items-center gap-md mb-lg md:hidden">

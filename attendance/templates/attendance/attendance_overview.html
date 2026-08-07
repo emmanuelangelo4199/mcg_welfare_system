@@ -146,86 +146,9 @@
         }
     </style>
 </head>
-<body class="bg-background text-on-surface font-body-md text-body-md overflow-x-hidden">
+<body class="bg-background text-on-surface font-body-md text-body-md overflow-x-hidden flex min-h-screen">
 <!-- SideNavBar -->
-<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary dark:bg-primary-container shadow-sm flex flex-col py-lg z-50">
-<div class="px-md mb-xl flex items-center gap-base">
-<div>
-<h1 class="text-headline-md font-headline-md font-bold text-on-primary leading-tight">Methodist Church Ghana</h1>
-<p class="text-label-sm text-on-primary/70 capitalize tracking-wider">System Management System</p>
-</div>
-</div>
-<nav class="flex-1 space-y-xs px-sm"><div class="space-y-xs">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'dashboard:dashboard' %}">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'members:member_directory' %}">
-<span class="material-symbols-outlined">group</span>
-<span class="font-label-md text-label-md">Members</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'classes:class_list' %}">
-<span class="material-symbols-outlined">school</span>
-<span class="font-label-md text-label-md">Classes</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'services:upcoming_events' %}">
-<span class="material-symbols-outlined">event</span>
-<span class="font-label-md text-label-md">Services</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'organisations:org_list' %}">
-<span class="material-symbols-outlined">business</span>
-<span class="font-label-md text-label-md">Organisations</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'welfare_cases:welfare_cases_list' %}">
-<span class="material-symbols-outlined">volunteer_activism</span>
-<span class="font-label-md text-label-md">Welfare Cases</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'meetings:meeting_list' %}">
-<span class="material-symbols-outlined">meeting_room</span>
-<span class="font-label-md text-label-md">Meetings</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'communications:compose_message' %}">
-<span class="material-symbols-outlined">forum</span>
-<span class="font-label-md text-label-md">Communications</span>
-</a>
-<div class="space-y-xs">
-<details class="group" open>
-<summary class="w-full flex items-center justify-between px-md py-sm rounded-lg text-on-primary font-medium hover:bg-primary-light transition-colors duration-200 cursor-pointer list-none" style="list-style:none;">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">calendar_today</span>
-<span class="font-label-md text-label-md">Attendance</span>
-</div>
-<span class="material-symbols-outlined text-sm transition-transform duration-200 group-open:rotate-180">expand_more</span>
-</summary>
-<div class="ml-xl mt-1 space-y-xs border-l border-on-primary/20 pl-md py-1">
-<a class="block py-2 text-label-sm text-secondary-container font-bold" href="{% url 'attendance:overview' %}">Attendance Overview</a>
-<a class="block py-2 text-label-sm text-on-primary/70 hover:text-on-primary transition-colors" href="{% url 'attendance:service_attendance' %}">Sunday Service Report</a>
-<a class="block py-2 text-label-sm text-on-primary/70 hover:text-on-primary transition-colors" href="{% url 'attendance:class_attendance' %}">Class Attendance Summary</a>
-<a class="block py-2 text-label-sm text-on-primary/70 hover:text-on-primary transition-colors" href="{% url 'attendance:org_attendance' %}">Organisation Attendance Summary</a>
-<a class="block py-2 text-label-sm text-on-primary/70 hover:text-on-primary transition-colors" href="{% url 'attendance:absentee_report' %}">Absentee Report</a>
-</div>
-</details>
-</div>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'finance:dashboard' %}">
-<span class="material-symbols-outlined">payments</span>
-<span class="font-label-md text-label-md">Finance</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="{% url 'reports:reports_hub' %}">
-<span class="material-symbols-outlined">assessment</span>
-<span class="font-label-md text-label-md">Reports</span>
-</a>
-</div></nav>
-<div class="mt-auto px-sm space-y-xs">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</div>
-</aside>
+{% include 'components/sidebar.html' %}
 <!-- TopAppBar -->
 <header class="fixed top-0 left-0 w-full z-30 flex justify-between items-center px-lg h-header-height bg-surface-container-lowest dark:bg-surface-dim border-b border-border dark:border-outline-variant shadow-sm pl-[calc(256px+24px)]">
 <div class="flex flex-col">

@@ -141,91 +141,10 @@
         }
     </script>
 </head>
-<body class="bg-background text-on-surface font-body-md min-h-screen">
-<!-- Desktop Sidebar (Anchor) -->
-<aside class="fixed left-0 top-0 h-full w-sidebar-width flex flex-col z-40 bg-primary-container dark:bg-primary shadow-lg hidden md:flex">
-<div class="p-lg flex flex-col gap-xs">
-<h1 class="font-headline-md text-headline-md text-secondary-fixed font-bold leading-tight">Methodist Church Ghana</h1>
-<p class="font-label-md text-label-md text-on-primary-container opacity-80">Society Management System</p>
-</div>
-<nav class="flex-1 mt-md custom-scrollbar overflow-y-auto"><!-- Dashboard -->
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-<!-- Classes (Collapsed) -->
-<div class="group">
-<button class="w-full flex items-center justify-between text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">church</span>
-<span class="font-label-md text-label-md">Classes</span>
-</div>
-<span class="material-symbols-outlined text-[20px] transition-transform group-hover:rotate-90">chevron_right</span>
-</button>
-</div>
-<!-- Services (Expanded & Active) -->
-<div class="bg-primary-light/10">
-<button class="w-full flex items-center justify-between border-l-4 border-secondary-container bg-primary-light/20 text-secondary-fixed py-md px-lg transition-all duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">event_note</span>
-<span class="font-label-md text-label-md">Services</span>
-</div>
-<span class="material-symbols-outlined text-[20px] rotate-90">chevron_right</span>
-</button>
-<div class="flex flex-col bg-black/10">
-<a class="py-sm pl-[60px] pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-sm transition-colors" href="#">Services &amp; Events Calendar</a>
-<a class="py-sm pl-[60px] pr-lg text-secondary-fixed font-bold bg-primary-light/20 text-label-sm transition-colors" href="#">Add / Edit Service or Programme Form</a>
-<a class="py-sm pl-[60px] pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-sm transition-colors" href="#">Service Detail Screen</a>
-<a class="py-sm pl-[60px] pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-sm transition-colors" href="#">Service Attendance Recording</a>
-<a class="py-sm pl-[60px] pr-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-sm transition-colors" href="#">Upcoming Events / Programme Calendar</a>
-</div>
-</div>
-<!-- Members (Collapsed) -->
-<div class="group">
-<button class="w-full flex items-center justify-between text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">groups</span>
-<span class="font-label-md text-label-md">Members</span>
-</div>
-<span class="material-symbols-outlined text-[20px] transition-transform group-hover:rotate-90">chevron_right</span>
-</button>
-</div>
-<!-- Finance (Collapsed) -->
-<div class="group">
-<button class="w-full flex items-center justify-between text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">payments</span>
-<span class="font-label-md text-label-md">Finance</span>
-</div>
-<span class="material-symbols-outlined text-[20px] transition-transform group-hover:rotate-90">chevron_right</span>
-</button>
-</div>
-<!-- Reports (Collapsed) -->
-<div class="group">
-<button class="w-full flex items-center justify-between text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">assessment</span>
-<span class="font-label-md text-label-md">Reports</span>
-</div>
-<span class="material-symbols-outlined text-[20px] transition-transform group-hover:rotate-90">chevron_right</span>
-</button>
-</div></nav>
-<div class="mt-auto border-t border-primary-light/20 p-md">
-<button class="w-full bg-secondary-container text-on-secondary-container py-md rounded-lg font-label-md flex items-center justify-center gap-sm mb-md hover:opacity-90 active:scale-95 transition-all">
-<span class="material-symbols-outlined">add</span> Quick Actions
-            </button>
-<a class="flex items-center gap-md text-on-primary py-md px-md hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-<a class="flex items-center gap-md text-on-primary py-md px-md hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</div>
-</aside>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex min-h-screen">
+{% include 'components/sidebar.html' %}
 <!-- Main Content Area -->
-<main class="md:ml-sidebar-width flex flex-col min-h-screen">
+<main class=" flex flex-col min-h-screen">
 <!-- Top App Bar -->
 <header class="fixed top-0 right-0 left-0 md:left-sidebar-width z-50 flex justify-between items-center px-lg h-header-height bg-surface-container-lowest border-b border-border shadow-sm">
 <div class="flex items-center gap-md">

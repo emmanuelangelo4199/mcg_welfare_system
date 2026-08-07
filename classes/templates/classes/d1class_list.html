@@ -126,45 +126,10 @@
         }
     </script>
 </head>
-<body class="bg-surface font-body-md text-on-surface antialiased min-h-screen">
+<body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex min-h-screen">
 <!-- TopAppBar -->
 <!-- SideNavBar -->
-<aside class="fixed left-0 top-0 h-full w-sidebar-width flex flex-col z-40 bg-primary-container dark:bg-primary shadow-lg hidden md:flex transition-all">
-<!-- Header -->
-<div class="p-lg flex items-center gap-md border-b border-white/10">
-<div class="h-10 w-10 rounded-full bg-white flex items-center justify-center shrink-0">
-</div>
-<div class="flex flex-col">
-<span class="font-headline-md text-headline-md text-secondary-fixed font-bold truncate">Methodist Church<br/>Ghana</span>
-<span class="text-xs text-white/70 truncate">Society Management System</span>
-</div>
-</div>
-<!-- CTA -->
-<div class="p-md">
-<button class="w-full bg-secondary-fixed text-on-secondary-fixed py-2 rounded-DEFAULT font-label-md text-label-md font-bold shadow-sm hover:bg-secondary-fixed-dim transition-colors flex items-center justify-center gap-sm">
-<span class="material-symbols-outlined" style="font-size: 18px;">add</span> Quick Actions
-            </button>
-</div>
-<!-- Navigation Links -->
-<nav class="flex-1 overflow-y-auto py-sm"><ul class="flex flex-col gap-1"><li class=""><a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#"><span class="material-symbols-outlined" data-icon="dashboard">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a></li><li class=""><a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#"><span class="material-symbols-outlined" data-icon="groups">groups</span><span class="font-label-md text-label-md">Members</span></a></li><li class="flex flex-col"><div class="flex items-center justify-between gap-md border-l-4 border-secondary-container bg-primary-light/20 text-secondary-fixed py-md px-lg cursor-pointer"><div class="flex items-center gap-md"><span class="material-symbols-outlined" data-icon="church">church</span><span class="font-label-md text-label-md">Classes</span></div><span class="material-symbols-outlined text-[20px]">expand_more</span></div><ul class="bg-primary-container/50 py-2 flex flex-col"><li class=""><a class="flex items-center pl-[64px] pr-lg py-2 text-secondary-fixed font-medium text-label-md bg-primary-light/10" href="#">Class List</a></li><li class=""><a class="flex items-center pl-[64px] pr-lg py-2 text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-colors text-label-md" href="#">Class Detail</a></li><li class=""><a class="flex items-center pl-[64px] pr-lg py-2 text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-colors text-label-md" href="#">Add/Edit Class</a></li><li class=""><a class="flex items-center pl-[64px] pr-lg py-2 text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-colors text-label-md" href="#">Attendance Recording</a></li><li class=""><a class="flex items-center pl-[64px] pr-lg py-2 text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-colors text-label-md" href="#">Attendance Report</a></li></ul></li><li class=""><a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#"><span class="material-symbols-outlined" data-icon="payments">payments</span><span class="font-label-md text-label-md">Finance</span></a></li><li class=""><a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#"><span class="material-symbols-outlined" data-icon="assessment">assessment</span><span class="font-label-md text-label-md">Reports</span></a></li></ul></nav>
-<!-- Footer Navigation -->
-<div class="mt-auto border-t border-white/10 py-sm">
-<ul class="flex flex-col gap-1">
-<li class="">
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-</li>
-<li class="">
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 opacity-80" href="#">
-<span class="material-symbols-outlined" data-icon="logout">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</li>
-</ul>
-</div>
-</aside>
+{% include 'components/sidebar.html' %}
 <!-- BottomNavBar (Mobile) -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest pb-safe md:hidden border-t border-border dark:border-outline-variant shadow-[0_-1px_3px_rgba(0,0,0,0.06)] h-[56px]">
 <a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high p-2 rounded-lg" href="#">
@@ -189,7 +154,7 @@
 </a>
 </nav>
 <!-- Main Content Canvas -->
-<main class="md:ml-sidebar-width md:pt-header-height min-h-screen p-4 md:p-xl pb-24 md:pb-xl flex flex-col gap-lg">
+<main class=" md:pt-header-height min-h-screen p-4 md:p-xl pb-24 md:pb-xl flex flex-col gap-lg">
 <!-- Page Header Area -->
 <div class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-md">
 <div>

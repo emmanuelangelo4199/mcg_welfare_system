@@ -139,9 +139,9 @@
         }
     </script>
 </head>
-<body class="bg-surface font-body-md text-on-surface min-h-screen overflow-x-hidden">
+<body class="bg-surface font-body-md text-on-surface min-h-screen overflow-x-hidden flex min-h-screen">
 <!-- Top AppBar (from JSON) -->
-<header class="fixed top-0 right-0 left-0 h-header-height z-40 bg-surface-container-lowest dark:bg-surface-dim shadow-sm flex justify-between items-center px-xl ml-sidebar-width w-[calc(100%-theme(spacing.sidebar-width))]">
+<header class="fixed top-0 right-0 left-0 h-header-height z-40 bg-surface-container-lowest dark:bg-surface-dim shadow-sm flex justify-between items-center px-xl  w-[calc(100%-theme(spacing.sidebar-width))]">
 <div class="flex items-center gap-md">
 <span class="font-headline-md text-headline-md font-black text-primary">MCG-SMS</span>
 <div class="h-6 w-px bg-border mx-sm"></div>
@@ -158,65 +158,9 @@
 </div>
 </div>
 </header>
-<!-- SideNavBar (from JSON) -->
-<nav class="fixed left-0 top-0 h-full w-sidebar-width z-50 bg-primary dark:bg-primary-container shadow-sm dark:shadow-none flex flex-col py-lg" style="background-color: #7B1C2D;"><div class="px-lg mb-xl">
-<div class="flex items-center gap-sm">
-<div class="w-10 h-10 maroon-gradient rounded-lg flex items-center justify-center shadow-md">
-<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">church</span>
-</div>
-<div>
-<div class="text-headline-md font-headline-md font-bold text-on-primary">MCG-SMS</div>
-<div class="text-xs text-on-primary/70 font-medium">Methodist Church Ghana</div>
-</div>
-</div>
-</div>
-<div class="flex-1 space-y-xs px-sm">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">group</span>
-<span class="font-label-md text-label-md">Members</span>
-</a>
-<div class="space-y-xs">
-<button class="w-full flex items-center justify-between px-md py-sm rounded-lg bg-primary-light/20 text-on-primary font-bold transition-colors duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
-<span class="font-label-md text-label-md">Welfare</span>
-</div>
-<span class="material-symbols-outlined text-sm">expand_more</span>
-</button>
-<div class="pl-xl space-y-xs mt-xs">
-<a class="block px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Welfare Cases List</a>
-<a class="block px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Open New Case</a>
-<a class="block px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Case Detail</a>
-<a class="block px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Visitation Record</a>
-<a class="block px-md py-2 rounded-lg text-on-primary font-bold text-label-md bg-secondary/20" href="#" style="color: #C49A2B;">Payment Record</a>
-<a class="block px-md py-2 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-primary-light/10 text-label-md transition-colors" href="#">Case Closure</a>
-</div>
-</div>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">payments</span>
-<span class="font-label-md text-label-md">Finance</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">assessment</span>
-<span class="font-label-md text-label-md">Reports</span>
-</a>
-</div>
-<div class="mt-auto px-sm pt-lg border-t border-on-primary/10">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-primary/80 font-medium hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</div></nav>
+{% include 'components/sidebar.html' %}
 <!-- Main Content Canvas -->
-<main class="ml-sidebar-width pt-header-height min-h-screen">
+<main class=" pt-header-height min-h-screen">
 <div class="p-xl max-w-7xl mx-auto">
 <!-- Breadcrumbs -->
 <div class="flex items-center gap-sm text-text-secondary mb-lg">

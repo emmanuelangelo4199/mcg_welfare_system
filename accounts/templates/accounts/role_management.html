@@ -150,64 +150,9 @@
     </head>
     <body class="flex text-[13px]">
         <!-- SideNavBar -->
-        <aside class="fixed left-0 top-0 bottom-0 w-sidebar-width bg-primary flex flex-col py-lg z-50 shadow-md dark:shadow-none">
-    <div class="px-lg mb-xl">
-        <div class="flex items-center gap-md">
-                <div>
-                    <h1 class="text-headline-md font-headline-md font-bold text-on-primary text-xl">Methodist Church Ghana </h1>
-                    <p class="text-label-sm font-label-sm text-primary-fixed-dim opacity-80 capitalize tracking-wider">Society Management System</p>
-                </div>
-            </div>
-        </div>
-        <nav class="flex-1 space-y-1">
-            <a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-                <span class="material-symbols-outlined mr-md">dashboard</span>
-                <span class="font-label-md text-label-md">Dashboard</span>
-            </a>
-            <a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-                <span class="material-symbols-outlined mr-md">groups</span>
-                <span class="font-label-md text-label-md">Membership</span>
-            </a>
-            <a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-                <span class="material-symbols-outlined mr-md">payments</span>
-                <span class="font-label-md text-label-md">Finances</span>
-            </a>
-            <a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-                <span class="material-symbols-outlined mr-md">volunteer_activism</span>
-                <span class="font-label-md text-label-md">Welfare</span>
-            </a>
-            <div class="space-y-1">
-                <button class="w-full group relative flex items-center px-lg py-md text-on-primary bg-primary-light font-bold transition-all">
-                    <span class="material-symbols-outlined mr-md">account_balance</span>
-                    <span class="font-label-md text-label-md flex-1 text-left">Governance</span>
-                    <span class="material-symbols-outlined">expand_more</span>
-                </button>
-                <div class="bg-primary-container/30 py-xs">
-                    <a class="flex items-center pl-xl pr-lg py-sm text-on-primary bg-primary-light/50 border-l-4 border-secondary-fixed-dim font-bold transition-all" href="{% url 'accounts:roles_permissions' %}">
-                        <span class="font-label-md text-label-md">Role Management</span>
-                    </a>
-                    <a class="flex items-center pl-xl pr-lg py-sm text-primary-fixed-dim opacity-80 hover:opacity-100 hover:text-on-primary transition-all" href="{% url 'accounts:user_list' %}">
-                        <span class="font-label-md text-label-md">User Management</span>
-                    </a>
-                    <a class="flex items-center pl-xl pr-lg py-sm text-primary-fixed-dim opacity-80 hover:opacity-100 hover:text-on-primary transition-all" href="{% url 'accounts:profile' %}">
-                        <span class="font-label-md text-label-md">Profile Management</span>
-                    </a>
-                </div>
-            </div>
-            <a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-                <span class="material-symbols-outlined mr-md">assessment</span>
-                <span class="font-label-md text-label-md">Reports</span>
-            </a>
-        </nav>
-        <div class="mt-auto space-y-1">
-            <a class="group relative flex items-center px-lg py-md text-primary-fixed-dim opacity-80 hover:bg-primary-light hover:opacity-100 transition-all" href="#">
-                <span class="material-symbols-outlined mr-md">history</span>
-                <span class="font-label-md text-label-md">Audit Logs</span>
-            </a>
-        </div>
-    </aside>
+        {% include 'components/sidebar.html' %}
         <!-- Main Content Canvas -->
-        <main class="ml-sidebar-width flex-1 min-h-screen flex flex-col relative">
+        <main class=" flex-1 min-h-screen flex flex-col relative">
         <!-- TopNavBar -->
         <header class="flex justify-between items-center w-full px-lg h-header-height sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
         <div class="flex items-center gap-md">

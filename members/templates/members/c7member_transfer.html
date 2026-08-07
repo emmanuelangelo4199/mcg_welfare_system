@@ -188,81 +188,11 @@
         }
       </script>
 </head>
-<body class="bg-surface text-on-surface font-body-md antialiased overflow-x-hidden">
+<body class="bg-surface text-on-surface font-body-md antialiased overflow-x-hidden flex min-h-screen">
 <!-- Desktop TopAppBar -->
-<!-- Desktop SideNavBar -->
-<nav class="hidden md:flex fixed left-0 top-0 h-full w-sidebar-width flex-col z-40 bg-primary-container shadow-lg pt-[80px]">
-<div class="px-lg pb-md mb-md border-b border-primary/20">
-<div class="flex items-center gap-sm mb-2">
-<div class="w-8 h-8 rounded bg-white flex items-center justify-center text-primary font-bold text-xs">MCG</div>
-<div class="font-headline-md text-headline-md text-secondary-fixed font-bold leading-tight">Methodist Church Ghana</div>
-</div>
-<div class="text-on-primary-container text-xs opacity-80">Society Management System</div>
-</div>
-<div class="px-lg mb-md">
-<button class="w-full bg-primary text-white rounded-lg py-2 px-4 font-label-md text-label-md flex justify-center items-center gap-2 hover:bg-primary-light transition-colors shadow-[0_1px_3px_rgba(0,0,0,0.1)] border border-primary/50">
-<span class="material-symbols-outlined text-[18px]">add</span> Quick Actions
-            </button>
-</div>
-<div class="flex-1 overflow-y-auto space-y-1"><div class="space-y-1">
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 font-label-md text-label-md" href="#">
-<span class="material-symbols-outlined text-[20px]">dashboard</span>
-    Dashboard
-  </a>
-<div class="flex flex-col">
-<button class="flex items-center justify-between w-full text-secondary-fixed bg-primary-light/20 py-md px-lg font-label-md text-label-md border-l-4 border-secondary-container">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined text-[20px]">groups</span>
-        Members
-      </div>
-<span class="material-symbols-outlined text-[18px]">expand_more</span>
-</button>
-<div class="bg-primary-container/50 py-1">
-<a class="flex items-center pl-[60px] pr-lg py-2 text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-all text-sm" href="#">Directory</a>
-<a class="flex items-center pl-[60px] pr-lg py-2 text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-all text-sm" href="#">New Member</a>
-<a class="flex items-center pl-[60px] pr-lg py-2 text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-all text-sm" href="#">Member Profile</a>
-<a class="flex items-center pl-[60px] pr-lg py-2 text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-all text-sm" href="#">Edit Member</a>
-<a class="flex items-center pl-[60px] pr-lg py-2 text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-all text-sm" href="#">Pending Members</a>
-<a class="flex items-center pl-[60px] pr-lg py-2 text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-all text-sm" href="#">Member Regularisation</a>
-<a class="flex items-center pl-[60px] pr-lg py-2 text-secondary-fixed font-medium bg-primary-light/10 border-r-4 border-secondary-container/30 text-sm" href="#">Member Transfers</a>
-<a class="flex items-center pl-[60px] pr-lg py-2 text-on-primary/80 hover:text-on-primary hover:bg-primary-light/10 transition-all text-sm" href="#">Status Management</a>
-</div>
-</div>
-<button class="flex items-center justify-between w-full text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 font-label-md text-label-md">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined text-[20px]">church</span>
-      Classes
-    </div>
-<span class="material-symbols-outlined text-[18px]">chevron_right</span>
-</button>
-<button class="flex items-center justify-between w-full text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 font-label-md text-label-md">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined text-[20px]">payments</span>
-      Finance
-    </div>
-<span class="material-symbols-outlined text-[18px]">chevron_right</span>
-</button>
-<button class="flex items-center justify-between w-full text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 font-label-md text-label-md">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined text-[20px]">assessment</span>
-      Reports
-    </div>
-<span class="material-symbols-outlined text-[18px]">chevron_right</span>
-</button>
-</div></div>
-<div class="mt-auto border-t border-primary/20 py-md space-y-1">
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 font-label-md text-label-md" href="#">
-<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
-                Settings
-            </a>
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200 font-label-md text-label-md" href="#">
-<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
-                Logout
-            </a>
-</div>
-</nav>
+{% include 'components/sidebar.html' %}
 <!-- Main Content Area -->
-<main class="md:ml-sidebar-width md:pt-header-height min-h-screen pb-[80px] md:pb-xl px-4 md:px-xl py-6 md:py-xl flex flex-col gap-lg max-w-[1400px] mx-auto">
+<main class=" md:pt-header-height min-h-screen pb-[80px] md:pb-xl px-4 md:px-xl py-6 md:py-xl flex flex-col gap-lg max-w-[1400px] mx-auto">
 <!-- Header Section -->
 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
 <div>

@@ -132,64 +132,10 @@
         }
     </style>
 </head>
-<body class="bg-surface text-on-surface font-body-md min-h-screen">
-<!-- Sidebar Navigation -->
-<aside class="w-sidebar-width h-screen fixed left-0 top-0 bg-primary dark:bg-primary-container shadow-md flex flex-col h-full py-lg z-50">
-<div class="px-md mb-xl">
-<h1 class="font-headline-md text-headline-md font-bold text-on-primary">Methodist Ghana</h1>
-<p class="text-primary-fixed opacity-70 text-label-sm">Connexional Admin</p>
-</div>
-<nav class="flex-1 space-y-1 px-sm custom-scrollbar overflow-y-auto"><div class="space-y-1">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary-fixed opacity-80 hover:opacity-100 hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-body-md">Dashboard</span>
-</a>
-<div class="space-y-1">
-<button class="w-full flex items-center justify-between px-md py-sm rounded-lg text-primary-fixed opacity-80 hover:opacity-100 hover:bg-primary-light transition-colors duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">group</span>
-<span class="font-body-md">Membership</span>
-</div>
-<span class="material-symbols-outlined text-[18px]">expand_more</span>
-</button>
-</div>
-<div class="space-y-1">
-<button class="w-full flex items-center justify-between px-md py-sm rounded-lg text-primary-fixed opacity-80 hover:opacity-100 hover:bg-primary-light transition-colors duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">account_balance_wallet</span>
-<span class="font-body-md">Finance</span>
-</div>
-<span class="material-symbols-outlined text-[18px]">expand_more</span>
-</button>
-</div>
-<div class="space-y-1">
-<button class="w-full flex items-center justify-between px-md py-sm rounded-lg bg-primary-light text-on-primary font-bold">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-body-md">Settings</span>
-</div>
-<span class="material-symbols-outlined text-[18px]">expand_less</span>
-</button>
-<div class="pl-xl space-y-1 mt-1">
-<a class="block px-md py-2 rounded-lg text-label-md text-primary-fixed opacity-80 hover:opacity-100 hover:bg-primary-light" href="#">General Settings</a>
-<a class="block px-md py-2 rounded-lg text-label-md bg-secondary-fixed text-on-secondary-fixed font-bold" href="#">Notification Settings</a>
-<a class="block px-md py-2 rounded-lg text-label-md text-primary-fixed opacity-80 hover:opacity-100 hover:bg-primary-light" href="#">User Permissions</a>
-</div>
-</div>
-</div></nav>
-<div class="mt-auto px-sm pt-md">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary-fixed opacity-80 hover:opacity-100 hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">help</span>
-<span class="font-body-md">Support</span>
-</a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary-fixed opacity-80 hover:opacity-100 hover:bg-primary-light transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">logout</span>
-<span class="font-body-md">Logout</span>
-</a>
-</div>
-</aside>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex min-h-screen">
+{% include 'components/sidebar.html' %}
 <!-- Main Content Shell -->
-<div class="ml-sidebar-width min-h-screen flex flex-col">
+<div class=" min-h-screen flex flex-col">
 <!-- Top App Bar -->
 <header class="h-header-height fixed top-0 right-0 w-[calc(100%-256px)] bg-surface dark:bg-inverse-surface shadow-sm z-40 flex items-center justify-between px-xl">
 <div class="flex items-center gap-md">

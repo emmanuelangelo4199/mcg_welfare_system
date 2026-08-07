@@ -126,81 +126,10 @@
         }
     </style>
 </head>
-<body class="bg-surface text-on-surface antialiased min-h-screen">
+<body class="bg-surface text-on-surface antialiased min-h-screen flex min-h-screen">
 <!-- TopAppBar (Desktop) -->
 <!-- SideNavBar (Desktop) -->
-<aside class="hidden md:flex fixed left-0 top-0 h-screen w-sidebar-width flex-col z-40 bg-primary-container text-on-primary-container shadow-lg pt-header-height">
-<div class="p-lg border-b border-on-primary-fixed-variant/20">
-<h1 class="font-headline-md text-headline-md text-secondary-fixed font-bold">Methodist Church Ghana</h1>
-<p class="font-label-md text-label-md text-on-primary-container/80 mt-xs">Society Management System</p>
-</div>
-<div class="px-lg py-md">
-<button class="w-full flex items-center justify-center gap-sm bg-secondary-container text-on-secondary-container font-label-md text-label-md py-sm rounded-DEFAULT hover:bg-secondary-fixed transition-colors">
-<span class="material-symbols-outlined text-[18px]">add</span> Quick Actions
-            </button>
-</div>
-<nav class="flex-1 overflow-y-auto py-sm"><ul class="flex flex-col gap-xs">
-<li>
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined text-[20px]">dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-</li>
-<li class="flex flex-col">
-<button class="flex items-center justify-between w-full text-secondary-fixed bg-primary-light/20 py-md px-lg border-l-4 border-secondary-container hover:bg-primary-light/10 transition-all duration-200">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">groups</span>
-<span class="font-label-md text-label-md font-bold">Members</span>
-</div>
-<span class="material-symbols-outlined text-[18px]">expand_more</span>
-</button>
-<ul class="bg-primary-container/50 py-xs">
-<li><a class="flex items-center py-sm pl-[60px] pr-lg text-on-primary-container/80 hover:text-on-primary hover:bg-primary-light/10 text-label-md font-label-md transition-colors" href="#">Directory</a></li>
-<li><a class="flex items-center py-sm pl-[60px] pr-lg text-on-primary-container/80 hover:text-on-primary hover:bg-primary-light/10 text-label-md font-label-md transition-colors" href="#">New Member</a></li>
-<li><a class="flex items-center py-sm pl-[60px] pr-lg text-on-primary-container/80 hover:text-on-primary hover:bg-primary-light/10 text-label-md font-label-md transition-colors" href="#">Member Profile</a></li>
-<li><a class="flex items-center py-sm pl-[60px] pr-lg text-on-primary-container/80 hover:text-on-primary hover:bg-primary-light/10 text-label-md font-label-md transition-colors" href="#">Edit Member</a></li>
-<li><a class="flex items-center py-sm pl-[60px] pr-lg text-on-primary-container/80 hover:text-on-primary hover:bg-primary-light/10 text-label-md font-label-md transition-colors" href="#">Pending Members</a></li>
-<li><a class="flex items-center py-sm pl-[60px] pr-lg text-secondary-fixed bg-primary-light/10 text-label-md font-label-md transition-colors" href="#">Member Regularisation</a></li>
-<li><a class="flex items-center py-sm pl-[60px] pr-lg text-on-primary-container/80 hover:text-on-primary hover:bg-primary-light/10 text-label-md font-label-md transition-colors" href="#">Member Transfers</a></li>
-<li><a class="flex items-center py-sm pl-[60px] pr-lg text-on-primary-container/80 hover:text-on-primary hover:bg-primary-light/10 text-label-md font-label-md transition-colors" href="#">Status Management</a></li>
-</ul>
-</li>
-<li>
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined text-[20px]">church</span>
-<span class="font-label-md text-label-md">Classes</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined text-[20px]">payments</span>
-<span class="font-label-md text-label-md">Finance</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined text-[20px]">assessment</span>
-<span class="font-label-md text-label-md">Reports</span>
-</a>
-</li>
-</ul></nav>
-<div class="mt-auto border-t border-on-primary-fixed-variant/20 p-sm">
-<ul class="flex flex-col gap-xs">
-<li class="">
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined text-[20px]">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
-</li>
-<li class="">
-<a class="flex items-center gap-md text-on-primary py-md px-lg hover:bg-primary-light/10 transition-all duration-200" href="#">
-<span class="material-symbols-outlined text-[20px]">logout</span>
-<span class="font-label-md text-label-md">Logout</span>
-</a>
-</li>
-</ul>
-</div>
-</aside>
+{% include 'components/sidebar.html' %}
 <!-- BottomNavBar (Mobile) -->
 <nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest pb-safe h-[56px] shadow-[0_-1px_3px_rgba(0,0,0,0.06)]">
 <a class="flex flex-col items-center justify-center text-on-surface-variant w-full h-full active:bg-surface-container-high transition-colors" href="#">
@@ -226,7 +155,7 @@
 </a>
 </nav>
 <!-- Main Content Canvas -->
-<main class="md:ml-sidebar-width md:mt-header-height pb-[72px] md:pb-xl min-h-screen p-md md:p-xl">
+<main class=" md:mt-header-height pb-[72px] md:pb-xl min-h-screen p-md md:p-xl">
 <div class="mb-lg flex items-center justify-between">
 <div>
 <nav class="flex items-center text-text-secondary font-body-md text-body-md mb-xs">
