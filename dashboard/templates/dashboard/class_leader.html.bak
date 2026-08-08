@@ -1,0 +1,441 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Class Leader Dashboard - Methodist Church Ghana</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-active {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            background-color: #F8F7F5;
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            height: 240px;
+            position: relative;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed-variant": "#832233",
+                      "surface-container-highest": "#e9e1dd",
+                      "secondary-container": "#fece5b",
+                      "primary-fixed-dim": "#ffb2b7",
+                      "tertiary": "#2a2b2a",
+                      "secondary-fixed-dim": "#eec04f",
+                      "inverse-primary": "#ffb2b7",
+                      "on-primary-container": "#ff8a95",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-container": "#7b1c2d",
+                      "on-error": "#ffffff",
+                      "gold-muted": "#FDF6E3",
+                      "background": "#fff8f5",
+                      "border": "#E4E2DD",
+                      "on-secondary-fixed": "#251a00",
+                      "danger": "#DC2626",
+                      "surface-dim": "#e0d8d5",
+                      "tertiary-container": "#404140",
+                      "on-surface": "#1e1b19",
+                      "primary-light": "#A3283F",
+                      "outline-variant": "#dcc0c1",
+                      "secondary": "#775a00",
+                      "primary": "#5c0219",
+                      "on-secondary-fixed-variant": "#5a4300",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#564243",
+                      "on-tertiary-fixed": "#1a1c1b",
+                      "surface-container-low": "#faf2ee",
+                      "on-tertiary-container": "#adadab",
+                      "warning": "#D97706",
+                      "card": "#FFFFFF",
+                      "on-primary-fixed": "#40000e",
+                      "on-secondary-container": "#745700",
+                      "outline": "#897172",
+                      "surface-container-high": "#eee7e3",
+                      "primary-fixed": "#ffdadb",
+                      "primary-muted": "#F5EAEC",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed": "#e3e2e0",
+                      "surface-tint": "#a33a49",
+                      "tertiary-fixed-dim": "#c7c6c5",
+                      "info": "#2563EB",
+                      "success": "#16A34A",
+                      "surface-variant": "#e9e1dd",
+                      "on-primary": "#ffffff",
+                      "inverse-on-surface": "#f7efeb",
+                      "on-error-container": "#93000a",
+                      "on-secondary": "#ffffff",
+                      "text-secondary": "#6B7280",
+                      "surface": "#F8F7F5",
+                      "surface-container": "#f4ece8",
+                      "surface-bright": "#fff8f5",
+                      "on-tertiary": "#ffffff",
+                      "on-background": "#1e1b19",
+                      "on-tertiary-fixed-variant": "#464746",
+                      "inverse-surface": "#33302d",
+                      "secondary-fixed": "#ffdf9a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sidebar-width": "256px",
+                      "base": "8px",
+                      "xs": "4px",
+                      "sm": "8px",
+                      "md": "16px",
+                      "xl": "32px",
+                      "lg": "24px",
+                      "header-height": "64px"
+              },
+              "fontFamily": {
+                      "data-display": ["JetBrains Mono"],
+                      "body-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-lg-mobile": ["Lora"],
+                      "label-sm": ["Inter"],
+                      "headline-lg": ["Lora"],
+                      "data-label": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                      "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="flex min-h-screen text-on-surface">
+<!-- SIDEBAR -->
+<!-- Applying style_component_shape, style_bg_color, style_shell_layout from JSON -->
+{% include 'components/sidebar.html' %}
+<!-- MAIN CONTENT CANVAS -->
+<main class=" flex-grow min-h-screen">
+<!-- TOP APP BAR -->
+<header class="flex justify-between items-center h-header-height px-lg bg-white dark:bg-surface-container-low shadow-sm sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-black text-primary">Admin Portal</span>
+<div class="h-6 w-px bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-6">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Directory</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Resources</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="flex items-center gap-3 pl-2 border-l border-outline-variant">
+<div class="text-right">
+<p class="font-label-md text-label-md font-bold">Kwame Mensah</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Wesley Class Leader</p>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-muted">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a Ghanaian man in his late 40s wearing a clean, formal white shirt. He has a warm, welcoming expression suitable for a church leader. The background is a soft-focus office setting with warm ambient lighting. High quality photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf-ZXOwPkBi9f_pZUbkL2uUf15wXl7WysuDB8zbOij4vR7XqgG_n_X_m22_Vi0aJP2m5uNjGWmv3jnqBuS0S0FmWGFrapG2FSnXbIp-NCkRbWdVD4GdXiPgK9oz0LYn7b7lCrlzABTb7p4Gdp2cIYzspYbOWb7XYYiKAXy5GCE6Z5IL7CPvmaP7Js5owGJhZa5JTaDKdYSNnFBYztKLpmCjwrEfmlJINhIL0NxEjiJaAmskSlwqLhRIrabEoRYwcaMsE7ZN1auTOa5">
+</div>
+</div>
+</div>
+</header>
+<!-- DASHBOARD CONTENT -->
+<div class="p-xl max-w-7xl mx-auto space-y-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Class Leader Dashboard</h2>
+<p class="text-on-surface-variant font-body-md text-body-md">Managing <b>Wesley Class</b> • Wednesday Evening Session</p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md text-label-md flex items-center gap-2 shadow-md hover:bg-primary-light transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    Mark Today's Attendance
+                </button>
+</div>
+<!-- WELFARE ALERTS (Conditional Section) -->
+<section class="grid grid-cols-1 gap-4">
+<div class="bg-error-container/20 border border-error/20 p-md rounded-xl flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="bg-error text-on-error w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-error-container bg-primary-container inline-block px-2 rounded mb-1">Active Welfare Alerts</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Class members requiring urgent attention and visitation.</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-3">
+<div class="bg-white border-l-4 border-error px-4 py-2 rounded shadow-sm flex items-center gap-3">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Bereavement</span>
+<span class="font-bold text-on-surface">Sister Mary Appiah</span>
+</div>
+<span class="bg-error/10 text-error text-[11px] font-bold px-2 py-0.5 rounded">3 DAYS OPEN</span>
+</div>
+<div class="bg-white border-l-4 border-error px-4 py-2 rounded shadow-sm flex items-center gap-3">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Sick Bay</span>
+<span class="font-bold text-on-surface">Brother John Tetteh</span>
+</div>
+<span class="bg-error/10 text-error text-[11px] font-bold px-2 py-0.5 rounded">1 DAY OPEN</span>
+</div>
+</div>
+</div>
+</section>
+<!-- STAT CARDS -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Card 1 -->
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary flex flex-col justify-between hover:shadow-md transition-shadow cursor-default">
+<div class="flex justify-between items-start">
+<span class="text-on-surface-variant font-label-md text-label-md">My Class Size</span>
+<span class="material-symbols-outlined text-secondary opacity-50">groups</span>
+</div>
+<div class="mt-4">
+<h4 class="font-data-display text-[36px] text-on-surface leading-none">42</h4>
+<p class="font-label-sm text-label-sm text-success mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                            +2 from last month
+                        </p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary flex flex-col justify-between hover:shadow-md transition-shadow cursor-default">
+<div class="flex justify-between items-start">
+<span class="text-on-surface-variant font-label-md text-label-md">Attended Last Sunday</span>
+<span class="material-symbols-outlined text-secondary opacity-50">how_to_reg</span>
+</div>
+<div class="mt-4">
+<h4 class="font-data-display text-[36px] text-on-surface leading-none">38</h4>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-4 overflow-hidden">
+<div class="bg-success h-full" style="width: 90%"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-2">90.4% Attendance rate</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary flex flex-col justify-between hover:shadow-md transition-shadow cursor-default">
+<div class="flex justify-between items-start">
+<span class="text-on-surface-variant font-label-md text-label-md">Absentees Last Sunday</span>
+<span class="material-symbols-outlined text-secondary opacity-50">person_off</span>
+</div>
+<div class="mt-4">
+<h4 class="font-data-display text-[36px] text-error leading-none">4</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-2 flex items-center gap-1">
+                            Follow-up required for 2 members
+                        </p>
+<div class="flex -space-x-2 mt-4">
+<div class="w-7 h-7 rounded-full border-2 border-white bg-slate-200 overflow-hidden" title="Member 1"></div>
+<div class="w-7 h-7 rounded-full border-2 border-white bg-slate-300 overflow-hidden" title="Member 2"></div>
+<div class="w-7 h-7 rounded-full border-2 border-white bg-slate-400 overflow-hidden" title="Member 3"></div>
+<div class="w-7 h-7 rounded-full border-2 border-white bg-surface-container-highest flex items-center justify-center text-[10px] font-bold">+1</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CHARTS & BIRTHDAYS -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Attendance Trend -->
+<section class="lg:col-span-2 bg-card p-lg rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface">Attendance Trend <span class="text-on-surface-variant font-normal text-body-md">(Last 12 Weeks)</span></h3>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Class Attendance</span>
+</div>
+</div>
+<div class="chart-container flex items-end justify-between px-2 pt-10">
+<!-- Simulated Chart -->
+<div class="flex flex-col items-center gap-2 group w-full">
+<div class="relative w-full h-full flex items-end justify-center gap-[2px]">
+<div class="bg-primary/10 w-full h-[70%] rounded-t-sm hover:bg-primary/30 transition-colors"></div>
+<div class="bg-primary/10 w-full h-[85%] rounded-t-sm hover:bg-primary/30 transition-colors"></div>
+<div class="bg-primary/10 w-full h-[80%] rounded-t-sm hover:bg-primary/30 transition-colors"></div>
+<div class="bg-primary/10 w-full h-[95%] rounded-t-sm hover:bg-primary/30 transition-colors"></div>
+<div class="bg-primary/10 w-full h-[90%] rounded-t-sm hover:bg-primary/30 transition-colors"></div>
+<div class="bg-primary/10 w-full h-[75%] rounded-t-sm hover:bg-primary/30 transition-colors"></div>
+<div class="bg-primary/10 w-full h-[88%] rounded-t-sm hover:bg-primary/30 transition-colors"></div>
+<div class="bg-primary/10 w-full h-[92%] rounded-t-sm hover:bg-primary/30 transition-colors"></div>
+<div class="bg-primary/10 w-full h-[85%] rounded-t-sm hover:bg-primary/30 transition-colors"></div>
+<div class="bg-primary/10 w-full h-[98%] rounded-t-sm hover:bg-primary/30 transition-colors"></div>
+<div class="bg-primary/10 w-full h-[82%] rounded-t-sm hover:bg-primary/30 transition-colors"></div>
+<div class="bg-primary w-full h-[90%] rounded-t-sm"></div>
+</div>
+<div class="flex justify-between w-full font-label-sm text-label-sm text-on-surface-variant opacity-60 px-1">
+<span>WK 1</span>
+<span>WK 6</span>
+<span>TODAY</span>
+</div>
+</div>
+<!-- Overlay Line for "Goal" or "Avg" -->
+<div class="absolute bottom-[80%] left-0 right-0 border-t border-dashed border-secondary opacity-30 pointer-events-none"></div>
+</div>
+</section>
+<!-- Upcoming Birthdays -->
+<section class="bg-card p-lg rounded-xl shadow-sm flex flex-col">
+<div class="flex items-center gap-2 mb-md text-primary">
+<span class="material-symbols-outlined">cake</span>
+<h3 class="font-headline-md text-headline-md">Birthdays <span class="font-normal text-body-md text-on-surface-variant">· This Month</span></h3>
+</div>
+<div class="space-y-4 flex-grow overflow-y-auto pr-2">
+<div class="flex items-center gap-3 p-3 rounded-lg hover:bg-surface-container transition-colors">
+<div class="w-10 h-10 rounded-full bg-primary-muted flex items-center justify-center text-primary font-bold">EA</div>
+<div class="flex-grow">
+<p class="font-label-md text-label-md font-bold">Elizabeth Ansah</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">14th October</p>
+</div>
+<div class="text-warning">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg hover:bg-surface-container transition-colors">
+<div class="w-10 h-10 rounded-full bg-primary-muted flex items-center justify-center text-primary font-bold">KD</div>
+<div class="flex-grow">
+<p class="font-label-md text-label-md font-bold">Kofi Danso</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">22nd October</p>
+</div>
+<span class="text-on-surface-variant/40 material-symbols-outlined text-[20px]">event</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg hover:bg-surface-container transition-colors">
+<div class="w-10 h-10 rounded-full bg-primary-muted flex items-center justify-center text-primary font-bold">SA</div>
+<div class="flex-grow">
+<p class="font-label-md text-label-md font-bold">Samuel Addo</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">29th October</p>
+</div>
+<span class="text-on-surface-variant/40 material-symbols-outlined text-[20px]">event</span>
+</div>
+</div>
+<button class="mt-4 w-full py-2 border border-outline rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container transition-colors">
+                        Send Group Message
+                    </button>
+</section>
+</div>
+<!-- MEMBER LIST -->
+<section class="bg-card rounded-xl shadow-sm overflow-hidden border border-border">
+<div class="p-lg border-b border-border flex items-center justify-between bg-surface-container-low">
+<h3 class="font-headline-md text-headline-md text-on-surface">Member Directory</h3>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-white border border-outline-variant rounded-lg text-body-md font-body-md focus:ring-1 focus:ring-primary focus:border-primary transition-all w-64" placeholder="Filter class members..." type="text">
+</div>
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary font-label-md">
+<span class="material-symbols-outlined">filter_list</span>
+                            Sort
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+<th class="px-lg py-4 border-b border-border">Name</th>
+<th class="px-lg py-4 border-b border-border">Last Attendance</th>
+<th class="px-lg py-4 border-b border-border">Contact</th>
+<th class="px-lg py-4 border-b border-border text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface divide-y divide-border">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-primary font-bold text-xs">AA</div>
+<span class="font-semibold">Abena Asare</span>
+</td>
+<td class="px-lg py-4">Oct 06, 2024</td>
+<td class="px-lg py-4 text-on-surface-variant">+233 24 555 0101</td>
+<td class="px-lg py-4 text-right">
+<button class="bg-primary text-on-primary px-3 py-1 rounded text-label-sm font-label-sm hover:bg-primary-light transition-colors">Mark Absent</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-primary font-bold text-xs">BK</div>
+<span class="font-semibold">Bright Kusi</span>
+</td>
+<td class="px-lg py-4">Oct 06, 2024</td>
+<td class="px-lg py-4 text-on-surface-variant">+233 20 555 0192</td>
+<td class="px-lg py-4 text-right">
+<button class="bg-primary text-on-primary px-3 py-1 rounded text-label-sm font-label-sm hover:bg-primary-light transition-colors">Mark Absent</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors bg-warning/5">
+<td class="px-lg py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-primary font-bold text-xs">MA</div>
+<span class="font-semibold">Mary Appiah</span>
+</td>
+<td class="px-lg py-4">
+<div class="flex items-center gap-2">
+<span class="text-error font-bold">Sep 22, 2024</span>
+<span class="material-symbols-outlined text-[16px] text-error">priority_high</span>
+</div>
+</td>
+<td class="px-lg py-4 text-on-surface-variant">+233 55 555 0233</td>
+<td class="px-lg py-4 text-right">
+<span class="text-error text-label-sm font-bold bg-error/10 px-2 py-1 rounded">Marked Absent</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-primary font-bold text-xs">JT</div>
+<span class="font-semibold">John Tetteh</span>
+</td>
+<td class="px-lg py-4">Sep 29, 2024</td>
+<td class="px-lg py-4 text-on-surface-variant">+233 27 555 0144</td>
+<td class="px-lg py-4 text-right">
+<button class="bg-primary text-on-primary px-3 py-1 rounded text-label-sm font-label-sm hover:bg-primary-light transition-colors">Mark Absent</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-md flex justify-center bg-surface-container-low">
+<button class="text-primary font-label-md text-label-md hover:underline">View All 42 Members</button>
+</div>
+</section>
+</div>
+</main>
+<!-- FLOATING ACTION BUTTON (Contextual) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-secondary text-on-secondary rounded-full shadow-2xl flex items-center justify-center hover:scale-105 transition-transform active:scale-95 group z-50">
+<span class="material-symbols-outlined text-[28px] group-hover:rotate-12 transition-transform">sms</span>
+<div class="absolute right-full mr-4 bg-on-surface text-surface text-[12px] px-3 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            Text All Absentees
+        </div>
+</button>
+<script>
+        // Simple micro-interaction for marking absent (UI only)
+        document.querySelectorAll('button').forEach(btn => {
+            if(btn.innerText === 'Mark Absent') {
+                btn.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    this.outerHTML = '<span class="text-error text-label-sm font-bold bg-error/10 px-2 py-1 rounded">Marked Absent</span>';
+                    row.classList.add('bg-error/5');
+                });
+            }
+        });
+    </script>
+</body></html>
