@@ -159,39 +159,42 @@
 
             <!-- Main Content Shell -->
 
-            <main class=" min-h-screen">
+            <main class="min-h-screen">
 
-                <!-- Top App Bar -->
+                <!-- TOP APP BAR -->
 
-                <header class="flex justify-between items-center h-header-height px-lg w-[calc(100%-var(--spacing-sidebar-width))] fixed top-0 bg-white dark:bg-surface-container-low shadow-sm z-40">
+                <header class="flex justify-between items-center h-header-height px-lg bg-white dark:bg-surface-container-low shadow-sm sticky top-0 z-40">
 
-                    <div class="flex items-center gap-8">
+                    <div class="flex items-center gap-4">
 
-                        <h2 class="font-headline-md text-headline-md font-black text-primary">
+                        <span class="font-headline-md text-headline-md font-black text-primary">
                             Admin Portal
-                        </h2>
+                        </span>
 
-                        <nav class="hidden md:flex gap-6">
+                        <div class="h-6 w-px bg-outline-variant mx-2">
+                        </div>
 
-                            <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">
+                        <div class="flex items-center gap-6">
+
+                            <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">
                                 Directory
                             </a>
 
-                            <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">
+                            <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">
                                 Resources
                             </a>
 
-                            <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">
+                            <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">
                                 Support
                             </a>
 
-                        </nav>
+                        </div>
 
                     </div>
 
                     <div class="flex items-center gap-4">
 
-                        <button class="p-2 text-on-surface-variant hover:bg-surface-container-highest rounded-full transition-colors relative">
+                        <button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-colors relative">
 
                             <span class="material-symbols-outlined">
                                 notifications
@@ -201,178 +204,99 @@
                             </span>
 
                         </button>
-
-                        <button class="p-2 text-on-surface-variant hover:bg-surface-container-highest rounded-full transition-colors">
-
-                            <span class="material-symbols-outlined">
-                                help_outline
-                            </span>
-
-                        </button>
-
-                        <div class="h-8 w-px bg-border mx-2">
-                        </div>
-
-                        <div class="flex items-center gap-3">
-
-                            <div class="text-right hidden sm:block">
-
-                                <p class="font-label-md text-label-md text-on-surface font-bold leading-none">
-                                    Bro. Samuel Appiah
-                                </p>
-
-                                <p class="font-label-sm text-label-sm text-on-surface-variant">
-                                    Circuit Treasurer
-                                </p>
-
-                            </div>
-
-                            <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-muted">
-
-                                <img class="w-full h-full object-cover" data-alt="A professional headshot of a mature Ghanaian man in a formal suit, conveying trustworthiness and administrative authority. The portrait is set against a clean, light-colored background with professional studio lighting that creates a bright and welcoming modern atmosphere for a corporate dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoRMoBFjAdCkxROpXYK_SzKKPpwW-cb70UzMuiXrTqjd6IH8NPvQcDvazC2YMeumyOrWiOS-YaiRl_MZnRF0b2yBFRoe4oUu9MPze9td_f0vfEoc3rMbClo4FrLPSs-B6vRDatV4aXdc2pNz7UwN27B1M38WPy394qXsmx88P3ZmtoAMdrJ_ZdEj5mBWkcoSqYFXvkm9H3RijsMrT1m2pQAOSK6eUe7UMiC8LUFIJdLOfA1TJMZ8EEMgjQNMULBEnlgVb_YYMH7KRS">
-
-                            </div>
-
-                        </div>
-
                     </div>
 
                 </header>
 
                 <!-- Dashboard Content -->
-
-                <div class="pt-[calc(var(--spacing-header-height)+var(--spacing-xl))] px-xl pb-xl">
-
+                <div class="m-3 pt-[calc(var(--spacing-header-height)+var(--spacing-xl))] px-xl pb-xl">
                     <div class="flex justify-between items-end mb-8">
-
                         <div>
-
                             <h1 class="font-headline-lg text-headline-lg text-primary mb-1">
                                 Treasurer Dashboard
                             </h1>
-
                             <p class="text-on-surface-variant font-body-md">
                                 Financial overview for the Wesley Cathedral District.
                             </p>
-
                         </div>
-
                         <div class="flex gap-3">
-
                             <button class="flex items-center gap-2 px-4 py-2 border border-border rounded-lg bg-white hover:bg-surface-container-low transition-colors font-label-md text-label-md">
-
                                 <span class="material-symbols-outlined text-[18px]">
                                     calendar_today
                                 </span>
                                 June 2024
                             </button>
-
                             <button class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg hover:bg-primary-light transition-colors font-label-md text-label-md shadow-md">
-
                                 <span class="material-symbols-outlined text-[18px]">
                                     download
                                 </span>
                                 Export Statement
                             </button>
-
                         </div>
-
                     </div>
 
                     <!-- Balance Summary Card -->
-
                     <div class="bg-white rounded-xl shadow-sm border-t-4 border-secondary p-lg mb-lg">
-
                         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-
                             <div class="space-y-1">
-
                                 <p class="text-on-surface-variant font-label-sm uppercase tracking-wider">
                                     Current Balance
                                 </p>
-
                                 <div class="flex items-baseline gap-2">
-
                                     <span class="text-primary font-headline-md">
                                         GH₵
                                     </span>
-
                                     <span class="font-data-display text-[28px] font-bold text-on-surface">
                                         142,500.00
                                     </span>
-
                                 </div>
-
                             </div>
-
                             <div class="space-y-1 md:border-l border-border md:pl-8">
-
                                 <p class="text-on-surface-variant font-label-sm uppercase tracking-wider">
                                     Total Income
                                     <span class="text-success text-[10px]">
                                         ↑
                                     </span>
                                 </p>
-
                                 <div class="flex items-baseline gap-2 text-success">
-
                                     <span class="font-label-md">
                                         GH₵
                                     </span>
-
                                     <span class="font-data-display text-[24px] font-bold">
                                         45,210.50
                                     </span>
-
                                 </div>
-
                             </div>
-
                             <div class="space-y-1 md:border-l border-border md:pl-8">
-
                                 <p class="text-on-surface-variant font-label-sm uppercase tracking-wider">
                                     Total Expenses
                                     <span class="text-error text-[10px]">
                                         ↓
                                     </span>
                                 </p>
-
                                 <div class="flex items-baseline gap-2 text-error">
-
                                     <span class="font-label-md">
                                         GH₵
                                     </span>
-
                                     <span class="font-data-display text-[24px] font-bold">
                                         12,480.00
                                     </span>
-
                                 </div>
-
                             </div>
-
                             <div class="space-y-1 md:border-l border-border md:pl-8">
-
                                 <p class="text-on-surface-variant font-label-sm uppercase tracking-wider">
                                     Statutory Due
                                 </p>
-
                                 <div class="flex items-baseline gap-2 text-warning">
-
                                     <span class="font-label-md">
                                         GH₵
                                     </span>
-
                                     <span class="font-data-display text-[24px] font-bold">
                                         8,500.00
                                     </span>
-
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
 
                     <!-- Mid Section Grid -->
