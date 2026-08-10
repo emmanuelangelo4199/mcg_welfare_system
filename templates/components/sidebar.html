@@ -1,4 +1,4 @@
-<!-- Sidebar (Shared Component Style) - Desktop Only -->
+<!-- Sidebar -->
 <aside class="sidebar-desktop w-64 min-w-[256px] bg-primary text-on-primary flex flex-col h-screen sticky top-0 py-lg shrink-0 shadow-md">
   <div class="px-md mb-xl flex items-center gap-sm">
     <div>
@@ -21,7 +21,7 @@
       <div class="{% if active_nav != 'dashboard' %}hidden{% endif %} pl-xl space-y-xs">
         <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="{% url 'dashboard:dashboard' %}"><span class="font-label-md">Main Dashboard</span></a>
         <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="{% url 'dashboard:treasurer_dashboard' %}"><span class="font-label-md">Treasurer Dashboard</span></a>
-        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="{% url 'dashboard:class_leader_dashboard' %}"><span class="font-label-md">Class Leader Dashboard</span></a>
+        <a class="flex items-center gap-md text-on-primary px-md py-1.5 opacity-70 hover:opacity-100" href="{% url 'dashboard:class_leader_dashboard' %}"><span class="font-label-md">Class Leader </span></a>
       </div>
     </div>
 
