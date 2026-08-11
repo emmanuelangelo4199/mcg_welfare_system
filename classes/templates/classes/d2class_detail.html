@@ -1,12 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
-
-<html class="light" lang="en" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><head>
+<html class="light" lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Class Detail - MCG-SMS</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400%;500;600&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="{% static "img\Methodist Church Ghana Logo.png" %}" rel="icon" type="image-icon">
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -128,9 +130,7 @@
 <nav aria-label="Breadcrumb" class="flex text-on-surface-variant text-label-md font-label-md">
 <ol class="inline-flex items-center space-x-1 md:space-x-2">
 <li class="inline-flex items-center">
-<a class="inline-flex items-center hover:text-primary transition-colors" href="#">
-                        Dashboard
-                      </a>
+<a class="inline-flex items-center hover:text-primary transition-colors" href="#">Dashboard</a>
 </li>
 <li class="">
 <div class="flex items-center">
@@ -156,11 +156,9 @@
 <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Class 2 (St. Peter)</h1>
 <div class="flex gap-md">
 <button class="px-4 py-2 bg-surface-container-lowest border border-border text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-variant transition-colors flex items-center gap-sm">
-<span class="material-symbols-outlined text-[18px]">edit</span> Edit
-                        </button>
+<span class="material-symbols-outlined text-[18px]">edit</span> Edit</button>
 <button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-primary-light transition-colors flex items-center gap-sm shadow-sm">
-<span class="material-symbols-outlined text-[18px]">add</span> Add Member
-                        </button>
+<span class="material-symbols-outlined text-[18px]">add</span> Add Member</button>
 </div>
 </div>
 <!-- Two Column Layout -->
@@ -234,15 +232,9 @@
 <div class="w-full lg:w-2/3 bg-card rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.06)] border border-border/50 overflow-hidden flex flex-col">
 <!-- Tabs Header -->
 <div class="flex border-b border-border bg-surface-container-lowest px-4">
-<button class="px-md py-4 text-primary font-label-md text-label-md font-bold border-b-2 border-primary translate-y-[1px] hover:bg-surface-container-low transition-colors">
-                                Members
-                            </button>
-<button class="px-md py-4 text-on-surface-variant font-label-md text-label-md hover:text-on-surface hover:bg-surface-container-low transition-colors">
-                                Attendance
-                            </button>
-<button class="px-md py-4 text-on-surface-variant font-label-md text-label-md hover:text-on-surface hover:bg-surface-container-low transition-colors">
-                                Reports
-                            </button>
+<button class="px-md py-4 text-primary font-label-md text-label-md font-bold border-b-2 border-primary translate-y-[1px] hover:bg-surface-container-low transition-colors">Members</button>
+<button class="px-md py-4 text-on-surface-variant font-label-md text-label-md hover:text-on-surface hover:bg-surface-container-low transition-colors">Attendance</button>
+<button class="px-md py-4 text-on-surface-variant font-label-md text-label-md hover:text-on-surface hover:bg-surface-container-low transition-colors">Reports</button>
 </div>
 <!-- Tab Content: Members (Active) -->
 <div class="p-0 flex-1 overflow-x-auto">
@@ -285,9 +277,7 @@
 <tr class="hover:bg-surface/50 transition-colors">
 <td class="py-3 px-4">
 <div class="flex items-center gap-sm">
-<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden shrink-0 flex items-center justify-center text-on-surface-variant bg-tertiary-fixed font-bold text-xs">
-                                                     KA
-                                                </div>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden shrink-0 flex items-center justify-center text-on-surface-variant bg-tertiary-fixed font-bold text-xs">KA</div>
 <span class="font-medium text-on-surface whitespace-nowrap">Kwame Appiah</span>
 </div>
 </td>
@@ -335,9 +325,7 @@
 <tr class="hover:bg-surface/50 transition-colors">
 <td class="py-3 px-4">
 <div class="flex items-center gap-sm">
-<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden shrink-0 flex items-center justify-center text-on-surface-variant bg-tertiary-fixed font-bold text-xs">
-                                                     GO
-                                                </div>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden shrink-0 flex items-center justify-center text-on-surface-variant bg-tertiary-fixed font-bold text-xs">GO</div>
 <span class="font-medium text-on-surface whitespace-nowrap">Grace Owusu</span>
 </div>
 </td>
@@ -399,4 +387,7 @@
 <span class="">More</span>
 </a>
 </nav>
-<div aria-hidden="true" data-snapdom-sandbox="true" id="snapdom-sandbox" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>
+<div aria-hidden="true" data-snapdom-sandbox="true" id="snapdom-sandbox" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;">
+</div>
+</body>
+</html>
