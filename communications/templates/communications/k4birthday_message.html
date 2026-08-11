@@ -1,454 +1,443 @@
-<!DOCTYPE html><html class="light" lang="en"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Birthday Messages | MCG-SMS</title>
-<!-- Fonts & Icons -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .stat-card-border {
-            border-left: 4px solid #C49A2B;
-        }
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #5c0219;
-            border-radius: 10px;
-        }
-        .custom-shadow {
-            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-        }
-    </style>
-<!-- Tailwind Config Verbatim -->
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "on-secondary-container": "#745700",
-                    "primary-fixed-dim": "#ffb2b7",
-                    "border": "#E4E2DD",
-                    "tertiary-fixed": "#e3e2e0",
-                    "tertiary": "#2a2b2a",
-                    "card": "#FFFFFF",
-                    "on-tertiary": "#ffffff",
-                    "danger": "#DC2626",
-                    "surface-container-lowest": "#ffffff",
-                    "surface-container-high": "#eee7e3",
-                    "on-tertiary-fixed": "#1a1c1b",
-                    "on-tertiary-fixed-variant": "#464746",
-                    "surface-variant": "#e9e1dd",
-                    "surface-tint": "#a33a49",
-                    "inverse-primary": "#ffb2b7",
-                    "surface-container-low": "#faf2ee",
-                    "on-surface-variant": "#564243",
-                    "secondary": "#775a00",
-                    "tertiary-container": "#404140",
-                    "secondary-container": "#fece5b",
-                    "on-error": "#ffffff",
-                    "primary-container": "#7b1c2d",
-                    "outline": "#897172",
-                    "background": "#fff8f5",
-                    "on-primary-fixed-variant": "#832233",
-                    "gold-muted": "#FDF6E3",
-                    "secondary-fixed": "#ffdf9a",
-                    "success": "#16A34A",
-                    "secondary-fixed-dim": "#eec04f",
-                    "primary-muted": "#F5EAEC",
-                    "error-container": "#ffdad6",
-                    "inverse-surface": "#33302d",
-                    "primary-light": "#A3283F",
-                    "on-background": "#1e1b19",
-                    "surface-bright": "#fff8f5",
-                    "on-tertiary-container": "#adadab",
-                    "on-primary-container": "#ff8a95",
-                    "surface-dim": "#e0d8d5",
-                    "outline-variant": "#dcc0c1",
-                    "error": "#ba1a1a",
-                    "info": "#2563EB",
-                    "surface-container": "#f4ece8",
-                    "on-secondary-fixed-variant": "#5a4300",
-                    "on-primary": "#ffffff",
-                    "tertiary-fixed-dim": "#c7c6c5",
-                    "on-primary-fixed": "#40000e",
-                    "inverse-on-surface": "#f7efeb",
-                    "on-surface": "#1e1b19",
-                    "warning": "#D97706",
-                    "text-secondary": "#6B7280",
-                    "on-error-container": "#93000a",
-                    "on-secondary": "#ffffff",
-                    "primary": "#5c0219",
-                    "on-secondary-fixed": "#251a00",
-                    "surface-container-highest": "#e9e1dd",
-                    "primary-fixed": "#ffdadb",
-                    "surface": "#F8F7F5"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "lg": "24px",
-                    "header-height": "64px",
-                    "xl": "32px",
-                    "sidebar-width": "256px",
-                    "sm": "8px",
-                    "md": "16px",
-                    "base": "8px",
-                    "xs": "4px"
-            },
-            "fontFamily": {
-                    "headline-lg": ["Lora"],
-                    "label-md": ["Inter"],
-                    "data-label": ["JetBrains Mono"],
-                    "body-lg": ["Inter"],
-                    "data-display": ["JetBrains Mono"],
-                    "body-md": ["Inter"],
-                    "label-sm": ["Inter"],
-                    "headline-md": ["Inter"],
-                    "headline-lg-mobile": ["Lora"]
-            },
-            "fontSize": {
-                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                    "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
-                    "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                    "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}]
-            }
-          },
-        },
-      }
-    </script>
-</head>
-<body class="bg-background text-on-surface font-body-md flex min-h-screen">
-<div class="flex min-h-screen">
-<!-- SideNavBar - JSON Execution -->
-{% include 'components/sidebar.html' %}
-<!-- Main Content Area -->
-<main class="flex-1  min-h-screen">
-<!-- TopNavBar - JSON Execution -->
-<header class="flex justify-between items-center w-full px-lg h-header-height bg-surface shadow-sm sticky top-0 z-40">
-<div class="flex items-center gap-xl">
-<span class="font-headline-md text-headline-md font-bold text-primary">MCG-SMS Communications</span>
-<nav class="hidden md:flex items-center gap-lg">
-<a class="text-on-surface-variant font-label-md hover:text-primary-light transition-colors" href="#">Dashboard</a>
-<a class="text-on-surface-variant font-label-md hover:text-primary-light transition-colors" href="#">Analytics</a>
-<a class="text-primary font-bold border-b-2 border-secondary font-label-md py-1" href="#">Templates</a>
-</nav>
-</div>
-<div class="flex items-center gap-md">
-<div class="relative">
-<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-<input class="pl-xl pr-md py-xs bg-surface-container border-none rounded-full text-body-md w-64 focus:ring-2 focus:ring-primary" placeholder="Search members..." type="text">
-</div>
-<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
-<span class="material-symbols-outlined">help_outline</span>
-</button>
-<div class="h-8 w-px bg-border mx-sm"></div>
-<div class="flex items-center gap-sm">
-<div class="w-8 h-8 rounded-full bg-primary-muted border border-primary-fixed flex items-center justify-center overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A professional headshot of a mature African administrator in business attire, clean lighting, blurred office background, representing a high-level administrator of a Methodist Society." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2pcQNNeFr1imACXe54Bs8WwkYDOoIbFB5Py4Wp6-hFdyT5oIexORgr09cJSu4uSgv1pp7c5mI3DAMWrNMnsKZ7vBKW3wqjMVM2p3uS5MSxhrSc6V7i8hfgdr8Hc7Q_2rhHLe_527I0nn8_2hzHjTYfguBwGMcEsvkJPJlDW_aUDs57V4oQgqEQo2kL9DurJRFJ2k-bP6eDOQwZ0zMeazytEFS0Yzcwt4mCSZaPYIdmXsXlbDwQmZIE3EWTAnwM30iZEsWipZhhrAw">
-</div>
-<span class="font-label-md text-on-surface">Kwesi Adu</span>
-</div>
-</div>
-</header>
-<div class="p-xl max-w-7xl mx-auto space-y-lg">
-<!-- Breadcrumbs & Title -->
-<section>
-<nav class="flex items-center gap-xs text-on-surface-variant mb-xs">
-<span class="text-label-sm uppercase tracking-wider">Dashboard</span>
-<span class="material-symbols-outlined text-[14px]">chevron_right</span>
-<span class="text-label-sm uppercase tracking-wider">Comms</span>
-<span class="material-symbols-outlined text-[14px]">chevron_right</span>
-<span class="text-label-sm uppercase tracking-wider text-primary font-bold">Birthdays</span>
-</nav>
-<h2 class="font-headline-lg text-headline-lg text-primary">Birthday Messages</h2>
-</section>
-<!-- Configuration Card -->
-<section class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
-<div class="lg:col-span-2 bg-card rounded-xl custom-shadow p-lg space-y-md border border-border/50">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">cake</span>
-<span class="font-headline-md text-body-lg font-bold">Auto-send birthday messages</span>
-</div>
-<!-- Toggle Switch -->
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only peer" type="checkbox">
-<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-success"></div>
-</label>
-</div>
-<div class="space-y-sm">
-<label class="font-label-md text-on-surface-variant">Message Template</label>
-<textarea class="w-full h-32 bg-background border border-border rounded-lg p-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary resize-none" placeholder="Enter birthday message...">Happy birthday {first_name}! From the {society_name} family, we pray for God's blessings and grace upon your life as you celebrate another year. Have a wonderful day!</textarea>
-</div>
-<div class="flex flex-wrap gap-sm">
-<span class="text-label-sm text-on-surface-variant">Insert:</span>
-<button class="px-md py-xs bg-gold-muted text-on-secondary-container rounded-full text-label-sm border border-secondary-container hover:bg-secondary-container/20 transition-all font-data-label">{first_name}</button>
-<button class="px-md py-xs bg-gold-muted text-on-secondary-container rounded-full text-label-sm border border-secondary-container hover:bg-secondary-container/20 transition-all font-data-label">{last_name}</button>
-<button class="px-md py-xs bg-gold-muted text-on-secondary-container rounded-full text-label-sm border border-secondary-container hover:bg-secondary-container/20 transition-all font-data-label">{society_name}</button>
-</div>
-</div>
-<!-- Summary Stats Card -->
-<div class="bg-card rounded-xl custom-shadow p-lg space-y-md border border-border/50 stat-card-border">
-<h3 class="font-label-md uppercase tracking-widest text-on-surface-variant">System Activity</h3>
-<div class="space-y-lg">
-<div class="flex justify-between items-end">
-<div>
-<p class="text-label-sm text-on-surface-variant">Messages Sent Today</p>
-<h4 class="font-data-display text-headline-lg leading-none">12</h4>
-</div>
-<span class="material-symbols-outlined text-success">check_circle</span>
-</div>
-<div class="flex justify-between items-end">
-<div>
-<p class="text-label-sm text-on-surface-variant">Pending for Tomorrow</p>
-<h4 class="font-data-display text-headline-lg leading-none">08</h4>
-</div>
-<span class="material-symbols-outlined text-warning">pending</span>
-</div>
-<button class="w-full py-sm bg-primary-muted text-primary font-label-md rounded-lg hover:bg-primary-container hover:text-white transition-all">View Logs</button>
-</div>
-</div>
-</section>
-<!-- Table Header Actions -->
-<section class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md bg-surface-container/50 p-md rounded-lg border border-border/30">
-<div>
-<h3 class="font-headline-md">Upcoming Birthdays (Next 7 Days)</h3>
-<p class="text-label-sm text-on-surface-variant">Review and manage birthday communications for society members.</p>
-</div>
-<button class="px-lg py-sm bg-primary text-on-primary rounded-lg font-label-md flex items-center gap-sm hover:bg-primary-light transition-all shadow-md active:scale-95">
-<span class="material-symbols-outlined text-[20px]">send</span>
-                        Send All Pending
-                    </button>
-</section>
-<!-- Table Content -->
-<section class="bg-card rounded-xl custom-shadow overflow-hidden border border-border/50">
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container-low border-b border-border">
-<th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Member Name</th>
-<th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Birth Date</th>
-<th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Class</th>
-<th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Message Status</th>
-<th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-border/40">
-<!-- Row 1 -->
-<tr class="hover:bg-background transition-colors group">
-<td class="px-lg py-md">
-<div class="flex items-center gap-md">
-<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-bold">AD</div>
-<div>
-<p class="font-headline-md text-body-md">Abigail Danso</p>
-<p class="text-label-sm text-on-surface-variant">+233 244 556 789</p>
-</div>
-</div>
-</td>
-<td class="px-lg py-md">
-<span class="font-data-label text-body-md">28 Oct</span>
-</td>
-<td class="px-lg py-md text-on-surface-variant">Susanna Wesley</td>
-<td class="px-lg py-md">
-<span class="inline-flex items-center gap-xs px-md py-xs bg-success/10 text-success rounded-full text-label-sm font-bold">
-<span class="w-1.5 h-1.5 bg-success rounded-full"></span>
-                                            Sent
-                                        </span>
-</td>
-<td class="px-lg py-md text-right">
-<button class="text-primary font-label-md hover:underline decoration-2 underline-offset-4 transition-all">View Message</button>
-</td>
-</tr>
-<!-- Row 2 -->
-<tr class="hover:bg-background transition-colors group">
-<td class="px-lg py-md">
-<div class="flex items-center gap-md">
-<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold">BK</div>
-<div>
-<p class="font-headline-md text-body-md">Benjamin Kusi</p>
-<p class="text-label-sm text-on-surface-variant">+233 209 887 654</p>
-</div>
-</div>
-</td>
-<td class="px-lg py-md">
-<span class="font-data-label text-body-md">30 Oct</span>
-</td>
-<td class="px-lg py-md text-on-surface-variant">John Wesley</td>
-<td class="px-lg py-md">
-<span class="inline-flex items-center gap-xs px-md py-xs bg-warning/10 text-warning rounded-full text-label-sm font-bold">
-<span class="w-1.5 h-1.5 bg-warning rounded-full animate-pulse"></span>
-                                            Pending
-                                        </span>
-</td>
-<td class="px-lg py-md text-right space-x-md">
-<button class="px-md py-xs bg-primary text-white text-label-sm rounded hover:bg-primary-light transition-all">Send Now</button>
-<button class="text-on-surface-variant text-label-sm hover:text-danger transition-colors">Skip This Year</button>
-</td>
-</tr>
-<!-- Row 3 -->
-<tr class="hover:bg-background transition-colors group">
-<td class="px-lg py-md">
-<div class="flex items-center gap-md">
-<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-bold">CN</div>
-<div>
-<p class="font-headline-md text-body-md">Comfort Nyarko</p>
-<p class="text-label-sm text-on-surface-variant">+233 551 234 567</p>
-</div>
-</div>
-</td>
-<td class="px-lg py-md">
-<span class="font-data-label text-body-md">01 Nov</span>
-</td>
-<td class="px-lg py-md text-on-surface-variant">Grace Society</td>
-<td class="px-lg py-md">
-<span class="inline-flex items-center gap-xs px-md py-xs bg-on-surface-variant/10 text-on-surface-variant rounded-full text-label-sm font-bold">
-<span class="w-1.5 h-1.5 bg-on-surface-variant rounded-full"></span>
-                                            Skipped
-                                        </span>
-</td>
-<td class="px-lg py-md text-right">
-<button class="text-primary font-label-md hover:underline decoration-2 underline-offset-4 transition-all">Restore</button>
-</td>
-</tr>
-<!-- Row 4 (Upcoming) -->
-<tr class="hover:bg-background transition-colors group">
-<td class="px-lg py-md">
-<div class="flex items-center gap-md">
-<div class="w-10 h-10 rounded-full bg-primary-muted text-primary flex items-center justify-center font-bold">EA</div>
-<div>
-<p class="font-headline-md text-body-md">Emmanuel Amoah</p>
-<p class="text-label-sm text-on-surface-variant">+233 244 111 222</p>
-</div>
-</div>
-</td>
-<td class="px-lg py-md">
-<span class="font-data-label text-body-md">03 Nov</span>
-</td>
-<td class="px-lg py-md text-on-surface-variant">Charles Wesley</td>
-<td class="px-lg py-md">
-<span class="inline-flex items-center gap-xs px-md py-xs bg-warning/10 text-warning rounded-full text-label-sm font-bold">
-<span class="w-1.5 h-1.5 bg-warning rounded-full"></span>
-                                            Scheduled
-                                        </span>
-</td>
-<td class="px-lg py-md text-right">
-<button class="px-md py-xs border border-primary text-primary text-label-sm rounded hover:bg-primary-muted transition-all">Edit Draft</button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="px-lg py-md bg-surface-container-low border-t border-border flex justify-between items-center">
-<span class="text-label-sm text-on-surface-variant">Showing 4 of 12 upcoming birthdays</span>
-<div class="flex gap-sm">
-<button class="w-8 h-8 flex items-center justify-center rounded border border-border hover:bg-white transition-all"><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>
-<button class="w-8 h-8 flex items-center justify-center rounded border border-border bg-primary text-white transition-all font-label-sm">1</button>
-<button class="w-8 h-8 flex items-center justify-center rounded border border-border hover:bg-white transition-all font-label-sm">2</button>
-<button class="w-8 h-8 flex items-center justify-center rounded border border-border hover:bg-white transition-all font-label-sm">3</button>
-<button class="w-8 h-8 flex items-center justify-center rounded border border-border hover:bg-white transition-all"><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
-</div>
-</div>
-</section>
-<!-- Quick Help / Information -->
-<section class="grid grid-cols-1 md:grid-cols-2 gap-lg mt-xl">
-<div class="bg-primary-muted p-lg rounded-xl flex gap-md items-start">
-<div class="w-10 h-10 shrink-0 bg-primary/10 rounded-lg flex items-center justify-center">
-<span class="material-symbols-outlined text-primary">info</span>
-</div>
-<div>
-<h4 class="font-headline-md text-body-md text-primary mb-xs">How it works</h4>
-<p class="text-body-md text-on-surface-variant leading-relaxed">Birthdays are synced from the Member Directory. If "Auto-send" is active, messages are dispatched at 8:00 AM GMT on the member's birthday. Ensure your SMS credit balance is sufficient.</p>
-</div>
-</div>
-<div class="bg-gold-muted p-lg rounded-xl flex gap-md items-start border border-secondary-container/30">
-<div class="w-10 h-10 shrink-0 bg-secondary-container/20 rounded-lg flex items-center justify-center">
-<span class="material-symbols-outlined text-secondary">verified_user</span>
-</div>
-<div>
-<h4 class="font-headline-md text-body-md text-secondary mb-xs">Privacy Guard</h4>
-<p class="text-body-md text-on-surface-variant leading-relaxed">Data is handled per MCG Data Privacy Guidelines. Only authorized Society Secretaries can modify birthday templates or access phone records.</p>
-</div>
-</div>
-</section>
-</div>
-<!-- Footer-style Branding -->
-<footer class="mt-auto py-lg px-xl border-t border-border/40 text-center">
-<p class="text-label-sm text-on-surface-variant opacity-60 italic">"Go forward in His strength" — Methodist Church Ghana Society Management System</p>
-</footer>
-</main>
-</div>
-<!-- Micro-interaction Script -->
-<script>
-        document.querySelectorAll('tr').forEach(row => {
-            row.addEventListener('click', () => {
-                // Subtle interaction to show row focus
-                console.log('Row clicked');
-            });
-        });
-
-        // Simple Toast simulation for "Send All"
-        const sendAllBtn = document.querySelector('button:contains("Send All")');
-        if(sendAllBtn) {
-            sendAllBtn.addEventListener('click', () => {
-                const originalText = sendAllBtn.innerHTML;
-                sendAllBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Sending...';
-                sendAllBtn.classList.add('opacity-80');
-                
-                setTimeout(() => {
-                    sendAllBtn.innerHTML = '<span class="material-symbols-outlined">done_all</span> All Sent!';
-                    sendAllBtn.classList.replace('bg-primary', 'bg-success');
-                    setTimeout(() => {
-                        sendAllBtn.innerHTML = originalText;
-                        sendAllBtn.classList.replace('bg-success', 'bg-primary');
-                        sendAllBtn.classList.remove('opacity-80');
-                    }, 2000);
-                }, 1500);
-            });
-        }
-
-        // Custom selector polyfill for :contains
-        window.addEventListener('DOMContentLoaded', () => {
-            const buttons = document.querySelectorAll('button');
-            buttons.forEach(btn => {
-                if (btn.innerText.includes('Send All Pending')) {
-                    btn.addEventListener('click', () => {
-                        const originalText = btn.innerHTML;
-                        btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">sync</span> Processing...';
-                        setTimeout(() => {
-                            btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check</span> Queue Updated';
-                            btn.classList.add('bg-success');
-                            setTimeout(() => {
-                                btn.innerHTML = originalText;
-                                btn.classList.remove('bg-success');
-                            }, 3000);
-                        }, 1200);
-                    });
+{% load static %}
+<!DOCTYPE html>
+<html class="light" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>Birthday Messages | MCG-SMS</title>
+        <!-- Fonts & Icons -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="{% static "img/Methodist Church Ghana Logo.png" %}" rel="icon" type="image/png">
+        <script id="tailwind-config">
+            tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                "colors": {
+                        "on-secondary-container": "#745700",
+                        "primary-fixed-dim": "#ffb2b7",
+                        "border": "#E4E2DD",
+                        "tertiary-fixed": "#e3e2e0",
+                        "tertiary": "#2a2b2a",
+                        "card": "#FFFFFF",
+                        "on-tertiary": "#ffffff",
+                        "danger": "#DC2626",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#eee7e3",
+                        "on-tertiary-fixed": "#1a1c1b",
+                        "on-tertiary-fixed-variant": "#464746",
+                        "surface-variant": "#e9e1dd",
+                        "surface-tint": "#a33a49",
+                        "inverse-primary": "#ffb2b7",
+                        "surface-container-low": "#faf2ee",
+                        "on-surface-variant": "#564243",
+                        "secondary": "#775a00",
+                        "tertiary-container": "#404140",
+                        "secondary-container": "#fece5b",
+                        "on-error": "#ffffff",
+                        "primary-container": "#7b1c2d",
+                        "outline": "#897172",
+                        "background": "#fff8f5",
+                        "on-primary-fixed-variant": "#832233",
+                        "gold-muted": "#FDF6E3",
+                        "secondary-fixed": "#ffdf9a",
+                        "success": "#16A34A",
+                        "secondary-fixed-dim": "#eec04f",
+                        "primary-muted": "#F5EAEC",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#33302d",
+                        "primary-light": "#A3283F",
+                        "on-background": "#1e1b19",
+                        "surface-bright": "#fff8f5",
+                        "on-tertiary-container": "#adadab",
+                        "on-primary-container": "#ff8a95",
+                        "surface-dim": "#e0d8d5",
+                        "outline-variant": "#dcc0c1",
+                        "error": "#ba1a1a",
+                        "info": "#2563EB",
+                        "surface-container": "#f4ece8",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#c7c6c5",
+                        "on-primary-fixed": "#40000e",
+                        "inverse-on-surface": "#f7efeb",
+                        "on-surface": "#1e1b19",
+                        "warning": "#D97706",
+                        "text-secondary": "#6B7280",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "primary": "#5c0219",
+                        "on-secondary-fixed": "#251a00",
+                        "surface-container-highest": "#e9e1dd",
+                        "primary-fixed": "#ffdadb",
+                        "surface": "#F8F7F5"
+                },
+                "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                },
+                "spacing": {
+                        "lg": "24px",
+                        "header-height": "64px",
+                        "xl": "32px",
+                        "sidebar-width": "256px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "base": "8px",
+                        "xs": "4px"
+                },
+                "fontFamily": {
+                        "headline-lg": ["Lora"],
+                        "label-md": ["Inter"],
+                        "data-label": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "data-display": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Lora"]
+                },
+                "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                        "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}]
                 }
+                },
+            },
+            }
+        </script>
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+            .stat-card-border {
+                border-left: 4px solid #C49A2B;
+            }
+            ::-webkit-scrollbar {
+                width: 6px;
+            }
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #5c0219;
+                border-radius: 10px;
+            }
+            .custom-shadow {
+                box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            }
+        </style>
+    </head>
+    <body class="bg-background text-on-surface font-body-md flex min-h-screen">
+        <div class="flex min-h-screen">
+        <!-- SideNavBar -->
+        {% include 'components/sidebar.html' %}
+        <!-- Main Content Area -->
+        <main class="flex-1  min-h-screen">
+        <!-- TopNavBar -->
+        <header class="flex justify-between items-center w-full px-lg h-header-height bg-surface shadow-sm sticky top-0 z-40">
+        <div class="flex items-center gap-xl">
+        <span class="font-headline-md text-headline-md font-bold text-primary">MCG-SMS Communications</span>
+        <nav class="hidden md:flex items-center gap-lg">
+        <a class="text-on-surface-variant font-label-md hover:text-primary-light transition-colors" href="#">Dashboard</a>
+        <a class="text-on-surface-variant font-label-md hover:text-primary-light transition-colors" href="#">Analytics</a>
+        <a class="text-primary font-bold border-b-2 border-secondary font-label-md py-1" href="#">Templates</a>
+        </nav>
+        </div>
+        <div class="flex items-center gap-md">
+        <div class="relative">
+        <span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+        <input class="pl-xl pr-md py-xs bg-surface-container border-none rounded-full text-body-md w-64 focus:ring-2 focus:ring-primary" placeholder="Search members..." type="text">
+        </div>
+        <button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+        <span class="material-symbols-outlined">notifications</span>
+        </button>
+        <button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+        <span class="material-symbols-outlined">help_outline</span>
+        </button>
+        </header>
+        <div class="p-xl max-w-7xl mx-auto space-y-lg">
+        <!-- Breadcrumbs & Title -->
+        <section>
+        <nav class="flex items-center gap-xs text-on-surface-variant mb-xs">
+        <span class="text-label-sm uppercase tracking-wider">Dashboard</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-label-sm uppercase tracking-wider">Comms</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-label-sm uppercase tracking-wider text-primary font-bold">Birthdays</span>
+        </nav>
+        <h2 class="font-headline-lg text-headline-lg text-primary">Birthday Messages</h2>
+        </section>
+        <!-- Configuration Card -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+        <div class="lg:col-span-2 bg-card rounded-xl custom-shadow p-lg space-y-md border border-border/50">
+        <div class="flex items-center justify-between">
+        <div class="flex items-center gap-sm">
+        <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">cake</span>
+        <span class="font-headline-md text-body-lg font-bold">Auto-send birthday messages</span>
+        </div>
+        <!-- Toggle Switch -->
+        <label class="relative inline-flex items-center cursor-pointer">
+        <input checked="" class="sr-only peer" type="checkbox">
+        <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-success"></div>
+        </label>
+        </div>
+        <div class="space-y-sm">
+        <label class="font-label-md text-on-surface-variant">Message Template</label>
+        <textarea class="w-full h-32 bg-background border border-border rounded-lg p-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary resize-none" placeholder="Enter birthday message...">Happy birthday {first_name}! From the {society_name} family, we pray for God's blessings and grace upon your life as you celebrate another year. Have a wonderful day!</textarea>
+        </div>
+        <div class="flex flex-wrap gap-sm">
+        <span class="text-label-sm text-on-surface-variant">Insert:</span>
+        <button class="px-md py-xs bg-gold-muted text-on-secondary-container rounded-full text-label-sm border border-secondary-container hover:bg-secondary-container/20 transition-all font-data-label">{first_name}</button>
+        <button class="px-md py-xs bg-gold-muted text-on-secondary-container rounded-full text-label-sm border border-secondary-container hover:bg-secondary-container/20 transition-all font-data-label">{last_name}</button>
+        <button class="px-md py-xs bg-gold-muted text-on-secondary-container rounded-full text-label-sm border border-secondary-container hover:bg-secondary-container/20 transition-all font-data-label">{society_name}</button>
+        </div>
+        </div>
+        <!-- Summary Stats Card -->
+        <div class="bg-card rounded-xl custom-shadow p-lg space-y-md border border-border/50 stat-card-border">
+        <h3 class="font-label-md uppercase tracking-widest text-on-surface-variant">System Activity</h3>
+        <div class="space-y-lg">
+        <div class="flex justify-between items-end">
+        <div>
+        <p class="text-label-sm text-on-surface-variant">Messages Sent Today</p>
+        <h4 class="font-data-display text-headline-lg leading-none">12</h4>
+        </div>
+        <span class="material-symbols-outlined text-success">check_circle</span>
+        </div>
+        <div class="flex justify-between items-end">
+        <div>
+        <p class="text-label-sm text-on-surface-variant">Pending for Tomorrow</p>
+        <h4 class="font-data-display text-headline-lg leading-none">08</h4>
+        </div>
+        <span class="material-symbols-outlined text-warning">pending</span>
+        </div>
+        <button class="w-full py-sm bg-primary-muted text-primary font-label-md rounded-lg hover:bg-primary-container hover:text-white transition-all">View Logs</button>
+        </div>
+        </div>
+        </section>
+        <!-- Table Header Actions -->
+        <section class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md bg-surface-container/50 p-md rounded-lg border border-border/30">
+        <div>
+        <h3 class="font-headline-md">Upcoming Birthdays (Next 7 Days)</h3>
+        <p class="text-label-sm text-on-surface-variant">Review and manage birthday communications for society members.</p>
+        </div>
+        <button class="px-lg py-sm bg-primary text-on-primary rounded-lg font-label-md flex items-center gap-sm hover:bg-primary-light transition-all shadow-md active:scale-95">
+            <span class="material-symbols-outlined text-[20px]">send</span>
+        Send All Pending</button>
+        </section>
+        <!-- Table Content -->
+        <section class="bg-card rounded-xl custom-shadow overflow-hidden border border-border/50">
+        <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+        <thead>
+        <tr class="bg-surface-container-low border-b border-border">
+        <th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Member Name</th>
+        <th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Birth Date</th>
+        <th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Class</th>
+        <th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Message Status</th>
+        <th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+        </tr>
+        </thead>
+        <tbody class="divide-y divide-border/40">
+        <!-- Row 1 -->
+        <tr class="hover:bg-background transition-colors group">
+        <td class="px-lg py-md">
+        <div class="flex items-center gap-md">
+        <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-bold">AD</div>
+        <div>
+        <p class="font-headline-md text-body-md">Abigail Danso</p>
+        <p class="text-label-sm text-on-surface-variant">+233 244 556 789</p>
+        </div>
+        </div>
+        </td>
+        <td class="px-lg py-md">
+        <span class="font-data-label text-body-md">28 Oct</span>
+        </td>
+        <td class="px-lg py-md text-on-surface-variant">Susanna Wesley</td>
+        <td class="px-lg py-md">
+        <span class="inline-flex items-center gap-xs px-md py-xs bg-success/10 text-success rounded-full text-label-sm font-bold">
+            <span class="w-1.5 h-1.5 bg-success rounded-full"></span>
+        Sent</span>
+        </td>
+        <td class="px-lg py-md text-right">
+        <button class="text-primary font-label-md hover:underline decoration-2 underline-offset-4 transition-all">View Message</button>
+        </td>
+        </tr>
+        <!-- Row 2 -->
+        <tr class="hover:bg-background transition-colors group">
+        <td class="px-lg py-md">
+        <div class="flex items-center gap-md">
+        <div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold">BK</div>
+        <div>
+        <p class="font-headline-md text-body-md">Benjamin Kusi</p>
+        <p class="text-label-sm text-on-surface-variant">+233 209 887 654</p>
+        </div>
+        </div>
+        </td>
+        <td class="px-lg py-md">
+        <span class="font-data-label text-body-md">30 Oct</span>
+        </td>
+        <td class="px-lg py-md text-on-surface-variant">John Wesley</td>
+        <td class="px-lg py-md">
+        <span class="inline-flex items-center gap-xs px-md py-xs bg-warning/10 text-warning rounded-full text-label-sm font-bold">
+            <span class="w-1.5 h-1.5 bg-warning rounded-full animate-pulse"></span>
+        Pending</span>
+        </td>
+        <td class="px-lg py-md text-right space-x-md">
+        <button class="px-md py-xs bg-primary text-white text-label-sm rounded hover:bg-primary-light transition-all">Send Now</button>
+        <button class="text-on-surface-variant text-label-sm hover:text-danger transition-colors">Skip This Year</button>
+        </td>
+        </tr>
+        <!-- Row 3 -->
+        <tr class="hover:bg-background transition-colors group">
+        <td class="px-lg py-md">
+        <div class="flex items-center gap-md">
+        <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-bold">CN</div>
+        <div>
+        <p class="font-headline-md text-body-md">Comfort Nyarko</p>
+        <p class="text-label-sm text-on-surface-variant">+233 551 234 567</p>
+        </div>
+        </div>
+        </td>
+        <td class="px-lg py-md">
+        <span class="font-data-label text-body-md">01 Nov</span>
+        </td>
+        <td class="px-lg py-md text-on-surface-variant">Grace Society</td>
+        <td class="px-lg py-md">
+        <span class="inline-flex items-center gap-xs px-md py-xs bg-on-surface-variant/10 text-on-surface-variant rounded-full text-label-sm font-bold">
+            <span class="w-1.5 h-1.5 bg-on-surface-variant rounded-full"></span>
+        Skipped</span>
+        </td>
+        <td class="px-lg py-md text-right">
+        <button class="text-primary font-label-md hover:underline decoration-2 underline-offset-4 transition-all">Restore</button>
+        </td>
+        </tr>
+        <!-- Row 4 (Upcoming) -->
+        <tr class="hover:bg-background transition-colors group">
+        <td class="px-lg py-md">
+        <div class="flex items-center gap-md">
+        <div class="w-10 h-10 rounded-full bg-primary-muted text-primary flex items-center justify-center font-bold">EA</div>
+        <div>
+        <p class="font-headline-md text-body-md">Emmanuel Angelo</p>
+        <p class="text-label-sm text-on-surface-variant">+233 208 610 575</p>
+        </div>
+        </div>
+        </td>
+        <td class="px-lg py-md">
+        <span class="font-data-label text-body-md">03 Nov</span>
+        </td>
+        <td class="px-lg py-md text-on-surface-variant">Charles Wesley</td>
+        <td class="px-lg py-md">
+        <span class="inline-flex items-center gap-xs px-md py-xs bg-warning/10 text-warning rounded-full text-label-sm font-bold">
+            <span class="w-1.5 h-1.5 bg-warning rounded-full"></span>
+        Scheduled</span>
+        </td>
+        <td class="px-lg py-md text-right">
+        <button class="px-md py-xs border border-primary text-primary text-label-sm rounded hover:bg-primary-muted transition-all">Edit Draft</button>
+        </td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+        <div class="px-lg py-md bg-surface-container-low border-t border-border flex justify-between items-center">
+        <span class="text-label-sm text-on-surface-variant">Showing 4 of 12 upcoming birthdays</span>
+        <div class="flex gap-sm">
+        <button class="w-8 h-8 flex items-center justify-center rounded border border-border hover:bg-white transition-all"><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>
+        <button class="w-8 h-8 flex items-center justify-center rounded border border-border bg-primary text-white transition-all font-label-sm">1</button>
+        <button class="w-8 h-8 flex items-center justify-center rounded border border-border hover:bg-white transition-all font-label-sm">2</button>
+        <button class="w-8 h-8 flex items-center justify-center rounded border border-border hover:bg-white transition-all font-label-sm">3</button>
+        <button class="w-8 h-8 flex items-center justify-center rounded border border-border hover:bg-white transition-all"><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+        </div>
+        </div>
+        </section>
+        <!-- Quick Help / Information -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-lg mt-xl">
+        <div class="bg-primary-muted p-lg rounded-xl flex gap-md items-start">
+        <div class="w-10 h-10 shrink-0 bg-primary/10 rounded-lg flex items-center justify-center">
+        <span class="material-symbols-outlined text-primary">info</span>
+        </div>
+        <div>
+        <h4 class="font-headline-md text-body-md text-primary mb-xs">How it works</h4>
+        <p class="text-body-md text-on-surface-variant leading-relaxed">Birthdays are synced from the Member Directory. If "Auto-send" is active, messages are dispatched at 8:00 AM GMT on the member's birthday. Ensure your SMS credit balance is sufficient.</p>
+        </div>
+        </div>
+        <div class="bg-gold-muted p-lg rounded-xl flex gap-md items-start border border-secondary-container/30">
+        <div class="w-10 h-10 shrink-0 bg-secondary-container/20 rounded-lg flex items-center justify-center">
+        <span class="material-symbols-outlined text-secondary">verified_user</span>
+        </div>
+        <div>
+        <h4 class="font-headline-md text-body-md text-secondary mb-xs">Privacy Guard</h4>
+        <p class="text-body-md text-on-surface-variant leading-relaxed">Data is handled per MCG Data Privacy Guidelines. Only authorized Society Secretaries can modify birthday templates or access phone records.</p>
+        </div>
+        </div>
+        </section>
+        </div>
+        <!-- Footer-style Branding -->
+        <footer class="mt-auto py-lg px-xl border-t border-border/40 text-center">
+        <p class="text-label-sm text-on-surface-variant opacity-60 italic">"Go forward in His strength" — Methodist Church Ghana Society Management System</p>
+        </footer>
+        </main>
+        </div>
+        <!-- Micro-interaction Script -->
+        <script>
+            document.querySelectorAll('tr').forEach(row => {
+                row.addEventListener('click', () => {
+                    // Subtle interaction to show row focus
+                    console.log('Row clicked');
+                });
             });
-        });
-    </script>
 
+            // Simple Toast simulation for "Send All"
+            const sendAllBtn = document.querySelector('button:contains("Send All")');
+            if(sendAllBtn) {
+                sendAllBtn.addEventListener('click', () => {
+                    const originalText = sendAllBtn.innerHTML;
+                    sendAllBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Sending...';
+                    sendAllBtn.classList.add('opacity-80');
+                    
+                    setTimeout(() => {
+                        sendAllBtn.innerHTML = '<span class="material-symbols-outlined">done_all</span> All Sent!';
+                        sendAllBtn.classList.replace('bg-primary', 'bg-success');
+                        setTimeout(() => {
+                            sendAllBtn.innerHTML = originalText;
+                            sendAllBtn.classList.replace('bg-success', 'bg-primary');
+                            sendAllBtn.classList.remove('opacity-80');
+                        }, 2000);
+                    }, 1500);
+                });
+            }
 
-</body></html>
+            // Custom selector polyfill for :contains
+            window.addEventListener('DOMContentLoaded', () => {
+                const buttons = document.querySelectorAll('button');
+                buttons.forEach(btn => {
+                    if (btn.innerText.includes('Send All Pending')) {
+                        btn.addEventListener('click', () => {
+                            const originalText = btn.innerHTML;
+                            btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">sync</span> Processing...';
+                            setTimeout(() => {
+                                btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check</span> Queue Updated';
+                                btn.classList.add('bg-success');
+                                setTimeout(() => {
+                                    btn.innerHTML = originalText;
+                                    btn.classList.remove('bg-success');
+                                }, 3000);
+                            }, 1200);
+                        });
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
