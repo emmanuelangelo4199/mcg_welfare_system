@@ -280,74 +280,27 @@
 </tr>
 </thead>
 <tbody class="divide-y divide-border">
-<!-- Entry 1 -->
+{% for inc in incomes %}
 <tr class="hover:bg-surface-container-low transition-colors">
-<td class="p-md font-data-label text-secondary">#INC-240901</td>
-<td class="p-md text-on-surface-variant">01 Oct 2023</td>
-<td class="p-md font-medium">Main Sunday Service</td>
+<td class="p-md font-data-label text-secondary">#INC-2026-00{{ inc.id }}</td>
+<td class="p-md text-on-surface-variant">{{ inc.date|date:"d M Y" }}</td>
+<td class="p-md font-medium">{{ inc.remarks|default:inc.get_category_display }}</td>
 <td class="p-md">
-<span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">Offertory</span>
+<span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">{{ inc.get_category_display }}</span>
 </td>
-<td class="p-md text-right text-success font-data-display">1,250.00</td>
-<td class="p-md text-on-surface-variant">Cash</td>
-<td class="p-md text-on-surface-variant">A. Boateng</td>
+<td class="p-md text-right text-success font-data-display">GHS {{ inc.amount }}</td>
+<td class="p-md text-on-surface-variant">General</td>
+<td class="p-md text-on-surface-variant">{{ inc.recorded_by.first_name|default:inc.recorded_by.username|default:"System" }}</td>
 <td class="p-md">
-<span class="text-xs text-success flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span> K. Mensah</span>
+<span class="text-xs text-success flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span> Recorded</span>
 </td>
 </tr>
-<!-- Entry 2 -->
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="p-md font-data-label text-secondary">#INC-240902</td>
-<td class="p-md text-on-surface-variant">02 Oct 2023</td>
-<td class="p-md font-medium">Individual Donation</td>
-<td class="p-md">
-<span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">Tithes</span>
-</td>
-<td class="p-md text-right text-success font-data-display">4,500.00</td>
-<td class="p-md text-on-surface-variant">Bank Transfer</td>
-<td class="p-md text-on-surface-variant">S. Appiah</td>
-<td class="p-md">
-<span class="text-xs text-success flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span> K. Mensah</span>
-</td>
+{% empty %}
+<tr>
+<td colspan="8" class="p-md text-center text-on-surface-variant">No income ledger entries found.</td>
 </tr>
-<!-- Entry 3 -->
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="p-md font-data-label text-secondary">#INC-240903</td>
-<td class="p-md text-on-surface-variant">02 Oct 2023</td>
-<td class="p-md font-medium">Youth Ministry Fundraiser</td>
-<td class="p-md">
-<span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">Special Fund</span>
-</td>
-<td class="p-md text-right text-success font-data-display">850.50</td>
-<td class="p-md text-on-surface-variant">Mobile Money</td>
-<td class="p-md text-on-surface-variant">A. Boateng</td>
-<td class="p-md">
-<span class="text-xs text-warning flex items-center gap-1"><span class="material-symbols-outlined text-sm">pending</span> Unverified</span>
-</td>
-</tr>
-<!-- Entry 4 -->
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="p-md font-data-label text-secondary">#INC-240904</td>
-<td class="p-md text-on-surface-variant">03 Oct 2023</td>
-<td class="p-md font-medium">Welfare Contributions</td>
-<td class="p-md">
-<span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">Welfare</span>
-</td>
-<td class="p-md text-right text-success font-data-display">2,100.00</td>
-<td class="p-md text-on-surface-variant">Cash</td>
-<td class="p-md text-on-surface-variant">M. Owusu</td>
-<td class="p-md">
-<span class="text-xs text-success flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span> K. Mensah</span>
-</td>
-</tr>
-<!-- Replicated entries for scroll simulation -->
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="p-md font-data-label text-secondary">#INC-240905</td>
-<td class="p-md text-on-surface-variant">04 Oct 2023</td>
-<td class="p-md font-medium">Sunday School Offering</td>
-<td class="p-md">
-<span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">Offertory</span>
-</td>
+{% endfor %}
+</tbody>
 <td class="p-md text-right text-success font-data-display">150.00</td>
 <td class="p-md text-on-surface-variant">Cash</td>
 <td class="p-md text-on-surface-variant">S. Appiah</td>
