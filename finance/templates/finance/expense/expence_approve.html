@@ -288,15 +288,27 @@
 <label class="block text-label-md font-bold text-on-surface-variant uppercase mb-2">Approval Comments / Feedback</label>
 <textarea class="w-full border-outline-variant rounded-lg p-3 text-body-md focus:ring-primary focus:border-primary placeholder:text-on-surface-variant/40" placeholder="Provide context for your decision (required for rejections or information requests)..." rows="3"></textarea>
 <div class="flex items-center justify-end gap-3 mt-md">
-<button class="flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 border-warning text-warning font-bold hover:bg-warning/5 transition-all" onclick="showConfirm('info')">
+<button type="button" class="flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 border-warning text-warning font-bold hover:bg-warning/5 transition-all" onclick="showConfirm('info')">
 <span class="material-symbols-outlined">feedback</span> Request More Info
-            </button>
-<button class="flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 border-error text-error font-bold hover:bg-error/5 transition-all" onclick="showConfirm('reject')">
+</button>
+
+<form method="POST" action="{% url 'finance:expense_approve' %}" class="inline">
+{% csrf_token %}
+<input type="hidden" name="expense_id" value="{{ pending_expenses.0.id|default:1 }}"/>
+<input type="hidden" name="action" value="reject"/>
+<button type="submit" class="flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 border-error text-error font-bold hover:bg-error/5 transition-all">
 <span class="material-symbols-outlined">cancel</span> Reject Voucher
-            </button>
-<button class="flex items-center gap-2 px-8 py-2.5 rounded-lg bg-success text-white font-bold hover:bg-success/90 shadow-md transform hover:-translate-y-0.5 transition-all active:translate-y-0" onclick="showConfirm('approve')">
+</button>
+</form>
+
+<form method="POST" action="{% url 'finance:expense_approve' %}" class="inline">
+{% csrf_token %}
+<input type="hidden" name="expense_id" value="{{ pending_expenses.0.id|default:1 }}"/>
+<input type="hidden" name="action" value="approve"/>
+<button type="submit" class="flex items-center gap-2 px-8 py-2.5 rounded-lg bg-success text-white font-bold hover:bg-success/90 shadow-md transform hover:-translate-y-0.5 transition-all active:translate-y-0">
 <span class="material-symbols-outlined">verified</span> Approve Expense
-            </button>
+</button>
+</form>
 </div>
 </div>
 </section>

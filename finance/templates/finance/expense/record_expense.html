@@ -173,13 +173,14 @@
 </div>
 <!-- Form Card -->
 <div class="bg-card rounded-xl form-shadow p-xl border border-outline-variant/30">
-<form class="space-y-lg" id="expenseForm">
+<form method="POST" action="{% url 'finance:record_expense' %}" class="space-y-lg" id="expenseForm">
+{% csrf_token %}
 <!-- Requested By Chip (Read Only) -->
 <div class="flex items-center justify-between">
 <label class="font-label-md text-on-surface-variant uppercase tracking-wider">Submission Context</label>
 <div class="inline-flex items-center gap-2 bg-surface-container-high px-3 py-1.5 rounded-full border border-outline-variant">
 <span class="material-symbols-outlined text-primary text-sm" data-icon="person">person</span>
-<span class="font-label-md text-on-surface-variant">Requested by: <span class="font-bold text-primary">Yaw Mensah (Treasurer)</span></span>
+<span class="font-label-md text-on-surface-variant">Requested by: <span class="font-bold text-primary">{{ request.user.username }}</span></span>
 </div>
 </div>
 <div class="grid grid-cols-1 gap-lg">
@@ -187,19 +188,18 @@
 <div class="space-y-2">
 <label class="font-label-md text-on-surface font-bold" for="expenseDate">Transaction Date</label>
 <div class="relative">
-<input class="w-full bg-surface border border-outline-variant rounded-lg p-md focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md outline-none" id="expenseDate" type="date"/>
+<input name="date" class="w-full bg-surface border border-outline-variant rounded-lg p-md focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md outline-none" id="expenseDate" type="date" required/>
 </div>
 </div>
 <!-- Category -->
 <div class="space-y-2">
 <label class="font-label-md text-on-surface font-bold" for="category">Expense Category</label>
-<select class="w-full bg-surface border border-outline-variant rounded-lg p-md focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md outline-none appearance-none" id="category">
-<option disabled="" selected="" value="">Select Category</option>
-<option value="utility">Utility Bills (Water/Electricity)</option>
-<option value="welfare">Member Welfare Support</option>
-<option value="maintenance">Sanctuary Maintenance</option>
-<option value="evangelism">Evangelism &amp; Mission</option>
-<option value="admin">Administrative Supplies</option>
+<select name="category" class="w-full bg-surface border border-outline-variant rounded-lg p-md focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md outline-none appearance-none" id="category">
+<option value="Utilities">Utility Bills (Water/Electricity)</option>
+<option value="Welfare">Member Welfare Support</option>
+<option value="Maintenance">Sanctuary Maintenance</option>
+<option value="Evangelism">Evangelism & Mission</option>
+<option value="Admin">Administrative Supplies</option>
 </select>
 </div>
 <!-- Amount -->
@@ -209,21 +209,20 @@
 <div class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none">
 <span class="text-error font-data-label">GH₵</span>
 </div>
-<input class="w-full bg-surface border border-outline-variant rounded-lg p-md pl-[60px] focus:ring-2 focus:ring-primary focus:border-primary transition-all font-data-display text-data-display text-error outline-none" id="amount" oninput="checkThreshold(this.value)" placeholder="0.00" step="0.01" type="number"/>
+<input name="amount" class="w-full bg-surface border border-outline-variant rounded-lg p-md pl-[60px] focus:ring-2 focus:ring-primary focus:border-primary transition-all font-data-display text-data-display text-error outline-none" id="amount" oninput="checkThreshold(this.value)" placeholder="0.00" step="0.01" type="number" required/>
 </div>
 </div>
-<!-- Payee -->
+<!-- Payee / Title -->
 <div class="space-y-2">
-<label class="font-label-md text-on-surface font-bold" for="payee">Payee Name / Vendor</label>
-<input class="w-full bg-surface border border-outline-variant rounded-lg p-md focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md outline-none" id="payee" placeholder="Enter name of individual or company" type="text"/>
+<label class="font-label-md text-on-surface font-bold" for="payee">Payee Name / Voucher Title</label>
+<input name="title" class="w-full bg-surface border border-outline-variant rounded-lg p-md focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md outline-none" id="payee" placeholder="Enter name of individual or company" type="text" required/>
 </div>
 <!-- Purpose -->
 <div class="space-y-2">
 <label class="font-label-md text-on-surface font-bold" for="purpose">Purpose of Expenditure</label>
-<textarea class="w-full bg-surface border border-outline-variant rounded-lg p-md focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md outline-none resize-none" id="purpose" minlength="20" oninput="updateCharCount(this)" placeholder="Describe the reason for this expense in detail (Minimum 20 characters)..." rows="4"></textarea>
+<textarea name="description" class="w-full bg-surface border border-outline-variant rounded-lg p-md focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md outline-none resize-none" id="purpose" placeholder="Describe the reason for this expense in detail..." rows="4"></textarea>
 <div class="flex justify-between items-center">
 <p class="text-xs text-on-surface-variant italic">Provide clear justification for stewardship records.</p>
-<span class="text-xs font-data-label text-on-surface-variant" id="charCount">0 / 20 characters</span>
 </div>
 </div>
 <!-- Payment Method Radio Cards -->

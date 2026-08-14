@@ -1,6 +1,7 @@
+{% load static %}
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
+<html class="light" lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Membership Status Management</title>
@@ -118,7 +119,6 @@
 <body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-col md:flex-row">
 <!-- Desktop Sidebar (Hidden on Mobile) -->
 {% include 'components/sidebar.html' %}
-<!-- Top App Bar (Desktop) -->
 <!-- Mobile Top App Bar -->
 <header class="md:hidden fixed top-0 left-0 w-full z-40 h-header-height bg-surface-container-lowest flex justify-between items-center px-lg border-b border-border shadow-sm">
 <span class="font-headline-md text-headline-md font-bold text-primary">MCG-SMS</span>
@@ -127,7 +127,7 @@
 </button>
 </header>
 <!-- Main Content Area -->
-<main class="flex-1 w-full  pt-header-height md:pt-header-height pb-[76px] md:pb-0 px-lg md:px-xl py-lg">
+<main class="flex-1 w-full pt-header-height md:pt-header-height pb-[76px] md:pb-0 px-lg md:px-xl py-lg">
 <!-- Page Header -->
 <div class="mb-lg flex flex-col gap-xs">
 <div class="flex items-center gap-sm text-on-surface-variant">

@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html class="light" lang="en" style="">
+<html class="light" lang="en">
     <head>
         <meta charset="utf-8"/>
         <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -131,7 +131,7 @@
 </div>
 </header>
 <!-- MAIN CONTENT -->
-<main class=" pt-header-height min-h-screen">
+<main class="m-10 pt-header-height min-h-screen">
 <div class="p-xl max-w-7xl mx-auto space-y-lg">
 <!-- BREADCRUMB & HEADER -->
 <div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
@@ -155,7 +155,43 @@
                         Export Excel
                     </button>
 </div>
+</div> 
+<!-- RECORD CLASS ATTENDANCE FORM -->
+<form method="POST" action="{% url 'attendance:class_attendance' %}" class="bg-card p-lg rounded-xl border border-border shadow-sm mb-lg space-y-md">
+{% csrf_token %}
+<h3 class="font-headline-md text-primary font-bold">Record Class Attendance Roll</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div>
+<label class="block text-label-sm font-bold text-on-surface-variant mb-1">Select Bible Study Class</label>
+<select name="class_id" class="w-full px-md py-2 border border-border rounded-lg bg-surface">
+{% for c in classes %}
+<option value="{{ c.id }}">{{ c.name }}</option>
+{% endfor %}
+</select>
 </div>
+<div>
+<label class="block text-label-sm font-bold text-on-surface-variant mb-1">Meeting Date</label>
+<input type="date" name="date" class="w-full px-md py-2 border border-border rounded-lg bg-surface" required/>
+</div>
+</div>
+<div>
+<label class="block text-label-sm font-bold text-on-surface-variant mb-1">Select Present Members</label>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-2 max-h-40 overflow-y-auto p-2 border border-border rounded-lg bg-surface">
+{% for m in members %}
+<label class="flex items-center gap-2 text-sm text-on-surface">
+<input type="checkbox" name="present_members" value="{{ m.id }}" class="rounded text-primary focus:ring-primary"/>
+{{ m.get_full_name }}
+</label>
+{% endfor %}
+</div>
+</div>
+<div>
+<label class="block text-label-sm font-bold text-on-surface-variant mb-1">Remarks / Meeting Notes</label>
+<input type="text" name="remarks" placeholder="Optional meeting notes..." class="w-full px-md py-2 border border-border rounded-lg bg-surface"/>
+</div>
+<button type="submit" class="bg-primary text-on-primary px-lg py-2.5 rounded-lg font-bold hover:bg-primary-light transition-all">Save Class Attendance</button>
+</form>
+
 <!-- FILTER BAR -->
 <div class="bg-card p-md rounded-xl shadow-sm border border-border grid grid-cols-1 md:grid-cols-4 gap-md items-end">
 <div class="space-y-xs">

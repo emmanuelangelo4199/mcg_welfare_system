@@ -176,11 +176,18 @@
 <h2 class="text-headline-lg font-headline-lg text-primary capitalize">User Management</h2>
 <p class="text-body-md text-on-surface-variant mt-xs">Manage system access levels, roles, and connected member profiles.</p>
 </div>
-<button class="bg-primary hover:bg-primary-light text-on-primary px-lg py-md rounded-lg font-bold flex items-center gap-sm transition-all shadow-sm active:scale-95" onclick="toggleSlideOver()">
+<a href="#" class="bg-primary hover:bg-primary-light text-on-primary px-lg py-md rounded-lg font-bold flex items-center gap-sm transition-all shadow-sm active:scale-95" onclick="toggleSlideOver()">
 <span class="material-symbols-outlined">person_add</span>
-                Add User
-            </button>
+Add User
+</a>
 </div>
+{% if messages %}
+  {% for message in messages %}
+    <div class="mb-md p-md rounded-lg text-body-md font-medium {% if message.tags == 'error' %}bg-error/10 text-error border border-error/20{% else %}bg-success/10 text-success border border-success/20{% endif %}">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
 <!-- Filter Bar -->
 <section class="bg-card rounded-xl shadow-sm border border-border p-md mb-lg flex flex-wrap items-center gap-md">
 <div class="flex-1 min-w-[280px] relative">
@@ -221,111 +228,55 @@
 </tr>
 </thead>
 <tbody class="divide-y divide-border">
-<!-- Row 1 -->
+{% for u in users %}
 <tr class="hover:bg-surface-container-lowest transition-colors">
 <td class="px-lg py-md">
 <div class="flex items-center gap-md">
-<div class="w-10 h-10 rounded-full bg-primary-muted flex-shrink-0 flex items-center justify-center">
-<img class="w-full h-full object-cover rounded-full" data-alt="A professional avatar of a female church clerk, featuring a confident smile and traditional Ghanaian kente pattern scarf. The setting is a bright, organized administrative office with soft natural lighting and a high-end corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFAlL7v2QzhyUV5qFhFvE8QGZZquX8HZFdZBV00nL5WkcW4dQRC1bUS9so4J3nMxTaHnSb4UkZvW_Hgpu_Vz5B7snjEczBACBBCwddTfuBln93sjrkYkbfvyR7--OamZB6gNqQQDWq7Qg7aiLXa-ZdeJo6tdH3lo195_3Gggdx1uzprZ-0nostzbQNZX0vXLVuLTnKPos8PpnQyubMPb5MboW8qToVbuZfBrfVy6oZcn4WUuPteK_E5yZtnNOXY4p0Rb3JWFCbFyQ9"/>
+<div class="w-10 h-10 rounded-full bg-primary-muted flex-shrink-0 flex items-center justify-center font-bold text-primary">
+{{ u.username|slice:":2"|upper }}
 </div>
 <div>
-<p class="font-bold text-on-surface">Abena Ofori</p>
-<p class="text-label-sm text-on-surface-variant">a.ofori@mcg-society.gh</p>
+<p class="font-bold text-on-surface">{{ u.first_name }} {{ u.last_name|default:u.username }}</p>
+<p class="text-label-sm text-on-surface-variant">{{ u.email|default:u.username }}</p>
 </div>
 </div>
 </td>
 <td class="px-lg py-md">
-<span class="bg-primary-muted text-primary text-label-sm px-sm py-xs rounded-full font-bold uppercase tracking-tight">Clerk</span>
+<span class="bg-primary-muted text-primary text-label-sm px-sm py-xs rounded-full font-bold uppercase tracking-tight">
+{{ u.profile.get_role_display|default:"Society Member" }}
+</span>
 </td>
 <td class="px-lg py-md">
-<a class="inline-flex items-center gap-xs px-sm py-xs bg-surface-container rounded border border-border text-label-sm hover:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined text-[14px]">link</span>
-                                Abena Ofori (MEM-0042)
-                            </a>
+<span class="text-label-sm text-on-surface-variant">{{ u.profile.phone_number|default:"No Phone" }}</span>
 </td>
 <td class="px-lg py-md">
-<p class="text-body-md font-data-display text-data-display">Today, 09:12 AM</p>
+<p class="text-body-md font-data-display text-data-display">{{ u.last_login|date:"d M Y, h:i A"|default:"Never" }}</p>
 </td>
 <td class="px-lg py-md text-center">
 <span class="bg-success/10 text-success text-label-sm font-bold px-sm py-xs rounded-full inline-block">Active</span>
 </td>
 <td class="px-lg py-md text-right">
-<div class="flex justify-end gap-xs">
-<button class="p-xs hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" title="Edit"><span class="material-symbols-outlined">edit</span></button>
-<button class="p-xs hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" title="Reset Password"><span class="material-symbols-outlined">lock_reset</span></button>
-<button class="p-xs hover:bg-error/10 hover:text-error rounded transition-colors text-on-surface-variant" title="Deactivate"><span class="material-symbols-outlined">person_off</span></button>
-</div>
+<form method="POST" action="{% url 'accounts:user_list' %}" class="flex items-center justify-end gap-xs">
+{% csrf_token %}
+<input type="hidden" name="user_id" value="{{ u.id }}">
+<select name="role" class="border border-border rounded px-2 py-1 text-xs bg-surface text-on-surface font-medium">
+<option value="ADMIN" {% if u.profile.role == 'ADMIN' %}selected{% endif %}>Admin</option>
+<option value="TREASURER" {% if u.profile.role == 'TREASURER' %}selected{% endif %}>Treasurer</option>
+<option value="CLASS_LEADER" {% if u.profile.role == 'CLASS_LEADER' %}selected{% endif %}>Class Leader</option>
+<option value="WELFARE_OFFICER" {% if u.profile.role == 'WELFARE_OFFICER' %}selected{% endif %}>Welfare Officer</option>
+<option value="MEMBER" {% if u.profile.role == 'MEMBER' or not u.profile %}selected{% endif %}>Society Member</option>
+</select>
+<button type="submit" class="px-3 py-1 bg-primary text-on-primary rounded text-xs hover:bg-primary-light transition-colors font-bold">
+Save Role
+</button>
+</form>
 </td>
 </tr>
-<!-- Row 2 -->
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="px-lg py-md">
-<div class="flex items-center gap-md">
-<div class="w-10 h-10 rounded-full bg-primary-muted flex-shrink-0 flex items-center justify-center">
-<img class="w-full h-full object-cover rounded-full" data-alt="A clean, professional portrait of a senior male treasurer for a church organization. He has a distinguished appearance and is wearing a dark suit with a subtle pattern. The lighting is soft and focused, creating a sense of reliability and administrative expertise within a modern, light-mode interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgFR04zG3yHwioJzcdqY4zzCJ7qcSeL_E0MdbPcsTtipxXqLGMaB-B2WvIzURTP6z6BKQJJnCKNP1LfYPXOvptBLqUk0GC1Pv5EkvSwDUwMvsd8fv9FpSqYLyqdkzWtnUoBXu8qTq6KOaT1AlmmyMEH356z8TVmAXJMj72_q0YUu7xNRjodJBJa3jeEx3ibJHYB2zvUgY6GOkstX024Q0AUjQXY5jpepxfsncBOKG5Si2pCljmDAWLmp1J95b8CC6u_TCNWYu-0xNx"/>
-</div>
-<div>
-<p class="font-bold text-on-surface">Kofi Boateng</p>
-<p class="text-label-sm text-on-surface-variant">k.boateng@mcg-society.gh</p>
-</div>
-</div>
-</td>
-<td class="px-lg py-md">
-<span class="bg-secondary-container text-on-secondary-container text-label-sm px-sm py-xs rounded-full font-bold uppercase tracking-tight">Treasurer</span>
-</td>
-<td class="px-lg py-md">
-<a class="inline-flex items-center gap-xs px-sm py-xs bg-surface-container rounded border border-border text-label-sm hover:bg-surface-container-high transition-colors text-on-surface" href="#">
-<span class="material-symbols-outlined text-[14px]">link</span>
-                                Kofi A. Boateng (MEM-0012)
-                            </a>
-</td>
-<td class="px-lg py-md">
-<p class="text-body-md font-data-display text-data-display">24 Oct 2023</p>
-</td>
-<td class="px-lg py-md text-center">
-<span class="bg-surface-container-highest text-on-surface-variant text-label-sm font-bold px-sm py-xs rounded-full inline-block">Inactive</span>
-</td>
-<td class="px-lg py-md text-right">
-<div class="flex justify-end gap-xs">
-<button class="p-xs hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" title="Edit"><span class="material-symbols-outlined">edit</span></button>
-<button class="p-xs hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" title="Reset Password"><span class="material-symbols-outlined">lock_reset</span></button>
-<button class="p-xs hover:bg-success/10 hover:text-success rounded transition-colors text-on-surface-variant" title="Activate"><span class="material-symbols-outlined">person_check</span></button>
-</div>
-</td>
+{% empty %}
+<tr>
+<td colspan="6" class="px-lg py-xl text-center text-on-surface-variant">No users found.</td>
 </tr>
-<!-- Row 3 -->
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="px-lg py-md">
-<div class="flex items-center gap-md">
-<div class="w-10 h-10 rounded-full bg-primary-muted flex-shrink-0 flex items-center justify-center">
-<div class="text-primary font-bold text-headline-md">EM</div>
-</div>
-<div>
-<p class="font-bold text-on-surface">Ekow Mensah</p>
-<p class="text-label-sm text-on-surface-variant">e.mensah@mcg-society.gh</p>
-</div>
-</div>
-</td>
-<td class="px-lg py-md">
-<span class="bg-primary text-on-primary text-label-sm px-sm py-xs rounded-full font-bold uppercase tracking-tight">Admin</span>
-</td>
-<td class="px-lg py-md">
-<span class="text-label-sm text-on-surface-variant italic">No member linked</span>
-</td>
-<td class="px-lg py-md">
-<p class="text-body-md font-data-display text-data-display">Yesterday, 4:45 PM</p>
-</td>
-<td class="px-lg py-md text-center">
-<span class="bg-success/10 text-success text-label-sm font-bold px-sm py-xs rounded-full inline-block">Active</span>
-</td>
-<td class="px-lg py-md text-right">
-<div class="flex justify-end gap-xs">
-<button class="p-xs hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" title="Edit"><span class="material-symbols-outlined">edit</span></button>
-<button class="p-xs hover:bg-surface-container-high rounded transition-colors text-on-surface-variant" title="Reset Password"><span class="material-symbols-outlined">lock_reset</span></button>
-<button class="p-xs hover:bg-error/10 hover:text-error rounded transition-colors text-on-surface-variant" title="Deactivate"><span class="material-symbols-outlined">person_off</span></button>
-</div>
-</td>
-</tr>
+{% endfor %}
 </tbody>
 </table>
 <div class="px-lg py-md bg-surface-container-low flex justify-between items-center border-t border-border">

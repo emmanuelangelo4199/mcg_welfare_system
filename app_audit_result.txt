@@ -1,0 +1,56 @@
+APP: accounts
+  Templates count: 6 (a1.html, a2.html, a3.html, my_profile.html, role_management.html...)
+  Views count: 7
+---
+APP: members
+  Templates count: 8 (c1member_directory.html, c2member_registration.html, c3member_profile.html, c4edit_member.html, c5pending_member_list.html...)
+  Views count: 8
+---
+APP: classes
+  Templates count: 5 (d1class_list.html, d2class_detail.html, d3add_edit_classForm.html, d4class_attendance_record.html, d5class_att_report.html...)
+  Views count: 5
+---
+APP: organisations
+  Templates count: 5 (e1org_list.html, e2org_details.html, e3add_org_edit.html, e5dues_contribution.html, org_attendance.html...)
+  Views count: 5
+---
+APP: services
+  Templates count: 5 (event_calendar.html, f2service_program_form.html, f3service_detail.html, f4serice_attendance.html, f5upcomingevents.html...)
+  Views count: 5
+---
+APP: attendance
+  Templates count: 5 (abstee_report.html, attendance_overview.html, class_att.html, org_attendance.html, service_att.html...)
+  Views count: 5
+---
+APP: finance
+  Templates count: 0 (...)
+  Views count: 10
+---
+APP: welfare_cases
+  Templates count: 6 (closure.html, new_welfare_case.html, visit_record_form.html, welfare_cases_list.html, welfare_case_details.html...)
+  Views count: 6
+---
+APP: meetings
+  Templates count: 5 (action_item_tracker.html, meeting_details.html, meeting_list.html, meeting_min_editor.html, meeting_schedule.html...)
+  Views count: 5
+---
+APP: communications
+  Templates count: 5 (compose_msg.html, k2msg_history.html, k3ann_board.html, k4birthday_message.html, k5reminder_due_notice.html...)
+  Views count: 5
+---
+APP: notifications
+  Templates count: 2 (notifi_board.html, notifi_setting.html...)
+  Views count: 2
+---
+APP: reports
+  Templates count: 6 (annual_report.html, m1report_page.html, m2membership_report.html, m3att_report.html, m4finance_report.html...)
+  Views count: 9
+---
+APP: dashboard
+  Templates count: 3 (class_leader.html, m_dashboard.html, treasurer.html...)
+  Views count: 3
+---
+APP: core
+  Templates count: 2 (audit_log.html, system_setting.html...)
+  Views count: 2
+---

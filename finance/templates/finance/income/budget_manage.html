@@ -246,6 +246,31 @@
 </div>
 </div>
 </div>
+<!-- RECORD BUDGET ALLOCATION FORM -->
+<form method="POST" action="{% url 'finance:budget_manage' %}" class="bg-card p-lg rounded-xl border border-border shadow-sm mb-lg space-y-md">
+{% csrf_token %}
+<h3 class="font-headline-md text-primary font-bold">Set Annual Budget Allocation</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div>
+<label class="block text-label-sm font-bold text-on-surface-variant mb-1">Fiscal Year</label>
+<input type="number" name="fiscal_year" value="2026" class="w-full px-md py-2 border border-border rounded-lg bg-surface" required/>
+</div>
+<div>
+<label class="block text-label-sm font-bold text-on-surface-variant mb-1">Budget Category</label>
+<input type="text" name="category" placeholder="e.g. Welfare Support, Maintenance" class="w-full px-md py-2 border border-border rounded-lg bg-surface" required/>
+</div>
+<div>
+<label class="block text-label-sm font-bold text-on-surface-variant mb-1">Allocated Amount (GHS)</label>
+<input type="number" name="allocated_amount" step="0.01" min="0" placeholder="0.00" class="w-full px-md py-2 border border-border rounded-lg bg-surface" required/>
+</div>
+</div>
+<div>
+<label class="block text-label-sm font-bold text-on-surface-variant mb-1">Notes / Description</label>
+<input type="text" name="notes" placeholder="Optional budget notes..." class="w-full px-md py-2 border border-border rounded-lg bg-surface"/>
+</div>
+<button type="submit" class="bg-primary text-on-primary px-lg py-2.5 rounded-lg font-bold hover:bg-primary-light transition-all">Save Budget Allocation</button>
+</form>
+
 <!-- Budget Table Container -->
 <div class="bg-card rounded-xl shadow-sm border border-outline-variant overflow-hidden">
 <div class="overflow-x-auto">

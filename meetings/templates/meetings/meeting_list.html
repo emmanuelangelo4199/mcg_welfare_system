@@ -205,49 +205,44 @@
 </tr>
 </thead>
 <tbody class="divide-y divide-border">
-<!-- Row 1: Scheduled (Overdue items) -->
+{% for m in meetings %}
 <tr class="hover:bg-surface-container-lowest transition-colors">
 <td class="px-lg py-md">
-<div class="font-data-label text-data-label text-on-surface">24 Oct 2023</div>
-<div class="text-label-sm text-on-surface-variant">14:00 GMT</div>
+<div class="font-data-label text-data-label text-on-surface">{{ m.date|date:"d M Y" }}</div>
+<div class="text-label-sm text-on-surface-variant">{{ m.start_time }}</div>
 </td>
 <td class="px-lg py-md">
-<span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm">Ordinary Leaders'</span>
+<span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm">{{ m.title }}</span>
 </td>
-<td class="px-lg py-md font-label-md text-on-surface">Wesley Hall</td>
+<td class="px-lg py-md font-label-md text-on-surface">{{ m.location }}</td>
 <td class="px-lg py-md">
 <div class="flex items-center gap-2">
-<span class="text-body-md">Rev. John Opoku</span>
+<span class="text-body-md">Society Leader</span>
 </div>
 </td>
 <td class="px-lg py-md text-center">
 <span class="font-data-label text-data-label bg-surface-container-high px-2 py-0.5 rounded">05</span>
 </td>
 <td class="px-lg py-md">
-<div class="flex items-center gap-2">
-<span class="font-data-label text-data-label">-- / 24</span>
-<div class="w-16 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
-<div class="bg-outline-variant h-full" style="width: 0%"></div>
-</div>
-</div>
+<span class="font-data-label text-data-label">Leader Board</span>
 </td>
 <td class="px-lg py-md">
-<div class="flex items-center gap-2">
-<span class="px-3 py-1 rounded-full bg-info/10 text-info font-bold text-[11px] uppercase tracking-tighter flex items-center gap-1">
-                      Scheduled
-                    </span>
-<div class="w-2 h-2 bg-error rounded-full animate-pulse" title="Overdue action items"></div>
-</div>
+<span class="px-3 py-1 rounded-full bg-info/10 text-info font-bold text-[11px] uppercase tracking-tighter">
+Scheduled
+</span>
 </td>
 <td class="px-lg py-md">
-<button class="text-primary hover:text-primary-light font-bold text-label-md flex items-center gap-1">
-                    View <span class="material-symbols-outlined text-[18px]">visibility</span>
-</button>
+<a href="{% url 'meetings:meeting_details' %}?id={{ m.id }}" class="text-primary hover:text-primary-light font-bold text-label-md flex items-center gap-1">
+View <span class="material-symbols-outlined text-[18px]">visibility</span>
+</a>
 </td>
 </tr>
-<!-- Row 2: Drafted -->
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="px-lg py-md">
+{% empty %}
+<tr>
+<td colspan="8" class="px-lg py-xl text-center text-on-surface-variant">No scheduled meetings found.</td>
+</tr>
+{% endfor %}
+</tbody>
 <div class="font-data-label text-data-label text-on-surface">15 Oct 2023</div>
 <div class="text-label-sm text-on-surface-variant">10:30 GMT</div>
 </td>

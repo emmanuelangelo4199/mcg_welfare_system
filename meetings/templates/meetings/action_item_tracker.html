@@ -201,6 +201,41 @@
 </div>
 </div>
 </div>
+<!-- CREATE ACTION ITEM FORM -->
+<form method="POST" action="{% url 'meetings:action_items' %}" class="bg-card p-lg rounded-xl border border-border shadow-sm mb-lg space-y-md">
+{% csrf_token %}
+<input type="hidden" name="action" value="create"/>
+<h3 class="font-headline-md text-primary font-bold">Create & Assign Action Item</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div>
+<label class="block text-label-sm font-bold text-on-surface-variant mb-1">Select Meeting</label>
+<select name="meeting_id" class="w-full px-md py-2 border border-border rounded-lg bg-surface">
+{% for m in meetings %}
+<option value="{{ m.id }}">{{ m.title }} ({{ m.date }})</option>
+{% endfor %}
+</select>
+</div>
+<div>
+<label class="block text-label-sm font-bold text-on-surface-variant mb-1">Task Description</label>
+<input type="text" name="task" placeholder="Enter task..." class="w-full px-md py-2 border border-border rounded-lg bg-surface" required/>
+</div>
+<div>
+<label class="block text-label-sm font-bold text-on-surface-variant mb-1">Due Date</label>
+<input type="date" name="due_date" class="w-full px-md py-2 border border-border rounded-lg bg-surface" required/>
+</div>
+</div>
+<div>
+<label class="block text-label-sm font-bold text-on-surface-variant mb-1">Assign To User</label>
+<select name="assigned_to" class="w-full px-md py-2 border border-border rounded-lg bg-surface">
+<option value="">Unassigned</option>
+{% for u in users %}
+<option value="{{ u.id }}">{{ u.get_full_name|default:u.username }}</option>
+{% endfor %}
+</select>
+</div>
+<button type="submit" class="bg-primary text-on-primary px-lg py-2.5 rounded-lg font-bold hover:bg-primary-light transition-all">Create Action Item</button>
+</form>
+
 <!-- Filter Bar -->
 <div class="bg-card p-lg rounded-xl shadow-sm border border-border mb-lg">
 <div class="grid grid-cols-1 md:grid-cols-4 gap-md items-end">

@@ -3,7 +3,7 @@ from . import views
 
 app_name = 'services'
 
-urlpatterns = [
+urlpatterns = [ 
     path('', views.upcoming_events_view, name='upcoming_events'),
     path('calendar/', views.event_calendar_view, name='event_calendar'),
     path('program-form/', views.service_program_form_view, name='service_program_form'),

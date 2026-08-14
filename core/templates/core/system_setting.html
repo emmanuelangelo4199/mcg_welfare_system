@@ -211,6 +211,9 @@
 <!-- Settings Panels -->
 <div class="col-span-9 space-y-lg">
 <!-- Society Profile Panel -->
+<form method="POST" action="{% url 'core:system_settings' %}">
+{% csrf_token %}
+<input type="hidden" name="key" value="Society Profile"/>
 <div class="settings-panel active bg-card rounded-xl shadow-sm border border-border overflow-hidden" id="society-profile">
 <div class="px-lg py-md border-b border-border bg-surface-container-low flex justify-between items-center">
 <h3 class="text-headline-md font-headline-md text-on-surface capitalize">Society Profile</h3>
@@ -220,11 +223,11 @@
 <div class="grid grid-cols-2 gap-lg mb-lg">
 <div class="space-y-sm">
 <label class="text-label-md font-label-md text-on-surface-variant capitalize">Society Name</label>
-<input class="w-full px-md py-sm border border-border rounded-lg focus:ring-2 focus:ring-primary-light focus:border-primary-light outline-none" type="text" value="Wesley Methodist Church"/>
+<input name="value" class="w-full px-md py-sm border border-border rounded-lg focus:ring-2 focus:ring-primary-light focus:border-primary-light outline-none" type="text" value="Wesley Methodist Church"/>
 </div>
 <div class="space-y-sm">
-<label class="text-label-md font-label-md text-on-surface-variant capitalize">Founding Date</label>
-<input class="w-full px-md py-sm border border-border rounded-lg focus:ring-2 focus:ring-primary-light outline-none" type="date" value="1954-06-15"/>
+<label class="text-label-md font-label-md text-on-surface-variant capitalize">Circuit & Diocese Description</label>
+<input name="description" class="w-full px-md py-sm border border-border rounded-lg focus:ring-2 focus:ring-primary-light outline-none" type="text" value="Abossey Okai Circuit - Accra Diocese"/>
 </div>
 </div>
 <div class="grid grid-cols-3 gap-md mb-lg">

@@ -1,19 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
+<html class="light" lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Organisation Detail - MCG-SMS</title>
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet"/>
-<!-- Material Symbols -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Tailwind Config from Guidelines -->
+<link href="{% static "img/Methodist Church Ghana Logo.png" %}" rel="icon" type="image/png" />
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -122,30 +120,25 @@
     </script>
 <style>
         /* Custom scrollbar for tabs and main content area if needed */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #E4E2DD; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #dcc0c1; }
-    </style>
+        ::-webkit-scrollbar { 
+                width: 6px; 
+                height: 6px; 
+        }
+        ::-webkit-scrollbar-track {
+                background: transparent;
+        }
+        ::-webkit-scrollbar-thumb { 
+                background: #E4E2DD; 
+                border-radius: 4px; 
+        }
+        ::-webkit-scrollbar-thumb:hover { 
+                background: #dcc0c1; 
+        }
+</style>
 </head>
 <body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex min-h-screen">
 <!-- JSON Component: SideNavBar -->
 {% include 'components/sidebar.html' %}
-<!-- JSON Component: TopAppBar -->
-<header class="docked full-width top-0 bg-surface-container-lowest dark:bg-surface-dim shadow-sm flex justify-between items-center h-header-height px-xl ml-0  md:w-[calc(100%-theme(spacing.sidebar-width))] fixed z-30">
-<!-- Search Bar (on_left configuration) -->
-<div class="flex-1 flex items-center">
-<div class="relative w-full max-w-md hidden md:block">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50" style="font-size: 20px;">search</span>
-<input class="w-full pl-10 pr-4 py-2 bg-surface rounded-full border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-body-md transition-all" placeholder="Search members, organisations..." type="text"/>
-</div>
-<!-- Mobile Menu Toggle (placeholder) -->
-<button class="md:hidden p-2 text-primary hover:bg-surface-container rounded-full">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
-<!-- Trailing Icon Actions & Profile -->
-</header>
 <!-- Main Content Canvas -->
 <main class="pt-header-height ml-0  min-h-screen p-md transition-all duration-300 md:p-lg">
 <!-- Page Breadcrumb/Header (Optional but good for context) -->

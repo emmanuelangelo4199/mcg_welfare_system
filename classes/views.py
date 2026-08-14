@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import ClassGroup
+from members.models import Member
 
 @login_required(login_url='accounts:login')
 def class_list_view(request):
@@ -15,9 +16,12 @@ def class_list_view(request):
 def class_detail_view(request):
     class_id = request.GET.get('id')
     class_group = get_object_or_404(ClassGroup, id=class_id) if class_id else ClassGroup.objects.first()
+    members = Member.objects.filter(assigned_class=class_group) if class_group else []
     return render(request, "classes/d2class_detail.html", {
         "active_nav": "classes",
-        "class_group": class_group
+        "class_group": class_group,
+        "members": members,
+        "members_count": len(members)
     })
 
 @login_required(login_url='accounts:login')

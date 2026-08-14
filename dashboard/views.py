@@ -7,6 +7,7 @@ from welfare_cases.models import WelfareCase
 from finance.models import IncomeLedger, ExpenseLedger
 from services.models import ChurchService
 from classes.models import ClassGroup
+from communications.models import Announcement
 
 @login_required(login_url='accounts:login')
 def main_dashboard(request):
@@ -19,6 +20,7 @@ def main_dashboard(request):
 
     recent_members = Member.objects.select_related('assigned_class').all().order_by('-created_at')[:5]
     upcoming_services = ChurchService.objects.all().order_by('service_date')[:5]
+    announcements = Announcement.objects.filter(is_active=True).order_by('-created_at')[:3]
 
     return render(request, "dashboard/m_dashboard.html", {
         "active_nav": "dashboard",
@@ -28,7 +30,8 @@ def main_dashboard(request):
         "total_income": total_income,
         "total_expense": total_expense,
         "recent_members": recent_members,
-        "upcoming_services": upcoming_services
+        "upcoming_services": upcoming_services,
+        "announcements": announcements
     })
 
 @role_required(allowed_roles=['ADMIN', 'TREASURER'])

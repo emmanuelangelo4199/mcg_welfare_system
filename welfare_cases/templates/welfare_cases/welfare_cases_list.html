@@ -135,32 +135,6 @@
 <body class="bg-surface font-body-md text-on-surface flex min-h-screen">
 <!-- Side Navigation Shell -->
 {% include 'components/sidebar.html' %}
-<!-- Top App Bar -->
-<header class="flex justify-between items-center h-header-height px-xl  w-[calc(100%-theme(spacing.sidebar-width))] bg-surface-container-lowest dark:bg-surface-dim shadow-sm fixed top-0 z-40">
-<div class="flex items-center space-x-md">
-<div class="relative">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-<input class="bg-surface-container pl-10 pr-4 py-2 rounded-full border-none focus:ring-2 focus:ring-primary text-body-md w-64 transition-all focus:w-80" placeholder="Search records..." type="text"/>
-</div>
-</div>
-<div class="flex items-center space-x-md">
-<button class="hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full p-2 text-on-surface-variant transition-opacity active:opacity-80">
-<span class="material-symbols-outlined">help_outline</span>
-</button>
-<button class="relative hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full p-2 text-on-surface-variant transition-opacity active:opacity-80">
-<span class="material-symbols-outlined">notifications</span>
-<span class="absolute top-2 right-2 w-2 h-2 bg-danger rounded-full"></span>
-</button>
-<div class="h-8 w-[1px] bg-border mx-2"></div>
-<div class="flex items-center space-x-sm cursor-pointer hover:bg-surface-container p-1 rounded-lg transition-colors">
-<div class="text-right hidden lg:block">
-<p class="font-label-md text-label-md text-on-surface font-bold">Admin User</p>
-<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Super Admin</p>
-</div>
-<img class="w-10 h-10 rounded-full border-2 border-primary-muted object-cover shadow-sm" data-alt="A portrait of a professional middle-aged Ghanaian man wearing a formal suit and a friendly expression. He is the system administrator for the church. The lighting is soft and natural, emphasizing a corporate and reliable atmosphere. The background is a clean, minimalist office setting with warm wooden tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgsTWVh6f9Jhx8Ks6MMB4YJDGp2X6qZ2OPngLIew3Q19TI8xv2VZA8NCnVUzjowDS2VwtHBwZeG0Zt0OMu-YL4v4tc-HobeV7v7ZnllF_V0nhGITe7B61ZNnrkus0vuvlydN9deOPRnTBpNszBcwUCtfwinvspMmSXk0CIKdmlO2GHr6wV3t7ViTpbfxThmL0akzbVFlc4J15GUx23mCEuxCLX20jSnqC9PPlXMwZi3gBBLnTMVYkO9pop5nDu_Uota9eO9t3iD72P"/>
-</div>
-</div>
-</header>
 <!-- Main Content Canvas -->
 <main class=" pt-header-height min-h-screen bg-surface">
 <!-- Confidentiality Banner -->
@@ -240,78 +214,38 @@
 </tr>
 </thead>
 <tbody class="divide-y divide-border">
-<!-- Row 1 -->
+{% for c in cases %}
 <tr class="hover:bg-surface-container-low transition-colors group">
-<td class="px-lg py-md font-data-label text-data-label text-primary">#WF-2023-089</td>
-<td class="px-lg py-md">
-<img class="w-10 h-10 rounded-full object-cover border border-border shadow-sm" data-alt="A small circular avatar of a smiling elderly woman in traditional kente cloth. She is indoors with a blurred living room background. The image is warm and respectful, reflecting the elderly demographic of the church community." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDn5tr6Vhem_AItud4O461gvQWJc6aSE6oA5E0GjnukWgpvhlxntOsnlTqHreiI_p1Mpov3mGG_KgHtoWsT9zhUq71kDs8-eAWgyDhXDvY_LjtmtUADcOPOWMAu5kjFLAXCNYv74atM4F2Gt17e6EzAnfV3bWBeokFIzm5SJtY2WsV1pWgniKdwl9bmHIfBnsUwxaa8OxqnxgYfkXniIh2mcpsg8RrGykd3suAl4P2pbcK1G9GXH6tZ7Yc-miJD5avbjbWIfaDQvvEu"/>
+<td class="px-lg py-md font-data-label text-data-label text-primary">#WF-2026-00{{ c.id }}</td>
+<td class="px-lg py-md font-bold text-on-surface">
+<a href="{% url 'welfare_cases:welfare_case_details' %}?id={{ c.id }}" class="hover:underline text-primary">
+{{ c.member.get_full_name }}
+</a>
 </td>
 <td class="px-lg py-md">
-<span class="px-sm py-1 bg-surface-container-highest text-on-tertiary-fixed-variant rounded-full text-label-sm font-medium">Bereavement</span>
+<span class="px-sm py-1 bg-surface-container-highest text-on-tertiary-fixed-variant rounded-full text-label-sm font-medium">
+{{ c.get_case_type_display }}
+</span>
 </td>
-<td class="px-lg py-md text-body-md text-on-surface-variant">Oct 12, 2023</td>
-<td class="px-lg py-md text-body-md text-on-surface-variant">2 hours ago</td>
-<td class="px-lg py-md">
-<div class="flex items-center space-x-sm">
-<img class="w-6 h-6 rounded-full object-cover" data-alt="A portrait of a young adult man in a casual clerical shirt, smiling warmly at the camera. He has a kind, approachable demeanor. The background is a slightly blurred church hall. He represents a church welfare officer." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDicqgiNpC6gdAlKK6Gi2ACHujq3b9kUfNvORss8hfFX3eNmLqknkRTEeNlI7wzOhhP8WY9naB8CPqkNDqDFeYlUFQQn7bfQwAxms6ZAf6IAlXOQ5vaaOwgMWwxPRqyPUSm-vPhh0xvBw5VCXye0_LxizonTO_5N3W2MAMGJB6eHAYxTvy0xZs53Bu1tHfz7-OxtCddeRYTUT4feTygTHPBHM5jfllCoGHvgIOTodtgvbkuO6ifS8NzfXYQI8BvTu806u5eXvTmOqyS"/>
-<span class="text-body-md">Rev. Boateng</span>
-</div>
+<td class="px-lg py-md text-body-md text-on-surface-variant">{{ c.created_at|date:"M d, Y" }}</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">{{ c.updated_at|date:"M d, Y" }}</td>
+<td class="px-lg py-md text-body-md text-on-surface-variant">
+{{ c.assigned_officer.first_name|default:"Unassigned" }}
 </td>
 <td class="px-lg py-md">
-<span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-label-sm font-bold uppercase tracking-tighter border border-green-200">Active</span>
+<span class="px-3 py-1 rounded-full text-label-sm font-bold uppercase tracking-tighter border {% if c.status == 'APPROVED' or c.status == 'DISBURSED' %}bg-green-100 text-green-700 border-green-200{% elif c.status == 'SUBMITTED' %}bg-amber-100 text-amber-700 border-amber-200{% else %}bg-gray-100 text-gray-700 border-gray-200{% endif %}">
+{{ c.get_status_display }}
+</span>
 </td>
 <td class="px-lg py-md text-right">
-<button class="text-primary font-label-md hover:underline active:opacity-70 transition-opacity">View</button>
+<a href="{% url 'welfare_cases:welfare_case_details' %}?id={{ c.id }}" class="text-primary font-label-md hover:underline font-bold">View Details</a>
 </td>
 </tr>
-<!-- Row 2 -->
-<tr class="hover:bg-surface-container-low transition-colors group">
-<td class="px-lg py-md font-data-label text-data-label text-primary">#WF-2023-094</td>
-<td class="px-lg py-md">
-<img class="w-10 h-10 rounded-full object-cover border border-border shadow-sm" data-alt="A circular avatar showing a middle-aged man with a composed and thoughtful expression. He is wearing a simple polo shirt. The lighting is bright and overhead, creating a clear and realistic portrait. The setting is neutral and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA83X1u_Jdy-ykpsycVg5hG6FZ0iUkNPtlczTvLYMgEZvS7itojwcv2CXOSVn7ADf6YEuoe43r1szrMxbpLm_wnF__OvggyN4MGl3nqVf14iv2t_qt-7dwlRp0Avos7Gcc90TyLSbOfrX47gwBZX6iukYn0i_wc6YBKRnDmjcL3jssSTyvfJxyJR80ZEsvg5GbHXZZ0h4VoGCUDU0I3jlnHQkvaDc9rWNOy605_tIDcZMvTY5VMIc44wXf-wXmhwEnt8N4re7M9cGe8"/>
-</td>
-<td class="px-lg py-md">
-<span class="px-sm py-1 bg-surface-container-highest text-on-tertiary-fixed-variant rounded-full text-label-sm font-medium">Medical Support</span>
-</td>
-<td class="px-lg py-md text-body-md text-on-surface-variant">Oct 15, 2023</td>
-<td class="px-lg py-md text-body-md text-on-surface-variant">Yesterday</td>
-<td class="px-lg py-md">
-<div class="flex items-center space-x-sm">
-<img class="w-6 h-6 rounded-full object-cover" data-alt="A portrait of a woman with a kind and reassuring smile, wearing professional business attire. She looks like a social worker or a counselor. The background is soft-focus office greenery. The overall mood is supportive and dignified." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8NJPIkiD9JCI4MPy79u0eKIj6BU114tkVnWWU9kPxkMzZqjTSg1TpoU5_4NvhnEFmgicOfcd_sqChbNNyVEN1Ufp7PRMbxg9FaE4tllXWKjOt5GOQsX93nQE1y3tuZA-pQ-CGNR2U4blxnf-priUp5HF0wWWR3m_btEV3al6P1YNZs9XR72T_PBfb_iShoLu4MRbOuHVN1M0QcG-iCq1PLLgkEbvBpZxhH1KU7Nb-PAUCtvGZMCVDMY0pKwzPZFxRcJvsqVOwz9i-"/>
-<span class="text-body-md">Sis. Abigail</span>
-</div>
-</td>
-<td class="px-lg py-md">
-<span class="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-label-sm font-bold uppercase tracking-tighter border border-amber-200">Pending</span>
-</td>
-<td class="px-lg py-md text-right">
-<button class="text-primary font-label-md hover:underline active:opacity-70 transition-opacity">View</button>
-</td>
+{% empty %}
+<tr>
+<td colspan="8" class="px-lg py-xl text-center text-on-surface-variant">No welfare cases found.</td>
 </tr>
-<!-- Row 3 -->
-<tr class="hover:bg-surface-container-low transition-colors group">
-<td class="px-lg py-md font-data-label text-data-label text-primary">#WF-2023-102</td>
-<td class="px-lg py-md">
-<img class="w-10 h-10 rounded-full object-cover border border-border shadow-sm" data-alt="An avatar of a cheerful young woman with braided hair, wearing a colorful headwrap. She is outdoors with soft sunlight illuminating her face. She looks happy and relieved. The image quality is high and conveys a sense of well-being and community support." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKRTO3DAXpyMG8RqxTHH7Ii0kGhPg5pEBGBXTVY9lQoLEj3-Cgagwk7sdQ4sFtd_7TU2RIv9sM5agAvRHHmKDoQZRpMrgdA_80ntZk1z_lLH3jIHIP31qaJb7dQchZdB3uSWUSTp8LLNremNACczq3dqaDM8kBdJP0g7eLmlG_OAjP_KI1N8dWdOiUOqDBgpQR26ni_LO5BbQ8bzY8WBz7xXamhZiuN73bpOJktbdJ1tjXQngjxRxR0uciZMMATVZiPjK8XsX4nbKC"/>
-</td>
-<td class="px-lg py-md">
-<span class="px-sm py-1 bg-surface-container-highest text-on-tertiary-fixed-variant rounded-full text-label-sm font-medium">Education Grant</span>
-</td>
-<td class="px-lg py-md text-body-md text-on-surface-variant">Oct 18, 2023</td>
-<td class="px-lg py-md text-body-md text-on-surface-variant">3 days ago</td>
-<td class="px-lg py-md">
-<div class="flex items-center space-x-sm">
-<img class="w-6 h-6 rounded-full object-cover" data-alt="A profile photo of an older man with glasses and a wise, calm expression. He is wearing a formal church shirt. He looks experienced and trustworthy. The setting is a library or office with books in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSNo5OWKFel5hhV2ydFBw_0mnouVJAHMUR3opD4vKb8MliIXUxIOz8wbnRFPb0O6qx5-e4A1QypoZSdIbu4Pmk_30oSdSVctZOG6LZ5vKd3-JgmVzMSJTWRDm7q92pBLVsTAvHV46tyvks78O8botDhmGk7ibc_Cz64iFNYOyG7JEycZtMST7YblmN_HmO7GBdLWO7bjYFlW9uKLYlaOnvZ4BmfobiffBJBoafkR0ptwxcULxhGZ4jIuBuwCKBBbl93IG74UaaVjtq"/>
-<span class="text-body-md">Elder Mensah</span>
-</div>
-</td>
-<td class="px-lg py-md">
-<span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-label-sm font-bold uppercase tracking-tighter border border-green-200">Active</span>
-</td>
-<td class="px-lg py-md text-right">
-<button class="text-primary font-label-md hover:underline active:opacity-70 transition-opacity">View</button>
-</td>
-</tr>
+{% endfor %}
 </tbody>
 </table>
 </div>
@@ -367,4 +301,5 @@
             searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
         });
     </script>
-</body></html>
+</body>
+</html>

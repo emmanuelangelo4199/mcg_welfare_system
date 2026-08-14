@@ -140,27 +140,9 @@
     </script>
 </head>
 <body class="bg-surface font-body-md text-on-surface min-h-screen overflow-x-hidden flex min-h-screen">
-<!-- Top AppBar (from JSON) -->
-<header class="fixed top-0 right-0 left-0 h-header-height z-40 bg-surface-container-lowest dark:bg-surface-dim shadow-sm flex justify-between items-center px-xl  w-[calc(100%-theme(spacing.sidebar-width))]">
-<div class="flex items-center gap-md">
-<span class="font-headline-md text-headline-md font-black text-primary">MCG-SMS</span>
-<div class="h-6 w-px bg-border mx-sm"></div>
-<h1 class="font-headline-md text-headline-md text-primary">Welfare Management</h1>
-</div>
-<div class="flex items-center gap-md">
-<div class="relative group">
-<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full p-2 transition-opacity active:opacity-80">notifications</span>
-<span class="absolute top-1 right-1 w-2 h-2 bg-danger rounded-full"></span>
-</div>
-<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full p-2 transition-opacity active:opacity-80">help_outline</span>
-<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-muted ml-sm cursor-pointer hover:ring-2 hover:ring-primary transition-all">
-<img class="w-full h-full object-cover" data-alt="A professional portrait of a Ghanaian church administrator, middle-aged with a dignified expression, wearing a formal suit. The background is a soft-focus office setting with warm mahogany tones and traditional Methodist insignia on the wall. The lighting is soft and flattering, emphasizing a mood of reliability and spiritual leadership." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7euoZ-SVj8VrX5sCThFrQJy7sN4_YSNa68uMwteEFtN7vYuw9TVVZiKLr2CXn9tv7ayzP_yNXNP8ZBt1ywsu8RFz1XMxeGSA0p_fO0NfCKQDaELfn8JgPCYCcgrDmAr8RtaT27kYzWmBIuGWKsY6pqBbytlf_UcPdeQYSRLbt5P4VG9XsWqQRcfpsayqGGSxIzCZczgp_OgYhgqYlOZytJFQCHjmB5nXKL7ipTNGjAJovGyGxnoOVEyGfu6je_S42gPHBsn9I382M"/>
-</div>
-</div>
-</header>
 {% include 'components/sidebar.html' %}
 <!-- Main Content Canvas -->
-<main class=" pt-header-height min-h-screen">
+<main class="m-5 w-full min-h-screen">
 <div class="p-xl max-w-7xl mx-auto">
 <!-- Breadcrumbs -->
 <div class="flex items-center gap-sm text-text-secondary mb-lg">
@@ -403,4 +385,5 @@
             }, 800);
         });
     </script>
-</body></html>
+</body>
+</html>

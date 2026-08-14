@@ -1,6 +1,7 @@
 from django.db import models
 from services.models import ChurchService
 from classes.models import ClassGroup
+from organisations.models import Organisation
 from members.models import Member
 
 class ServiceAttendance(models.Model):
@@ -26,3 +27,12 @@ class ClassAttendanceRecord(models.Model):
 
     def __str__(self):
         return f"{self.class_group.name} - {self.date}"
+
+class OrganisationAttendanceRecord(models.Model):
+    organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE, related_name='attendance_records')
+    date = models.DateField()
+    attendees_count = models.PositiveIntegerField(default=0)
+    remarks = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.organisation.name} - {self.date}"

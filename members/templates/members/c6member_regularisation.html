@@ -1,6 +1,7 @@
+{% load static %}
 <!DOCTYPE html>
-
-<html lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Member Regularisation - Methodist Church Ghana</title>
@@ -127,7 +128,6 @@
     </style>
 </head>
 <body class="bg-surface text-on-surface antialiased min-h-screen flex min-h-screen">
-<!-- TopAppBar (Desktop) -->
 <!-- SideNavBar (Desktop) -->
 {% include 'components/sidebar.html' %}
 <!-- BottomNavBar (Mobile) -->
@@ -155,10 +155,10 @@
 </a>
 </nav>
 <!-- Main Content Canvas -->
-<main class=" md:mt-header-height pb-[72px] md:pb-xl min-h-screen p-md md:p-xl">
+<main class="pb-[72px] md:pb-xl min-h-screen p-md md:p-xl">
 <div class="mb-lg flex items-center justify-between">
 <div>
-<nav class="flex items-center text-text-secondary font-body-md text-body-md mb-xs">
+<nav class="flex items-center text-text-secondary font-body-md text-body-md mb-5">
 <a class="hover:text-primary transition-colors" href="#">Members</a>
 <span class="material-symbols-outlined text-[16px] mx-xs">chevron_right</span>
 <a class="hover:text-primary transition-colors" href="#">Pending Requests</a>

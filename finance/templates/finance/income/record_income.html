@@ -127,28 +127,8 @@
 </head>
 <body class="bg-surface font-body-md text-on-surface flex min-h-screen">
 {% include 'components/sidebar.html' %}
-<!-- Header Shell -->
-<header class="flex justify-between items-center h-header-height w-full pl-[256px] pr-lg bg-surface shadow-sm sticky top-0 z-30">
-<div class="flex items-center gap-md">
-<h2 class="font-headline-md text-headline-md font-black text-primary">Record Income</h2>
-<nav class="hidden md:flex gap-md ml-xl">
-<a class="text-on-surface-variant font-medium hover:text-primary-light transition-colors" href="#">Receipts</a>
-</nav>
-</div>
-<div class="flex items-center gap-md">
-<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
-<span class="material-symbols-outlined">account_balance_wallet</span>
-</button>
-<div class="h-8 w-8 rounded-full bg-primary-muted flex items-center justify-center border border-outline/20">
-<img class="h-full w-full rounded-full object-cover" data-alt="A portrait-style profile avatar of a professional church administrator in dignified attire, clean professional aesthetic, soft daylight lighting, sharp focus, 8k resolution, minimalist corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlu39JAQtr3e5uFxzrVzfYidyaXpAN56NhyErAT9tplDc1ugIKE7xrppdXfriyji5NsRUsg96R-NIl7ats_nk1h33Ud8j0BPxdFJBxJB4nelp8B4eWXk3-8-C3tO7jJcyh7LqSQc7Yjcp2FgCPSA77bf4YW0Y3_o6_obzDKbYtIb-yLlgxn4xsc98rAaVFdwi73rflK6Q2lW9xVWAaFeMRbRzOhNDCDyckq9bqj7_sYMs9sdAWAPmgk5At0QKF3Zkiqqo0A5oEtzMW"/>
-</div>
-</div>
-</header>
 <!-- Main Content Canvas -->
-<main class=" p-xl min-h-[calc(100vh-64px)] bg-background">
+<main class=" p-xl min-h-[calc(100vh-64px)] bg-background w-full max-w-100">
 <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-lg">
 <!-- Left: Transaction Form -->
 <div class="lg:col-span-2">
@@ -157,17 +137,18 @@
 <h3 class="font-headline-md text-headline-md text-primary">New Income Entry</h3>
 <p class="text-on-surface-variant font-body-md">Ensure all fields are accurate before saving for the audit trail.</p>
 </div>
-<form class="p-lg space-y-lg" id="incomeForm">
+<form method="POST" action="{% url 'finance:record_income' %}" class="p-lg space-y-lg" id="incomeForm">
+{% csrf_token %}
 <!-- Date & Source -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
 <div class="space-y-xs">
 <label class="text-label-md text-on-surface-variant">Transaction Date</label>
-<input class="w-full px-md py-base border border-border rounded-lg font-body-md bg-surface-bright" type="date" value="2023-10-27"/>
+<input name="date" class="w-full px-md py-base border border-border rounded-lg font-body-md bg-surface-bright" type="date" required/>
 </div>
 <div class="space-y-xs relative">
 <label class="text-label-md text-on-surface-variant">Source / Service</label>
 <div class="relative">
-<input class="w-full pl-xl pr-md py-base border border-border rounded-lg font-body-md" placeholder="Search service (e.g. Sunday Morning)" type="text"/>
+<input name="remarks" class="w-full pl-xl pr-md py-base border border-border rounded-lg font-body-md" placeholder="Search service (e.g. Sunday Morning)" type="text"/>
 <span class="material-symbols-outlined absolute left-base top-1/2 -translate-y-1/2 text-outline">search</span>
 </div>
 </div>
@@ -176,19 +157,19 @@
 <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
 <div class="space-y-xs">
 <label class="text-label-md text-on-surface-variant">Income Category</label>
-<select class="w-full px-md py-base border border-border rounded-lg font-body-md bg-white appearance-none">
-<option>Sunday Offertory</option>
-<option>Tithe</option>
-<option>Welfare Contribution</option>
-<option>Donation</option>
-<option>Project Fund</option>
+<select name="category" class="w-full px-md py-base border border-border rounded-lg font-body-md bg-white appearance-none">
+<option value="OFFERING">Sunday Offertory</option>
+<option value="TITHE">Tithe</option>
+<option value="WELFARE">Welfare Contribution</option>
+<option value="DONATION">Donation</option>
+<option value="HARVEST">Project / Harvest Fund</option>
 </select>
 </div>
 <div class="space-y-xs">
 <label class="text-label-md text-on-surface-variant">Amount</label>
 <div class="flex items-center">
 <span class="px-md py-base bg-surface-container border border-r-0 border-border rounded-l-lg font-data-label text-on-surface-variant">GH₵</span>
-<input class="w-full px-md py-base border border-border rounded-r-lg font-data-display text-data-display text-secondary font-semibold" id="amountInput" placeholder="11" type="number" value="0.00"/>
+<input name="amount" min="0" step="0.01" class="w-full px-md py-base border border-border rounded-r-lg font-data-display text-data-display text-secondary font-semibold" id="amountInput" placeholder="0.00" type="number" required/>
 </div>
 </div>
 </div>
@@ -241,7 +222,7 @@
 <label class="text-label-md text-on-surface-variant">Received By</label>
 <div class="flex items-center gap-xs px-md py-base bg-surface-container rounded-lg border border-border">
 <div class="h-6 w-6 rounded-full bg-primary flex items-center justify-center text-[10px] text-white">SA</div>
-<span class="text-body-md font-medium">Samuel Appiah (Steward)</span>
+<span class="text-body-md font-medium">{{ request.user.username }}</span>
 <span class="ml-auto material-symbols-outlined text-[16px] text-success" style="font-variation-settings: 'FILL' 1;">verified_user</span>
 </div>
 </div>
@@ -256,7 +237,7 @@
 <!-- Remarks -->
 <div class="space-y-xs">
 <label class="text-label-md text-on-surface-variant">Remarks</label>
-<textarea class="w-full px-md py-base border border-border rounded-lg font-body-md" placeholder="Additional details or notes about this record..." rows="3"></textarea>
+<textarea name="remarks" class="w-full px-md py-base border border-border rounded-lg font-body-md" placeholder="Additional details or notes about this record..." rows="3"></textarea>
 </div>
 <!-- Drag and Drop Upload -->
 <div class="space-y-xs">
@@ -267,16 +248,13 @@
 <p class="text-label-sm text-outline">PDF, JPG or PNG (Max 5MB)</p>
 </div>
 </div>
-</form>
 <!-- Footer Actions -->
 <div class="p-lg bg-surface border-t border-border flex flex-col md:flex-row gap-md justify-end">
-<button class="px-xl py-base border border-primary text-primary rounded-lg font-body-md hover:bg-primary-muted transition-colors order-2 md:order-1">
-                            Save and Add Another
-                        </button>
-<button class="px-xl py-base bg-primary text-on-primary rounded-lg font-body-md font-bold shadow-md hover:bg-primary-light transition-all active:scale-[0.98] order-1 md:order-2">
+<button type="submit" class="px-xl py-base bg-primary text-on-primary rounded-lg font-body-md font-bold shadow-md hover:bg-primary-light transition-all active:scale-[0.98] order-1 md:order-2">
                             Save Income Record
-                        </button>
+</button>
 </div>
+</form>
 </div>
 </div>
 <!-- Right: Real-time Record Preview -->
@@ -369,4 +347,5 @@
             previewCategory.innerText = e.target.value;
         });
     </script>
-</body></html>
+</body>
+</html>

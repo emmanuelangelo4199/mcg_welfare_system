@@ -250,104 +250,43 @@
         </tr>
         </thead>
         <tbody class="divide-y divide-border/40">
-        <!-- Row 1 -->
-        <tr class="hover:bg-background transition-colors group">
-        <td class="px-lg py-md">
-        <div class="flex items-center gap-md">
-        <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-bold">AD</div>
-        <div>
-        <p class="font-headline-md text-body-md">Abigail Danso</p>
-        <p class="text-label-sm text-on-surface-variant">+233 244 556 789</p>
-        </div>
-        </div>
-        </td>
-        <td class="px-lg py-md">
-        <span class="font-data-label text-body-md">28 Oct</span>
-        </td>
-        <td class="px-lg py-md text-on-surface-variant">Susanna Wesley</td>
-        <td class="px-lg py-md">
-        <span class="inline-flex items-center gap-xs px-md py-xs bg-success/10 text-success rounded-full text-label-sm font-bold">
-            <span class="w-1.5 h-1.5 bg-success rounded-full"></span>
-        Sent</span>
-        </td>
-        <td class="px-lg py-md text-right">
-        <button class="text-primary font-label-md hover:underline decoration-2 underline-offset-4 transition-all">View Message</button>
-        </td>
-        </tr>
-        <!-- Row 2 -->
-        <tr class="hover:bg-background transition-colors group">
-        <td class="px-lg py-md">
-        <div class="flex items-center gap-md">
-        <div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold">BK</div>
-        <div>
-        <p class="font-headline-md text-body-md">Benjamin Kusi</p>
-        <p class="text-label-sm text-on-surface-variant">+233 209 887 654</p>
-        </div>
-        </div>
-        </td>
-        <td class="px-lg py-md">
-        <span class="font-data-label text-body-md">30 Oct</span>
-        </td>
-        <td class="px-lg py-md text-on-surface-variant">John Wesley</td>
-        <td class="px-lg py-md">
-        <span class="inline-flex items-center gap-xs px-md py-xs bg-warning/10 text-warning rounded-full text-label-sm font-bold">
-            <span class="w-1.5 h-1.5 bg-warning rounded-full animate-pulse"></span>
-        Pending</span>
-        </td>
-        <td class="px-lg py-md text-right space-x-md">
-        <button class="px-md py-xs bg-primary text-white text-label-sm rounded hover:bg-primary-light transition-all">Send Now</button>
-        <button class="text-on-surface-variant text-label-sm hover:text-danger transition-colors">Skip This Year</button>
-        </td>
-        </tr>
-        <!-- Row 3 -->
-        <tr class="hover:bg-background transition-colors group">
-        <td class="px-lg py-md">
-        <div class="flex items-center gap-md">
-        <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-bold">CN</div>
-        <div>
-        <p class="font-headline-md text-body-md">Comfort Nyarko</p>
-        <p class="text-label-sm text-on-surface-variant">+233 551 234 567</p>
-        </div>
-        </div>
-        </td>
-        <td class="px-lg py-md">
-        <span class="font-data-label text-body-md">01 Nov</span>
-        </td>
-        <td class="px-lg py-md text-on-surface-variant">Grace Society</td>
-        <td class="px-lg py-md">
-        <span class="inline-flex items-center gap-xs px-md py-xs bg-on-surface-variant/10 text-on-surface-variant rounded-full text-label-sm font-bold">
-            <span class="w-1.5 h-1.5 bg-on-surface-variant rounded-full"></span>
-        Skipped</span>
-        </td>
-        <td class="px-lg py-md text-right">
-        <button class="text-primary font-label-md hover:underline decoration-2 underline-offset-4 transition-all">Restore</button>
-        </td>
-        </tr>
-        <!-- Row 4 (Upcoming) -->
-        <tr class="hover:bg-background transition-colors group">
-        <td class="px-lg py-md">
-        <div class="flex items-center gap-md">
-        <div class="w-10 h-10 rounded-full bg-primary-muted text-primary flex items-center justify-center font-bold">EA</div>
-        <div>
-        <p class="font-headline-md text-body-md">Emmanuel Angelo</p>
-        <p class="text-label-sm text-on-surface-variant">+233 208 610 575</p>
-        </div>
-        </div>
-        </td>
-        <td class="px-lg py-md">
-        <span class="font-data-label text-body-md">03 Nov</span>
-        </td>
-        <td class="px-lg py-md text-on-surface-variant">Charles Wesley</td>
-        <td class="px-lg py-md">
-        <span class="inline-flex items-center gap-xs px-md py-xs bg-warning/10 text-warning rounded-full text-label-sm font-bold">
-            <span class="w-1.5 h-1.5 bg-warning rounded-full"></span>
-        Scheduled</span>
-        </td>
-        <td class="px-lg py-md text-right">
-        <button class="px-md py-xs border border-primary text-primary text-label-sm rounded hover:bg-primary-muted transition-all">Edit Draft</button>
-        </td>
-        </tr>
-        </tbody>
+{% for m in birthday_members %}
+<tr class="hover:bg-background transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-bold">
+{{ m.first_name|slice:":1" }}{{ m.last_name|slice:":1" }}
+</div>
+<div>
+<p class="font-headline-md text-body-md">{{ m.get_full_name }}</p>
+<p class="text-label-sm text-on-surface-variant">{{ m.phone_number|default:"No phone" }}</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="font-data-label text-body-md">{{ m.date_of_birth|date:"d M" }}</span>
+</td>
+<td class="px-lg py-md text-on-surface-variant">{{ m.assigned_class.name|default:"Unassigned" }}</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs px-md py-xs bg-success/10 text-success rounded-full text-label-sm font-bold">
+    <span class="w-1.5 h-1.5 bg-success rounded-full"></span>
+    Birthday This Month
+</span>
+</td>
+<td class="px-lg py-md text-right">
+<form method="POST" action="{% url 'communications:birthday_messages' %}" class="inline">
+{% csrf_token %}
+<input type="hidden" name="member_id" value="{{ m.id }}"/>
+<button type="submit" class="px-md py-1 bg-primary text-white rounded text-xs font-bold hover:bg-primary-light transition-all">Send Birthday SMS</button>
+</form>
+</td>
+</tr>
+{% empty %}
+<tr>
+<td colspan="5" class="px-lg py-xl text-center text-on-surface-variant">No member birthdays recorded for {{ current_month_name }}.</td>
+</tr>
+{% endfor %}
+</tbody>
         </table>
         </div>
         <div class="px-lg py-md bg-surface-container-low border-t border-border flex justify-between items-center">
