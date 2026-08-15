@@ -150,44 +150,8 @@
 </head>
 <body class="bg-surface font-body-md text-on-surface custom-scrollbar flex min-h-screen">
 {% include 'components/sidebar.html' %}
-<!-- Top AppBar -->
-<header class="flex justify-between items-center h-header-height w-full pl-[256px] pr-lg sticky top-0 z-30 bg-surface dark:bg-surface-dim shadow-sm">
-<div class="flex items-center gap-lg">
-<h2 class="font-headline-md text-headline-md font-black text-primary">Budget Management</h2>
-<div class="flex items-center gap-base">
-<select class="bg-surface-container border-none rounded-lg text-label-md font-medium px-4 py-2 focus:ring-2 focus:ring-primary">
-<option>FY 2023-2024</option>
-<option selected="">FY 2024-2025</option>
-<option>FY 2025-2026</option>
-</select>
-<button class="flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md hover:bg-primary-light transition-all active:scale-95 shadow-sm" id="toggleEdit">
-<span class="material-symbols-outlined text-[18px]">edit_note</span>
-<span>Set/Edit Budget</span>
-</button>
-</div>
-</div>
-<div class="flex items-center gap-md">
-<div class="flex items-center gap-md border-r border-outline-variant pr-md mr-md">
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Audit Trail</a>
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Vouchers</a>
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Receipts</a>
-</div>
-<div class="flex items-center gap-4">
-<button class="relative p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
-<span class="material-symbols-outlined">notifications</span>
-<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
-</button>
-<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
-<span class="material-symbols-outlined">account_balance_wallet</span>
-</button>
-<div class="w-8 h-8 rounded-full overflow-hidden border-2 border-primary-fixed cursor-pointer">
-<img class="w-full h-full object-cover" data-alt="A professional close-up headshot of a Methodist church administrator, middle-aged with a warm and welcoming expression, wearing a clerical collar and a dark suit. The lighting is soft and natural, against a blurred library background of leather-bound books and warm wood paneling, reflecting wisdom and institutional trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrT8r0Xq4AZFTIlS43WAxCx7uKNm60tl2dzl0epckodIsFoqLCh-fNGwIcnhxAiivw9FFnuGCjaULaacfytuzwNujCqUFcpdyOmuV5AA4Ee_OALpsdgo2HIK0AqmHp1lnvos0FFTu5vGWtuojSwjp2PCUUDivgeiWpnJVzuduRTuN6FpjZngHJ8b4_no7Rpc7-nKxAwJ1NAxPzZ9QtZfNR4LALsnp1YIFApwd9xtsLwcbqWGj0iVqOpneRbrKzkWWuStrO2XPOsWDY"/>
-</div>
-</div>
-</div>
-</header>
 <!-- Main Content Canvas -->
-<main class="ml-[256px] p-lg">
+<main class="mt-2.5 ml-[30px] p-lg">
 <!-- Summary Dashboard Section (Bento Inspired) -->
 <div class="grid grid-cols-12 gap-lg mb-xl">
 <!-- Large Summary Card -->
@@ -470,4 +434,5 @@
             chevrons.forEach(c => c.style.transform = 'rotate(0deg)');
         });
     </script>
-</body></html>
+</body>
+</html>

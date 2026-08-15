@@ -127,39 +127,7 @@
 <!-- Side Navigation Bar -->
 {% include 'components/sidebar.html' %}
 <!-- Main Content Area -->
-<main class="ml-[256px] min-h-screen">
-<!-- Top App Bar -->
-<header class="flex justify-between items-center h-header-height w-full px-lg sticky top-0 z-30 bg-surface dark:bg-surface-dim shadow-sm">
-<div class="flex items-center gap-md">
-<div class="relative">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-border rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all w-80 font-body-md" placeholder="Search income records..." type="text"/>
-</div>
-<div class="hidden md:flex gap-md ml-lg">
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md" href="#">Audit Trail</a>
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md" href="#">Vouchers</a>
-<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md" href="#">Receipts</a>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors relative">
-<span class="material-symbols-outlined text-primary">notifications</span>
-<span class="absolute top-2 right-2 w-2 h-2 bg-secondary rounded-full"></span>
-</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors">
-<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
-</button>
-<div class="flex items-center gap-3 ml-2 border-l border-border pl-4">
-<div class="text-right">
-<p class="text-sm font-bold text-on-surface leading-none">Kwame Mensah</p>
-<p class="text-[11px] text-on-surface-variant mt-1">Circuit Steward</p>
-</div>
-<div class="w-10 h-10 rounded-full border-2 border-primary-muted overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A professional headshot of an African man in modern business attire, set against a soft studio background. The lighting is warm and welcoming, capturing a sense of reliability and leadership for a church administrative portal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC16w9L4SIeWJBTkoseGFmF9TI1FkB9kADOdEK9FmfMltqzq7J0zAgpZtYOA839UQYx9e3eGG-rFSPLHfEIbwSCSONwLczoyj4kRyHw31kSEZT6FRijL0tG6-fCRQt4cYHhIC_Bh-Ay3tFfxKN5I3J4M4Eum9c8gtdg21TYV6HwejHNkbUoVtasBBlASnNv53yXCVgFQGOOIvMuUXBMA0R-sBW-Itv0OcPFseIeKr_YI4fNQVulZydJpMIisOV6sBMEgZhimFJKEE1w"/>
-</div>
-</div>
-</div>
-</header>
+<main class="mt-5 ml-[30px] min-h-screen">
 <!-- Page Header & Filters -->
 <section class="p-lg">
 <div class="flex justify-between items-end mb-lg">
@@ -371,4 +339,5 @@
             });
         });
     </script>
-</body></html>
+</body>
+</html>

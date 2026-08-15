@@ -146,32 +146,6 @@
 <body class="bg-background text-on-surface flex min-h-screen">
 <!-- Sidebar Navigation Shell -->
 {% include 'components/sidebar.html' %}
-<!-- Top AppBar Shell -->
-<header class="flex justify-between items-center h-header-height w-full pl-[256px] pr-lg sticky top-0 z-30 bg-surface dark:bg-surface-dim shadow-sm">
-<div class="flex items-center gap-md flex-1">
-<div class="relative w-full max-w-md">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Search audit trail or vouchers..." type="text"/>
-</div>
-<div class="hidden md:flex items-center gap-lg ml-md">
-<a class="text-on-surface-variant font-medium font-label-md hover:text-primary-light transition-colors" href="#">Audit Trail</a>
-<a class="text-primary font-bold font-label-md border-b-2 border-secondary" href="#">Vouchers</a>
-<a class="text-on-surface-variant font-medium font-label-md hover:text-primary-light transition-colors" href="#">Receipts</a>
-</div>
-</div>
-<div class="flex items-center gap-md">
-<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container rounded-full relative">
-<span class="material-symbols-outlined">notifications</span>
-<span class="absolute top-2 right-2 w-2 h-2 bg-danger rounded-full"></span>
-</button>
-<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container rounded-full">
-<span class="material-symbols-outlined">account_balance_wallet</span>
-</button>
-<div class="w-8 h-8 rounded-full bg-primary-muted border border-outline-variant overflow-hidden cursor-pointer hover:opacity-80 transition-opacity">
-<img class="w-full h-full object-cover" data-alt="A close-up portrait of a professional African man in a formal white clerical collar, representing a church administrator. He has a warm, dignified expression. The background is a soft-focus interior of a modern Methodist office with warm wood tones and soft natural light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTGdHjm-nEL-_-ddT2GWHYLmSrOKC-J825S4i4lt749DjyCZJePRRztC_9J0wj3EaQyOXL5dOeli8m5oVFuv-tpdf69RruQGgRI3GcVupT58eqwR_3bj1p5JkCs0DZvV4B7BDqiXGVGcKPWrqjSfoheOFkG1x-9IMmvtA4KXBZQQHIa_ZJiPcmRw-QzxwrRZfGs8d3pviLyoFWJX0PnhqQbXxxU505UqQYiK9hyCX253SdH0Sy_ntwAha6Vf9tVLsSOJRTCqj5173I"/>
-</div>
-</div>
-</header>
 <!-- Main Content Canvas -->
 <main class=" min-h-[calc(100vh-64px)] p-xl">
 <!-- Dashboard Header -->
@@ -427,4 +401,5 @@
             });
         });
     </script>
-</body></html>
+</body>
+</html>

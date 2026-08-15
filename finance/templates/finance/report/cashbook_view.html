@@ -125,31 +125,8 @@
 <body class="bg-background text-on-background flex min-h-screen">
 <!-- Side Navigation Shell -->
 {% include 'components/sidebar.html' %}
-<!-- Top App Bar Shell -->
-<header class="flex justify-between items-center h-header-height w-full pl-[256px] pr-lg sticky top-0 z-30 bg-surface dark:bg-surface-dim shadow-sm">
-<div class="flex items-center gap-xl h-full">
-<h1 class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">Financial Ledger</h1>
-<nav class="hidden md:flex gap-md h-full items-center">
-<a class="font-label-md text-label-md text-on-surface-variant font-medium hover:text-primary-light transition-colors" href="#">Audit Trail</a>
-<a class="font-label-md text-label-md text-on-surface-variant font-medium hover:text-primary-light transition-colors" href="#">Vouchers</a>
-<a class="font-label-md text-label-md text-on-surface-variant font-medium hover:text-primary-light transition-colors" href="#">Receipts</a>
-</nav>
-</div>
-<div class="flex items-center gap-md">
-<button class="w-10 h-10 rounded-full hover:bg-surface-container flex items-center justify-center transition-colors">
-<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
-</button>
-<button class="px-3 py-1.5 rounded-lg border border-outline/30 flex items-center gap-2 hover:bg-surface-container transition-colors">
-<span class="material-symbols-outlined text-primary scale-90">account_balance_wallet</span>
-<span class="font-data-label text-data-label text-on-surface">GH₵ 42,910.00</span>
-</button>
-<div class="w-9 h-9 rounded-full bg-surface-container-highest overflow-hidden border border-outline/20">
-<img class="w-full h-full object-cover" data-alt="A professional headshot of a mature administrative official for the Methodist Church Ghana, wearing formal attire, photographed with soft natural studio lighting against a clean, warm-toned minimalist office background that conveys institutional authority and trustworthiness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQzZVFl1Frr3kJQCFFLDwgKGZBm3CCbmeEZso4ooQejwipvXb81WqihNYWFa6TKsdcMGxPcSkarabZgFUn8vwjkhYOcnpfkzARz46IdlJ1dfLkc1sZyGP1cnVq81LR5neOW164Xy2J8HLPZu9nbvHUzb2yjSqdxlAn21dQ71nBFLTKU33Eftssml4BGkExz3w4S9ilUJ4cQrSZuhWHEZIpM1nxKgSbiFWqMfRkxtozXzMdj7TgahFs2rNZRzOO5V7SOYnELNYMHrq3"/>
-</div>
-</div>
-</header>
 <!-- Main Content Canvas -->
-<main class="pl-[256px] min-h-screen">
+<main class="pl-[30px] min-h-screen">
 <div class="p-xl max-w-7xl mx-auto flex flex-col gap-lg">
 <!-- Header Actions & Title -->
 <div class="flex justify-between items-end">
@@ -312,4 +289,5 @@
         const isDark = false; // Mock state
         if (isDark) document.documentElement.classList.add('dark');
     </script>
-</body></html>
+</body>
+</html>

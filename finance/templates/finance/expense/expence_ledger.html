@@ -143,32 +143,7 @@
 <!-- SideNavBar (Shared Component) -->
 {% include 'components/sidebar.html' %}
 <!-- Main Content Area -->
-<main class="ml-[256px] min-h-screen">
-<!-- TopAppBar (Shared Component) -->
-<header class="flex justify-between items-center h-header-height w-full pr-lg bg-surface shadow-sm sticky top-0 z-30 px-lg">
-<div class="flex items-center gap-xl">
-<h2 class="font-headline-md text-headline-md font-black text-primary">Expense Ledger</h2>
-<div class="hidden md:flex items-center gap-lg">
-<a class="text-on-surface-variant font-medium hover:text-primary-light transition-colors font-label-md text-label-md" href="#">Audit Trail</a>
-<a class="text-on-surface-variant font-medium hover:text-primary-light transition-colors font-label-md text-label-md" href="#">Vouchers</a>
-<a class="text-primary font-bold border-b-2 border-secondary font-label-md text-label-md" href="#">Receipts</a>
-</div>
-</div>
-<div class="flex items-center gap-md">
-<div class="relative hidden lg:block">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50">search</span>
-<input class="pl-10 pr-4 py-2 bg-surface-container rounded-lg border-none focus:ring-2 focus:ring-primary text-body-md w-64" placeholder="Search expenses..." type="text"/>
-</div>
-<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-opacity active:opacity-80">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-opacity active:opacity-80">
-<span class="material-symbols-outlined">account_balance_wallet</span>
-</button>
-<div class="w-px h-6 bg-outline-variant mx-2"></div>
-<img class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a church administrator, middle-aged with a warm and welcoming expression, wearing business casual attire. High-quality corporate photography style with a soft-focus office background, bright natural lighting, and a shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjKU--ZCWqj-R9zlcVzrvCNhfm23kZndvJBr5XjyZb658XLnh8yCklyzQLNIF2dTjHY8ArfhqfZQ4yH-I_vYVHUKlKAHuQTns_Mlg6cgy_Tq08jqGlEhsR7dNfuL-FpizhtMPvJmA3WXTE9R12Bf0AfXgZg4d4h9ark4PvSJ7ssgcHP4tVAjXTo0DAC0s454BT3WYvyoanqfm65QkDAOIOUs03q1fCAh5LdXVresIH2MXwtH3OCWvXsmgbJ2YW1b-gabz3AULWLZs3"/>
-</div>
-</header>
+<main class="mt-2.5 ml-[30px] min-h-screen">
 <!-- Summary Strip -->
 <div class="px-xl py-lg">
 <div class="grid grid-cols-1 md:grid-cols-4 gap-lg">
@@ -400,4 +375,5 @@
             });
         });
     </script>
-</body></html>
+</body>
+</html>
