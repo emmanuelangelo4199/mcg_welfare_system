@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.utils import timezone
 from django.db.models import Sum
 from core.decorators import role_required
-from .models import IncomeLedger, ExpenseLedger, Budget
+from .models import EXPENSE_CATEGORY_CHOICES, IncomeLedger, ExpenseLedger, Budget
+
 
 @login_required(login_url='accounts:login')
 def finance_dashboard_view(request):
@@ -53,32 +55,44 @@ def income_ledger_view(request):
 
 @role_required(allowed_roles=['ADMIN', 'TREASURER'])
 def budget_manage_view(request):
+    valid_categories = dict(EXPENSE_CATEGORY_CHOICES)
     if request.method == 'POST':
-        year = request.POST.get('fiscal_year', 2026)
-        category = request.POST.get('category', '').strip()
+        year = request.POST.get('fiscal_year') or timezone.localdate().year
+        category = request.POST.get('category', '').strip().upper()
         allocated = request.POST.get('allocated_amount')
         notes = request.POST.get('notes', '').strip()
 
-        Budget.objects.create(
+        if category not in valid_categories:
+            messages.error(request, "Please choose a valid budget category.")
+            return redirect('finance:budget_manage')
+
+        # One allocation per category per year: setting it again updates it,
+        # so budget utilisation never double-counts.
+        budget, created = Budget.objects.update_or_create(
             fiscal_year=year,
             category=category,
-            allocated_amount=allocated,
-            notes=notes
+            defaults={'allocated_amount': allocated, 'notes': notes},
         )
-        messages.success(request, f"Budget entry for '{category}' added.")
+        verb = "added" if created else "updated"
+        messages.success(request, f"Budget entry for '{budget.get_category_display()}' {verb}.")
         return redirect('finance:budget_manage')
 
-    budgets = Budget.objects.all()
-    return render(request, "finance/income/budget_manage.html", {
+    budgets = Budget.objects.all().order_by('-fiscal_year', 'category')
+    context = {
         "active_nav": "finance",
-        "budgets": budgets
-    })
+        "budgets": budgets,
+        "category_choices": EXPENSE_CATEGORY_CHOICES,
+        "current_year": timezone.localdate().year,
+    }
+    return render(request, "finance/income/budget_manage.html", context)
 
 @role_required(allowed_roles=['ADMIN', 'TREASURER'])
 def record_expense_view(request):
     if request.method == 'POST':
         title = request.POST.get('title', '').strip()
         category = request.POST.get('category', '').strip()
+        if category not in dict(EXPENSE_CATEGORY_CHOICES):
+            category = 'OTHER' 
         amount = request.POST.get('amount')
         date = request.POST.get('date')
         description = request.POST.get('description', '').strip()
@@ -95,7 +109,11 @@ def record_expense_view(request):
         messages.success(request, f"Expense voucher for '{title}' submitted for approval.")
         return redirect('finance:expense_ledger')
 
-    return render(request, "finance/expense/record_expense.html", {"active_nav": "finance"})
+    context = {
+        "active_nav": "finance",
+        "category_choices": EXPENSE_CATEGORY_CHOICES,
+    }
+    return render(request, "finance/expense/record_expense.html", context)
 
 @login_required(login_url='accounts:login')
 def expense_ledger_view(request):

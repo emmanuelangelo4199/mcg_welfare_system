@@ -130,6 +130,7 @@
     </style>
 </head>
 <body class="bg-surface font-body-md text-on-surface flex min-h-screen">
+{% include 'components/toast_messages.html' %}
 {% include 'components/sidebar.html' %}
 <!-- Main Content -->
 <main class="pl-[256px] pt-lg pb-xl min-h-screen">
@@ -171,11 +172,9 @@
 <div class="space-y-2">
 <label class="font-label-md text-on-surface font-bold" for="category">Expense Category</label>
 <select name="category" class="w-full bg-surface border border-outline-variant rounded-lg p-md focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md outline-none appearance-none" id="category">
-<option value="Utilities">Utility Bills (Water/Electricity)</option>
-<option value="Welfare">Member Welfare Support</option>
-<option value="Maintenance">Sanctuary Maintenance</option>
-<option value="Evangelism">Evangelism & Mission</option>
-<option value="Admin">Administrative Supplies</option>
+{% for value, label in category_choices %}
+<option value="{{ value }}">{{ label }}</option>
+{% endfor %}
 </select>
 </div>
 <!-- Amount -->
