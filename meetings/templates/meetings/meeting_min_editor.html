@@ -1,404 +1,497 @@
+{% load static %}
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MCG-SMS | Meeting Minutes Editor</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            display: inline-block;
-            line-height: 1;
-            text-transform: none;
-            letter-spacing: normal;
-            word-wrap: normal;
-            white-space: nowrap;
-            direction: ltr;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #E4E2DD;
-            border-radius: 10px;
-        }
-        .editor-container {
-            min-height: 300px;
-        }
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-    </style>
-<script id="tailwind-config">
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Meeting Minutes Editor · MCG-SMS</title>
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      try {
         tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "error-container": "#ffdad6",
-                        "on-primary-container": "#ff8a95",
-                        "surface-variant": "#e9e1dd",
-                        "surface-container": "#f4ece8",
-                        "on-tertiary-container": "#adadab",
-                        "primary-container": "#7b1c2d",
-                        "surface-tint": "#a33a49",
-                        "gold-muted": "#FDF6E3",
-                        "danger": "#DC2626",
-                        "secondary": "#775a00",
-                        "background": "#fff8f5",
-                        "tertiary-container": "#404140",
-                        "secondary-fixed": "#ffdf9a",
-                        "secondary-fixed-dim": "#eec04f",
-                        "error": "#ba1a1a",
-                        "primary-fixed-dim": "#ffb2b7",
-                        "outline": "#897172",
-                        "on-error": "#ffffff",
-                        "inverse-on-surface": "#f7efeb",
-                        "on-primary-fixed": "#40000e",
-                        "on-primary-fixed-variant": "#832233",
-                        "success": "#16A34A",
-                        "on-secondary-container": "#745700",
-                        "secondary-container": "#fece5b",
-                        "on-tertiary-fixed": "#1a1c1b",
-                        "primary-light": "#A3283F",
-                        "tertiary-fixed": "#e3e2e0",
-                        "surface-container-high": "#eee7e3",
-                        "surface-dim": "#e0d8d5",
-                        "on-primary": "#ffffff",
-                        "surface-bright": "#fff8f5",
-                        "surface-container-highest": "#e9e1dd",
-                        "on-secondary-fixed": "#251a00",
-                        "on-tertiary": "#ffffff",
-                        "on-tertiary-fixed-variant": "#464746",
-                        "primary-muted": "#F5EAEC",
-                        "tertiary-fixed-dim": "#c7c6c5",
-                        "primary-fixed": "#ffdadb",
-                        "surface": "#F8F7F5",
-                        "warning": "#D97706",
-                        "on-error-container": "#93000a",
-                        "card": "#FFFFFF",
-                        "inverse-surface": "#33302d",
-                        "on-secondary-fixed-variant": "#5a4300",
-                        "inverse-primary": "#ffb2b7",
-                        "surface-container-lowest": "#ffffff",
-                        "surface-container-low": "#faf2ee",
-                        "primary": "#5c0219",
-                        "info": "#2563EB",
-                        "on-surface-variant": "#564243",
-                        "tertiary": "#2a2b2a",
-                        "on-background": "#1e1b19",
-                        "border": "#E4E2DD",
-                        "on-secondary": "#ffffff",
-                        "on-surface": "#1e1b19",
-                        "text-secondary": "#6B7280",
-                        "outline-variant": "#dcc0c1"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "lg": "24px",
-                        "xl": "32px",
-                        "sidebar-width": "256px",
-                        "md": "16px",
-                        "xs": "4px",
-                        "sm": "8px",
-                        "base": "8px",
-                        "header-height": "64px"
-                    },
-                    "fontFamily": {
-                        "label-md": ["Inter"],
-                        "body-lg": ["Inter"],
-                        "data-label": ["JetBrains Mono"],
-                        "headline-lg-mobile": ["Lora"],
-                        "headline-md": ["Inter"],
-                        "data-display": ["JetBrains Mono"],
-                        "headline-lg": ["Lora"],
-                        "label-sm": ["Inter"],
-                        "body-md": ["Inter"]
-                    },
-                    "fontSize": {
-                        "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
-                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                        "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                        "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                        "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
-                    }
-                },
-            },
-        }
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "error-container": "#ffdad6",
+                "on-primary-container": "#ff8a95",
+                "surface-variant": "#e9e1dd",
+                "surface-container": "#f4ece8",
+                "on-tertiary-container": "#adadab",
+                "primary-container": "#7b1c2d",
+                "surface-tint": "#a33a49",
+                "gold-muted": "#FDF6E3",
+                "danger": "#DC2626",
+                "secondary": "#775a00",
+                "background": "#fff8f5",
+                "tertiary-container": "#404140",
+                "secondary-fixed": "#ffdf9a",
+                "secondary-fixed-dim": "#eec04f",
+                "error": "#ba1a1a",
+                "primary-fixed-dim": "#ffb2b7",
+                "outline": "#897172",
+                "on-error": "#ffffff",
+                "inverse-on-surface": "#f7efeb",
+                "on-primary-fixed": "#40000e",
+                "on-primary-fixed-variant": "#832233",
+                "success": "#16A34A",
+                "on-secondary-container": "#745700",
+                "secondary-container": "#fece5b",
+                "on-tertiary-fixed": "#1a1c1b",
+                "primary-light": "#A3283F",
+                "tertiary-fixed": "#e3e2e0",
+                "surface-container-high": "#eee7e3",
+                "surface-dim": "#e0d8d5",
+                "on-primary": "#ffffff",
+                "surface-bright": "#fff8f5",
+                "surface-container-highest": "#e9e1dd",
+                "on-secondary-fixed": "#251a00",
+                "on-tertiary": "#ffffff",
+                "on-tertiary-fixed-variant": "#464746",
+                "primary-muted": "#F5EAEC",
+                "tertiary-fixed-dim": "#c7c6c5",
+                "primary-fixed": "#ffdadb",
+                "surface": "#F8F7F5",
+                "warning": "#D97706",
+                "on-error-container": "#93000a",
+                "card": "#FFFFFF",
+                "inverse-surface": "#33302d",
+                "on-secondary-fixed-variant": "#5a4300",
+                "inverse-primary": "#ffb2b7",
+                "surface-container-lowest": "#ffffff",
+                "surface-container-low": "#faf2ee",
+                "primary": "#5c0219",
+                "info": "#2563EB",
+                "on-surface-variant": "#564243",
+                "tertiary": "#2a2b2a",
+                "on-background": "#1e1b19",
+                "border": "#E4E2DD",
+                "on-secondary": "#ffffff",
+                "on-surface": "#1e1b19",
+                "text-secondary": "#6B7280",
+                "outline-variant": "#dcc0c1"
+              },
+              borderRadius: {
+                DEFAULT: "0.25rem",
+                lg: "0.5rem",
+                xl: "0.75rem",
+                full: "9999px"
+              },
+              boxShadow: {
+                ambient: "0 1px 2px rgba(30, 27, 25, 0.04), 0 6px 16px rgba(30, 27, 25, 0.06)"
+              },
+              spacing: {
+                xs: "4px",
+                sm: "8px",
+                base: "8px",
+                md: "16px",
+                lg: "24px",
+                xl: "32px",
+                "sidebar-width": "256px",
+                "header-height": "64px"
+              },
+              fontFamily: {
+                "label-sm": ["Inter"],
+                "label-md": ["Inter"],
+                "body-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "headline-md": ["Inter"],
+                "headline-lg": ["Lora"],
+                "headline-lg-mobile": ["Lora"],
+                "data-label": ["JetBrains Mono"],
+                "data-display": ["JetBrains Mono"]
+              },
+              fontSize: {
+                "label-sm": ["11px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "500" }],
+                "label-md": ["13px", { lineHeight: "1.2", fontWeight: "500" }],
+                "body-md": ["14px", { lineHeight: "1.6", fontWeight: "400" }],
+                "body-lg": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                "headline-md": ["20px", { lineHeight: "1.3", fontWeight: "600" }],
+                "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+                "headline-lg-mobile": ["24px", { lineHeight: "1.2", fontWeight: "700" }],
+                "data-label": ["14px", { lineHeight: "1.0", fontWeight: "500" }],
+                "data-display": ["18px", { lineHeight: "1.0", fontWeight: "500" }]
+              }
+            }
+          }
+        };
+      } catch (_e) {}
     </script>
-</head>
-<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed flex min-h-screen">
-{% include 'components/sidebar.html' %}
-<!-- Main Content Area -->
-<main class=" min-h-screen flex flex-col pb-24">
-<!-- Top App Bar -->
-<header class="flex justify-between items-center h-header-height px-xl bg-surface-container-lowest shadow-sm sticky top-0 z-40">
-<div class="flex items-center gap-md">
-<nav class="flex items-center text-label-md text-on-surface-variant font-label-md">
-<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
-<span class="material-symbols-outlined text-[14px] mx-xs">chevron_right</span>
-<a class="hover:text-primary transition-colors" href="#">Leaders' Meetings</a>
-<span class="material-symbols-outlined text-[14px] mx-xs">chevron_right</span>
-<a class="hover:text-primary transition-colors" href="#">Oct 24, 2023</a>
-<span class="material-symbols-outlined text-[14px] mx-xs">chevron_right</span>
-<span class="text-primary font-bold">Minutes Editor</span>
-</nav>
-</div>
-<div class="flex items-center gap-lg">
-<div class="flex items-center gap-sm">
-<button class="hover:bg-surface-container rounded-full p-2 text-on-surface-variant">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-<button class="hover:bg-surface-container rounded-full p-2 text-on-surface-variant">
-<span class="material-symbols-outlined">help_outline</span>
-</button>
-</div>
-<div class="flex items-center gap-md border-l border-border pl-lg">
-<div class="text-right">
-<p class="text-label-md font-bold text-on-surface">Admin User</p>
-<p class="text-[11px] text-on-surface-variant">Society Secretary</p>
-</div>
-<div class="w-10 h-10 rounded-full border-2 border-primary-light/20 overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged Ghanaian man in a formal white shirt, looking warm and authoritative, lit with soft natural studio light. The background is a clean, neutral tone consistent with a modern corporate office aesthetic. The high-resolution portrait emphasizes trust and dignity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA21_mVjp8ZFt-sFS-eePEPMOVZFAs7fy8xK3Wg8ioOZR8lnx8jp86_B3dFsHhId7ZJo_khyjIDkmK9F4aw0pAIko249hnO9w6_LOz8mqHDCCtesUWjEgXZG6ogGztIsP-mOkxIa-Ppvz1lD7DVyBqTBlw5QV7yZp_3xGMHA0f2O8qoRwOvbHHFU2_WYvLuI5YZMSNQXZ5COajIjOHuIn7v5bIIlyqMluC_yxV1x3lWPCjYqunU2Ef5HmSReolVaAJK6CPfUof9nXhj"/>
-</div>
-</div>
-</div>
-</header>
-<!-- Two Panel Layout -->
-<div class="flex flex-1 overflow-hidden">
-<!-- Agenda Navigator (Left Panel 25%) -->
-<aside class="w-1/4 border-r border-border bg-surface-container-low custom-scrollbar overflow-y-auto">
-<div class="p-lg border-b border-border">
-<h3 class="text-label-md font-bold text-on-surface-variant uppercase tracking-wider">Agenda Items</h3>
-<p class="text-[11px] text-on-surface-variant/70 mt-xs">8 items in this session</p>
-</div>
-<div class="p-sm">
-<!-- Agenda List -->
-<nav class="space-y-sm">
-<!-- Item 1: Complete -->
-<button class="w-full text-left flex items-center p-md rounded-lg hover:bg-surface-container transition-all group">
-<div class="status-dot bg-success mr-md"></div>
-<div class="flex-1">
-<p class="text-label-md text-on-surface font-semibold truncate">Call to Order &amp; Opening Prayer</p>
-<p class="text-[11px] text-on-surface-variant">Duration: 5m</p>
-</div>
-<span class="material-symbols-outlined text-[18px] text-success opacity-0 group-hover:opacity-100">check_circle</span>
-</button>
-<!-- Item 2: Active (Draft) -->
-<button class="w-full text-left flex items-center p-md rounded-lg bg-primary-muted border-l-[3px] border-primary transition-all">
-<div class="status-dot bg-warning mr-md"></div>
-<div class="flex-1">
-<p class="text-label-md text-primary font-bold truncate">Review of Previous Minutes</p>
-<p class="text-[11px] text-primary/60">Duration: 15m</p>
-</div>
-</button>
-<!-- Item 3: Draft -->
-<button class="w-full text-left flex items-center p-md rounded-lg hover:bg-surface-container transition-all">
-<div class="status-dot bg-warning mr-md"></div>
-<div class="flex-1">
-<p class="text-label-md text-on-surface font-semibold truncate">Society Financial Report</p>
-<p class="text-[11px] text-on-surface-variant">Duration: 30m</p>
-</div>
-</button>
-<!-- Item 4: Not Started -->
-<button class="w-full text-left flex items-center p-md rounded-lg hover:bg-surface-container transition-all">
-<div class="status-dot bg-outline/40 mr-md"></div>
-<div class="flex-1">
-<p class="text-label-md text-on-surface-variant font-medium truncate">Annual Welfare Harvest Plans</p>
-<p class="text-[11px] text-on-surface-variant/60">Duration: 45m</p>
-</div>
-</button>
-<!-- Item 5: Not Started -->
-<button class="w-full text-left flex items-center p-md rounded-lg hover:bg-surface-container transition-all">
-<div class="status-dot bg-outline/40 mr-md"></div>
-<div class="flex-1">
-<p class="text-label-md text-on-surface-variant font-medium truncate">Youth Ministry Sunday</p>
-<p class="text-[11px] text-on-surface-variant/60">Duration: 20m</p>
-</div>
-</button>
-<!-- Item 6: Not Started -->
-<button class="w-full text-left flex items-center p-md rounded-lg hover:bg-surface-container transition-all">
-<div class="status-dot bg-outline/40 mr-md"></div>
-<div class="flex-1">
-<p class="text-label-md text-on-surface-variant font-medium truncate">Building Maintenance Update</p>
-<p class="text-[11px] text-on-surface-variant/60">Duration: 10m</p>
-</div>
-</button>
-<!-- Item 7: Not Started -->
-<button class="w-full text-left flex items-center p-md rounded-lg hover:bg-surface-container transition-all">
-<div class="status-dot bg-outline/40 mr-md"></div>
-<div class="flex-1">
-<p class="text-label-md text-on-surface-variant font-medium truncate">Other Business (A.O.B)</p>
-<p class="text-[11px] text-on-surface-variant/60">Duration: 10m</p>
-</div>
-</button>
-<!-- Item 8: Not Started -->
-<button class="w-full text-left flex items-center p-md rounded-lg hover:bg-surface-container transition-all">
-<div class="status-dot bg-outline/40 mr-md"></div>
-<div class="flex-1">
-<p class="text-label-md text-on-surface-variant font-medium truncate">Closing Prayer</p>
-<p class="text-[11px] text-on-surface-variant/60">Duration: 5m</p>
-</div>
-</button>
-</nav>
-</div>
-</aside>
-<!-- Editor (Right Panel 75%) -->
-<section class="w-3/4 bg-white p-xl overflow-y-auto custom-scrollbar">
-<div class="max-w-4xl mx-auto space-y-xl">
-<!-- Header -->
-<div class="flex justify-between items-start">
-<div>
-<span class="inline-block bg-warning/10 text-warning text-label-sm px-sm py-xs rounded mb-sm font-bold border border-warning/20">DRAFTING MINUTES</span>
-<h2 class="text-headline-lg font-headline-lg text-primary">Review of Previous Minutes</h2>
-<p class="text-body-lg text-on-surface-variant mt-sm">Reviewing action points from the session held on September 28, 2023.</p>
-</div>
-</div>
-<div class="space-y-lg">
-<!-- Discussion Field -->
-<div class="space-y-sm">
-<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-xs">
-<span class="material-symbols-outlined text-[18px]">forum</span>
-                                DISCUSSION
-                            </label>
-<div class="border border-border rounded-lg overflow-hidden flex flex-col focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all">
-<div class="bg-surface-container-low px-md py-sm border-b border-border flex items-center gap-md">
-<button class="p-sm hover:bg-surface-container rounded transition-colors" title="Bold">
-<span class="material-symbols-outlined text-[20px]">format_bold</span>
-</button>
-<button class="p-sm hover:bg-surface-container rounded transition-colors" title="Italic">
-<span class="material-symbols-outlined text-[20px]">format_italic</span>
-</button>
-<div class="h-6 w-[1px] bg-border"></div>
-<button class="p-sm hover:bg-surface-container rounded transition-colors" title="Bullets">
-<span class="material-symbols-outlined text-[20px]">format_list_bulleted</span>
-</button>
-<button class="p-sm hover:bg-surface-container rounded transition-colors" title="Link">
-<span class="material-symbols-outlined text-[20px]">link</span>
-</button>
-</div>
-<textarea class="w-full border-none focus:ring-0 p-lg text-body-lg text-on-surface leading-relaxed placeholder:text-on-surface-variant/40" placeholder="Record main points of discussion here..." rows="8"></textarea>
-</div>
-</div>
-<!-- Decision Field -->
-<div class="space-y-sm">
-<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-xs">
-<span class="material-symbols-outlined text-[18px]">gavel</span>
-                                DECISION / RESOLUTION
-                            </label>
-<div class="relative">
-<input class="w-full bg-gold-muted border border-border border-l-4 border-l-secondary rounded-lg px-lg py-md text-body-lg font-semibold text-on-surface focus:ring-2 focus:ring-secondary focus:border-secondary transition-all placeholder:text-on-surface-variant/40" placeholder="State the final decision reached..." type="text"/>
-</div>
-</div>
-<!-- Member & Date Grid -->
-<div class="grid grid-cols-2 gap-xl">
-<!-- Responsible Person -->
-<div class="space-y-sm">
-<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-xs">
-<span class="material-symbols-outlined text-[18px]">person</span>
-                                    RESPONSIBLE PERSON
-                                </label>
-<div class="relative group">
-<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant/60 group-focus-within:text-primary transition-colors">person_search</span>
-<input class="w-full border border-border rounded-lg pl-11 pr-lg py-md focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="Search members..." type="text"/>
-</div>
-</div>
-<!-- Due Date -->
-<div class="space-y-sm">
-<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-xs">
-<span class="material-symbols-outlined text-[18px]">event</span>
-                                    DUE DATE
-                                </label>
-<div class="relative group">
-<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant/60 group-focus-within:text-primary transition-colors">calendar_month</span>
-<input class="w-full border border-border rounded-lg pl-11 pr-lg py-md focus:ring-2 focus:ring-primary focus:border-primary transition-all" type="date"/>
-</div>
-</div>
-</div>
-</div>
-<!-- Informational Alert -->
-<div class="bg-primary-muted/30 border border-primary-light/10 p-lg rounded-xl flex gap-md">
-<span class="material-symbols-outlined text-primary-light">info</span>
-<div>
-<p class="text-label-md font-bold text-primary">Confidential Record</p>
-<p class="text-body-md text-on-surface-variant">Minutes from this session are only accessible to Society Leaders and the Circuit Superintendent. Please ensure all names and sensitive details are entered correctly.</p>
-</div>
-</div>
-</div>
-</section>
-</div>
-<!-- Sticky Bottom Bar -->
-<footer class="fixed bottom-0 left-sidebar-width right-0 h-24 bg-surface-container-lowest border-t border-border px-xl flex items-center justify-between z-50">
-<div class="flex items-center gap-xl">
-<div class="flex items-center gap-sm">
-<div class="flex items-center justify-center w-8 h-8 rounded-full bg-success/10 text-success">
-<span class="material-symbols-outlined text-[18px]">cloud_done</span>
-</div>
-<div>
-<p class="text-label-md font-bold text-on-surface">All changes saved</p>
-<p class="text-[11px] text-on-surface-variant">Last saved at 14:32:01</p>
-</div>
-</div>
-<div class="h-8 w-[1px] bg-border"></div>
-<p class="text-label-md text-on-surface-variant/80 italic">
-<span class="font-bold text-on-surface-variant">Tip:</span> Use <kbd class="px-1.5 py-0.5 bg-surface-container border border-border rounded text-[11px] font-data-label">Tab</kbd> to move between Discussion, Decision, and Responsible Person fields.
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        line-height: 1;
+        white-space: nowrap;
+      }
+      .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+      .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+      .custom-scrollbar::-webkit-scrollbar-thumb { background: #E4E2DD; border-radius: 10px; }
+      .status-dot { width: 8px; height: 8px; border-radius: 50%; }
+    </style>
+  </head>
+
+  <body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed flex h-screen overflow-hidden">
+
+    {% include 'components/toast_messages.html' %}
+
+    <!-- Side Navigation -->
+    {% include 'components/sidebar.html' %}
+
+    <!-- Main Content Area -->
+    <main class="flex-1 min-w-0 h-full flex flex-col">
+
+      <!-- Top App Bar -->
+      <header class="shrink-0 flex items-center justify-between h-header-height px-xl bg-surface-container-lowest shadow-sm">
+        <nav class="flex items-center font-label-md text-label-md text-on-surface-variant">
+          <a class="transition-colors hover:text-primary" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+          <span class="material-symbols-outlined text-[14px] mx-xs">chevron_right</span>
+          <a class="transition-colors hover:text-primary" href="{% url 'meetings:meeting_list' %}">Leaders' Meetings</a>
+          {% if meeting %}
+          <span class="material-symbols-outlined text-[14px] mx-xs">chevron_right</span>
+          <a class="transition-colors hover:text-primary" href="{% url 'meetings:meeting_details' %}?id={{ meeting.id }}">
+            {{ meeting.date|date:"d M Y" }}
+          </a>
+          {% endif %}
+          <span class="material-symbols-outlined text-[14px] mx-xs">chevron_right</span>
+          <span class="text-primary font-bold">Minutes Editor</span>
+        </nav>
+
+        <div class="flex items-center gap-lg">
+          <div class="flex items-center gap-sm">
+            <button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container" type="button">
+              <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container" type="button">
+              <span class="material-symbols-outlined">help_outline</span>
+            </button>
+          </div>
+          <div class="flex items-center gap-md pl-lg border-l border-border">
+            <div class="hidden text-right sm:block">
+              <p class="text-label-md font-bold text-on-surface">{% firstof request.user.get_full_name request.user.username "Signed in user" %}</p>
+              <p class="text-[11px] text-on-surface-variant">Society Secretary</p>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-primary-muted text-primary flex items-center justify-center font-bold text-label-md border-2 border-primary-light/20">
+              {{ user_initials|default:"AU" }}
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {% if meeting %}
+      <form action="{% url 'meetings:meeting_minutes_editor' %}" class="flex-1 min-h-0 flex flex-col" id="minutesForm" method="post">
+        {% csrf_token %}
+        <input name="meeting_id" type="hidden" value="{{ meeting.id }}"/>
+
+        <!-- Two Panel Layout -->
+        <div class="flex-1 min-h-0 flex">
+
+          <!-- Agenda Navigator -->
+          <aside class="hidden w-1/4 shrink-0 border-r border-border bg-surface-container-low overflow-y-auto custom-scrollbar lg:block">
+            <div class="p-lg border-b border-border">
+              <h3 class="text-label-md font-bold text-on-surface-variant uppercase tracking-wider">Agenda Items</h3>
+              <p class="text-[11px] text-on-surface-variant/70 mt-xs">
+                {{ agenda_lines|length }} item{{ agenda_lines|length|pluralize }} in this session
+              </p>
+            </div>
+
+            <div class="p-sm">
+              <nav class="space-y-sm">
+                {% for line in agenda_lines %}
+                <button
+                  class="group w-full flex items-center p-md rounded-lg text-left transition-all hover:bg-surface-container"
+                  onclick="insertAgendaHeading(this.dataset.item)"
+                  data-item="{{ line }}"
+                  type="button">
+                  <div class="status-dot bg-primary/40 mr-md shrink-0"></div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-label-md text-on-surface font-semibold truncate">{{ line }}</p>
+                    <p class="text-[11px] text-on-surface-variant">Click to add to minutes</p>
+                  </div>
+                  <span class="material-symbols-outlined text-[18px] text-primary opacity-0 group-hover:opacity-100">add</span>
+                </button>
+                {% empty %}
+                <p class="p-md text-body-md text-on-surface-variant">
+                  No agenda was captured for this meeting.
                 </p>
-</div>
-<div class="flex items-center gap-md">
-<button class="bg-primary text-on-primary px-lg py-md rounded-lg font-bold flex items-center gap-sm hover:bg-primary-light active:scale-[0.98] transition-all shadow-md">
-<span class="material-symbols-outlined">save</span>
-                    SAVE MINUTES
-                </button>
-<button class="bg-white text-danger border border-danger/30 px-lg py-md rounded-lg font-bold flex items-center gap-sm hover:bg-error-container hover:border-danger active:scale-[0.98] transition-all">
-<span class="material-symbols-outlined">lock</span>
-                    FINALISE &amp; LOCK
-                </button>
-</div>
-</footer>
-</main>
-<script>
-        // Micro-interaction for autosave simulation
-        const saveText = document.querySelector('.text-label-md.font-bold.text-on-surface');
-        const saveIcon = document.querySelector('.material-symbols-outlined.text-\\[18px\\]');
-        
-        const inputs = document.querySelectorAll('input, textarea');
-        let timer;
+                {% endfor %}
+              </nav>
+            </div>
+          </aside>
 
-        inputs.forEach(input => {
-            input.addEventListener('input', () => {
-                clearTimeout(timer);
-                saveText.textContent = "Saving...";
-                saveText.classList.remove('text-on-surface');
-                saveText.classList.add('text-primary-light');
-                saveIcon.textContent = "sync";
-                saveIcon.classList.add('animate-spin');
+          <!-- Editor -->
+          <section class="flex-1 min-w-0 bg-white p-xl overflow-y-auto custom-scrollbar">
+            <div class="max-w-4xl mx-auto space-y-xl">
 
-                timer = setTimeout(() => {
-                    saveText.textContent = "All changes saved";
-                    saveText.classList.add('text-on-surface');
-                    saveText.classList.remove('text-primary-light');
-                    saveIcon.textContent = "cloud_done";
-                    saveIcon.classList.remove('animate-spin');
-                }, 1500);
-            });
-        });
+              <!-- Header -->
+              <div class="flex flex-col gap-md sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  {% if meeting.minutes %}
+                  <span class="inline-block mb-sm px-sm py-xs rounded bg-success/10 text-success text-label-sm font-bold border border-success/20">
+                    MINUTES RECORDED
+                  </span>
+                  {% else %}
+                  <span class="inline-block mb-sm px-sm py-xs rounded bg-warning/10 text-warning text-label-sm font-bold border border-warning/20">
+                    DRAFTING MINUTES
+                  </span>
+                  {% endif %}
+                  <h2 class="font-headline-lg text-headline-lg text-primary">{{ meeting.title }}</h2>
+                  <p class="mt-sm text-body-lg text-on-surface-variant">
+                    {{ meeting.date|date:"l, d F Y" }} at {{ meeting.start_time|time:"H:i" }} — {{ meeting.location }}
+                  </p>
+                </div>
+
+                <div class="shrink-0">
+                  <label class="block text-label-sm text-on-surface-variant uppercase mb-xs" for="meetingPicker">Switch meeting</label>
+                  <select
+                    class="w-full px-md py-sm rounded-lg border border-border text-body-md sm:w-64"
+                    id="meetingPicker"
+                    onchange="switchMeeting(this.value)">
+                    {% for m in meetings %}
+                    <option value="{{ m.id }}" {% if m.id == meeting.id %}selected{% endif %}>
+                      {{ m.title }} — {{ m.date|date:"d M Y" }}
+                    </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+
+              <div class="space-y-lg">
+
+                <!-- Minutes -->
+                <div class="space-y-sm">
+                  <label class="flex items-center gap-xs font-label-md text-label-md text-on-surface-variant" for="minutes">
+                    <span class="material-symbols-outlined text-[18px]">forum</span>
+                    DISCUSSION &amp; RESOLUTIONS
+                  </label>
+
+                  <div class="flex flex-col rounded-lg border border-border overflow-hidden transition-all focus-within:border-primary focus-within:ring-2 focus-within:ring-primary">
+                    <div class="flex items-center gap-md px-md py-sm bg-surface-container-low border-b border-border">
+                      <button class="p-sm rounded transition-colors hover:bg-surface-container" onclick="wrapSelection('**', '**')" title="Bold" type="button">
+                        <span class="material-symbols-outlined text-[20px]">format_bold</span>
+                      </button>
+                      <button class="p-sm rounded transition-colors hover:bg-surface-container" onclick="wrapSelection('_', '_')" title="Italic" type="button">
+                        <span class="material-symbols-outlined text-[20px]">format_italic</span>
+                      </button>
+                      <div class="h-6 w-[1px] bg-border"></div>
+                      <button class="p-sm rounded transition-colors hover:bg-surface-container" onclick="prefixLine('- ')" title="Bullet list" type="button">
+                        <span class="material-symbols-outlined text-[20px]">format_list_bulleted</span>
+                      </button>
+                      <button class="p-sm rounded transition-colors hover:bg-surface-container" onclick="prefixLine('Decision: ')" title="Mark a decision" type="button">
+                        <span class="material-symbols-outlined text-[20px]">gavel</span>
+                      </button>
+                    </div>
+
+                    <textarea
+                      class="w-full p-lg border-none text-body-lg text-on-surface leading-relaxed focus:ring-0 placeholder:text-on-surface-variant/40"
+                      id="minutes"
+                      name="minutes"
+                      placeholder="Record the main points of discussion and any resolutions reached..."
+                      rows="16">{{ meeting.minutes|default:'' }}</textarea>
+                  </div>
+                </div>
+
+                <!-- Action item arising -->
+                <div class="p-lg rounded-xl bg-gold-muted border border-secondary/20 space-y-md">
+                  <div>
+                    <h3 class="flex items-center gap-xs font-headline-md text-headline-md text-on-surface">
+                      <span class="material-symbols-outlined text-secondary">gavel</span>
+                      Action Item Arising
+                    </h3>
+                    <p class="text-body-md text-on-surface-variant">
+                      Optional — fill this in to raise an action item against this meeting when you save.
+                    </p>
+                  </div>
+
+                  <div class="space-y-sm">
+                    <label class="font-label-md text-label-md text-on-surface-variant" for="task">Task</label>
+                    <input
+                      class="w-full px-lg py-md rounded-lg bg-white border border-border text-body-lg font-semibold text-on-surface transition-all focus:border-secondary focus:ring-2 focus:ring-secondary placeholder:text-on-surface-variant/40 placeholder:font-normal"
+                      id="task"
+                      name="task"
+                      placeholder="e.g. Circulate the welfare disbursement summary"
+                      type="text"/>
+                  </div>
+
+                  <div class="grid grid-cols-1 gap-lg sm:grid-cols-2">
+                    <div class="space-y-sm">
+                      <label class="flex items-center gap-xs font-label-md text-label-md text-on-surface-variant" for="assigned_to">
+                        <span class="material-symbols-outlined text-[18px]">person</span>
+                        RESPONSIBLE PERSON
+                      </label>
+                      <select
+                        class="w-full px-md py-md rounded-lg bg-white border border-border transition-all focus:border-primary focus:ring-2 focus:ring-primary"
+                        id="assigned_to"
+                        name="assigned_to">
+                        <option value="">Unassigned</option>
+                        {% for u in users %}
+                        <option value="{{ u.id }}">{% firstof u.get_full_name u.username %}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+
+                    <div class="space-y-sm">
+                      <label class="flex items-center gap-xs font-label-md text-label-md text-on-surface-variant" for="due_date">
+                        <span class="material-symbols-outlined text-[18px]">event</span>
+                        DUE DATE
+                      </label>
+                      <input
+                        class="w-full px-md py-md rounded-lg bg-white border border-border transition-all focus:border-primary focus:ring-2 focus:ring-primary"
+                        id="due_date"
+                        name="due_date"
+                        type="date"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Informational Alert -->
+              <div class="flex gap-md p-lg rounded-xl bg-primary-muted/30 border border-primary-light/10">
+                <span class="material-symbols-outlined text-primary-light">info</span>
+                <div>
+                  <p class="font-label-md text-label-md font-bold text-primary">Confidential Record</p>
+                  <p class="text-body-md text-on-surface-variant">
+                    Minutes from this session are only accessible to Society Leaders and the Circuit Superintendent.
+                    Please ensure all names and sensitive details are entered correctly.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Action Bar -->
+        <footer class="shrink-0 flex flex-col gap-md px-xl py-md bg-surface-container-lowest border-t border-border lg:flex-row lg:items-center lg:justify-between">
+          <div class="flex items-center gap-sm">
+            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-success/10 text-success" id="saveIcon">
+              <span class="material-symbols-outlined text-[18px]">cloud_done</span>
+            </div>
+            <div>
+              <p class="text-label-md font-bold text-on-surface" id="saveState">All changes saved</p>
+              <p class="text-[11px] text-on-surface-variant">
+                {% if meeting.minutes %}Minutes on record{% else %}No minutes recorded yet{% endif %}
+              </p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-md">
+            <a
+              class="px-lg py-md rounded-lg font-bold text-on-surface-variant transition-colors hover:text-primary"
+              href="{% url 'meetings:meeting_details' %}?id={{ meeting.id }}">
+              Cancel
+            </a>
+            <button
+              class="flex items-center gap-sm px-lg py-md rounded-lg bg-white border border-border font-bold text-on-surface transition-all hover:bg-surface active:scale-[0.98]"
+              name="next"
+              type="submit"
+              value="details">
+              <span class="material-symbols-outlined">task</span>
+              SAVE &amp; VIEW MEETING
+            </button>
+            <button
+              class="flex items-center gap-sm px-lg py-md rounded-lg bg-primary text-on-primary font-bold shadow-md transition-all hover:bg-primary-light active:scale-[0.98]"
+              name="next"
+              type="submit"
+              value="stay">
+              <span class="material-symbols-outlined">save</span>
+              SAVE MINUTES
+            </button>
+          </div>
+        </footer>
+      </form>
+
+      {% else %}
+      <!-- Empty State -->
+      <div class="flex-1 flex items-center justify-center p-xl">
+        <div class="flex flex-col items-center justify-center max-w-md py-24 px-lg text-center bg-card rounded-xl border border-border shadow-ambient">
+          <div class="w-40 h-40 mb-lg rounded-full bg-primary-muted flex items-center justify-center">
+            <span class="material-symbols-outlined text-[64px] text-primary" style="font-variation-settings: 'wght' 200;">edit_note</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">No meeting to write up.</h3>
+          <p class="mb-lg text-body-md text-on-surface-variant">
+            Schedule a meeting first — its minutes can then be recorded here.
+          </p>
+          <a
+            class="px-lg py-sm rounded-lg bg-primary text-on-primary font-bold transition-all hover:bg-primary-light"
+            href="{% url 'meetings:meeting_schedule' %}">
+            Schedule Meeting
+          </a>
+        </div>
+      </div>
+      {% endif %}
+    </main>
+
+    <script>
+      const minutesField = document.getElementById('minutes');
+
+      function switchMeeting(id) {
+        window.location.href = '?id=' + id;
+      }
+
+      function insertAgendaHeading(text) {
+        if (!minutesField) return;
+
+        const prefix = minutesField.value.trim() ? '\n\n' : '';
+        minutesField.value += prefix + text + '\n';
+        minutesField.focus();
+        minutesField.selectionStart = minutesField.selectionEnd = minutesField.value.length;
+        markDirty();
+      }
+
+      function wrapSelection(before, after) {
+        if (!minutesField) return;
+
+        const start = minutesField.selectionStart;
+        const end = minutesField.selectionEnd;
+        const selected = minutesField.value.slice(start, end) || 'text';
+
+        minutesField.setRangeText(before + selected + after, start, end, 'end');
+        minutesField.focus();
+        markDirty();
+      }
+
+      function prefixLine(prefix) {
+        if (!minutesField) return;
+
+        const start = minutesField.selectionStart;
+        const lineStart = minutesField.value.lastIndexOf('\n', start - 1) + 1;
+
+        minutesField.setRangeText(prefix, lineStart, lineStart, 'end');
+        minutesField.focus();
+        markDirty();
+      }
+
+      // Unsaved-changes indicator
+      const saveState = document.getElementById('saveState');
+      const saveIcon = document.getElementById('saveIcon');
+      let dirty = false;
+
+      function markDirty() {
+        if (dirty || !saveState) return;
+
+        dirty = true;
+        saveState.textContent = 'Unsaved changes';
+        saveState.classList.remove('text-on-surface');
+        saveState.classList.add('text-warning');
+        saveIcon.classList.remove('bg-success/10', 'text-success');
+        saveIcon.classList.add('bg-warning/10', 'text-warning');
+        saveIcon.querySelector('span').textContent = 'cloud_upload';
+      }
+
+      document.querySelectorAll('#minutesForm input, #minutesForm textarea, #minutesForm select').forEach((field) => {
+        if (field.id !== 'meetingPicker') field.addEventListener('input', markDirty);
+      });
+
+      document.getElementById('minutesForm')?.addEventListener('submit', () => {
+        dirty = false;
+      });
+
+      window.addEventListener('beforeunload', (event) => {
+        if (dirty) event.preventDefault();
+      });
     </script>
-</body></html>
+  </body>
+</html>

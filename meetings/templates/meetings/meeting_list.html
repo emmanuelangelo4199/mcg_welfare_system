@@ -1,360 +1,380 @@
+{% load static %}
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><meta charset="utf-8"/><script id="tailwind-config">try{
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "error-container": "#ffdad6",
-            "on-primary-container": "#ff8a95",
-            "surface-variant": "#e9e1dd",
-            "surface-container": "#f4ece8",
-            "on-tertiary-container": "#adadab",
-            "primary-container": "#7b1c2d",
-            "surface-tint": "#a33a49",
-            "gold-muted": "#FDF6E3",
-            "danger": "#DC2626",
-            "secondary": "#775a00",
-            "background": "#fff8f5",
-            "tertiary-container": "#404140",
-            "secondary-fixed": "#ffdf9a",
-            "secondary-fixed-dim": "#eec04f",
-            "error": "#ba1a1a",
-            "primary-fixed-dim": "#ffb2b7",
-            "outline": "#897172",
-            "on-error": "#ffffff",
-            "inverse-on-surface": "#f7efeb",
-            "on-primary-fixed": "#40000e",
-            "on-primary-fixed-variant": "#832233",
-            "success": "#16A34A",
-            "on-secondary-container": "#745700",
-            "secondary-container": "#fece5b",
-            "on-tertiary-fixed": "#1a1c1b",
-            "primary-light": "#A3283F",
-            "tertiary-fixed": "#e3e2e0",
-            "surface-container-high": "#eee7e3",
-            "surface-dim": "#e0d8d5",
-            "on-primary": "#ffffff",
-            "surface-bright": "#fff8f5",
-            "surface-container-highest": "#e9e1dd",
-            "on-secondary-fixed": "#251a00",
-            "on-tertiary": "#ffffff",
-            "on-tertiary-fixed-variant": "#464746",
-            "primary-muted": "#F5EAEC",
-            "tertiary-fixed-dim": "#c7c6c5",
-            "primary-fixed": "#ffdadb",
-            "surface": "#F8F7F5",
-            "warning": "#D97706",
-            "on-error-container": "#93000a",
-            "card": "#FFFFFF",
-            "inverse-surface": "#33302d",
-            "on-secondary-fixed-variant": "#5a4300",
-            "inverse-primary": "#ffb2b7",
-            "surface-container-lowest": "#ffffff",
-            "surface-container-low": "#faf2ee",
-            "primary": "#5c0219",
-            "info": "#2563EB",
-            "on-surface-variant": "#564243",
-            "tertiary": "#2a2b2a",
-            "on-background": "#1e1b19",
-            "border": "#E4E2DD",
-            "on-secondary": "#ffffff",
-            "on-surface": "#1e1b19",
-            "text-secondary": "#6B7280",
-            "outline-variant": "#dcc0c1"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          "spacing": {
-            "lg": "24px",
-            "xl": "32px",
-            "sidebar-width": "256px",
-            "md": "16px",
-            "xs": "4px",
-            "sm": "8px",
-            "base": "8px",
-            "header-height": "64px"
-          },
-          "fontFamily": {
-            "label-md": ["Inter"],
-            "body-lg": ["Inter"],
-            "data-label": ["JetBrains Mono"],
-            "headline-lg-mobile": ["Lora"],
-            "headline-md": ["Inter"],
-            "data-display": ["JetBrains Mono"],
-            "headline-lg": ["Lora"],
-            "label-sm": ["Inter"],
-            "body-md": ["Inter"]
-          },
-          "fontSize": {
-            "label-md": ["13px", { "lineHeight": "1.2", "fontWeight": "500" }],
-            "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
-            "data-label": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }],
-            "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
-            "headline-md": ["20px", { "lineHeight": "1.3", "fontWeight": "600" }],
-            "data-display": ["18px", { "lineHeight": "1.0", "fontWeight": "500" }],
-            "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
-            "label-sm": ["11px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
-            "body-md": ["14px", { "lineHeight": "1.6", "fontWeight": "400" }]
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Meetings List · MCG-SMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="{% static "img/Methodist Church Ghana Logo.png" %}" rel="icon" type="image/png" />
+    <script id="tailwind-config">
+      try {
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "error-container": "#ffdad6",
+                "on-primary-container": "#ff8a95",
+                "surface-variant": "#e9e1dd",
+                "surface-container": "#f4ece8",
+                "on-tertiary-container": "#adadab",
+                "primary-container": "#7b1c2d",
+                "surface-tint": "#a33a49",
+                "gold-muted": "#FDF6E3",
+                "danger": "#DC2626",
+                "secondary": "#775a00",
+                "background": "#fff8f5",
+                "tertiary-container": "#404140",
+                "secondary-fixed": "#ffdf9a",
+                "secondary-fixed-dim": "#eec04f",
+                "error": "#ba1a1a",
+                "primary-fixed-dim": "#ffb2b7",
+                "outline": "#897172",
+                "on-error": "#ffffff",
+                "inverse-on-surface": "#f7efeb",
+                "on-primary-fixed": "#40000e",
+                "on-primary-fixed-variant": "#832233",
+                "success": "#16A34A",
+                "on-secondary-container": "#745700",
+                "secondary-container": "#fece5b",
+                "on-tertiary-fixed": "#1a1c1b",
+                "primary-light": "#A3283F",
+                "tertiary-fixed": "#e3e2e0",
+                "surface-container-high": "#eee7e3",
+                "surface-dim": "#e0d8d5",
+                "on-primary": "#ffffff",
+                "surface-bright": "#fff8f5",
+                "surface-container-highest": "#e9e1dd",
+                "on-secondary-fixed": "#251a00",
+                "on-tertiary": "#ffffff",
+                "on-tertiary-fixed-variant": "#464746",
+                "primary-muted": "#F5EAEC",
+                "tertiary-fixed-dim": "#c7c6c5",
+                "primary-fixed": "#ffdadb",
+                "surface": "#F8F7F5",
+                "warning": "#D97706",
+                "on-error-container": "#93000a",
+                "card": "#FFFFFF",
+                "inverse-surface": "#33302d",
+                "on-secondary-fixed-variant": "#5a4300",
+                "inverse-primary": "#ffb2b7",
+                "surface-container-lowest": "#ffffff",
+                "surface-container-low": "#faf2ee",
+                "primary": "#5c0219",
+                "info": "#2563EB",
+                "on-surface-variant": "#564243",
+                "tertiary": "#2a2b2a",
+                "on-background": "#1e1b19",
+                "border": "#E4E2DD",
+                "on-secondary": "#ffffff",
+                "on-surface": "#1e1b19",
+                "text-secondary": "#6B7280",
+                "outline-variant": "#dcc0c1"
+              },
+              borderRadius: {
+                DEFAULT: "0.25rem",
+                lg: "0.5rem",
+                xl: "0.75rem",
+                full: "9999px"
+              },
+              boxShadow: {
+                ambient: "0 1px 2px rgba(30, 27, 25, 0.04), 0 6px 16px rgba(30, 27, 25, 0.06)"
+              },
+              spacing: {
+                xs: "4px",
+                sm: "8px",
+                base: "8px",
+                md: "16px",
+                lg: "24px",
+                xl: "32px",
+                "sidebar-width": "256px",
+                "header-height": "64px"
+              },
+              fontFamily: {
+                "label-sm": ["Inter"],
+                "label-md": ["Inter"],
+                "body-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "headline-md": ["Inter"],
+                "headline-lg": ["Lora"],
+                "headline-lg-mobile": ["Lora"],
+                "data-label": ["JetBrains Mono"],
+                "data-display": ["JetBrains Mono"]
+              },
+              fontSize: {
+                "label-sm": ["11px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "500" }],
+                "label-md": ["13px", { lineHeight: "1.2", fontWeight: "500" }],
+                "body-md": ["14px", { lineHeight: "1.6", fontWeight: "400" }],
+                "body-lg": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                "headline-md": ["20px", { lineHeight: "1.3", fontWeight: "600" }],
+                "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+                "headline-lg-mobile": ["24px", { lineHeight: "1.2", fontWeight: "700" }],
+                "data-label": ["14px", { lineHeight: "1.0", fontWeight: "500" }],
+                "data-display": ["18px", { lineHeight: "1.0", fontWeight: "500" }]
+              }
+            }
           }
-        },
-      },
-    }
-  }catch(_e){}</script></head><body class="bg-surface text-on-surface font-body-md overflow-hidden h-screen flex">
-{% include 'components/sidebar.html' %}
-<!-- Main Canvas -->
-<main class="flex-1  h-full overflow-y-auto bg-surface-container-low">
-<!-- TopAppBar -->
-<header class="sticky top-0 z-40 bg-surface-container-lowest dark:bg-surface-dim shadow-sm flex justify-between items-center h-header-height px-xl">
-<div class="flex items-center gap-md">
-<!-- Search bar (on left) -->
-<div class="relative flex items-center">
-<span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span>
-<input class="pl-10 pr-4 py-2 bg-surface-container rounded-full border-none focus:ring-2 focus:ring-primary text-body-md w-64 transition-all duration-200" placeholder="Search meetings..." type="text"/>
-</div>
-</div>
-<div class="flex items-center gap-lg">
-<button class="relative hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full p-2 transition-colors">
-<span class="material-symbols-outlined text-primary" data-original-icon="notifications">notifications</span>
-<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
-</button>
-<button class="hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full p-2 transition-colors">
-<span class="material-symbols-outlined text-primary" data-original-icon="help_outline">help_outline</span>
-</button>
-<div class="flex items-center gap-sm pl-md border-l border-outline/20">
-<div class="text-right hidden sm:block">
-<p class="text-label-md font-bold text-on-surface">Very Rev. K. Mensah</p>
-<p class="text-label-sm text-on-surface-variant">Superintendent</p>
-</div>
-<div class="w-9 h-9 rounded-full bg-primary-muted border-2 border-primary/10 overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="Close up portrait of a middle-aged Ghanaian male minister wearing a white clerical collar. The lighting is soft and professional, capturing a warm, trustworthy expression. The background is a blurred ivory wall, maintaining a dignified and corporate aesthetic consistent with institutional leadership." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvJyJXAxf4T_feQFBYeitmt2dZl-rvebHj54Znjq3812H3Lxzdy_h2MYTlRc8MWhWG-7DsRQ0zjejS340IYQsF6Pc7jndO6m42LfbJ8lQB1va6hHQbEJa609xfmrbt3CBaWht5E3Z8h8XaaUdNN13VQ6zie615fTSBbM8-jAZEvCJ0-Sv8IuLdTGib5XxT6XH99ptX4ePYJyAgFxzjuZfDJEuIklvIrGM9ADS_pcAavBQTsxF3LjNcRkL119p-bCBdElg9x88xgJZm"/>
-</div>
-</div>
-</div>
-</header>
-<!-- Page Content -->
-<div class="px-xl py-lg">
-<!-- Breadcrumbs & Title Row -->
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-xl">
-<div>
-<nav class="flex items-center gap-xs text-on-surface-variant mb-xs">
-<span class="text-label-md">Dashboard</span>
-<span class="material-symbols-outlined text-[16px]" data-original-icon="chevron_right">chevron_right</span>
-<span class="text-label-md text-primary font-bold">Leaders' Meetings</span>
-</nav>
-<h2 class="font-headline-lg text-headline-lg text-primary">Meetings List</h2>
-</div>
-<button class="flex items-center gap-sm bg-primary text-on-primary px-lg py-md rounded-lg font-bold hover:bg-primary-light transition-all active:scale-[0.98] shadow-md">
-<span class="material-symbols-outlined">add</span>
-<span class="font-label-md">Schedule Meeting</span>
-</button>
-</div>
-<!-- Filter-->
-<div class="bg-card p-md rounded-xl shadow-ambient mb-lg flex flex-wrap items-center gap-md">
-<div class="flex-1 min-w-[200px]">
-<label class="block text-label-sm text-on-surface-variant mb-1 ml-1">Meeting Type</label>
-<select class="w-full bg-surface-container-low border border-border rounded-lg px-md py-2 text-body-md focus:ring-2 focus:ring-primary focus:border-primary">
-<option>All Types</option>
-<option>Ordinary Leaders' Meeting</option>
-<option>Emergency Meeting</option>
-<option>Society Meeting</option>
-<option>Annual General Meeting (AGM)</option>
-</select>
-</div>
-<div class="flex-1 min-w-[200px]">
-<label class="block text-label-sm text-on-surface-variant mb-1 ml-1">Date Range</label>
-<div class="relative">
-<input class="w-full bg-surface-container-low border border-border rounded-lg pl-md pr-10 py-2 text-body-md focus:ring-2 focus:ring-primary focus:border-primary" type="text" value="Oct 01, 2023 - Dec 31, 2023"/>
-<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant flex items-center">calendar_today</span>
-</div>
-</div>
-<div class="flex-1 min-w-[200px]">
-<label class="block text-label-sm text-on-surface-variant mb-1 ml-1">Status</label>
-<select class="w-full bg-surface-container-low border border-border rounded-lg px-md py-2 text-body-md focus:ring-2 focus:ring-primary focus:border-primary">
-<option>All Statuses</option>
-<option>Scheduled</option>
-<option>Minutes Drafted</option>
-<option>Finalised</option>
-</select>
-</div>
-<div class="flex items-end h-full mt-4">
-<button class="bg-surface-container-high text-on-surface hover:bg-surface-variant px-lg py-2.5 rounded-lg font-bold transition-colors">
-            Reset Filters
-          </button>
-</div>
-</div>
-<!-- Meetings Table -->
-<div class="bg-card rounded-xl shadow-ambient overflow-hidden border border-border">
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container-low border-b border-border">
-<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Date</th>
-<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Meeting Type</th>
-<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Venue</th>
-<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Convened By</th>
-<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider text-center">Agenda</th>
-<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Attendees</th>
-<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
-<th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Actions</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-border">
-{% for m in meetings %}
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="px-lg py-md">
-<div class="font-data-label text-data-label text-on-surface">{{ m.date|date:"d M Y" }}</div>
-<div class="text-label-sm text-on-surface-variant">{{ m.start_time }}</div>
-</td>
-<td class="px-lg py-md">
-<span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm">{{ m.title }}</span>
-</td>
-<td class="px-lg py-md font-label-md text-on-surface">{{ m.location }}</td>
-<td class="px-lg py-md">
-<div class="flex items-center gap-2">
-<span class="text-body-md">Society Leader</span>
-</div>
-</td>
-<td class="px-lg py-md text-center">
-<span class="font-data-label text-data-label bg-surface-container-high px-2 py-0.5 rounded">05</span>
-</td>
-<td class="px-lg py-md">
-<span class="font-data-label text-data-label">Leader Board</span>
-</td>
-<td class="px-lg py-md">
-<span class="px-3 py-1 rounded-full bg-info/10 text-info font-bold text-[11px] uppercase tracking-tighter">
-Scheduled
-</span>
-</td>
-<td class="px-lg py-md">
-<a href="{% url 'meetings:meeting_details' %}?id={{ m.id }}" class="text-primary hover:text-primary-light font-bold text-label-md flex items-center gap-1">
-View <span class="material-symbols-outlined text-[18px]">visibility</span>
-</a>
-</td>
-</tr>
-{% empty %}
-<tr>
-<td colspan="8" class="px-lg py-xl text-center text-on-surface-variant">No scheduled meetings found.</td>
-</tr>
-{% endfor %}
-</tbody>
-<div class="font-data-label text-data-label text-on-surface">15 Oct 2023</div>
-<div class="text-label-sm text-on-surface-variant">10:30 GMT</div>
-</td>
-<td class="px-lg py-md">
-<span class="px-3 py-1 rounded-full bg-error-container text-on-error-container font-label-sm">Emergency</span>
-</td>
-<td class="px-lg py-md font-label-md text-on-surface">Main Chapel</td>
-<td class="px-lg py-md">
-<div class="flex items-center gap-2">
-<span class="text-body-md">Sis. Mary Addo</span>
-</div>
-</td>
-<td class="px-lg py-md text-center">
-<span class="font-data-label text-data-label bg-surface-container-high px-2 py-0.5 rounded">02</span>
-</td>
-<td class="px-lg py-md">
-<div class="flex items-center gap-2">
-<span class="font-data-label text-data-label">18 / 22</span>
-<div class="w-16 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
-<div class="bg-warning h-full" style="width: 81%"></div>
-</div>
-</div>
-</td>
-<td class="px-lg py-md">
-<span class="px-3 py-1 rounded-full bg-warning/10 text-warning font-bold text-[11px] uppercase tracking-tighter">Drafted</span>
-</td>
-<td class="px-lg py-md">
-<button class="text-primary hover:text-primary-light font-bold text-label-md flex items-center gap-1">
-                    View <span class="material-symbols-outlined text-[18px]">visibility</span>
-</button>
-</td>
-</tr>
-<!-- Row 3: Finalised -->
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="px-lg py-md">
-<div class="font-data-label text-data-label text-on-surface">02 Oct 2023</div>
-<div class="text-label-sm text-on-surface-variant">09:00 GMT</div>
-</td>
-<td class="px-lg py-md">
-<span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm">Society</span>
-</td>
-<td class="px-lg py-md font-label-md text-on-surface">Social Centre</td>
-<td class="px-lg py-md">
-<div class="flex items-center gap-2">
-<span class="text-body-md">Rev. K. Mensah</span>
-</div>
-</td>
-<td class="px-lg py-md text-center">
-<span class="font-data-label text-data-label bg-surface-container-high px-2 py-0.5 rounded">12</span>
-</td>
-<td class="px-lg py-md">
-<div class="flex items-center gap-2">
-<span class="font-data-label text-data-label">45 / 50</span>
-<div class="w-16 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
-<div class="bg-success h-full" style="width: 90%"></div>
-</div>
-</div>
-</td>
-<td class="px-lg py-md">
-<span class="px-3 py-1 rounded-full bg-success/10 text-success font-bold text-[11px] uppercase tracking-tighter">Finalised</span>
-</td>
-<td class="px-lg py-md">
-<button class="text-primary hover:text-primary-light font-bold text-label-md flex items-center gap-1">
-                    View <span class="material-symbols-outlined text-[18px]">visibility</span>
-</button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Pagination/Footer -->
-<div class="px-lg py-md bg-surface-container-low flex justify-between items-center border-t border-border">
-<p class="text-label-sm text-on-surface-variant">Showing 1 to 3 of 12 meetings</p>
-<div class="flex items-center gap-2">
-<button class="w-8 h-8 flex items-center justify-center rounded border border-border text-on-surface-variant hover:bg-surface-variant transition-colors disabled:opacity-50" disabled="">
-<span class="material-symbols-outlined text-[18px]">chevron_left</span>
-</button>
-<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-on-primary font-data-label text-data-label">1</button>
-<button class="w-8 h-8 flex items-center justify-center rounded border border-border text-on-surface-variant hover:bg-surface-variant transition-colors font-data-label text-data-label">2</button>
-<button class="w-8 h-8 flex items-center justify-center rounded border border-border text-on-surface-variant hover:bg-surface-variant transition-colors font-data-label text-data-label">3</button>
-<button class="w-8 h-8 flex items-center justify-center rounded border border-border text-on-surface-variant hover:bg-surface-variant transition-colors">
-<span class="material-symbols-outlined text-[18px]">chevron_right</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Empty State Illustration (Hidden by default, shown for concept) -->
-<div class="hidden flex-col items-center justify-center py-24 text-center">
-<div class="w-48 h-48 bg-primary-muted rounded-full flex items-center justify-center mb-lg">
-<span class="material-symbols-outlined text-[64px] text-primary" style="font-variation-settings: 'wght' 200;">gavel</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">No meetings scheduled yet.</h3>
-<p class="text-body-lg text-on-surface-variant mb-xl max-w-md">Start organizing your society's governance by scheduling the next leaders' meeting or AGM.</p>
-<button class="flex items-center gap-sm bg-primary text-on-primary px-xl py-lg rounded-lg font-bold hover:bg-primary-light transition-all active:scale-[0.98] shadow-md">
-<span class="material-symbols-outlined">add</span>
-<span class="font-label-md">Schedule Meeting</span>
-</button>
-</div>
-</div>
-</main>
-<script>
-    // Micro-interactions for table rows
-    document.querySelectorAll('tbody tr').forEach(row => {
-      row.addEventListener('click', () => {
-        // In a real app, this would navigate to the detail view
-        console.log('Navigating to meeting details...');
-      });
-    });
+        };
+      } catch (_e) {}
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+    </style>
+  </head>
 
-    // Theme toggle mock (for demonstration)
-    function toggleDarkMode() {
-      document.documentElement.classList.toggle('dark');
-    }
-  </script>
-</body></html>
+  <body class="bg-surface text-on-surface font-body-md flex h-screen overflow-hidden">
+
+    <!-- Side Navigation -->
+    {% include 'components/sidebar.html' %}
+
+    <!-- Main Canvas -->
+    <main class="flex-1 h-full overflow-y-auto bg-surface-container-low">
+
+      <!-- Top App Bar -->
+      <header class="sticky top-0 z-40 flex items-center justify-between h-header-height px-xl bg-surface-container-lowest shadow-sm">
+        <div class="flex items-center gap-md">
+          <div class="relative flex items-center">
+            <span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span>
+            <input
+              class="w-64 pl-10 pr-4 py-2 bg-surface-container rounded-full border-none text-body-md transition-all duration-200 focus:ring-2 focus:ring-primary"
+              placeholder="Search meetings..."
+              type="text"/>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-lg">
+          <div class="flex items-center gap-sm">
+            <button class="relative p-2 rounded-full transition-colors hover:bg-surface-container" type="button">
+              <span class="material-symbols-outlined text-primary">notifications</span>
+              <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+            </button>
+            <button class="p-2 rounded-full transition-colors hover:bg-surface-container" type="button">
+              <span class="material-symbols-outlined text-primary">help_outline</span>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-sm pl-md border-l border-outline-variant">
+            <div class="hidden text-right sm:block">
+              <p class="text-label-md font-bold text-on-surface">Very Rev. K. Mensah</p>
+              <p class="text-label-sm text-on-surface-variant">Superintendent</p>
+            </div>
+            <div class="w-9 h-9 rounded-full bg-primary-muted text-primary flex items-center justify-center font-bold text-label-md border-2 border-primary/10">
+              {{ user_initials|default:"KM" }}
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="px-xl py-lg">
+
+        <!-- Breadcrumbs & Title Row -->
+        <div class="flex flex-col gap-md mb-xl md:flex-row md:items-end md:justify-between">
+          <div>
+            <nav class="flex items-center gap-xs text-on-surface-variant mb-xs">
+              <a class="text-label-md transition-colors hover:text-primary" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+              <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              <span class="text-label-md text-primary font-bold">Leaders' Meetings</span>
+            </nav>
+            <h2 class="font-headline-lg text-headline-lg text-primary">Meetings List</h2>
+          </div>
+
+          <a
+            class="inline-flex items-center gap-sm px-lg py-md rounded-lg bg-primary text-on-primary font-bold shadow-md transition-all hover:bg-primary-light active:scale-[0.98]"
+            href="{% url 'meetings:meeting_schedule' %}">
+            <span class="material-symbols-outlined">add</span>
+            <span class="font-label-md">Schedule Meeting</span>
+          </a>
+        </div>
+
+        <!-- Filters -->
+        <form class="bg-card p-md rounded-xl shadow-ambient border border-border mb-lg grid grid-cols-1 gap-md sm:grid-cols-2 lg:grid-cols-4 lg:items-end" method="get">
+          <div>
+            <label class="block text-label-sm text-on-surface-variant mb-xs ml-1" for="filter-type">Meeting Type</label>
+            <select
+              class="w-full px-md py-2 rounded-lg bg-surface-container-low border border-border text-body-md focus:border-primary focus:ring-2 focus:ring-primary"
+              id="filter-type"
+              name="type">
+              <option value="">All Types</option>
+              <option value="ordinary">Ordinary Leaders' Meeting</option>
+              <option value="emergency">Emergency Meeting</option>
+              <option value="society">Society Meeting</option>
+              <option value="agm">Annual General Meeting (AGM)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-label-sm text-on-surface-variant mb-xs ml-1" for="filter-range">Date Range</label>
+            <div class="relative">
+              <input
+                class="w-full pl-md pr-10 py-2 rounded-lg bg-surface-container-low border border-border text-body-md focus:border-primary focus:ring-2 focus:ring-primary"
+                id="filter-range"
+                name="range"
+                placeholder="Select a date range"
+                type="text"
+                value="{{ request.GET.range }}"/>
+              <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">calendar_today</span>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-label-sm text-on-surface-variant mb-xs ml-1" for="filter-status">Status</label>
+            <select
+              class="w-full px-md py-2 rounded-lg bg-surface-container-low border border-border text-body-md focus:border-primary focus:ring-2 focus:ring-primary"
+              id="filter-status"
+              name="status">
+              <option value="">All Statuses</option>
+              <option value="scheduled">Scheduled</option>
+              <option value="drafted">Minutes Drafted</option>
+              <option value="finalised">Finalised</option>
+            </select>
+          </div>
+
+          <div class="flex items-center gap-sm">
+            <button
+              class="flex-1 px-lg py-2.5 rounded-lg bg-primary text-on-primary font-bold transition-colors hover:bg-primary-light"
+              type="submit">
+              Apply
+            </button>
+            <a
+              class="flex-1 px-lg py-2.5 rounded-lg bg-surface-container-high text-on-surface text-center font-bold transition-colors hover:bg-surface-variant"
+              href="{% url 'meetings:meeting_list' %}">
+              Reset
+            </a>
+          </div>
+        </form>
+
+        {% if meetings %}
+        <!-- Meetings Table -->
+        <div class="bg-card rounded-xl border border-border shadow-ambient overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-surface-container-low border-b border-border">
+                  <th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Date &amp; Time</th>
+                  <th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Meeting</th>
+                  <th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Venue</th>
+                  <th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider text-center">Action Items</th>
+                  <th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+                  <th class="px-lg py-md text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+                </tr>
+              </thead>
+
+              <tbody class="divide-y divide-border">
+                {% for m in meetings %}
+                <tr class="transition-colors hover:bg-surface-container-lowest">
+                  <td class="px-lg py-md align-middle">
+                    <div class="font-data-label text-data-label text-on-surface">{{ m.date|date:"d M Y" }}</div>
+                    <div class="text-label-sm text-on-surface-variant">{{ m.start_time|time:"H:i" }}</div>
+                  </td>
+
+                  <td class="px-lg py-md align-middle">
+                    <span class="inline-block px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm">
+                      {{ m.title }}
+                    </span>
+                  </td>
+
+                  <td class="px-lg py-md align-middle font-label-md text-on-surface">{{ m.location }}</td>
+
+                  <td class="px-lg py-md align-middle text-center">
+                    <span class="inline-block px-2 py-0.5 rounded bg-surface-container-high font-data-label text-data-label">
+                      {{ m.action_items.count|stringformat:"02d" }}
+                    </span>
+                  </td>
+
+                  <td class="px-lg py-md align-middle">
+                    {% if m.minutes %}
+                    <span class="inline-block px-3 py-1 rounded-full bg-warning/10 text-warning font-bold text-[11px] uppercase tracking-tighter">
+                      Drafted
+                    </span>
+                    {% else %}
+                    <span class="inline-block px-3 py-1 rounded-full bg-info/10 text-info font-bold text-[11px] uppercase tracking-tighter">
+                      Scheduled
+                    </span>
+                    {% endif %}
+                  </td>
+
+                  <td class="px-lg py-md align-middle text-right">
+                    <a
+                      class="inline-flex items-center gap-1 text-primary font-bold text-label-md transition-colors hover:text-primary-light"
+                      href="{% url 'meetings:meeting_details' %}?id={{ m.id }}">
+                      View
+                      <span class="material-symbols-outlined text-[18px]">visibility</span>
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination / Footer -->
+          <div class="flex items-center justify-between px-lg py-md bg-surface-container-low border-t border-border">
+            <p class="text-label-sm text-on-surface-variant">
+              Showing {{ meetings|length }} of {{ meetings|length }} meeting{{ meetings|length|pluralize }}
+            </p>
+
+            {% if is_paginated %}
+            <div class="flex items-center gap-2">
+              {% if page_obj.has_previous %}
+              <a
+                class="w-8 h-8 flex items-center justify-center rounded border border-border text-on-surface-variant transition-colors hover:bg-surface-variant"
+                href="?page={{ page_obj.previous_page_number }}">
+                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+              </a>
+              {% else %}
+              <span class="w-8 h-8 flex items-center justify-center rounded border border-border text-on-surface-variant opacity-50">
+                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+              </span>
+              {% endif %}
+              {% for num in paginator.page_range %}
+              <a
+                class="w-8 h-8 flex items-center justify-center rounded font-data-label text-data-label transition-colors {% if num == page_obj.number %}bg-primary text-on-primary{% else %}border border-border text-on-surface-variant hover:bg-surface-variant{% endif %}"
+                href="?page={{ num }}">
+                {{ num }}
+              </a>
+              {% endfor %}
+              {% if page_obj.has_next %}
+              <a
+                class="w-8 h-8 flex items-center justify-center rounded border border-border text-on-surface-variant transition-colors hover:bg-surface-variant"
+                href="?page={{ page_obj.next_page_number }}">
+                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </a>
+              {% else %}
+              <span class="w-8 h-8 flex items-center justify-center rounded border border-border text-on-surface-variant opacity-50">
+                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </span>
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% else %}
+        <!-- Empty State -->
+        <div class="bg-card rounded-xl border border-border shadow-ambient flex flex-col items-center justify-center py-24 px-lg text-center">
+          <div class="w-48 h-48 mb-lg rounded-full bg-primary-muted flex items-center justify-center">
+            <span class="material-symbols-outlined text-[64px] text-primary" style="font-variation-settings: 'wght' 200;">gavel</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">No meetings scheduled yet.</h3>
+          <p class="max-w-md mb-xl text-body-lg text-on-surface-variant">
+            Start organising your society's governance by scheduling the next leaders' meeting or AGM.
+          </p>
+          <a
+            class="inline-flex items-center gap-sm px-xl py-lg rounded-lg bg-primary text-on-primary font-bold shadow-md transition-all hover:bg-primary-light active:scale-[0.98]"
+            href="{% url 'meetings:meeting_schedule' %}">
+            <span class="material-symbols-outlined">add</span>
+            <span class="font-label-md">Schedule Meeting</span>
+          </a>
+        </div>
+        {% endif %}
+
+      </div>
+    </main>
+
+  </body>
+</html>
