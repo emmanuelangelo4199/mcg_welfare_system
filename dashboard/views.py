@@ -178,14 +178,14 @@ def treasurer_dashboard(request):
     for budget in Budget.objects.filter(fiscal_year=month_start.year).order_by('category'):
         spent = ExpenseLedger.objects.filter(
             status__in=approved_states,
-            category__iexact=budget.category,
+            category=budget.category,
             date__year=budget.fiscal_year,
         ).aggregate(total=Sum('amount'))['total'] or 0
 
         allocated = budget.allocated_amount or 0
         share = round(float(spent) / float(allocated) * 100) if allocated else 0
         budgets.append({
-            'category': budget.category,
+            'category': budget.get_category_display(),
             'allocated': allocated,
             'spent': spent,
             'share': min(share, 100),
@@ -208,7 +208,7 @@ def treasurer_dashboard(request):
         {
             'date': row.date,
             'description': row.title,
-            'category': row.category,
+            'category': row.get_category_display(),
             'amount': row.amount,
             'is_income': False,
             'recorded_by': row.recorded_by,

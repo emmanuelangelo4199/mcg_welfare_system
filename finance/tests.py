@@ -79,10 +79,10 @@ class ExpenseCategoryTests(TestCase):
 
 
 class LegacyCategoryMigrationTests(TestCase):
-    """The 0002 data migration converts pre-existing free text without losing it."""
+    """The 0003 data migration converts pre-existing free text without losing it."""
 
     def setUp(self):
-        migration = import_module('finance.migrations.0002_expense_category_choices')
+        migration = import_module('finance.migrations.0003_normalise_expense_categories')
         self.normalise = migration.normalise
         self.today = timezone.localdate()
 
