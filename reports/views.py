@@ -95,7 +95,7 @@ def export_finance_csv(request):
         writer.writerow([
             f"EXP-{exp.id}",
             'Expense',
-            exp.category,
+            exp.get_category_display(),
             exp.amount,
             exp.date,
             exp.recorded_by.username if exp.recorded_by else 'System',

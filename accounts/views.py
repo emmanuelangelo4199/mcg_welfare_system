@@ -73,8 +73,13 @@ def register_view(request):
     return render(request, "accounts/a2.html")
 
 def logout_view(request):
-    logout(request)
-    messages.info(request, "You have been logged out.")
+    if request.method == 'POST':
+        logout(request)
+        messages.info(request, "You have been logged out.")
+        return redirect('accounts:login')
+    # GET requests are not accepted — redirect to dashboard or login
+    if request.user.is_authenticated:
+        return redirect('dashboard:dashboard')
     return redirect('accounts:login')
 
 def password_reset_view(request):

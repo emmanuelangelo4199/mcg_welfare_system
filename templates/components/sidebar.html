@@ -241,9 +241,12 @@
       <span class="material-symbols-outlined">settings</span>
       <span class="font-label-md text-label-md">Settings</span>
     </a>
-    <a class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:opacity-100" href="{% url 'accounts:login' %}">
-      <span class="material-symbols-outlined">logout</span>
-      <span class="font-label-md text-label-md">Log Out</span>
-    </a>
+    <form method="post" action="{% url 'accounts:logout' %}" id="logout-form">
+      {% csrf_token %}
+      <button type="submit" class="flex items-center gap-md text-on-primary px-md py-sm opacity-80 hover:opacity-100 w-full text-left bg-transparent border-0 cursor-pointer">
+        <span class="material-symbols-outlined">logout</span>
+        <span class="font-label-md text-label-md">Log Out</span>
+      </button>
+    </form>
   </div>
 </aside>

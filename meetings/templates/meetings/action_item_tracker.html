@@ -263,7 +263,7 @@
             name="assigned_to">
             <option value="">Unassigned</option>
             {% for u in users %}
-            <option value="{{ u.id }}">{{ u.get_full_name|default:u.username }}</option>
+            <option value="{{ u.id }}">{% firstof u.get_full_name u.username %}</option>
             {% endfor %}
           </select>
         </div>
@@ -373,10 +373,10 @@
                   {% if item.assigned_to %}
                   <div class="flex items-center gap-sm w-fit py-xs pl-xs pr-md rounded-full bg-surface ring-1 ring-border">
                     <span class="w-7 h-7 shrink-0 flex items-center justify-center rounded-full bg-primary-muted text-primary font-bold text-label-sm">
-                      {{ item.assigned_to.get_full_name|default:item.assigned_to.username|slice:":1"|upper }}
+                      {% firstof item.assigned_to.get_full_name item.assigned_to.username "?" as who %}{{ who|slice:":1"|upper }}
                     </span>
                     <span class="font-label-md text-label-md text-on-surface">
-                      {{ item.assigned_to.get_full_name|default:item.assigned_to.username }}
+                      {% firstof item.assigned_to.get_full_name item.assigned_to.username %}
                     </span>
                   </div>
                   {% else %}

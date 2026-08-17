@@ -382,10 +382,10 @@
                         {% if item.assigned_to %}
                         <div class="flex items-center gap-xs">
                           <span class="w-5 h-5 flex items-center justify-center rounded-full bg-primary/20 text-[10px] font-bold text-primary">
-                            {{ item.assigned_to.get_full_name|default:item.assigned_to.username|slice:":1"|upper }}
+                            {% firstof item.assigned_to.get_full_name item.assigned_to.username "?" as who %}{{ who|slice:":1"|upper }}
                           </span>
                           <span class="text-label-sm text-on-surface-variant">
-                            {{ item.assigned_to.get_full_name|default:item.assigned_to.username }}
+                            {% firstof item.assigned_to.get_full_name item.assigned_to.username %}
                           </span>
                         </div>
                         {% else %}
