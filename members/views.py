@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.paginator import Paginator
+from django.db.models import Q
 from core.decorators import role_required
 from .models import Member
 from classes.models import ClassGroup
@@ -8,21 +10,49 @@ from classes.models import ClassGroup
 @login_required(login_url='accounts:login')
 def member_directory_view(request):
     search_query = request.GET.get('q', '').strip()
-    members = Member.objects.select_related('assigned_class').all()
+    status = request.GET.get('status', '')
+    class_id = request.GET.get('class', '')
+    gender = request.GET.get('gender', '')
+
+    members = Member.objects.select_related('assigned_class').order_by('first_name', 'last_name')
+
     if search_query:
         members = members.filter(
-            first_name__icontains=search_query
-        ) | members.filter(
-            last_name__icontains=search_query
-        ) | members.filter(
-            phone_number__icontains=search_query
+            Q(first_name__icontains=search_query)
+            | Q(last_name__icontains=search_query)
+            | Q(phone_number__icontains=search_query)
+            | Q(email__icontains=search_query)
         )
+    if status in dict(Member.STATUS_CHOICES):
+        members = members.filter(status=status)
+    if class_id.isdigit():
+        members = members.filter(assigned_class_id=int(class_id))
+    if gender in dict(Member.GENDER_CHOICES):
+        members = members.filter(gender=gender)
 
-    return render(request, "members/c1member_directory.html", {
+    paginator = Paginator(members, 20)
+    page_obj = paginator.get_page(request.GET.get('page'))
+
+    # Keep active filters when paging.
+    params = request.GET.copy()
+    params.pop('page', None)
+    querystring = params.urlencode()
+
+    context = {
         "active_nav": "members",
-        "members": members,
-        "search_query": search_query
-    })
+        "members": page_obj.object_list,
+        "page_obj": page_obj,
+        "paginator": paginator,
+        "is_paginated": page_obj.has_other_pages(),
+        "total_count": paginator.count,
+        "querystring": querystring,
+        "classes": ClassGroup.objects.order_by('name'),
+        "status_choices": Member.STATUS_CHOICES,
+        "gender_choices": Member.GENDER_CHOICES,
+        "search_query": search_query,
+        "filters": {"status": status, "class": class_id, "gender": gender},
+    }
+    return render(request, "members/c1member_directory.html", context)
 
 @login_required(login_url='accounts:login')
 def member_registration_view(request):

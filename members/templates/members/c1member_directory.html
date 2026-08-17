@@ -1,335 +1,397 @@
 {% load static %}
 <!DOCTYPE html>
-<html class="light" lang="en" style="">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Member Directory - MCG-SMS</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="{% static "img/Methodist Church Ghana Logo.png" %}" rel="icon" type="image/png" />
-<script id="tailwind-config">
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Member Directory · MCG-SMS</title>
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      try {
         tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "secondary-fixed-dim": "#eec04f",
-                        "secondary-fixed": "#ffdf9a",
-                        "error-container": "#ffdad6",
-                        "surface-variant": "#e9e1dd",
-                        "secondary-container": "#fece5b",
-                        "on-tertiary-container": "#adadab",
-                        "surface-container-high": "#eee7e3",
-                        "on-secondary": "#ffffff",
-                        "tertiary": "#2a2b2a",
-                        "background": "#fff8f5",
-                        "on-surface": "#1e1b19",
-                        "surface-container": "#f4ece8",
-                        "primary-light": "#A3283F",
-                        "border": "#E4E2DD",
-                        "danger": "#DC2626",
-                        "on-secondary-container": "#745700",
-                        "on-error-container": "#93000a",
-                        "info": "#2563EB",
-                        "primary-container": "#7b1c2d",
-                        "tertiary-container": "#404140",
-                        "surface-tint": "#a33a49",
-                        "on-error": "#ffffff",
-                        "warning": "#D97706",
-                        "surface-container-highest": "#e9e1dd",
-                        "primary-muted": "#F5EAEC",
-                        "on-tertiary-fixed-variant": "#464746",
-                        "gold-muted": "#FDF6E3",
-                        "inverse-primary": "#ffb2b7",
-                        "primary-fixed-dim": "#ffb2b7",
-                        "on-primary-fixed-variant": "#832233",
-                        "text-secondary": "#6B7280",
-                        "surface-bright": "#fff8f5",
-                        "success": "#16A34A",
-                        "surface-container-lowest": "#ffffff",
-                        "surface-dim": "#e0d8d5",
-                        "on-secondary-fixed": "#251a00",
-                        "tertiary-fixed-dim": "#c7c6c5",
-                        "surface-container-low": "#faf2ee",
-                        "tertiary-fixed": "#e3e2e0",
-                        "on-primary-container": "#ff8a95",
-                        "on-surface-variant": "#564243",
-                        "outline": "#897172",
-                        "primary": "#5c0219",
-                        "primary-fixed": "#ffdadb",
-                        "on-primary-fixed": "#40000e",
-                        "secondary": "#775a00",
-                        "inverse-surface": "#33302d",
-                        "card": "#FFFFFF",
-                        "on-secondary-fixed-variant": "#5a4300",
-                        "outline-variant": "#dcc0c1",
-                        "error": "#ba1a1a",
-                        "on-primary": "#ffffff",
-                        "on-background": "#1e1b19",
-                        "on-tertiary-fixed": "#1a1c1b",
-                        "surface": "#F8F7F5",
-                        "on-tertiary": "#ffffff",
-                        "inverse-on-surface": "#f7efeb"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "md": "16px",
-                        "xs": "4px",
-                        "header-height": "64px",
-                        "lg": "24px",
-                        "sm": "8px",
-                        "xl": "32px",
-                        "sidebar-width": "256px",
-                        "base": "8px"
-                    },
-                    "fontFamily": {
-                        "headline-lg": ["Lora"],
-                        "label-md": ["Inter"],
-                        "body-md": ["Inter"],
-                        "headline-lg-mobile": ["Lora"],
-                        "headline-md": ["Inter"],
-                        "body-lg": ["Inter"],
-                        "label-sm": ["Inter"],
-                        "data-display": ["JetBrains Mono"],
-                        "data-label": ["JetBrains Mono"]
-                    },
-                    "fontSize": {
-                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
-                        "label-md": ["13px", { "lineHeight": "1.2", "fontWeight": "500" }],
-                        "body-md": ["14px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
-                        "headline-md": ["20px", { "lineHeight": "1.3", "fontWeight": "600" }],
-                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                        "label-sm": ["11px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
-                        "data-display": ["18px", { "lineHeight": "1.0", "fontWeight": "500" }],
-                        "data-label": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }]
-                    }
-                },
-            },
-        }
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "error-container": "#ffdad6",
+                "on-primary-container": "#ff8a95",
+                "surface-variant": "#e9e1dd",
+                "surface-container": "#f4ece8",
+                "on-tertiary-container": "#adadab",
+                "primary-container": "#7b1c2d",
+                "surface-tint": "#a33a49",
+                "gold-muted": "#FDF6E3",
+                "danger": "#DC2626",
+                "secondary": "#775a00",
+                "background": "#fff8f5",
+                "tertiary-container": "#404140",
+                "secondary-fixed": "#ffdf9a",
+                "secondary-fixed-dim": "#eec04f",
+                "error": "#ba1a1a",
+                "primary-fixed-dim": "#ffb2b7",
+                "outline": "#897172",
+                "on-error": "#ffffff",
+                "inverse-on-surface": "#f7efeb",
+                "on-primary-fixed": "#40000e",
+                "on-primary-fixed-variant": "#832233",
+                "success": "#16A34A",
+                "on-secondary-container": "#745700",
+                "secondary-container": "#fece5b",
+                "on-tertiary-fixed": "#1a1c1b",
+                "primary-light": "#A3283F",
+                "tertiary-fixed": "#e3e2e0",
+                "surface-container-high": "#eee7e3",
+                "surface-dim": "#e0d8d5",
+                "on-primary": "#ffffff",
+                "surface-bright": "#fff8f5",
+                "surface-container-highest": "#e9e1dd",
+                "on-secondary-fixed": "#251a00",
+                "on-tertiary": "#ffffff",
+                "on-tertiary-fixed-variant": "#464746",
+                "primary-muted": "#F5EAEC",
+                "tertiary-fixed-dim": "#c7c6c5",
+                "primary-fixed": "#ffdadb",
+                "surface": "#F8F7F5",
+                "warning": "#D97706",
+                "on-error-container": "#93000a",
+                "card": "#FFFFFF",
+                "inverse-surface": "#33302d",
+                "on-secondary-fixed-variant": "#5a4300",
+                "inverse-primary": "#ffb2b7",
+                "surface-container-lowest": "#ffffff",
+                "surface-container-low": "#faf2ee",
+                "primary": "#5c0219",
+                "info": "#2563EB",
+                "on-surface-variant": "#564243",
+                "tertiary": "#2a2b2a",
+                "on-background": "#1e1b19",
+                "border": "#E4E2DD",
+                "on-secondary": "#ffffff",
+                "on-surface": "#1e1b19",
+                "text-secondary": "#6B7280",
+                "outline-variant": "#dcc0c1"
+              },
+              borderRadius: {
+                DEFAULT: "0.25rem",
+                lg: "0.5rem",
+                xl: "0.75rem",
+                full: "9999px"
+              },
+              boxShadow: {
+                ambient: "0 1px 2px rgba(30, 27, 25, 0.04), 0 6px 16px rgba(30, 27, 25, 0.06)"
+              },
+              spacing: {
+                xs: "4px",
+                sm: "8px",
+                base: "8px",
+                md: "16px",
+                lg: "24px",
+                xl: "32px",
+                "sidebar-width": "256px",
+                "header-height": "64px"
+              },
+              fontFamily: {
+                "label-sm": ["Inter"],
+                "label-md": ["Inter"],
+                "body-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "headline-md": ["Inter"],
+                "headline-lg": ["Lora"],
+                "headline-lg-mobile": ["Lora"],
+                "data-label": ["JetBrains Mono"],
+                "data-display": ["JetBrains Mono"]
+              },
+              fontSize: {
+                "label-sm": ["11px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "500" }],
+                "label-md": ["13px", { lineHeight: "1.2", fontWeight: "500" }],
+                "body-md": ["14px", { lineHeight: "1.6", fontWeight: "400" }],
+                "body-lg": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                "headline-md": ["20px", { lineHeight: "1.3", fontWeight: "600" }],
+                "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+                "headline-lg-mobile": ["24px", { lineHeight: "1.2", fontWeight: "700" }],
+                "data-label": ["14px", { lineHeight: "1.0", fontWeight: "500" }],
+                "data-display": ["18px", { lineHeight: "1.0", fontWeight: "500" }]
+              }
+            }
+          }
+        };
+      } catch (_e) {}
     </script>
-<style>
-        body { background-color: theme('colors.surface'); color: theme('colors.on-surface'); }
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
     </style>
-</head>
-<body class="font-body-md text-body-md antialiased flex">
-{% include 'components/sidebar.html' %}
-<!-- Main Content Wrapper -->
-<div class="flex-1 flex flex-col min-h-screen ">
+  </head>
 
-<!-- Page Content -->
-<main class="m-5 flex-1 p-lg mt-header-height md:mt-header-height overflow-y-auto pb-24 md:pb-lg">
-<!-- Page Header -->
-<div class="flex flex-col md:flex-row md:items-start justify-between gap-md mb-xl">
-<div>
-<nav aria-label="Breadcrumb" class="flex text-on-surface-variant text-label-sm font-label-sm mb-sm">
-<ol class="flex items-center space-x-2">
-<li class=""><a class="hover:text-primary transition-colors" href="#">Dashboard</a></li>
-<li><span class="material-symbols-outlined text-[14px]">chevron_right</span></li>
-<li aria-current="page" class="text-on-surface font-semibold">Members</li>
-</ol>
-</nav>
-<h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Member Directory</h1>
-<p class="text-on-surface-variant font-body-md max-w-2xl">Manage society members, view detailed profiles, and organize classes.</p>
-</div>
-<div class="flex flex-col sm:flex-row gap-sm items-center">
-<button class="w-full sm:w-auto px-md py-sm bg-card border border-border text-on-surface font-label-md rounded-lg flex items-center justify-center gap-sm hover:bg-surface-container-low transition-colors shadow-sm">
-<span class="material-symbols-outlined" style="font-size: 18px;">download</span>
-                        Export
-                    </button>
-<button class="w-full sm:w-auto px-md py-sm bg-primary text-on-primary font-label-md rounded-lg flex items-center justify-center gap-sm hover:bg-primary-light transition-colors shadow-sm">
-<span class="material-symbols-outlined" style="font-size: 18px;">person_add</span>
-                        Add Member
-                    </button>
-</div>
-</div>
-<!-- Main Card Container -->
-<div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
-<!-- Filters -->
-<div class="p-md border-b border-border bg-surface-container-lowest flex flex-col lg:flex-row gap-md items-end">
-<div class="w-full lg:w-1/3">
-<label class="sr-only" for="search">Search</label>
-<div class="relative">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-<span class="material-symbols-outlined text-on-surface-variant" style="font-size: 20px;">search</span>
-</div>
-<input class="block w-full pl-10 pr-3 py-2 border border-border rounded-lg leading-5 bg-surface-container-lowest placeholder-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition-shadow font-body-md" id="search" name="search" placeholder="Search by name or number..." type="text"/>
-</div>
-</div>
-<div class="w-full lg:w-1/6">
-<label class="block text-label-sm font-label-sm text-on-surface-variant mb-xs" for="status">Status</label>
-<select class="block w-full pl-3 pr-10 py-2 text-body-md border-border focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm rounded-lg bg-surface-container-lowest" id="status" name="status">
-<option>All Statuses</option>
-<option>Active</option>
-<option>Pending</option>
-<option>Suspended</option>
-</select>
-</div>
-<div class="w-full lg:w-1/6">
-<label class="block text-label-sm font-label-sm text-on-surface-variant mb-xs" for="class">Class</label>
-<select class="block w-full pl-3 pr-10 py-2 text-body-md border-border focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm rounded-lg bg-surface-container-lowest" id="class" name="class">
-<option>All Classes</option>
-<option>Wesley</option>
-<option>Asbury</option>
-<option>Coke</option>
-</select>
-</div>
-<div class="w-full lg:w-1/6">
-<label class="block text-label-sm font-label-sm text-on-surface-variant mb-xs">Gender</label>
-<div class="flex items-center space-x-4 h-[38px]">
-<label class="flex items-center">
-<input checked="" class="focus:ring-primary h-4 w-4 text-primary border-border" name="gender" type="radio" value="all"/>
-<span class="ml-2 text-body-md text-on-surface">All</span>
-</label>
-<label class="flex items-center">
-<input class="focus:ring-primary h-4 w-4 text-primary border-border" name="gender" type="radio" value="m"/>
-<span class="ml-2 text-body-md text-on-surface">M</span>
-</label>
-<label class="flex items-center">
-<input class="focus:ring-primary h-4 w-4 text-primary border-border" name="gender" type="radio" value="f"/>
-<span class="ml-2 text-body-md text-on-surface">F</span>
-</label>
-</div>
-</div>
-<div class="w-full lg:w-auto">
-<button class="w-full px-md py-sm bg-surface-container text-on-surface font-label-md rounded-lg border border-border hover:bg-surface-container-high transition-colors h-[38px]">
-                            Apply Filters
-                        </button>
-</div>
-</div>
-<!-- Data Table -->
-<div class="overflow-x-auto">
-<table class="min-w-full divide-y divide-border">
-<thead class="bg-surface-container-low">
-<tr>
-<th class="px-md py-sm text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider w-12" scope="col"></th>
-<th class="px-md py-sm text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Membership No.</th>
-<th class="px-md py-sm text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Full Name</th>
-<th class="px-md py-sm text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Status</th>
-<th class="px-md py-sm text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Class</th>
-<th class="px-md py-sm text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Gender</th>
-<th class="px-md py-sm text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Date Joined</th>
-<th class="relative px-md py-sm" scope="col">
-<span class="sr-only">Actions</span>
-</th>
-</tr>
-</thead>
-<tbody class="bg-card divide-y divide-border">
-{% for m in members %}
-<tr class="hover:bg-primary-muted/30 transition-colors h-[48px] group cursor-pointer">
-<td class="px-md py-xs whitespace-nowrap">
-<div class="h-8 w-8 rounded-full bg-primary-muted flex items-center justify-center text-primary font-bold text-xs">
-{{ m.first_name|slice:":1" }}{{ m.last_name|slice:":1" }}
-</div>
-</td>
-<td class="px-md py-xs whitespace-nowrap">
-<span class="font-data-label text-data-label text-on-surface">MCG-00{{ m.id }}</span>
-</td>
-<td class="px-md py-xs whitespace-nowrap">
-<a href="{% url 'members:member_profile' %}?id={{ m.id }}" class="font-label-md text-primary font-semibold hover:underline">
-{{ m.get_full_name }}
-</a>
-</td>
-<td class="px-md py-xs whitespace-nowrap">
-<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium {% if m.status == 'ACTIVE' %}bg-[#DCFCE7] text-[#15803D]{% else %}bg-[#FEF9C3] text-[#A16207]{% endif %}">
-{{ m.get_status_display }}
-</span>
-</td>
-<td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">
-{{ m.assigned_class.name|default:"Unassigned" }}
-</td>
-<td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">
-{{ m.get_gender_display }}
-</td>
-<td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">
-{{ m.created_at|date:"d M Y" }}
-</td>
-<td class="px-md py-xs whitespace-nowrap text-right text-sm font-medium">
-<div class="flex items-center justify-end gap-2">
-<a href="{% url 'members:member_profile' %}?id={{ m.id }}" class="text-xs px-2 py-1 bg-surface-container rounded hover:bg-surface-container-high text-on-surface">View</a>
-<a href="{% url 'members:edit_member' %}?id={{ m.id }}" class="text-xs px-2 py-1 bg-primary text-white rounded hover:bg-primary-light">Edit</a>
-</div>
-</td>
-</tr>
-{% empty %}
-<tr>
-<td colspan="8" class="px-md py-lg text-center text-on-surface-variant">No members found matching your query.</td>
-</tr>
-{% endfor %}
-</tbody>
-<!-- Row 5 -->
-<tr class="hover:bg-primary-muted/30 transition-colors h-[48px] group cursor-pointer">
-<td class="px-md py-xs whitespace-nowrap">
-<img class="h-8 w-8 rounded-full object-cover" data-alt="Portrait of a young Ghanaian man, casual neat attire, bright background, contemporary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBCdYSlisgnFwG0UJ5yGnzR629o4Do0K3UB9RGJOz-dA2v1vErsu5E147gu5Kd0B4UUFZA5UgcmkwVh9zGWZ2RaP54ZhQVgad-QrL91ach8Si1X0yvrs7k5i-XJ9LO0h1VEkLJB2li-CdDePebXIwB1G1lN4vYFNQTv16JFQkNHWONCWjadrwpVUp09Zhk7dykTb47xnUqfVdTofOpioYbUBntS_ftgtsHteXSDEV9TcsDY8w9qlpR4JpJQnWqHjzQDZtw6vkKl5y5"/>
-</td>
-<td class="px-md py-xs whitespace-nowrap">
-<span class="font-data-label text-data-label text-on-surface">MCG-00156</span>
-</td>
-<td class="px-md py-xs whitespace-nowrap">
-<div class="font-label-md text-on-surface font-semibold">Samuel Tetteh</div>
-</td>
-<td class="px-md py-xs whitespace-nowrap">
-<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#DCFCE7] text-[#15803D]">
-                                        Active
-                                    </span>
-</td>
-<td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">Asbury</td>
-<td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">Male</td>
-<td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">30 Aug 2023</td>
-<td class="px-md py-xs whitespace-nowrap text-right text-sm font-medium">
-<button class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded hover:bg-surface-container">
-<span class="material-symbols-outlined" style="font-size: 20px;">more_vert</span>
-</button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Pagination -->
-<div class="px-md py-3 flex items-center justify-between border-t border-border bg-surface-container-lowest">
-<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-end">
-<div>
-<p class="font-body-md text-on-surface-variant text-sm">
-    Showing <span class="font-medium text-on-surface">1</span> to 
-    <span class="font-medium text-on-surface">20</span> of 
-    <span class="font-medium text-on-surface">143</span> records
-</p>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div>
-<!-- BottomNavBar (Mobile Only) -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest pb-safe md:hidden border-t border-border dark:border-outline-variant shadow-[0_-1px_3px_rgba(0,0,0,0.06)] h-[56px]">
-<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant flex-1 h-full active:bg-surface-container-high" href="#">
-<span class="material-symbols-outlined" style="font-size: 24px;">home</span>
-<span class="font-label-sm-mobile text-label-sm-mobile mt-1">Home</span>
-</a>
-<a class="flex flex-col items-center justify-center text-primary dark:text-secondary-fixed font-bold flex-1 h-full active:bg-surface-container-high scale-90 transition-transform" href="#">
-<span class="material-symbols-outlined" style="font-size: 24px; font-variation-settings: 'FILL' 1;">person_search</span>
-<span class="font-label-sm-mobile text-label-sm-mobile mt-1">Members</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant flex-1 h-full active:bg-surface-container-high" href="#">
-<span class="material-symbols-outlined" style="font-size: 24px;">account_balance_wallet</span>
-<span class="font-label-sm-mobile text-label-sm-mobile mt-1">Finance</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant flex-1 h-full active:bg-surface-container-high" href="#">
-<span class="material-symbols-outlined" style="font-size: 24px;">analytics</span>
-<span class="font-label-sm-mobile text-label-sm-mobile mt-1">Reports</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant flex-1 h-full active:bg-surface-container-high" href="#">
-<span class="material-symbols-outlined" style="font-size: 24px;">menu</span>
-<span class="font-label-sm-mobile text-label-sm-mobile mt-1">More</span>
-</a>
-</nav>
-</body>
+  <body class="bg-surface text-on-surface font-body-md text-body-md antialiased flex h-screen overflow-hidden">
+
+    {% include 'components/toast_messages.html' %}
+
+    <!-- Side Navigation -->
+    {% include 'components/sidebar.html' %}
+
+    <!-- Page Content -->
+    <main class="flex-1 min-w-0 h-full overflow-y-auto p-lg pb-24 md:pb-lg">
+
+      <!-- Page Header -->
+      <div class="flex flex-col gap-md mb-xl md:flex-row md:items-start md:justify-between">
+        <div>
+          <nav aria-label="Breadcrumb" class="flex mb-sm font-label-sm text-label-sm text-on-surface-variant">
+            <ol class="flex items-center space-x-2">
+              <li><a class="transition-colors hover:text-primary" href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+              <li><span class="material-symbols-outlined text-[14px]">chevron_right</span></li>
+              <li aria-current="page" class="font-semibold text-on-surface">Members</li>
+            </ol>
+          </nav>
+          <h1 class="mb-xs font-headline-lg text-headline-lg text-on-surface">Member Directory</h1>
+          <p class="max-w-2xl font-body-md text-on-surface-variant">
+            Manage society members, view detailed profiles, and organise classes.
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-sm sm:flex-row sm:items-center">
+          <a
+            class="w-full sm:w-auto flex items-center justify-center gap-sm px-md py-sm rounded-lg bg-card border border-border font-label-md text-on-surface shadow-sm transition-colors hover:bg-surface-container-low"
+            href="{% url 'reports:membership_report' %}">
+            <span class="material-symbols-outlined text-[18px]">download</span>
+            Export
+          </a>
+          <a
+            class="w-full sm:w-auto flex items-center justify-center gap-sm px-md py-sm rounded-lg bg-primary text-on-primary font-label-md shadow-sm transition-colors hover:bg-primary-light"
+            href="{% url 'members:member_registration' %}">
+            <span class="material-symbols-outlined text-[18px]">person_add</span>
+            Add Member
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Card -->
+      <div class="overflow-hidden rounded-xl bg-card border border-border shadow-ambient">
+
+        <!-- Filters -->
+        <form class="flex flex-col gap-md p-md border-b border-border bg-surface-container-lowest lg:flex-row lg:items-end" method="get">
+          <div class="w-full lg:w-1/3">
+            <label class="block mb-xs font-label-sm text-label-sm text-on-surface-variant" for="q">Search</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <span class="material-symbols-outlined text-[20px] text-on-surface-variant">search</span>
+              </div>
+              <input
+                class="block w-full pl-10 pr-3 py-2 rounded-lg bg-surface-container-lowest border border-border font-body-md leading-5 placeholder-on-surface-variant transition-shadow focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary sm:text-sm"
+                id="q"
+                name="q"
+                placeholder="Search by name, phone or email..."
+                type="text"
+                value="{{ search_query }}"/>
+            </div>
+          </div>
+
+          <div class="w-full lg:w-1/6">
+            <label class="block mb-xs font-label-sm text-label-sm text-on-surface-variant" for="status">Status</label>
+            <select
+              class="block w-full pl-3 pr-10 py-2 rounded-lg bg-surface-container-lowest border-border text-body-md focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary sm:text-sm"
+              id="status"
+              name="status">
+              <option value="">All Statuses</option>
+              {% for value, label in status_choices %}
+              <option value="{{ value }}" {% if filters.status == value %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="w-full lg:w-1/6">
+            <label class="block mb-xs font-label-sm text-label-sm text-on-surface-variant" for="class">Class</label>
+            <select
+              class="block w-full pl-3 pr-10 py-2 rounded-lg bg-surface-container-lowest border-border text-body-md focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary sm:text-sm"
+              id="class"
+              name="class">
+              <option value="">All Classes</option>
+              {% for group in classes %}
+              <option value="{{ group.id }}" {% if filters.class == group.id|stringformat:"s" %}selected{% endif %}>{{ group.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="w-full lg:w-1/6">
+            <span class="block mb-xs font-label-sm text-label-sm text-on-surface-variant">Gender</span>
+            <div class="flex items-center h-[38px] space-x-4">
+              <label class="flex items-center">
+                <input class="h-4 w-4 text-primary border-border focus:ring-primary" name="gender" type="radio" value="" {% if not filters.gender %}checked{% endif %}/>
+                <span class="ml-2 text-body-md text-on-surface">All</span>
+              </label>
+              {% for value, label in gender_choices %}
+              <label class="flex items-center">
+                <input class="h-4 w-4 text-primary border-border focus:ring-primary" name="gender" type="radio" value="{{ value }}" {% if filters.gender == value %}checked{% endif %}/>
+                <span class="ml-2 text-body-md text-on-surface">{{ value }}</span>
+              </label>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="flex w-full gap-sm lg:w-auto">
+            <button
+              class="w-full h-[38px] px-md rounded-lg bg-primary text-on-primary font-label-md transition-colors hover:bg-primary-light"
+              type="submit">
+              Apply
+            </button>
+            <a
+              class="w-full h-[38px] px-md flex items-center justify-center rounded-lg bg-surface-container border border-border font-label-md text-on-surface transition-colors hover:bg-surface-container-high"
+              href="{% url 'members:member_directory' %}">
+              Reset
+            </a>
+          </div>
+        </form>
+
+        <!-- Data Table -->
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-border">
+            <thead class="bg-surface-container-low">
+              <tr>
+                <th class="w-12 px-md py-sm text-left font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" scope="col"></th>
+                <th class="px-md py-sm text-left font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Membership No.</th>
+                <th class="px-md py-sm text-left font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Full Name</th>
+                <th class="px-md py-sm text-left font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Status</th>
+                <th class="px-md py-sm text-left font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Class</th>
+                <th class="px-md py-sm text-left font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Gender</th>
+                <th class="px-md py-sm text-left font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" scope="col">Date Joined</th>
+                <th class="relative px-md py-sm" scope="col"><span class="sr-only">Actions</span></th>
+              </tr>
+            </thead>
+
+            <tbody class="bg-card divide-y divide-border">
+              {% for m in members %}
+              <tr class="h-[48px] transition-colors hover:bg-primary-muted/30">
+                <td class="px-md py-xs whitespace-nowrap">
+                  <div class="h-8 w-8 flex items-center justify-center rounded-full bg-primary-muted text-xs font-bold text-primary">
+                    {{ m.first_name|slice:":1"|upper }}{{ m.last_name|slice:":1"|upper }}
+                  </div>
+                </td>
+
+                <td class="px-md py-xs whitespace-nowrap">
+                  <span class="font-data-label text-data-label text-on-surface">MCG-{{ m.id|stringformat:"05d" }}</span>
+                </td>
+
+                <td class="px-md py-xs whitespace-nowrap">
+                  <a class="font-label-md font-semibold text-primary hover:underline" href="{% url 'members:member_profile' %}?id={{ m.id }}">
+                    {{ m.get_full_name }}
+                  </a>
+                </td>
+
+                <td class="px-md py-xs whitespace-nowrap">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium
+                    {% if m.status == 'ACTIVE' %}bg-success/10 text-success
+                    {% elif m.status == 'REGULARIZED' %}bg-info/10 text-info
+                    {% elif m.status == 'PENDING' %}bg-warning/10 text-warning
+                    {% else %}bg-surface-container-highest text-on-surface-variant{% endif %}">
+                    {{ m.get_status_display }}
+                  </span>
+                </td>
+
+                <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">
+                  {% firstof m.assigned_class.name "Unassigned" %}
+                </td>
+
+                <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">
+                  {{ m.get_gender_display }}
+                </td>
+
+                <td class="px-md py-xs whitespace-nowrap text-body-md text-on-surface-variant">
+                  {{ m.created_at|date:"d M Y" }}
+                </td>
+
+                <td class="px-md py-xs whitespace-nowrap text-right text-sm font-medium">
+                  <div class="flex items-center justify-end gap-2">
+                    <a class="px-2 py-1 rounded bg-surface-container text-xs text-on-surface transition-colors hover:bg-surface-container-high" href="{% url 'members:member_profile' %}?id={{ m.id }}">View</a>
+                    <a class="px-2 py-1 rounded bg-primary text-xs text-on-primary transition-colors hover:bg-primary-light" href="{% url 'members:edit_member' %}?id={{ m.id }}">Edit</a>
+                  </div>
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td class="px-md py-lg text-center text-on-surface-variant" colspan="8">
+                  {% if search_query or filters.status or filters.class or filters.gender %}
+                  No members match those filters.
+                  <a class="text-primary hover:underline" href="{% url 'members:member_directory' %}">Clear filters</a>
+                  {% else %}
+                  No members have been registered yet.
+                  <a class="text-primary hover:underline" href="{% url 'members:member_registration' %}">Add the first member</a>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex flex-col gap-3 px-md py-3 border-t border-border bg-surface-container-lowest sm:flex-row sm:items-center sm:justify-between">
+          <p class="font-body-md text-sm text-on-surface-variant">
+            {% if total_count %}
+            Showing <span class="font-medium text-on-surface">{{ page_obj.start_index }}</span>
+            to <span class="font-medium text-on-surface">{{ page_obj.end_index }}</span>
+            of <span class="font-medium text-on-surface">{{ total_count }}</span> record{{ total_count|pluralize }}
+            {% else %}
+            No records
+            {% endif %}
+          </p>
+
+          {% if is_paginated %}
+          <div class="flex items-center gap-2">
+            {% if page_obj.has_previous %}
+            <a class="w-8 h-8 flex items-center justify-center rounded border border-border text-on-surface-variant transition-colors hover:bg-surface-container" href="?page={{ page_obj.previous_page_number }}{% if querystring %}&amp;{{ querystring }}{% endif %}">
+              <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+            </a>
+            {% else %}
+            <span class="w-8 h-8 flex items-center justify-center rounded border border-border text-on-surface-variant opacity-40">
+              <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+            </span>
+            {% endif %}
+
+            <span class="font-data-label text-data-label text-on-surface-variant">
+              Page {{ page_obj.number }} of {{ paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+            <a class="w-8 h-8 flex items-center justify-center rounded border border-border text-on-surface-variant transition-colors hover:bg-surface-container" href="?page={{ page_obj.next_page_number }}{% if querystring %}&amp;{{ querystring }}{% endif %}">
+              <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+            </a>
+            {% else %}
+            <span class="w-8 h-8 flex items-center justify-center rounded border border-border text-on-surface-variant opacity-40">
+              <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+            </span>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Navigation (mobile) -->
+    <nav class="fixed bottom-0 left-0 z-50 w-full h-[56px] flex justify-around items-center bg-surface-container-lowest border-t border-border shadow-[0_-1px_3px_rgba(0,0,0,0.06)] md:hidden">
+      <a class="flex-1 h-full flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high" href="{% url 'dashboard:dashboard' %}">
+        <span class="material-symbols-outlined text-[24px]">home</span>
+        <span class="mt-1 text-[10px] font-medium">Home</span>
+      </a>
+      <a class="flex-1 h-full flex flex-col items-center justify-center font-bold text-primary active:bg-surface-container-high" href="{% url 'members:member_directory' %}">
+        <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">person_search</span>
+        <span class="mt-1 text-[10px] font-medium">Members</span>
+      </a>
+      <a class="flex-1 h-full flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high" href="{% url 'finance:dashboard' %}">
+        <span class="material-symbols-outlined text-[24px]">account_balance_wallet</span>
+        <span class="mt-1 text-[10px] font-medium">Finance</span>
+      </a>
+      <a class="flex-1 h-full flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high" href="{% url 'reports:reports_hub' %}">
+        <span class="material-symbols-outlined text-[24px]">analytics</span>
+        <span class="mt-1 text-[10px] font-medium">Reports</span>
+      </a>
+      <a class="flex-1 h-full flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high" href="{% url 'core:system_settings' %}">
+        <span class="material-symbols-outlined text-[24px]">menu</span>
+        <span class="mt-1 text-[10px] font-medium">More</span>
+      </a>
+    </nav>
+  </body>
 </html>
