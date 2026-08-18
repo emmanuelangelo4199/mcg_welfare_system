@@ -92,10 +92,12 @@ def password_reset_view(request):
 @login_required(login_url='accounts:login')
 def profile_view(request):
     user_profile, created = UserProfile.objects.get_or_create(user=request.user)
-    return render(request, "accounts/my_profile.html", {
+
+    context = {
         "active_nav": "accounts",
         "profile": user_profile
-    })
+    }
+    return render(request, "accounts/my_profile.html", context)
 
 @role_required(allowed_roles=['ADMIN'])
 def user_list_view(request):
@@ -111,10 +113,12 @@ def user_list_view(request):
             return redirect('accounts:user_list')
 
     users = User.objects.select_related('profile').all()
-    return render(request, "accounts/user_management.html", {
+
+    context = {
         "active_nav": "accounts",
         "users": users
-    })
+    }
+    return render(request, "accounts/user_management.html", context)
 
 @role_required(allowed_roles=['ADMIN'])
 def roles_permissions_view(request):
@@ -130,7 +134,9 @@ def roles_permissions_view(request):
             return redirect('accounts:roles_permissions')
 
     users = User.objects.select_related('profile').all()
-    return render(request, "accounts/role_management.html", {
+
+    context = {
         "active_nav": "accounts",
         "users": users
-    })
+    }
+    return render(request, "accounts/role_management.html", context)

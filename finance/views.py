@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.utils import timezone
 from django.db.models import Sum
 from core.decorators import role_required
+from services.models import ChurchService
 from .models import EXPENSE_CATEGORY_CHOICES, IncomeLedger, ExpenseLedger, Budget
 
 
@@ -27,23 +28,59 @@ def finance_dashboard_view(request):
 
 @role_required(allowed_roles=['ADMIN', 'TREASURER'])
 def record_income_view(request):
+    categories = dict(IncomeLedger.CATEGORY_CHOICES)
+    methods = dict(IncomeLedger.PAYMENT_METHOD_CHOICES)
+
     if request.method == 'POST':
-        category = request.POST.get('category', 'TITHE')
-        amount = request.POST.get('amount')
-        date = request.POST.get('date')
+        category = request.POST.get('category', '').strip().upper()
+        payment_method = request.POST.get('payment_method', '').strip().upper()
+        amount = request.POST.get('amount', '').strip()
+        date = request.POST.get('date', '').strip()
+        service_id = request.POST.get('service', '')
         remarks = request.POST.get('remarks', '').strip()
 
-        IncomeLedger.objects.create(
+        reference = request.POST.get('reference', '').strip()
+
+        if category not in categories:
+            category = 'OTHER'
+        if payment_method not in methods:
+            payment_method = 'CASH'
+        # A reference number only means something for MoMo and cheques.
+        if payment_method not in ('MOMO', 'CHEQUE'):
+            reference = ''
+
+        if not amount or not date:
+            messages.error(request, "Transaction date and amount are required.")
+            return render(request, "finance/income/record_income.html", {
+                "active_nav": "finance",
+                "category_choices": IncomeLedger.CATEGORY_CHOICES,
+                "payment_methods": IncomeLedger.PAYMENT_METHOD_CHOICES,
+                "services": ChurchService.objects.order_by('-service_date')[:50],
+                "today": timezone.localdate(),
+                "form_data": request.POST,
+            })
+
+        entry = IncomeLedger.objects.create(
             category=category,
             amount=amount,
             date=date,
+            service=ChurchService.objects.filter(id=service_id).first() if service_id else None,
+            payment_method=payment_method,
+            reference=reference or None,
             recorded_by=request.user,
-            remarks=remarks
+            remarks=remarks,
         )
-        messages.success(request, f"Income entry of GHS {amount} recorded.")
+        messages.success(
+            request, f"{entry.get_category_display()} of GHS {entry.amount} recorded.")
         return redirect('finance:income_ledger')
 
-    return render(request, "finance/income/record_income.html", {"active_nav": "finance"})
+    return render(request, "finance/income/record_income.html", {
+        "active_nav": "finance",
+        "category_choices": IncomeLedger.CATEGORY_CHOICES,
+        "payment_methods": IncomeLedger.PAYMENT_METHOD_CHOICES,
+        "services": ChurchService.objects.order_by('-service_date')[:50],
+        "today": timezone.localdate(),
+    })
 
 @login_required(login_url='accounts:login')
 def income_ledger_view(request):

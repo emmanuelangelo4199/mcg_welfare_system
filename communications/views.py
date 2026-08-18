@@ -27,10 +27,12 @@ def compose_message_view(request):
 @login_required(login_url='accounts:login')
 def message_history_view(request):
     messages_list = OutgoingMessage.objects.all().order_by('-sent_at')
-    return render(request, "communications/k2msg_history.html", {
+
+    context = {
         "active_nav": "communications",
         "messages_list": messages_list
-    })
+    }
+    return render(request, "communications/k2msg_history.html", context)
 
 @login_required(login_url='accounts:login')
 def announcement_board_view(request):
@@ -47,10 +49,12 @@ def announcement_board_view(request):
         return redirect('communications:announcement_board')
 
     announcements = Announcement.objects.filter(is_active=True).order_by('-created_at')
-    return render(request, "communications/k3ann_board.html", {
+
+    context = {
         "active_nav": "communications",
         "announcements": announcements
-    })
+    }
+    return render(request, "communications/k3ann_board.html", context)
 
 @login_required(login_url='accounts:login')
 def birthday_messages_view(request):
@@ -70,11 +74,12 @@ def birthday_messages_view(request):
     current_month = datetime.date.today().month
     birthday_members = Member.objects.filter(date_of_birth__month=current_month)
 
-    return render(request, "communications/k4birthday_message.html", {
+    context = {
         "active_nav": "communications",
         "birthday_members": birthday_members,
         "current_month_name": datetime.date.today().strftime('%B')
-    })
+    }
+    return render(request, "communications/k4birthday_message.html", context)
 
 @login_required(login_url='accounts:login')
 def reminder_due_notice_view(request):
@@ -92,7 +97,8 @@ def reminder_due_notice_view(request):
 
     pending_members = Member.objects.filter(status='PENDING')
 
-    return render(request, "communications/k5reminder_due_notice.html", {
+    context = {
         "active_nav": "communications",
         "pending_members": pending_members
-    })
+    }
+    return render(request, "communications/k5reminder_due_notice.html", context)

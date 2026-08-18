@@ -10,7 +10,8 @@ from django.urls import reverse
 from django.utils import timezone
 
 from accounts.models import UserProfile
-from finance.models import EXPENSE_CATEGORY_CHOICES, Budget, ExpenseLedger
+from finance.models import EXPENSE_CATEGORY_CHOICES, Budget, ExpenseLedger, IncomeLedger
+from services.models import ChurchService
 
 User = get_user_model()
 
@@ -135,3 +136,72 @@ class LegacyCategoryMigrationTests(TestCase):
         expense = ExpenseLedger.objects.get(title='Done')
         self.assertEqual(expense.category, 'TRANSPORT')
         self.assertEqual(expense.description, 'untouched')
+
+class RecordIncomeTests(TestCase):
+    """The form previously had two inputs named 'remarks', so whatever was typed
+    into 'Source / Service' overwrote the remarks and was never stored."""
+
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username='steward', email='s@example.com', password='Password123!')
+        UserProfile.objects.create(user=self.user, role='TREASURER')
+        self.client.login(username='steward', password='Password123!')
+        self.today = timezone.localdate()
+        self.service = ChurchService.objects.create(
+            title='Sunday Morning Service', service_date=self.today, start_time='09:00')
+        self.url = reverse('finance:record_income')
+
+    def _payload(self, **overrides):
+        payload = {
+            'date': str(self.today), 'category': 'OFFERING', 'amount': '1250.00',
+            'service': self.service.id, 'payment_method': 'CASH', 'remarks': 'First service',
+        }
+        payload.update(overrides)
+        return payload
+
+    def test_source_and_remarks_are_stored_separately(self):
+        self.client.post(self.url, self._payload())
+
+        entry = IncomeLedger.objects.get()
+        self.assertEqual(entry.service, self.service)
+        self.assertEqual(entry.remarks, 'First service')
+
+    def test_payment_method_is_recorded(self):
+        self.client.post(self.url, self._payload(payment_method='BANK'))
+        self.assertEqual(IncomeLedger.objects.get().payment_method, 'BANK')
+
+    def test_reference_kept_for_momo_and_dropped_otherwise(self):
+        self.client.post(self.url, self._payload(payment_method='MOMO', reference='MP2401.1234'))
+        self.assertEqual(IncomeLedger.objects.get().reference, 'MP2401.1234')
+
+        IncomeLedger.objects.all().delete()
+        self.client.post(self.url, self._payload(payment_method='CASH', reference='MP2401.1234'))
+        self.assertIsNone(IncomeLedger.objects.get().reference)
+
+    def test_service_is_optional(self):
+        self.client.post(self.url, self._payload(service=''))
+        self.assertIsNone(IncomeLedger.objects.get().service)
+
+    def test_missing_amount_is_rejected_and_values_are_kept(self):
+        response = self.client.post(self.url, self._payload(amount=''), follow=True)
+
+        self.assertEqual(IncomeLedger.objects.count(), 0)
+        self.assertContains(response, 'date and amount are required')
+        self.assertContains(response, 'First service')
+
+    def test_unknown_category_or_method_falls_back(self):
+        self.client.post(self.url, self._payload(category='nonsense', payment_method='bitcoin'))
+
+        entry = IncomeLedger.objects.get()
+        self.assertEqual(entry.category, 'OTHER')
+        self.assertEqual(entry.payment_method, 'CASH')
+
+    def test_entry_is_attributed_to_the_signed_in_user(self):
+        self.client.post(self.url, self._payload())
+        self.assertEqual(IncomeLedger.objects.get().recorded_by, self.user)
+
+    def test_form_lists_services_and_methods(self):
+        response = self.client.get(self.url)
+        self.assertContains(response, 'Sunday Morning Service')
+        for value, label in IncomeLedger.PAYMENT_METHOD_CHOICES:
+            self.assertContains(response, f'value="{value}"')

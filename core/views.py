@@ -19,15 +19,19 @@ def system_settings_view(request):
             return redirect('core:system_settings')
 
     settings = SystemSetting.objects.all()
-    return render(request, "core/system_setting.html", {
+
+    context = {
         "active_nav": "core",
         "settings": settings
-    })
+    }
+    return render(request, "core/system_setting.html", context)
 
 @role_required(allowed_roles=['ADMIN'])
 def audit_log_view(request):
     logs = AuditLog.objects.select_related('user').all()[:100]
-    return render(request, "core/audit_log.html", {
+
+    context = {
         "active_nav": "core",
         "logs": logs
-    })
+    }
+    return render(request, "core/audit_log.html", context)

@@ -15,12 +15,13 @@ def overview_view(request):
     total_att = ServiceAttendance.objects.aggregate(total=Sum('total_count'))['total'] or 0
     avg_att = ServiceAttendance.objects.aggregate(avg=Avg('total_count'))['avg'] or 0
 
-    return render(request, "attendance/attendance_overview.html", {
+    context = {
         "active_nav": "attendance",
         "service_attendances": service_attendances,
         "total_att": total_att,
         "avg_att": round(avg_att, 1)
-    })
+    }
+    return render(request, "attendance/attendance_overview.html", context)
 
 @login_required(login_url='accounts:login')
 def service_attendance_view(request):
@@ -42,10 +43,12 @@ def service_attendance_view(request):
             return redirect('attendance:overview')
 
     services = ChurchService.objects.all().order_by('-service_date')
-    return render(request, "attendance/service_att.html", {
+
+    context = {
         "active_nav": "attendance",
         "services": services
-    })
+    }
+    return render(request, "attendance/service_att.html", context)
 
 @login_required(login_url='accounts:login')
 def class_attendance_view(request):
@@ -71,12 +74,13 @@ def class_attendance_view(request):
     members = Member.objects.filter(status='ACTIVE')
     records = ClassAttendanceRecord.objects.select_related('class_group').all().order_by('-date')[:10]
 
-    return render(request, "attendance/class_att.html", {
+    context = {
         "active_nav": "attendance",
         "classes": classes,
         "members": members,
         "records": records
-    })
+    }
+    return render(request, "attendance/class_att.html", context)
 
 @login_required(login_url='accounts:login')
 def org_attendance_view(request):
@@ -100,16 +104,19 @@ def org_attendance_view(request):
     organisations = Organisation.objects.all()
     records = OrganisationAttendanceRecord.objects.select_related('organisation').all().order_by('-date')[:10]
 
-    return render(request, "attendance/org_attendance.html", {
+    context = {
         "active_nav": "attendance",
         "organisations": organisations,
         "records": records
-    })
+    }
+    return render(request, "attendance/org_attendance.html", context)
 
 @login_required(login_url='accounts:login')
 def absentee_report_view(request):
     pending_members = Member.objects.filter(status='PENDING')
-    return render(request, "attendance/abstee_report.html", {
+
+    context = {
         "active_nav": "attendance",
         "absentees": pending_members
-    })
+    }
+    return render(request, "attendance/abstee_report.html", context)

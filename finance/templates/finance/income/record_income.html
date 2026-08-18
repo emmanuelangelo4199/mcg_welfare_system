@@ -1,352 +1,395 @@
+{% load static %}
 <!DOCTYPE html>
-
-<html class="light" lang="en" style="width: 1294px; height: 1106px; overflow: hidden; position: relative;"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Record Income - MCG-SMS</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "outline": "#897172",
-                    "on-tertiary-fixed-variant": "#464746",
-                    "tertiary": "#2a2b2a",
-                    "surface-bright": "#fff8f5",
-                    "on-primary-fixed": "#40000e",
-                    "inverse-on-surface": "#f7efeb",
-                    "on-surface": "#1e1b19",
-                    "on-primary-container": "#ff8a95",
-                    "primary": "#5c0219",
-                    "primary-fixed-dim": "#ffb2b7",
-                    "on-tertiary-fixed": "#1a1c1b",
-                    "error-container": "#ffdad6",
-                    "warning": "#D97706",
-                    "text-secondary": "#6B7280",
-                    "surface-tint": "#a33a49",
-                    "surface-container-lowest": "#ffffff",
-                    "secondary-container": "#fece5b",
-                    "surface-container": "#f4ece8",
-                    "primary-light": "#A3283F",
-                    "on-secondary-fixed": "#251a00",
-                    "surface-container-highest": "#e9e1dd",
-                    "info": "#2563EB",
-                    "secondary-fixed-dim": "#eec04f",
-                    "primary-muted": "#F5EAEC",
-                    "card": "#FFFFFF",
-                    "error": "#ba1a1a",
-                    "surface-dim": "#e0d8d5",
-                    "gold-muted": "#FDF6E3",
-                    "surface-container-low": "#faf2ee",
-                    "on-surface-variant": "#564243",
-                    "on-error-container": "#93000a",
-                    "on-error": "#ffffff",
-                    "surface-container-high": "#eee7e3",
-                    "on-background": "#1e1b19",
-                    "on-tertiary": "#ffffff",
-                    "surface-variant": "#e9e1dd",
-                    "on-secondary-fixed-variant": "#5a4300",
-                    "inverse-primary": "#ffb2b7",
-                    "tertiary-fixed-dim": "#c7c6c5",
-                    "primary-container": "#7b1c2d",
-                    "danger": "#DC2626",
-                    "tertiary-container": "#404140",
-                    "background": "#fff8f5",
-                    "secondary-fixed": "#ffdf9a",
-                    "on-tertiary-container": "#adadab",
-                    "tertiary-fixed": "#e3e2e0",
-                    "surface": "#F8F7F5",
-                    "on-secondary-container": "#745700",
-                    "border": "#E4E2DD",
-                    "success": "#16A34A",
-                    "on-primary-fixed-variant": "#832233",
-                    "secondary": "#775a00",
-                    "on-secondary": "#ffffff",
-                    "inverse-surface": "#33302d",
-                    "on-primary": "#ffffff",
-                    "outline-variant": "#dcc0c1",
-                    "primary-fixed": "#ffdadb"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "lg": "24px",
-                    "base": "8px",
-                    "xs": "4px",
-                    "header-height": "64px",
-                    "sm": "8px",
-                    "md": "16px",
-                    "xl": "32px",
-                    "sidebar-width": "256px"
-            },
-            "fontFamily": {
-                    "body-lg": ["Inter"],
-                    "label-md": ["Inter"],
-                    "data-label": ["JetBrains Mono"],
-                    "data-display": ["JetBrains Mono"],
-                    "headline-lg": ["Lora"],
-                    "body-md": ["Inter"],
-                    "headline-md": ["Inter"]
-            },
-            "fontSize": {
-                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
-                    "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                    "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                    "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}]
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Record Income · MCG-SMS</title>
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      try {
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "error-container": "#ffdad6",
+                "on-primary-container": "#ff8a95",
+                "surface-variant": "#e9e1dd",
+                "surface-container": "#f4ece8",
+                "on-tertiary-container": "#adadab",
+                "primary-container": "#7b1c2d",
+                "surface-tint": "#a33a49",
+                "gold-muted": "#FDF6E3",
+                "danger": "#DC2626",
+                "secondary": "#775a00",
+                "background": "#fff8f5",
+                "tertiary-container": "#404140",
+                "secondary-fixed": "#ffdf9a",
+                "secondary-fixed-dim": "#eec04f",
+                "error": "#ba1a1a",
+                "primary-fixed-dim": "#ffb2b7",
+                "outline": "#897172",
+                "on-error": "#ffffff",
+                "inverse-on-surface": "#f7efeb",
+                "on-primary-fixed": "#40000e",
+                "on-primary-fixed-variant": "#832233",
+                "success": "#16A34A",
+                "on-secondary-container": "#745700",
+                "secondary-container": "#fece5b",
+                "on-tertiary-fixed": "#1a1c1b",
+                "primary-light": "#A3283F",
+                "tertiary-fixed": "#e3e2e0",
+                "surface-container-high": "#eee7e3",
+                "surface-dim": "#e0d8d5",
+                "on-primary": "#ffffff",
+                "surface-bright": "#fff8f5",
+                "surface-container-highest": "#e9e1dd",
+                "on-secondary-fixed": "#251a00",
+                "on-tertiary": "#ffffff",
+                "on-tertiary-fixed-variant": "#464746",
+                "primary-muted": "#F5EAEC",
+                "tertiary-fixed-dim": "#c7c6c5",
+                "primary-fixed": "#ffdadb",
+                "surface": "#F8F7F5",
+                "warning": "#D97706",
+                "on-error-container": "#93000a",
+                "card": "#FFFFFF",
+                "inverse-surface": "#33302d",
+                "on-secondary-fixed-variant": "#5a4300",
+                "inverse-primary": "#ffb2b7",
+                "surface-container-lowest": "#ffffff",
+                "surface-container-low": "#faf2ee",
+                "primary": "#5c0219",
+                "info": "#2563EB",
+                "on-surface-variant": "#564243",
+                "tertiary": "#2a2b2a",
+                "on-background": "#1e1b19",
+                "border": "#E4E2DD",
+                "on-secondary": "#ffffff",
+                "on-surface": "#1e1b19",
+                "text-secondary": "#6B7280",
+                "outline-variant": "#dcc0c1"
+              },
+              borderRadius: {
+                DEFAULT: "0.25rem",
+                lg: "0.5rem",
+                xl: "0.75rem",
+                full: "9999px"
+              },
+              boxShadow: {
+                ambient: "0 1px 2px rgba(30, 27, 25, 0.04), 0 6px 16px rgba(30, 27, 25, 0.06)"
+              },
+              spacing: {
+                xs: "4px",
+                sm: "8px",
+                base: "8px",
+                md: "16px",
+                lg: "24px",
+                xl: "32px",
+                "sidebar-width": "256px",
+                "header-height": "64px"
+              },
+              fontFamily: {
+                "label-sm": ["Inter"],
+                "label-md": ["Inter"],
+                "body-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "headline-md": ["Inter"],
+                "headline-lg": ["Lora"],
+                "data-label": ["JetBrains Mono"],
+                "data-display": ["JetBrains Mono"]
+              },
+              fontSize: {
+                "label-sm": ["11px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "500" }],
+                "label-md": ["13px", { lineHeight: "1.2", fontWeight: "500" }],
+                "body-md": ["14px", { lineHeight: "1.6", fontWeight: "400" }],
+                "body-lg": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                "headline-md": ["20px", { lineHeight: "1.3", fontWeight: "600" }],
+                "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+                "data-label": ["14px", { lineHeight: "1.0", fontWeight: "500" }],
+                "data-display": ["18px", { lineHeight: "1.0", fontWeight: "500" }]
+              }
             }
-          },
-        },
+          }
+        };
+      } catch (_e) {}
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
       }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .form-section-active {
-            border-left: 4px solid #775a00;
-            background: #fff8f5;
-        }
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #5c0219 !important;
-            box-shadow: 0 0 0 2px rgba(92, 2, 25, 0.1);
-        }
+      input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: #5c0219 !important;
+        box-shadow: 0 0 0 2px rgba(92, 2, 25, 0.1);
+      }
     </style>
-</head>
-<body class="bg-surface font-body-md text-on-surface flex min-h-screen">
-{% include 'components/toast_messages.html' %}
-{% include 'components/sidebar.html' %}
-<!-- Main Content Canvas -->
-<main class="mt-5 ml-[30px] min-h-screen bg-background justify-center flex-1">
-<div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-lg px-xl py-lg">
-<!-- Left: Transaction Form -->
-<div class="lg:col-span-2">
-<div class="bg-card rounded-xl shadow-sm overflow-hidden border border-border">
-<div class="p-lg bg-primary-muted/30 border-b border-border">
-<h3 class="font-headline-md text-headline-md text-primary">New Income Entry</h3>
-<p class="text-on-surface-variant font-body-md">Ensure all fields are accurate before saving for the audit trail.</p>
-</div>
-<form method="POST" action="{% url 'finance:record_income' %}" class="p-lg space-y-lg" id="incomeForm">
-{% csrf_token %}
-<!-- Date & Source -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
-<div class="space-y-xs">
-<label class="text-label-md text-on-surface-variant">Transaction Date</label>
-<input name="date" class="w-full px-md py-base border border-border rounded-lg font-body-md bg-surface-bright" type="date" required/>
-</div>
-<div class="space-y-xs relative">
-<label class="text-label-md text-on-surface-variant">Source / Service</label>
-<div class="relative">
-<input name="remarks" class="w-full pl-xl pr-md py-base border border-border rounded-lg font-body-md" placeholder="Search service (e.g. Sunday Morning)" type="text"/>
-<span class="material-symbols-outlined absolute left-base top-1/2 -translate-y-1/2 text-outline">search</span>
-</div>
-</div>
-</div>
-<!-- Category & Amount -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
-<div class="space-y-xs">
-<label class="text-label-md text-on-surface-variant">Income Category</label>
-<select name="category" class="w-full px-md py-base border border-border rounded-lg font-body-md bg-white appearance-none">
-<option value="OFFERING">Sunday Offertory</option>
-<option value="TITHE">Tithe</option>
-<option value="WELFARE">Welfare Contribution</option>
-<option value="DONATION">Donation</option>
-<option value="HARVEST">Project / Harvest Fund</option>
-</select>
-</div>
-<div class="space-y-xs">
-<label class="text-label-md text-on-surface-variant">Amount</label>
-<div class="flex items-center">
-<span class="px-md py-base bg-surface-container border border-r-0 border-border rounded-l-lg font-data-label text-on-surface-variant">GH₵</span>
-<input name="amount" min="0" step="0.01" class="w-full px-md py-base border border-border rounded-r-lg font-data-display text-data-display text-secondary font-semibold" id="amountInput" placeholder="0.00" type="number" required/>
-</div>
-</div>
-</div>
-<!-- Payment Method Radio Cards -->
-<div class="space-y-md">
-<label class="text-label-md text-on-surface-variant">Payment Method</label>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-base">
-<label class="relative flex flex-col items-center justify-center p-md border border-border rounded-lg cursor-pointer hover:bg-gold-muted transition-colors group">
-<input checked="" class="sr-only peer" name="payment" type="radio" value="cash"/>
-<div class="peer-checked:text-secondary peer-checked:border-secondary transition-all flex flex-col items-center">
-<span class="material-symbols-outlined mb-xs">payments</span>
-<span class="text-label-md">Cash</span>
-</div>
-<div class="absolute inset-0 border-2 border-transparent peer-checked:border-secondary rounded-lg"></div>
-</label>
-<label class="relative flex flex-col items-center justify-center p-md border border-border rounded-lg cursor-pointer hover:bg-gold-muted transition-colors">
-<input class="sr-only peer" name="payment" type="radio" value="momo"/>
-<div class="peer-checked:text-secondary transition-all flex flex-col items-center">
-<span class="material-symbols-outlined mb-xs">smartphone</span>
-<span class="text-label-md">MoMo</span>
-</div>
-<div class="absolute inset-0 border-2 border-transparent peer-checked:border-secondary rounded-lg"></div>
-</label>
-<label class="relative flex flex-col items-center justify-center p-md border border-border rounded-lg cursor-pointer hover:bg-gold-muted transition-colors">
-<input class="sr-only peer" name="payment" type="radio" value="bank"/>
-<div class="peer-checked:text-secondary transition-all flex flex-col items-center">
-<span class="material-symbols-outlined mb-xs">account_balance</span>
-<span class="text-label-md">Bank</span>
-</div>
-<div class="absolute inset-0 border-2 border-transparent peer-checked:border-secondary rounded-lg"></div>
-</label>
-<label class="relative flex flex-col items-center justify-center p-md border border-border rounded-lg cursor-pointer hover:bg-gold-muted transition-colors">
-<input class="sr-only peer" name="payment" type="radio" value="cheque"/>
-<div class="peer-checked:text-secondary transition-all flex flex-col items-center">
-<span class="material-symbols-outlined mb-xs">stadium</span>
-<span class="text-label-md">Cheque</span>
-</div>
-<div class="absolute inset-0 border-2 border-transparent peer-checked:border-secondary rounded-lg"></div>
-</label>
-</div>
-</div>
-<!-- Conditional Fields (Simulated Hidden/Visible) -->
-<div class="space-y-xs animate-in slide-in-from-top-1 duration-200 hidden" id="momoFields">
-<label class="text-label-md text-on-surface-variant">Transaction ID (MoMo)</label>
-<input class="w-full px-md py-base border border-border rounded-lg font-body-md" placeholder="Enter Reference Number" type="text"/>
-</div>
-<!-- Verification & Meta -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
-<div class="space-y-xs">
-<label class="text-label-md text-on-surface-variant">Received By</label>
-<div class="flex items-center gap-xs px-md py-base bg-surface-container rounded-lg border border-border">
-<div class="h-6 w-6 rounded-full bg-primary flex items-center justify-center text-[10px] text-white">SA</div>
-<span class="text-body-md font-medium">{{ request.user.username }}</span>
-<span class="ml-auto material-symbols-outlined text-[16px] text-success" style="font-variation-settings: 'FILL' 1;">verified_user</span>
-</div>
-</div>
-<div class="space-y-xs">
-<label class="text-label-md text-on-surface-variant">Verified By</label>
-<div class="relative">
-<input class="w-full pl-xl pr-md py-base border border-border rounded-lg font-body-md" placeholder="Search member for verification" type="text"/>
-<span class="material-symbols-outlined absolute left-base top-1/2 -translate-y-1/2 text-outline">person_search</span>
-</div>
-</div>
-</div>
-<!-- Remarks -->
-<div class="space-y-xs">
-<label class="text-label-md text-on-surface-variant">Remarks</label>
-<textarea name="remarks" class="w-full px-md py-base border border-border rounded-lg font-body-md" placeholder="Additional details or notes about this record..." rows="3"></textarea>
-</div>
-<!-- Drag and Drop Upload -->
-<div class="space-y-xs">
-<label class="text-label-md text-on-surface-variant">Supporting Documents (Vouchers, Receipts)</label>
-<div class="border-2 border-dashed border-outline-variant rounded-xl p-lg flex flex-col items-center justify-center bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer group">
-<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[32px] mb-base">upload_file</span>
-<p class="text-body-md text-on-surface-variant"><span class="text-primary font-bold">Click to upload</span> or drag and drop</p>
-<p class="text-label-sm text-outline">PDF, JPG or PNG (Max 5MB)</p>
-</div>
-</div>
-<!-- Footer Actions -->
-<div class="p-lg bg-surface border-t border-border flex flex-col md:flex-row gap-md justify-end">
-<button type="submit" class="px-xl py-base bg-primary text-on-primary rounded-lg font-body-md font-bold shadow-md hover:bg-primary-light transition-all active:scale-[0.98] order-1 md:order-2">
-                            Save Income Record
-</button>
-</div>
-</form>
-</div>
-</div>
-<!-- Right: Real-time Record Preview -->
-<div class="lg:col-span-1 space-y-lg">
-<div class="bg-card rounded-xl shadow-sm border border-border p-lg sticky top-lg">
-<div class="flex items-center justify-between mb-lg">
-<h4 class="font-headline-md text-primary">Record Preview</h4>
-<span class="px-base py-xs bg-gold-muted text-secondary rounded-full text-label-sm border border-secondary-fixed">DRAFT</span>
-</div>
-<div class="space-y-xl">
-<!-- Large Amount Card -->
-<div class="bg-surface rounded-lg p-lg border-l-4 border-secondary text-center">
-<p class="text-label-md text-on-surface-variant mb-xs">TOTAL AMOUNT</p>
-<h2 class="font-data-display text-[42px] leading-none text-success font-semibold tracking-tight" id="previewAmount">GH₵ 0.00</h2>
-</div>
-<div class="space-y-md divide-y divide-border">
-<div class="flex justify-between items-center py-base">
-<span class="text-label-md text-on-surface-variant">Source</span>
-<span class="text-body-md font-semibold" id="previewSource">—</span>
-</div>
-<div class="flex justify-between items-center py-base">
-<span class="text-label-md text-on-surface-variant">Category</span>
-<span class="text-body-md font-semibold" id="previewCategory">Sunday Offertory</span>
-</div>
-<div class="flex justify-between items-center py-base">
-<span class="text-label-md text-on-surface-variant">Method</span>
-<span class="flex items-center gap-xs text-body-md font-semibold">
-<span class="material-symbols-outlined text-[18px]">payments</span>
-                                    Cash
-                                </span>
-</div>
-</div>
-<div class="bg-primary-muted/50 rounded-lg p-md">
-<p class="text-label-sm text-primary font-bold mb-xs flex items-center gap-xs">
-<span class="material-symbols-outlined text-[14px]">info</span>
-                                AUDIT INFO
-                            </p>
-<p class="text-label-sm text-on-surface-variant">
-                                This entry will be logged under Transaction ID: <span class="font-data-label">INC-2023-4501</span>. All changes are tracked in the audit trail.
-                            </p>
-</div>
-<!-- Decoration Image -->
-<div class="rounded-lg overflow-hidden h-40 relative group">
-<div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-colors z-10"></div>
-<img class="w-full h-full object-cover" data-alt="A macro shot of a hand placing a coin into a beautifully carved wooden collection box, warm sunset light filtering through a cathedral window in the background, traditional and dignified religious setting, soft cinematic depth of field, rich mahogany tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAef6zqYAWNeF0xC09hvyjbSHjKnf8vEU9aHnHXdiF8w5PmynysAMWBCgPg_Zx_zF2GC2bJYpJSahE-1Eaup5UK4aDGYDAMIY__7aV1YtpyKe9iKRky5dMfy4rfOj-lNOjX1jx-EDNk2MPXylvRNwzJglWUH4c0wc8D6ccxkBrtKxKsGdi87WESwwat2Dn5t3T9hI8Re2LwG1AVBKmM8EMcvdrsiaGeQ9n8uJ5V9rRCC9Q-aALV_MsZjf8AMvZZrFizYYRWqYJGlCfd"/>
-<div class="absolute bottom-base left-base z-20">
-<p class="text-white font-headline-md text-sm opacity-90">Methodist Church Ghana</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-<script>
-        // Simple micro-interactions for the form
-        const amountInput = document.getElementById('amountInput');
-        const previewAmount = document.getElementById('previewAmount');
-        const paymentRadios = document.querySelectorAll('input[name="payment"]');
-        const momoFields = document.getElementById('momoFields');
+  </head>
 
-        amountInput.addEventListener('input', (e) => {
-            const val = parseFloat(e.target.value || 0).toLocaleString('en-GH', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            });
-            previewAmount.innerText = `GH₵ ${val}`;
-        });
+  <body class="bg-surface text-on-surface font-body-md flex h-screen overflow-hidden">
 
-        paymentRadios.forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                if (e.target.value === 'momo' || e.target.value === 'cheque') {
-                    momoFields.classList.remove('hidden');
-                } else {
-                    momoFields.classList.add('hidden');
-                }
-            });
-        });
+    {% include 'components/toast_messages.html' %}
 
-        // Real-time text mapping for UX
-        const sourceInput = document.querySelector('input[placeholder*="Search service"]');
-        const previewSource = document.getElementById('previewSource');
-        sourceInput.addEventListener('input', (e) => {
-            previewSource.innerText = e.target.value || '—';
-        });
+    <!-- Side Navigation -->
+    {% include 'components/sidebar.html' %}
 
-        const categorySelect = document.querySelector('select');
-        const previewCategory = document.getElementById('previewCategory');
-        categorySelect.addEventListener('change', (e) => {
-            previewCategory.innerText = e.target.value;
+    <!-- Main Content Canvas -->
+    <main class="flex-1 min-w-0 h-full overflow-y-auto bg-background">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 gap-lg px-xl py-lg lg:grid-cols-3">
+
+        <!-- Left: Transaction Form -->
+        <div class="lg:col-span-2">
+          <div class="overflow-hidden rounded-xl bg-card border border-border shadow-ambient">
+            <div class="p-lg bg-primary-muted/30 border-b border-border">
+              <h3 class="font-headline-md text-headline-md text-primary">New Income Entry</h3>
+              <p class="font-body-md text-on-surface-variant">
+                Ensure all fields are accurate before saving for the audit trail.
+              </p>
+            </div>
+
+            <form action="{% url 'finance:record_income' %}" class="p-lg space-y-lg" id="incomeForm" method="post">
+              {% csrf_token %}
+
+              <!-- Date & Service -->
+              <div class="grid grid-cols-1 gap-md md:grid-cols-2">
+                <div class="space-y-xs">
+                  <label class="text-label-md text-on-surface-variant" for="date">Transaction Date</label>
+                  <input
+                    class="w-full px-md py-base rounded-lg bg-surface-bright border border-border font-body-md"
+                    id="date"
+                    name="date"
+                    required
+                    type="date"
+                    value="{% firstof form_data.date today|date:'Y-m-d' %}"/>
+                </div>
+
+                <div class="space-y-xs">
+                  <label class="text-label-md text-on-surface-variant" for="service">Source / Service</label>
+                  <select
+                    class="w-full px-md py-base rounded-lg bg-white border border-border font-body-md"
+                    id="service"
+                    name="service">
+                    <option value="">Not tied to a service</option>
+                    {% for service in services %}
+                    <option value="{{ service.id }}" {% if form_data.service == service.id|stringformat:"s" %}selected{% endif %}>
+                      {{ service.title }} — {{ service.service_date|date:"d M Y" }}
+                    </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+
+              <!-- Category & Amount -->
+              <div class="grid grid-cols-1 gap-md md:grid-cols-2">
+                <div class="space-y-xs">
+                  <label class="text-label-md text-on-surface-variant" for="category">Income Category</label>
+                  <select
+                    class="w-full px-md py-base rounded-lg bg-white border border-border font-body-md appearance-none"
+                    id="category"
+                    name="category">
+                    {% for value, label in category_choices %}
+                    <option value="{{ value }}" {% if form_data.category == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="space-y-xs">
+                  <label class="text-label-md text-on-surface-variant" for="amount">Amount</label>
+                  <div class="flex items-center">
+                    <span class="px-md py-base rounded-l-lg bg-surface-container border border-r-0 border-border font-data-label text-on-surface-variant">GH₵</span>
+                    <input
+                      class="w-full px-md py-base rounded-r-lg border border-border font-data-display text-data-display font-semibold text-secondary"
+                      id="amount"
+                      min="0"
+                      name="amount"
+                      placeholder="0.00"
+                      required
+                      step="0.01"
+                      type="number"
+                      value="{{ form_data.amount|default:'' }}"/>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Payment Method -->
+              <div class="space-y-md">
+                <span class="text-label-md text-on-surface-variant">Payment Method</span>
+                <div class="grid grid-cols-2 gap-base md:grid-cols-4">
+                  {% for value, label in payment_methods %}
+                  <label class="relative flex flex-col items-center justify-center p-md rounded-lg border border-border cursor-pointer transition-colors hover:bg-gold-muted">
+                    <input
+                      class="sr-only peer"
+                      data-label="{{ label }}"
+                      name="payment_method"
+                      type="radio"
+                      value="{{ value }}"
+                      {% if form_data.payment_method == value %}checked{% elif not form_data and value == 'CASH' %}checked{% endif %}/>
+                    <div class="flex flex-col items-center transition-all peer-checked:text-secondary">
+                      <span class="material-symbols-outlined mb-xs">
+                        {% if value == 'CASH' %}payments{% elif value == 'MOMO' %}smartphone{% elif value == 'BANK' %}account_balance{% else %}receipt_long{% endif %}
+                      </span>
+                      <span class="text-label-md">{{ label }}</span>
+                    </div>
+                    <div class="absolute inset-0 rounded-lg border-2 border-transparent peer-checked:border-secondary"></div>
+                  </label>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <!-- Reference: only meaningful for MoMo / cheque -->
+              <div class="space-y-xs hidden" id="referenceField">
+                <label class="text-label-md text-on-surface-variant" for="reference">
+                  Transaction ID / Cheque Number
+                </label>
+                <input
+                  class="w-full px-md py-base rounded-lg border border-border font-body-md"
+                  id="reference"
+                  name="reference"
+                  placeholder="Enter reference number"
+                  type="text"
+                  value="{{ form_data.reference|default:'' }}"/>
+              </div>
+
+              <!-- Received By -->
+              <div class="space-y-xs">
+                <span class="text-label-md text-on-surface-variant">Received By</span>
+                <div class="flex items-center gap-xs px-md py-base rounded-lg bg-surface-container border border-border">
+                  <div class="h-6 w-6 flex items-center justify-center rounded-full bg-primary text-[10px] text-white">
+                    {% firstof request.user.first_name|slice:":1"|upper request.user.username|slice:":1"|upper "?" %}
+                  </div>
+                  <span class="text-body-md font-medium">
+                    {% firstof request.user.get_full_name request.user.username "Signed in user" %}
+                  </span>
+                  <span class="ml-auto material-symbols-outlined text-[16px] text-success" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+                </div>
+              </div>
+
+              <!-- Remarks -->
+              <div class="space-y-xs">
+                <label class="text-label-md text-on-surface-variant" for="remarks">Remarks</label>
+                <textarea
+                  class="w-full px-md py-base rounded-lg border border-border font-body-md"
+                  id="remarks"
+                  name="remarks"
+                  placeholder="Additional details or notes about this record..."
+                  rows="3">{{ form_data.remarks|default:'' }}</textarea>
+              </div>
+
+              <!-- Footer Actions -->
+              <div class="flex flex-col gap-md justify-end pt-lg border-t border-border md:flex-row">
+                <a
+                  class="px-xl py-base rounded-lg text-center font-body-md font-bold text-on-surface-variant transition-colors hover:text-primary"
+                  href="{% url 'finance:income_ledger' %}">
+                  Cancel
+                </a>
+                <button
+                  class="px-xl py-base rounded-lg bg-primary text-on-primary font-body-md font-bold shadow-md transition-all hover:bg-primary-light active:scale-[0.98]"
+                  type="submit">
+                  Save Income Record
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Right: Record Preview -->
+        <div class="lg:col-span-1 space-y-lg">
+          <div class="sticky top-lg p-lg rounded-xl bg-card border border-border shadow-ambient">
+            <div class="flex items-center justify-between mb-lg">
+              <h4 class="font-headline-md text-primary">Record Preview</h4>
+              <span class="px-base py-xs rounded-full bg-gold-muted text-secondary text-label-sm border border-secondary-fixed">DRAFT</span>
+            </div>
+
+            <div class="space-y-xl">
+              <div class="p-lg rounded-lg bg-surface border-l-4 border-secondary text-center">
+                <p class="mb-xs text-label-md text-on-surface-variant">TOTAL AMOUNT</p>
+                <h2 class="font-data-display text-[42px] leading-none font-semibold tracking-tight text-success" id="previewAmount">GH₵ 0.00</h2>
+              </div>
+
+              <div class="space-y-md divide-y divide-border">
+                <div class="flex justify-between items-center gap-2 py-base">
+                  <span class="text-label-md text-on-surface-variant">Source</span>
+                  <span class="text-body-md font-semibold text-right" id="previewSource">—</span>
+                </div>
+                <div class="flex justify-between items-center gap-2 py-base">
+                  <span class="text-label-md text-on-surface-variant">Category</span>
+                  <span class="text-body-md font-semibold text-right" id="previewCategory">—</span>
+                </div>
+                <div class="flex justify-between items-center gap-2 py-base">
+                  <span class="text-label-md text-on-surface-variant">Method</span>
+                  <span class="text-body-md font-semibold text-right" id="previewMethod">Cash</span>
+                </div>
+              </div>
+
+              <div class="p-md rounded-lg bg-primary-muted/50">
+                <p class="flex items-center gap-xs mb-xs text-label-sm font-bold text-primary">
+                  <span class="material-symbols-outlined text-[14px]">info</span>
+                  AUDIT INFO
+                </p>
+                <p class="text-label-sm text-on-surface-variant">
+                  A transaction ID is assigned when the record is saved, and the entry is
+                  attributed to you in the audit trail.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const form = document.getElementById('incomeForm');
+      const amountInput = document.getElementById('amount');
+      const serviceSelect = document.getElementById('service');
+      const categorySelect = document.getElementById('category');
+      const referenceField = document.getElementById('referenceField');
+
+      const previewAmount = document.getElementById('previewAmount');
+      const previewSource = document.getElementById('previewSource');
+      const previewCategory = document.getElementById('previewCategory');
+      const previewMethod = document.getElementById('previewMethod');
+
+      function selectedText(select) {
+        return select.selectedOptions.length ? select.selectedOptions[0].text.trim() : '—';
+      }
+
+      function syncAmount() {
+        const value = parseFloat(amountInput.value || 0).toLocaleString('en-GH', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
         });
+        previewAmount.textContent = `GH₵ ${value}`;
+      }
+
+      function syncPaymentMethod() {
+        const chosen = form.querySelector('input[name="payment_method"]:checked');
+        if (!chosen) return;
+
+        previewMethod.textContent = chosen.dataset.label;
+        // A reference number only applies to MoMo and cheques.
+        referenceField.classList.toggle('hidden', !['MOMO', 'CHEQUE'].includes(chosen.value));
+      }
+
+      amountInput.addEventListener('input', syncAmount);
+      serviceSelect.addEventListener('change', () => {
+        previewSource.textContent = serviceSelect.value ? selectedText(serviceSelect) : '—';
+      });
+      categorySelect.addEventListener('change', () => {
+        previewCategory.textContent = selectedText(categorySelect);
+      });
+      form.querySelectorAll('input[name="payment_method"]').forEach((radio) => {
+        radio.addEventListener('change', syncPaymentMethod);
+      });
+
+      // Reflect any values restored after a validation error.
+      syncAmount();
+      syncPaymentMethod();
+      previewCategory.textContent = selectedText(categorySelect);
+      if (serviceSelect.value) previewSource.textContent = selectedText(serviceSelect);
     </script>
-</body>
+  </body>
 </html>
