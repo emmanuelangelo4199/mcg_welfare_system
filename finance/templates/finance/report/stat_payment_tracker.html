@@ -1,416 +1,370 @@
+{% load static %}
 <!DOCTYPE html>
+<html class="light" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Statutory Payments Tracker | MCG-SMS</title>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Statutory Payments Tracker | MCG-SMS</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "outline": "#897172",
-                    "on-tertiary-fixed-variant": "#464746",
-                    "tertiary": "#2a2b2a",
-                    "surface-bright": "#fff8f5",
-                    "on-primary-fixed": "#40000e",
-                    "inverse-on-surface": "#f7efeb",
-                    "on-surface": "#1e1b19",
-                    "on-primary-container": "#ff8a95",
-                    "primary": "#5c0219",
-                    "primary-fixed-dim": "#ffb2b7",
-                    "on-tertiary-fixed": "#1a1c1b",
-                    "error-container": "#ffdad6",
-                    "warning": "#D97706",
-                    "text-secondary": "#6B7280",
-                    "surface-tint": "#a33a49",
-                    "surface-container-lowest": "#ffffff",
-                    "secondary-container": "#fece5b",
-                    "surface-container": "#f4ece8",
-                    "primary-light": "#A3283F",
-                    "on-secondary-fixed": "#251a00",
-                    "surface-container-highest": "#e9e1dd",
-                    "info": "#2563EB",
-                    "secondary-fixed-dim": "#eec04f",
-                    "primary-muted": "#F5EAEC",
-                    "card": "#FFFFFF",
-                    "error": "#ba1a1a",
-                    "surface-dim": "#e0d8d5",
-                    "gold-muted": "#FDF6E3",
-                    "surface-container-low": "#faf2ee",
-                    "on-surface-variant": "#564243",
-                    "on-error-container": "#93000a",
-                    "on-error": "#ffffff",
-                    "surface-container-high": "#eee7e3",
-                    "on-background": "#1e1b19",
-                    "on-tertiary": "#ffffff",
-                    "surface-variant": "#e9e1dd",
-                    "on-secondary-fixed-variant": "#5a4300",
-                    "inverse-primary": "#ffb2b7",
-                    "tertiary-fixed-dim": "#c7c6c5",
-                    "primary-container": "#7b1c2d",
-                    "danger": "#DC2626",
-                    "tertiary-container": "#404140",
-                    "background": "#fff8f5",
-                    "secondary-fixed": "#ffdf9a",
-                    "on-tertiary-container": "#adadab",
-                    "tertiary-fixed": "#e3e2e0",
-                    "surface": "#F8F7F5",
-                    "on-secondary-container": "#745700",
-                    "border": "#E4E2DD",
-                    "success": "#16A34A",
-                    "on-primary-fixed-variant": "#832233",
-                    "secondary": "#775a00",
-                    "on-secondary": "#ffffff",
-                    "inverse-surface": "#33302d",
-                    "on-primary": "#ffffff",
-                    "outline-variant": "#dcc0c1",
-                    "primary-fixed": "#ffdadb"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "lg": "24px",
-                    "base": "8px",
-                    "xs": "4px",
-                    "header-height": "64px",
-                    "sm": "8px",
-                    "md": "16px",
-                    "xl": "32px",
-                    "sidebar-width": "256px"
-            },
-            "fontFamily": {
-                    "body-lg": ["Inter"],
-                    "label-md": ["Inter"],
-                    "data-label": ["JetBrains Mono"],
-                    "data-display": ["JetBrains Mono"],
-                    "headline-lg-mobile": ["Lora"],
-                    "body-md": ["Inter"],
-                    "headline-lg": ["Lora"],
-                    "label-sm": ["Inter"],
-                    "headline-md": ["Inter"]
-            },
-            "fontSize": {
-                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
-                    "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                    "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                    "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                    "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}]
+        <!-- Favicon -->
+        <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png" />
+
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet" />
+
+        <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            outline: "#897172",
+                            "on-tertiary-fixed-variant": "#464746",
+                            tertiary: "#2a2b2a",
+                            "surface-bright": "#fff8f5",
+                            "on-primary-fixed": "#40000e",
+                            "inverse-on-surface": "#f7efeb",
+                            "on-surface": "#1e1b19",
+                            "on-primary-container": "#ff8a95",
+                            primary: "#5c0219",
+                            "primary-fixed-dim": "#ffb2b7",
+                            "on-tertiary-fixed": "#1a1c1b",
+                            "error-container": "#ffdad6",
+                            warning: "#D97706",
+                            "text-secondary": "#6B7280",
+                            "surface-tint": "#a33a49",
+                            "surface-container-lowest": "#ffffff",
+                            "secondary-container": "#fece5b",
+                            "surface-container": "#f4ece8",
+                            "primary-light": "#A3283F",
+                            "on-secondary-fixed": "#251a00",
+                            "surface-container-highest": "#e9e1dd",
+                            info: "#2563EB",
+                            "secondary-fixed-dim": "#eec04f",
+                            "primary-muted": "#F5EAEC",
+                            card: "#FFFFFF",
+                            error: "#ba1a1a",
+                            "surface-dim": "#e0d8d5",
+                            "gold-muted": "#FDF6E3",
+                            "surface-container-low": "#faf2ee",
+                            "on-surface-variant": "#564243",
+                            "on-error-container": "#93000a",
+                            "on-error": "#ffffff",
+                            "surface-container-high": "#eee7e3",
+                            "on-background": "#1e1b19",
+                            "on-tertiary": "#ffffff",
+                            "surface-variant": "#e9e1dd",
+                            "on-secondary-fixed-variant": "#5a4300",
+                            "inverse-primary": "#ffb2b7",
+                            "tertiary-fixed-dim": "#c7c6c5",
+                            "primary-container": "#7b1c2d",
+                            danger: "#DC2626",
+                            "tertiary-container": "#404140",
+                            background: "#fff8f5",
+                            "secondary-fixed": "#ffdf9a",
+                            "on-tertiary-container": "#adadab",
+                            "tertiary-fixed": "#e3e2e0",
+                            surface: "#F8F7F5",
+                            "on-secondary-container": "#745700",
+                            border: "#E4E2DD",
+                            success: "#16A34A",
+                            "on-primary-fixed-variant": "#832233",
+                            secondary: "#775a00",
+                            "on-secondary": "#ffffff",
+                            "inverse-surface": "#33302d",
+                            "on-primary": "#ffffff",
+                            "outline-variant": "#dcc0c1",
+                            "primary-fixed": "#ffdadb",
+                        },
+                        borderRadius: {
+                            DEFAULT: "0.25rem",
+                            lg: "0.5rem",
+                            xl: "0.75rem",
+                            full: "9999px",
+                        },
+                        spacing: {
+                            lg: "24px",
+                            base: "8px",
+                            xs: "4px",
+                            "header-height": "64px",
+                            sm: "8px",
+                            md: "16px",
+                            xl: "32px",
+                            "sidebar-width": "256px",
+                        },
+                        fontFamily: {
+                            "body-lg": ["Inter"],
+                            "label-md": ["Inter"],
+                            "data-label": ["JetBrains Mono"],
+                            "data-display": ["JetBrains Mono"],
+                            "headline-lg-mobile": ["Lora"],
+                            "body-md": ["Inter"],
+                            "headline-lg": ["Lora"],
+                            "label-sm": ["Inter"],
+                            "headline-md": ["Inter"],
+                        },
+                        fontSize: {
+                            "body-lg": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                            "label-md": ["13px", { lineHeight: "1.2", fontWeight: "500" }],
+                            "data-label": ["14px", { lineHeight: "1.0", fontWeight: "500" }],
+                            "data-display": ["18px", { lineHeight: "1.0", fontWeight: "500" }],
+                            "headline-lg-mobile": ["24px", { lineHeight: "1.2", fontWeight: "700" }],
+                            "body-md": ["14px", { lineHeight: "1.6", fontWeight: "400" }],
+                            "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+                            "label-sm": ["11px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "500" }],
+                            "headline-md": ["20px", { lineHeight: "1.3", fontWeight: "600" }],
+                        },
+                    },
+                },
+            };
+        </script>
+
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+                display: inline-block;
+                line-height: 1;
             }
-          },
-        },
-      }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            display: inline-block;
-            line-height: 1;
-            text-transform: none;
-            letter-spacing: normal;
-            word-wrap: normal;
-            white-space: nowrap;
-            direction: ltr;
-        }
-        .sidebar-active {
-            border-left: 3px solid #ffdf9a; /* secondary-fixed */
-            background-color: rgba(163, 40, 63, 0.2);
-        }
-        .collapse-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        .collapse-content.open {
-            max-height: 2000px;
-        }
-        .rotate-icon {
-            transition: transform 0.3s ease;
-        }
-        .rotate-icon.open {
-            transform: rotate(180deg);
-        }
-    </style>
-</head>
-<body class="bg-surface text-on-surface font-body-md flex min-h-screen">
-<!-- Side Navigation Shell -->
-{% include 'components/sidebar.html' %}
-<!-- Main Content Canvas -->
-<main class=" p-xl">
-<!-- Summary Cards Bento Grid -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xl">
-<!-- Circuit Card -->
-<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary relative overflow-hidden">
-<div class="flex justify-between items-start mb-4">
-<div>
-<p class="text-label-md text-on-surface-variant uppercase tracking-wider">Circuit Assessment</p>
-<h3 class="font-headline-md text-primary mt-1">Due: Oct 2023</h3>
-</div>
-<span class="material-symbols-outlined text-secondary opacity-20 text-4xl">account_balance</span>
-</div>
-<div class="mt-4">
-<span class="font-data-display text-[28px] text-warning font-bold">GHS 12,450.00</span>
-<p class="text-label-sm text-on-surface-variant mt-1">Next due in 12 days</p>
-</div>
-<div class="absolute bottom-0 right-0 p-lg opacity-10">
-<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">payments</span>
-</div>
-</div>
-<!-- Diocese Card -->
-<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary relative overflow-hidden">
-<div class="flex justify-between items-start mb-4">
-<div>
-<p class="text-label-md text-on-surface-variant uppercase tracking-wider">Diocese Quota</p>
-<h3 class="font-headline-md text-primary mt-1">Status: Pending</h3>
-</div>
-<span class="material-symbols-outlined text-secondary opacity-20 text-4xl">domain</span>
-</div>
-<div class="mt-4">
-<span class="font-data-display text-[28px] text-warning font-bold">GHS 8,200.00</span>
-<p class="text-label-sm text-on-surface-variant mt-1">Last payment: Sep 15</p>
-</div>
-<div class="absolute bottom-0 right-0 p-lg opacity-10">
-<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
-</div>
-</div>
-<!-- Connexion Card -->
-<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-success relative overflow-hidden">
-<div class="flex justify-between items-start mb-4">
-<div>
-<p class="text-label-md text-on-surface-variant uppercase tracking-wider">Connexion Balance</p>
-<h3 class="font-headline-md text-primary mt-1">Status: Paid</h3>
-</div>
-<span class="material-symbols-outlined text-success opacity-20 text-4xl">hub</span>
-</div>
-<div class="mt-4">
-<span class="font-data-display text-[28px] text-success font-bold">GHS 0.00</span>
-<p class="text-label-sm text-on-surface-variant mt-1">No outstanding dues</p>
-</div>
-<div class="absolute bottom-0 right-0 p-lg opacity-10">
-<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">verified</span>
-</div>
-</div>
-</div>
-<!-- Statutory Note -->
-<div class="bg-gold-muted border border-secondary/20 p-md rounded-lg mb-xl flex items-start gap-4">
-<span class="material-symbols-outlined text-secondary mt-0.5">info</span>
-<div>
-<p class="text-label-md font-bold text-on-secondary-container">Statutory Calculation Rule (Standard % Rule)</p>
-<p class="text-body-md text-on-secondary-container/80">Payments are calculated based on the 10-15-75 distribution rule of the gross monthly income as mandated by the Methodist Church Ghana administrative handbook. Ensure all local society records are updated before finalizing these payments.</p>
-</div>
-</div>
-<!-- Detailed Sections -->
-<div class="space-y-lg">
-<!-- Section: Circuit -->
-<section class="bg-card rounded-xl shadow-sm overflow-hidden border border-outline/10">
-<button class="w-full flex items-center justify-between p-lg hover:bg-surface-container-low transition-colors text-left" onclick="toggleCollapse('circuit-section', 'circuit-icon')">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-primary-muted text-primary flex items-center justify-center">
-<span class="material-symbols-outlined">account_balance</span>
-</div>
-<div>
-<h2 class="font-headline-md text-primary">Circuit Assessment Records</h2>
-<p class="text-label-sm text-on-surface-variant">Annual obligation tracking for the local circuit office</p>
-</div>
-</div>
-<div class="flex items-center gap-md">
-</div></button><button class="bg-primary hover:bg-primary-light text-on-primary px-4 py-2 rounded-lg text-label-md font-bold flex items-center gap-2 transition-transform active:scale-95" onclick="event.stopPropagation(); openModal('circuit')">
-<span class="material-symbols-outlined text-sm">add</span>
-                            Record Payment
-                        </button>
-<span class="material-symbols-outlined rotate-icon text-on-surface-variant" id="circuit-icon">expand_more</span>
-</section></div>
-<div class="collapse-content open" id="circuit-section">
-<div class="overflow-x-auto p-lg pt-0">
-<table class="w-full text-left border-collapse">
-<thead class="bg-surface-container-low border-b border-outline/10">
-<tr>
-<th class="px-4 py-3 text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">Period</th>
-<th class="px-4 py-3 text-label-sm font-bold uppercase tracking-wider text-on-surface-variant text-right">Due</th>
-<th class="px-4 py-3 text-label-sm font-bold uppercase tracking-wider text-on-surface-variant text-right">Paid</th>
-<th class="px-4 py-3 text-label-sm font-bold uppercase tracking-wider text-on-surface-variant text-right">Balance</th>
-<th class="px-4 py-3 text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">Date Paid</th>
-<th class="px-4 py-3 text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">Ref #</th>
-<th class="px-4 py-3 text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">Status</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-outline/5 font-data-label">
-<tr class="hover:bg-surface-container-lowest transition-colors bg-error-container/20">
-<td class="px-4 py-4 text-body-md font-medium text-on-surface">October 2023</td>
-<td class="px-4 py-4 text-right">12,450.00</td>
-<td class="px-4 py-4 text-right text-success">0.00</td>
-<td class="px-4 py-4 text-right text-error font-bold">12,450.00</td>
-<td class="px-4 py-4 text-body-md text-on-surface-variant italic">—</td>
-<td class="px-4 py-4 text-body-md text-on-surface-variant">—</td>
-<td class="px-4 py-4">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-error-container text-on-error-container">Overdue</span>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="px-4 py-4 text-body-md font-medium text-on-surface">September 2023</td>
-<td class="px-4 py-4 text-right">11,800.00</td>
-<td class="px-4 py-4 text-right text-success">11,800.00</td>
-<td class="px-4 py-4 text-right text-on-surface-variant">0.00</td>
-<td class="px-4 py-4 text-body-md">14 Sep 2023</td>
-<td class="px-4 py-4 text-body-md">TXN-49201</td>
-<td class="px-4 py-4">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-800">Approved</span>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<!-- Section: Diocese -->
-<section class="bg-card rounded-xl shadow-sm overflow-hidden border border-outline/10">
-<button class="w-full flex items-center justify-between p-lg hover:bg-surface-container-low transition-colors text-left" onclick="toggleCollapse('diocese-section', 'diocese-icon')">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-primary-muted text-primary flex items-center justify-center">
-<span class="material-symbols-outlined">domain</span>
-</div>
-<div>
-<h2 class="font-headline-md text-primary">Diocesan Quota Payments</h2>
-<p class="text-label-sm text-on-surface-variant">Central diocese contribution tracking</p>
-</div>
-</div>
-<div class="flex items-center gap-md">
-</div></button><button class="bg-primary hover:bg-primary-light text-on-primary px-4 py-2 rounded-lg text-label-md font-bold flex items-center gap-2 transition-transform active:scale-95" onclick="event.stopPropagation(); openModal('diocese')">
-<span class="material-symbols-outlined text-sm">add</span>
-                            Record Payment
-                        </button>
-<span class="material-symbols-outlined rotate-icon text-on-surface-variant" id="diocese-icon">expand_more</span>
-<div class="collapse-content" id="diocese-section">
-<div class="p-lg italic text-on-surface-variant text-center">Expanding Diocesan data view...</div>
-</div>
-</section>
-<!-- Section: Connexion -->
-<section class="bg-card rounded-xl shadow-sm overflow-hidden border border-outline/10">
-<button class="w-full flex items-center justify-between p-lg hover:bg-surface-container-low transition-colors text-left" onclick="toggleCollapse('connexion-section', 'connexion-icon')">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-primary-muted text-primary flex items-center justify-center">
-<span class="material-symbols-outlined">hub</span>
-</div>
-<div>
-<h2 class="font-headline-md text-primary">Connexional Remittances</h2>
-<p class="text-label-sm text-on-surface-variant">National level administrative payments</p>
-</div>
-</div>
-<div class="flex items-center gap-md">
-</div></button><button class="bg-primary hover:bg-primary-light text-on-primary px-4 py-2 rounded-lg text-label-md font-bold flex items-center gap-2 transition-transform active:scale-95" onclick="event.stopPropagation(); openModal('connexion')">
-<span class="material-symbols-outlined text-sm">add</span>
-                            Record Payment
-                        </button>
-<span class="material-symbols-outlined rotate-icon text-on-surface-variant" id="connexion-icon">expand_more</span>
-<div class="collapse-content" id="connexion-section">
-<div class="p-lg italic text-on-surface-variant text-center">Expanding Connexional data view...</div>
-</div>
-</section>
-</main>
-<!-- Payment Modal (Hidden by Default) -->
-<div class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/40 backdrop-blur-sm" id="payment-modal">
-<div class="bg-card w-full max-w-lg rounded-xl shadow-xl overflow-hidden animate-in fade-in zoom-in duration-200">
-<div class="bg-primary p-lg text-on-primary flex items-center justify-between">
-<div>
-<h3 class="font-headline-md">Record Payment</h3>
-<p class="text-label-sm opacity-80" id="modal-type-label">Circuit Assessment</p>
-</div>
-<button class="p-2 hover:bg-primary-light rounded-full transition-colors" onclick="closeModal()">
-<span class="material-symbols-outlined">close</span>
-</button>
-</div>
-<div class="p-lg space-y-md">
-<div class="grid grid-cols-2 gap-md">
-<div class="space-y-xs">
-<label class="text-label-sm font-bold text-on-surface-variant uppercase">Period</label>
-<select class="w-full border-border rounded-lg focus:ring-primary focus:border-primary">
-<option>October 2023</option>
-<option>November 2023</option>
-</select>
-</div>
-<div class="space-y-xs">
-<label class="text-label-sm font-bold text-on-surface-variant uppercase">Amount Due (GHS)</label>
-<input class="w-full bg-surface-container border-none rounded-lg text-on-surface-variant font-data-label" readonly="" type="text" value="12,450.00"/>
-</div>
-</div>
-<div class="space-y-xs">
-<label class="text-label-sm font-bold text-on-surface-variant uppercase">Payment Amount</label>
-<input class="w-full border-border rounded-lg focus:ring-primary focus:border-primary font-data-label" placeholder="Enter amount..." type="number"/>
-</div>
-<div class="space-y-xs">
-<label class="text-label-sm font-bold text-on-surface-variant uppercase">Payment Method</label>
-<div class="grid grid-cols-3 gap-sm">
-<label class="border border-outline/20 p-3 rounded-lg flex flex-col items-center gap-1 cursor-pointer hover:bg-primary-muted transition-colors">
-<input class="hidden" name="pay_method" type="radio"/>
-<span class="material-symbols-outlined text-primary">account_balance</span>
-<span class="text-xs font-bold">Transfer</span>
-</label>
-<label class="border border-outline/20 p-3 rounded-lg flex flex-col items-center gap-1 cursor-pointer hover:bg-primary-muted transition-colors border-primary bg-primary-muted">
-<input checked="" class="hidden" name="pay_method" type="radio"/>
-<span class="material-symbols-outlined text-primary">receipt</span>
-<span class="text-xs font-bold">Cheque</span>
-</label>
-<label class="border border-outline/20 p-3 rounded-lg flex flex-col items-center gap-1 cursor-pointer hover:bg-primary-muted transition-colors">
-<input class="hidden" name="pay_method" type="radio"/>
-<span class="material-symbols-outlined text-primary">smartphone</span>
-<span class="text-xs font-bold">MoMo</span>
-</label>
-</div>
-</div>
-<div class="space-y-xs">
-<label class="text-label-sm font-bold text-on-surface-variant uppercase">Receipt/Reference Number</label>
-<input class="w-full border-border rounded-lg focus:ring-primary focus:border-primary" type="text"/>
-</div>
-<div class="pt-lg flex gap-md">
-<button class="flex-1 px-4 py-3 border border-outline/20 rounded-lg text-label-md font-bold hover:bg-surface-container transition-colors" onclick="closeModal()">Cancel</button>
-<button class="flex-1 px-4 py-3 bg-primary text-on-primary rounded-lg text-label-md font-bold shadow-md hover:bg-primary-light active:scale-95 transition-all" onclick="closeModal()">Submit Payment</button>
-</div>
-</div>
-</div>
-</div>
-<script>
-        function toggleCollapse(sectionId, iconId) {
-            const section = document.getElementById(sectionId);
-            const icon = document.getElementById(iconId);
-            
-            section.classList.toggle('open');
-            icon.classList.toggle('open');
-        }
-
-        function openModal(type) {
-            const modal = document.getElementById('payment-modal');
-            const label = document.getElementById('modal-type-label');
-            
-            label.textContent = type.charAt(0).toUpperCase() + type.slice(1) + " Assessment Record";
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('payment-modal');
-            modal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close modal on click outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('payment-modal');
-            if (event.target == modal) {
-                closeModal();
+            .collapse-content {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
             }
-        }
-    </script>
-</body>
+            .collapse-content.open {
+                max-height: 2000px;
+            }
+            .rotate-icon {
+                transition: transform 0.3s ease;
+            }
+            .rotate-icon.open {
+                transform: rotate(180deg);
+            }
+        </style>
+    </head>
+
+    <body class="bg-surface text-on-surface font-body-md flex min-h-screen">
+        {% include 'components/sidebar.html' %}
+
+        <!-- Main Content Canvas -->
+        <main class="flex-1 p-xl">
+            <!-- Summary Cards Bento Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xl">
+                {% for card in cards %}
+                    <div class="bg-card p-lg rounded-xl shadow-sm {% if card.color == 'success' %}border-l-4 border-success{% else %}border-l-4 border-secondary{% endif %} relative overflow-hidden">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p class="text-label-md text-on-surface-variant uppercase tracking-wider">{{ card.title }}</p>
+                                <h3 class="font-headline-md text-primary mt-1">{{ card.due_label }}</h3>
+                            </div>
+                            <span class="material-symbols-outlined {% if card.color == 'success' %}text-success{% else %}text-secondary{% endif %} opacity-20 text-4xl">{{ card.icon }}</span>
+                        </div>
+                        <div class="mt-4">
+                            <span class="font-data-display text-[28px] {% if card.color == 'success' %}text-success{% else %}text-warning{% endif %} font-bold">GHS {{ card.amount|floatformat:2 }}</span>
+                            <p class="text-label-sm text-on-surface-variant mt-1">{{ card.sub }}</p>
+                        </div>
+                        <div class="absolute bottom-0 right-0 p-lg opacity-10 pointer-events-none">
+                            <span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">{{ card.bg }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Statutory Note -->
+            <div class="bg-gold-muted border border-secondary/20 p-md rounded-lg mb-xl flex items-start gap-4">
+                <span class="material-symbols-outlined text-secondary mt-0.5">info</span>
+                <div>
+                    <p class="text-label-md font-bold text-on-secondary-container">Statutory Calculation Rule (Standard % Rule)</p>
+                    <p class="text-body-md text-on-secondary-container/80">Payments are calculated based on the 10-15-75 distribution rule of the gross monthly income as mandated by the Methodist Church Ghana administrative handbook. Ensure all local society records are updated before finalizing these payments.</p>
+                </div>
+            </div>
+
+            <!-- Detailed Sections -->
+            <div class="space-y-lg">
+                <!-- Section: Circuit -->
+                <section class="bg-card rounded-xl shadow-sm overflow-hidden border border-outline/10">
+                    <button class="w-full flex items-center justify-between p-lg hover:bg-surface-container-low transition-colors text-left" onclick="toggleCollapse('circuit-section', 'circuit-icon')">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-primary-muted text-primary flex items-center justify-center">
+                                <span class="material-symbols-outlined">account_balance</span>
+                            </div>
+                            <div>
+                                <h2 class="font-headline-md text-primary">Circuit Assessment Records</h2>
+                                <p class="text-label-sm text-on-surface-variant">Annual obligation tracking for the local circuit office</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-md">
+                            <span class="hidden md:inline-flex bg-primary hover:bg-primary-light text-on-primary px-4 py-2 rounded-lg text-label-md font-bold items-center gap-2">
+                                <span class="material-symbols-outlined text-sm">add</span>
+                                Record Payment
+                            </span>
+                            <span class="material-symbols-outlined rotate-icon open text-on-surface-variant" id="circuit-icon">expand_more</span>
+                        </div>
+                    </button>
+
+                    <div class="collapse-content open" id="circuit-section">
+                        <div class="overflow-x-auto p-lg pt-0">
+                            <table class="w-full text-left border-collapse">
+                                <thead class="bg-surface-container-low border-b border-outline/10">
+                                    <tr>
+                                        <th class="px-4 py-3 text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">Period</th>
+                                        <th class="px-4 py-3 text-label-sm font-bold uppercase tracking-wider text-on-surface-variant text-right">Due</th>
+                                        <th class="px-4 py-3 text-label-sm font-bold uppercase tracking-wider text-on-surface-variant text-right">Paid</th>
+                                        <th class="px-4 py-3 text-label-sm font-bold uppercase tracking-wider text-on-surface-variant text-right">Balance</th>
+                                        <th class="px-4 py-3 text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">Date Paid</th>
+                                        <th class="px-4 py-3 text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">Ref #</th>
+                                        <th class="px-4 py-3 text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-outline/5 font-data-label">
+                                    {% for p in periods %}
+                                        <tr class="hover:bg-surface-container-lowest transition-colors {% if p.status == 'Overdue' %}bg-error-container/20{% endif %}">
+                                            <td class="px-4 py-4 text-body-md font-medium text-on-surface">{{ p.label }}</td>
+                                            <td class="px-4 py-4 text-right">{{ p.due|floatformat:2 }}</td>
+                                            <td class="px-4 py-4 text-right text-success">{{ p.paid|floatformat:2 }}</td>
+                                            <td class="px-4 py-4 text-right {% if p.balance > 0 %}text-error font-bold{% else %}text-on-surface-variant{% endif %}">{{ p.balance|floatformat:2 }}</td>
+                                            <td class="px-4 py-4 text-body-md text-on-surface-variant italic">{{ p.date_paid }}</td>
+                                            <td class="px-4 py-4 text-body-md text-on-surface-variant">{{ p.ref }}</td>
+                                            <td class="px-4 py-4">
+                                                {% if p.status == 'Overdue' %}
+                                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-error-container text-on-error-container">Overdue</span>
+                                                {% elif p.status == 'Approved' %}
+                                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-800">Approved</span>
+                                                {% else %}
+                                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-warning/10 text-warning">Pending</span>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% empty %}
+                                        <tr>
+                                            <td colspan="7" class="px-4 py-8 text-center text-on-surface-variant">No records yet.</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Diocese -->
+                <section class="bg-card rounded-xl shadow-sm overflow-hidden border border-outline/10">
+                    <button class="w-full flex items-center justify-between p-lg hover:bg-surface-container-low transition-colors text-left" onclick="toggleCollapse('diocese-section', 'diocese-icon')">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-primary-muted text-primary flex items-center justify-center">
+                                <span class="material-symbols-outlined">domain</span>
+                            </div>
+                            <div>
+                                <h2 class="font-headline-md text-primary">Diocesan Quota Payments</h2>
+                                <p class="text-label-sm text-on-surface-variant">Central diocese contribution tracking</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-md">
+                            <span class="material-symbols-outlined rotate-icon text-on-surface-variant" id="diocese-icon">expand_more</span>
+                        </div>
+                    </button>
+                    <div class="collapse-content" id="diocese-section">
+                        <div class="p-lg italic text-on-surface-variant text-center">Expanding Diocesan data view...</div>
+                    </div>
+                </section>
+
+                <!-- Section: Connexion -->
+                <section class="bg-card rounded-xl shadow-sm overflow-hidden border border-outline/10">
+                    <button class="w-full flex items-center justify-between p-lg hover:bg-surface-container-low transition-colors text-left" onclick="toggleCollapse('connexion-section', 'connexion-icon')">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-primary-muted text-primary flex items-center justify-center">
+                                <span class="material-symbols-outlined">hub</span>
+                            </div>
+                            <div>
+                                <h2 class="font-headline-md text-primary">Connexional Remittances</h2>
+                                <p class="text-label-sm text-on-surface-variant">National level administrative payments</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-md">
+                            <span class="material-symbols-outlined rotate-icon text-on-surface-variant" id="connexion-icon">expand_more</span>
+                        </div>
+                    </button>
+                    <div class="collapse-content" id="connexion-section">
+                        <div class="p-lg italic text-on-surface-variant text-center">Expanding Connexional data view...</div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Payment Modal -->
+        <div class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/40 backdrop-blur-sm" id="payment-modal">
+            <div class="bg-card w-full max-w-lg rounded-xl shadow-xl overflow-hidden">
+                <div class="bg-primary p-lg text-on-primary flex items-center justify-between">
+                    <div>
+                        <h3 class="font-headline-md">Record Payment</h3>
+                        <p class="text-label-sm opacity-80" id="modal-type-label">Circuit Assessment</p>
+                    </div>
+                    <button class="p-2 hover:bg-primary-light rounded-full transition-colors" onclick="closeModal()">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                <form method="post" action="{% url 'finance:record_expense' %}" class="p-lg space-y-md">
+                    {% csrf_token %}
+                    <input type="hidden" name="category" value="STATUTORY" />
+                    <div class="grid grid-cols-2 gap-md">
+                        <div class="space-y-xs">
+                            <label class="text-label-sm font-bold text-on-surface-variant uppercase">Period</label>
+                            <input type="month" name="date" value="{{ today|date:'Y-m' }}" class="w-full border-border rounded-lg focus:ring-primary focus:border-primary" />
+                        </div>
+                        <div class="space-y-xs">
+                            <label class="text-label-sm font-bold text-on-surface-variant uppercase">Amount Due (GHS)</label>
+                            <input class="w-full bg-surface-container border-none rounded-lg text-on-surface-variant font-data-label" readonly type="text" value="{{ circuit_due|floatformat:2 }}" />
+                        </div>
+                    </div>
+                    <div class="space-y-xs">
+                        <label class="text-label-sm font-bold text-on-surface-variant uppercase">Payment Amount</label>
+                        <input name="amount" class="w-full border-border rounded-lg focus:ring-primary focus:border-primary font-data-label" placeholder="Enter amount..." type="number" step="0.01" required />
+                    </div>
+                    <div class="space-y-xs">
+                        <label class="text-label-sm font-bold text-on-surface-variant uppercase">Title</label>
+                        <input name="title" class="w-full border-border rounded-lg focus:ring-primary focus:border-primary" placeholder="e.g. Circuit Assessment - {{ today|date:'M Y' }}" value="Statutory Payment - {{ today|date:'M Y' }}" required />
+                    </div>
+                    <div class="space-y-xs">
+                        <label class="text-label-sm font-bold text-on-surface-variant uppercase">Description</label>
+                        <textarea name="description" rows="2" class="w-full border-border rounded-lg focus:ring-primary focus:border-primary" placeholder="Optional notes"></textarea>
+                    </div>
+                    <div class="pt-lg flex gap-md">
+                        <button type="button" class="flex-1 px-4 py-3 border border-outline/20 rounded-lg text-label-md font-bold hover:bg-surface-container transition-colors" onclick="closeModal()">Cancel</button>
+                        <button type="submit" class="flex-1 px-4 py-3 bg-primary text-on-primary rounded-lg text-label-md font-bold shadow-md hover:bg-primary-light active:scale-95 transition-all">Submit Payment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            function toggleCollapse(sectionId, iconId) {
+                const section = document.getElementById(sectionId);
+                const icon = document.getElementById(iconId);
+                if (!section || !icon) return;
+                section.classList.toggle("open");
+                icon.classList.toggle("open");
+            }
+
+            function openModal(type) {
+                const modal = document.getElementById("payment-modal");
+                const label = document.getElementById("modal-type-label");
+                if (label) label.textContent = type.charAt(0).toUpperCase() + type.slice(1) + " Assessment Record";
+                if (modal) {
+                    modal.classList.remove("hidden");
+                    document.body.style.overflow = "hidden";
+                }
+            }
+
+            function closeModal() {
+                const modal = document.getElementById("payment-modal");
+                if (modal) modal.classList.add("hidden");
+                document.body.style.overflow = "auto";
+            }
+
+            window.onclick = function (event) {
+                const modal = document.getElementById("payment-modal");
+                if (event.target == modal) closeModal();
+            };
+        </script>
+    </body>
 </html>
