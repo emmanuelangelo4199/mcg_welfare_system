@@ -1,343 +1,390 @@
+{% load static %}
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Income Ledger | Methodist Church Ghana</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "outline": "#897172",
-                        "on-tertiary-fixed-variant": "#464746",
-                        "tertiary": "#2a2b2a",
-                        "surface-bright": "#fff8f5",
-                        "on-primary-fixed": "#40000e",
-                        "inverse-on-surface": "#f7efeb",
-                        "on-surface": "#1e1b19",
-                        "on-primary-container": "#ff8a95",
-                        "primary": "#5c0219",
-                        "primary-fixed-dim": "#ffb2b7",
-                        "on-tertiary-fixed": "#1a1c1b",
-                        "error-container": "#ffdad6",
-                        "warning": "#D97706",
-                        "text-secondary": "#6B7280",
-                        "surface-tint": "#a33a49",
-                        "surface-container-lowest": "#ffffff",
-                        "secondary-container": "#fece5b",
-                        "surface-container": "#f4ece8",
-                        "primary-light": "#A3283F",
-                        "on-secondary-fixed": "#251a00",
-                        "surface-container-highest": "#e9e1dd",
-                        "info": "#2563EB",
-                        "secondary-fixed-dim": "#eec04f",
-                        "primary-muted": "#F5EAEC",
-                        "card": "#FFFFFF",
-                        "error": "#ba1a1a",
-                        "surface-dim": "#e0d8d5",
-                        "gold-muted": "#FDF6E3",
-                        "surface-container-low": "#faf2ee",
-                        "on-surface-variant": "#564243",
-                        "on-error-container": "#93000a",
-                        "on-error": "#ffffff",
-                        "surface-container-high": "#eee7e3",
-                        "on-background": "#1e1b19",
-                        "on-tertiary": "#ffffff",
-                        "surface-variant": "#e9e1dd",
-                        "on-secondary-fixed-variant": "#5a4300",
-                        "inverse-primary": "#ffb2b7",
-                        "tertiary-fixed-dim": "#c7c6c5",
-                        "primary-container": "#7b1c2d",
-                        "danger": "#DC2626",
-                        "tertiary-container": "#404140",
-                        "background": "#fff8f5",
-                        "secondary-fixed": "#ffdf9a",
-                        "on-tertiary-container": "#adadab",
-                        "tertiary-fixed": "#e3e2e0",
-                        "surface": "#F8F7F5",
-                        "on-secondary-container": "#745700",
-                        "border": "#E4E2DD",
-                        "success": "#16A34A",
-                        "on-primary-fixed-variant": "#832233",
-                        "secondary": "#775a00",
-                        "on-secondary": "#ffffff",
-                        "inverse-surface": "#33302d",
-                        "on-primary": "#ffffff",
-                        "outline-variant": "#dcc0c1",
-                        "primary-fixed": "#ffdadb"
+<html class="light" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Income Ledger | Methodist Church Ghana</title>
+        <!-- Favicon -->
+        <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png" />
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet" />
+        <!-- Tailwind Config -->
+        <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            outline: "#897172",
+                            "on-tertiary-fixed-variant": "#464746",
+                            tertiary: "#2a2b2a",
+                            "surface-bright": "#fff8f5",
+                            "on-primary-fixed": "#40000e",
+                            "inverse-on-surface": "#f7efeb",
+                            "on-surface": "#1e1b19",
+                            "on-primary-container": "#ff8a95",
+                            primary: "#5c0219",
+                            "primary-fixed-dim": "#ffb2b7",
+                            "on-tertiary-fixed": "#1a1c1b",
+                            "error-container": "#ffdad6",
+                            warning: "#D97706",
+                            "text-secondary": "#6B7280",
+                            "surface-tint": "#a33a49",
+                            "surface-container-lowest": "#ffffff",
+                            "secondary-container": "#fece5b",
+                            "surface-container": "#f4ece8",
+                            "primary-light": "#A3283F",
+                            "on-secondary-fixed": "#251a00",
+                            "surface-container-highest": "#e9e1dd",
+                            info: "#2563EB",
+                            "secondary-fixed-dim": "#eec04f",
+                            "primary-muted": "#F5EAEC",
+                            card: "#FFFFFF",
+                            error: "#ba1a1a",
+                            "surface-dim": "#e0d8d5",
+                            "gold-muted": "#FDF6E3",
+                            "surface-container-low": "#faf2ee",
+                            "on-surface-variant": "#564243",
+                            "on-error-container": "#93000a",
+                            "on-error": "#ffffff",
+                            "surface-container-high": "#eee7e3",
+                            "on-background": "#1e1b19",
+                            "on-tertiary": "#ffffff",
+                            "surface-variant": "#e9e1dd",
+                            "on-secondary-fixed-variant": "#5a4300",
+                            "inverse-primary": "#ffb2b7",
+                            "tertiary-fixed-dim": "#c7c6c5",
+                            "primary-container": "#7b1c2d",
+                            danger: "#DC2626",
+                            "tertiary-container": "#404140",
+                            background: "#fff8f5",
+                            "secondary-fixed": "#ffdf9a",
+                            "on-tertiary-container": "#adadab",
+                            "tertiary-fixed": "#e3e2e0",
+                            surface: "#F8F7F5",
+                            "on-secondary-container": "#745700",
+                            border: "#E4E2DD",
+                            success: "#16A34A",
+                            "on-primary-fixed-variant": "#832233",
+                            secondary: "#775a00",
+                            "on-secondary": "#ffffff",
+                            "inverse-surface": "#33302d",
+                            "on-primary": "#ffffff",
+                            "outline-variant": "#dcc0c1",
+                            "primary-fixed": "#ffdadb",
+                        },
+                        borderRadius: {
+                            DEFAULT: "0.25rem",
+                            lg: "0.5rem",
+                            xl: "0.75rem",
+                            full: "9999px",
+                        },
+                        spacing: {
+                            lg: "24px",
+                            base: "8px",
+                            xs: "4px",
+                            "header-height": "64px",
+                            sm: "8px",
+                            md: "16px",
+                            xl: "32px",
+                            "sidebar-width": "256px",
+                        },
+                        fontFamily: {
+                            "body-lg": ["Inter"],
+                            "label-md": ["Inter"],
+                            "data-label": ["JetBrains Mono"],
+                            "data-display": ["JetBrains Mono"],
+                            "headline-lg-mobile": ["Lora"],
+                            "body-md": ["Inter"],
+                            "headline-lg": ["Lora"],
+                            "label-sm": ["Inter"],
+                            "headline-md": ["Inter"],
+                        },
+                        fontSize: {
+                            "body-lg": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                            "label-md": ["13px", { lineHeight: "1.2", fontWeight: "500" }],
+                            "data-label": ["14px", { lineHeight: "1.0", fontWeight: "500" }],
+                            "data-display": ["18px", { lineHeight: "1.0", fontWeight: "500" }],
+                            "headline-lg-mobile": ["24px", { lineHeight: "1.2", fontWeight: "700" }],
+                            "body-md": ["14px", { lineHeight: "1.6", fontWeight: "400" }],
+                            "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+                            "label-sm": ["11px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "500" }],
+                            "headline-md": ["20px", { lineHeight: "1.3", fontWeight: "600" }],
+                        },
                     },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "lg": "24px",
-                        "base": "8px",
-                        "xs": "4px",
-                        "header-height": "64px",
-                        "sm": "8px",
-                        "md": "16px",
-                        "xl": "32px",
-                        "sidebar-width": "256px"
-                    },
-                    "fontFamily": {
-                        "body-lg": ["Inter"],
-                        "label-md": ["Inter"],
-                        "data-label": ["JetBrains Mono"],
-                        "data-display": ["JetBrains Mono"],
-                        "headline-lg-mobile": ["Lora"],
-                        "body-md": ["Inter"],
-                        "headline-lg": ["Lora"],
-                        "label-sm": ["Inter"],
-                        "headline-md": ["Inter"]
-                    },
-                    "fontSize": {
-                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
-                        "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                        "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                        "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                        "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}]
-                    }
                 },
-            },
-        }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .ledger-table-container { height: calc(100vh - 420px); overflow-y: auto; }
-        .gold-pill { background-color: #ffdf9a; color: #745700; border: 1px solid #fece5b; }
-    </style>
-</head>
-<body class="bg-surface font-body-md text-on-surface flex min-h-screen">
-<!-- Side Navigation Bar -->
-{% include 'components/sidebar.html' %}
-<!-- Main Content Area -->
-<main class="mt-5 ml-[30px] min-h-screen">
-<!-- Page Header & Filters -->
-<section class="p-lg">
-<div class="flex justify-between items-end mb-lg">
-<div>
-<h1 class="font-headline-lg text-headline-lg text-primary mb-1">Income Ledger</h1>
-<p class="text-on-surface-variant">Complete historical record of all church revenue and society contributions.</p>
-</div>
-<div class="relative group" id="exportDropdown">
-<button class="flex items-center gap-2 bg-primary text-on-primary px-lg py-2.5 rounded-lg hover:bg-primary-light transition-all shadow-md">
-<span class="material-symbols-outlined text-lg">download</span>
-<span class="font-label-md">Export Ledger</span>
-<span class="material-symbols-outlined text-lg ml-2">expand_more</span>
-</button>
-<!-- Dropdown Menu (Hidden by default) -->
-<div class="absolute right-0 top-full mt-2 w-48 bg-card border border-border shadow-xl rounded-lg overflow-hidden hidden group-hover:block z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-<a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-colors border-b border-border" href="#">
-<span class="material-symbols-outlined text-danger">picture_as_pdf</span>
-<span class="font-body-md">Export as PDF</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-colors border-b border-border" href="#">
-<span class="material-symbols-outlined text-success">table_view</span>
-<span class="font-body-md">Export as Excel</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-colors" href="#">
-<span class="material-symbols-outlined text-info">csv</span>
-<span class="font-body-md">Export as CSV</span>
-</a>
-</div>
-</div>
-</div>
-<!-- Summary Strip (Bento Style) -->
-<div class="grid grid-cols-4 gap-lg mb-lg">
-<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary flex flex-col justify-between">
-<p class="text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Total Ledger Income</p>
-<div class="flex items-baseline gap-2">
-<span class="text-success font-data-display text-[28px]">GH₵ 45,670.00</span>
-</div>
-</div>
-<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-primary/20">
-<p class="text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Record Count</p>
-<p class="font-data-display text-[28px] text-on-surface">1,428</p>
-</div>
-<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-primary/20">
-<p class="text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Average Transaction</p>
-<p class="font-data-display text-[28px] text-on-surface">GH₵ 32.50</p>
-</div>
-<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-primary/20">
-<p class="text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Largest Deposit</p>
-<p class="font-data-display text-[28px] text-on-surface">GH₵ 5,200.00</p>
-</div>
-</div>
-<!-- Two-Row Filter Bar -->
-<div class="bg-surface-container-low p-md rounded-xl border border-border space-y-md mb-lg">
-<!-- Row 1: Search & Date -->
-<div class="grid grid-cols-12 gap-md">
-<div class="col-span-5 relative">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">filter_alt</span>
-<input class="w-full pl-10 pr-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-secondary outline-none" placeholder="Filter by Source or Recording Officer..." type="text"/>
-</div>
-<div class="col-span-3">
-<input class="w-full px-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-secondary outline-none" type="date"/>
-</div>
-<div class="col-span-3">
-<input class="w-full px-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-secondary outline-none" type="date"/>
-</div>
-<div class="col-span-1">
-<button class="w-full h-full flex items-center justify-center bg-surface-container rounded-lg border border-border hover:bg-surface-container-high transition-colors">
-<span class="material-symbols-outlined">refresh</span>
-</button>
-</div>
-</div>
-<!-- Row 2: Selectors -->
-<div class="grid grid-cols-12 gap-md">
-<div class="col-span-3">
-<select class="w-full px-4 py-2 border border-border rounded-lg bg-card outline-none">
-<option>All Categories</option>
-<option>Tithes</option>
-<option>Offertory</option>
-<option>Harvest</option>
-<option>Welfare Fund</option>
-</select>
-</div>
-<div class="col-span-3">
-<select class="w-full px-4 py-2 border border-border rounded-lg bg-card outline-none">
-<option>Payment Method</option>
-<option>Cash</option>
-<option>Momo</option>
-<option>Bank Transfer</option>
-</select>
-</div>
-<div class="col-span-3">
-<select class="w-full px-4 py-2 border border-border rounded-lg bg-card outline-none">
-<option>Status</option>
-<option>Verified</option>
-<option>Pending</option>
-<option>Reversed</option>
-</select>
-</div>
-<div class="col-span-3">
-<button class="w-full h-full text-secondary font-bold hover:underline transition-all">Clear All Filters</button>
-</div>
-</div>
-</div>
-<!-- Ledger Table Container -->
-<div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden flex flex-col">
-<div class="ledger-table-container scrollbar-hide">
-<table class="w-full text-left border-collapse">
-<thead class="sticky top-0 bg-surface-container-high z-10">
-<tr>
-<th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Ref No</th>
-<th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Date</th>
-<th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Source</th>
-<th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Category</th>
-<th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border text-right">Amount</th>
-<th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Method</th>
-<th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Recorded By</th>
-<th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Verified By</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-border">
-{% for inc in incomes %}
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="p-md font-data-label text-secondary">#INC-2026-00{{ inc.id }}</td>
-<td class="p-md text-on-surface-variant">{{ inc.date|date:"d M Y" }}</td>
-<td class="p-md font-medium">{{ inc.remarks|default:inc.get_category_display }}</td>
-<td class="p-md">
-<span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">{{ inc.get_category_display }}</span>
-</td>
-<td class="p-md text-right text-success font-data-display">GHS {{ inc.amount }}</td>
-<td class="p-md text-on-surface-variant">General</td>
-<td class="p-md text-on-surface-variant">{{ inc.recorded_by.first_name|default:inc.recorded_by.username|default:"System" }}</td>
-<td class="p-md">
-<span class="text-xs text-success flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span> Recorded</span>
-</td>
-</tr>
-{% empty %}
-<tr>
-<td colspan="8" class="p-md text-center text-on-surface-variant">No income ledger entries found.</td>
-</tr>
-{% endfor %}
-</tbody>
-<td class="p-md text-right text-success font-data-display">150.00</td>
-<td class="p-md text-on-surface-variant">Cash</td>
-<td class="p-md text-on-surface-variant">S. Appiah</td>
-<td class="p-md">
-<span class="text-xs text-success flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span> K. Mensah</span>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="p-md font-data-label text-secondary">#INC-240906</td>
-<td class="p-md text-on-surface-variant">05 Oct 2023</td>
-<td class="p-md font-medium">Building Fund Harvest</td>
-<td class="p-md">
-<span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">Harvest</span>
-</td>
-<td class="p-md text-right text-success font-data-display">12,400.00</td>
-<td class="p-md text-on-surface-variant">Bank Transfer</td>
-<td class="p-md text-on-surface-variant">K. Mensah</td>
-<td class="p-md">
-<span class="text-xs text-success flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span> Admin</span>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Sticky Bottom Row -->
-<div class="bg-surface-container-high border-t-2 border-primary/20 p-md flex justify-between items-center z-20">
-<div class="flex gap-lg">
-<span class="text-label-sm font-bold uppercase text-on-surface-variant">Page Totals:</span>
-<span class="text-on-surface-variant font-body-md">Rows: 1 - 25 of 1,428</span>
-</div>
-<div class="flex items-center gap-xl">
-<div class="flex gap-lg">
-<div class="text-right">
-<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Subtotal (Verified)</p>
-<p class="font-data-display text-primary text-lg">GH₵ 21,250.50</p>
-</div>
-</div>
-<div class="flex gap-2">
-<button class="p-2 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
-<button class="px-3 py-1 rounded bg-primary text-on-primary font-bold">1</button>
-<button class="px-3 py-1 rounded hover:bg-surface-container transition-colors">2</button>
-<button class="px-3 py-1 rounded hover:bg-surface-container transition-colors">3</button>
-<span class="px-2">...</span>
-<button class="px-3 py-1 rounded hover:bg-surface-container transition-colors">58</button>
-<button class="p-2 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
-</div>
-</div>
-</div>
-</div>
-</section>
-</main>
-<script>
-        // Micro-interaction for Export Button (Optional manual toggle if CSS hover is too brittle)
-        const exportBtn = document.getElementById('exportDropdown');
-        if (exportBtn) {
-            exportBtn.addEventListener('click', (e) => {
-                // Potential for JS menu handling if needed for mobile or complex states
+            };
+        </script>
+
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .ledger-table-container {
+                height: calc(100vh - 420px);
+                overflow-y: auto;
+            }
+            .gold-pill {
+                background-color: #ffdf9a;
+                color: #745700;
+                border: 1px solid #fece5b;
+            }
+        </style>
+    </head>
+
+    <body class="bg-surface font-body-md text-on-surface flex min-h-screen">
+        {% include 'components/toast_messages.html' %}
+
+        <!-- Side Navigation Bar -->
+        {% include 'components/sidebar.html' %}
+
+        <!-- Main Content Area -->
+        <main class="flex-1 min-h-screen">
+            <section class="p-lg">
+                <!-- Page Header & Export -->
+                <div class="flex justify-between items-end mb-lg gap-4">
+                    <div>
+                        <h1 class="font-headline-lg text-headline-lg text-primary mb-1">Income Ledger</h1>
+                        <p class="text-on-surface-variant">Complete historical record of all church revenue and society contributions.</p>
+                    </div>
+
+                    <div class="relative group" id="exportDropdown">
+                        <button class="flex items-center gap-2 bg-primary text-on-primary px-lg py-2.5 rounded-lg hover:bg-primary-light transition-all shadow-md">
+                            <span class="material-symbols-outlined text-lg">download</span>
+                            <span class="font-label-md">Export Ledger</span>
+                            <span class="material-symbols-outlined text-lg ml-2">expand_more</span>
+                        </button>
+
+                        <!-- Dropdown Menu -->
+                        <div class="absolute right-0 top-full mt-2 w-56 bg-card border border-border shadow-xl rounded-lg overflow-hidden hidden group-hover:block z-50">
+                            <a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-colors border-b border-border" href="{% url 'reports:export_finance_csv' %}?{{ filters.querystring }}">
+                                <span class="material-symbols-outlined text-success">table_view</span>
+                                <span class="font-body-md">Export as Excel</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Strip (Bento Style) -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-lg mb-lg">
+                    <div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary flex flex-col justify-between">
+                        <p class="text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Total Ledger Income</p>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-success font-data-display text-[28px]">GH₵ {{ total_income|floatformat:2 }}</span>
+                        </div>
+                    </div>
+                    <div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-primary/20">
+                        <p class="text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Record Count</p>
+                        <p class="font-data-display text-[28px] text-on-surface">{{ record_count }}</p>
+                    </div>
+                    <div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-primary/20">
+                        <p class="text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Average Transaction</p>
+                        <p class="font-data-display text-[28px] text-on-surface">GH₵ {{ avg_tx|floatformat:2 }}</p>
+                    </div>
+                    <div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-primary/20">
+                        <p class="text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Largest Deposit</p>
+                        <p class="font-data-display text-[28px] text-on-surface">GH₵ {{ largest|floatformat:2 }}</p>
+                    </div>
+                </div>
+
+                <!-- Two-Row Filter Bar -->
+                <form method="get" class="bg-surface-container-low p-md rounded-xl border border-border space-y-md mb-lg">
+                    <!-- Row 1: Search & Date -->
+                    <div class="grid grid-cols-12 gap-md">
+                        <div class="col-span-12 md:col-span-5 relative">
+                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">filter_alt</span>
+                            <input
+                                class="w-full pl-10 pr-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-secondary outline-none"
+                                placeholder="Filter by Source or Recording Officer..."
+                                type="text"
+                                name="q"
+                                value="{{ filters.q }}"
+                            />
+                        </div>
+                        <div class="col-span-6 md:col-span-3">
+                            <input
+                                class="w-full px-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-secondary outline-none"
+                                type="date"
+                                name="date_from"
+                                value="{{ filters.date_from }}"
+                            />
+                        </div>
+                        <div class="col-span-6 md:col-span-3">
+                            <input
+                                class="w-full px-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-secondary outline-none"
+                                type="date"
+                                name="date_to"
+                                value="{{ filters.date_to }}"
+                            />
+                        </div>
+                        <div class="col-span-12 md:col-span-1">
+                            <button type="submit" class="w-full h-full flex items-center justify-center bg-primary text-on-primary rounded-lg border border-primary hover:bg-primary-light transition-colors py-2">
+                                <span class="material-symbols-outlined">search</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Selectors -->
+                    <div class="grid grid-cols-12 gap-md">
+                        <div class="col-span-12 md:col-span-3">
+                            <select class="w-full px-4 py-2 border border-border rounded-lg bg-card outline-none" name="category">
+                                <option value="ALL" {% if filters.category == 'ALL' %}selected{% endif %}>All Categories</option>
+                                {% for val, label in category_choices %}
+                                    <option value="{{ val }}" {% if filters.category == val %}selected{% endif %}>{{ label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-span-12 md:col-span-3">
+                            <select class="w-full px-4 py-2 border border-border rounded-lg bg-card outline-none" name="method">
+                                <option value="ALL" {% if filters.method == 'ALL' %}selected{% endif %}>Payment Method</option>
+                                {% for val, label in method_choices %}
+                                    <option value="{{ val }}" {% if filters.method == val %}selected{% endif %}>{{ label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-span-12 md:col-span-3">
+                            <select class="w-full px-4 py-2 border border-border rounded-lg bg-card outline-none" name="status" disabled>
+                                <option>Status — Verified</option>
+                            </select>
+                        </div>
+                        <div class="col-span-12 md:col-span-3 flex gap-2">
+                            <button type="submit" class="flex-1 bg-secondary text-on-secondary font-bold rounded-lg hover:opacity-90 transition-all py-2">Apply</button>
+                            <a href="{% url 'finance:income_ledger' %}" class="flex-1 text-center py-2 text-secondary font-bold hover:underline transition-all border border-border rounded-lg bg-card">Clear</a>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Ledger Table Container -->
+                <div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden flex flex-col">
+                    <div class="ledger-table-container scrollbar-hide">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="sticky top-0 bg-surface-container-high z-10">
+                                <tr>
+                                    <th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Ref No</th>
+                                    <th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Date</th>
+                                    <th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Source</th>
+                                    <th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Category</th>
+                                    <th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border text-right">Amount</th>
+                                    <th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Method</th>
+                                    <th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Recorded By</th>
+                                    <th class="p-md text-label-sm uppercase font-bold text-on-surface-variant border-b border-border">Verified By</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-border">
+                                {% for inc in incomes %}
+                                    <tr class="hover:bg-surface-container-low transition-colors">
+                                        <td class="p-md font-data-label text-secondary">#INC-{{ inc.date|date:"Y" }}-{{ inc.id|stringformat:"05d" }}</td>
+                                        <td class="p-md text-on-surface-variant">{{ inc.date|date:"d M Y" }}</td>
+                                        <td class="p-md font-medium truncate max-w-[200px]">{{ inc.remarks|default:inc.get_category_display }}{% if inc.service %} • {{ inc.service.title|default:inc.service }}{% endif %}</td>
+                                        <td class="p-md">
+                                            <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">{{ inc.get_category_display }}</span>
+                                        </td>
+                                        <td class="p-md text-right text-success font-data-display">GH₵ {{ inc.amount|floatformat:2 }}</td>
+                                        <td class="p-md text-on-surface-variant">
+                                            <span class="inline-flex items-center gap-1">
+                                                <span class="material-symbols-outlined text-sm">
+                                                    {% if inc.payment_method == 'CASH' %}payments{% elif inc.payment_method == 'MOMO' %}phone_iphone{% elif inc.payment_method == 'BANK' %}account_balance{% else %}receipt_long{% endif %}
+                                                </span>
+                                                {{ inc.get_payment_method_display }}
+                                            </span>
+                                        </td>
+                                        <td class="p-md text-on-surface-variant">{{ inc.recorded_by.get_full_name|default:inc.recorded_by.username|default:"System" }}</td>
+                                        <td class="p-md">
+                                            <span class="text-xs text-success flex items-center gap-1">
+                                                <span class="material-symbols-outlined text-sm">verified</span> Recorded
+                                            </span>
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="8" class="p-8 text-center text-on-surface-variant">
+                                            <div class="flex flex-col items-center gap-2">
+                                                <span class="material-symbols-outlined text-4xl opacity-30">inbox</span>
+                                                <p>No income ledger entries found.</p>
+                                                <a href="{% url 'finance:record_income' %}" class="text-primary font-bold hover:underline">Record Income</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Sticky Bottom Row -->
+                    <div class="bg-surface-container-high border-t-2 border-primary/20 p-md flex flex-col md:flex-row justify-between items-center gap-4 z-20">
+                        <div class="flex gap-lg">
+                            <span class="text-label-sm font-bold uppercase text-on-surface-variant">Page Totals:</span>
+                            <span class="text-on-surface-variant font-body-md">
+                                {% if paginator.count %}
+                                    Rows: {{ page_obj.start_index }} - {{ page_obj.end_index }} of {{ paginator.count }}
+                                {% else %}
+                                    No records
+                                {% endif %}
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-xl">
+                            <div class="text-right">
+                                <p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Subtotal (This Page)</p>
+                                <p class="font-data-display text-primary text-lg">GH₵ {{ page_subtotal|floatformat:2 }}</p>
+                            </div>
+                            {% if paginator.num_pages > 1 %}
+                                <div class="flex gap-1 items-center">
+                                    {% if page_obj.has_previous %}
+                                        <a href="?page={{ page_obj.previous_page_number }}{% if filters.querystring %}&{{ filters.querystring }}{% endif %}" class="p-2 rounded hover:bg-surface-container transition-colors">
+                                            <span class="material-symbols-outlined">chevron_left</span>
+                                        </a>
+                                    {% else %}
+                                        <span class="p-2 rounded opacity-30"><span class="material-symbols-outlined">chevron_left</span></span>
+                                    {% endif %}
+
+                                    {% for num in paginator.page_range %}
+                                        {% if num == page_obj.number %}
+                                            <span class="px-3 py-1 rounded bg-primary text-on-primary font-bold">{{ num }}</span>
+                                        {% elif num <= 3 or num > paginator.num_pages|add:"-3" or num == page_obj.number|add:"-1" or num == page_obj.number|add:"1" %}
+                                            <a href="?page={{ num }}{% if filters.querystring %}&{{ filters.querystring }}{% endif %}" class="px-3 py-1 rounded hover:bg-surface-container transition-colors">{{ num }}</a>
+                                        {% elif num == 4 and page_obj.number > 5 %}
+                                            <span class="px-2">...</span>
+                                        {% elif num == paginator.num_pages|add:"-3" and page_obj.number < paginator.num_pages|add:"-4" %}
+                                            <span class="px-2">...</span>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if page_obj.has_next %}
+                                        <a href="?page={{ page_obj.next_page_number }}{% if filters.querystring %}&{{ filters.querystring }}{% endif %}" class="p-2 rounded hover:bg-surface-container transition-colors">
+                                            <span class="material-symbols-outlined">chevron_right</span>
+                                        </a>
+                                    {% else %}
+                                        <span class="p-2 rounded opacity-30"><span class="material-symbols-outlined">chevron_right</span></span>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <script>
+            // Ledger table row interaction
+            document.querySelectorAll("tbody tr").forEach((row) => {
+                row.addEventListener("mousedown", function () {
+                    this.classList.add("scale-[0.995]");
+                });
+                row.addEventListener("mouseup", function () {
+                    this.classList.remove("scale-[0.995]");
+                });
+                row.addEventListener("mouseleave", function () {
+                    this.classList.remove("scale-[0.995]");
+                });
             });
-        }
-        
-        // Ledger table row interaction
-        document.querySelectorAll('tbody tr').forEach(row => {
-            row.addEventListener('mousedown', function() {
-                this.classList.add('scale-[0.995]');
-            });
-            row.addEventListener('mouseup', function() {
-                this.classList.remove('scale-[0.995]');
-            });
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>
