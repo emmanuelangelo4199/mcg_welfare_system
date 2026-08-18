@@ -16,6 +16,13 @@ EXPENSE_CATEGORY_CHOICES = [
 ]
 
 class IncomeLedger(models.Model):
+    PAYMENT_METHOD_CHOICES = [
+        ('CASH', 'Cash'),
+        ('MOMO', 'Mobile Money'),
+        ('BANK', 'Bank Transfer'),
+        ('CHEQUE', 'Cheque'),
+    ]
+
     CATEGORY_CHOICES = [
         ('TITHE', 'Tithe'),
         ('OFFERING', 'Sunday Offering'),
@@ -28,6 +35,21 @@ class IncomeLedger(models.Model):
     category = models.CharField(max_length=30, choices=CATEGORY_CHOICES)
     amount = models.DecimalField(max_digits=12, decimal_places=2)
     date = models.DateField()
+    service = models.ForeignKey(
+        'services.ChurchService',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='income_entries',
+        help_text='The service or event this income was collected at.'
+    )
+    payment_method = models.CharField(max_length=10, choices=PAYMENT_METHOD_CHOICES, default='CASH')
+    reference = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        help_text='MoMo transaction ID or cheque number.'
+    )
     recorded_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
     remarks = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
