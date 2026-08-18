@@ -1,443 +1,357 @@
+{% load static %}
 <!DOCTYPE html>
+<html class="light" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MCG-SMS | Budget Management</title>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MCG-SMS | Budget Management</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "outline": "#897172",
-                      "on-tertiary-fixed-variant": "#464746",
-                      "tertiary": "#2a2b2a",
-                      "surface-bright": "#fff8f5",
-                      "on-primary-fixed": "#40000e",
-                      "inverse-on-surface": "#f7efeb",
-                      "on-surface": "#1e1b19",
-                      "on-primary-container": "#ff8a95",
-                      "primary": "#5c0219",
-                      "primary-fixed-dim": "#ffb2b7",
-                      "on-tertiary-fixed": "#1a1c1b",
-                      "error-container": "#ffdad6",
-                      "warning": "#D97706",
-                      "text-secondary": "#6B7280",
-                      "surface-tint": "#a33a49",
-                      "surface-container-lowest": "#ffffff",
-                      "secondary-container": "#fece5b",
-                      "surface-container": "#f4ece8",
-                      "primary-light": "#A3283F",
-                      "on-secondary-fixed": "#251a00",
-                      "surface-container-highest": "#e9e1dd",
-                      "info": "#2563EB",
-                      "secondary-fixed-dim": "#eec04f",
-                      "primary-muted": "#F5EAEC",
-                      "card": "#FFFFFF",
-                      "error": "#ba1a1a",
-                      "surface-dim": "#e0d8d5",
-                      "gold-muted": "#FDF6E3",
-                      "surface-container-low": "#faf2ee",
-                      "on-surface-variant": "#564243",
-                      "on-error-container": "#93000a",
-                      "on-error": "#ffffff",
-                      "surface-container-high": "#eee7e3",
-                      "on-background": "#1e1b19",
-                      "on-tertiary": "#ffffff",
-                      "surface-variant": "#e9e1dd",
-                      "on-secondary-fixed-variant": "#5a4300",
-                      "inverse-primary": "#ffb2b7",
-                      "tertiary-fixed-dim": "#c7c6c5",
-                      "primary-container": "#7b1c2d",
-                      "danger": "#DC2626",
-                      "tertiary-container": "#404140",
-                      "background": "#fff8f5",
-                      "secondary-fixed": "#ffdf9a",
-                      "on-tertiary-container": "#adadab",
-                      "tertiary-fixed": "#e3e2e0",
-                      "surface": "#F8F7F5",
-                      "on-secondary-container": "#745700",
-                      "border": "#E4E2DD",
-                      "success": "#16A34A",
-                      "on-primary-fixed-variant": "#832233",
-                      "secondary": "#775a00",
-                      "on-secondary": "#ffffff",
-                      "inverse-surface": "#33302d",
-                      "on-primary": "#ffffff",
-                      "outline-variant": "#dcc0c1",
-                      "primary-fixed": "#ffdadb"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
-              },
-              "spacing": {
-                      "lg": "24px",
-                      "base": "8px",
-                      "xs": "4px",
-                      "header-height": "64px",
-                      "sm": "8px",
-                      "md": "16px",
-                      "xl": "32px",
-                      "sidebar-width": "256px"
-              },
-              "fontFamily": {
-                      "body-lg": ["Inter"],
-                      "label-md": ["Inter"],
-                      "data-label": ["JetBrains Mono"],
-                      "data-display": ["JetBrains Mono"],
-                      "headline-lg-mobile": ["Lora"],
-                      "body-md": ["Inter"],
-                      "headline-lg": ["Lora"],
-                      "label-sm": ["Inter"],
-                      "headline-md": ["Inter"]
-              },
-              "fontSize": {
-                      "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                      "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
-                      "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                      "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                      "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                      "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                      "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                      "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}]
-              }
-            },
-          },
-        }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            vertical-align: middle;
-        }
-        .progress-ring__circle {
-            transition: stroke-dashoffset 0.35s;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
-        }
-        .sidebar-active-indicator {
-            box-shadow: -3px 0 0 0 #fece5b inset;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #F8F7F5;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #dcc0c1;
-            border-radius: 10px;
-        }
-        .row-hover:hover {
-            background-color: rgba(92, 2, 25, 0.02);
-        }
-        .over-budget-tint {
-            background-color: rgba(186, 26, 26, 0.05);
-        }
-        .warning-budget-tint {
-            background-color: rgba(217, 119, 6, 0.05);
-        }
-    </style>
-</head>
-<body class="bg-surface font-body-md text-on-surface custom-scrollbar flex min-h-screen">
-{% include 'components/toast_messages.html' %}
-{% include 'components/sidebar.html' %}
-<!-- Main Content Canvas -->
-<main class="mt-2.5 ml-[30px] p-lg">
-<!-- Summary Dashboard Section (Bento Inspired) -->
-<div class="grid grid-cols-12 gap-lg mb-xl">
-<!-- Large Summary Card -->
-<div class="col-span-8 bg-card rounded-xl p-lg shadow-sm border-l-4 border-secondary flex items-center gap-xl relative overflow-hidden">
-<div class="flex-1 space-y-6">
-<div>
-<p class="text-label-sm text-text-secondary uppercase tracking-widest mb-1">Current Financial Pulse</p>
-<h3 class="font-headline-lg text-headline-lg text-primary">Budget Overview</h3>
-</div>
-<div class="grid grid-cols-3 gap-lg">
-<div>
-<p class="text-label-sm text-text-secondary mb-1">Total Budgeted</p>
-<p class="font-data-display text-data-display text-on-surface">GH₵ 1,450,000.00</p>
-</div>
-<div>
-<p class="text-label-sm text-text-secondary mb-1">Total Spent</p>
-<p class="font-data-display text-data-display text-primary">GH₵ 1,120,450.25</p>
-</div>
-<div>
-<p class="text-label-sm text-text-secondary mb-1">Remaining Balance</p>
-<p class="font-data-display text-data-display text-success">GH₵ 329,549.75</p>
-</div>
-</div>
-</div>
-<!-- Circular Progress -->
-<div class="relative w-40 h-40 flex items-center justify-center">
-<svg class="w-full h-full" viewbox="0 0 100 100">
-<circle class="text-surface-container-highest stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-width="8"></circle>
-<circle class="text-primary stroke-current progress-ring__circle" cx="50" cy="50" fill="transparent" r="40" stroke-dasharray="251.2" stroke-dashoffset="57.77" stroke-linecap="round" stroke-width="8"></circle>
-</svg>
-<div class="absolute flex flex-col items-center">
-<span class="font-data-display text-headline-md font-bold text-primary">77%</span>
-<span class="text-label-sm text-text-secondary">Utilized</span>
-</div>
-</div>
-<!-- Abstract Decorative Element -->
-<div class="absolute -bottom-8 -right-8 opacity-5">
-<span class="material-symbols-outlined text-[160px] text-primary">account_balance</span>
-</div>
-</div>
-<!-- Mini Insights Card -->
-<div class="col-span-4 grid grid-rows-2 gap-md">
-<div class="bg-card rounded-xl p-md shadow-sm flex items-center justify-between border border-outline-variant/30">
-<div>
-<p class="text-label-sm text-text-secondary">Critical Thresholds</p>
-<p class="font-headline-md text-danger">3 Over-Budget</p>
-</div>
-<span class="material-symbols-outlined text-danger text-[32px]">warning</span>
-</div>
-<div class="bg-gold-muted rounded-xl p-md shadow-sm flex items-center justify-between border border-secondary-fixed/50">
-<div>
-<p class="text-label-sm text-on-secondary-container">Upcoming Review</p>
-<p class="font-headline-md text-on-secondary-container">15 Days Left</p>
-</div>
-<span class="material-symbols-outlined text-secondary text-[32px]">event</span>
-</div>
-</div>
-</div>
-<!-- RECORD BUDGET ALLOCATION FORM -->
-<form method="POST" action="{% url 'finance:budget_manage' %}" class="bg-card p-lg rounded-xl border border-border shadow-sm mb-lg space-y-md">
-{% csrf_token %}
-<h3 class="font-headline-md text-primary font-bold">Set Annual Budget Allocation</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
-<div>
-<label class="block text-label-sm font-bold text-on-surface-variant mb-1">Fiscal Year</label>
-<input type="number" name="fiscal_year" value="{{ current_year }}" class="w-full px-md py-2 border border-border rounded-lg bg-surface" required/>
-</div>
-<div>
-<label class="block text-label-sm font-bold text-on-surface-variant mb-1">Budget Category</label>
-<select name="category" class="w-full px-md py-2 border border-border rounded-lg bg-surface" required>
-{% for value, label in category_choices %}
-<option value="{{ value }}">{{ label }}</option>
-{% endfor %}
-</select>
-</div>
-<div>
-<label class="block text-label-sm font-bold text-on-surface-variant mb-1">Allocated Amount (GHS)</label>
-<input type="number" name="allocated_amount" step="0.01" min="0" placeholder="0.00" class="w-full px-md py-2 border border-border rounded-lg bg-surface" required/>
-</div>
-</div>
-<div>
-<label class="block text-label-sm font-bold text-on-surface-variant mb-1">Notes / Description</label>
-<input type="text" name="notes" placeholder="Optional budget notes..." class="w-full px-md py-2 border border-border rounded-lg bg-surface"/>
-</div>
-<button type="submit" class="bg-primary text-on-primary px-lg py-2.5 rounded-lg font-bold hover:bg-primary-light transition-all">Save Budget Allocation</button>
-</form>
+        <!-- Favicon -->
+        <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png" />
 
-<!-- Budget Table Container -->
-<div class="bg-card rounded-xl shadow-sm border border-outline-variant overflow-hidden">
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container-low border-b border-outline-variant">
-<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Category</th>
-<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Budgeted (GH₵)</th>
-<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Spent (GH₵)</th>
-<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Remaining (GH₵)</th>
-<th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-center" style="width: 200px;">% Used</th>
-</tr>
-</thead>
-<!-- INCOME BUDGET -->
-<tbody class="group/section">
-<tr class="bg-surface-container-highest/30 cursor-pointer hover:bg-surface-container-highest transition-colors" onclick="toggleSection('income-rows')">
-<td class="px-lg py-3" colspan="5">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary section-chevron transition-transform duration-200" id="income-chevron">expand_more</span>
-<span class="font-headline-md text-primary">Income Budget</span>
-</div>
-</td>
-</tr>
-<tr class="row-hover border-b border-outline-variant/30 income-rows">
-<td class="px-lg py-4">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-text-secondary">church</span>
-<span>Tithe &amp; Offertory</span>
-</div>
-</td>
-<td class="px-lg py-4 font-data-label text-on-surface budget-cell">800,000.00</td>
-<td class="px-lg py-4 font-data-label text-on-surface">620,000.00</td>
-<td class="px-lg py-4 font-data-label text-success">180,000.00</td>
-<td class="px-lg py-4">
-<div class="flex items-center gap-3">
-<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
-<div class="h-full bg-success rounded-full" style="width: 77.5%;"></div>
-</div>
-<span class="text-label-sm font-bold text-text-secondary">77%</span>
-</div>
-</td>
-</tr>
-<tr class="row-hover border-b border-outline-variant/30 income-rows">
-<td class="px-lg py-4">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-text-secondary">volunteer_activism</span>
-<span>Special Donations</span>
-</div>
-</td>
-<td class="px-lg py-4 font-data-label text-on-surface budget-cell">200,000.00</td>
-<td class="px-lg py-4 font-data-label text-on-surface">195,000.00</td>
-<td class="px-lg py-4 font-data-label text-warning">5,000.00</td>
-<td class="px-lg py-4 warning-budget-tint">
-<div class="flex items-center gap-3">
-<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
-<div class="h-full bg-warning rounded-full" style="width: 97.5%;"></div>
-</div>
-<span class="text-label-sm font-bold text-warning">97%</span>
-</div>
-</td>
-</tr>
-</tbody>
-<!-- EXPENSE BUDGET -->
-<tbody class="group/section">
-<tr class="bg-surface-container-highest/30 cursor-pointer hover:bg-surface-container-highest transition-colors" onclick="toggleSection('expense-rows')">
-<td class="px-lg py-3 border-t border-outline-variant" colspan="5">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary section-chevron transition-transform duration-200" id="expense-chevron">expand_more</span>
-<span class="font-headline-md text-primary">Expense Budget</span>
-</div>
-</td>
-</tr>
-<tr class="row-hover border-b border-outline-variant/30 expense-rows">
-<td class="px-lg py-4">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-text-secondary">home_repair_service</span>
-<span>Property Maintenance</span>
-</div>
-</td>
-<td class="px-lg py-4 font-data-label text-on-surface budget-cell">150,000.00</td>
-<td class="px-lg py-4 font-data-label text-error">162,500.00</td>
-<td class="px-lg py-4 font-data-label text-error">-12,500.00</td>
-<td class="px-lg py-4 over-budget-tint">
-<div class="flex items-center gap-3">
-<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
-<div class="h-full bg-error rounded-full" style="width: 100%;"></div>
-</div>
-<span class="text-label-sm font-bold text-error">108%</span>
-</div>
-</td>
-</tr>
-<tr class="row-hover border-b border-outline-variant/30 expense-rows">
-<td class="px-lg py-4">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-text-secondary">groups</span>
-<span>Clerical Stipends</span>
-</div>
-</td>
-<td class="px-lg py-4 font-data-label text-on-surface budget-cell">250,000.00</td>
-<td class="px-lg py-4 font-data-label text-error">125,000.00</td>
-<td class="px-lg py-4 font-data-label text-success">125,000.00</td>
-<td class="px-lg py-4">
-<div class="flex items-center gap-3">
-<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
-<div class="h-full bg-success rounded-full" style="width: 50%;"></div>
-</div>
-<span class="text-label-sm font-bold text-text-secondary">50%</span>
-</div>
-</td>
-</tr>
-<tr class="row-hover border-b border-outline-variant/30 expense-rows">
-<td class="px-lg py-4">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-text-secondary">school</span>
-<span>Education Fund</span>
-</div>
-</td>
-<td class="px-lg py-4 font-data-label text-on-surface budget-cell">50,000.00</td>
-<td class="px-lg py-4 font-data-label text-error">43,500.00</td>
-<td class="px-lg py-4 font-data-label text-warning">6,500.00</td>
-<td class="px-lg py-4 warning-budget-tint">
-<div class="flex items-center gap-3">
-<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
-<div class="h-full bg-warning rounded-full" style="width: 87%;"></div>
-</div>
-<span class="text-label-sm font-bold text-warning">87%</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="p-lg bg-surface-container-low flex justify-between items-center">
-<p class="text-label-sm text-text-secondary">Last updated: Today at 09:42 AM by Admin</p>
-<div class="flex items-center gap-md">
-<button class="px-4 py-2 border border-outline text-on-surface-variant rounded-lg font-label-md hover:bg-surface-variant transition-colors">Export Report</button>
-<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-md shadow hover:bg-primary-light transition-all">Publish Budget</button>
-</div>
-</div>
-</div>
-</main>
-<script>
-        function toggleSection(className) {
-            const rows = document.querySelectorAll('.' + className);
-            const chevron = document.getElementById(className.split('-')[0] + '-chevron');
-            
-            rows.forEach(row => {
-                row.classList.toggle('hidden');
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+
+        <!-- Tailwind Config -->
+        <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            outline: "#897172",
+                            "on-tertiary-fixed-variant": "#464746",
+                            tertiary: "#2a2b2a",
+                            "surface-bright": "#fff8f5",
+                            "on-primary-fixed": "#40000e",
+                            "inverse-on-surface": "#f7efeb",
+                            "on-surface": "#1e1b19",
+                            "on-primary-container": "#ff8a95",
+                            primary: "#5c0219",
+                            "primary-fixed-dim": "#ffb2b7",
+                            "on-tertiary-fixed": "#1a1c1b",
+                            "error-container": "#ffdad6",
+                            warning: "#D97706",
+                            "text-secondary": "#6B7280",
+                            "surface-tint": "#a33a49",
+                            "surface-container-lowest": "#ffffff",
+                            "secondary-container": "#fece5b",
+                            "surface-container": "#f4ece8",
+                            "primary-light": "#A3283F",
+                            "on-secondary-fixed": "#251a00",
+                            "surface-container-highest": "#e9e1dd",
+                            info: "#2563EB",
+                            "secondary-fixed-dim": "#eec04f",
+                            "primary-muted": "#F5EAEC",
+                            card: "#FFFFFF",
+                            error: "#ba1a1a",
+                            "surface-dim": "#e0d8d5",
+                            "gold-muted": "#FDF6E3",
+                            "surface-container-low": "#faf2ee",
+                            "on-surface-variant": "#564243",
+                            "on-error-container": "#93000a",
+                            "on-error": "#ffffff",
+                            "surface-container-high": "#eee7e3",
+                            "on-background": "#1e1b19",
+                            "on-tertiary": "#ffffff",
+                            "surface-variant": "#e9e1dd",
+                            "on-secondary-fixed-variant": "#5a4300",
+                            "inverse-primary": "#ffb2b7",
+                            "tertiary-fixed-dim": "#c7c6c5",
+                            "primary-container": "#7b1c2d",
+                            danger: "#DC2626",
+                            "tertiary-container": "#404140",
+                            background: "#fff8f5",
+                            "secondary-fixed": "#ffdf9a",
+                            "on-tertiary-container": "#adadab",
+                            "tertiary-fixed": "#e3e2e0",
+                            surface: "#F8F7F5",
+                            "on-secondary-container": "#745700",
+                            border: "#E4E2DD",
+                            success: "#16A34A",
+                            "on-primary-fixed-variant": "#832233",
+                            secondary: "#775a00",
+                            "on-secondary": "#ffffff",
+                            "inverse-surface": "#33302d",
+                            "on-primary": "#ffffff",
+                            "outline-variant": "#dcc0c1",
+                            "primary-fixed": "#ffdadb",
+                        },
+                        borderRadius: {
+                            DEFAULT: "0.25rem",
+                            lg: "0.5rem",
+                            xl: "0.75rem",
+                            full: "9999px",
+                        },
+                        spacing: {
+                            lg: "24px",
+                            base: "8px",
+                            xs: "4px",
+                            "header-height": "64px",
+                            sm: "8px",
+                            md: "16px",
+                            xl: "32px",
+                            "sidebar-width": "256px",
+                        },
+                        fontFamily: {
+                            "body-lg": ["Inter"],
+                            "label-md": ["Inter"],
+                            "data-label": ["JetBrains Mono"],
+                            "data-display": ["JetBrains Mono"],
+                            "headline-lg-mobile": ["Lora"],
+                            "body-md": ["Inter"],
+                            "headline-lg": ["Lora"],
+                            "label-sm": ["Inter"],
+                            "headline-md": ["Inter"],
+                        },
+                        fontSize: {
+                            "body-lg": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                            "label-md": ["13px", { lineHeight: "1.2", fontWeight: "500" }],
+                            "data-label": ["14px", { lineHeight: "1.0", fontWeight: "500" }],
+                            "data-display": ["18px", { lineHeight: "1.0", fontWeight: "500" }],
+                            "headline-lg-mobile": ["24px", { lineHeight: "1.2", fontWeight: "700" }],
+                            "body-md": ["14px", { lineHeight: "1.6", fontWeight: "400" }],
+                            "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+                            "label-sm": ["11px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "500" }],
+                            "headline-md": ["20px", { lineHeight: "1.3", fontWeight: "600" }],
+                        },
+                    },
+                },
+            };
+        </script>
+
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+                vertical-align: middle;
+            }
+            .progress-ring__circle {
+                transition: stroke-dashoffset 0.35s;
+                transform: rotate(-90deg);
+                transform-origin: 50% 50%;
+            }
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 6px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: #F8F7F5;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: #dcc0c1;
+                border-radius: 10px;
+            }
+            .row-hover:hover {
+                background-color: rgba(92, 2, 25, 0.02);
+            }
+            .over-budget-tint {
+                background-color: rgba(186, 26, 26, 0.05);
+            }
+            .warning-budget-tint {
+                background-color: rgba(217, 119, 6, 0.05);
+            }
+        </style>
+    </head>
+
+    <body class="bg-surface font-body-md text-on-surface custom-scrollbar flex min-h-screen">
+        {% include 'components/toast_messages.html' %}
+        {% include 'components/sidebar.html' %}
+
+        <!-- Main Content Canvas -->
+        <main class="flex-1 min-h-screen p-lg">
+            <!-- Summary Dashboard Section (Bento Inspired) -->
+            <div class="grid grid-cols-12 gap-lg mb-xl">
+                <!-- Large Summary Card -->
+                <div class="col-span-12 lg:col-span-8 bg-card rounded-xl p-lg shadow-sm border-l-4 border-secondary flex flex-col md:flex-row items-center gap-xl relative overflow-hidden">
+                    <div class="flex-1 space-y-6 w-full">
+                        <div class="flex justify-between items-start gap-4">
+                            <div>
+                                <p class="text-label-sm text-text-secondary uppercase tracking-widest mb-1">Current Financial Pulse</p>
+                                <h3 class="font-headline-lg text-headline-lg text-primary">Budget Overview — FY {{ selected_year }}</h3>
+                            </div>
+                            <form method="get" class="shrink-0">
+                                <select name="year" onchange="this.form.submit()" class="px-3 py-1.5 border border-border rounded-lg bg-surface text-sm">
+                                    {% for y in years %}
+                                        <option value="{{ y }}" {% if y == selected_year %}selected{% endif %}>{{ y }}</option>
+                                    {% endfor %}
+                                </select>
+                            </form>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-lg">
+                            <div>
+                                <p class="text-label-sm text-text-secondary mb-1">Total Budgeted</p>
+                                <p class="font-data-display text-data-display text-on-surface">GH₵ {{ total_budgeted|floatformat:2 }}</p>
+                            </div>
+                            <div>
+                                <p class="text-label-sm text-text-secondary mb-1">Total Spent</p>
+                                <p class="font-data-display text-data-display text-primary">GH₵ {{ total_spent|floatformat:2 }}</p>
+                            </div>
+                            <div>
+                                <p class="text-label-sm text-text-secondary mb-1">Remaining Balance</p>
+                                <p class="font-data-display text-data-display {% if total_remaining >= 0 %}text-success{% else %}text-error{% endif %}">GH₵ {{ total_remaining|floatformat:2 }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Circular Progress -->
+                    <div class="relative w-40 h-40 flex items-center justify-center shrink-0">
+                        <svg class="w-full h-full" viewBox="0 0 100 100">
+                            <circle class="text-surface-container-highest stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-width="8"></circle>
+                            <circle class="text-primary stroke-current progress-ring__circle" cx="50" cy="50" fill="transparent" r="40" stroke-dasharray="251.2" stroke-dashoffset="{{ ring_offset }}" stroke-linecap="round" stroke-width="8"></circle>
+                        </svg>
+                        <div class="absolute flex flex-col items-center">
+                            <span class="font-data-display text-headline-md font-bold text-primary">{{ utilization }}%</span>
+                            <span class="text-label-sm text-text-secondary">Utilized</span>
+                        </div>
+                    </div>
+
+                    <!-- Decorative Element -->
+                    <div class="absolute -bottom-8 -right-8 opacity-5 pointer-events-none">
+                        <span class="material-symbols-outlined text-[160px] text-primary">account_balance</span>
+                    </div>
+                </div>
+
+                <!-- Mini Insights Cards -->
+                <div class="col-span-12 lg:col-span-4 grid grid-rows-2 gap-md">
+                    <div class="bg-card rounded-xl p-md shadow-sm flex items-center justify-between border border-outline-variant/30">
+                        <div>
+                            <p class="text-label-sm text-text-secondary">Critical Thresholds</p>
+                            <p class="font-headline-md {% if over_budget > 0 %}text-danger{% else %}text-success{% endif %}">
+                                {% if over_budget > 0 %}{{ over_budget }} Over-Budget{% else %}All Within Budget{% endif %}
+                            </p>
+                        </div>
+                        <span class="material-symbols-outlined {% if over_budget > 0 %}text-danger{% else %}text-success{% endif %} text-[32px]">{% if over_budget > 0 %}warning{% else %}verified{% endif %}</span>
+                    </div>
+                    <div class="bg-gold-muted rounded-xl p-md shadow-sm flex items-center justify-between border border-secondary-fixed/50">
+                        <div>
+                            <p class="text-label-sm text-on-secondary-container">Budget Health</p>
+                            <p class="font-headline-md text-on-secondary-container">
+                                {% if warning_count > 0 %}{{ warning_count }} Near Limit{% else %}On Track{% endif %}
+                            </p>
+                        </div>
+                        <span class="material-symbols-outlined text-secondary text-[32px]">event</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Record Budget Allocation Form -->
+            <form method="post" action="{% url 'finance:budget_manage' %}" class="bg-card p-lg rounded-xl border border-border shadow-sm mb-lg space-y-md">
+                {% csrf_token %}
+                <h3 class="font-headline-md text-primary font-bold">Set Annual Budget Allocation</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+                    <div>
+                        <label class="block text-label-sm font-bold text-on-surface-variant mb-1">Fiscal Year</label>
+                        <input type="number" name="fiscal_year" value="{{ current_year }}" class="w-full px-md py-2 border border-border rounded-lg bg-surface" required />
+                    </div>
+                    <div>
+                        <label class="block text-label-sm font-bold text-on-surface-variant mb-1">Budget Category</label>
+                        <select name="category" class="w-full px-md py-2 border border-border rounded-lg bg-surface" required>
+                            {% for value, label in category_choices %}
+                                <option value="{{ value }}">{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-label-sm font-bold text-on-surface-variant mb-1">Allocated Amount (GHS)</label>
+                        <input type="number" name="allocated_amount" step="0.01" min="0" placeholder="0.00" class="w-full px-md py-2 border border-border rounded-lg bg-surface" required />
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-label-sm font-bold text-on-surface-variant mb-1">Notes / Description</label>
+                    <input type="text" name="notes" placeholder="Optional budget notes..." class="w-full px-md py-2 border border-border rounded-lg bg-surface" />
+                </div>
+                <button type="submit" class="bg-primary text-on-primary px-lg py-2.5 rounded-lg font-bold hover:bg-primary-light transition-all">Save Budget Allocation</button>
+            </form>
+
+            <!-- Budget Table Container -->
+            <div class="bg-card rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-surface-container-low border-b border-outline-variant">
+                                <th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Category</th>
+                                <th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Budgeted (GH₵)</th>
+                                <th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Spent (GH₵)</th>
+                                <th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Remaining (GH₵)</th>
+                                <th class="px-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-center" style="width: 200px;">% Used</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="group/section">
+                            <tr class="bg-surface-container-highest/30">
+                                <td class="px-lg py-3" colspan="5">
+                                    <div class="flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-primary">payments</span>
+                                        <span class="font-headline-md text-primary">Budgets — FY {{ selected_year }}</span>
+                                        <span class="ml-auto text-label-sm text-on-surface-variant">{{ enriched_budgets|length }} categories</span>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            {% for row in enriched_budgets %}
+                                <tr class="row-hover border-b border-outline-variant/30 {% if row.status == 'over' %}over-budget-tint{% elif row.status == 'warning' %}warning-budget-tint{% endif %}">
+                                    <td class="px-lg py-4">
+                                        <div class="flex items-center gap-3">
+                                            <span class="material-symbols-outlined text-text-secondary">{{ row.icon }}</span>
+                                            <div>
+                                                <p class="font-medium">{{ row.obj.get_category_display }}</p>
+                                                <p class="text-[11px] text-on-surface-variant">{{ row.obj.fiscal_year }}{% if row.obj.notes %} • {{ row.obj.notes|truncatechars:40 }}{% endif %}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-lg py-4 font-data-label text-on-surface">{{ row.obj.allocated_amount|floatformat:2 }}</td>
+                                    <td class="px-lg py-4 font-data-label {% if row.pct > 100 %}text-error{% else %}text-on-surface{% endif %}">{{ row.spent|floatformat:2 }}</td>
+                                    <td class="px-lg py-4 font-data-label {% if row.remaining < 0 %}text-error{% elif row.pct >= 85 %}text-warning{% else %}text-success{% endif %}">{{ row.remaining|floatformat:2 }}</td>
+                                    <td class="px-lg py-4 {% if row.status == 'over' %}over-budget-tint{% elif row.status == 'warning' %}warning-budget-tint{% endif %}">
+                                        <div class="flex items-center gap-3">
+                                            <div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+                                                <div class="h-full rounded-full {% if row.status == 'over' %}bg-error{% elif row.status == 'warning' %}bg-warning{% else %}bg-success{% endif %}" style="width: {{ row.bar_width }}%;"></div>
+                                            </div>
+                                            <span class="text-label-sm font-bold {% if row.status == 'over' %}text-error{% elif row.status == 'warning' %}text-warning{% else %}text-text-secondary{% endif %}">{{ row.pct }}%</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="5" class="px-lg py-10 text-center">
+                                        <div class="flex flex-col items-center gap-2 text-on-surface-variant">
+                                            <span class="material-symbols-outlined text-4xl opacity-30">account_balance_wallet</span>
+                                            <p>No budgets set for FY {{ selected_year }}.</p>
+                                            <p class="text-sm">Use the form above to allocate your first budget.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="p-lg bg-surface-container-low flex flex-col md:flex-row justify-between items-center gap-3">
+                    <p class="text-label-sm text-text-secondary">Showing FY {{ selected_year }} • Last updated: {% now "M d, Y H:i" %}</p>
+                    <div class="flex items-center gap-md">
+                        <a href="{% url 'finance:dashboard' %}" class="px-4 py-2 border border-outline text-on-surface-variant rounded-lg font-label-md hover:bg-surface-variant transition-colors">Back to Dashboard</a>
+                        <a href="?year={{ selected_year }}" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-md shadow hover:bg-primary-light transition-all">Refresh</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            function toggleSection(className) {
+                const rows = document.querySelectorAll("." + className);
+                const chevron = document.getElementById(className.split("-")[0] + "-chevron");
+                if (!chevron) return;
+                rows.forEach((row) => row.classList.toggle("hidden"));
+                chevron.style.transform = chevron.style.transform === "rotate(-90deg)" ? "rotate(0deg)" : "rotate(-90deg)";
+            }
+
+            document.addEventListener("DOMContentLoaded", () => {
+                document.querySelectorAll(".section-chevron").forEach((c) => (c.style.transform = "rotate(0deg)"));
             });
-            
-            if (chevron.style.transform === 'rotate(-90deg)') {
-                chevron.style.transform = 'rotate(0deg)';
-            } else {
-                chevron.style.transform = 'rotate(-90deg)';
-            }
-        }
-
-        // Inline Editing Logic
-        const toggleEditBtn = document.getElementById('toggleEdit');
-        const budgetCells = document.querySelectorAll('.budget-cell');
-        let isEditing = false;
-
-        toggleEditBtn.addEventListener('click', () => {
-            isEditing = !isEditing;
-            
-            if (isEditing) {
-                toggleEditBtn.innerHTML = `
-                    <span class="material-symbols-outlined text-[18px]">save</span>
-                    <span>Save Changes</span>
-                `;
-                toggleEditBtn.classList.replace('bg-primary', 'bg-success');
-                
-                budgetCells.forEach(cell => {
-                    cell.setAttribute('contenteditable', 'true');
-                    cell.classList.add('bg-primary-muted', 'border', 'border-primary-light/30', 'rounded-sm', 'outline-none', 'ring-2', 'ring-primary-light/10');
-                });
-            } else {
-                toggleEditBtn.innerHTML = `
-                    <span class="material-symbols-outlined text-[18px]">edit_note</span>
-                    <span>Set/Edit Budget</span>
-                `;
-                toggleEditBtn.classList.replace('bg-success', 'bg-primary');
-                
-                budgetCells.forEach(cell => {
-                    cell.setAttribute('contenteditable', 'false');
-                    cell.classList.remove('bg-primary-muted', 'border', 'border-primary-light/30', 'rounded-sm', 'outline-none', 'ring-2', 'ring-primary-light/10');
-                    // Add micro-feedback on save
-                    cell.classList.add('bg-success/10');
-                    setTimeout(() => cell.classList.remove('bg-success/10'), 1000);
-                });
-            }
-        });
-
-        // Initialize chevrons
-        document.addEventListener('DOMContentLoaded', () => {
-            const chevrons = document.querySelectorAll('.section-chevron');
-            chevrons.forEach(c => c.style.transform = 'rotate(0deg)');
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>

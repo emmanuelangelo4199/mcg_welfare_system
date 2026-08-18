@@ -9,6 +9,8 @@ from .models import EXPENSE_CATEGORY_CHOICES, IncomeLedger, ExpenseLedger, Budge
 from datetime import date as _date
 import calendar
 from decimal import Decimal
+from django.core.paginator import Paginator
+from django.db.models import Q, Max, Avg, Count
 
 
 
@@ -284,10 +286,6 @@ def record_income_view(request):
 
 @login_required(login_url='accounts:login')
 def income_ledger_view(request):
-    from django.core.paginator import Paginator
-    from django.db.models import Q, Max, Avg, Count
-    from decimal import Decimal
-
     qs = IncomeLedger.objects.select_related('recorded_by', 'service').all()
 
     # --- filters ---
@@ -378,14 +376,97 @@ def budget_manage_view(request):
         )
         verb = "added" if created else "updated"
         messages.success(request, f"Budget entry for '{budget.get_category_display()}' {verb}.")
-        return redirect('finance:budget_manage')
+        return redirect(f"{request.path}?year={year}")
 
-    budgets = Budget.objects.all().order_by('-fiscal_year', 'category')
+    # --- Dynamic overview ---
+    year_param = request.GET.get('year')
+    try:
+        selected_year = int(year_param) if year_param else timezone.localdate().year
+    except ValueError:
+        selected_year = timezone.localdate().year
+
+    budgets_qs = Budget.objects.filter(fiscal_year=selected_year).order_by('category')
+    # Fallback: if no budgets for selected year, show all years ordered
+    if not budgets_qs.exists():
+        budgets_qs = Budget.objects.all().order_by('-fiscal_year', 'category')
+
+    enriched = []
+    total_budgeted = Decimal('0.00')
+    total_spent = Decimal('0.00')
+    over_budget = 0
+    warning_count = 0
+
+    icon_map = {
+        'UTILITIES': 'bolt',
+        'WELFARE': 'volunteer_activism',
+        'MAINTENANCE': 'home_repair_service',
+        'REPAIRS': 'build',
+        'TRANSPORT': 'directions_bus',
+        'EVANGELISM': 'campaign',
+        'ADMIN': 'description',
+        'STATUTORY': 'gavel',
+        'OTHER': 'category',
+    }
+
+    for b in budgets_qs:
+        spent = ExpenseLedger.objects.filter(
+            category=b.category,
+            status__in=['APPROVED', 'PAID'],
+            date__year=b.fiscal_year,
+        ).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
+        remaining = b.allocated_amount - spent
+        pct = int(float(spent) / float(b.allocated_amount) * 100) if b.allocated_amount else 0
+        # clamp display width
+        pct_display = max(0, min(120, pct))
+        bar_width = min(pct_display, 100)
+        if pct > 100:
+            status = 'over'
+            over_budget += 1
+        elif pct >= 85:
+            status = 'warning'
+            warning_count += 1
+        else:
+            status = 'ok'
+
+        total_budgeted += b.allocated_amount
+        total_spent += spent
+
+        enriched.append({
+            'obj': b,
+            'spent': spent,
+            'remaining': remaining,
+            'pct': pct,
+            'pct_display': pct_display,
+            'bar_width': bar_width,
+            'status': status,
+            'icon': icon_map.get(b.category, 'payments'),
+        })
+
+    total_remaining = total_budgeted - total_spent
+    utilization = int(float(total_spent) / float(total_budgeted) * 100) if total_budgeted else 0
+    # SVG ring: dashoffset = 251.2 * (1 - utilization/100)
+    ring_offset = round(251.2 * (1 - utilization / 100), 2) if total_budgeted else 251.2
+
+    # Years list for selector
+    years = Budget.objects.values_list('fiscal_year', flat=True).distinct().order_by('-fiscal_year')
+    if not years:
+        years = [timezone.localdate().year]
+
     context = {
         "active_nav": "finance",
-        "budgets": budgets,
+        "budgets": budgets_qs,
+        "enriched_budgets": enriched,
         "category_choices": EXPENSE_CATEGORY_CHOICES,
         "current_year": timezone.localdate().year,
+        "selected_year": selected_year,
+        "years": years,
+        "total_budgeted": total_budgeted,
+        "total_spent": total_spent,
+        "total_remaining": total_remaining,
+        "utilization": utilization,
+        "ring_offset": ring_offset,
+        "over_budget": over_budget,
+        "warning_count": warning_count,
     }
     return render(request, "finance/income/budget_manage.html", context)
 
@@ -395,10 +476,33 @@ def record_expense_view(request):
         title = request.POST.get('title', '').strip()
         category = request.POST.get('category', '').strip()
         if category not in dict(EXPENSE_CATEGORY_CHOICES):
-            category = 'OTHER' 
-        amount = request.POST.get('amount')
-        date = request.POST.get('date')
+            category = 'OTHER'
+        amount = request.POST.get('amount', '').strip()
+        date = request.POST.get('date', '').strip()
         description = request.POST.get('description', '').strip()
+        payment_method = request.POST.get('payment_method', 'CASH').strip().upper()
+        if payment_method not in ['CASH', 'MOMO', 'CHEQUE', 'BANK']:
+            payment_method = 'CASH'
+
+        if not title or not amount or not date:
+            messages.error(request, "Title, amount and date are required.")
+            return render(request, "finance/expense/record_expense.html", {
+                "active_nav": "finance",
+                "category_choices": EXPENSE_CATEGORY_CHOICES,
+                "today": timezone.localdate(),
+                "form_data": request.POST,
+            })
+
+        try:
+            Decimal(amount)
+        except Exception:
+            messages.error(request, "Invalid amount.")
+            return render(request, "finance/expense/record_expense.html", {
+                "active_nav": "finance",
+                "category_choices": EXPENSE_CATEGORY_CHOICES,
+                "today": timezone.localdate(),
+                "form_data": request.POST,
+            })
 
         ExpenseLedger.objects.create(
             title=title,
@@ -406,15 +510,28 @@ def record_expense_view(request):
             amount=amount,
             date=date,
             recorded_by=request.user,
-            description=description,
+            description=f"{description}\n[Payment: {payment_method}]" if description else f"[Payment: {payment_method}]",
             status='PENDING'
         )
         messages.success(request, f"Expense voucher for '{title}' submitted for approval.")
-        return redirect('finance:expense_ledger')
+        return redirect('finance:expense_approve')
+
+    # Budget hints for current year
+    today = timezone.localdate()
+    budget_hints = {}
+    for b in Budget.objects.filter(fiscal_year=today.year):
+        spent = ExpenseLedger.objects.filter(category=b.category, status__in=['APPROVED', 'PAID'], date__year=today.year).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
+        budget_hints[b.category] = {
+            'allocated': float(b.allocated_amount),
+            'spent': float(spent),
+            'remaining': float(b.allocated_amount - spent),
+        }
 
     context = {
         "active_nav": "finance",
         "category_choices": EXPENSE_CATEGORY_CHOICES,
+        "today": timezone.localdate(),
+        "budget_hints_json": budget_hints,
     }
     return render(request, "finance/expense/record_expense.html", context)
 
@@ -431,22 +548,68 @@ def expense_approve_view(request):
     if request.method == 'POST':
         expense_id = request.POST.get('expense_id')
         action = request.POST.get('action')  # 'approve' or 'reject'
+        comment = request.POST.get('comment', '').strip()
         
         expense = get_object_or_404(ExpenseLedger, id=expense_id)
         if action == 'approve':
             expense.status = 'APPROVED'
             expense.approved_by = request.user
+            if comment:
+                expense.description = (expense.description or '') + f"\n[Approved by {request.user.username}: {comment}]"
             messages.success(request, f"Expense '{expense.title}' approved.")
         elif action == 'reject':
             expense.status = 'REJECTED'
+            if comment:
+                expense.description = (expense.description or '') + f"\n[Rejected by {request.user.username}: {comment}]"
             messages.info(request, f"Expense '{expense.title}' rejected.")
         expense.save()
-        return redirect('finance:expense_approve')
+        return redirect(f"{request.path}?selected={expense.id}" if action == 'approve' else 'finance:expense_approve')
+
+    pending_qs = ExpenseLedger.objects.filter(status='PENDING').select_related('recorded_by').order_by('-date', '-id')
+    pending_expenses = list(pending_qs)
+
+    # Enrich with days waiting
+    enriched = []
+    today = timezone.localdate()
+    for exp in pending_expenses:
+        days_waiting = (today - exp.date).days if exp.date else 0
+        # Budget check for this category/year
+        budget = Budget.objects.filter(fiscal_year=exp.date.year if exp.date else today.year, category=exp.category).first()
+        budget_info = None
+        if budget:
+            spent = ExpenseLedger.objects.filter(category=exp.category, status__in=['APPROVED', 'PAID'], date__year=budget.fiscal_year).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
+            remaining = budget.allocated_amount - spent
+            budget_info = {'allocated': budget.allocated_amount, 'spent': spent, 'remaining': remaining}
+        enriched.append({'obj': exp, 'days_waiting': max(days_waiting, 0), 'budget_info': budget_info})
+
+    # Selected expense (from ?selected= or first pending)
+    selected_id = request.GET.get('selected')
+    selected = None
+    if selected_id:
+        try:
+            selected = ExpenseLedger.objects.select_related('recorded_by', 'approved_by').get(id=selected_id)
+        except ExpenseLedger.DoesNotExist:
+            selected = None
+    if not selected and pending_expenses:
+        selected = pending_expenses[0]
+    # For selected, also get days waiting + budget
+    selected_days = (today - selected.date).days if selected and selected.date else 0
+    selected_budget = None
+    if selected:
+        b = Budget.objects.filter(fiscal_year=selected.date.year if selected.date else today.year, category=selected.category).first()
+        if b:
+            s = ExpenseLedger.objects.filter(category=b.category, status__in=['APPROVED', 'PAID'], date__year=b.fiscal_year).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
+            selected_budget = {'budget': b, 'spent': s, 'remaining': b.allocated_amount - s}
 
     pending_expenses = ExpenseLedger.objects.filter(status='PENDING').order_by('-date')
     return render(request, "finance/expense/expence_approve.html", {
         "active_nav": "finance",
-        "pending_expenses": pending_expenses
+        "pending_expenses": pending_expenses,
+        "enriched_pending": enriched,
+        "pending_count": len(pending_expenses),
+        "selected_expense": selected,
+        "selected_days": max(selected_days, 0) if selected else 0,
+        "selected_budget": selected_budget,
     })
 
 @login_required(login_url='accounts:login')
