@@ -1,379 +1,360 @@
+{% load static %}
 <!DOCTYPE html>
+<html class="light" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Expense Ledger | MCG-SMS</title>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Expense Ledger | MCG-SMS</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind Configuration -->
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "outline": "#897172",
-                    "on-tertiary-fixed-variant": "#464746",
-                    "tertiary": "#2a2b2a",
-                    "surface-bright": "#fff8f5",
-                    "on-primary-fixed": "#40000e",
-                    "inverse-on-surface": "#f7efeb",
-                    "on-surface": "#1e1b19",
-                    "on-primary-container": "#ff8a95",
-                    "primary": "#5c0219",
-                    "primary-fixed-dim": "#ffb2b7",
-                    "on-tertiary-fixed": "#1a1c1b",
-                    "error-container": "#ffdad6",
-                    "warning": "#D97706",
-                    "text-secondary": "#6B7280",
-                    "surface-tint": "#a33a49",
-                    "surface-container-lowest": "#ffffff",
-                    "secondary-container": "#fece5b",
-                    "surface-container": "#f4ece8",
-                    "primary-light": "#A3283F",
-                    "on-secondary-fixed": "#251a00",
-                    "surface-container-highest": "#e9e1dd",
-                    "info": "#2563EB",
-                    "secondary-fixed-dim": "#eec04f",
-                    "primary-muted": "#F5EAEC",
-                    "card": "#FFFFFF",
-                    "error": "#ba1a1a",
-                    "surface-dim": "#e0d8d5",
-                    "gold-muted": "#FDF6E3",
-                    "surface-container-low": "#faf2ee",
-                    "on-surface-variant": "#564243",
-                    "on-error-container": "#93000a",
-                    "on-error": "#ffffff",
-                    "surface-container-high": "#eee7e3",
-                    "on-background": "#1e1b19",
-                    "on-tertiary": "#ffffff",
-                    "surface-variant": "#e9e1dd",
-                    "on-secondary-fixed-variant": "#5a4300",
-                    "inverse-primary": "#ffb2b7",
-                    "tertiary-fixed-dim": "#c7c6c5",
-                    "primary-container": "#7b1c2d",
-                    "danger": "#DC2626",
-                    "tertiary-container": "#404140",
-                    "background": "#fff8f5",
-                    "secondary-fixed": "#ffdf9a",
-                    "on-tertiary-container": "#adadab",
-                    "tertiary-fixed": "#e3e2e0",
-                    "surface": "#F8F7F5",
-                    "on-secondary-container": "#745700",
-                    "border": "#E4E2DD",
-                    "success": "#16A34A",
-                    "on-primary-fixed-variant": "#832233",
-                    "secondary": "#775a00",
-                    "on-secondary": "#ffffff",
-                    "inverse-surface": "#33302d",
-                    "on-primary": "#ffffff",
-                    "outline-variant": "#dcc0c1",
-                    "primary-fixed": "#ffdadb"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "lg": "24px",
-                    "base": "8px",
-                    "xs": "4px",
-                    "header-height": "64px",
-                    "sm": "8px",
-                    "md": "16px",
-                    "xl": "32px",
-                    "sidebar-width": "256px"
-            },
-            "fontFamily": {
-                    "body-lg": ["Inter"],
-                    "label-md": ["Inter"],
-                    "data-label": ["JetBrains Mono"],
-                    "data-display": ["JetBrains Mono"],
-                    "headline-lg-mobile": ["Lora"],
-                    "body-md": ["Inter"],
-                    "headline-lg": ["Lora"],
-                    "label-sm": ["Inter"],
-                    "headline-md": ["Inter"]
-            },
-            "fontSize": {
-                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
-                    "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                    "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                    "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                    "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}]
+        <!-- Favicon -->
+        <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png" />
+
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet" />
+
+        <!-- Tailwind Configuration -->
+        <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            outline: "#897172",
+                            "on-tertiary-fixed-variant": "#464746",
+                            tertiary: "#2a2b2a",
+                            "surface-bright": "#fff8f5",
+                            "on-primary-fixed": "#40000e",
+                            "inverse-on-surface": "#f7efeb",
+                            "on-surface": "#1e1b19",
+                            "on-primary-container": "#ff8a95",
+                            primary: "#5c0219",
+                            "primary-fixed-dim": "#ffb2b7",
+                            "on-tertiary-fixed": "#1a1c1b",
+                            "error-container": "#ffdad6",
+                            warning: "#D97706",
+                            "text-secondary": "#6B7280",
+                            "surface-tint": "#a33a49",
+                            "surface-container-lowest": "#ffffff",
+                            "secondary-container": "#fece5b",
+                            "surface-container": "#f4ece8",
+                            "primary-light": "#A3283F",
+                            "on-secondary-fixed": "#251a00",
+                            "surface-container-highest": "#e9e1dd",
+                            info: "#2563EB",
+                            "secondary-fixed-dim": "#eec04f",
+                            "primary-muted": "#F5EAEC",
+                            card: "#FFFFFF",
+                            error: "#ba1a1a",
+                            "surface-dim": "#e0d8d5",
+                            "gold-muted": "#FDF6E3",
+                            "surface-container-low": "#faf2ee",
+                            "on-surface-variant": "#564243",
+                            "on-error-container": "#93000a",
+                            "on-error": "#ffffff",
+                            "surface-container-high": "#eee7e3",
+                            "on-background": "#1e1b19",
+                            "on-tertiary": "#ffffff",
+                            "surface-variant": "#e9e1dd",
+                            "on-secondary-fixed-variant": "#5a4300",
+                            "inverse-primary": "#ffb2b7",
+                            "tertiary-fixed-dim": "#c7c6c5",
+                            "primary-container": "#7b1c2d",
+                            danger: "#DC2626",
+                            "tertiary-container": "#404140",
+                            background: "#fff8f5",
+                            "secondary-fixed": "#ffdf9a",
+                            "on-tertiary-container": "#adadab",
+                            "tertiary-fixed": "#e3e2e0",
+                            surface: "#F8F7F5",
+                            "on-secondary-container": "#745700",
+                            border: "#E4E2DD",
+                            success: "#16A34A",
+                            "on-primary-fixed-variant": "#832233",
+                            secondary: "#775a00",
+                            "on-secondary": "#ffffff",
+                            "inverse-surface": "#33302d",
+                            "on-primary": "#ffffff",
+                            "outline-variant": "#dcc0c1",
+                            "primary-fixed": "#ffdadb",
+                        },
+                        borderRadius: {
+                            DEFAULT: "0.25rem",
+                            lg: "0.5rem",
+                            xl: "0.75rem",
+                            full: "9999px",
+                        },
+                        spacing: {
+                            lg: "24px",
+                            base: "8px",
+                            xs: "4px",
+                            "header-height": "64px",
+                            sm: "8px",
+                            md: "16px",
+                            xl: "32px",
+                            "sidebar-width": "256px",
+                        },
+                        fontFamily: {
+                            "body-lg": ["Inter"],
+                            "label-md": ["Inter"],
+                            "data-label": ["JetBrains Mono"],
+                            "data-display": ["JetBrains Mono"],
+                            "headline-lg-mobile": ["Lora"],
+                            "body-md": ["Inter"],
+                            "headline-lg": ["Lora"],
+                            "label-sm": ["Inter"],
+                            "headline-md": ["Inter"],
+                        },
+                        fontSize: {
+                            "body-lg": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                            "label-md": ["13px", { lineHeight: "1.2", fontWeight: "500" }],
+                            "data-label": ["14px", { lineHeight: "1.0", fontWeight: "500" }],
+                            "data-display": ["18px", { lineHeight: "1.0", fontWeight: "500" }],
+                            "headline-lg-mobile": ["24px", { lineHeight: "1.2", fontWeight: "700" }],
+                            "body-md": ["14px", { lineHeight: "1.6", fontWeight: "400" }],
+                            "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+                            "label-sm": ["11px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "500" }],
+                            "headline-md": ["20px", { lineHeight: "1.3", fontWeight: "600" }],
+                        },
+                    },
+                },
+            };
+        </script>
+
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             }
-          },
-        },
-      }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        body {
-            background-color: #fff8f5;
-            color: #1e1b19;
-            overflow-x: hidden;
-        }
-        .stat-card-border {
-            border-left: 4px solid #C49A2B;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f4ece8;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #dcc0c1;
-            border-radius: 10px;
-        }
-    </style>
-</head>
-<body class="font-body-md text-body-md flex min-h-screen">
-<!-- SideNavBar (Shared Component) -->
-{% include 'components/sidebar.html' %}
-<!-- Main Content Area -->
-<main class="mt-2.5 ml-[30px] min-h-screen">
-<!-- Summary Strip -->
-<div class="px-xl py-lg">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-lg">
-<!-- Total Expenses -->
-<div class="bg-card p-lg rounded-xl shadow-sm stat-card-border flex flex-col justify-between">
-<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Total Expenses</span>
-<div class="flex items-baseline gap-2 mt-xs">
-<span class="text-primary font-data-display text-[28px]">GH₵ 42,850.20</span>
-</div>
-<p class="text-[11px] text-success mt-2 flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">trending_up</span>
-<span>12.5% vs last month</span>
-</p>
-</div>
-<!-- Pending -->
-<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-warning flex flex-col justify-between">
-<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Pending Approval</span>
-<div class="flex items-baseline gap-2 mt-xs">
-<span class="text-warning font-data-display text-[28px]">GH₵ 8,120.00</span>
-</div>
-<p class="text-[11px] text-on-surface-variant mt-2">6 Active requests</p>
-</div>
-<!-- Paid -->
-<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-primary flex flex-col justify-between">
-<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Total Paid</span>
-<div class="flex items-baseline gap-2 mt-xs">
-<span class="text-primary font-data-display text-[28px]">GH₵ 34,730.20</span>
-</div>
-<p class="text-[11px] text-on-surface-variant mt-2">Disbursed successfully</p>
-</div>
-<!-- Rejected -->
-<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-outline flex flex-col justify-between">
-<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Rejected</span>
-<div class="flex items-baseline gap-2 mt-xs">
-<span class="text-outline font-data-display text-[28px]">GH₵ 1,450.00</span>
-</div>
-<p class="text-[11px] text-on-surface-variant mt-2">Voided transactions</p>
-</div>
-</div>
-</div>
-<!-- Filter Bar -->
-<div class="px-xl mb-lg">
-<div class="bg-card p-md rounded-xl shadow-sm flex flex-wrap items-center justify-between gap-md">
-<div class="flex items-center gap-md flex-wrap">
-<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
-<span class="material-symbols-outlined text-[18px]">filter_list</span>
-                        Status:
-                    </span>
-<div class="flex gap-2">
-<button class="px-4 py-1.5 rounded-full bg-primary text-on-primary text-label-md font-medium shadow-sm">All</button>
-<button class="px-4 py-1.5 rounded-full bg-surface-container hover:bg-warning/10 text-on-surface-variant hover:text-warning transition-colors text-label-md font-medium">Pending</button>
-<button class="px-4 py-1.5 rounded-full bg-surface-container hover:bg-success/10 text-on-surface-variant hover:text-success transition-colors text-label-md font-medium">Approved</button>
-<button class="px-4 py-1.5 rounded-full bg-surface-container hover:bg-info/10 text-on-surface-variant hover:text-info transition-colors text-label-md font-medium">Paid</button>
-<button class="px-4 py-1.5 rounded-full bg-surface-container hover:bg-error/10 text-on-surface-variant hover:text-error transition-colors text-label-md font-medium">Rejected</button>
-<button class="px-4 py-1.5 rounded-full bg-surface-container hover:bg-outline/10 text-on-surface-variant text-label-md font-medium">Draft</button>
-</div>
-</div>
-<div class="flex items-center gap-base">
-<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg hover:bg-surface-container transition-colors text-label-md font-medium">
-<span class="material-symbols-outlined text-[18px]">download</span>
-                        Export PDF
-                    </button>
-<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg hover:bg-surface-container transition-colors text-label-md font-medium">
-<span class="material-symbols-outlined text-[18px]">table_chart</span>
-                        CSV
-                    </button>
-<button class="bg-primary text-on-primary flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-primary-light transition-colors text-label-md font-medium shadow-md">
-<span class="material-symbols-outlined text-[18px]">add</span>
-                        New Expense
-                    </button>
-</div>
-</div>
-</div>
-<!-- Ledger Table -->
-<div class="px-xl pb-xl">
-<div class="bg-card rounded-xl shadow-sm overflow-hidden border border-border">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container-low border-b border-border">
-<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Ref No</th>
-<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Date</th>
-<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Category</th>
-<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Payee</th>
-<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Purpose</th>
-<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Amount</th>
-<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-center">Status</th>
-<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Requested By</th>
-<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Approved By</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-border">
-<!-- Row 1: Approved -->
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="px-lg py-4 font-data-label text-data-label text-on-surface">EXP-2024-001</td>
-<td class="px-lg py-4 text-body-md">Oct 24, 2023</td>
-<td class="px-lg py-4">
-<span class="bg-primary-muted text-primary text-[11px] font-bold px-2 py-0.5 rounded uppercase">Maintenance</span>
-</td>
-<td class="px-lg py-4 text-body-md">Apex Cleaning Ltd</td>
-<td class="px-lg py-4 text-body-md">Monthly sanctuary deep cleaning</td>
-<td class="px-lg py-4 text-right font-data-label text-primary">1,200.00</td>
-<td class="px-lg py-4 text-center">
-<span class="bg-success/10 text-success text-[11px] font-bold px-3 py-1 rounded-full uppercase">Approved</span>
-</td>
-<td class="px-lg py-4 text-body-md">E. Mensah</td>
-<td class="px-lg py-4 text-body-md font-medium">Rev. Dr. Otoo</td>
-</tr>
-<!-- Row 2: Pending (Amber) -->
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="px-lg py-4 font-data-label text-data-label text-on-surface">EXP-2024-002</td>
-<td class="px-lg py-4 text-body-md">Oct 25, 2023</td>
-<td class="px-lg py-4">
-<span class="bg-gold-muted text-secondary text-[11px] font-bold px-2 py-0.5 rounded uppercase">Utility</span>
-</td>
-<td class="px-lg py-4 text-body-md">ECG Ghana</td>
-<td class="px-lg py-4 text-body-md">Electricity Bill (October)</td>
-<td class="px-lg py-4 text-right font-data-label text-primary">3,450.50</td>
-<td class="px-lg py-4 text-center">
-<span class="bg-warning/10 text-warning text-[11px] font-bold px-3 py-1 rounded-full uppercase">Pending</span>
-</td>
-<td class="px-lg py-4 text-body-md">K. Amponsah</td>
-<td class="px-lg py-4 text-body-md text-on-surface-variant italic">Pending...</td>
-</tr>
-<!-- Row 3: Paid (Blue) -->
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="px-lg py-4 font-data-label text-data-label text-on-surface">EXP-2024-003</td>
-<td class="px-lg py-4 text-body-md">Oct 26, 2023</td>
-<td class="px-lg py-4">
-<span class="bg-blue-50 text-info text-[11px] font-bold px-2 py-0.5 rounded uppercase">Welfare</span>
-</td>
-<td class="px-lg py-4 text-body-md">Widow Support Fund</td>
-<td class="px-lg py-4 text-body-md">Monthly society grant</td>
-<td class="px-lg py-4 text-right font-data-label text-primary">5,000.00</td>
-<td class="px-lg py-4 text-center">
-<span class="bg-info/10 text-info text-[11px] font-bold px-3 py-1 rounded-full uppercase">Paid</span>
-</td>
-<td class="px-lg py-4 text-body-md">S. Boateng</td>
-<td class="px-lg py-4 text-body-md font-medium">Bishop Kumah</td>
-</tr>
-<!-- Row 4: Rejected (Red Tint) -->
-<tr class="bg-error/5 hover:bg-error/10 transition-colors">
-<td class="px-lg py-4 font-data-label text-data-label text-on-surface">EXP-2024-004</td>
-<td class="px-lg py-4 text-body-md">Oct 26, 2023</td>
-<td class="px-lg py-4">
-<span class="bg-error/10 text-error text-[11px] font-bold px-2 py-0.5 rounded uppercase">Travel</span>
-</td>
-<td class="px-lg py-4 text-body-md">City Transport</td>
-<td class="px-lg py-4 text-body-md line-through opacity-50">Fuel refund (Duplicate)</td>
-<td class="px-lg py-4 text-right font-data-label text-primary">450.00</td>
-<td class="px-lg py-4 text-center">
-<span class="bg-error/10 text-error text-[11px] font-bold px-3 py-1 rounded-full uppercase">Rejected</span>
-</td>
-<td class="px-lg py-4 text-body-md">J. Doe</td>
-<td class="px-lg py-4 text-body-md font-medium text-error">Finance Committee</td>
-</tr>
-<!-- Row 5: Draft (Grey) -->
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="px-lg py-4 font-data-label text-data-label text-on-surface">EXP-2024-005</td>
-<td class="px-lg py-4 text-body-md">Oct 27, 2023</td>
-<td class="px-lg py-4">
-<span class="bg-surface-container-highest text-on-surface-variant text-[11px] font-bold px-2 py-0.5 rounded uppercase">Supplies</span>
-</td>
-<td class="px-lg py-4 text-body-md">Office World</td>
-<td class="px-lg py-4 text-body-md">Stationery for conference</td>
-<td class="px-lg py-4 text-right font-data-label text-primary">890.00</td>
-<td class="px-lg py-4 text-center">
-<span class="bg-surface-container-highest text-on-surface-variant text-[11px] font-bold px-3 py-1 rounded-full uppercase">Draft</span>
-</td>
-<td class="px-lg py-4 text-body-md">E. Mensah</td>
-<td class="px-lg py-4 text-body-md text-on-surface-variant italic">Not Submitted</td>
-</tr>
-<!-- Row 6: Approved -->
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="px-lg py-4 font-data-label text-data-label text-on-surface">EXP-2024-006</td>
-<td class="px-lg py-4 text-body-md">Oct 28, 2023</td>
-<td class="px-lg py-4">
-<span class="bg-primary-muted text-primary text-[11px] font-bold px-2 py-0.5 rounded uppercase">Events</span>
-</td>
-<td class="px-lg py-4 text-body-md">Grace Catering</td>
-<td class="px-lg py-4 text-body-md">Harvest luncheon deposits</td>
-<td class="px-lg py-4 text-right font-data-label text-primary">2,500.00</td>
-<td class="px-lg py-4 text-center">
-<span class="bg-success/10 text-success text-[11px] font-bold px-3 py-1 rounded-full uppercase">Approved</span>
-</td>
-<td class="px-lg py-4 text-body-md">M. Owusu</td>
-<td class="px-lg py-4 text-body-md font-medium">Rev. Dr. Otoo</td>
-</tr>
-</tbody>
-</table>
-<!-- Pagination -->
-<div class="px-lg py-4 bg-surface-container-low flex items-center justify-between">
-<span class="text-label-md text-on-surface-variant">Showing 1 to 6 of 152 entries</span>
-<div class="flex items-center gap-1">
-<button class="p-1 rounded hover:bg-surface-container transition-colors disabled:opacity-30" disabled="">
-<span class="material-symbols-outlined">chevron_left</span>
-</button>
-<button class="w-8 h-8 rounded bg-primary text-on-primary font-bold text-label-md">1</button>
-<button class="w-8 h-8 rounded hover:bg-surface-container text-label-md transition-colors">2</button>
-<button class="w-8 h-8 rounded hover:bg-surface-container text-label-md transition-colors">3</button>
-<button class="p-1 rounded hover:bg-surface-container transition-colors">
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-</main>
-<script>
-        // Simple Interaction: Row highlight and selection
-        document.querySelectorAll('tbody tr').forEach(row => {
-            row.addEventListener('click', () => {
-                // Remove active state from others
-                document.querySelectorAll('tbody tr').forEach(r => r.classList.remove('ring-1', 'ring-primary', 'z-10', 'relative'));
-                // Add to current
-                row.classList.add('ring-1', 'ring-primary', 'z-10', 'relative');
-            });
-        });
+            body {
+                background-color: #fff8f5;
+                color: #1e1b19;
+                overflow-x: hidden;
+            }
+            .stat-card-border {
+                border-left: 4px solid #C49A2B;
+            }
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 6px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: #f4ece8;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: #dcc0c1;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
 
-        // Filter functionality simulation
-        const filterButtons = document.querySelectorAll('.flex.gap-2 button');
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterButtons.forEach(b => {
-                    b.classList.remove('bg-primary', 'text-on-primary');
-                    b.classList.add('bg-surface-container', 'text-on-surface-variant');
+    <body class="font-body-md text-body-md flex min-h-screen">
+        {% include 'components/sidebar.html' %}
+
+        <!-- Main Content Area -->
+        <main class="flex-1 min-h-screen">
+            <!-- Summary Strip -->
+            <div class="px-xl py-lg">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-lg">
+                    <!-- Total Expenses -->
+                    <div class="bg-card p-lg rounded-xl shadow-sm stat-card-border flex flex-col justify-between">
+                        <span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Total Expenses</span>
+                        <div class="flex items-baseline gap-2 mt-xs">
+                            <span class="text-primary font-data-display text-[28px]">GH₵ {{ total_expenses|floatformat:2 }}</span>
+                        </div>
+                        <p class="text-[11px] text-on-surface-variant mt-2">{{ total_count }} record{{ total_count|pluralize }}</p>
+                    </div>
+
+                    <!-- Pending -->
+                    <div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-warning flex flex-col justify-between">
+                        <span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Pending Approval</span>
+                        <div class="flex items-baseline gap-2 mt-xs">
+                            <span class="text-warning font-data-display text-[28px]">GH₵ {{ pending_total|floatformat:2 }}</span>
+                        </div>
+                        <p class="text-[11px] text-on-surface-variant mt-2">{{ pending_count }} Active request{{ pending_count|pluralize }}</p>
+                    </div>
+
+                    <!-- Paid / Approved -->
+                    <div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-primary flex flex-col justify-between">
+                        <span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Total Paid</span>
+                        <div class="flex items-baseline gap-2 mt-xs">
+                            <span class="text-primary font-data-display text-[28px]">GH₵ {{ paid_total|floatformat:2 }}</span>
+                        </div>
+                        <p class="text-[11px] text-on-surface-variant mt-2">Disbursed successfully</p>
+                    </div>
+
+                    <!-- Rejected -->
+                    <div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-outline flex flex-col justify-between">
+                        <span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Rejected</span>
+                        <div class="flex items-baseline gap-2 mt-xs">
+                            <span class="text-outline font-data-display text-[28px]">GH₵ {{ rejected_total|floatformat:2 }}</span>
+                        </div>
+                        <p class="text-[11px] text-on-surface-variant mt-2">Voided transactions</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="px-xl mb-lg">
+                <div class="bg-card p-md rounded-xl shadow-sm flex flex-wrap items-center justify-between gap-md">
+                    <div class="flex items-center gap-md flex-wrap">
+                        <span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[18px]">filter_list</span>
+                            Status:
+                        </span>
+                        <div class="flex gap-2 flex-wrap">
+                            <a href="?status=ALL{% if q %}&q={{ q }}{% endif %}{% if category_filter != 'ALL' %}&category={{ category_filter }}{% endif %}" class="px-4 py-1.5 rounded-full text-label-md font-medium shadow-sm {% if status_filter == 'ALL' %}bg-primary text-on-primary{% else %}bg-surface-container text-on-surface-variant hover:bg-surface-variant{% endif %}">All</a>
+                            {% for code, label in status_choices %}
+                                <a href="?status={{ code }}{% if q %}&q={{ q }}{% endif %}{% if category_filter != 'ALL' %}&category={{ category_filter }}{% endif %}" class="px-4 py-1.5 rounded-full text-label-md font-medium {% if status_filter == code %}bg-primary text-on-primary shadow-sm{% else %}bg-surface-container text-on-surface-variant hover:bg-surface-variant{% endif %}">{{ label }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-base flex-wrap">
+                        <form method="get" class="flex items-center gap-2">
+                            {% if status_filter != 'ALL' %}<input type="hidden" name="status" value="{{ status_filter }}" />{% endif %}
+                            <input type="text" name="q" value="{{ q }}" placeholder="Search payee, purpose..." class="px-3 py-2 border border-outline-variant rounded-lg bg-surface text-sm focus:ring-1 focus:ring-primary outline-none" />
+                            <button type="submit" class="p-2 bg-primary text-on-primary rounded-lg hover:bg-primary-light">
+                                <span class="material-symbols-outlined text-[18px]">search</span>
+                            </button>
+                        </form>
+                        <a href="{% url 'finance:record_expense' %}" class="bg-primary text-on-primary flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-primary-light transition-colors text-label-md font-medium shadow-md">
+                            <span class="material-symbols-outlined text-[18px]">add</span>
+                            New Expense
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ledger Table -->
+            <div class="px-xl pb-xl">
+                <div class="bg-card rounded-xl shadow-sm overflow-hidden border border-border">
+                    <div class="overflow-x-auto custom-scrollbar">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-surface-container-low border-b border-border">
+                                    <th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Ref No</th>
+                                    <th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Date</th>
+                                    <th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Category</th>
+                                    <th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Payee</th>
+                                    <th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Purpose</th>
+                                    <th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Amount</th>
+                                    <th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-center">Status</th>
+                                    <th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Requested By</th>
+                                    <th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Approved By</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-border">
+                                {% for exp in expenses %}
+                                    <tr class="hover:bg-surface-container-lowest transition-colors {% if exp.status == 'REJECTED' %}bg-error/5{% endif %}">
+                                        <td class="px-lg py-4 font-data-label text-data-label text-on-surface">EXP-{{ exp.date|date:"Y" }}-{{ exp.id|stringformat:"04d" }}</td>
+                                        <td class="px-lg py-4 text-body-md">{{ exp.date|date:"M d, Y" }}</td>
+                                        <td class="px-lg py-4">
+                                            <span class="text-[11px] font-bold px-2 py-0.5 rounded uppercase
+                                                {% if exp.category == 'MAINTENANCE' or exp.category == 'REPAIRS' %}bg-primary-muted text-primary
+                                                {% elif exp.category == 'WELFARE' %}bg-gold-muted text-secondary
+                                                {% elif exp.category == 'UTILITIES' %}bg-gold-muted text-secondary
+                                                {% elif exp.category == 'STATUTORY' %}bg-surface-container-highest text-on-surface-variant
+                                                {% else %}bg-surface-container text-on-surface-variant{% endif %}">
+                                                {{ exp.get_category_display }}
+                                            </span>
+                                        </td>
+                                        <td class="px-lg py-4 text-body-md truncate max-w-[160px]">{{ exp.title }}</td>
+                                        <td class="px-lg py-4 text-body-md truncate max-w-[220px] {% if exp.status == 'REJECTED' %}line-through opacity-60{% endif %}">{{ exp.description|default:"—"|truncatechars:60 }}</td>
+                                        <td class="px-lg py-4 text-right font-data-label text-primary">{{ exp.amount|floatformat:2 }}</td>
+                                        <td class="px-lg py-4 text-center">
+                                            {% if exp.status == 'PENDING' %}
+                                                <span class="bg-warning/10 text-warning text-[11px] font-bold px-3 py-1 rounded-full uppercase">Pending</span>
+                                            {% elif exp.status == 'APPROVED' %}
+                                                <span class="bg-success/10 text-success text-[11px] font-bold px-3 py-1 rounded-full uppercase">Approved</span>
+                                            {% elif exp.status == 'PAID' %}
+                                                <span class="bg-info/10 text-info text-[11px] font-bold px-3 py-1 rounded-full uppercase">Paid</span>
+                                            {% elif exp.status == 'REJECTED' %}
+                                                <span class="bg-error/10 text-error text-[11px] font-bold px-3 py-1 rounded-full uppercase">Rejected</span>
+                                            {% else %}
+                                                <span class="bg-surface-container text-on-surface-variant text-[11px] font-bold px-3 py-1 rounded-full uppercase">{{ exp.get_status_display }}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="px-lg py-4 text-body-md">{{ exp.recorded_by.get_full_name|default:exp.recorded_by.username|default:"System" }}</td>
+                                        <td class="px-lg py-4 text-body-md {% if exp.status == 'PENDING' %}text-on-surface-variant italic{% elif exp.status == 'REJECTED' %}text-error{% endif %}">
+                                            {% if exp.approved_by %}
+                                                {{ exp.approved_by.get_full_name|default:exp.approved_by.username }}
+                                            {% elif exp.status == 'PENDING' %}
+                                                Pending...
+                                            {% elif exp.status == 'REJECTED' %}
+                                                Rejected
+                                            {% else %}
+                                                —
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="9" class="px-lg py-12 text-center text-on-surface-variant">
+                                            <div class="flex flex-col items-center gap-2">
+                                                <span class="material-symbols-outlined text-4xl opacity-30">receipt_long</span>
+                                                <p>No expenses found for this filter.</p>
+                                                <a href="{% url 'finance:record_expense' %}" class="text-primary font-bold hover:underline">Record an expense</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="px-lg py-4 bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <span class="text-label-md text-on-surface-variant">
+                            {% if paginator.count %}
+                                Showing {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ paginator.count }} entries
+                            {% else %}
+                                No entries
+                            {% endif %}
+                        </span>
+                        {% if paginator.num_pages > 1 %}
+                            <div class="flex items-center gap-1">
+                                {% if page_obj.has_previous %}
+                                    <a href="?page={{ page_obj.previous_page_number }}{% if querystring %}&{{ querystring }}{% endif %}" class="p-1 rounded hover:bg-surface-container transition-colors">
+                                        <span class="material-symbols-outlined">chevron_left</span>
+                                    </a>
+                                {% else %}
+                                    <span class="p-1 rounded opacity-30"><span class="material-symbols-outlined">chevron_left</span></span>
+                                {% endif %}
+
+                                {% for num in paginator.page_range %}
+                                    {% if num == page_obj.number %}
+                                        <span class="w-8 h-8 rounded bg-primary text-on-primary font-bold text-label-md flex items-center justify-center">{{ num }}</span>
+                                    {% elif num <= 3 or num > paginator.num_pages|add:"-3" or num == page_obj.number|add:"-1" or num == page_obj.number|add:"1" %}
+                                        <a href="?page={{ num }}{% if querystring %}&{{ querystring }}{% endif %}" class="w-8 h-8 rounded hover:bg-surface-container text-label-md flex items-center justify-center">{{ num }}</a>
+                                    {% elif num == 4 and page_obj.number > 5 %}
+                                        <span class="px-1">…</span>
+                                    {% elif num == paginator.num_pages|add:"-3" and page_obj.number < paginator.num_pages|add:"-4" %}
+                                        <span class="px-1">…</span>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if page_obj.has_next %}
+                                    <a href="?page={{ page_obj.next_page_number }}{% if querystring %}&{{ querystring }}{% endif %}" class="p-1 rounded hover:bg-surface-container transition-colors">
+                                        <span class="material-symbols-outlined">chevron_right</span>
+                                    </a>
+                                {% else %}
+                                    <span class="p-1 rounded opacity-30"><span class="material-symbols-outlined">chevron_right</span></span>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            // Row highlight
+            document.querySelectorAll("tbody tr").forEach((row) => {
+                row.addEventListener("click", () => {
+                    document.querySelectorAll("tbody tr").forEach((r) => r.classList.remove("ring-1", "ring-primary", "z-10", "relative"));
+                    row.classList.add("ring-1", "ring-primary", "z-10", "relative");
                 });
-                btn.classList.remove('bg-surface-container', 'text-on-surface-variant');
-                btn.classList.add('bg-primary', 'text-on-primary');
             });
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>

@@ -537,10 +537,71 @@ def record_expense_view(request):
 
 @login_required(login_url='accounts:login')
 def expense_ledger_view(request):
-    expenses = ExpenseLedger.objects.select_related('recorded_by', 'approved_by').all().order_by('-date')
+    qs = ExpenseLedger.objects.select_related('recorded_by', 'approved_by').all()
+
+    q = request.GET.get('q', '').strip()
+    status_filter = request.GET.get('status', 'ALL').strip().upper()
+    category_filter = request.GET.get('category', 'ALL').strip().upper()
+
+    if q:
+        qs = qs.filter(
+            Q(title__icontains=q)
+            | Q(category__icontains=q)
+            | Q(description__icontains=q)
+            | Q(recorded_by__username__icontains=q)
+            | Q(recorded_by__first_name__icontains=q)
+        )
+    if status_filter and status_filter != 'ALL':
+        qs = qs.filter(status=status_filter)
+    if category_filter and category_filter != 'ALL':
+        qs = qs.filter(category=category_filter)
+
+    qs = qs.order_by('-date', '-id')
+
+    # Summary strip (on filtered qs, but also global totals for context)
+    agg_all = qs.aggregate(total=Sum('amount'), cnt=Count('id'))
+    total_expenses = agg_all['total'] or Decimal('0.00')
+
+    # breakdown by status
+    from django.db.models import Sum as _Sum
+    status_agg = {}
+    for code, label in ExpenseLedger.STATUS_CHOICES:
+        s = qs.filter(status=code).aggregate(total=_Sum('amount'))['total'] or Decimal('0.00')
+        c = qs.filter(status=code).count()
+        status_agg[code] = {'total': s, 'count': c}
+
+    pending_total = status_agg.get('PENDING', {}).get('total', Decimal('0.00'))
+    pending_count = status_agg.get('PENDING', {}).get('count', 0)
+    # Paid = APPROVED + PAID
+    paid_total = (status_agg.get('APPROVED', {}).get('total', Decimal('0.00')) + status_agg.get('PAID', {}).get('total', Decimal('0.00')))
+    rejected_total = status_agg.get('REJECTED', {}).get('total', Decimal('0.00'))
+
+    # Pagination
+    paginator = Paginator(qs, 25)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    query_params = request.GET.copy()
+    query_params.pop('page', None)
+    querystring = query_params.urlencode()
+
     return render(request, "finance/expense/expence_ledger.html", {
         "active_nav": "finance",
-        "expenses": expenses
+        "expenses": page_obj.object_list,
+        "page_obj": page_obj,
+        "paginator": paginator,
+        "total_expenses": total_expenses,
+        "pending_total": pending_total,
+        "pending_count": pending_count,
+        "paid_total": paid_total,
+        "rejected_total": rejected_total,
+        "status_filter": status_filter,
+        "category_filter": category_filter,
+        "q": q,
+        "querystring": querystring,
+        "category_choices": EXPENSE_CATEGORY_CHOICES,
+        "status_choices": ExpenseLedger.STATUS_CHOICES,
+        "total_count": paginator.count,
     })
 
 @role_required(allowed_roles=['ADMIN', 'TREASURER'])
