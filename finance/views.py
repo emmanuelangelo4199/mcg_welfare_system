@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from decimal import Decimal
+from django.core.paginator import Paginator
+from django.db.models import Sum, Count, Max, Q
 from django.utils import timezone
-from django.db.models import Sum
 from core.decorators import role_required
 from .models import EXPENSE_CATEGORY_CHOICES, IncomeLedger, ExpenseLedger, Budget
 
@@ -47,10 +49,79 @@ def record_income_view(request):
 
 @login_required(login_url='accounts:login')
 def income_ledger_view(request):
-    incomes = IncomeLedger.objects.select_related('recorded_by').all().order_by('-date')
+    # Base queryset
+    qs = IncomeLedger.objects.select_related('recorded_by').all()
+
+    # --- Filters from GET ---
+    q = (request.GET.get('q') or '').strip()
+    category = (request.GET.get('category') or '').strip()
+    date_from = (request.GET.get('date_from') or '').strip()
+    date_to = (request.GET.get('date_to') or '').strip()
+
+    # Text search: source / remarks / category / officer
+    if q:
+        qs = qs.filter(
+            Q(remarks__icontains=q)
+            | Q(category__icontains=q)
+            | Q(recorded_by__username__icontains=q)
+            | Q(recorded_by__first_name__icontains=q)
+            | Q(recorded_by__last_name__icontains=q)
+        )
+
+    # Category filter — only apply if it is a valid choice
+    valid_categories = {k for k, _ in IncomeLedger.CATEGORY_CHOICES}
+    if category and category != 'ALL' and category in valid_categories:
+        qs = qs.filter(category=category)
+
+    # Date range filter (inclusive)
+    if date_from:
+        try:
+            qs = qs.filter(date__gte=date_from)
+        except Exception:
+            pass
+    if date_to:
+        try:
+            qs = qs.filter(date__lte=date_to)
+        except Exception:
+            pass
+
+    qs = qs.order_by('-date', '-created_at')
+
+    # --- Summary strip (filtered, before pagination) ---
+    aggregates = qs.aggregate(total=Sum('amount'), largest=Max('amount'), count=Count('id'))
+    total_income = aggregates['total'] or Decimal('0.00')
+    largest_deposit = aggregates['largest'] or Decimal('0.00')
+    record_count = aggregates['count'] or 0
+    average_transaction = (total_income / record_count) if record_count else Decimal('0.00')
+
+    # --- Pagination (25 per page) ---
+    paginator = Paginator(qs, 25)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    # Page subtotal (sum of amounts on current page)
+    page_subtotal = sum((row.amount for row in page_obj.object_list), Decimal('0.00'))
+
+    # Preserve querystring without `page` for pagination links
+    querydict = request.GET.copy()
+    querydict.pop('page', None)
+    querystring = querydict.urlencode()
+
     return render(request, "finance/income/income_ledger.html", {
         "active_nav": "finance",
-        "incomes": incomes
+        "page_obj": page_obj,
+        "incomes": page_obj.object_list,
+        "total_income": total_income,
+        "record_count": record_count,
+        "average_transaction": average_transaction,
+        "largest_deposit": largest_deposit,
+        "page_subtotal": page_subtotal,
+        "category_choices": IncomeLedger.CATEGORY_CHOICES,
+        "selected_category": category or 'ALL',
+        "q": q,
+        "date_from": date_from,
+        "date_to": date_to,
+        "querystring": querystring,
     })
 
 @role_required(allowed_roles=['ADMIN', 'TREASURER'])

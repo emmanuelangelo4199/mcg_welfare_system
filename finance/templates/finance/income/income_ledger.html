@@ -124,6 +124,7 @@
     </style>
 </head>
 <body class="bg-surface font-body-md text-on-surface flex min-h-screen">
+{% include 'components/toast_messages.html' %}
 <!-- Side Navigation Bar -->
 {% include 'components/sidebar.html' %}
 <!-- Main Content Area -->
@@ -142,95 +143,111 @@
 <span class="material-symbols-outlined text-lg ml-2">expand_more</span>
 </button>
 <!-- Dropdown Menu (Hidden by default) -->
-<div class="absolute right-0 top-full mt-2 w-48 bg-card border border-border shadow-xl rounded-lg overflow-hidden hidden group-hover:block z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-<a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-colors border-b border-border" href="#">
+<div class="absolute right-0 top-full mt-2 w-56 bg-card border border-border shadow-xl rounded-lg overflow-hidden hidden group-hover:block z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+<a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-colors border-b border-border" href="{% url 'reports:export_finance_csv' %}">
 <span class="material-symbols-outlined text-danger">picture_as_pdf</span>
-<span class="font-body-md">Export as PDF</span>
+<span class="font-body-md">Export as CSV</span>
+<span class="ml-auto text-[10px] text-on-surface-variant">.csv</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-colors border-b border-border" href="#">
+<a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-colors border-b border-border" href="{% url 'reports:export_finance_csv' %}">
 <span class="material-symbols-outlined text-success">table_view</span>
 <span class="font-body-md">Export as Excel</span>
+<span class="ml-auto text-[10px] text-on-surface-variant">.csv</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-colors" href="#">
+<a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-colors" href="{% url 'reports:export_finance_csv' %}">
 <span class="material-symbols-outlined text-info">csv</span>
 <span class="font-body-md">Export as CSV</span>
+<span class="ml-auto text-[10px] text-on-surface-variant">.csv</span>
 </a>
+<p class="px-4 py-2 bg-gold-muted/40 text-[11px] text-on-secondary-container border-t border-border">PDF export coming soon</p>
 </div>
 </div>
 </div>
-<!-- Summary Strip (Bento Style) -->
+<!-- Summary Strip (Bento Style) — DYNAMIC -->
 <div class="grid grid-cols-4 gap-lg mb-lg">
 <div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary flex flex-col justify-between">
 <p class="text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Total Ledger Income</p>
 <div class="flex items-baseline gap-2">
-<span class="text-success font-data-display text-[28px]">GH₵ 45,670.00</span>
+<span class="text-success font-data-display text-[28px]">GH₵ {{ total_income|floatformat:2 }}</span>
 </div>
+<p class="text-[11px] text-on-surface-variant mt-1">Filtered total {% if q or selected_category != 'ALL' or date_from or date_to %}• filtered{% else %}• all time{% endif %}</p>
 </div>
 <div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-primary/20">
 <p class="text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Record Count</p>
-<p class="font-data-display text-[28px] text-on-surface">1,428</p>
+<p class="font-data-display text-[28px] text-on-surface">{{ record_count }}</p>
+<p class="text-[11px] text-on-surface-variant mt-1">{% if page_obj.paginator.count != record_count %}{{ page_obj.paginator.count }} total{% else %}total entries{% endif %}</p>
 </div>
 <div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-primary/20">
 <p class="text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Average Transaction</p>
-<p class="font-data-display text-[28px] text-on-surface">GH₵ 32.50</p>
+<p class="font-data-display text-[28px] text-on-surface">GH₵ {{ average_transaction|floatformat:2 }}</p>
+<p class="text-[11px] text-on-surface-variant mt-1">per record</p>
 </div>
 <div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-primary/20">
 <p class="text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Largest Deposit</p>
-<p class="font-data-display text-[28px] text-on-surface">GH₵ 5,200.00</p>
+<p class="font-data-display text-[28px] text-on-surface">GH₵ {{ largest_deposit|floatformat:2 }}</p>
+<p class="text-[11px] text-on-surface-variant mt-1">max single entry</p>
 </div>
 </div>
-<!-- Two-Row Filter Bar -->
-<div class="bg-surface-container-low p-md rounded-xl border border-border space-y-md mb-lg">
+<!-- Two-Row Filter Bar — WIRED TO GET -->
+<form method="GET" action="" id="ledgerFilters" class="bg-surface-container-low p-md rounded-xl border border-border space-y-md mb-lg">
 <!-- Row 1: Search & Date -->
 <div class="grid grid-cols-12 gap-md">
 <div class="col-span-5 relative">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">filter_alt</span>
-<input class="w-full pl-10 pr-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-secondary outline-none" placeholder="Filter by Source or Recording Officer..." type="text"/>
+<input name="q" value="{{ q }}" class="w-full pl-10 pr-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-secondary outline-none" placeholder="Filter by Source or Recording Officer..." type="text"/>
 </div>
 <div class="col-span-3">
-<input class="w-full px-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-secondary outline-none" type="date"/>
+<input name="date_from" value="{{ date_from }}" class="w-full px-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-secondary outline-none" type="date"/>
 </div>
 <div class="col-span-3">
-<input class="w-full px-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-secondary outline-none" type="date"/>
+<input name="date_to" value="{{ date_to }}" class="w-full px-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-secondary outline-none" type="date"/>
 </div>
 <div class="col-span-1">
-<button class="w-full h-full flex items-center justify-center bg-surface-container rounded-lg border border-border hover:bg-surface-container-high transition-colors">
-<span class="material-symbols-outlined">refresh</span>
+<button type="submit" class="w-full h-full flex items-center justify-center bg-primary text-on-primary rounded-lg border border-primary hover:bg-primary-light transition-colors" title="Apply filters">
+<span class="material-symbols-outlined">search</span>
 </button>
 </div>
 </div>
 <!-- Row 2: Selectors -->
-<div class="grid grid-cols-12 gap-md">
+<div class="grid grid-cols-12 gap-md items-center">
 <div class="col-span-3">
-<select class="w-full px-4 py-2 border border-border rounded-lg bg-card outline-none">
-<option>All Categories</option>
-<option>Tithes</option>
-<option>Offertory</option>
-<option>Harvest</option>
-<option>Welfare Fund</option>
+<select name="category" class="w-full px-4 py-2 border border-border rounded-lg bg-card outline-none">
+<option value="ALL" {% if selected_category == 'ALL' %}selected{% endif %}>All Categories</option>
+{% for value, label in category_choices %}
+<option value="{{ value }}" {% if selected_category == value %}selected{% endif %}>{{ label }}</option>
+{% endfor %}
 </select>
 </div>
 <div class="col-span-3">
-<select class="w-full px-4 py-2 border border-border rounded-lg bg-card outline-none">
-<option>Payment Method</option>
-<option>Cash</option>
-<option>Momo</option>
-<option>Bank Transfer</option>
+<select disabled class="w-full px-4 py-2 border border-border rounded-lg bg-surface-container text-on-surface-variant outline-none cursor-not-allowed" title="Payment method is not stored on IncomeLedger yet">
+<option>Payment Method — all</option>
 </select>
 </div>
 <div class="col-span-3">
-<select class="w-full px-4 py-2 border border-border rounded-lg bg-card outline-none">
-<option>Status</option>
-<option>Verified</option>
-<option>Pending</option>
-<option>Reversed</option>
+<select disabled class="w-full px-4 py-2 border border-border rounded-lg bg-surface-container text-on-surface-variant outline-none cursor-not-allowed" title="Income has no status workflow">
+<option>Status — Verified</option>
 </select>
 </div>
-<div class="col-span-3">
-<button class="w-full h-full text-secondary font-bold hover:underline transition-all">Clear All Filters</button>
+<div class="col-span-3 flex gap-2">
+<a href="{% url 'finance:income_ledger' %}" class="flex-1 flex items-center justify-center px-4 py-2 text-secondary font-bold hover:underline transition-all border border-transparent hover:border-secondary/20 rounded-lg">
+Clear All Filters
+</a>
+<button type="submit" class="flex-1 bg-secondary-container text-on-secondary-container px-4 py-2 rounded-lg font-bold hover:bg-secondary-fixed transition-colors">
+Apply
+</button>
 </div>
 </div>
+{% if q or selected_category != 'ALL' or date_from or date_to %}
+<div class="flex flex-wrap items-center gap-2 pt-2 border-t border-border/50">
+<span class="text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">Active filters:</span>
+{% if q %}<span class="px-2 py-1 bg-primary-muted text-primary text-xs rounded-full">Search: “{{ q }}”</span>{% endif %}
+{% if selected_category != 'ALL' %}<span class="px-2 py-1 bg-gold-muted text-secondary text-xs rounded-full">{{ selected_category }}</span>{% endif %}
+{% if date_from %}<span class="px-2 py-1 bg-surface-container text-on-surface-variant text-xs rounded-full">From {{ date_from }}</span>{% endif %}
+{% if date_to %}<span class="px-2 py-1 bg-surface-container text-on-surface-variant text-xs rounded-full">To {{ date_to }}</span>{% endif %}
+<span class="text-[11px] text-on-surface-variant">• {{ record_count }} matched</span>
 </div>
+{% endif %}
+</form>
 <!-- Ledger Table Container -->
 <div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden flex flex-col">
 <div class="ledger-table-container scrollbar-hide">
@@ -248,72 +265,89 @@
 </tr>
 </thead>
 <tbody class="divide-y divide-border">
-{% for inc in incomes %}
+{% for inc in page_obj %}
 <tr class="hover:bg-surface-container-low transition-colors">
-<td class="p-md font-data-label text-secondary">#INC-2026-00{{ inc.id }}</td>
+<td class="p-md font-data-label text-secondary">#INC-{{ inc.date|date:"Y" }}-{{ inc.id|stringformat:"05d" }}</td>
 <td class="p-md text-on-surface-variant">{{ inc.date|date:"d M Y" }}</td>
-<td class="p-md font-medium">{{ inc.remarks|default:inc.get_category_display }}</td>
+<td class="p-md font-medium max-w-[220px] truncate" title="{{ inc.remarks }}">{{ inc.remarks|default:inc.get_category_display }}</td>
 <td class="p-md">
 <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">{{ inc.get_category_display }}</span>
 </td>
-<td class="p-md text-right text-success font-data-display">GHS {{ inc.amount }}</td>
+<td class="p-md text-right text-success font-data-display">GHS {{ inc.amount|floatformat:2 }}</td>
 <td class="p-md text-on-surface-variant">General</td>
-<td class="p-md text-on-surface-variant">{{ inc.recorded_by.first_name|default:inc.recorded_by.username|default:"System" }}</td>
+<td class="p-md text-on-surface-variant">{{ inc.recorded_by.get_full_name|default:inc.recorded_by.username|default:"System" }}</td>
 <td class="p-md">
 <span class="text-xs text-success flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span> Recorded</span>
 </td>
 </tr>
 {% empty %}
 <tr>
-<td colspan="8" class="p-md text-center text-on-surface-variant">No income ledger entries found.</td>
+<td colspan="8" class="p-xl text-center">
+<div class="flex flex-col items-center gap-3 py-8">
+<span class="material-symbols-outlined text-4xl text-outline-variant">search_off</span>
+<p class="font-body-md text-on-surface-variant">No income ledger entries found{% if q or selected_category != 'ALL' or date_from or date_to %} for the current filters{% endif %}.</p>
+{% if q or selected_category != 'ALL' or date_from or date_to %}
+<a href="{% url 'finance:income_ledger' %}" class="mt-2 inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg text-sm font-bold hover:bg-primary-light">Clear filters</a>
+{% else %}
+<a href="{% url 'finance:record_income' %}" class="mt-2 inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg text-sm font-bold hover:bg-primary-light"><span class="material-symbols-outlined text-sm">add</span> Record first income</a>
+{% endif %}
+</div>
+</td>
 </tr>
 {% endfor %}
 </tbody>
-<td class="p-md text-right text-success font-data-display">150.00</td>
-<td class="p-md text-on-surface-variant">Cash</td>
-<td class="p-md text-on-surface-variant">S. Appiah</td>
-<td class="p-md">
-<span class="text-xs text-success flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span> K. Mensah</span>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="p-md font-data-label text-secondary">#INC-240906</td>
-<td class="p-md text-on-surface-variant">05 Oct 2023</td>
-<td class="p-md font-medium">Building Fund Harvest</td>
-<td class="p-md">
-<span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase gold-pill">Harvest</span>
-</td>
-<td class="p-md text-right text-success font-data-display">12,400.00</td>
-<td class="p-md text-on-surface-variant">Bank Transfer</td>
-<td class="p-md text-on-surface-variant">K. Mensah</td>
-<td class="p-md">
-<span class="text-xs text-success flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span> Admin</span>
-</td>
-</tr>
-</tbody>
 </table>
 </div>
-<!-- Sticky Bottom Row -->
+<!-- Sticky Bottom Row — DYNAMIC -->
 <div class="bg-surface-container-high border-t-2 border-primary/20 p-md flex justify-between items-center z-20">
-<div class="flex gap-lg">
+<div class="flex gap-lg items-center">
 <span class="text-label-sm font-bold uppercase text-on-surface-variant">Page Totals:</span>
-<span class="text-on-surface-variant font-body-md">Rows: 1 - 25 of 1,428</span>
+{% if page_obj.paginator.count %}
+<span class="text-on-surface-variant font-body-md">Rows: {{ page_obj.start_index }} – {{ page_obj.end_index }} of {{ page_obj.paginator.count }}</span>
+{% if querystring %}
+<span class="hidden sm:inline text-[11px] px-2 py-0.5 bg-gold-muted text-secondary rounded-full">filtered</span>
+{% endif %}
+{% else %}
+<span class="text-on-surface-variant font-body-md">No rows</span>
+{% endif %}
 </div>
 <div class="flex items-center gap-xl">
 <div class="flex gap-lg">
 <div class="text-right">
-<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Subtotal (Verified)</p>
-<p class="font-data-display text-primary text-lg">GH₵ 21,250.50</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Subtotal (this page)</p>
+<p class="font-data-display text-primary text-lg">GH₵ {{ page_subtotal|floatformat:2 }}</p>
 </div>
+{% if page_obj.paginator.count %}
+<div class="text-right hidden sm:block border-l border-border pl-4">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Filtered total</p>
+<p class="font-data-display text-on-surface-variant text-lg">GH₵ {{ total_income|floatformat:2 }}</p>
 </div>
-<div class="flex gap-2">
-<button class="p-2 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
-<button class="px-3 py-1 rounded bg-primary text-on-primary font-bold">1</button>
-<button class="px-3 py-1 rounded hover:bg-surface-container transition-colors">2</button>
-<button class="px-3 py-1 rounded hover:bg-surface-container transition-colors">3</button>
-<span class="px-2">...</span>
-<button class="px-3 py-1 rounded hover:bg-surface-container transition-colors">58</button>
-<button class="p-2 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+{% endif %}
+</div>
+<div class="flex items-center gap-1">
+{% if page_obj.has_previous %}
+<a href="?{% if querystring %}{{ querystring }}&{% endif %}page={{ page_obj.previous_page_number }}" class="p-2 rounded hover:bg-surface-container transition-colors border border-border bg-card"><span class="material-symbols-outlined text-sm">chevron_left</span></a>
+{% else %}
+<span class="p-2 rounded bg-surface-container text-outline-variant border border-border cursor-not-allowed"><span class="material-symbols-outlined text-sm">chevron_left</span></span>
+{% endif %}
+
+{% for num in page_obj.paginator.page_range %}
+  {% if page_obj.paginator.num_pages <= 7 %}
+    <a href="?{% if querystring %}{{ querystring }}&{% endif %}page={{ num }}" class="px-3 py-1.5 rounded text-sm {% if page_obj.number == num %}bg-primary text-on-primary font-bold shadow{% else %}hover:bg-surface-container transition-colors border border-border bg-card{% endif %}">{{ num }}</a>
+  {% else %}
+    {% if num == 1 or num == page_obj.paginator.num_pages or num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
+      <a href="?{% if querystring %}{{ querystring }}&{% endif %}page={{ num }}" class="px-3 py-1.5 rounded text-sm {% if page_obj.number == num %}bg-primary text-on-primary font-bold shadow{% else %}hover:bg-surface-container transition-colors border border-border bg-card{% endif %}">{{ num }}</a>
+    {% elif num == page_obj.number|add:"-3" or num == page_obj.number|add:"3" %}
+      <span class="px-1 text-on-surface-variant">…</span>
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% if page_obj.has_next %}
+<a href="?{% if querystring %}{{ querystring }}&{% endif %}page={{ page_obj.next_page_number }}" class="p-2 rounded hover:bg-surface-container transition-colors border border-border bg-card"><span class="material-symbols-outlined text-sm">chevron_right</span></a>
+{% else %}
+<span class="p-2 rounded bg-surface-container text-outline-variant border border-border cursor-not-allowed"><span class="material-symbols-outlined text-sm">chevron_right</span></span>
+{% endif %}
 </div>
 </div>
 </div>
@@ -321,11 +355,24 @@
 </section>
 </main>
 <script>
-        // Micro-interaction for Export Button (Optional manual toggle if CSS hover is too brittle)
+        // Export dropdown: keep hover for desktop, add click toggle for mobile
         const exportBtn = document.getElementById('exportDropdown');
         if (exportBtn) {
-            exportBtn.addEventListener('click', (e) => {
-                // Potential for JS menu handling if needed for mobile or complex states
+            const menu = exportBtn.querySelector('div.absolute');
+            let open = false;
+            exportBtn.querySelector('button').addEventListener('click', (e) => {
+                e.preventDefault();
+                open = !open;
+                menu.classList.toggle('hidden', !open);
+                menu.classList.toggle('block', open);
+                if (open) menu.classList.remove('group-hover:block');
+            });
+            document.addEventListener('click', (e) => {
+                if (!exportBtn.contains(e.target) && open) {
+                    open = false;
+                    menu.classList.add('hidden');
+                    menu.classList.remove('block');
+                }
             });
         }
         
@@ -337,7 +384,18 @@
             row.addEventListener('mouseup', function() {
                 this.classList.remove('scale-[0.995]');
             });
+            row.addEventListener('mouseleave', function() {
+                this.classList.remove('scale-[0.995]');
+            });
         });
+
+        // Auto-submit category on change
+        const catSelect = document.querySelector('select[name="category"]');
+        if (catSelect) {
+            catSelect.addEventListener('change', () => {
+                document.getElementById('ledgerFilters').submit();
+            });
+        }
     </script>
 </body>
 </html>
