@@ -197,97 +197,169 @@
             <!-- Transfer Out Form -->
             <div aria-labelledby="tab-out" class="flex flex-col gap-lg flex-1" id="content-out" role="tabpanel">
 
-              <!-- Search Member -->
-              <div class="flex flex-col gap-sm">
-                <label class="font-label-md text-label-md text-on-surface" for="transfer-member-search">Select Member to Transfer</label>
-                <div class="relative">
-                  <span
-                    class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
-                    aria-hidden="true">search</span>
-                  <input
-                    class="w-full py-sm pl-[40px] pr-md bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
-                    id="transfer-member-search"
-                    name="member_search"
-                    placeholder="Search by name, ID, or class..."
-                    type="text"/>
-                </div>
-                <div class="p-md bg-surface rounded-lg border border-border flex items-center justify-between">
-                  <div class="flex items-center gap-md">
-                    <div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden flex items-center justify-center">
-                      <span class="material-symbols-outlined text-on-surface-variant text-[24px]" aria-hidden="true">person</span>
+              <form class="contents" method="get" role="search">
+                <!-- Search Member -->
+                <div class="flex flex-col gap-sm">
+                  <label class="font-label-md text-label-md text-on-surface" for="transfer-member-search">Select Member to Transfer</label>
+                  <div class="relative">
+                    <span
+                      class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                      aria-hidden="true">search</span>
+                    <input
+                      class="w-full py-sm pl-[40px] pr-md bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+                      id="transfer-member-search"
+                      name="q"
+                      placeholder="Search by name, ID, or class..."
+                      type="text"
+                      value="{{ query }}"/>
+                  </div>
+
+                  {% if search_results %}
+                  <!-- Search Results -->
+                  <ul class="overflow-hidden rounded-lg border border-border bg-card divide-y divide-border">
+                    {% for result in search_results %}
+                    <li>
+                      <a
+                        class="flex items-center justify-between gap-sm p-md transition-colors hover:bg-surface-container-low {% if member and member.id == result.id %}bg-primary-muted{% endif %}"
+                        href="?member={{ result.id }}#content-out">
+                        <span class="flex items-center gap-md min-w-0">
+                          <span class="w-9 h-9 rounded-full bg-surface-container text-on-surface flex items-center justify-center font-label-md text-label-md shrink-0" aria-hidden="true">
+                            {{ result.first_name|slice:":1" }}{{ result.last_name|slice:":1" }}
+                          </span>
+                          <span class="min-w-0">
+                            <span class="block font-label-md text-label-md text-on-surface truncate">{{ result.get_full_name }}</span>
+                            <span class="block font-data-label text-data-label text-on-surface-variant truncate">MCG-{{ result.id|stringformat:"04d" }} · {{ result.get_status_display }}</span>
+                          </span>
+                        </span>
+                        <span class="material-symbols-outlined text-on-surface-variant" aria-hidden="true">chevron_right</span>
+                      </a>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                  {% elif query %}
+                  <div class="flex items-center gap-sm bg-surface border border-border rounded-lg p-md text-on-surface-variant">
+                    <span class="material-symbols-outlined" aria-hidden="true">search_off</span>
+                    <p class="font-body-md text-body-md">No members matched &ldquo;{{ query }}&rdquo;.</p>
+                  </div>
+                  {% endif %}
+
+                  <div class="p-md bg-surface rounded-lg border border-border flex items-center justify-between">
+                    <div class="flex items-center gap-md">
+                      <div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden flex items-center justify-center">
+                        {% if member and member.passport_photo %}
+                        <img alt="{{ member.get_full_name }}" class="w-full h-full object-cover" src="{{ member.passport_photo.url }}"/>
+                        {% else %}
+                        <span class="material-symbols-outlined text-on-surface-variant text-[24px]" aria-hidden="true">person</span>
+                        {% endif %}
+                      </div>
+                      <div>
+                        {% if member %}
+                        <div class="font-label-md text-label-md text-on-surface">{{ member.get_full_name }}</div>
+                        <div class="font-body-md text-on-surface-variant text-sm">MCG-{{ member.id|stringformat:"04d" }} · {{ member.assigned_class.name|default:"No class" }}</div>
+                        {% else %}
+                        <div class="font-label-md text-label-md text-on-surface">Select a member above</div>
+                        <div class="font-body-md text-on-surface-variant text-sm">Waiting for selection...</div>
+                        {% endif %}
+                      </div>
                     </div>
-                    <div>
-                      <div class="font-label-md text-label-md text-on-surface">Select a member above</div>
-                      <div class="font-body-md text-on-surface-variant text-sm">Waiting for selection...</div>
-                    </div>
+                    {% if member %}
+                    <span class="inline-flex items-center px-sm py-[2px] rounded-full font-label-sm text-label-sm {% if member.status == 'TRANSFERRED' %}bg-danger/10 text-danger{% else %}bg-success/10 text-success{% endif %}">
+                      {{ member.get_status_display }}
+                    </span>
+                    {% endif %}
                   </div>
                 </div>
-              </div>
+              </form>
 
-              <!-- Destination Society & Circuit -->
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+              {% if errors.member %}
+              <div class="flex items-start gap-md bg-error-container border border-danger/30 rounded-lg p-md" role="alert">
+                <span class="material-symbols-outlined mt-[2px] text-danger shrink-0" aria-hidden="true">error</span>
+                <p class="font-body-md text-on-error-container">{{ errors.member }}</p>
+              </div>
+              {% endif %}
+
+              <form class="flex flex-col gap-lg flex-1" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="direction" value="OUT"/>
+                <input type="hidden" name="member" value="{{ member.id|default:'' }}"/>
+
+                <!-- Destination Society & Circuit -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+                  <div class="flex flex-col gap-sm">
+                    <label class="font-label-md text-label-md text-on-surface" for="destination-society">
+                      Destination Society <span class="text-danger" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      class="w-full px-md py-sm bg-surface-container-lowest border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none {% if errors.destination_society %}border-danger{% else %}border-border{% endif %}"
+                      id="destination-society"
+                      name="destination_society"
+                      placeholder="e.g. Wesley Society"
+                      type="text"
+                      value="{{ out_form.destination_society }}"/>
+                    {% if errors.destination_society %}<p class="font-label-md text-label-md text-danger">{{ errors.destination_society }}</p>{% endif %}
+                  </div>
+                  <div class="flex flex-col gap-sm">
+                    <label class="font-label-md text-label-md text-on-surface" for="destination-circuit">Circuit</label>
+                    <input
+                      class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+                      id="destination-circuit"
+                      name="destination_circuit"
+                      placeholder="e.g. Accra North Circuit"
+                      type="text"
+                      value="{{ out_form.destination_circuit }}"/>
+                  </div>
+                </div>
+
+                <!-- Reason -->
                 <div class="flex flex-col gap-sm">
-                  <label class="font-label-md text-label-md text-on-surface" for="destination-society">Destination Society</label>
-                  <input
-                    class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
-                    id="destination-society"
-                    name="destination_society"
-                    placeholder="e.g. Wesley Society"
-                    type="text"/>
+                  <label class="font-label-md text-label-md text-on-surface" for="transfer-reason">
+                    Reason for Transfer <span class="text-danger" aria-hidden="true">*</span>
+                  </label>
+                  <div class="relative">
+                    <select
+                      class="w-full px-md py-sm appearance-none bg-surface-container-lowest border rounded-lg font-body-md text-on-surface transition-all focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none {% if errors.reason %}border-danger{% else %}border-border{% endif %}"
+                      id="transfer-reason"
+                      name="reason">
+                      <option value="">Select a reason...</option>
+                      {% for value, label in reason_choices %}
+                      <option value="{{ value }}" {% if out_form.reason == value %}selected{% endif %}>{{ label }}</option>
+                      {% endfor %}
+                    </select>
+                    <span
+                      class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                      aria-hidden="true">expand_more</span>
+                  </div>
+                  {% if errors.reason %}<p class="font-label-md text-label-md text-danger">{{ errors.reason }}</p>{% endif %}
                 </div>
+
+                <!-- Effective Date -->
                 <div class="flex flex-col gap-sm">
-                  <label class="font-label-md text-label-md text-on-surface" for="destination-circuit">Circuit</label>
+                  <label class="font-label-md text-label-md text-on-surface" for="transfer-out-date">
+                    Effective Date <span class="text-danger" aria-hidden="true">*</span>
+                  </label>
                   <input
-                    class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
-                    id="destination-circuit"
-                    name="destination_circuit"
-                    placeholder="e.g. Accra North Circuit"
-                    type="text"/>
+                    class="w-full px-md py-sm bg-surface-container-lowest border rounded-lg font-body-md text-on-surface transition-all focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none {% if errors.effective_date %}border-danger{% else %}border-border{% endif %}"
+                    id="transfer-out-date"
+                    name="effective_date"
+                    type="date"
+                    value="{{ out_form.effective_date }}"/>
+                  {% if errors.effective_date %}<p class="font-label-md text-label-md text-danger">{{ errors.effective_date }}</p>{% endif %}
                 </div>
-              </div>
 
-              <!-- Reason -->
-              <div class="flex flex-col gap-sm">
-                <label class="font-label-md text-label-md text-on-surface" for="transfer-reason">Reason for Transfer</label>
-                <div class="relative">
-                  <select
-                    class="w-full px-md py-sm appearance-none bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
-                    id="transfer-reason"
-                    name="reason">
-                    <option value="RELOCATION">Relocation</option>
-                    <option value="MARRIAGE">Marriage</option>
-                    <option value="WORK_ASSIGNMENT">Work Assignment</option>
-                    <option value="OTHER">Other</option>
-                  </select>
-                  <span
-                    class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
-                    aria-hidden="true">expand_more</span>
+                <!-- Form Actions -->
+                <div class="pt-md flex justify-end gap-sm border-t border-border mt-auto">
+                  <a
+                    class="flex items-center px-md py-sm rounded-lg font-label-md text-label-md text-on-surface-variant bg-surface-container-lowest border border-outline transition-colors hover:bg-surface-container-low"
+                    href="{% url 'members:member_transfer' %}">
+                    Cancel
+                  </a>
+                  <button
+                    class="px-lg py-sm rounded-lg font-label-md text-label-md bg-primary text-on-primary shadow-sm transition-colors hover:bg-primary-light"
+                    type="submit">
+                    Initiate Transfer Out
+                  </button>
                 </div>
-              </div>
-
-              <!-- Effective Date -->
-              <div class="flex flex-col gap-sm">
-                <label class="font-label-md text-label-md text-on-surface" for="transfer-date">Effective Date</label>
-                <input
-                  class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
-                  id="transfer-date"
-                  name="effective_date"
-                  type="date"/>
-              </div>
-
-              <!-- Form Actions -->
-              <div class="pt-md flex justify-end gap-sm border-t border-border mt-auto">
-                <button
-                  class="px-md py-sm rounded-lg font-label-md text-label-md text-on-surface-variant bg-surface-container-lowest border border-outline transition-colors hover:bg-surface-container-low"
-                  type="button">
-                  Cancel
-                </button>
-                <button
-                  class="px-lg py-sm rounded-lg font-label-md text-label-md bg-primary text-on-primary shadow-sm transition-colors hover:bg-primary-light"
-                  type="button">
-                  Initiate Transfer Out
-                </button>
-              </div>
+              </form>
             </div>
 
             <!-- Transfer In Form (hidden by default) -->
@@ -299,83 +371,139 @@
                 </p>
               </div>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
-                <div class="flex flex-col gap-sm">
-                  <label class="font-label-md text-label-md text-on-surface" for="incoming-member-name">Member Full Name</label>
-                  <input
-                    class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
-                    id="incoming-member-name"
-                    name="full_name"
-                    placeholder="Enter name"
-                    type="text"/>
-                </div>
-                <div class="flex flex-col gap-sm">
-                  <label class="font-label-md text-label-md text-on-surface" for="letter-reference">Letter Reference No.</label>
-                  <input
-                    class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
-                    id="letter-reference"
-                    name="letter_reference"
-                    placeholder="e.g. TR-2023-045"
-                    type="text"/>
-                </div>
-              </div>
+              <form class="flex flex-col gap-lg flex-1" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="direction" value="IN"/>
 
-              <div class="flex flex-col gap-sm">
-                <label class="font-label-md text-label-md text-on-surface" for="previous-society">Previous Society</label>
-                <input
-                  class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
-                  id="previous-society"
-                  name="previous_society"
-                  placeholder="Name of previous society"
-                  type="text"/>
-              </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
-                <div class="flex flex-col gap-sm">
-                  <label class="font-label-md text-label-md text-on-surface" for="membership-category">Membership Category</label>
-                  <div class="relative">
-                    <select
-                      class="w-full px-md py-sm appearance-none bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
-                      id="membership-category"
-                      name="membership_type">
-                      <option value="FULL">Full Member</option>
-                      <option value="TRIAL">Member on Trial</option>
-                      <option value="ADHERENT">Adherent</option>
-                    </select>
-                    <span
-                      class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
-                      aria-hidden="true">expand_more</span>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+                  <div class="flex flex-col gap-sm">
+                    <label class="font-label-md text-label-md text-on-surface" for="incoming-member-name">
+                      Member Full Name <span class="text-danger" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      class="w-full px-md py-sm bg-surface-container-lowest border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none {% if errors.full_name %}border-danger{% else %}border-border{% endif %}"
+                      id="incoming-member-name"
+                      name="full_name"
+                      placeholder="Enter first and last name"
+                      type="text"
+                      value="{{ in_form.full_name }}"/>
+                    {% if errors.full_name %}<p class="font-label-md text-label-md text-danger">{{ errors.full_name }}</p>{% endif %}
+                  </div>
+                  <div class="flex flex-col gap-sm">
+                    <label class="font-label-md text-label-md text-on-surface" for="incoming-member-gender">
+                      Gender <span class="text-danger" aria-hidden="true">*</span>
+                    </label>
+                    <div class="relative">
+                      <select
+                        class="w-full px-md py-sm appearance-none bg-surface-container-lowest border rounded-lg font-body-md text-on-surface transition-all focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none {% if errors.gender %}border-danger{% else %}border-border{% endif %}"
+                        id="incoming-member-gender"
+                        name="gender">
+                        <option value="">Select gender...</option>
+                        <option value="M" {% if in_form.gender == 'M' %}selected{% endif %}>Male</option>
+                        <option value="F" {% if in_form.gender == 'F' %}selected{% endif %}>Female</option>
+                      </select>
+                      <span
+                        class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                        aria-hidden="true">expand_more</span>
+                    </div>
+                    {% if errors.gender %}<p class="font-label-md text-label-md text-danger">{{ errors.gender }}</p>{% endif %}
                   </div>
                 </div>
-                <div class="flex flex-col gap-sm">
-                  <label class="font-label-md text-label-md text-on-surface" for="assign-class">Assign to Class</label>
-                  <div class="relative">
-                    <select
-                      class="w-full px-md py-sm appearance-none bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
-                      id="assign-class"
-                      name="assigned_class">
-                      <option value="">Select a class...</option>
-                    </select>
-                    <span
-                      class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
-                      aria-hidden="true">expand_more</span>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+                  <div class="flex flex-col gap-sm">
+                    <label class="font-label-md text-label-md text-on-surface" for="previous-society">
+                      Previous Society <span class="text-danger" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      class="w-full px-md py-sm bg-surface-container-lowest border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none {% if errors.previous_society %}border-danger{% else %}border-border{% endif %}"
+                      id="previous-society"
+                      name="previous_society"
+                      placeholder="Name of previous society"
+                      type="text"
+                      value="{{ in_form.previous_society }}"/>
+                    {% if errors.previous_society %}<p class="font-label-md text-label-md text-danger">{{ errors.previous_society }}</p>{% endif %}
+                  </div>
+                  <div class="flex flex-col gap-sm">
+                    <label class="font-label-md text-label-md text-on-surface" for="letter-reference">
+                      Letter Reference No. <span class="text-danger" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      class="w-full px-md py-sm bg-surface-container-lowest border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none {% if errors.letter_reference %}border-danger{% else %}border-border{% endif %}"
+                      id="letter-reference"
+                      name="letter_reference"
+                      placeholder="e.g. TR-2023-045"
+                      type="text"
+                      value="{{ in_form.letter_reference }}"/>
+                    {% if errors.letter_reference %}<p class="font-label-md text-label-md text-danger">{{ errors.letter_reference }}</p>{% endif %}
                   </div>
                 </div>
-              </div>
 
-              <!-- Form Actions -->
-              <div class="pt-md flex justify-end gap-sm border-t border-border mt-auto">
-                <button
-                  class="px-md py-sm rounded-lg font-label-md text-label-md text-on-surface-variant bg-surface-container-lowest border border-outline transition-colors hover:bg-surface-container-low"
-                  type="button">
-                  Cancel
-                </button>
-                <button
-                  class="px-lg py-sm rounded-lg font-label-md text-label-md bg-primary text-on-primary shadow-sm transition-colors hover:bg-primary-light"
-                  type="button">
-                  Receive Member
-                </button>
-              </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+                  <div class="flex flex-col gap-sm">
+                    <label class="font-label-md text-label-md text-on-surface" for="membership-category">Membership Category</label>
+                    <div class="relative">
+                      <select
+                        class="w-full px-md py-sm appearance-none bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+                        id="membership-category"
+                        name="membership_type">
+                        {% for value, label in membership_type_choices %}
+                        <option value="{{ value }}" {% if in_form.membership_type == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                      </select>
+                      <span
+                        class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                        aria-hidden="true">expand_more</span>
+                    </div>
+                  </div>
+                  <div class="flex flex-col gap-sm">
+                    <label class="font-label-md text-label-md text-on-surface" for="assign-class">Assign to Class</label>
+                    <div class="relative">
+                      <select
+                        class="w-full px-md py-sm appearance-none bg-surface-container-lowest border rounded-lg font-body-md text-on-surface transition-all focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none {% if errors.assigned_class %}border-danger{% else %}border-border{% endif %}"
+                        id="assign-class"
+                        name="assigned_class">
+                        <option value="">Select a class...</option>
+                        {% for class_group in classes %}
+                        <option value="{{ class_group.id }}" {% if in_form.assigned_class == class_group.id|stringformat:"s" %}selected{% endif %}>{{ class_group.name }}</option>
+                        {% endfor %}
+                      </select>
+                      <span
+                        class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                        aria-hidden="true">expand_more</span>
+                    </div>
+                    {% if errors.assigned_class %}<p class="font-label-md text-label-md text-danger">{{ errors.assigned_class }}</p>{% endif %}
+                  </div>
+                </div>
+
+                <!-- Effective Date -->
+                <div class="flex flex-col gap-sm">
+                  <label class="font-label-md text-label-md text-on-surface" for="transfer-in-date">
+                    Effective Date <span class="text-danger" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    class="w-full px-md py-sm bg-surface-container-lowest border rounded-lg font-body-md text-on-surface transition-all focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none {% if errors.effective_date %}border-danger{% else %}border-border{% endif %}"
+                    id="transfer-in-date"
+                    name="effective_date"
+                    type="date"
+                    value="{{ in_form.effective_date }}"/>
+                  {% if errors.effective_date %}<p class="font-label-md text-label-md text-danger">{{ errors.effective_date }}</p>{% endif %}
+                </div>
+
+                <!-- Form Actions -->
+                <div class="pt-md flex justify-end gap-sm border-t border-border mt-auto">
+                  <a
+                    class="flex items-center px-md py-sm rounded-lg font-label-md text-label-md text-on-surface-variant bg-surface-container-lowest border border-outline transition-colors hover:bg-surface-container-low"
+                    href="{% url 'members:member_transfer' %}">
+                    Cancel
+                  </a>
+                  <button
+                    class="px-lg py-sm rounded-lg font-label-md text-label-md bg-primary text-on-primary shadow-sm transition-colors hover:bg-primary-light"
+                    type="submit">
+                    Receive Member
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
 
@@ -388,7 +516,7 @@
             <div class="bg-card rounded-lg p-md border-l-4 border-secondary-container shadow-sm flex items-center justify-between">
               <div>
                 <div class="mb-xs font-label-sm text-label-sm text-on-surface-variant uppercase">Transfers In</div>
-                <div class="font-data-display text-data-display text-on-surface">24</div>
+                <div class="font-data-display text-data-display text-on-surface">{{ transfers_in_count }}</div>
               </div>
               <div class="w-10 h-10 rounded-full bg-success/10 flex items-center justify-center text-success" aria-hidden="true">
                 <span class="material-symbols-outlined">south_east</span>
@@ -397,7 +525,7 @@
             <div class="bg-card rounded-lg p-md border-l-4 border-primary shadow-sm flex items-center justify-between">
               <div>
                 <div class="mb-xs font-label-sm text-label-sm text-on-surface-variant uppercase">Transfers Out</div>
-                <div class="font-data-display text-data-display text-on-surface">12</div>
+                <div class="font-data-display text-data-display text-on-surface">{{ transfers_out_count }}</div>
               </div>
               <div class="w-10 h-10 rounded-full bg-danger/10 flex items-center justify-center text-danger" aria-hidden="true">
                 <span class="material-symbols-outlined">north_east</span>
@@ -406,7 +534,7 @@
             <div class="mt-auto pt-md border-t border-border">
               <div class="flex items-center gap-sm text-warning mb-sm">
                 <span class="material-symbols-outlined text-[18px]" aria-hidden="true">pending_actions</span>
-                <span class="font-label-md text-label-md">3 Pending Approvals</span>
+                <span class="font-label-md text-label-md">{{ pending_count }} Pending Approval{{ pending_count|pluralize }}</span>
               </div>
               <a
                 class="block text-center w-full py-sm bg-surface-container-lowest border border-outline rounded-lg font-label-md text-label-md text-on-surface transition-colors hover:bg-surface-container-high"
@@ -421,17 +549,18 @@
         <section class="bg-card rounded-xl shadow-ambient border border-border overflow-hidden">
           <div class="p-lg border-b border-border flex flex-col sm:flex-row sm:items-center justify-between gap-md">
             <h2 class="font-headline-md text-headline-md text-on-surface">Transfer History</h2>
-            <div class="relative">
+            <form class="relative" method="get" role="search">
               <span
                 class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] pointer-events-none"
                 aria-hidden="true">search</span>
               <input
                 class="w-full sm:w-auto py-xs pl-[36px] pr-md bg-surface-container-lowest border border-border rounded text-sm font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
                 aria-label="Search transfer history"
-                name="history_search"
+                name="history_q"
                 placeholder="Search history..."
-                type="text"/>
-            </div>
+                type="text"
+                value="{{ history_query }}"/>
+            </form>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
@@ -446,67 +575,70 @@
                 </tr>
               </thead>
               <tbody class="divide-y divide-border">
+                {% for transfer in history_page %}
                 <tr class="hover:bg-surface-container-lowest transition-colors">
-                  <td class="px-lg py-md font-data-label text-data-label text-on-surface">2023-10-24</td>
-                  <td class="px-lg py-md font-body-md text-on-surface font-medium">Samuel Mensah</td>
+                  <td class="px-lg py-md font-data-label text-data-label text-on-surface">{{ transfer.effective_date|date:"Y-m-d" }}</td>
+                  <td class="px-lg py-md font-body-md text-on-surface font-medium">{{ transfer.member_name }}</td>
                   <td class="px-lg py-md">
+                    {% if transfer.direction == 'IN' %}
                     <span class="inline-flex items-center gap-1 px-sm py-xs rounded-full bg-success/10 text-success font-label-sm text-label-sm">
                       <span class="material-symbols-outlined text-[14px]" aria-hidden="true">south_east</span>
                       In
                     </span>
-                  </td>
-                  <td class="px-lg py-md font-body-md text-on-surface-variant">St. Paul's, Tema</td>
-                  <td class="px-lg py-md font-body-md text-on-surface-variant">Admin K.</td>
-                  <td class="px-lg py-md text-right">
-                    <button class="text-primary hover:text-primary-light" aria-label="More actions for Samuel Mensah" type="button">
-                      <span class="material-symbols-outlined text-[20px]" aria-hidden="true">more_vert</span>
-                    </button>
-                  </td>
-                </tr>
-                <tr class="hover:bg-surface-container-lowest transition-colors">
-                  <td class="px-lg py-md font-data-label text-data-label text-on-surface">2023-10-18</td>
-                  <td class="px-lg py-md font-body-md text-on-surface font-medium">Grace Ofori</td>
-                  <td class="px-lg py-md">
+                    {% else %}
                     <span class="inline-flex items-center gap-1 px-sm py-xs rounded-full bg-danger/10 text-danger font-label-sm text-label-sm">
                       <span class="material-symbols-outlined text-[14px]" aria-hidden="true">north_east</span>
                       Out
                     </span>
+                    {% endif %}
                   </td>
-                  <td class="px-lg py-md font-body-md text-on-surface-variant">Wesley, Kumasi</td>
-                  <td class="px-lg py-md font-body-md text-on-surface-variant">Admin K.</td>
+                  <td class="px-lg py-md font-body-md text-on-surface-variant">{{ transfer.destination_society|default:transfer.previous_society }}{% if transfer.circuit %} ({{ transfer.circuit }}){% endif %}</td>
+                  <td class="px-lg py-md font-body-md text-on-surface-variant">
+                    {% if transfer.recorded_by %}{{ transfer.recorded_by.get_full_name }}{% else %}&mdash;{% endif %}
+                  </td>
                   <td class="px-lg py-md text-right">
-                    <button class="text-primary hover:text-primary-light" aria-label="More actions for Grace Ofori" type="button">
+                    {% if transfer.member %}
+                    <a
+                      class="inline-flex text-primary hover:text-primary-light"
+                      aria-label="View profile for {{ transfer.member_name }}"
+                      href="{% url 'members:member_profile' %}?id={{ transfer.member.id }}&amp;staff_view=1">
                       <span class="material-symbols-outlined text-[20px]" aria-hidden="true">more_vert</span>
-                    </button>
+                    </a>
+                    {% endif %}
                   </td>
                 </tr>
-                <tr class="hover:bg-surface-container-lowest transition-colors">
-                  <td class="px-lg py-md font-data-label text-data-label text-on-surface">2023-09-05</td>
-                  <td class="px-lg py-md font-body-md text-on-surface font-medium">Emmanuel Addo</td>
-                  <td class="px-lg py-md">
-                    <span class="inline-flex items-center gap-1 px-sm py-xs rounded-full bg-success/10 text-success font-label-sm text-label-sm">
-                      <span class="material-symbols-outlined text-[14px]" aria-hidden="true">south_east</span>
-                      In
-                    </span>
-                  </td>
-                  <td class="px-lg py-md font-body-md text-on-surface-variant">Calvary, Accra</td>
-                  <td class="px-lg py-md font-body-md text-on-surface-variant">Rev. Amoah</td>
-                  <td class="px-lg py-md text-right">
-                    <button class="text-primary hover:text-primary-light" aria-label="More actions for Emmanuel Addo" type="button">
-                      <span class="material-symbols-outlined text-[20px]" aria-hidden="true">more_vert</span>
-                    </button>
+                {% empty %}
+                <tr>
+                  <td class="px-lg py-xl text-center font-body-md text-on-surface-variant" colspan="6">
+                    {% if history_query %}No transfers matched &ldquo;{{ history_query }}&rdquo;.{% else %}No transfers have been recorded yet.{% endif %}
                   </td>
                 </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>
           <div class="p-md border-t border-border bg-surface-container-lowest flex items-center justify-between">
-            <span class="font-body-md text-on-surface-variant text-sm">Showing 1 to 3 of 36 entries</span>
+            <span class="font-body-md text-on-surface-variant text-sm">
+              {% if history_page.paginator.count %}Showing {{ history_page.start_index }} to {{ history_page.end_index }} of {{ history_page.paginator.count }} entr{{ history_page.paginator.count|pluralize:"y,ies" }}{% else %}No entries{% endif %}
+            </span>
             <div class="flex gap-1">
+              {% if history_page.has_previous %}
+              <a class="px-md py-xs border border-outline rounded text-sm text-on-surface transition-colors hover:bg-surface-container-low" href="?history_q={{ history_query|urlencode }}&amp;page={{ history_page.previous_page_number }}">Prev</a>
+              {% else %}
               <button class="px-md py-xs border border-outline rounded text-sm text-on-surface-variant disabled:opacity-50" disabled type="button">Prev</button>
-              <button class="px-md py-xs bg-primary text-on-primary rounded text-sm" type="button">1</button>
-              <button class="px-md py-xs border border-outline rounded text-sm text-on-surface transition-colors hover:bg-surface-container-low" type="button">2</button>
-              <button class="px-md py-xs border border-outline rounded text-sm text-on-surface transition-colors hover:bg-surface-container-low" type="button">Next</button>
+              {% endif %}
+              {% for num in history_page.paginator.page_range %}
+              {% if num == history_page.number %}
+              <span class="px-md py-xs bg-primary text-on-primary rounded text-sm">{{ num }}</span>
+              {% elif num > history_page.number|add:"-3" and num < history_page.number|add:"3" %}
+              <a class="px-md py-xs border border-outline rounded text-sm text-on-surface transition-colors hover:bg-surface-container-low" href="?history_q={{ history_query|urlencode }}&amp;page={{ num }}">{{ num }}</a>
+              {% endif %}
+              {% endfor %}
+              {% if history_page.has_next %}
+              <a class="px-md py-xs border border-outline rounded text-sm text-on-surface transition-colors hover:bg-surface-container-low" href="?history_q={{ history_query|urlencode }}&amp;page={{ history_page.next_page_number }}">Next</a>
+              {% else %}
+              <button class="px-md py-xs border border-outline rounded text-sm text-on-surface-variant disabled:opacity-50" disabled type="button">Next</button>
+              {% endif %}
             </div>
           </div>
         </section>
