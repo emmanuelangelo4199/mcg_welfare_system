@@ -156,33 +156,34 @@
 <div class="bg-secondary-container text-on-secondary-container p-md rounded-lg mb-lg flex items-start gap-md shadow-sm border border-secondary-fixed-dim/20">
 <span class="material-symbols-outlined mt-0.5" style="font-variation-settings: 'FILL' 1;">info</span>
 <div>
-<p class="font-label-md text-label-md font-bold mb-xs">You are editing Emmanuel Osei's record.</p>
+<p class="font-label-md text-label-md font-bold mb-xs">You are editing {{ member.get_full_name }}'s record.</p>
 <p class="font-body-md text-body-md text-on-secondary-container/80">All changes made to this profile are logged for administrative review and audit purposes.</p>
 </div>
 </div>
 <!-- Edit Form -->
-<form class="space-y-xl">
+<form class="space-y-xl" method="post" action="{% url 'members:edit_member' %}?id={{ member.id }}">
+{% csrf_token %}
 <!-- Section: Personal Information -->
 <section class="bg-card rounded-xl p-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] border border-border/50">
 <h2 class="font-headline-md text-headline-md text-primary mb-md border-b border-border/50 pb-sm">Personal Information</h2>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
 <div class="flex flex-col gap-xs">
 <label class="font-label-md text-label-md text-on-surface-variant" for="firstName">First Name</label>
-<input class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="firstName" type="text" value="Emmanuel">
+<input class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="firstName" name="first_name" type="text" value="{{ member.first_name|default:'' }}">
 </div>
 <div class="flex flex-col gap-xs">
 <label class="font-label-md text-label-md text-on-surface-variant" for="lastName">Last Name</label>
-<input class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="lastName" type="text" value="Osei">
+<input class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="lastName" name="last_name" type="text" value="{{ member.last_name|default:'' }}">
 </div>
 <div class="flex flex-col gap-xs">
 <label class="font-label-md text-label-md text-on-surface-variant" for="dob">Date of Birth</label>
-<input class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="dob" type="date" value="1985-08-14">
+<input class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="dob" type="date" value="{{ member.date_of_birth|date:'Y-m-d'|default:'' }}">
 </div>
 <div class="flex flex-col gap-xs">
 <label class="font-label-md text-label-md text-on-surface-variant" for="gender">Gender</label>
 <select class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="gender">
-<option selected="" value="male">Male</option>
-<option value="female">Female</option>
+<option value="male" {% if member.gender == 'M' %}selected{% endif %}>Male</option>
+<option value="female" {% if member.gender == 'F' %}selected{% endif %}>Female</option>
 </select>
 </div>
 </div>
@@ -229,11 +230,11 @@
 <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
 <div class="flex flex-col gap-xs">
 <label class="font-label-md text-label-md text-on-surface-variant" for="phone">Phone Number</label>
-<input class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="phone" type="tel" value="024 123 4567">
+<input class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="phone" name="phone_number" type="tel" value="{{ member.phone_number|default:'' }}">
 </div>
 <div class="flex flex-col gap-xs">
 <label class="font-label-md text-label-md text-on-surface-variant" for="email">Email Address</label>
-<input class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="email" type="email" value="e.osei@example.com">
+<input class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="email" name="email" type="email" value="{{ member.email|default:'' }}">
 </div>
 <div class="flex flex-col gap-xs md:col-span-2">
 <label class="font-label-md text-label-md text-on-surface-variant" for="address">Residential Address</label>
