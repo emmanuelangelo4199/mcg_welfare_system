@@ -7,11 +7,13 @@ from django.contrib import messages
 from datetime import timedelta
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.dateparse import parse_date
 from core.decorators import role_required
+from core.models import AuditLog
 from django.utils import timezone
-from .models import Member
+from .models import Member, MembershipStatusChange
 from classes.models import ClassGroup
 from attendance.models import ClassAttendanceRecord
 from welfare_cases.models import WelfareCase
@@ -331,6 +333,133 @@ def member_regularisation_view(request):
 def member_transfer_view(request):
     return render(request, "members/c7member_transfer.html", {"active_nav": "members"})
 
-@login_required(login_url='accounts:login')
+
+# Statuses a member can be moved to from this screen. PENDING is the initial
+# state assigned at registration and is managed via the pending approval page.
+STATUS_CHANGE_CHOICES = [
+    (value, label) for value, label in Member.STATUS_CHOICES if value != 'PENDING'
+]
+
+
+def _search_members(query):
+    """Return members matching a name, member ID, phone number or email."""
+    lookup = (
+        Q(first_name__icontains=query)
+        | Q(middle_name__icontains=query)
+        | Q(last_name__icontains=query)
+        | Q(phone_number__icontains=query)
+        | Q(email__icontains=query)
+    )
+    if query.isdigit():
+        lookup |= Q(id=int(query))
+    return (
+        Member.objects.select_related('assigned_class')
+        .filter(lookup)
+        .order_by('first_name', 'last_name')
+    )
+
+
+@role_required(allowed_roles=['ADMIN'])
 def status_management_view(request):
-    return render(request, "members/c8status_management.html", {"active_nav": "members"})
+    query = request.GET.get('q', '').strip()
+    member_id = request.GET.get('member', '').strip()
+
+    search_results = []
+    member = None
+    errors = {}
+    form_data = {
+        'new_status': '',
+        'effective_date': '',
+        'reason': '',
+        'authorised_by': '',
+        'note_reference': '',
+    }
+
+    if query:
+        search_results = list(_search_members(query)[:10])
+
+    if request.method == 'POST':
+        member_id = request.POST.get('member', '').strip()
+        form_data = {field: request.POST.get(field, '').strip() for field in form_data}
+
+        member = (
+            Member.objects.select_related('assigned_class').filter(id=member_id).first()
+            if member_id.isdigit()
+            else None
+        )
+
+        if member is None:
+            errors['member'] = 'Select a member before updating their status.'
+        else:
+            new_status = form_data['new_status']
+            if new_status not in dict(STATUS_CHANGE_CHOICES):
+                errors['new_status'] = 'Select a valid new status.'
+            elif member.status == new_status:
+                errors['new_status'] = (
+                    f'{member.get_full_name()} is already marked as '
+                    f'{member.get_status_display().lower()}.'
+                )
+
+            effective_date = parse_date(form_data['effective_date']) if form_data['effective_date'] else None
+            if effective_date is None:
+                errors['effective_date'] = 'Enter a valid effective date.'
+
+            if len(form_data['reason']) < 10:
+                errors['reason'] = 'Provide a detailed reason (at least 10 characters).'
+
+            if form_data['authorised_by'] not in dict(MembershipStatusChange.AUTHORISED_BY_CHOICES):
+                errors['authorised_by'] = 'Select the authorising officer.'
+
+            if not errors:
+                previous_status = member.status
+                member.status = new_status
+                member.save()
+
+                MembershipStatusChange.objects.create(
+                    member=member,
+                    previous_status=previous_status,
+                    new_status=new_status,
+                    effective_date=effective_date,
+                    reason=form_data['reason'],
+                    authorised_by=form_data['authorised_by'],
+                    note_reference=form_data['note_reference'],
+                    recorded_by=request.user,
+                )
+                AuditLog.objects.create(
+                    user=request.user,
+                    action=f'Updated membership status for {member.get_full_name()}',
+                    model_name='Member',
+                    object_id=str(member.id),
+                    details=(
+                        f'{dict(Member.STATUS_CHOICES)[previous_status]} -> '
+                        f'{dict(Member.STATUS_CHOICES)[new_status]}; '
+                        f'effective {effective_date}; authorised by '
+                        f'{dict(MembershipStatusChange.AUTHORISED_BY_CHOICES)[form_data["authorised_by"]]}; '
+                        f'reason: {form_data["reason"]}'
+                    ),
+                )
+                messages.success(
+                    request,
+                    f"{member.get_full_name()}'s status updated to "
+                    f'{member.get_status_display()}.'
+                )
+                return redirect(f"{reverse('members:status_management')}?member={member.id}")
+
+    elif member_id.isdigit():
+        member = Member.objects.select_related('assigned_class').filter(id=member_id).first()
+
+    status_history = (
+        member.status_changes.select_related('recorded_by')[:5] if member else []
+    )
+
+    return render(request, "members/c8status_management.html", {
+        "active_nav": "members",
+        "query": query,
+        "search_results": search_results,
+        "member": member,
+        "errors": errors,
+        "form_data": form_data,
+        "status_choices": STATUS_CHANGE_CHOICES,
+        "authorised_by_choices": MembershipStatusChange.AUTHORISED_BY_CHOICES,
+        "status_history": status_history,
+    })
