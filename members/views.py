@@ -148,8 +148,14 @@ def member_registration_view(request):
         if assigned_class is None:
             errors['assigned_class'] = 'Select a valid Bible class.'
 
-    selected_organisations = list(Organisation.objects.filter(id__in=selected_organisation_ids))
-    if len(selected_organisations) != len(set(selected_organisation_ids)):
+    # Validate submitted organisation ids against the database. Always
+    # initialise valid_organisation_ids (even when nothing was selected) so it
+    # is safe to use further down no matter which branch runs.
+    valid_organisation_ids = list(
+        Organisation.objects.filter(id__in=selected_organisation_ids)
+        .values_list('id', flat=True)
+    )
+    if len(valid_organisation_ids) != len(set(selected_organisation_ids)):
         errors['organisations'] = 'One or more selected organisations are unavailable.'
 
     uploaded_photo = request.FILES.get('passport_photo')
@@ -193,7 +199,7 @@ def member_registration_view(request):
         return render_registration(form_data, errors, selected_organisation_ids)
 
     member.save()
-    member.organisations.set(selected_organisations)
+    member.organisations.set(valid_organisation_ids)
     messages.success(request, f"{member.get_full_name()} has been registered and is awaiting approval.")
     return redirect('members:member_directory')
 
