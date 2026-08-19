@@ -24,6 +24,7 @@ class Member(models.Model):
         ('REGULARIZED', 'Regularized'),
         ('TRANSFERRED', 'Transferred'),
         ('INACTIVE', 'Inactive'),
+        ('DECLINED', 'Regularisation Declined'),
     ]
 
     user = models.OneToOneField(
@@ -74,6 +75,41 @@ class Member(models.Model):
 
     def __str__(self):
         return f"{self.get_full_name()} ({self.get_status_display()})"
+
+class MemberRegularisation(models.Model):
+    DECISION_CHOICES = [
+        ('APPROVED', 'Approved for Full Membership'),
+        ('DEFERRED', 'Deferred (Requires Action)'),
+        ('DECLINED', 'Declined'),
+    ]
+
+    member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='regularisations')
+    decision = models.CharField(max_length=20, choices=DECISION_CHOICES)
+    meeting_reference = models.CharField(max_length=100, blank=True, null=True)
+    approval_date = models.DateField()
+    assigned_class = models.ForeignKey(
+        ClassGroup,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='regularisation_decisions'
+    )
+    remarks = models.TextField(blank=True, null=True)
+    processed_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='processed_regularisations'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-approval_date', '-created_at']
+
+    def __str__(self):
+        return f"{self.member.get_full_name()} — {self.get_decision_display()}"
 
 
 class MembershipStatusChange(models.Model):

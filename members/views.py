@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from datetime import timedelta
 from django.core.exceptions import ValidationError
@@ -6,18 +7,25 @@ from django.core.validators import validate_email
 from django.contrib import messages
 from datetime import timedelta
 from django.core.paginator import Paginator
-from django.db.models import Q
 from django.urls import reverse
+from django.db.models import Q
 from django.utils import timezone
 from django.utils.dateparse import parse_date
 from core.decorators import role_required
 from core.models import AuditLog
 from django.utils import timezone
-from .models import Member, MembershipStatusChange
+from .models import Member, MemberRegularisation, MembershipStatusChange
 from classes.models import ClassGroup
 from attendance.models import ClassAttendanceRecord
 from welfare_cases.models import WelfareCase
 from organisations.models import Organisation
+
+
+# Statuses a member can be moved to from this screen. PENDING is the initial
+# state assigned at registration and is managed via the pending approval page.
+STATUS_CHANGE_CHOICES = [
+    (value, label) for value, label in Member.STATUS_CHOICES if value != 'PENDING'
+]
 
 @login_required(login_url='accounts:login')
 def member_directory_view(request):
@@ -208,7 +216,12 @@ def member_profile_view(request):
     """Render a member profile with the records that can be tied to a member."""
     member_id = request.GET.get('id')
     members = Member.objects.select_related('assigned_class')
-    member = get_object_or_404(members, id=member_id) if member_id else members.first()
+    if member_id:
+        if not member_id.isdigit():
+            raise Http404("Member profile not found.")
+        member = get_object_or_404(members, id=member_id)
+    else:
+        member = members.first()
 
     # The attendance model is class based. Build a clear twelve-week series
     # instead of implying that service or organisation attendance is available
@@ -248,7 +261,7 @@ def member_profile_view(request):
         if record is None:
             class_attendance_cells.append({'state': 'na', 'label': 'No record', 'date': None})
             continue
-
+ 
         is_present = any(attendee.id == member.id for attendee in record.present_members.all())
         class_attendance_cells.append({
             'state': 'present' if is_present else 'absent',
@@ -259,7 +272,7 @@ def member_profile_view(request):
     attendance_record_count = len(attendance_by_week)
     attendance_present_count = sum(cell['state'] == 'present' for cell in class_attendance_cells)
     attendance_rate = round((attendance_present_count / attendance_record_count) * 100) if attendance_record_count else 0
-
+ 
     welfare_cases = []
     profile_history = []
     if member:
@@ -308,10 +321,14 @@ def edit_member_view(request):
     member = get_object_or_404(Member, id=member_id) if member_id else Member.objects.first()
 
     if request.method == 'POST' and member:
-        member.first_name = request.POST.get('first_name', member.first_name).strip()
-        member.last_name = request.POST.get('last_name', member.last_name).strip()
-        member.phone_number = request.POST.get('phone_number', member.phone_number).strip()
-        member.email = request.POST.get('email', member.email).strip()
+        member.first_name = (request.POST.get('first_name') or member.first_name or '').strip()
+        member.last_name = (request.POST.get('last_name') or member.last_name or '').strip()
+
+        phone_number = request.POST.get('phone_number', member.phone_number or '')
+        email = request.POST.get('email', member.email or '')
+        member.phone_number = phone_number.strip() if phone_number else None
+        member.email = email.strip() if email else None
+
         member.save()
         messages.success(request, f"Updated profile for {member.get_full_name()}")
         return redirect('members:member_directory')
@@ -333,18 +350,99 @@ def pending_members_view(request):
 
 @login_required(login_url='accounts:login')
 def member_regularisation_view(request):
-    return render(request, "members/c6member_regularisation.html", {"active_nav": "members"})
+    """Record a leaders' meeting decision for a pending member."""
+    member_id = request.POST.get('member_id') or request.GET.get('id')
+    pending_members = Member.objects.filter(status='PENDING').select_related('assigned_class').order_by(
+        'first_name', 'last_name'
+    )
+    member = get_object_or_404(pending_members, id=member_id) if member_id else pending_members.first()
+    classes = list(ClassGroup.objects.select_related('leader').order_by('name'))
+
+    def class_options():
+        options = []
+        for class_group in classes:
+            leader = class_group.leader
+            leader_name = ''
+            if leader:
+                leader_name = leader.get_full_name().strip() or leader.username
+            options.append({
+                'id': class_group.id,
+                'name': class_group.name,
+                'leader_name': leader_name or 'Leader not assigned',
+            })
+        return options
+
+    def render_regularisation(form_data=None, errors=None):
+        defaults = {
+            'meeting_reference': '',
+            'approval_date': timezone.localdate().isoformat(),
+            'decision': '',
+            'assigned_class': str(member.assigned_class_id) if member and member.assigned_class_id else '',
+            'remarks': '',
+        }
+        return render(request, "members/c6member_regularisation.html", {
+            'active_nav': 'members',
+            'member': member,
+            'pending_members': pending_members,
+            'class_options': class_options(),
+            'form_data': form_data or defaults,
+            'errors': errors or {},
+            'member_number_preview': f"MCG-{member.id:05d}" if member else 'MCG-SMS-TBD',
+        })
+
+    if request.method != 'POST' or member is None:
+        return render_regularisation()
+
+    form_data = {
+        'meeting_reference': request.POST.get('meeting_reference', '').strip(),
+        'approval_date': request.POST.get('approval_date', '').strip(),
+        'decision': request.POST.get('decision', '').strip(),
+        'assigned_class': request.POST.get('assigned_class', '').strip(),
+        'remarks': request.POST.get('remarks', '').strip(),
+    }
+    errors = {}
+    if form_data['decision'] not in dict(MemberRegularisation.DECISION_CHOICES):
+        errors['decision'] = 'Select the leaders’ meeting decision.'
+
+    approval_date = parse_date(form_data['approval_date']) if form_data['approval_date'] else None
+    if approval_date is None:
+        errors['approval_date'] = 'Enter the approval date.'
+
+    assigned_class = None
+    if form_data['assigned_class']:
+        assigned_class = ClassGroup.objects.filter(id=form_data['assigned_class']).first()
+        if assigned_class is None:
+            errors['assigned_class'] = 'Select a valid society class.'
+
+    if errors:
+        return render_regularisation(form_data, errors)
+
+    MemberRegularisation.objects.create(
+        member=member,
+        decision=form_data['decision'],
+        meeting_reference=form_data['meeting_reference'] or None,
+        approval_date=approval_date,
+        assigned_class=assigned_class,
+        remarks=form_data['remarks'] or None,
+        processed_by=request.user,
+    )
+
+    if form_data['decision'] == 'APPROVED':
+        member.status = 'REGULARIZED'
+    elif form_data['decision'] == 'DECLINED':
+        member.status = 'DECLINED'
+    else:
+        member.status = 'PENDING'
+    if assigned_class:
+        member.assigned_class = assigned_class
+    member.save()
+
+    messages.success(request, f"Regularisation decision recorded for {member.get_full_name()}.")
+    return redirect('members:member_directory')
 
 @login_required(login_url='accounts:login')
 def member_transfer_view(request):
     return render(request, "members/c7member_transfer.html", {"active_nav": "members"})
-
-
-# Statuses a member can be moved to from this screen. PENDING is the initial
-# state assigned at registration and is managed via the pending approval page.
-STATUS_CHANGE_CHOICES = [
-    (value, label) for value, label in Member.STATUS_CHOICES if value != 'PENDING'
-]
 
 
 def _search_members(query):
