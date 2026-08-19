@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from accounts.models import UserProfile
 from classes.models import ClassGroup
-from members.models import Member, MemberRegularisation
+from members.models import Member, MemberRegularisation, MembershipStatusChange
 from organisations.models import Organisation
 
 
@@ -218,3 +218,141 @@ class MembersTestCase(TestCase):
         self.assertEqual(pending_member.assigned_class, self.class_group)
         self.assertEqual(regularisation.decision, 'APPROVED')
         self.assertEqual(regularisation.processed_by, self.user)
+
+
+class StatusManagementTestCase(MembersTestCase):
+    def setUp(self):
+        super().setUp()
+        self.admin = User.objects.create_superuser(username='admin', password='admin-password')
+
+    def test_status_page_requires_authentication(self):
+        response = self.client.get(reverse('members:status_management'))
+        self.assertRedirects(response, reverse('accounts:login'))
+
+    def test_status_page_blocked_for_non_admin_users(self):
+        self.client.force_login(self.user)
+        response = self.client.get(reverse('members:status_management'))
+        self.assertRedirects(response, reverse('dashboard:dashboard'))
+
+    def test_search_finds_members_by_name_phone_and_id(self):
+        self.client.force_login(self.admin)
+
+        by_name = self.client.get(reverse('members:status_management'), {'q': 'kofi'})
+        self.assertContains(by_name, 'Kofi Annan')
+
+        by_phone = self.client.get(reverse('members:status_management'), {'q': '0209876543'})
+        self.assertContains(by_phone, 'Kofi Annan')
+
+        by_id = self.client.get(reverse('members:status_management'), {'q': str(self.member.id)})
+        self.assertContains(by_id, 'Kofi Annan')
+
+    def test_search_without_matches_shows_empty_state(self):
+        self.client.force_login(self.admin)
+        response = self.client.get(reverse('members:status_management'), {'q': 'does-not-exist'})
+        self.assertContains(response, 'No members matched')
+
+    def test_selected_member_renders_context_and_form(self):
+        self.client.force_login(self.admin)
+        response = self.client.get(reverse('members:status_management'), {'member': self.member.id})
+        self.assertContains(response, 'Kofi Annan')
+        self.assertContains(response, 'Active Full Member')
+        self.assertContains(response, f'name="member" value="{self.member.id}"')
+
+    def test_page_without_member_hides_form(self):
+        self.client.force_login(self.admin)
+        response = self.client.get(reverse('members:status_management'))
+        self.assertContains(response, 'No member selected')
+        self.assertNotContains(response, 'name="new_status"')
+
+    def test_status_update_changes_status_and_creates_records(self):
+        from core.models import AuditLog
+
+        self.client.force_login(self.admin)
+        response = self.client.post(reverse('members:status_management'), {
+            'member': self.member.id,
+            'new_status': 'INACTIVE',
+            'effective_date': '2026-08-01',
+            'reason': 'Relocated abroad and no longer attending services.',
+            'authorised_by': 'MINISTER',
+            'note_reference': 'Minutes of Leaders Meeting (03/08/26)',
+        })
+
+        self.assertRedirects(response, f"{reverse('members:status_management')}?member={self.member.id}")
+        self.member.refresh_from_db()
+        self.assertEqual(self.member.status, 'INACTIVE')
+
+        change = MembershipStatusChange.objects.get(member=self.member)
+        self.assertEqual(change.previous_status, 'ACTIVE')
+        self.assertEqual(change.new_status, 'INACTIVE')
+        self.assertEqual(change.effective_date.isoformat(), '2026-08-01')
+        self.assertEqual(change.authorised_by, 'MINISTER')
+        self.assertEqual(change.recorded_by, self.admin)
+        self.assertEqual(change.note_reference, 'Minutes of Leaders Meeting (03/08/26)')
+
+        self.assertTrue(
+            AuditLog.objects.filter(
+                user=self.admin,
+                model_name='Member',
+                object_id=str(self.member.id),
+            ).exists()
+        )
+
+    def test_status_update_rejects_unchanged_status(self):
+        self.client.force_login(self.admin)
+        response = self.client.post(reverse('members:status_management'), {
+            'member': self.member.id,
+            'new_status': 'ACTIVE',
+            'effective_date': '2026-08-01',
+            'reason': 'Trying to set the same status again.',
+            'authorised_by': 'STEWARD',
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'already marked as')
+        self.assertFalse(MembershipStatusChange.objects.exists())
+
+    def test_status_update_validates_required_fields(self):
+        self.client.force_login(self.admin)
+        response = self.client.post(reverse('members:status_management'), {
+            'member': self.member.id,
+            'new_status': 'NOT_A_STATUS',
+            'effective_date': 'not-a-date',
+            'reason': 'short',
+            'authorised_by': '',
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Select a valid new status.')
+        self.assertContains(response, 'Enter a valid effective date.')
+        self.assertContains(response, 'at least 10 characters')
+        self.assertContains(response, 'Select the authorising officer.')
+        self.member.refresh_from_db()
+        self.assertEqual(self.member.status, 'ACTIVE')
+
+    def test_status_update_requires_existing_member(self):
+        self.client.force_login(self.admin)
+        response = self.client.post(reverse('members:status_management'), {
+            'member': '99999',
+            'new_status': 'INACTIVE',
+            'effective_date': '2026-08-01',
+            'reason': 'This should fail because the member does not exist.',
+            'authorised_by': 'STEWARD',
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Select a member before updating their status.')
+
+    def test_status_history_renders_for_selected_member(self):
+        MembershipStatusChange.objects.create(
+            member=self.member,
+            previous_status='PENDING',
+            new_status='ACTIVE',
+            effective_date='2025-01-05',
+            reason='Approved by leaders meeting after trial period.',
+            authorised_by='LEADERS_MEETING',
+            recorded_by=self.admin,
+        )
+        self.client.force_login(self.admin)
+        response = self.client.get(reverse('members:status_management'), {'member': self.member.id})
+        self.assertContains(response, 'Recent Status Changes')
+        self.assertContains(response, 'Pending Approval &rarr; Active Full Member')

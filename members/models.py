@@ -110,3 +110,42 @@ class MemberRegularisation(models.Model):
 
     def __str__(self):
         return f"{self.member.get_full_name()} — {self.get_decision_display()}"
+
+
+class MembershipStatusChange(models.Model):
+    """Audit record for every membership status modification."""
+
+    AUTHORISED_BY_CHOICES = [
+        ('MINISTER', 'Rev. Superintendent Minister'),
+        ('STEWARD', 'Society Steward'),
+        ('LEADERS_MEETING', 'Leaders Meeting'),
+    ]
+
+    member = models.ForeignKey(
+        Member,
+        on_delete=models.CASCADE,
+        related_name='status_changes'
+    )
+    previous_status = models.CharField(max_length=20, choices=Member.STATUS_CHOICES)
+    new_status = models.CharField(max_length=20, choices=Member.STATUS_CHOICES)
+    effective_date = models.DateField()
+    reason = models.TextField()
+    authorised_by = models.CharField(max_length=30, choices=AUTHORISED_BY_CHOICES)
+    note_reference = models.CharField(max_length=200, blank=True, default='')
+    recorded_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='recorded_status_changes'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return (
+            f"{self.member.get_full_name()}: "
+            f"{self.get_previous_status_display()} -> {self.get_new_status_display()}"
+        )
