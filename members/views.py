@@ -317,6 +317,9 @@ def member_profile_view(request):
         )
         profile_history.sort(key=lambda event: event['date'], reverse=True)
 
+    status_changes = (
+        list(member.status_changes.select_related('recorded_by')[:10]) if member else []
+    )
 
     return render(request, "members/c3member_profile.html", {
         "active_nav": "members",
@@ -328,6 +331,7 @@ def member_profile_view(request):
         "attendance_rate": attendance_rate,
         "welfare_cases": welfare_cases,
         "profile_history": profile_history,
+        "status_changes": status_changes,
     })
 
 @login_required(login_url='accounts:login')

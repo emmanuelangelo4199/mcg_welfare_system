@@ -356,3 +356,24 @@ class StatusManagementTestCase(MembersTestCase):
         response = self.client.get(reverse('members:status_management'), {'member': self.member.id})
         self.assertContains(response, 'Recent Status Changes')
         self.assertContains(response, 'Pending Approval &rarr; Active Full Member')
+    def test_profile_history_lists_membership_status_changes(self):
+        MembershipStatusChange.objects.create(
+            member=self.member,
+            previous_status='ACTIVE',
+            new_status='TRANSFERRED',
+            effective_date='2026-08-01',
+            reason='Transferred to Wesley Cathedral society.',
+            authorised_by='MINISTER',
+            note_reference='LDM/2026/08/45',
+            recorded_by=self.admin,
+        )
+        self.client.force_login(self.admin)
+
+        response = self.client.get(f"{reverse('members:member_profile')}?id={self.member.id}")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Membership status changes')
+        self.assertContains(response, 'Active Full Member')
+        self.assertContains(response, 'Transferred')
+        self.assertContains(response, 'Rev. Superintendent Minister')
+        self.assertContains(response, 'LDM/2026/08/45')
