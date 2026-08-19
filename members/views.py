@@ -1,11 +1,21 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from datetime import timedelta
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
 from django.contrib import messages
+from datetime import timedelta
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.utils import timezone
+from django.utils.dateparse import parse_date
 from core.decorators import role_required
+from django.utils import timezone
 from .models import Member
 from classes.models import ClassGroup
+from attendance.models import ClassAttendanceRecord
+from welfare_cases.models import WelfareCase
+from organisations.models import Organisation
 
 @login_required(login_url='accounts:login')
 def member_directory_view(request):
@@ -56,56 +66,232 @@ def member_directory_view(request):
 
 @login_required(login_url='accounts:login')
 def member_registration_view(request):
-    if request.method == 'POST':
-        first_name = request.POST.get('first_name', '').strip()
-        last_name = request.POST.get('last_name', '').strip()
-        gender = request.POST.get('gender', 'M')
-        dob = request.POST.get('date_of_birth') or None
-        phone = request.POST.get('phone_number', '').strip()
-        email = request.POST.get('email', '').strip()
-        address = request.POST.get('residential_address', '').strip()
-        class_id = request.POST.get('assigned_class')
-        emergency_name = request.POST.get('emergency_contact_name', '').strip()
-        emergency_phone = request.POST.get('emergency_contact_phone', '').strip()
+    """Register a member while preserving entered values when validation fails."""
+    fields = (
+        'first_name', 'middle_name', 'last_name', 'gender', 'date_of_birth',
+        'marital_status', 'occupation', 'hometown', 'phone_number', 'email',
+        'residential_address', 'membership_type', 'date_of_baptism',
+        'assigned_class', 'emergency_contact_name',
+        'emergency_contact_relationship', 'emergency_contact_phone',
+    )
+    initial_form_data = {
+        'first_name': '', 'middle_name': '', 'last_name': '', 'gender': '',
+        'date_of_birth': '', 'marital_status': '', 'occupation': '',
+        'hometown': '', 'phone_number': '', 'email': '',
+        'residential_address': '', 'membership_type': 'FULL',
+        'date_of_baptism': '', 'assigned_class': '',
+        'emergency_contact_name': '', 'emergency_contact_relationship': '',
+        'emergency_contact_phone': '',
+    }
 
-        assigned_class = None
-        if class_id:
-            assigned_class = ClassGroup.objects.filter(id=class_id).first()
+    def render_registration(form_data=None, errors=None, selected_organisation_ids=None):
+        return render(request, "members/c2member_registration.html", {
+            'active_nav': 'members',
+            'classes': ClassGroup.objects.order_by('name'),
+            'organisations': Organisation.objects.order_by('name'),
+            'form_data': form_data or initial_form_data,
+            'errors': errors or {},
+            'selected_organisation_ids': selected_organisation_ids or [],
+            'gender_choices': Member.GENDER_CHOICES,
+            'marital_status_choices': Member.MARITAL_STATUS_CHOICES,
+            'membership_type_choices': Member.MEMBERSHIP_TYPE_CHOICES,
+        })
 
-        member = Member.objects.create(
-            first_name=first_name,
-            last_name=last_name,
-            gender=gender,
-            date_of_birth=dob,
-            phone_number=phone,
-            email=email,
-            residential_address=address,
-            assigned_class=assigned_class,
-            status='PENDING',
-            emergency_contact_name=emergency_name,
-            emergency_contact_phone=emergency_phone
-        )
-        messages.success(request, f"Member {member.get_full_name()} registered successfully!")
-        return redirect('members:member_directory')
+    if request.method != 'POST':
+        return render_registration()
 
-    classes = ClassGroup.objects.all()
-    return render(request, "members/c2member_registration.html", {
-        "active_nav": "members",
-        "classes": classes
-    })
+    form_data = {field: request.POST.get(field, '').strip() for field in fields}
+    selected_organisation_ids = request.POST.getlist('organisations')
+    errors = {}
+
+    required_fields = {
+        'first_name': 'Enter the member’s first name.',
+        'last_name': 'Enter the member’s last name.',
+        'gender': 'Select the member’s gender.',
+        'date_of_birth': 'Enter the member’s date of birth.',
+        'phone_number': 'Enter a primary phone number.',
+        'residential_address': 'Enter a residential address.',
+        'assigned_class': 'Select a Bible class.',
+        'emergency_contact_name': 'Enter an emergency contact name.',
+        'emergency_contact_relationship': 'Enter the contact’s relationship to the member.',
+        'emergency_contact_phone': 'Enter an emergency contact phone number.',
+    }
+    for field, message in required_fields.items():
+        if not form_data[field]:
+            errors[field] = message
+
+    if form_data['gender'] not in dict(Member.GENDER_CHOICES):
+        errors['gender'] = 'Select either Male or Female.'
+    if form_data['marital_status'] and form_data['marital_status'] not in dict(Member.MARITAL_STATUS_CHOICES):
+        errors['marital_status'] = 'Select a valid marital status.'
+    if form_data['membership_type'] not in dict(Member.MEMBERSHIP_TYPE_CHOICES):
+        errors['membership_type'] = 'Select a valid membership type.'
+
+    date_of_birth = parse_date(form_data['date_of_birth']) if form_data['date_of_birth'] else None
+    if form_data['date_of_birth'] and date_of_birth is None:
+        errors['date_of_birth'] = 'Enter a valid date of birth.'
+    date_of_baptism = parse_date(form_data['date_of_baptism']) if form_data['date_of_baptism'] else None
+    if form_data['date_of_baptism'] and date_of_baptism is None:
+        errors['date_of_baptism'] = 'Enter a valid baptism date.'
+
+    if form_data['email']:
+        try:
+            validate_email(form_data['email'])
+        except ValidationError:
+            errors['email'] = 'Enter a valid email address.'
+
+    assigned_class = None
+    if form_data['assigned_class']:
+        assigned_class = ClassGroup.objects.filter(id=form_data['assigned_class']).first()
+        if assigned_class is None:
+            errors['assigned_class'] = 'Select a valid Bible class.'
+
+    selected_organisations = list(Organisation.objects.filter(id__in=selected_organisation_ids))
+    if len(selected_organisations) != len(set(selected_organisation_ids)):
+        errors['organisations'] = 'One or more selected organisations are unavailable.'
+
+    uploaded_photo = request.FILES.get('passport_photo')
+    if uploaded_photo:
+        allowed_image_types = {'image/png', 'image/jpeg', 'image/gif', 'image/webp'}
+        if uploaded_photo.content_type not in allowed_image_types:
+            errors['passport_photo'] = 'Upload a PNG, JPG, GIF, or WebP image.'
+        elif uploaded_photo.size > 5 * 1024 * 1024:
+            errors['passport_photo'] = 'The passport photo must be 5 MB or smaller.'
+
+    if errors:
+        return render_registration(form_data, errors, selected_organisation_ids)
+
+    member = Member(
+        first_name=form_data['first_name'],
+        middle_name=form_data['middle_name'] or None,
+        last_name=form_data['last_name'],
+        gender=form_data['gender'],
+        date_of_birth=date_of_birth,
+        marital_status=form_data['marital_status'] or None,
+        occupation=form_data['occupation'] or None,
+        hometown=form_data['hometown'] or None,
+        phone_number=form_data['phone_number'],
+        email=form_data['email'] or None,
+        residential_address=form_data['residential_address'],
+        assigned_class=assigned_class,
+        membership_type=form_data['membership_type'],
+        date_of_baptism=date_of_baptism,
+        status='PENDING',
+        emergency_contact_name=form_data['emergency_contact_name'],
+        emergency_contact_relationship=form_data['emergency_contact_relationship'],
+        emergency_contact_phone=form_data['emergency_contact_phone'],
+        passport_photo=uploaded_photo,
+    )
+
+    try:
+        member.full_clean(exclude=['organisations', 'user'])
+    except ValidationError as error:
+        for field, messages_for_field in error.message_dict.items():
+            errors[field] = messages_for_field[0]
+        return render_registration(form_data, errors, selected_organisation_ids)
+
+    member.save()
+    member.organisations.set(selected_organisations)
+    messages.success(request, f"{member.get_full_name()} has been registered and is awaiting approval.")
+    return redirect('members:member_directory')
 
 @login_required(login_url='accounts:login')
 def member_profile_view(request):
+    """Render a member profile with the records that can be tied to a member."""
     member_id = request.GET.get('id')
-    member = None
-    if member_id:
-        member = get_object_or_404(Member, id=member_id)
-    else:
-        member = Member.objects.first()
+    members = Member.objects.select_related('assigned_class')
+    member = get_object_or_404(members, id=member_id) if member_id else members.first()
+
+    # The attendance model is class based. Build a clear twelve-week series
+    # instead of implying that service or organisation attendance is available
+    # at individual-member level.
+    today = timezone.localdate()
+    current_week_start = today - timedelta(days=today.weekday())
+    week_starts = [current_week_start - timedelta(weeks=offset) for offset in range(11, -1, -1)]
+    attendance_weeks = [
+        {
+            'start': week_start,
+            'short_label': week_start.strftime('%d %b'),
+            'label': week_start.strftime('%d %B %Y'),
+        }
+        for week_start in week_starts
+    ]
+    attendance_by_week = {}
+
+    if member and member.assigned_class:
+        records = (
+            ClassAttendanceRecord.objects.filter(
+                class_group=member.assigned_class,
+                date__gte=week_starts[0],
+                date__lte=current_week_start + timedelta(days=6),
+            )
+            .prefetch_related('present_members')
+            .order_by('date')
+        )
+        for record in records:
+            record_week_start = record.date - timedelta(days=record.date.weekday())
+            # A class can have more than one record in a week. The most recent
+            # record is the best representation for this compact overview.
+            attendance_by_week[record_week_start] = record
+
+    class_attendance_cells = []
+    for week_start in week_starts:
+        record = attendance_by_week.get(week_start)
+        if record is None:
+            class_attendance_cells.append({'state': 'na', 'label': 'No record', 'date': None})
+            continue
+
+        is_present = any(attendee.id == member.id for attendee in record.present_members.all())
+        class_attendance_cells.append({
+            'state': 'present' if is_present else 'absent',
+            'label': 'Present' if is_present else 'Absent',
+            'date': record.date,
+        })
+
+    attendance_record_count = len(attendance_by_week)
+    attendance_present_count = sum(cell['state'] == 'present' for cell in class_attendance_cells)
+    attendance_rate = round((attendance_present_count / attendance_record_count) * 100) if attendance_record_count else 0
+
+    welfare_cases = []
+    profile_history = []
+    if member:
+        welfare_cases = list(
+            WelfareCase.objects.filter(member=member)
+            .order_by('-updated_at')[:5]
+        )
+        profile_history = [
+            {
+                'date': member.updated_at,
+                'title': 'Profile last updated',
+                'description': 'Member contact, status, or class information was updated in the membership register.',
+            },
+            {
+                'date': member.created_at,
+                'title': 'Member registered',
+                'description': 'The member profile was created in the society management system.',
+            },
+        ]
+        profile_history.extend(
+            {
+                'date': welfare_case.created_at,
+                'title': 'Welfare case opened',
+                'description': f'{welfare_case.get_case_type_display()}: {welfare_case.title}',
+            }
+            for welfare_case in welfare_cases
+        )
+        profile_history.sort(key=lambda event: event['date'], reverse=True)
+
 
     return render(request, "members/c3member_profile.html", {
         "active_nav": "members",
-        "member": member
+        "member": member,
+        "attendance_weeks": attendance_weeks,
+        "class_attendance_cells": class_attendance_cells,
+        "attendance_record_count": attendance_record_count,
+        "attendance_present_count": attendance_present_count,
+        "attendance_rate": attendance_rate,
+        "welfare_cases": welfare_cases,
+        "profile_history": profile_history,
     })
 
 @login_required(login_url='accounts:login')

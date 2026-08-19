@@ -1,556 +1,623 @@
+{% load static %}
 <!DOCTYPE html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>{% if member %}{{ member.get_full_name }} · {% endif %}Member Profile · MCG-SMS</title>
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png"/>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Member Profile - MCG-SMS</title>
-<!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Tailwind Config injected from prompt -->
-<script id="tailwind-config">
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet"/>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
       tailwind.config = {
-        darkMode: "class",
         theme: {
           extend: {
-            "colors": {
-                    "inverse-surface": "#33302d",
-                    "inverse-on-surface": "#f7efeb",
-                    "surface-tint": "#a33a49",
-                    "on-surface-variant": "#564243",
-                    "surface-dim": "#e0d8d5",
-                    "surface-container-lowest": "#ffffff",
-                    "on-primary-fixed": "#40000e",
-                    "on-secondary-fixed": "#251a00",
-                    "warning": "#D97706",
-                    "on-secondary-container": "#745700",
-                    "outline": "#897172",
-                    "tertiary": "#2a2b2a",
-                    "primary": "#5c0219",
-                    "on-background": "#1e1b19",
-                    "primary-muted": "#F5EAEC",
-                    "on-tertiary-container": "#adadab",
-                    "on-tertiary-fixed": "#1a1c1b",
-                    "primary-light": "#A3283F",
-                    "surface-bright": "#fff8f5",
-                    "card": "#FFFFFF",
-                    "tertiary-container": "#404140",
-                    "on-secondary-fixed-variant": "#5a4300",
-                    "info": "#2563EB",
-                    "secondary-fixed": "#ffdf9a",
-                    "gold-muted": "#FDF6E3",
-                    "on-primary": "#ffffff",
-                    "on-error-container": "#93000a",
-                    "error": "#ba1a1a",
-                    "primary-container": "#7b1c2d",
-                    "surface-container-low": "#faf2ee",
-                    "on-secondary": "#ffffff",
-                    "text-secondary": "#6B7280",
-                    "tertiary-fixed": "#e3e2e0",
-                    "surface-container-high": "#eee7e3",
-                    "on-primary-fixed-variant": "#832233",
-                    "on-primary-container": "#ff8a95",
-                    "secondary": "#775a00",
-                    "error-container": "#ffdad6",
-                    "surface": "#F8F7F5",
-                    "secondary-fixed-dim": "#eec04f",
-                    "on-surface": "#1e1b19",
-                    "inverse-primary": "#ffb2b7",
-                    "on-tertiary-fixed-variant": "#464746",
-                    "on-tertiary": "#ffffff",
-                    "background": "#fff8f5",
-                    "surface-container": "#f4ece8",
-                    "on-error": "#ffffff",
-                    "surface-variant": "#e9e1dd",
-                    "tertiary-fixed-dim": "#c7c6c5",
-                    "primary-fixed": "#ffdadb",
-                    "primary-fixed-dim": "#ffb2b7",
-                    "success": "#16A34A",
-                    "danger": "#DC2626",
-                    "surface-container-highest": "#e9e1dd",
-                    "outline-variant": "#dcc0c1",
-                    "border": "#E4E2DD",
-                    "secondary-container": "#fece5b"
+            colors: {
+              primary: "#5c0219",
+              "primary-light": "#a3283f",
+              "primary-muted": "#f5eaec",
+              "on-primary": "#ffffff",
+              "on-primary-container": "#ffb2b7",
+              secondary: "#775a00",
+              "secondary-container": "#fece5b",
+              "on-secondary-container": "#745700",
+              surface: "#f8f7f5",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-low": "#faf2ee",
+              "surface-container": "#f4ece8",
+              "surface-container-high": "#eee7e3",
+              "surface-variant": "#e9e1dd",
+              "on-surface": "#1e1b19",
+              "on-surface-variant": "#564243",
+              border: "#e4e2dd",
+              success: "#16a34a",
+              danger: "#dc2626",
+              warning: "#d97706",
+              info: "#2563eb"
             },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
+            boxShadow: {
+              card: "0 1px 2px rgba(30, 27, 25, .04), 0 8px 24px rgba(30, 27, 25, .06)"
             },
-            "spacing": {
-                    "sm": "8px",
-                    "sidebar-width": "256px",
-                    "header-height": "64px",
-                    "xl": "32px",
-                    "lg": "24px",
-                    "base": "8px",
-                    "xs": "4px",
-                    "md": "16px"
+            spacing: {
+              xs: "4px",
+              sm: "8px",
+              base: "8px",
+              md: "16px",
+              lg: "24px",
+              xl: "32px",
+              "sidebar-width": "256px",
+              "header-height": "64px"
             },
-            "fontFamily": {
-                    "headline-lg": [
-                            "Lora"
-                    ],
-                    "label-md": [
-                            "Inter"
-                    ],
-                    "body-md": [
-                            "Inter"
-                    ],
-                    "body-lg": [
-                            "Inter"
-                    ],
-                    "headline-lg-mobile": [
-                            "Lora"
-                    ],
-                    "label-sm": [
-                            "Inter"
-                    ],
-                    "headline-md": [
-                            "Inter"
-                    ],
-                    "data-label": [
-                            "JetBrains Mono"
-                    ],
-                    "data-display": [
-                            "JetBrains Mono"
-                    ]
+            fontFamily: {
+              display: ["Lora", "serif"],
+              sans: ["Inter", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+              "headline-lg": ["Lora", "serif"],
+              "headline-lg-mobile": ["Lora", "serif"],
+              "headline-md": ["Inter", "sans-serif"],
+              "label-sm": ["Inter", "sans-serif"],
+              "label-md": ["Inter", "sans-serif"],
+              "body-md": ["Inter", "sans-serif"],
+              "body-lg": ["Inter", "sans-serif"],
+              "data-label": ["JetBrains Mono", "monospace"],
+              "data-display": ["JetBrains Mono", "monospace"]
             },
-            "fontSize": {
-                    "headline-lg": [
-                            "32px",
-                            {
-                                    "lineHeight": "1.2",
-                                    "fontWeight": "700"
-                            }
-                    ],
-                    "label-md": [
-                            "13px",
-                            {
-                                    "lineHeight": "1.2",
-                                    "fontWeight": "500"
-                            }
-                    ],
-                    "body-md": [
-                            "14px",
-                            {
-                                    "lineHeight": "1.6",
-                                    "fontWeight": "400"
-                            }
-                    ],
-                    "body-lg": [
-                            "16px",
-                            {
-                                    "lineHeight": "1.6",
-                                    "fontWeight": "400"
-                            }
-                    ],
-                    "headline-lg-mobile": [
-                            "24px",
-                            {
-                                    "lineHeight": "1.2",
-                                    "fontWeight": "700"
-                            }
-                    ],
-                    "label-sm": [
-                            "11px",
-                            {
-                                    "lineHeight": "1.2",
-                                    "letterSpacing": "0.05em",
-                                    "fontWeight": "500"
-                            }
-                    ],
-                    "headline-md": [
-                            "20px",
-                            {
-                                    "lineHeight": "1.3",
-                                    "fontWeight": "600"
-                            }
-                    ],
-                    "data-label": [
-                            "14px",
-                            {
-                                    "lineHeight": "1.0",
-                                    "fontWeight": "500"
-                            }
-                    ],
-                    "data-display": [
-                            "18px",
-                            {
-                                    "lineHeight": "1.0",
-                                    "fontWeight": "500"
-                            }
-                    ]
+            fontSize: {
+              "label-sm": ["11px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "500" }],
+              "label-md": ["13px", { lineHeight: "1.2", fontWeight: "500" }],
+              "body-md": ["14px", { lineHeight: "1.6", fontWeight: "400" }],
+              "body-lg": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-md": ["20px", { lineHeight: "1.3", fontWeight: "600" }],
+              "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+              "headline-lg-mobile": ["24px", { lineHeight: "1.2", fontWeight: "700" }],
+              "data-label": ["14px", { lineHeight: "1.0", fontWeight: "500" }],
+              "data-display": ["18px", { lineHeight: "1.0", fontWeight: "500" }]
             }
-    },
-        },
+          }
+        }
+      };
+    </script>
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
       }
-    </script>
-<style>
-        /* Custom Utilities for Hide/Show Tabs */
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-        
-        /* Material Symbols Setup */
-        .material-symbols-outlined {
-          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .icon-fill {
-          font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
+
+      .profile-tab-panel {
+        display: none;
+      }
+
+      .profile-tab-panel.is-active {
+        display: block;
+        animation: profile-fade-in .2s ease-out;
+      }
+
+      .profile-tab-panel.is-active[data-layout="flex"] {
+        display: flex;
+      }
+
+      @keyframes profile-fade-in {
+        from { opacity: 0; transform: translateY(4px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .profile-tab:focus-visible,
+      .profile-action:focus-visible {
+        outline: 2px solid #5c0219;
+        outline-offset: 2px;
+      }
     </style>
-</head>
-<body class="bg-surface text-on-surface font-body-md text-body-md antialiased selection:bg-primary-container selection:text-on-primary-container flex min-h-screen">
+  </head>
 
-<!-- SIDE NAVIGATION BAR (Desktop) -->
-{% include 'components/sidebar.html' %}
-<!-- MOBILE BOTTOM APP BAR -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest pb-safe md:hidden border-t border-border shadow-[0_-1px_3px_rgba(0,0,0,0.06)] h-[56px]">
-<a class="flex flex-col items-center justify-center text-on-surface-variant w-full h-full active:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined text-[24px]" data-icon="home">home</span>
-<span class="font-label-sm-mobile text-label-sm mt-1">Home</span>
-</a>
-<!-- ACTIVE ITEM -->
-<a class="flex flex-col items-center justify-center text-primary font-bold w-full h-full active:bg-surface-container-high transition-colors relative" href="#">
-<div class="absolute top-0 w-8 h-1 bg-secondary-container rounded-b-full"></div>
-<span class="material-symbols-outlined text-[24px] icon-fill" data-icon="person_search">person_search</span>
-<span class="font-label-sm-mobile text-label-sm mt-1">Members</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant w-full h-full active:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined text-[24px]" data-icon="account_balance_wallet">account_balance_wallet</span>
-<span class="font-label-sm-mobile text-label-sm mt-1">Finance</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant w-full h-full active:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined text-[24px]" data-icon="analytics">analytics</span>
-<span class="font-label-sm-mobile text-label-sm mt-1">Reports</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant w-full h-full active:bg-surface-container-high transition-colors" href="#">
-<span class="material-symbols-outlined text-[24px]" data-icon="menu">menu</span>
-<span class="font-label-sm-mobile text-label-sm mt-1">More</span>
-</a>
-</nav>
-<!-- MAIN CONTENT CANVAS -->
-<main class=" pt-[16px] md:pt-[calc(64px+24px)] pb-[80px] md:pb-lg px-md md:px-xl min-h-screen">
-<div class="max-w-7xl mx-auto">
-<!-- Mobile Header (Visible only on mobile) -->
-<div class="flex items-center gap-md mb-lg md:hidden">
-<button class="text-on-surface-variant bg-surface-container-lowest rounded-full p-2 border border-border shadow-sm">
-<span class="material-symbols-outlined">arrow_back</span>
-</button>
-<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Member Profile</h1>
-</div>
-<!-- 2-Column Grid Layout -->
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
-<!-- LEFT COLUMN: IDENTITY CARD (1/3) -->
-<div class="col-span-1 flex flex-col gap-lg">
-<!-- Main Profile Card -->
-<div class="bg-surface-container-lowest rounded-xl border border-border p-xl flex flex-col items-center text-center shadow-[0_1px_3px_rgba(0,0,0,0.04)] relative overflow-hidden">
-<!-- Decorative top accent -->
-<div class="absolute top-0 left-0 w-full h-2 bg-primary"></div>
-<!-- Avatar -->
-<div class="relative w-[96px] h-[96px] mb-md mt-sm">
-<img alt="Member Avatar" class="w-full h-full rounded-full object-cover border-4 border-surface shadow-sm" data-alt="A dignified, high-quality portrait photograph of a mature Ghanaian woman in traditional but formal attire, smiling warmly. The lighting is soft and flattering against a subtle church-interior backdrop, conveying respectability and active community involvement." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYKkcxMN_4CPlQClhD7pLslNlpZ3c7d8cpJ32QD-T8SWYxGxTHriRZ5AAwi3zOPOJbIcHzUjBeJOph6igQhGIgYa55GarJ4jqYiEXAqfn72hlhjsd5W6aOMlq1tUFCHkPvgIXptCwmw50x0sTSPH9pJFdU5bvsUt1E5g8e_fjex7syRKrNDfdSrLr-Pspaqz8sshU5n6HDizmn6KkX-g1coNbE8tPGT_UWn8Le-GBICdYsnEkSEA8HYbU-QZBdj8pRzPeAxpJpCrLK"/>
-<button class="absolute bottom-0 right-0 bg-secondary-container text-on-secondary-container rounded-full p-1 border-2 border-surface-container-lowest hover:scale-105 transition-transform" title="Edit Photo">
-<span class="material-symbols-outlined text-[16px]">edit</span>
-</button>
-</div>
-<!-- Name & Core Identity -->
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Beatrice Osei</h2>
-<!-- Membership Badge (Gold) -->
-<div class="inline-flex items-center gap-xs bg-secondary-container/20 border border-secondary-container text-on-secondary-container px-md py-xs rounded-full font-data-label text-data-label tracking-wide mb-md">
-<span class="material-symbols-outlined text-[14px]">badge</span>
-                            MCG-KS-0492
+  <body class="min-h-screen bg-surface font-sans text-on-surface antialiased">
+    {% include 'components/toast_messages.html' %}
+
+    <div class="min-h-screen md:flex">
+      <!-- Desktop navigation is intentionally hidden on small screens; the bottom bar replaces it. -->
+      {% include 'components/sidebar.html' %}
+
+      <main class="min-w-0 flex-1 px-4 pb-24 pt-5 md:px-8 md:py-8">
+        <div class="mx-auto max-w-[1440px]">
+          <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <nav aria-label="Breadcrumb" class="mb-2 flex items-center gap-1 text-sm text-on-surface-variant">
+                <a class="rounded transition-colors hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary" href="{% url 'members:member_directory' %}">Members</a>
+                <span aria-hidden="true" class="material-symbols-outlined text-[18px]">chevron_right</span>
+                <span aria-current="page" class="font-medium text-on-surface">Profile</span>
+              </nav>
+              <div class="flex items-center gap-3">
+                <a aria-label="Back to member directory" class="profile-action inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface-container-lowest text-on-surface-variant transition-colors hover:bg-surface-container-low md:hidden" href="{% url 'members:member_directory' %}">
+                  <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                </a>
+                <div>
+                  <h1 class="font-display text-2xl font-bold tracking-tight text-on-surface sm:text-3xl">Member Profile</h1>
+                  <p class="mt-1 text-sm text-on-surface-variant">View membership information, engagement, and care records in one place.</p>
+                </div>
+              </div>
+            </div>
+
+            {% if member %}
+              <div class="flex gap-2 sm:pt-6">
+                <a class="profile-action inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-surface-container-lowest px-3 py-2 text-sm font-semibold text-on-surface shadow-sm transition-colors hover:bg-surface-container-low" href="{% url 'members:edit_member' %}?id={{ member.id }}">
+                  <span class="material-symbols-outlined text-[18px]">edit</span>
+                  Edit profile
+                </a>
+                <a class="profile-action inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-on-primary shadow-sm transition-colors hover:bg-primary-light" href="{% url 'finance:record_income' %}">
+                  <span class="material-symbols-outlined text-[18px]">add_card</span>
+                  Record tithe
+                </a>
+              </div>
+            {% endif %}
+          </div>
+
+          {% if member %}
+            <div class="grid grid-cols-1 items-start gap-6 lg:grid-cols-[350px_minmax(0,1fr)]">
+              <!-- Identity card -->
+              <aside class="lg:sticky lg:top-6">
+                <section aria-labelledby="member-name" class="relative overflow-hidden rounded-2xl border border-border bg-surface-container-lowest p-6 text-center shadow-card">
+                  <div class="absolute inset-x-0 top-0 h-2 bg-primary"></div>
+
+                  {% if member.passport_photo %}
+                    <img alt="{{ member.get_full_name }}" class="mx-auto mt-3 h-24 w-24 rounded-full border-4 border-surface object-cover shadow-sm" src="{{ member.passport_photo.url }}"/>
+                  {% else %}
+                    <div aria-label="{{ member.get_full_name }} initials" class="mx-auto mt-3 flex h-24 w-24 items-center justify-center rounded-full border-4 border-surface bg-primary-muted font-display text-3xl font-bold text-primary shadow-sm">
+                      {{ member.first_name|slice:":1"|upper }}{{ member.last_name|slice:":1"|upper }}
+                    </div>
+                  {% endif %}
+
+                  <h2 id="member-name" class="mt-4 font-display text-2xl font-bold text-on-surface">{{ member.get_full_name }}</h2>
+                  <p class="mt-1 font-mono text-xs font-medium tracking-wide text-on-surface-variant">MCG-{{ member.id|stringformat:"05d" }}</p>
+
+                  <div class="mt-4 inline-flex max-w-full items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-wider
+                    {% if member.status == 'ACTIVE' %}border-success/20 bg-success/10 text-success
+                    {% elif member.status == 'PENDING' %}border-warning/20 bg-warning/10 text-warning
+                    {% elif member.status == 'REGULARIZED' %}border-info/20 bg-info/10 text-info
+                    {% else %}border-border bg-surface-container-low text-on-surface-variant{% endif %}">
+                    <span class="h-2 w-2 shrink-0 rounded-full {% if member.status == 'ACTIVE' %}bg-success{% elif member.status == 'PENDING' %}bg-warning{% elif member.status == 'REGULARIZED' %}bg-info{% else %}bg-on-surface-variant{% endif %}"></span>
+                    {{ member.get_status_display }}
+                  </div>
+
+                  <dl class="mt-6 space-y-4 border-t border-border pt-5 text-left">
+                    <div>
+                      <dt class="text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">Class meeting</dt>
+                      <dd class="mt-1 flex items-start gap-2 text-sm font-medium text-on-surface">
+                        <span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">groups</span>
+                        {% if member.assigned_class %}
+                          <span>{{ member.assigned_class.name }}</span>
+                        {% else %}
+                          <span class="text-on-surface-variant">No class assigned</span>
+                        {% endif %}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt class="text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">Phone</dt>
+                      <dd class="mt-1 flex items-center gap-2 text-sm text-on-surface">
+                        <span class="material-symbols-outlined text-[18px] text-primary">call</span>
+                        {% if member.phone_number %}
+                          <a class="rounded hover:text-primary hover:underline" href="tel:{{ member.phone_number }}">{{ member.phone_number }}</a>
+                        {% else %}
+                          <span class="text-on-surface-variant">Not provided</span>
+                        {% endif %}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt class="text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">Email address</dt>
+                      <dd class="mt-1 flex items-start gap-2 break-all text-sm text-on-surface">
+                        <span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">mail</span>
+                        {% if member.email %}
+                          <a class="rounded hover:text-primary hover:underline" href="mailto:{{ member.email }}">{{ member.email }}</a>
+                        {% else %}
+                          <span class="text-on-surface-variant">Not provided</span>
+                        {% endif %}
+                      </dd>
+                    </div>
+                  </dl>
+
+                  <a class="profile-action mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-border bg-surface-container-low px-4 py-2.5 text-sm font-semibold text-on-surface transition-colors hover:bg-surface-container-high" href="{% url 'members:edit_member' %}?id={{ member.id }}">
+                    <span class="material-symbols-outlined text-[18px]">manage_accounts</span>
+                    Manage member details
+                  </a>
+                </section>
+              </aside>
+
+              <!-- Profile detail panels -->
+              <section aria-label="Member details" class="overflow-hidden rounded-2xl border border-border bg-surface-container-lowest shadow-card">
+                <div class="overflow-x-auto border-b border-border bg-surface-container-low">
+                  <div aria-label="Profile sections" class="flex min-w-max px-2" role="tablist">
+                    <button aria-controls="profile-personal" aria-selected="false" class="profile-tab border-b-2 border-transparent px-4 py-4 text-sm font-semibold text-on-surface-variant transition-colors hover:text-on-surface" id="profile-personal-tab" role="tab" tabindex="-1" type="button">
+                      Personal
+                    </button>
+                    <button aria-controls="profile-church" aria-selected="false" class="profile-tab border-b-2 border-transparent px-4 py-4 text-sm font-semibold text-on-surface-variant transition-colors hover:text-on-surface" id="profile-church-tab" role="tab" tabindex="-1" type="button">
+                      Church
+                    </button>
+                    <button aria-controls="profile-organisations" aria-selected="false" class="profile-tab border-b-2 border-transparent px-4 py-4 text-sm font-semibold text-on-surface-variant transition-colors hover:text-on-surface" id="profile-organisations-tab" role="tab" tabindex="-1" type="button">
+                      Organisations
+                    </button>
+                    <button aria-controls="profile-attendance" aria-selected="true" class="profile-tab border-b-2 border-primary px-4 py-4 text-sm font-bold text-primary transition-colors" id="profile-attendance-tab" role="tab" tabindex="0" type="button">
+                      Attendance
+                    </button>
+                    <button aria-controls="profile-finance" aria-selected="false" class="profile-tab border-b-2 border-transparent px-4 py-4 text-sm font-semibold text-on-surface-variant transition-colors hover:text-on-surface" id="profile-finance-tab" role="tab" tabindex="-1" type="button">
+                      Finance
+                    </button>
+                    <button aria-controls="profile-welfare" aria-selected="false" class="profile-tab border-b-2 border-transparent px-4 py-4 text-sm font-semibold text-on-surface-variant transition-colors hover:text-on-surface" id="profile-welfare-tab" role="tab" tabindex="-1" type="button">
+                      Welfare
+                    </button>
+                    <button aria-controls="profile-history" aria-selected="false" class="profile-tab border-b-2 border-transparent px-4 py-4 text-sm font-semibold text-on-surface-variant transition-colors hover:text-on-surface" id="profile-history-tab" role="tab" tabindex="-1" type="button">
+                      History
+                    </button>
+                  </div>
+                </div>
+
+                <div class="min-h-[570px] p-5 sm:p-6">
+                  <!-- Personal -->
+                  <div aria-labelledby="profile-personal-tab" class="profile-tab-panel" id="profile-personal" role="tabpanel" tabindex="0">
+                    <div class="mb-6">
+                      <h3 class="text-xl font-semibold text-on-surface">Personal information</h3>
+                      <p class="mt-1 text-sm text-on-surface-variant">Contact details and information held in the membership register.</p>
+                    </div>
+                    <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      <div class="rounded-xl border border-border bg-surface p-4">
+                        <dt class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Full name</dt>
+                        <dd class="mt-2 text-sm font-medium text-on-surface">{{ member.first_name }}{% if member.middle_name %} {{ member.middle_name }}{% endif %} {{ member.last_name }}</dd>
+                      </div>
+                      <div class="rounded-xl border border-border bg-surface p-4">
+                        <dt class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Gender</dt>
+                        <dd class="mt-2 text-sm font-medium text-on-surface">{{ member.get_gender_display }}</dd>
+                      </div>
+                      <div class="rounded-xl border border-border bg-surface p-4">
+                        <dt class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Date of birth</dt>
+                        <dd class="mt-2 text-sm font-medium text-on-surface">{{ member.date_of_birth|date:"d F Y"|default:"Not recorded" }}</dd>
+                      </div>
+                      <div class="rounded-xl border border-border bg-surface p-4">
+                        <dt class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Member number</dt>
+                        <dd class="mt-2 font-mono text-sm font-medium text-on-surface">MCG-{{ member.id|stringformat:"05d" }}</dd>
+                      </div>
+                      <div class="rounded-xl border border-border bg-surface p-4">
+                        <dt class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Marital status</dt>
+                        <dd class="mt-2 text-sm font-medium text-on-surface">{{ member.get_marital_status_display|default:"Not recorded" }}</dd>
+                      </div>
+                      <div class="rounded-xl border border-border bg-surface p-4">
+                        <dt class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Occupation</dt>
+                        <dd class="mt-2 text-sm font-medium text-on-surface">{{ member.occupation|default:"Not recorded" }}</dd>
+                      </div>
+                      <div class="rounded-xl border border-border bg-surface p-4 sm:col-span-2">
+                        <dt class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Residential address</dt>
+                        <dd class="mt-2 whitespace-pre-line text-sm font-medium text-on-surface">{{ member.residential_address|default:"Not recorded" }}</dd>
+                      </div>
+                    </dl>
+
+                    <section class="mt-6 rounded-xl border border-border bg-surface-container-low p-4" aria-labelledby="emergency-contact-heading">
+                      <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined rounded-full bg-primary-muted p-2 text-primary">emergency</span>
+                        <div>
+                          <h4 id="emergency-contact-heading" class="font-semibold text-on-surface">Emergency contact</h4>
+                          {% if member.emergency_contact_name or member.emergency_contact_phone %}
+                            <p class="mt-1 text-sm text-on-surface">{{ member.emergency_contact_name|default:"Name not recorded" }}{% if member.emergency_contact_relationship %} · {{ member.emergency_contact_relationship }}{% endif %}{% if member.emergency_contact_phone %} · {{ member.emergency_contact_phone }}{% endif %}</p>
+                          {% else %}
+                            <p class="mt-1 text-sm text-on-surface-variant">No emergency contact has been recorded for this member.</p>
+                          {% endif %}
                         </div>
-<!-- Status Badge -->
-<div class="inline-flex items-center justify-center bg-success/10 text-success border border-success/20 px-lg py-sm rounded-full font-label-sm text-label-sm uppercase tracking-widest font-bold w-full max-w-[200px]">
-<span class="w-2 h-2 rounded-full bg-success mr-2"></span>
-                            Active Full Member
+                      </div>
+                    </section>
+                  </div>
+
+                  <!-- Church -->
+                  <div aria-labelledby="profile-church-tab" class="profile-tab-panel" id="profile-church" role="tabpanel" tabindex="0">
+                    <div class="mb-6">
+                      <h3 class="text-xl font-semibold text-on-surface">Church membership</h3>
+                      <p class="mt-1 text-sm text-on-surface-variant">Membership standing and class-meeting assignment.</p>
+                    </div>
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                      <div class="rounded-xl border border-border p-5">
+                        <span class="material-symbols-outlined rounded-lg bg-primary-muted p-2 text-primary">verified_user</span>
+                        <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Membership status</p>
+                        <p class="mt-1 text-base font-semibold text-on-surface">{{ member.get_status_display }}</p>
+                      </div>
+                      <div class="rounded-xl border border-border p-5">
+                        <span class="material-symbols-outlined rounded-lg bg-primary-muted p-2 text-primary">calendar_month</span>
+                        <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Registered since</p>
+                        <p class="mt-1 text-base font-semibold text-on-surface">{{ member.created_at|date:"d F Y" }}</p>
+                      </div>
+                      <div class="rounded-xl border border-border p-5">
+                        <span class="material-symbols-outlined rounded-lg bg-primary-muted p-2 text-primary">church</span>
+                        <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Membership type</p>
+                        <p class="mt-1 text-base font-semibold text-on-surface">{{ member.get_membership_type_display }}</p>
+                      </div>
+                      <div class="rounded-xl border border-border p-5">
+                        <span class="material-symbols-outlined rounded-lg bg-primary-muted p-2 text-primary">water_drop</span>
+                        <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Date of baptism</p>
+                        <p class="mt-1 text-base font-semibold text-on-surface">{{ member.date_of_baptism|date:"d F Y"|default:"Not recorded" }}</p>
+                      </div>
+                      <div class="rounded-xl border border-border p-5 md:col-span-2">
+                        <div class="flex items-start gap-3">
+                          <span class="material-symbols-outlined rounded-lg bg-secondary-container/30 p-2 text-on-secondary-container">groups</span>
+                          <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Assigned class meeting</p>
+                            {% if member.assigned_class %}
+                              <p class="mt-1 text-base font-semibold text-on-surface">{{ member.assigned_class.name }}</p>
+                              {% if member.assigned_class.meeting_time %}
+                                <p class="mt-1 text-sm text-on-surface-variant">{{ member.assigned_class.meeting_time }}</p>
+                              {% endif %}
+                            {% else %}
+                              <p class="mt-1 text-base font-semibold text-on-surface">No class assigned</p>
+                              <p class="mt-1 text-sm text-on-surface-variant">Assign a class meeting to include the member in class attendance records.</p>
+                            {% endif %}
+                          </div>
                         </div>
-<!-- Key Details Divider -->
-<hr class="w-full border-border my-lg"/>
-<!-- Quick Stats/Details -->
-<div class="w-full space-y-md text-left">
-<div>
-<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-xs">Society</p>
-<p class="font-body-md text-body-md text-on-surface font-medium flex items-center gap-2">
-<span class="material-symbols-outlined text-[16px] text-primary">church</span>
-                                    Wesley Cathedral, Kumasi
-                                </p>
-</div>
-<div>
-<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-xs">Class Meeting</p>
-<p class="font-body-md text-body-md text-on-surface font-medium flex items-center gap-2">
-<span class="material-symbols-outlined text-[16px] text-primary">groups</span>
-                                    Class 12 (Bro. Emmanuel Mensah)
-                                </p>
-</div>
-<div>
-<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-xs">Contact</p>
-<p class="font-body-md text-body-md text-on-surface mb-1 flex items-center gap-2">
-<span class="material-symbols-outlined text-[16px] text-on-surface-variant">call</span>
-                                    +233 54 123 4567
-                                </p>
-<p class="font-body-md text-body-md text-on-surface text-primary hover:underline cursor-pointer flex items-center gap-2">
-<span class="material-symbols-outlined text-[16px] text-on-surface-variant">mail</span>
-                                    b.osei@example.com
-                                </p>
-</div>
-</div>
-<!-- Actions -->
-<div class="w-full grid grid-cols-2 gap-sm mt-xl">
-<button class="bg-primary hover:bg-primary-light text-on-primary rounded-lg py-sm font-label-md text-label-md transition-colors shadow-sm">
-                                Edit Profile
-                            </button>
-<button class="bg-surface-container-high hover:bg-surface-variant text-on-surface rounded-lg py-sm font-label-md text-label-md transition-colors border border-border">
-                                Record Tithe
-                            </button>
-</div>
-</div>
-</div>
-<!-- RIGHT COLUMN: TABBED PANEL (2/3) -->
-<div class="col-span-1 lg:col-span-2 bg-surface-container-lowest rounded-xl border border-border shadow-[0_1px_3px_rgba(0,0,0,0.04)] flex flex-col overflow-hidden h-full min-h-[600px]">
-<!-- Tabs Header -->
-<div class="flex overflow-x-auto border-b border-border bg-surface-container-low/50 px-sm pt-sm hide-scrollbar" role="tablist">
-<button class="tab-btn px-md py-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface whitespace-nowrap transition-colors relative" data-target="tab-personal">Personal</button>
-<button class="tab-btn px-md py-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface whitespace-nowrap transition-colors relative" data-target="tab-church">Church</button>
-<button class="tab-btn px-md py-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface whitespace-nowrap transition-colors relative" data-target="tab-organisations">Organisations</button>
-<!-- Active Tab by default for demonstration -->
-<button class="tab-btn active px-md py-md font-label-md text-label-md text-primary font-bold whitespace-nowrap transition-colors relative border-b-2 border-primary" data-target="tab-attendance">Attendance</button>
-<button class="tab-btn px-md py-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface whitespace-nowrap transition-colors relative" data-target="tab-finance">Finance</button>
-<button class="tab-btn px-md py-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface whitespace-nowrap transition-colors relative" data-target="tab-welfare">Welfare</button>
-<button class="tab-btn px-md py-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface whitespace-nowrap transition-colors relative" data-target="tab-history">History</button>
-</div>
-<!-- Tabs Content Container -->
-<div class="flex-1 p-lg overflow-y-auto bg-surface-container-lowest">
-<!-- TAB: Attendance (Heatmap) -->
-<div class="tab-content active h-full flex flex-col" id="tab-attendance">
-<div class="flex justify-between items-center mb-lg">
-<div>
-<h3 class="font-headline-md text-headline-md text-on-surface">Service Attendance</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mt-1">Past 12 weeks overview</p>
-</div>
-<div class="flex items-center gap-md text-sm">
-<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-success"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Present</span></div>
-<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-danger/80"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Absent</span></div>
-<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-surface-variant"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Excused/N/A</span></div>
-</div>
-</div>
-<!-- Heatmap Grid Container -->
-<div class="bg-surface rounded-lg p-lg border border-border overflow-x-auto">
-<div class="min-w-[600px]">
-<!-- Header Row (Weeks) -->
-<div class="grid grid-cols-[120px_repeat(12,1fr)] gap-2 mb-sm text-center">
-<div></div> <!-- Empty top-left cell -->
-<!-- Generate 12 week headers -->
-<div class="font-label-sm text-label-sm text-on-surface-variant">Wk 1</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant">Wk 2</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant">Wk 3</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant">Wk 4</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant">Wk 5</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant font-bold text-primary">Wk 6</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant">Wk 7</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant">Wk 8</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant">Wk 9</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant">Wk 10</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant">Wk 11</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant">Wk 12</div>
-</div>
-<!-- Row 1: Sunday Divine Service -->
-<div class="grid grid-cols-[120px_repeat(12,1fr)] gap-2 mb-2 items-center">
-<div class="font-label-md text-label-md text-on-surface text-right pr-sm">Sunday Srv.</div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-90 hover:opacity-100 transition-opacity cursor-help" title="Present"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-90 hover:opacity-100 transition-opacity cursor-help" title="Present"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-90 hover:opacity-100 transition-opacity cursor-help" title="Present"></div>
-<div class="aspect-square bg-danger/80 rounded-md shadow-sm opacity-90 hover:opacity-100 transition-opacity cursor-help" title="Absent"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-90 hover:opacity-100 transition-opacity cursor-help" title="Present"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-90 hover:opacity-100 transition-opacity cursor-help" title="Present"></div>
-<div class="aspect-square bg-surface-variant rounded-md shadow-inner cursor-help" title="Excused"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-90 hover:opacity-100 transition-opacity cursor-help" title="Present"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-90 hover:opacity-100 transition-opacity cursor-help" title="Present"></div>
-<div class="aspect-square bg-danger/80 rounded-md shadow-sm opacity-90 hover:opacity-100 transition-opacity cursor-help" title="Absent"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-90 hover:opacity-100 transition-opacity cursor-help" title="Present"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-90 hover:opacity-100 transition-opacity cursor-help" title="Present"></div>
-</div>
-<!-- Row 2: Class Meeting -->
-<div class="grid grid-cols-[120px_repeat(12,1fr)] gap-2 mb-2 items-center">
-<div class="font-label-md text-label-md text-on-surface text-right pr-sm">Class Mtg.</div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-80 cursor-help" title="Present"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-80 cursor-help" title="Present"></div>
-<div class="aspect-square bg-danger/80 rounded-md shadow-sm opacity-80 cursor-help" title="Absent"></div>
-<div class="aspect-square bg-danger/80 rounded-md shadow-sm opacity-80 cursor-help" title="Absent"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-80 cursor-help" title="Present"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-80 cursor-help" title="Present"></div>
-<div class="aspect-square bg-surface-variant rounded-md shadow-inner cursor-help" title="Excused"></div>
-<div class="aspect-square bg-surface-variant rounded-md shadow-inner cursor-help" title="Excused"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-80 cursor-help" title="Present"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-80 cursor-help" title="Present"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-80 cursor-help" title="Present"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-80 cursor-help" title="Present"></div>
-</div>
-<!-- Row 3: Organisation (e.g. Women's Fellowship) -->
-<div class="grid grid-cols-[120px_repeat(12,1fr)] gap-2 items-center">
-<div class="font-label-md text-label-md text-on-surface text-right pr-sm truncate">Women's Fel.</div>
-<div class="aspect-square bg-surface-variant rounded-md shadow-inner cursor-not-allowed" title="No Meeting"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-70 cursor-help" title="Present"></div>
-<div class="aspect-square bg-surface-variant rounded-md shadow-inner cursor-not-allowed" title="No Meeting"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-70 cursor-help" title="Present"></div>
-<div class="aspect-square bg-surface-variant rounded-md shadow-inner cursor-not-allowed" title="No Meeting"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-70 cursor-help" title="Present"></div>
-<div class="aspect-square bg-surface-variant rounded-md shadow-inner cursor-not-allowed" title="No Meeting"></div>
-<div class="aspect-square bg-danger/80 rounded-md shadow-sm opacity-70 cursor-help" title="Absent"></div>
-<div class="aspect-square bg-surface-variant rounded-md shadow-inner cursor-not-allowed" title="No Meeting"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-70 cursor-help" title="Present"></div>
-<div class="aspect-square bg-surface-variant rounded-md shadow-inner cursor-not-allowed" title="No Meeting"></div>
-<div class="aspect-square bg-success rounded-md shadow-sm opacity-70 cursor-help" title="Present"></div>
-</div>
-</div>
-</div>
-<div class="mt-lg p-md bg-secondary-container/10 border-l-4 border-secondary-container rounded-r-lg">
-<p class="font-body-md text-body-md text-on-surface">
-<span class="font-bold text-secondary-fixed-dim">Insights:</span> Beatrice maintains a strong attendance record for Sunday Services (83%), but has missed recent Class Meetings. Pastoral care team follow-up might be advisable.
-                                </p>
-</div>
-</div>
-<!-- TAB: History (Audit Log) -->
-<div class="tab-content h-full" id="tab-history">
-<div class="flex justify-between items-center mb-lg">
-<div>
-<h3 class="font-headline-md text-headline-md text-on-surface">Member History</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mt-1">Audit log of system changes and milestones</p>
-</div>
-<button class="text-primary hover:bg-primary-muted px-sm py-xs rounded-md transition-colors flex items-center gap-1 font-label-md text-label-md">
-<span class="material-symbols-outlined text-[18px]">download</span> Export
-                                </button>
-</div>
-<div class="bg-surface-container-lowest border border-border rounded-lg overflow-hidden">
-<table class="w-full text-left border-collapse">
-<thead class="bg-surface-container-low border-b border-border">
-<tr>
-<th class="py-md px-lg font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Date &amp; Time</th>
-<th class="py-md px-lg font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Action / Event</th>
-<th class="py-md px-lg font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Module</th>
-<th class="py-md px-lg font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Recorded By</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-border">
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="py-md px-lg whitespace-nowrap">
-<p class="font-data-label text-data-label text-on-surface">2023-10-24</p>
-<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">14:32 GMT</p>
-</td>
-<td class="py-md px-lg">
-<p class="font-body-md text-body-md text-on-surface font-medium">Tithe Payment Logged</p>
-<p class="font-body-md text-body-md text-on-surface-variant text-sm">Receipt #TR-9921 generated for GHS 500.00</p>
-</td>
-<td class="py-md px-lg">
-<span class="bg-primary-container/10 text-primary px-2 py-1 rounded-md font-label-sm text-label-sm">Finance</span>
-</td>
-<td class="py-md px-lg">
-<p class="font-body-md text-body-md text-on-surface">Kwame Appiah</p>
-<p class="font-label-sm text-label-sm text-on-surface-variant">Finance Officer</p>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="py-md px-lg whitespace-nowrap">
-<p class="font-data-label text-data-label text-on-surface">2023-09-12</p>
-<p class="font-label-sm text-label-sm text-on-surface-variant">09:15 GMT</p>
-</td>
-<td class="py-md px-lg">
-<p class="font-body-md text-body-md text-on-surface font-medium">Profile Updated</p>
-<p class="font-body-md text-body-md text-on-surface-variant text-sm">Changed residential address from Oforikrom to Ayigya.</p>
-</td>
-<td class="py-md px-lg">
-<span class="bg-secondary-container/20 text-on-secondary-container px-2 py-1 rounded-md font-label-sm text-label-sm">Personal</span>
-</td>
-<td class="py-md px-lg">
-<p class="font-body-md text-body-md text-on-surface">System</p>
-<p class="font-label-sm text-label-sm text-on-surface-variant">Self-Service Portal</p>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="py-md px-lg whitespace-nowrap">
-<p class="font-data-label text-data-label text-on-surface">2023-01-05</p>
-<p class="font-label-sm text-label-sm text-on-surface-variant">11:00 GMT</p>
-</td>
-<td class="py-md px-lg">
-<p class="font-body-md text-body-md text-on-surface font-medium">Joined Organisation</p>
-<p class="font-body-md text-body-md text-on-surface-variant text-sm">Added to Women's Fellowship roster.</p>
-</td>
-<td class="py-md px-lg">
-<span class="bg-surface-variant text-on-surface-variant px-2 py-1 rounded-md font-label-sm text-label-sm">Organisations</span>
-</td>
-<td class="py-md px-lg">
-<p class="font-body-md text-body-md text-on-surface">Admin User</p>
-<p class="font-label-sm text-label-sm text-on-surface-variant">Society Steward</p>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="py-md px-lg whitespace-nowrap">
-<p class="font-data-label text-data-label text-on-surface">2020-04-18</p>
-<p class="font-label-sm text-label-sm text-on-surface-variant">10:00 GMT</p>
-</td>
-<td class="py-md px-lg">
-<p class="font-body-md text-body-md text-on-surface font-medium">Confirmation</p>
-<p class="font-body-md text-body-md text-on-surface-variant text-sm">Confirmed into full membership by Rt. Rev. Bosomtwe.</p>
-</td>
-<td class="py-md px-lg">
-<span class="bg-success/10 text-success px-2 py-1 rounded-md font-label-sm text-label-sm">Church</span>
-</td>
-<td class="py-md px-lg">
-<p class="font-body-md text-body-md text-on-surface">Data Migration</p>
-<p class="font-label-sm text-label-sm text-on-surface-variant">Legacy System</p>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<!-- Placeholder for other tabs to demonstrate switching logic -->
-<div class="tab-content h-full flex items-center justify-center text-on-surface-variant font-body-lg" id="tab-personal">Personal Information Panel (Mock)</div>
-<div class="tab-content h-full flex items-center justify-center text-on-surface-variant font-body-lg" id="tab-church">Church Sacraments &amp; Roles Panel (Mock)</div>
-<div class="tab-content h-full flex items-center justify-center text-on-surface-variant font-body-lg" id="tab-organisations">Organisations Memberships Panel (Mock)</div>
-<div class="tab-content h-full flex items-center justify-center text-on-surface-variant font-body-lg" id="tab-finance">Financial Contributions Panel (Mock)</div>
-<div class="tab-content h-full flex items-center justify-center text-on-surface-variant font-body-lg border-2 border-danger/20 bg-danger/5 rounded-lg" id="tab-welfare">Restricted: Welfare Records Panel (Mock)</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- Simple Tab Switching Logic -->
-<script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
+                      </div>
+                    </div>
+                  </div>
 
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // Remove active styles from all buttons
-                    tabBtns.forEach(b => {
-                        b.classList.remove('active', 'text-primary', 'font-bold', 'border-b-2', 'border-primary');
-                        b.classList.add('text-on-surface-variant');
-                    });
-                    
-                    // Add active styles to clicked button
-                    btn.classList.add('active', 'text-primary', 'font-bold', 'border-b-2', 'border-primary');
-                    btn.classList.remove('text-on-surface-variant');
+                  <!-- Organisations -->
+                  <div aria-labelledby="profile-organisations-tab" class="profile-tab-panel" id="profile-organisations" role="tabpanel" tabindex="0">
+                    <div class="mb-6">
+                      <h3 class="text-xl font-semibold text-on-surface">Organisation memberships</h3>
+                      <p class="mt-1 text-sm text-on-surface-variant">Church groups and fellowships selected for this member.</p>
+                    </div>
 
-                    // Hide all contents
-                    tabContents.forEach(content => {
-                        content.classList.remove('active');
-                    });
+                    {% if member.organisations.all %}
+                      <div class="grid gap-3 sm:grid-cols-2">
+                        {% for organisation in member.organisations.all %}
+                          <article class="rounded-xl border border-border bg-surface p-4">
+                            <span class="material-symbols-outlined rounded-lg bg-primary-muted p-2 text-primary">diversity_3</span>
+                            <h4 class="mt-3 font-semibold text-on-surface">{{ organisation.name }}</h4>
+                            {% if organisation.meeting_schedule %}
+                              <p class="mt-1 text-sm text-on-surface-variant">{{ organisation.meeting_schedule }}</p>
+                            {% else %}
+                              <p class="mt-1 text-sm text-on-surface-variant">Meeting schedule not recorded</p>
+                            {% endif %}
+                          </article>
+                        {% endfor %}
+                      </div>
+                    {% else %}
+                      <div class="flex flex-col items-center justify-center rounded-xl border border-dashed border-border bg-surface py-14 text-center">
+                        <span class="material-symbols-outlined rounded-full bg-surface-container-low p-3 text-2xl text-on-surface-variant">diversity_3</span>
+                        <h4 class="mt-4 font-semibold text-on-surface">No organisations selected</h4>
+                        <p class="mt-1 max-w-sm text-sm text-on-surface-variant">Add this member to a fellowship or church group from their profile details.</p>
+                      </div>
+                    {% endif %}
+                  </div>
 
-                    // Show target content
-                    const targetId = btn.getAttribute('data-target');
-                    const targetContent = document.getElementById(targetId);
-                    if(targetContent) {
-                        targetContent.classList.add('active');
-                    }
-                });
-            });
+                  <!-- Attendance -->
+                  <div aria-labelledby="profile-attendance-tab" class="profile-tab-panel is-active" id="profile-attendance" role="tabpanel" tabindex="0">
+                    <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                      <div>
+                        <h3 class="text-xl font-semibold text-on-surface">Class-meeting attendance</h3>
+                        <p class="mt-1 text-sm text-on-surface-variant">A twelve-week view of member-level class attendance records.</p>
+                      </div>
+                      <div aria-label="Attendance legend" class="flex flex-wrap gap-x-4 gap-y-2 text-xs text-on-surface-variant">
+                        <span class="inline-flex items-center gap-2"><span class="h-3 w-3 rounded-sm bg-success"></span> Present</span>
+                        <span class="inline-flex items-center gap-2"><span class="h-3 w-3 rounded-sm bg-danger"></span> Absent</span>
+                        <span class="inline-flex items-center gap-2"><span class="h-3 w-3 rounded-sm bg-surface-variant ring-1 ring-border"></span> No record</span>
+                      </div>
+                    </div>
+
+                    <div class="mt-6 overflow-x-auto rounded-xl border border-border bg-surface p-4">
+                      <div class="min-w-[680px]">
+                        <div class="grid grid-cols-[145px_repeat(12,minmax(28px,1fr))] gap-2">
+                          <div class="pb-2 text-right text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Week of</div>
+                          {% for week in attendance_weeks %}
+                            <div class="pb-2 text-center text-[11px] font-semibold text-on-surface-variant" title="Week of {{ week.label }}">{{ week.short_label }}</div>
+                          {% endfor %}
+
+                          <div class="flex items-center justify-end pr-2 text-sm font-semibold text-on-surface">Class meeting</div>
+                          {% for cell in class_attendance_cells %}
+                            <div class="group relative aspect-square min-h-7 rounded-md ring-1 ring-inset
+                              {% if cell.state == 'present' %}bg-success ring-success/20
+                              {% elif cell.state == 'absent' %}bg-danger ring-danger/20
+                              {% else %}bg-surface-variant ring-border{% endif %}" title="{{ cell.label }}{% if cell.date %} · {{ cell.date|date:'d M Y' }}{% endif %}">
+                              <span class="sr-only">{{ cell.label }}{% if cell.date %} for {{ cell.date|date:"d M Y" }}{% endif %}</span>
+                            </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mt-5 grid gap-4 sm:grid-cols-3">
+                      <div class="rounded-xl border border-border bg-surface p-4">
+                        <p class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Meetings recorded</p>
+                        <p class="mt-2 font-mono text-2xl font-semibold text-on-surface">{{ attendance_record_count }}</p>
+                      </div>
+                      <div class="rounded-xl border border-border bg-surface p-4">
+                        <p class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Meetings attended</p>
+                        <p class="mt-2 font-mono text-2xl font-semibold text-success">{{ attendance_present_count }}</p>
+                      </div>
+                      <div class="rounded-xl border border-border bg-surface p-4">
+                        <p class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Attendance rate</p>
+                        <p class="mt-2 font-mono text-2xl font-semibold text-primary">{% if attendance_record_count %}{{ attendance_rate }}%{% else %}—{% endif %}</p>
+                      </div>
+                    </div>
+
+                    {% if not member.assigned_class %}
+                      <div class="mt-5 flex items-start gap-3 rounded-xl border border-warning/20 bg-warning/10 p-4 text-sm text-on-surface">
+                        <span class="material-symbols-outlined text-warning">info</span>
+                        <p>This member has no class assignment, so attendance cannot be recorded yet.</p>
+                      </div>
+                    {% elif not attendance_record_count %}
+                      <div class="mt-5 flex items-start gap-3 rounded-xl border border-border bg-surface-container-low p-4 text-sm text-on-surface-variant">
+                        <span class="material-symbols-outlined text-primary">info</span>
+                        <p>No class-meeting records have been entered in the last twelve weeks.</p>
+                      </div>
+                    {% endif %}
+                  </div>
+
+                  <!-- Finance -->
+                  <div aria-labelledby="profile-finance-tab" class="profile-tab-panel" data-layout="flex" id="profile-finance" role="tabpanel" tabindex="0">
+                    <div class="flex w-full flex-col items-center justify-center py-16 text-center">
+                      <span class="material-symbols-outlined rounded-full bg-surface-container-low p-4 text-3xl text-on-surface-variant">account_balance_wallet</span>
+                      <h3 class="mt-4 text-lg font-semibold text-on-surface">Member contributions</h3>
+                      <p class="mt-2 max-w-md text-sm leading-6 text-on-surface-variant">Contribution entries are currently recorded in the finance ledger without a member reference. Use the finance area to record a tithe or offering.</p>
+                      <a class="profile-action mt-5 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-on-primary transition-colors hover:bg-primary-light" href="{% url 'finance:record_income' %}">
+                        <span class="material-symbols-outlined text-[18px]">add_card</span>
+                        Record income
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Welfare -->
+                  <div aria-labelledby="profile-welfare-tab" class="profile-tab-panel" id="profile-welfare" role="tabpanel" tabindex="0">
+                    <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                      <div>
+                        <h3 class="text-xl font-semibold text-on-surface">Welfare cases</h3>
+                        <p class="mt-1 text-sm text-on-surface-variant">Support cases linked to this member.</p>
+                      </div>
+                      <a class="profile-action inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-on-primary transition-colors hover:bg-primary-light" href="{% url 'welfare_cases:new_welfare_case' %}">
+                        <span class="material-symbols-outlined text-[18px]">add</span>
+                        New case
+                      </a>
+                    </div>
+
+                    {% if welfare_cases %}
+                      <div class="space-y-3">
+                        {% for case in welfare_cases %}
+                          <article class="rounded-xl border border-border p-4 transition-colors hover:bg-surface-container-low">
+                            <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                              <div>
+                                <p class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">{{ case.get_case_type_display }}</p>
+                                <h4 class="mt-1 font-semibold text-on-surface">{{ case.title }}</h4>
+                                <p class="mt-1 text-sm text-on-surface-variant">Opened {{ case.created_at|date:"d M Y" }}</p>
+                              </div>
+                              <span class="inline-flex w-fit rounded-full px-2.5 py-1 text-xs font-bold
+                                {% if case.status == 'APPROVED' or case.status == 'DISBURSED' %}bg-success/10 text-success
+                                {% elif case.status == 'REJECTED' %}bg-danger/10 text-danger
+                                {% else %}bg-warning/10 text-warning{% endif %}">
+                                {{ case.get_status_display }}
+                              </span>
+                            </div>
+                          </article>
+                        {% endfor %}
+                      </div>
+                    {% else %}
+                      <div class="flex flex-col items-center justify-center rounded-xl border border-dashed border-border bg-surface py-14 text-center">
+                        <span class="material-symbols-outlined rounded-full bg-surface-container-low p-3 text-2xl text-on-surface-variant">volunteer_activism</span>
+                        <h4 class="mt-4 font-semibold text-on-surface">No welfare cases recorded</h4>
+                        <p class="mt-1 max-w-sm text-sm text-on-surface-variant">This member does not have any welfare cases on file.</p>
+                      </div>
+                    {% endif %}
+                  </div>
+
+                  <!-- History -->
+                  <div aria-labelledby="profile-history-tab" class="profile-tab-panel" id="profile-history" role="tabpanel" tabindex="0">
+                    <div class="mb-6">
+                      <h3 class="text-xl font-semibold text-on-surface">Profile history</h3>
+                      <p class="mt-1 text-sm text-on-surface-variant">Key events available from the member and welfare records.</p>
+                    </div>
+
+                    <ol class="relative ml-3 border-l border-border">
+                      {% for event in profile_history %}
+                        <li class="relative pb-7 pl-6 last:pb-0">
+                          <span class="absolute -left-[9px] top-1 flex h-4 w-4 items-center justify-center rounded-full border-2 border-surface-container-lowest bg-primary"></span>
+                          <p class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">{{ event.date|date:"d M Y" }}</p>
+                          <h4 class="mt-1 font-semibold text-on-surface">{{ event.title }}</h4>
+                          <p class="mt-1 text-sm leading-6 text-on-surface-variant">{{ event.description }}</p>
+                        </li>
+                      {% empty %}
+                        <li class="pl-6 text-sm text-on-surface-variant">No profile events are available.</li>
+                      {% endfor %}
+                    </ol>
+                  </div>
+                </div>
+              </section>
+            </div>
+          {% else %}
+            <section class="mx-auto flex max-w-xl flex-col items-center rounded-2xl border border-dashed border-border bg-surface-container-lowest px-6 py-16 text-center shadow-card">
+              <span class="material-symbols-outlined rounded-full bg-primary-muted p-4 text-4xl text-primary">person_search</span>
+              <h2 class="mt-5 font-display text-2xl font-bold text-on-surface">No member profile to display</h2>
+              <p class="mt-2 max-w-md text-sm leading-6 text-on-surface-variant">This account is not linked to a member record yet. Contact a society administrator to link your account, or select a member from the directory if you are authorised to manage records.</p>
+              <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+                <a class="profile-action inline-flex items-center justify-center gap-2 rounded-lg border border-border px-4 py-2.5 text-sm font-semibold text-on-surface transition-colors hover:bg-surface-container-low" href="{% url 'members:member_directory' %}">
+                  <span class="material-symbols-outlined text-[18px]">group</span>
+                  Member directory
+                </a>
+                <a class="profile-action inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-on-primary transition-colors hover:bg-primary-light" href="{% url 'members:member_registration' %}">
+                  <span class="material-symbols-outlined text-[18px]">person_add</span>
+                  Register member
+                </a>
+              </div>
+            </section>
+          {% endif %}
+        </div>
+      </main>
+    </div>
+
+    <!-- Mobile navigation -->
+    <nav aria-label="Mobile navigation" class="fixed bottom-0 left-0 z-50 flex h-14 w-full items-center justify-around border-t border-border bg-surface-container-lowest shadow-[0_-1px_3px_rgba(0,0,0,0.06)] md:hidden">
+      <a class="flex h-full flex-1 flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high" href="{% url 'dashboard:dashboard' %}">
+        <span class="material-symbols-outlined text-[22px]">home</span>
+        <span class="mt-0.5 text-[10px] font-medium">Home</span>
+      </a>
+      <a aria-current="page" class="relative flex h-full flex-1 flex-col items-center justify-center font-bold text-primary active:bg-surface-container-high" href="{% url 'members:member_directory' %}">
+        <span class="absolute top-0 h-1 w-8 rounded-b-full bg-secondary-container"></span>
+        <span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">person_search</span>
+        <span class="mt-0.5 text-[10px] font-medium">Members</span>
+      </a>
+      <a class="flex h-full flex-1 flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high" href="{% url 'finance:dashboard' %}">
+        <span class="material-symbols-outlined text-[22px]">account_balance_wallet</span>
+        <span class="mt-0.5 text-[10px] font-medium">Finance</span>
+      </a>
+      <a class="flex h-full flex-1 flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high" href="{% url 'reports:reports_hub' %}">
+        <span class="material-symbols-outlined text-[22px]">analytics</span>
+        <span class="mt-0.5 text-[10px] font-medium">Reports</span>
+      </a>
+      <a class="flex h-full flex-1 flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high" href="{% url 'core:system_settings' %}">
+        <span class="material-symbols-outlined text-[22px]">menu</span>
+        <span class="mt-0.5 text-[10px] font-medium">More</span>
+      </a>
+    </nav>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const tabs = Array.from(document.querySelectorAll('.profile-tab'));
+        const panels = Array.from(document.querySelectorAll('.profile-tab-panel'));
+
+        function activateTab(tab) {
+          const panelId = tab.getAttribute('aria-controls');
+
+          tabs.forEach((item) => {
+            const isSelected = item === tab;
+            item.setAttribute('aria-selected', String(isSelected));
+            item.setAttribute('tabindex', isSelected ? '0' : '-1');
+            item.classList.toggle('border-primary', isSelected);
+            item.classList.toggle('text-primary', isSelected);
+            item.classList.toggle('font-bold', isSelected);
+            item.classList.toggle('border-transparent', !isSelected);
+            item.classList.toggle('text-on-surface-variant', !isSelected);
+            item.classList.toggle('font-semibold', !isSelected);
+          });
+
+          panels.forEach((panel) => {
+            const isSelected = panel.id === panelId;
+            panel.classList.toggle('is-active', isSelected);
+            panel.hidden = !isSelected;
+          });
+        }
+
+        tabs.forEach((tab, index) => {
+          tab.addEventListener('click', () => activateTab(tab));
+          tab.addEventListener('keydown', (event) => {
+            if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+
+            event.preventDefault();
+            let nextIndex = index;
+            if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+            if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+            if (event.key === 'Home') nextIndex = 0;
+            if (event.key === 'End') nextIndex = tabs.length - 1;
+
+            tabs[nextIndex].focus();
+            activateTab(tabs[nextIndex]);
+          });
         });
+
+        panels.forEach((panel) => {
+          panel.hidden = !panel.classList.contains('is-active');
+        });
+      });
     </script>
-</body></html>
+  </body>
+</html>
