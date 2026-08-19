@@ -137,22 +137,26 @@
             <div class="flex flex-col space-y-xs">
             <label class="text-label-md font-label-md text-on-surface-variant capitalize">Full Name</label>
             <div class="flex items-center justify-between p-md bg-surface-container rounded-lg border border-border">
-            <span class="text-body-lg font-medium text-on-surface">Kofi Mensah-Baah</span>
-            <a class="text-primary-light text-label-md font-semibold hover:underline flex items-center capitalize" href="#">
+            <span class="text-body-lg font-medium text-on-surface">{% firstof request.user.get_full_name request.user.username "Member" %}</span>
+            {% if member %}
+            <a class="text-primary-light text-label-md font-semibold hover:underline flex items-center capitalize" href="{% url 'members:member_profile' %}">
                                                 View Member Profile
                                                 <span class="material-symbols-outlined text-[16px] ml-xs">open_in_new</span>
             </a>
+            {% else %}
+            <span class="text-label-sm text-on-surface-variant">No member record linked</span>
+            {% endif %}
             </div>
             <p class="text-label-sm text-on-surface-variant italic capitalize">Name is linked to your official membership record and cannot be changed here.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
             <div class="flex flex-col space-y-xs">
             <label class="text-label-md font-label-md text-on-surface-variant capitalize" for="email">Email Address</label>
-            <input class="p-md rounded-lg border border-border focus:ring-2 focus:ring-primary-light outline-none text-body-md placeholder:capitalize" id="email" type="email" value="k.mensahbaah@mcgsociety.org.gh"/>
+            <input class="p-md rounded-lg border border-border focus:ring-2 focus:ring-primary-light outline-none text-body-md placeholder:capitalize" id="email" type="email" value="{{ request.user.email }}"/>
             </div>
             <div class="flex flex-col space-y-xs">
             <label class="text-label-md font-label-md text-on-surface-variant capitalize" for="phone">Phone Number</label>
-            <input class="p-md rounded-lg border border-border focus:ring-2 focus:ring-primary-light outline-none text-body-md placeholder:capitalize" id="phone" type="tel" value="+233 24 555 0192"/>
+            <input class="p-md rounded-lg border border-border focus:ring-2 focus:ring-primary-light outline-none text-body-md placeholder:capitalize" id="phone" type="tel" value="{{ profile.phone_number|default:'' }}"/>
             </div>
             </div>
             <div class="pt-md flex justify-end">

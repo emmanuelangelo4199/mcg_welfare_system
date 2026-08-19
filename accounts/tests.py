@@ -38,3 +38,25 @@ class AccountsTestCase(TestCase):
         })
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Invalid username/email or password.")
+
+    def test_profile_uses_the_currently_logged_in_account_details(self):
+        another_user = User.objects.create_user(
+            username='abena',
+            email='abena@example.com',
+            password='Password123!',
+            first_name='Abena',
+            last_name='Owusu',
+        )
+        UserProfile.objects.create(user=another_user, role='MEMBER', phone_number='0201112222')
+
+        self.client.force_login(self.user)
+        response = self.client.get(reverse('accounts:profile'))
+        self.assertContains(response, 'Kwame Mensah')
+        self.assertContains(response, 'testuser@example.com')
+        self.assertNotContains(response, 'Abena Owusu')
+
+        self.client.force_login(another_user)
+        response = self.client.get(reverse('accounts:profile'))
+        self.assertContains(response, 'Abena Owusu')
+        self.assertContains(response, 'abena@example.com')
+        self.assertNotContains(response, 'Kwame Mensah')

@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from core.decorators import role_required
 from .models import UserProfile
+from members.models import Member
 
 User = get_user_model()
 
@@ -91,11 +92,14 @@ def password_reset_view(request):
 
 @login_required(login_url='accounts:login')
 def profile_view(request):
-    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+    """Display the account that is currently authenticated, not a sample user."""
+    user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
+    member = Member.objects.filter(user=request.user).first()
 
     context = {
         "active_nav": "accounts",
-        "profile": user_profile
+        "profile": user_profile,
+        "member": member,
     }
     return render(request, "accounts/my_profile.html", context)
 
