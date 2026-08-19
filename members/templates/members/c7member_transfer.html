@@ -1,485 +1,591 @@
+{% load static %}
 <!DOCTYPE html>
-
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Member Transfers - MCG-SMS</title>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Member Transfers · MCG-SMS</title>
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      try {
         tailwind.config = {
           darkMode: "class",
           theme: {
             extend: {
-              "colors": {
-                      "inverse-surface": "#33302d",
-                      "inverse-on-surface": "#f7efeb",
-                      "surface-tint": "#a33a49",
-                      "on-surface-variant": "#564243",
-                      "surface-dim": "#e0d8d5",
-                      "surface-container-lowest": "#ffffff",
-                      "on-primary-fixed": "#40000e",
-                      "on-secondary-fixed": "#251a00",
-                      "warning": "#D97706",
-                      "on-secondary-container": "#745700",
-                      "outline": "#897172",
-                      "tertiary": "#2a2b2a",
-                      "primary": "#5c0219",
-                      "on-background": "#1e1b19",
-                      "primary-muted": "#F5EAEC",
-                      "on-tertiary-container": "#adadab",
-                      "on-tertiary-fixed": "#1a1c1b",
-                      "primary-light": "#A3283F",
-                      "surface-bright": "#fff8f5",
-                      "card": "#FFFFFF",
-                      "tertiary-container": "#404140",
-                      "on-secondary-fixed-variant": "#5a4300",
-                      "info": "#2563EB",
-                      "secondary-fixed": "#ffdf9a",
-                      "gold-muted": "#FDF6E3",
-                      "on-primary": "#ffffff",
-                      "on-error-container": "#93000a",
-                      "error": "#ba1a1a",
-                      "primary-container": "#7b1c2d",
-                      "surface-container-low": "#faf2ee",
-                      "on-secondary": "#ffffff",
-                      "text-secondary": "#6B7280",
-                      "tertiary-fixed": "#e3e2e0",
-                      "surface-container-high": "#eee7e3",
-                      "on-primary-fixed-variant": "#832233",
-                      "on-primary-container": "#ff8a95",
-                      "secondary": "#775a00",
-                      "error-container": "#ffdad6",
-                      "surface": "#F8F7F5",
-                      "secondary-fixed-dim": "#eec04f",
-                      "on-surface": "#1e1b19",
-                      "inverse-primary": "#ffb2b7",
-                      "on-tertiary-fixed-variant": "#464746",
-                      "on-tertiary": "#ffffff",
-                      "background": "#fff8f5",
-                      "surface-container": "#f4ece8",
-                      "on-error": "#ffffff",
-                      "surface-variant": "#e9e1dd",
-                      "tertiary-fixed-dim": "#c7c6c5",
-                      "primary-fixed": "#ffdadb",
-                      "primary-fixed-dim": "#ffb2b7",
-                      "success": "#16A34A",
-                      "danger": "#DC2626",
-                      "surface-container-highest": "#e9e1dd",
-                      "outline-variant": "#dcc0c1",
-                      "border": "#E4E2DD",
-                      "secondary-container": "#fece5b"
+              colors: {
+                "inverse-surface": "#33302d",
+                "inverse-on-surface": "#f7efeb",
+                "surface-tint": "#a33a49",
+                "on-surface-variant": "#564243",
+                "surface-dim": "#e0d8d5",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-fixed": "#40000e",
+                "on-secondary-fixed": "#251a00",
+                "warning": "#D97706",
+                "on-secondary-container": "#745700",
+                "outline": "#897172",
+                "tertiary": "#2a2b2a",
+                "primary": "#5c0219",
+                "on-background": "#1e1b19",
+                "primary-muted": "#F5EAEC",
+                "on-tertiary-container": "#adadab",
+                "on-tertiary-fixed": "#1a1c1b",
+                "primary-light": "#A3283F",
+                "surface-bright": "#fff8f5",
+                "card": "#FFFFFF",
+                "tertiary-container": "#404140",
+                "on-secondary-fixed-variant": "#5a4300",
+                "info": "#2563EB",
+                "secondary-fixed": "#ffdf9a",
+                "gold-muted": "#FDF6E3",
+                "on-primary": "#ffffff",
+                "on-error-container": "#93000a",
+                "error": "#ba1a1a",
+                "primary-container": "#7b1c2d",
+                "surface-container-low": "#faf2ee",
+                "on-secondary": "#ffffff",
+                "text-secondary": "#6B7280",
+                "tertiary-fixed": "#e3e2e0",
+                "surface-container-high": "#eee7e3",
+                "on-primary-fixed-variant": "#832233",
+                "on-primary-container": "#ff8a95",
+                "secondary": "#775a00",
+                "error-container": "#ffdad6",
+                "surface": "#F8F7F5",
+                "secondary-fixed-dim": "#eec04f",
+                "on-surface": "#1e1b19",
+                "inverse-primary": "#ffb2b7",
+                "on-tertiary-fixed-variant": "#464746",
+                "on-tertiary": "#ffffff",
+                "background": "#fff8f5",
+                "surface-container": "#f4ece8",
+                "on-error": "#ffffff",
+                "surface-variant": "#e9e1dd",
+                "tertiary-fixed-dim": "#c7c6c5",
+                "primary-fixed": "#ffdadb",
+                "primary-fixed-dim": "#ffb2b7",
+                "success": "#16A34A",
+                "danger": "#DC2626",
+                "surface-container-highest": "#e9e1dd",
+                "outline-variant": "#dcc0c1",
+                "border": "#E4E2DD",
+                "secondary-container": "#fece5b"
               },
-              "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
+              borderRadius: {
+                DEFAULT: "0.25rem",
+                lg: "0.5rem",
+                xl: "0.75rem",
+                full: "9999px"
               },
-              "spacing": {
-                      "sm": "8px",
-                      "sidebar-width": "256px",
-                      "header-height": "64px",
-                      "xl": "32px",
-                      "lg": "24px",
-                      "base": "8px",
-                      "xs": "4px",
-                      "md": "16px"
+              boxShadow: {
+                ambient: "0 1px 2px rgba(30, 27, 25, 0.04), 0 6px 16px rgba(30, 27, 25, 0.06)"
               },
-              "fontFamily": {
-                      "headline-lg": [
-                              "Lora"
-                      ],
-                      "label-md": [
-                              "Inter"
-                      ],
-                      "body-md": [
-                              "Inter"
-                      ],
-                      "body-lg": [
-                              "Inter"
-                      ],
-                      "headline-lg-mobile": [
-                              "Lora"
-                      ],
-                      "label-sm": [
-                              "Inter"
-                      ],
-                      "headline-md": [
-                              "Inter"
-                      ],
-                      "data-label": [
-                              "JetBrains Mono"
-                      ],
-                      "data-display": [
-                              "JetBrains Mono"
-                      ]
+              spacing: {
+                xs: "4px",
+                sm: "8px",
+                base: "8px",
+                md: "16px",
+                lg: "24px",
+                xl: "32px",
+                "sidebar-width": "256px",
+                "header-height": "64px"
               },
-              "fontSize": {
-                      "headline-lg": [
-                              "32px",
-                              {
-                                      "lineHeight": "1.2",
-                                      "fontWeight": "700"
-                              }
-                      ],
-                      "label-md": [
-                              "13px",
-                              {
-                                      "lineHeight": "1.2",
-                                      "fontWeight": "500"
-                              }
-                      ],
-                      "body-md": [
-                              "14px",
-                              {
-                                      "lineHeight": "1.6",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "body-lg": [
-                              "16px",
-                              {
-                                      "lineHeight": "1.6",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "headline-lg-mobile": [
-                              "24px",
-                              {
-                                      "lineHeight": "1.2",
-                                      "fontWeight": "700"
-                              }
-                      ],
-                      "label-sm": [
-                              "11px",
-                              {
-                                      "lineHeight": "1.2",
-                                      "letterSpacing": "0.05em",
-                                      "fontWeight": "500"
-                              }
-                      ],
-                      "headline-md": [
-                              "20px",
-                              {
-                                      "lineHeight": "1.3",
-                                      "fontWeight": "600"
-                              }
-                      ],
-                      "data-label": [
-                              "14px",
-                              {
-                                      "lineHeight": "1.0",
-                                      "fontWeight": "500"
-                              }
-                      ],
-                      "data-display": [
-                              "18px",
-                              {
-                                      "lineHeight": "1.0",
-                                      "fontWeight": "500"
-                              }
-                      ]
+              fontFamily: {
+                "headline-lg": ["Lora"],
+                "headline-lg-mobile": ["Lora"],
+                "headline-md": ["Inter"],
+                "label-sm": ["Inter"],
+                "label-md": ["Inter"],
+                "body-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "data-label": ["JetBrains Mono"],
+                "data-display": ["JetBrains Mono"]
+              },
+              fontSize: {
+                "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+                "headline-lg-mobile": ["24px", { lineHeight: "1.2", fontWeight: "700" }],
+                "headline-md": ["20px", { lineHeight: "1.3", fontWeight: "600" }],
+                "label-sm": ["11px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "500" }],
+                "label-md": ["13px", { lineHeight: "1.2", fontWeight: "500" }],
+                "body-md": ["14px", { lineHeight: "1.6", fontWeight: "400" }],
+                "body-lg": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                "data-label": ["14px", { lineHeight: "1.0", fontWeight: "500" }],
+                "data-display": ["18px", { lineHeight: "1.0", fontWeight: "500" }]
               }
-      },
-          },
-        }
-      </script>
-</head>
-<body class="bg-surface text-on-surface font-body-md antialiased overflow-x-hidden flex min-h-screen">
-<!-- Desktop TopAppBar -->
-{% include 'components/sidebar.html' %}
-<!-- Main Content Area -->
-<main class=" md:pt-header-height min-h-screen pb-[80px] md:pb-xl px-4 md:px-xl py-6 md:py-xl flex flex-col gap-lg max-w-[1400px] mx-auto">
-<!-- Header Section -->
-<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
-<div>
-<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-1">Member Transfers</h1>
-<p class="font-body-md text-body-md text-on-surface-variant">Manage incoming and outgoing member transfers between societies.</p>
-</div>
-<!-- Contextual Actions -->
-<div class="flex items-center gap-sm self-start md:self-auto">
-<button class="px-4 py-2 border border-outline text-on-surface-variant rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors flex items-center gap-2 bg-surface-container-lowest">
-<span class="material-symbols-outlined text-[18px]">print</span> Print Report
-                </button>
-</div>
-</div>
-<!-- Transfer Interface Container (Glassmorphism/Card) -->
-<div class="bg-card rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.06)] border border-border overflow-hidden flex flex-col md:flex-row">
-<!-- Left Panel: Tabs & Form (Bento Style Layout inside) -->
-<div class="flex-1 p-lg md:border-r md:border-border flex flex-col">
-<!-- Custom Tab Navigation -->
-<div class="flex border-b border-border mb-lg">
-<button class="px-6 py-3 font-label-md text-label-md border-b-2 border-primary text-primary font-bold transition-colors" id="tab-out">
-                        Transfer Out
-                    </button>
-<button class="px-6 py-3 font-label-md text-label-md border-b-2 border-transparent text-on-surface-variant hover:text-on-surface transition-colors" id="tab-in">
-                        Transfer In
-                    </button>
-</div>
-<!-- Transfer Out Form Content -->
-<div class="space-y-lg flex-1" id="content-out">
-<!-- Search Member -->
-<div class="space-y-sm">
-<label class="font-label-md text-label-md text-on-surface block">Select Member to Transfer</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
-<input class="w-full pl-10 pr-4 py-2 rounded-lg border border-border bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-body-md" placeholder="Search by name, ID, or class..." type="text"/>
-</div>
-<div class="p-3 bg-surface rounded-lg border border-border flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
-<span class="material-symbols-outlined text-outline block mt-1 ml-1 text-[24px]">person</span>
-</div>
-<div>
-<div class="font-label-md text-label-md text-on-surface">Select a member above</div>
-<div class="font-body-md text-body-md text-on-surface-variant text-sm">Waiting for selection...</div>
-</div>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
-<!-- Destination Society -->
-<div class="space-y-sm">
-<label class="font-label-md text-label-md text-on-surface block">Destination Society</label>
-<input class="w-full px-4 py-2 rounded-lg border border-border bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-body-md" placeholder="e.g. Wesley Society" type="text"/>
-</div>
-<!-- Destination Circuit -->
-<div class="space-y-sm">
-<label class="font-label-md text-label-md text-on-surface block">Circuit</label>
-<input class="w-full px-4 py-2 rounded-lg border border-border bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-body-md" placeholder="e.g. Accra North Circuit" type="text"/>
-</div>
-</div>
-<!-- Reason -->
-<div class="space-y-sm">
-<label class="font-label-md text-label-md text-on-surface block">Reason for Transfer</label>
-<select class="w-full px-4 py-2 rounded-lg border border-border bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-body-md appearance-none">
-<option>Relocation</option>
-<option>Marriage</option>
-<option>Work Assignment</option>
-<option>Other</option>
-</select>
-</div>
-<!-- Date -->
-<div class="space-y-sm">
-<label class="font-label-md text-label-md text-on-surface block">Effective Date</label>
-<input class="w-full px-4 py-2 rounded-lg border border-border bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-body-md text-on-surface" type="date"/>
-</div>
-<div class="pt-4 flex justify-end gap-sm border-t border-border mt-auto">
-<button class="px-4 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors border border-outline">Cancel</button>
-<button class="px-6 py-2 rounded-lg font-label-md text-label-md bg-primary text-white hover:bg-primary-light transition-colors shadow-sm">Initiate Transfer Out</button>
-</div>
-</div>
-<!-- Transfer In Form Content (Hidden by default) -->
-<div class="space-y-lg flex-1 hidden" id="content-in">
-<div class="p-4 bg-primary-muted rounded-lg border border-primary/20 text-on-surface flex items-start gap-3 mb-4">
-<span class="material-symbols-outlined text-primary">info</span>
-<p class="font-body-md text-body-md text-sm">Record a member transferring into this society. Ensure you have the physical or digital transfer letter from their previous society.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
-<div class="space-y-sm">
-<label class="font-label-md text-label-md text-on-surface block">Member Full Name</label>
-<input class="w-full px-4 py-2 rounded-lg border border-border bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-body-md" placeholder="Enter name" type="text"/>
-</div>
-<div class="space-y-sm">
-<label class="font-label-md text-label-md text-on-surface block">Letter Reference No.</label>
-<input class="w-full px-4 py-2 rounded-lg border border-border bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-body-md" placeholder="e.g. TR-2023-045" type="text"/>
-</div>
-</div>
-<div class="space-y-sm">
-<label class="font-label-md text-label-md text-on-surface block">Previous Society</label>
-<input class="w-full px-4 py-2 rounded-lg border border-border bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-body-md" placeholder="Name of previous society" type="text"/>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
-<div class="space-y-sm">
-<label class="font-label-md text-label-md text-on-surface block">Membership Category</label>
-<select class="w-full px-4 py-2 rounded-lg border border-border bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-body-md appearance-none">
-<option>Full Member</option>
-<option>Communicant</option>
-<option>Baptized</option>
-</select>
-</div>
-<div class="space-y-sm">
-<label class="font-label-md text-label-md text-on-surface block">Assign to Class</label>
-<select class="w-full px-4 py-2 rounded-lg border border-border bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-body-md appearance-none">
-<option>Class 1 - Calvary</option>
-<option>Class 2 - Bethel</option>
-<option>Class 3 - Zion</option>
-</select>
-</div>
-</div>
-<div class="pt-4 flex justify-end gap-sm border-t border-border mt-auto">
-<button class="px-4 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors border border-outline">Cancel</button>
-<button class="px-6 py-2 rounded-lg font-label-md text-label-md bg-primary text-white hover:bg-primary-light transition-colors shadow-sm">Receive Member</button>
-</div>
-</div>
-</div>
-<!-- Right Panel: Quick Stats & Info (Asymmetric Layout) -->
-<div class="w-full md:w-[320px] bg-surface-container-low p-lg flex flex-col gap-lg border-t md:border-t-0 md:border-l border-border">
-<h3 class="font-headline-md text-headline-md text-on-surface">Transfer Summary</h3>
-<p class="font-body-md text-body-md text-on-surface-variant text-sm">Overview of transfer activities for the current year.</p>
-<div class="bg-card rounded-lg p-4 border-l-4 border-secondary-container shadow-sm flex items-center justify-between">
-<div>
-<div class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Transfers In</div>
-<div class="font-data-display text-data-display text-on-surface">24</div>
-</div>
-<div class="w-10 h-10 rounded-full bg-success/10 flex items-center justify-center text-success">
-<span class="material-symbols-outlined">south_east</span>
-</div>
-</div>
-<div class="bg-card rounded-lg p-4 border-l-4 border-primary shadow-sm flex items-center justify-between">
-<div>
-<div class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Transfers Out</div>
-<div class="font-data-display text-data-display text-on-surface">12</div>
-</div>
-<div class="w-10 h-10 rounded-full bg-danger/10 flex items-center justify-center text-danger">
-<span class="material-symbols-outlined">north_east</span>
-</div>
-</div>
-<div class="mt-auto pt-4 border-t border-border">
-<div class="flex items-center gap-2 text-warning mb-2">
-<span class="material-symbols-outlined text-[18px]">pending_actions</span>
-<span class="font-label-md text-label-md">3 Pending Approvals</span>
-</div>
-<button class="w-full py-2 border border-outline rounded-lg text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors">Review Pending</button>
-</div>
-</div>
-</div>
-<!-- Transfer History Table Section -->
-<div class="bg-card rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.06)] border border-border overflow-hidden">
-<div class="p-lg border-b border-border flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-<h2 class="font-headline-md text-headline-md text-on-surface">Transfer History</h2>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
-<input class="pl-9 pr-4 py-1.5 rounded-md border border-border bg-surface-container-lowest text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Search history..." type="text"/>
-</div>
-</div>
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container-low border-b border-border">
-<th class="px-6 py-3 font-label-md text-label-md text-on-surface-variant font-semibold">Date</th>
-<th class="px-6 py-3 font-label-md text-label-md text-on-surface-variant font-semibold">Name</th>
-<th class="px-6 py-3 font-label-md text-label-md text-on-surface-variant font-semibold">Direction</th>
-<th class="px-6 py-3 font-label-md text-label-md text-on-surface-variant font-semibold">Society</th>
-<th class="px-6 py-3 font-label-md text-label-md text-on-surface-variant font-semibold">Recorded By</th>
-<th class="px-6 py-3 font-label-md text-label-md text-on-surface-variant font-semibold text-right">Action</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-border">
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="px-6 py-4 font-data-label text-data-label text-on-surface">2023-10-24</td>
-<td class="px-6 py-4 font-body-md text-body-md text-on-surface font-medium">Samuel Mensah</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-success/10 text-success font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[14px]">south_east</span> In
-                                </span>
-</td>
-<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">St. Paul's, Tema</td>
-<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">Admin K.</td>
-<td class="px-6 py-4 text-right">
-<button class="text-primary hover:text-primary-light"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="px-6 py-4 font-data-label text-data-label text-on-surface">2023-10-18</td>
-<td class="px-6 py-4 font-body-md text-body-md text-on-surface font-medium">Grace Ofori</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-danger/10 text-danger font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[14px]">north_east</span> Out
-                                </span>
-</td>
-<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">Wesley, Kumasi</td>
-<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">Admin K.</td>
-<td class="px-6 py-4 text-right">
-<button class="text-primary hover:text-primary-light"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="px-6 py-4 font-data-label text-data-label text-on-surface">2023-09-05</td>
-<td class="px-6 py-4 font-body-md text-body-md text-on-surface font-medium">Emmanuel Addo</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-success/10 text-success font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[14px]">south_east</span> In
-                                </span>
-</td>
-<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">Calvary, Accra</td>
-<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">Rev. Amoah</td>
-<td class="px-6 py-4 text-right">
-<button class="text-primary hover:text-primary-light"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="p-4 border-t border-border bg-surface-container-lowest flex items-center justify-between">
-<span class="font-body-md text-body-md text-on-surface-variant text-sm">Showing 1 to 3 of 36 entries</span>
-<div class="flex gap-1">
-<button class="px-3 py-1 border border-outline rounded text-sm text-on-surface-variant disabled:opacity-50" disabled="">Prev</button>
-<button class="px-3 py-1 bg-primary text-white rounded text-sm">1</button>
-<button class="px-3 py-1 border border-outline rounded text-sm text-on-surface hover:bg-surface-container-low">2</button>
-<button class="px-3 py-1 border border-outline rounded text-sm text-on-surface hover:bg-surface-container-low">Next</button>
-</div>
-</div>
-</div>
-</main>
-<!-- Mobile BottomNavBar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest pb-safe md:hidden border-t border-border shadow-[0_-1px_3px_rgba(0,0,0,0.06)] h-[56px]">
-<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high w-full h-full" href="#">
-<span class="material-symbols-outlined text-[24px]" data-icon="home">home</span>
-<span class="font-label-sm-mobile text-label-sm-mobile mt-1">Home</span>
-</a>
-<a class="flex flex-col items-center justify-center text-primary font-bold active:bg-surface-container-high w-full h-full" href="#">
-<span class="material-symbols-outlined text-[24px]" data-icon="person_search" style="font-variation-settings: 'FILL' 1;">person_search</span>
-<span class="font-label-sm-mobile text-label-sm-mobile mt-1">Members</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high w-full h-full" href="#">
-<span class="material-symbols-outlined text-[24px]" data-icon="account_balance_wallet">account_balance_wallet</span>
-<span class="font-label-sm-mobile text-label-sm-mobile mt-1">Finance</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high w-full h-full" href="#">
-<span class="material-symbols-outlined text-[24px]" data-icon="analytics">analytics</span>
-<span class="font-label-sm-mobile text-label-sm-mobile mt-1">Reports</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high w-full h-full" href="#">
-<span class="material-symbols-outlined text-[24px]" data-icon="menu">menu</span>
-<span class="font-label-sm-mobile text-label-sm-mobile mt-1">More</span>
-</a>
-</nav>
-<script>
-        // Simple vanilla JS for tab switching
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabOut = document.getElementById('tab-out');
-            const tabIn = document.getElementById('tab-in');
-            const contentOut = document.getElementById('content-out');
-            const contentIn = document.getElementById('content-in');
-
-            const activeClass = ['border-primary', 'text-primary', 'font-bold'];
-            const inactiveClass = ['border-transparent', 'text-on-surface-variant', 'font-normal'];
-
-            tabOut.addEventListener('click', () => {
-                contentOut.classList.remove('hidden');
-                contentIn.classList.add('hidden');
-                
-                tabOut.classList.remove(...inactiveClass);
-                tabOut.classList.add(...activeClass);
-                
-                tabIn.classList.remove(...activeClass);
-                tabIn.classList.add(...inactiveClass);
-            });
-
-            tabIn.addEventListener('click', () => {
-                contentIn.classList.remove('hidden');
-                contentOut.classList.add('hidden');
-                
-                tabIn.classList.remove(...inactiveClass);
-                tabIn.classList.add(...activeClass);
-                
-                tabOut.classList.remove(...activeClass);
-                tabOut.classList.add(...inactiveClass);
-            });
-        });
+            }
+          }
+        };
+      } catch (_e) {}
     </script>
-</body></html>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+    </style>
+  </head>
+
+  <body class="bg-surface text-on-surface font-body-md text-body-md antialiased flex h-screen overflow-hidden">
+
+    {% include 'components/toast_messages.html' %}
+
+    <!-- Desktop Sidebar (hidden on mobile) -->
+    {% include 'components/sidebar.html' %}
+
+    <!-- Main Content Area -->
+    <main class="flex-1 min-w-0 h-full overflow-y-auto px-lg md:px-xl py-lg pb-24 md:pb-lg">
+      <div class="mx-auto max-w-[1400px] flex flex-col gap-lg">
+
+        <!-- Header Section -->
+        <div class="flex flex-col gap-xs">
+          <nav aria-label="Breadcrumb" class="flex font-label-md text-label-md text-on-surface-variant">
+            <ol class="flex items-center gap-sm">
+              <li><a class="transition-colors hover:text-primary" href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+              <li><span class="material-symbols-outlined text-[16px]" aria-hidden="true">chevron_right</span></li>
+              <li><a class="transition-colors hover:text-primary" href="{% url 'members:member_directory' %}">Members</a></li>
+              <li><span class="material-symbols-outlined text-[16px]" aria-hidden="true">chevron_right</span></li>
+              <li aria-current="page" class="font-semibold text-on-surface">Member Transfers</li>
+            </ol>
+          </nav>
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-md">
+            <div>
+              <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Member Transfers</h1>
+              <p class="font-body-md text-body-md text-on-surface-variant">Manage incoming and outgoing member transfers between societies.</p>
+            </div>
+            <!-- Contextual Actions -->
+            <button
+              class="self-start md:self-auto flex items-center gap-sm px-md py-sm bg-surface-container-lowest border border-outline rounded-lg font-label-md text-label-md text-on-surface-variant transition-colors hover:bg-surface-container-low"
+              type="button"
+              onclick="window.print()">
+              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">print</span>
+              Print Report
+            </button>
+          </div>
+        </div>
+
+        <!-- Transfer Interface Container -->
+        <div class="bg-card rounded-xl shadow-ambient border border-border overflow-hidden flex flex-col md:flex-row">
+
+          <!-- Left Panel: Tabs & Forms -->
+          <div class="flex-1 p-lg md:border-r md:border-border flex flex-col">
+
+            <!-- Tab Navigation -->
+            <div aria-label="Transfer direction" class="flex border-b border-border mb-lg" role="tablist">
+              <button
+                aria-controls="content-out"
+                aria-selected="true"
+                class="px-lg py-md font-label-md text-label-md border-b-2 border-primary text-primary font-bold transition-colors"
+                id="tab-out"
+                role="tab"
+                type="button">
+                Transfer Out
+              </button>
+              <button
+                aria-controls="content-in"
+                aria-selected="false"
+                class="px-lg py-md font-label-md text-label-md border-b-2 border-transparent text-on-surface-variant hover:text-on-surface transition-colors"
+                id="tab-in"
+                role="tab"
+                tabindex="-1"
+                type="button">
+                Transfer In
+              </button>
+            </div>
+
+            <!-- Transfer Out Form -->
+            <div aria-labelledby="tab-out" class="flex flex-col gap-lg flex-1" id="content-out" role="tabpanel">
+
+              <!-- Search Member -->
+              <div class="flex flex-col gap-sm">
+                <label class="font-label-md text-label-md text-on-surface" for="transfer-member-search">Select Member to Transfer</label>
+                <div class="relative">
+                  <span
+                    class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                    aria-hidden="true">search</span>
+                  <input
+                    class="w-full py-sm pl-[40px] pr-md bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+                    id="transfer-member-search"
+                    name="member_search"
+                    placeholder="Search by name, ID, or class..."
+                    type="text"/>
+                </div>
+                <div class="p-md bg-surface rounded-lg border border-border flex items-center justify-between">
+                  <div class="flex items-center gap-md">
+                    <div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden flex items-center justify-center">
+                      <span class="material-symbols-outlined text-on-surface-variant text-[24px]" aria-hidden="true">person</span>
+                    </div>
+                    <div>
+                      <div class="font-label-md text-label-md text-on-surface">Select a member above</div>
+                      <div class="font-body-md text-on-surface-variant text-sm">Waiting for selection...</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Destination Society & Circuit -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+                <div class="flex flex-col gap-sm">
+                  <label class="font-label-md text-label-md text-on-surface" for="destination-society">Destination Society</label>
+                  <input
+                    class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+                    id="destination-society"
+                    name="destination_society"
+                    placeholder="e.g. Wesley Society"
+                    type="text"/>
+                </div>
+                <div class="flex flex-col gap-sm">
+                  <label class="font-label-md text-label-md text-on-surface" for="destination-circuit">Circuit</label>
+                  <input
+                    class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+                    id="destination-circuit"
+                    name="destination_circuit"
+                    placeholder="e.g. Accra North Circuit"
+                    type="text"/>
+                </div>
+              </div>
+
+              <!-- Reason -->
+              <div class="flex flex-col gap-sm">
+                <label class="font-label-md text-label-md text-on-surface" for="transfer-reason">Reason for Transfer</label>
+                <div class="relative">
+                  <select
+                    class="w-full px-md py-sm appearance-none bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+                    id="transfer-reason"
+                    name="reason">
+                    <option value="RELOCATION">Relocation</option>
+                    <option value="MARRIAGE">Marriage</option>
+                    <option value="WORK_ASSIGNMENT">Work Assignment</option>
+                    <option value="OTHER">Other</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                    aria-hidden="true">expand_more</span>
+                </div>
+              </div>
+
+              <!-- Effective Date -->
+              <div class="flex flex-col gap-sm">
+                <label class="font-label-md text-label-md text-on-surface" for="transfer-date">Effective Date</label>
+                <input
+                  class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+                  id="transfer-date"
+                  name="effective_date"
+                  type="date"/>
+              </div>
+
+              <!-- Form Actions -->
+              <div class="pt-md flex justify-end gap-sm border-t border-border mt-auto">
+                <button
+                  class="px-md py-sm rounded-lg font-label-md text-label-md text-on-surface-variant bg-surface-container-lowest border border-outline transition-colors hover:bg-surface-container-low"
+                  type="button">
+                  Cancel
+                </button>
+                <button
+                  class="px-lg py-sm rounded-lg font-label-md text-label-md bg-primary text-on-primary shadow-sm transition-colors hover:bg-primary-light"
+                  type="button">
+                  Initiate Transfer Out
+                </button>
+              </div>
+            </div>
+
+            <!-- Transfer In Form (hidden by default) -->
+            <div aria-labelledby="tab-in" class="flex flex-col gap-lg flex-1 hidden" hidden id="content-in" role="tabpanel">
+              <div class="p-md bg-primary-muted rounded-lg border border-primary/20 text-on-surface flex items-start gap-md">
+                <span class="material-symbols-outlined text-primary" aria-hidden="true">info</span>
+                <p class="font-body-md text-on-surface-variant">
+                  Record a member transferring into this society. Ensure you have the physical or digital transfer letter from their previous society.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+                <div class="flex flex-col gap-sm">
+                  <label class="font-label-md text-label-md text-on-surface" for="incoming-member-name">Member Full Name</label>
+                  <input
+                    class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+                    id="incoming-member-name"
+                    name="full_name"
+                    placeholder="Enter name"
+                    type="text"/>
+                </div>
+                <div class="flex flex-col gap-sm">
+                  <label class="font-label-md text-label-md text-on-surface" for="letter-reference">Letter Reference No.</label>
+                  <input
+                    class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+                    id="letter-reference"
+                    name="letter_reference"
+                    placeholder="e.g. TR-2023-045"
+                    type="text"/>
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-sm">
+                <label class="font-label-md text-label-md text-on-surface" for="previous-society">Previous Society</label>
+                <input
+                  class="w-full px-md py-sm bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+                  id="previous-society"
+                  name="previous_society"
+                  placeholder="Name of previous society"
+                  type="text"/>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+                <div class="flex flex-col gap-sm">
+                  <label class="font-label-md text-label-md text-on-surface" for="membership-category">Membership Category</label>
+                  <div class="relative">
+                    <select
+                      class="w-full px-md py-sm appearance-none bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+                      id="membership-category"
+                      name="membership_type">
+                      <option value="FULL">Full Member</option>
+                      <option value="TRIAL">Member on Trial</option>
+                      <option value="ADHERENT">Adherent</option>
+                    </select>
+                    <span
+                      class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                      aria-hidden="true">expand_more</span>
+                  </div>
+                </div>
+                <div class="flex flex-col gap-sm">
+                  <label class="font-label-md text-label-md text-on-surface" for="assign-class">Assign to Class</label>
+                  <div class="relative">
+                    <select
+                      class="w-full px-md py-sm appearance-none bg-surface-container-lowest border border-border rounded-lg font-body-md text-on-surface transition-all focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+                      id="assign-class"
+                      name="assigned_class">
+                      <option value="">Select a class...</option>
+                    </select>
+                    <span
+                      class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                      aria-hidden="true">expand_more</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Form Actions -->
+              <div class="pt-md flex justify-end gap-sm border-t border-border mt-auto">
+                <button
+                  class="px-md py-sm rounded-lg font-label-md text-label-md text-on-surface-variant bg-surface-container-lowest border border-outline transition-colors hover:bg-surface-container-low"
+                  type="button">
+                  Cancel
+                </button>
+                <button
+                  class="px-lg py-sm rounded-lg font-label-md text-label-md bg-primary text-on-primary shadow-sm transition-colors hover:bg-primary-light"
+                  type="button">
+                  Receive Member
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Panel: Quick Stats & Info -->
+          <aside class="w-full md:w-[320px] bg-surface-container-low p-lg flex flex-col gap-lg border-t md:border-t-0 md:border-l border-border">
+            <div>
+              <h2 class="font-headline-md text-headline-md text-on-surface">Transfer Summary</h2>
+              <p class="font-body-md text-on-surface-variant text-sm">Overview of transfer activities for the current year.</p>
+            </div>
+            <div class="bg-card rounded-lg p-md border-l-4 border-secondary-container shadow-sm flex items-center justify-between">
+              <div>
+                <div class="mb-xs font-label-sm text-label-sm text-on-surface-variant uppercase">Transfers In</div>
+                <div class="font-data-display text-data-display text-on-surface">24</div>
+              </div>
+              <div class="w-10 h-10 rounded-full bg-success/10 flex items-center justify-center text-success" aria-hidden="true">
+                <span class="material-symbols-outlined">south_east</span>
+              </div>
+            </div>
+            <div class="bg-card rounded-lg p-md border-l-4 border-primary shadow-sm flex items-center justify-between">
+              <div>
+                <div class="mb-xs font-label-sm text-label-sm text-on-surface-variant uppercase">Transfers Out</div>
+                <div class="font-data-display text-data-display text-on-surface">12</div>
+              </div>
+              <div class="w-10 h-10 rounded-full bg-danger/10 flex items-center justify-center text-danger" aria-hidden="true">
+                <span class="material-symbols-outlined">north_east</span>
+              </div>
+            </div>
+            <div class="mt-auto pt-md border-t border-border">
+              <div class="flex items-center gap-sm text-warning mb-sm">
+                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">pending_actions</span>
+                <span class="font-label-md text-label-md">3 Pending Approvals</span>
+              </div>
+              <a
+                class="block text-center w-full py-sm bg-surface-container-lowest border border-outline rounded-lg font-label-md text-label-md text-on-surface transition-colors hover:bg-surface-container-high"
+                href="{% url 'members:pending_members' %}">
+                Review Pending
+              </a>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Transfer History Table -->
+        <section class="bg-card rounded-xl shadow-ambient border border-border overflow-hidden">
+          <div class="p-lg border-b border-border flex flex-col sm:flex-row sm:items-center justify-between gap-md">
+            <h2 class="font-headline-md text-headline-md text-on-surface">Transfer History</h2>
+            <div class="relative">
+              <span
+                class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] pointer-events-none"
+                aria-hidden="true">search</span>
+              <input
+                class="w-full sm:w-auto py-xs pl-[36px] pr-md bg-surface-container-lowest border border-border rounded text-sm font-body-md text-on-surface transition-all placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+                aria-label="Search transfer history"
+                name="history_search"
+                placeholder="Search history..."
+                type="text"/>
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-surface-container-low border-b border-border">
+                  <th class="px-lg py-md font-label-md text-label-md text-on-surface-variant font-semibold" scope="col">Date</th>
+                  <th class="px-lg py-md font-label-md text-label-md text-on-surface-variant font-semibold" scope="col">Name</th>
+                  <th class="px-lg py-md font-label-md text-label-md text-on-surface-variant font-semibold" scope="col">Direction</th>
+                  <th class="px-lg py-md font-label-md text-label-md text-on-surface-variant font-semibold" scope="col">Society</th>
+                  <th class="px-lg py-md font-label-md text-label-md text-on-surface-variant font-semibold" scope="col">Recorded By</th>
+                  <th class="px-lg py-md font-label-md text-label-md text-on-surface-variant font-semibold text-right" scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border">
+                <tr class="hover:bg-surface-container-lowest transition-colors">
+                  <td class="px-lg py-md font-data-label text-data-label text-on-surface">2023-10-24</td>
+                  <td class="px-lg py-md font-body-md text-on-surface font-medium">Samuel Mensah</td>
+                  <td class="px-lg py-md">
+                    <span class="inline-flex items-center gap-1 px-sm py-xs rounded-full bg-success/10 text-success font-label-sm text-label-sm">
+                      <span class="material-symbols-outlined text-[14px]" aria-hidden="true">south_east</span>
+                      In
+                    </span>
+                  </td>
+                  <td class="px-lg py-md font-body-md text-on-surface-variant">St. Paul's, Tema</td>
+                  <td class="px-lg py-md font-body-md text-on-surface-variant">Admin K.</td>
+                  <td class="px-lg py-md text-right">
+                    <button class="text-primary hover:text-primary-light" aria-label="More actions for Samuel Mensah" type="button">
+                      <span class="material-symbols-outlined text-[20px]" aria-hidden="true">more_vert</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-surface-container-lowest transition-colors">
+                  <td class="px-lg py-md font-data-label text-data-label text-on-surface">2023-10-18</td>
+                  <td class="px-lg py-md font-body-md text-on-surface font-medium">Grace Ofori</td>
+                  <td class="px-lg py-md">
+                    <span class="inline-flex items-center gap-1 px-sm py-xs rounded-full bg-danger/10 text-danger font-label-sm text-label-sm">
+                      <span class="material-symbols-outlined text-[14px]" aria-hidden="true">north_east</span>
+                      Out
+                    </span>
+                  </td>
+                  <td class="px-lg py-md font-body-md text-on-surface-variant">Wesley, Kumasi</td>
+                  <td class="px-lg py-md font-body-md text-on-surface-variant">Admin K.</td>
+                  <td class="px-lg py-md text-right">
+                    <button class="text-primary hover:text-primary-light" aria-label="More actions for Grace Ofori" type="button">
+                      <span class="material-symbols-outlined text-[20px]" aria-hidden="true">more_vert</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-surface-container-lowest transition-colors">
+                  <td class="px-lg py-md font-data-label text-data-label text-on-surface">2023-09-05</td>
+                  <td class="px-lg py-md font-body-md text-on-surface font-medium">Emmanuel Addo</td>
+                  <td class="px-lg py-md">
+                    <span class="inline-flex items-center gap-1 px-sm py-xs rounded-full bg-success/10 text-success font-label-sm text-label-sm">
+                      <span class="material-symbols-outlined text-[14px]" aria-hidden="true">south_east</span>
+                      In
+                    </span>
+                  </td>
+                  <td class="px-lg py-md font-body-md text-on-surface-variant">Calvary, Accra</td>
+                  <td class="px-lg py-md font-body-md text-on-surface-variant">Rev. Amoah</td>
+                  <td class="px-lg py-md text-right">
+                    <button class="text-primary hover:text-primary-light" aria-label="More actions for Emmanuel Addo" type="button">
+                      <span class="material-symbols-outlined text-[20px]" aria-hidden="true">more_vert</span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="p-md border-t border-border bg-surface-container-lowest flex items-center justify-between">
+            <span class="font-body-md text-on-surface-variant text-sm">Showing 1 to 3 of 36 entries</span>
+            <div class="flex gap-1">
+              <button class="px-md py-xs border border-outline rounded text-sm text-on-surface-variant disabled:opacity-50" disabled type="button">Prev</button>
+              <button class="px-md py-xs bg-primary text-on-primary rounded text-sm" type="button">1</button>
+              <button class="px-md py-xs border border-outline rounded text-sm text-on-surface transition-colors hover:bg-surface-container-low" type="button">2</button>
+              <button class="px-md py-xs border border-outline rounded text-sm text-on-surface transition-colors hover:bg-surface-container-low" type="button">Next</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="md:hidden fixed bottom-0 left-0 z-50 w-full h-[56px] bg-surface-container-lowest flex justify-around items-center border-t border-border shadow-[0_-1px_3px_rgba(0,0,0,0.06)]">
+      <a class="flex-1 h-full flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high" href="{% url 'dashboard:dashboard' %}">
+        <span class="material-symbols-outlined">home</span>
+        <span class="mt-1 text-[10px] font-medium">Home</span>
+      </a>
+      <a class="flex-1 h-full flex flex-col items-center justify-center font-bold text-primary active:bg-surface-container-high" href="{% url 'members:member_directory' %}">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person_search</span>
+        <span class="mt-1 text-[10px] font-medium">Members</span>
+      </a>
+      <a class="flex-1 h-full flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high" href="{% url 'finance:dashboard' %}">
+        <span class="material-symbols-outlined">account_balance_wallet</span>
+        <span class="mt-1 text-[10px] font-medium">Finance</span>
+      </a>
+      <a class="flex-1 h-full flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high" href="{% url 'reports:reports_hub' %}">
+        <span class="material-symbols-outlined">analytics</span>
+        <span class="mt-1 text-[10px] font-medium">Reports</span>
+      </a>
+      <a class="flex-1 h-full flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high" href="{% url 'core:system_settings' %}">
+        <span class="material-symbols-outlined">menu</span>
+        <span class="mt-1 text-[10px] font-medium">More</span>
+      </a>
+    </nav>
+
+    <script>
+      // Tab switching for the Transfer Out / Transfer In panels.
+      document.addEventListener('DOMContentLoaded', () => {
+        const tabs = Array.from(document.querySelectorAll('#tab-out, #tab-in'));
+        const panels = {
+          'tab-out': document.getElementById('content-out'),
+          'tab-in': document.getElementById('content-in'),
+        };
+        const activeClasses = ['border-primary', 'text-primary', 'font-bold'];
+        const inactiveClasses = ['border-transparent', 'text-on-surface-variant', 'font-normal'];
+
+        function activateTab(tab) {
+          const panel = panels[tab.id];
+
+          tabs.forEach((item) => {
+            const isSelected = item === tab;
+            item.setAttribute('aria-selected', String(isSelected));
+            item.setAttribute('tabindex', isSelected ? '0' : '-1');
+            item.classList.toggle('font-bold', isSelected);
+            item.classList.toggle('font-normal', !isSelected);
+          });
+
+          tab.classList.add(...activeClasses);
+          tab.classList.remove(...inactiveClasses);
+          tabs.filter((item) => item !== tab).forEach((item) => {
+            item.classList.remove(...activeClasses);
+            item.classList.add(...inactiveClasses);
+          });
+
+          Object.values(panels).forEach((item) => {
+            const isSelected = item === panel;
+            item.classList.toggle('hidden', !isSelected);
+            item.hidden = !isSelected;
+          });
+        }
+
+        tabs.forEach((tab, index) => {
+          tab.addEventListener('click', () => activateTab(tab));
+          tab.addEventListener('keydown', (event) => {
+            if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+            event.preventDefault();
+            const nextIndex = event.key === 'ArrowLeft'
+              ? (index - 1 + tabs.length) % tabs.length
+              : (index + 1) % tabs.length;
+            tabs[nextIndex].focus();
+            activateTab(tabs[nextIndex]);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
