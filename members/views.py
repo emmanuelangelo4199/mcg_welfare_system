@@ -216,12 +216,27 @@ def member_profile_view(request):
     """Render a member profile with the records that can be tied to a member."""
     member_id = request.GET.get('id')
     members = Member.objects.select_related('assigned_class')
-    if member_id:
+
+    # Resolve the profile in priority order:
+    # 1. The signed-in user's own linked member record (an ?id= for a
+    #    different member is ignored so members cannot browse each other).
+    # 2. An explicit ?id= request, for users without their own record
+    #    (e.g. leaders opening a profile from the directory).
+    # 3. A member whose email uniquely matches the account email: link the
+    #    record to the account so future visits resolve directly.
+    # 4. No record at all: render the empty profile state instead of
+    #    defaulting to the first member in the database.
+    member = members.filter(user=request.user).first()
+    if member is None and member_id:
         if not member_id.isdigit():
             raise Http404("Member profile not found.")
         member = get_object_or_404(members, id=member_id)
-    else:
-        member = members.first()
+    elif member is None and request.user.email:
+        email_matches = list(members.filter(email__iexact=request.user.email)[:2])
+        if len(email_matches) == 1:
+            member = email_matches[0]
+            member.user = request.user
+            member.save()
 
     # The attendance model is class based. Build a clear twelve-week series
     # instead of implying that service or organisation attendance is available
@@ -302,6 +317,9 @@ def member_profile_view(request):
         )
         profile_history.sort(key=lambda event: event['date'], reverse=True)
 
+    status_changes = (
+        list(member.status_changes.select_related('recorded_by')[:10]) if member else []
+    )
 
     return render(request, "members/c3member_profile.html", {
         "active_nav": "members",
@@ -313,6 +331,7 @@ def member_profile_view(request):
         "attendance_rate": attendance_rate,
         "welfare_cases": welfare_cases,
         "profile_history": profile_history,
+        "status_changes": status_changes,
     })
 
 @login_required(login_url='accounts:login')
