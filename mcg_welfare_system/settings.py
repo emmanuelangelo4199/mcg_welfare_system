@@ -18,6 +18,18 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 # Comma-separated list of hosts, e.g. ALLOWED_HOSTS=localhost,127.0.0.1
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [h.strip() for h in v.split(',') if h.strip()])
 
+# Comma-separated list of trusted origins for CSRF checks,
+# e.g. CSRF_TRUSTED_ORIGINS=https://example.com,https://*.example.com
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='', cast=lambda v: [o.strip() for o in v.split(',') if o.strip()])
+
+# Cookies: set SAMESITE to "None" (and SECURE to True) when the app is served
+# inside a cross-site HTTPS iframe (e.g. hosted previews), otherwise browsers
+# block the session/CSRF cookies and login fails with "CSRF cookie not set".
+SESSION_COOKIE_SAMESITE = config('SESSION_COOKIE_SAMESITE', default='Lax')
+CSRF_COOKIE_SAMESITE = config('CSRF_COOKIE_SAMESITE', default='Lax')
+SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=False, cast=bool)
+CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=False, cast=bool)
+
 
 # Application definition
 
