@@ -584,3 +584,48 @@ class PendingMembersTestCase(MembersTestCase):
         self.client.force_login(self.user)
         response = self.client.get(reverse('members:pending_members'))
         self.assertEqual(response.status_code, 200)
+
+
+class PrivilegedProfileAccessTestCase(MembersTestCase):
+    def setUp(self):
+        super().setUp()
+        self.admin = User.objects.create_superuser(username='admin', password='admin-password')
+
+    def test_admin_with_linked_record_can_open_any_member_profile(self):
+        # An admin account linked to a member record (e.g. by the email
+        # auto-link) must still be able to review other members explicitly.
+        self.member.user = self.admin
+        self.member.save()
+        other_member = Member.objects.create(
+            first_name='Abena', last_name='Owusu', gender='F', status='ACTIVE'
+        )
+
+        self.client.force_login(self.admin)
+        response = self.client.get(f"{reverse('members:member_profile')}?id={other_member.id}")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Abena Owusu')
+        self.assertNotContains(response, 'Kofi Annan')
+
+    def test_admin_defaults_to_own_linked_record_without_an_explicit_id(self):
+        self.member.user = self.admin
+        self.member.save()
+
+        self.client.force_login(self.admin)
+        response = self.client.get(reverse('members:member_profile'))
+
+        self.assertContains(response, 'Kofi Annan')
+
+    def test_regular_member_with_linked_record_still_cannot_browse_others(self):
+        self.member.user = self.user
+        self.member.save()
+        other_member = Member.objects.create(
+            first_name='Abena', last_name='Owusu', gender='F', status='ACTIVE'
+        )
+
+        self.client.force_login(self.user)
+        response = self.client.get(f"{reverse('members:member_profile')}?id={other_member.id}")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Kofi Annan')
+        self.assertNotContains(response, 'Abena Owusu')
