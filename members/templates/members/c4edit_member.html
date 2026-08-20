@@ -1,258 +1,329 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Edit Member - MCG-SMS</title>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet">
-<!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="{% static "img/Methodist Church Ghana Logo.png" %}" rel="icon" type="image/png">
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-
-<script id="tailwind-config">
-    tailwind.config = {
-        darkMode: "class",
-        theme: {
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Edit Member · MCG-SMS</title>
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      try {
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
             extend: {
-                colors: {
-                    "inverse-surface": "#33302d",
-                    "inverse-on-surface": "#f7efeb",
-                    "surface-tint": "#a33a49",
-                    "on-surface-variant": "#564243",
-                    "surface-dim": "#e0d8d5",
-                    "surface-container-lowest": "#ffffff",
-                    "on-primary-fixed": "#40000e",
-                    "on-secondary-fixed": "#251a00",
-                    "warning": "#D97706",
-                    "on-secondary-container": "#745700",
-                    "outline": "#897172",
-                    "tertiary": "#2a2b2a",
-                    "primary": "#5c0219",
-                    "on-background": "#1e1b19",
-                    "primary-muted": "#F5EAEC",
-                    "on-tertiary-container": "#adadab",
-                    "on-tertiary-fixed": "#1a1c1b",
-                    "primary-light": "#A3283F",
-                    "surface-bright": "#fff8f5",
-                    "card": "#FFFFFF",
-                    "tertiary-container": "#404140",
-                    "on-secondary-fixed-variant": "#5a4300",
-                    "info": "#2563EB",
-                    "secondary-fixed": "#ffdf9a",
-                    "gold-muted": "#FDF6E3",
-                    "on-primary": "#ffffff",
-                    "on-error-container": "#93000a",
-                    "error": "#ba1a1a",
-                    "primary-container": "#7b1c2d",
-                    "surface-container-low": "#faf2ee",
-                    "on-secondary": "#ffffff",
-                    "text-secondary": "#6B7280",
-                    "tertiary-fixed": "#e3e2e0",
-                    "surface-container-high": "#eee7e3",
-                    "on-primary-fixed-variant": "#832233",
-                    "on-primary-container": "#ff8a95",
-                    "secondary": "#775a00",
-                    "error-container": "#ffdad6",
-                    "surface": "#F8F7F5",
-                    "secondary-fixed-dim": "#eec04f",
-                    "on-surface": "#1e1b19",
-                    "inverse-primary": "#ffb2b7",
-                    "on-tertiary-fixed-variant": "#464746",
-                    "on-tertiary": "#ffffff",
-                    "background": "#fff8f5",
-                    "surface-container": "#f4ece8",
-                    "on-error": "#ffffff",
-                    "surface-variant": "#e9e1dd",
-                    "tertiary-fixed-dim": "#c7c6c5",
-                    "primary-fixed": "#ffdadb",
-                    "primary-fixed-dim": "#ffb2b7",
-                    "success": "#16A34A",
-                    "danger": "#DC2626",
-                    "surface-container-highest": "#e9e1dd",
-                    "outline-variant": "#dcc0c1",
-                    "border": "#E4E2DD",
-                    "secondary-container": "#fece5b"
-                },
-                borderRadius: {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-                },
-                spacing: {
-                    "sm": "8px",
-                    "sidebar-width": "256px",
-                    "header-height": "64px",
-                    "xl": "32px",
-                    "lg": "24px",
-                    "base": "8px",
-                    "xs": "4px",
-                    "md": "16px"
-                },
-                fontFamily: {
-                    "headline-lg": ["Lora"],
-                    "label-md": ["Inter"],
-                    "body-md": ["Inter"],
-                    "body-lg": ["Inter"],
-                    "headline-lg-mobile": ["Lora"],
-                    "label-sm": ["Inter"],
-                    "headline-md": ["Inter"],
-                    "data-label": ["JetBrains Mono"],
-                    "data-display": ["JetBrains Mono"]
-                },
-                fontSize: {
-                    "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
-                    "label-md": ["13px", { "lineHeight": "1.2", "fontWeight": "500" }],
-                    "body-md": ["14px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                    "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                    "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
-                    "label-sm": ["11px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
-                    "headline-md": ["20px", { "lineHeight": "1.3", "fontWeight": "600" }],
-                    "data-label": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }],
-                    "data-display": ["18px", { "lineHeight": "1.0", "fontWeight": "500" }]
-                }
+              colors: {
+                "inverse-surface": "#33302d",
+                "inverse-on-surface": "#f7efeb",
+                "surface-tint": "#a33a49",
+                "on-surface-variant": "#564243",
+                "surface-dim": "#e0d8d5",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-fixed": "#40000e",
+                "on-secondary-fixed": "#251a00",
+                "warning": "#D97706",
+                "on-secondary-container": "#745700",
+                "outline": "#897172",
+                "tertiary": "#2a2b2a",
+                "primary": "#5c0219",
+                "on-background": "#1e1b19",
+                "primary-muted": "#F5EAEC",
+                "on-tertiary-container": "#adadab",
+                "on-tertiary-fixed": "#1a1c1b",
+                "primary-light": "#A3283F",
+                "surface-bright": "#fff8f5",
+                "card": "#FFFFFF",
+                "tertiary-container": "#404140",
+                "on-secondary-fixed-variant": "#5a4300",
+                "info": "#2563EB",
+                "secondary-fixed": "#ffdf9a",
+                "gold-muted": "#FDF6E3",
+                "on-primary": "#ffffff",
+                "on-error-container": "#93000a",
+                "error": "#ba1a1a",
+                "primary-container": "#7b1c2d",
+                "surface-container-low": "#faf2ee",
+                "on-secondary": "#ffffff",
+                "text-secondary": "#6B7280",
+                "tertiary-fixed": "#e3e2e0",
+                "surface-container-high": "#eee7e3",
+                "on-primary-fixed-variant": "#832233",
+                "on-primary-container": "#ff8a95",
+                "secondary": "#775a00",
+                "error-container": "#ffdad6",
+                "surface": "#F8F7F5",
+                "secondary-fixed-dim": "#eec04f",
+                "on-surface": "#1e1b19",
+                "inverse-primary": "#ffb2b7",
+                "on-tertiary-fixed-variant": "#464746",
+                "on-tertiary": "#ffffff",
+                "background": "#fff8f5",
+                "surface-container": "#f4ece8",
+                "on-error": "#ffffff",
+                "surface-variant": "#e9e1dd",
+                "tertiary-fixed-dim": "#c7c6c5",
+                "primary-fixed": "#ffdadb",
+                "primary-fixed-dim": "#ffb2b7",
+                "success": "#16A34A",
+                "danger": "#DC2626",
+                "surface-container-highest": "#e9e1dd",
+                "outline-variant": "#dcc0c1",
+                "border": "#E4E2DD",
+                "secondary-container": "#fece5b"
+              },
+              borderRadius: {
+                DEFAULT: "0.25rem",
+                lg: "0.5rem",
+                xl: "0.75rem",
+                full: "9999px"
+              },
+              boxShadow: {
+                ambient: "0 1px 2px rgba(30, 27, 25, 0.04), 0 6px 16px rgba(30, 27, 25, 0.06)"
+              },
+              spacing: {
+                xs: "4px",
+                sm: "8px",
+                base: "8px",
+                md: "16px",
+                lg: "24px",
+                xl: "32px",
+                "sidebar-width": "256px",
+                "header-height": "64px"
+              },
+              fontFamily: {
+                "headline-lg": ["Lora"],
+                "headline-lg-mobile": ["Lora"],
+                "headline-md": ["Inter"],
+                "label-sm": ["Inter"],
+                "label-md": ["Inter"],
+                "body-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "data-label": ["JetBrains Mono"],
+                "data-display": ["JetBrains Mono"]
+              },
+              fontSize: {
+                "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+                "headline-lg-mobile": ["24px", { lineHeight: "1.2", fontWeight: "700" }],
+                "headline-md": ["20px", { lineHeight: "1.3", fontWeight: "600" }],
+                "label-sm": ["11px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "500" }],
+                "label-md": ["13px", { lineHeight: "1.2", fontWeight: "500" }],
+                "body-md": ["14px", { lineHeight: "1.6", fontWeight: "400" }],
+                "body-lg": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                "data-label": ["14px", { lineHeight: "1.0", fontWeight: "500" }],
+                "data-display": ["18px", { lineHeight: "1.0", fontWeight: "500" }]
+              }
             }
-        }
-    }
-</script>
+          }
+        };
+      } catch (_e) {}
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+    </style>
+  </head>
 
-<style>
-    .material-symbols-outlined {
-        font-family: 'Material Symbols Outlined';
-        font-weight: normal;
-        font-style: normal;
-        font-size: 24px;
-        line-height: 1;
-        letter-spacing: normal;
-        text-transform: none;
-        display: inline-block;
-        white-space: nowrap;
-        word-wrap: normal;
-        direction: ltr;
-        -webkit-font-feature-settings: 'liga';
-        -webkit-font-smoothing: antialiased;
-    }
-</style>
-</head>
-<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col">
-<!-- Task-Focused Header (Suppressed Main Shell) -->
-<header class="bg-surface-container-lowest border-b border-border h-header-height flex items-center px-lg sticky top-0 z-40">
-<div class="max-w-4xl mx-auto w-full flex items-center gap-md">
-<a href="{% url "members:member_directory" %}" aria-label="Go back" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low text-on-surface transition-colors">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
-</a>
-<h1 class="font-headline-md text-headline-md text-on-surface">Edit Member Details</h1>
-</div>
-</header>
-<main class="flex-1 w-full max-w-4xl mx-auto px-lg py-xl">
-<!-- Warning Banner -->
-<div class="bg-secondary-container text-on-secondary-container p-md rounded-lg mb-lg flex items-start gap-md shadow-sm border border-secondary-fixed-dim/20">
-<span class="material-symbols-outlined mt-0.5" style="font-variation-settings: 'FILL' 1;">info</span>
-<div>
-<p class="font-label-md text-label-md font-bold mb-xs">You are editing {{ member.get_full_name }}'s record.</p>
-<p class="font-body-md text-body-md text-on-secondary-container/80">All changes made to this profile are logged for administrative review and audit purposes.</p>
-</div>
-</div>
-<!-- Edit Form -->
-<form class="space-y-xl" method="post" action="{% url 'members:edit_member' %}?id={{ member.id }}">
-{% csrf_token %}
-<!-- Section: Personal Information -->
-<section class="bg-card rounded-xl p-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] border border-border/50">
-<h2 class="font-headline-md text-headline-md text-primary mb-md border-b border-border/50 pb-sm">Personal Information</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
-<div class="flex flex-col gap-xs">
-<label class="font-label-md text-label-md text-on-surface-variant" for="firstName">First Name</label>
-<input class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="firstName" name="first_name" type="text" value="{{ member.first_name|default:'' }}">
-</div>
-<div class="flex flex-col gap-xs">
-<label class="font-label-md text-label-md text-on-surface-variant" for="lastName">Last Name</label>
-<input class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="lastName" name="last_name" type="text" value="{{ member.last_name|default:'' }}">
-</div>
-<div class="flex flex-col gap-xs">
-<label class="font-label-md text-label-md text-on-surface-variant" for="dob">Date of Birth</label>
-<input class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="dob" type="date" value="{{ member.date_of_birth|date:'Y-m-d'|default:'' }}">
-</div>
-<div class="flex flex-col gap-xs">
-<label class="font-label-md text-label-md text-on-surface-variant" for="gender">Gender</label>
-<select class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="gender">
-<option value="male" {% if member.gender == 'M' %}selected{% endif %}>Male</option>
-<option value="female" {% if member.gender == 'F' %}selected{% endif %}>Female</option>
-</select>
-</div>
-</div>
-</section>
-<!-- Section: Church Details -->
-<section class="bg-card rounded-xl p-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] border border-border/50">
-<h2 class="font-headline-md text-headline-md text-primary mb-md border-b border-border/50 pb-sm">Church Details</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
-<div class="flex flex-col gap-xs">
-<label class="font-label-md text-label-md text-on-surface-variant" for="society">Society</label>
-<select class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="society">
-<option value="wesley">Wesley Cathedral</option>
-<option selected="" value="calvary">Calvary Methodist</option>
-<option value="trinity">Trinity Society</option>
-</select>
-</div>
-<div class="flex flex-col gap-xs">
-<label class="font-label-md text-label-md text-on-surface-variant" for="className">Class</label>
-<select class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="className">
-<option value="c1">Class 1 (St. John)</option>
-<option selected="" value="c2">Class 2 (St. Peter)</option>
-</select>
-</div>
-<div class="flex flex-col gap-xs">
-<label class="font-label-md text-label-md text-on-surface-variant" for="baptismStatus">Baptism Status</label>
-<select class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="baptismStatus">
-<option selected="" value="baptized">Baptized</option>
-<option value="not_baptized">Not Baptized</option>
-</select>
-</div>
-<div class="flex flex-col gap-xs">
-<label class="font-label-md text-label-md text-on-surface-variant" for="membershipType">Membership Type</label>
-<select class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="membershipType">
-<option selected="" value="full">Full Member</option>
-<option value="adherent">Adherent</option>
-<option value="junior">Junior Member</option>
-</select>
-</div>
-</div>
-</section>
-<!-- Section: Contact Information -->
-<section class="bg-card rounded-xl p-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] border border-border/50">
-<h2 class="font-headline-md text-headline-md text-primary mb-md border-b border-border/50 pb-sm">Contact Information</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
-<div class="flex flex-col gap-xs">
-<label class="font-label-md text-label-md text-on-surface-variant" for="phone">Phone Number</label>
-<input class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="phone" name="phone_number" type="tel" value="{{ member.phone_number|default:'' }}">
-</div>
-<div class="flex flex-col gap-xs">
-<label class="font-label-md text-label-md text-on-surface-variant" for="email">Email Address</label>
-<input class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="email" name="email" type="email" value="{{ member.email|default:'' }}">
-</div>
-<div class="flex flex-col gap-xs md:col-span-2">
-<label class="font-label-md text-label-md text-on-surface-variant" for="address">Residential Address</label>
-<input class="border border-border rounded-DEFAULT px-md py-sm bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" id="address" type="text" value="Block B, Kumasi Central">
-</div>
-</div>
-</section>
-<!-- Form Actions -->
-<div class="flex flex-col-reverse sm:flex-row items-center justify-end gap-md pt-lg border-t border-border">
-<button class="w-full sm:w-auto px-lg py-sm font-label-md text-label-md text-primary hover:bg-primary-muted rounded-DEFAULT transition-colors" type="button">
-                    Discard changes
-                </button>
-<button class="w-full sm:w-auto px-lg py-sm font-label-md text-label-md bg-primary text-on-primary hover:bg-primary-light rounded-DEFAULT shadow-sm transition-colors flex items-center justify-center gap-xs" type="submit">
-<span class="material-symbols-outlined text-[18px]">save</span>
-                    Save changes
-                </button>
-</div>
-</form>
-</main>
-</body>
+  <body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col">
+
+    {% include 'components/toast_messages.html' %}
+
+    <!-- Task-Focused Header (no shell navigation; the back link returns to the profile) -->
+    <header class="bg-surface-container-lowest border-b border-border h-header-height flex items-center px-lg sticky top-0 z-40">
+      <div class="max-w-4xl mx-auto w-full flex items-center gap-md">
+        <a
+          aria-label="Go back to the member profile"
+          class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low text-on-surface transition-colors"
+          href="{% url 'members:member_profile' %}?id={{ member.id }}">
+          <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+        </a>
+        <h1 class="font-headline-md text-headline-md text-on-surface">Edit Member Details</h1>
+      </div>
+    </header>
+
+    <main class="flex-1 w-full max-w-4xl mx-auto px-lg py-xl">
+
+      <!-- Warning Banner -->
+      <div class="bg-secondary-container text-on-secondary-container p-md rounded-lg mb-lg flex items-start gap-md shadow-sm border border-secondary-fixed-dim/20">
+        <span class="material-symbols-outlined mt-[2px]" aria-hidden="true">info</span>
+        <div>
+          <p class="font-label-md text-label-md font-bold mb-xs">You are editing {{ member.get_full_name }}&rsquo;s record.</p>
+          <p class="font-body-md text-on-secondary-container/80">
+            All changes made to this profile are logged for administrative review and audit purposes.
+          </p>
+        </div>
+      </div>
+
+      <!-- Edit Form -->
+      <form class="flex flex-col gap-xl" method="post" action="{% url 'members:edit_member' %}?id={{ member.id }}">
+        {% csrf_token %}
+
+        <!-- Section: Personal Information -->
+        <section class="bg-card rounded-xl p-lg shadow-ambient border border-border/50">
+          <h2 class="font-headline-md text-headline-md text-primary mb-md border-b border-border/50 pb-sm">Personal Information</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+            <div class="flex flex-col gap-xs">
+              <label class="font-label-md text-label-md text-on-surface-variant" for="first-name">
+                First Name <span class="text-danger" aria-hidden="true">*</span>
+              </label>
+              <input
+                class="border rounded-lg px-md py-sm bg-surface-container-lowest font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary transition-shadow {% if errors.first_name %}border-danger{% else %}border-border{% endif %}"
+                id="first-name"
+                name="first_name"
+                type="text"
+                value="{{ form_data.first_name }}"/>
+              {% if errors.first_name %}<p class="font-label-md text-label-md text-danger">{{ errors.first_name }}</p>{% endif %}
+            </div>
+            <div class="flex flex-col gap-xs">
+              <label class="font-label-md text-label-md text-on-surface-variant" for="last-name">
+                Last Name <span class="text-danger" aria-hidden="true">*</span>
+              </label>
+              <input
+                class="border rounded-lg px-md py-sm bg-surface-container-lowest font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary transition-shadow {% if errors.last_name %}border-danger{% else %}border-border{% endif %}"
+                id="last-name"
+                name="last_name"
+                type="text"
+                value="{{ form_data.last_name }}"/>
+              {% if errors.last_name %}<p class="font-label-md text-label-md text-danger">{{ errors.last_name }}</p>{% endif %}
+            </div>
+            <div class="flex flex-col gap-xs">
+              <label class="font-label-md text-label-md text-on-surface-variant" for="date-of-birth">Date of Birth</label>
+              <input
+                class="border rounded-lg px-md py-sm bg-surface-container-lowest font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary transition-shadow {% if errors.date_of_birth %}border-danger{% else %}border-border{% endif %}"
+                id="date-of-birth"
+                name="date_of_birth"
+                type="date"
+                value="{{ form_data.date_of_birth }}"/>
+              {% if errors.date_of_birth %}<p class="font-label-md text-label-md text-danger">{{ errors.date_of_birth }}</p>{% endif %}
+            </div>
+            <div class="flex flex-col gap-xs">
+              <label class="font-label-md text-label-md text-on-surface-variant" for="gender">Gender</label>
+              <div class="relative">
+                <select
+                  class="w-full border rounded-lg px-md py-sm appearance-none bg-surface-container-lowest font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary transition-shadow {% if errors.gender %}border-danger{% else %}border-border{% endif %}"
+                  id="gender"
+                  name="gender">
+                  <option value="">Select gender...</option>
+                  {% for value, label in gender_choices %}
+                  <option value="{{ value }}" {% if form_data.gender == value %}selected{% endif %}>{{ label }}</option>
+                  {% endfor %}
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                  aria-hidden="true">expand_more</span>
+              </div>
+              {% if errors.gender %}<p class="font-label-md text-label-md text-danger">{{ errors.gender }}</p>{% endif %}
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Church Details -->
+        <section class="bg-card rounded-xl p-lg shadow-ambient border border-border/50">
+          <h2 class="font-headline-md text-headline-md text-primary mb-md border-b border-border/50 pb-sm">Church Details</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+            <div class="flex flex-col gap-xs">
+              <label class="font-label-md text-label-md text-on-surface-variant" for="assigned-class">Class</label>
+              <div class="relative">
+                <select
+                  class="w-full border rounded-lg px-md py-sm appearance-none bg-surface-container-lowest font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary transition-shadow {% if errors.assigned_class %}border-danger{% else %}border-border{% endif %}"
+                  id="assigned-class"
+                  name="assigned_class">
+                  <option value="">No class assigned</option>
+                  {% for class_group in classes %}
+                  <option value="{{ class_group.id }}" {% if form_data.assigned_class == class_group.id|stringformat:"s" %}selected{% endif %}>{{ class_group.name }}</option>
+                  {% endfor %}
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                  aria-hidden="true">expand_more</span>
+              </div>
+              {% if errors.assigned_class %}<p class="font-label-md text-label-md text-danger">{{ errors.assigned_class }}</p>{% endif %}
+            </div>
+            <div class="flex flex-col gap-xs">
+              <label class="font-label-md text-label-md text-on-surface-variant" for="date-of-baptism">Date of Baptism</label>
+              <input
+                class="border rounded-lg px-md py-sm bg-surface-container-lowest font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary transition-shadow {% if errors.date_of_baptism %}border-danger{% else %}border-border{% endif %}"
+                id="date-of-baptism"
+                name="date_of_baptism"
+                type="date"
+                value="{{ form_data.date_of_baptism }}"/>
+              {% if errors.date_of_baptism %}<p class="font-label-md text-label-md text-danger">{{ errors.date_of_baptism }}</p>{% endif %}
+            </div>
+            <div class="flex flex-col gap-xs">
+              <label class="font-label-md text-label-md text-on-surface-variant" for="membership-type">Membership Type</label>
+              <div class="relative">
+                <select
+                  class="w-full border rounded-lg px-md py-sm appearance-none bg-surface-container-lowest font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary transition-shadow {% if errors.membership_type %}border-danger{% else %}border-border{% endif %}"
+                  id="membership-type"
+                  name="membership_type">
+                  {% for value, label in membership_type_choices %}
+                  <option value="{{ value }}" {% if form_data.membership_type == value %}selected{% endif %}>{{ label }}</option>
+                  {% endfor %}
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                  aria-hidden="true">expand_more</span>
+              </div>
+              {% if errors.membership_type %}<p class="font-label-md text-label-md text-danger">{{ errors.membership_type }}</p>{% endif %}
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Contact Information -->
+        <section class="bg-card rounded-xl p-lg shadow-ambient border border-border/50">
+          <h2 class="font-headline-md text-headline-md text-primary mb-md border-b border-border/50 pb-sm">Contact Information</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+            <div class="flex flex-col gap-xs">
+              <label class="font-label-md text-label-md text-on-surface-variant" for="phone">Phone Number</label>
+              <input
+                class="border rounded-lg px-md py-sm bg-surface-container-lowest font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary transition-shadow"
+                id="phone"
+                name="phone_number"
+                type="tel"
+                value="{{ form_data.phone_number }}"/>
+            </div>
+            <div class="flex flex-col gap-xs">
+              <label class="font-label-md text-label-md text-on-surface-variant" for="email">Email Address</label>
+              <input
+                class="border rounded-lg px-md py-sm bg-surface-container-lowest font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary transition-shadow {% if errors.email %}border-danger{% else %}border-border{% endif %}"
+                id="email"
+                name="email"
+                type="email"
+                value="{{ form_data.email }}"/>
+              {% if errors.email %}<p class="font-label-md text-label-md text-danger">{{ errors.email }}</p>{% endif %}
+            </div>
+            <div class="flex flex-col gap-xs md:col-span-2">
+              <label class="font-label-md text-label-md text-on-surface-variant" for="address">Residential Address</label>
+              <input
+                class="border rounded-lg px-md py-sm bg-surface-container-lowest font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary transition-shadow"
+                id="address"
+                name="residential_address"
+                type="text"
+                value="{{ form_data.residential_address }}"/>
+            </div>
+          </div>
+        </section>
+
+        <!-- Form Actions -->
+        <div class="flex flex-col-reverse sm:flex-row items-center justify-end gap-md pt-lg border-t border-border">
+          <a
+            class="w-full sm:w-auto flex items-center justify-center px-lg py-sm font-label-md text-label-md text-primary hover:bg-primary-muted rounded-lg transition-colors"
+            href="{% url 'members:member_profile' %}?id={{ member.id }}">
+            Discard changes
+          </a>
+          <button
+            class="w-full sm:w-auto flex items-center justify-center gap-xs px-lg py-sm font-label-md text-label-md bg-primary text-on-primary hover:bg-primary-light rounded-lg shadow-sm transition-colors"
+            type="submit">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">save</span>
+            Save changes
+          </button>
+        </div>
+      </form>
+    </main>
+  </body>
 </html>
