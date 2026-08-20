@@ -14,7 +14,7 @@ from django.utils.dateparse import parse_date
 from core.decorators import role_required
 from core.models import AuditLog
 from django.utils import timezone
-from .models import Member, MemberRegularisation, MembershipStatusChange
+from .models import Member, MemberRegularisation, MembershipStatusChange, MemberTransfer
 from classes.models import ClassGroup
 from attendance.models import ClassAttendanceRecord
 from welfare_cases.models import WelfareCase
@@ -459,9 +459,173 @@ def member_regularisation_view(request):
     messages.success(request, f"Regularisation decision recorded for {member.get_full_name()}.")
     return redirect('members:member_directory')
 
-@login_required(login_url='accounts:login')
+@role_required(allowed_roles=['ADMIN'])
 def member_transfer_view(request):
-    return render(request, "members/c7member_transfer.html", {"active_nav": "members"})
+    """Manage outgoing and incoming member transfers between societies."""
+    query = request.GET.get('q', '').strip()
+    member_id = request.GET.get('member', '').strip()
+    history_query = request.GET.get('history_q', '').strip()
+
+    search_results = list(_search_members(query)[:10]) if query else []
+    member = (
+        Member.objects.select_related('assigned_class').filter(id=member_id).first()
+        if member_id.isdigit()
+        else None
+    )
+
+    out_form = {'destination_society': '', 'destination_circuit': '', 'reason': '', 'effective_date': ''}
+    in_form = {
+        'full_name': '', 'gender': '', 'previous_society': '', 'letter_reference': '',
+        'membership_type': 'FULL', 'assigned_class': '', 'effective_date': '',
+    }
+    errors = {}
+
+    if request.method == 'POST':
+        direction = request.POST.get('direction', '')
+
+        if direction == 'OUT':
+            out_form = {
+                'destination_society': request.POST.get('destination_society', '').strip(),
+                'destination_circuit': request.POST.get('destination_circuit', '').strip(),
+                'reason': request.POST.get('reason', '').strip(),
+                'effective_date': request.POST.get('effective_date', '').strip(),
+            }
+            member_id = request.POST.get('member', '').strip()
+            member = (
+                Member.objects.select_related('assigned_class').filter(id=member_id).first()
+                if member_id.isdigit()
+                else None
+            )
+
+            if member is None:
+                errors['member'] = 'Select a member to transfer.'
+            elif member.status == 'TRANSFERRED':
+                errors['member'] = f'{member.get_full_name()} has already been transferred out.'
+            if not out_form['destination_society']:
+                errors['destination_society'] = 'Enter the destination society.'
+            if out_form['reason'] not in dict(MemberTransfer.REASON_CHOICES):
+                errors['reason'] = 'Select the reason for the transfer.'
+            effective_date = parse_date(out_form['effective_date']) if out_form['effective_date'] else None
+            if effective_date is None:
+                errors['effective_date'] = 'Enter a valid effective date.'
+
+            if not errors and member is not None:
+                destination = out_form['destination_society']
+                if out_form['destination_circuit']:
+                    destination = f"{destination} ({out_form['destination_circuit']})"
+
+                member.status = 'TRANSFERRED'
+                member.save()
+                MemberTransfer.objects.create(
+                    direction='OUT',
+                    member=member,
+                    member_name=member.get_full_name(),
+                    destination_society=out_form['destination_society'],
+                    circuit=out_form['destination_circuit'],
+                    reason=out_form['reason'],
+                    effective_date=effective_date,
+                    recorded_by=request.user,
+                )
+                AuditLog.objects.create(
+                    user=request.user,
+                    action=f'Recorded transfer out for {member.get_full_name()}',
+                    model_name='Member',
+                    object_id=str(member.id),
+                    details=(
+                        f'To {destination}; effective {effective_date}; '
+                        f'reason: {out_form["reason"]}'
+                    ),
+                )
+                messages.success(request, f"{member.get_full_name()}'s transfer out has been recorded.")
+                return redirect(f"{reverse('members:member_transfer')}?member={member.id}")
+
+        elif direction == 'IN':
+            in_form = {field: request.POST.get(field, '').strip() for field in in_form}
+            assigned_class = None
+            if in_form['assigned_class']:
+                assigned_class = ClassGroup.objects.filter(id=in_form['assigned_class']).first()
+                if assigned_class is None:
+                    errors['assigned_class'] = 'Select a valid class.'
+
+            names = in_form['full_name'].split()
+            if len(names) < 2:
+                errors['full_name'] = 'Enter the member’s first and last name.'
+            if in_form['gender'] not in dict(Member.GENDER_CHOICES):
+                errors['gender'] = 'Select the member’s gender.'
+            if not in_form['previous_society']:
+                errors['previous_society'] = 'Enter the previous society.'
+            if not in_form['letter_reference']:
+                errors['letter_reference'] = 'Enter the transfer letter reference.'
+            if in_form['membership_type'] not in dict(Member.MEMBERSHIP_TYPE_CHOICES):
+                errors['membership_type'] = 'Select a valid membership category.'
+            effective_date = parse_date(in_form['effective_date']) if in_form['effective_date'] else None
+            if effective_date is None:
+                errors['effective_date'] = 'Enter a valid effective date.'
+
+            if not errors:
+                new_member = Member.objects.create(
+                    first_name=names[0],
+                    last_name=' '.join(names[1:]),
+                    gender=in_form['gender'],
+                    membership_type=in_form['membership_type'],
+                    assigned_class=assigned_class,
+                    status='ACTIVE',
+                )
+                MemberTransfer.objects.create(
+                    direction='IN',
+                    member=new_member,
+                    member_name=in_form['full_name'],
+                    previous_society=in_form['previous_society'],
+                    letter_reference=in_form['letter_reference'],
+                    membership_type=in_form['membership_type'],
+                    assigned_class=assigned_class,
+                    effective_date=effective_date,
+                    recorded_by=request.user,
+                )
+                AuditLog.objects.create(
+                    user=request.user,
+                    action=f'Recorded transfer in for {in_form["full_name"]}',
+                    model_name='Member',
+                    object_id=str(new_member.id),
+                    details=(
+                        f'From {in_form["previous_society"]}; '
+                        f'letter {in_form["letter_reference"]}; effective {effective_date}'
+                    ),
+                )
+                messages.success(request, f'{in_form["full_name"]} has been received into the society.')
+                return redirect(f"{reverse('members:member_transfer')}?member={new_member.id}")
+
+    current_year = timezone.localdate().year
+    transfers_in_count = MemberTransfer.objects.filter(
+        direction='IN', effective_date__year=current_year
+    ).count()
+    transfers_out_count = MemberTransfer.objects.filter(
+        direction='OUT', effective_date__year=current_year
+    ).count()
+    pending_count = Member.objects.filter(status='PENDING').count()
+
+    history = MemberTransfer.objects.select_related('member', 'recorded_by', 'assigned_class')
+    if history_query:
+        history = history.filter(member_name__icontains=history_query)
+    history_page = Paginator(history, 8).get_page(request.GET.get('page'))
+
+    return render(request, "members/c7member_transfer.html", {
+        "active_nav": "members",
+        "query": query,
+        "search_results": search_results,
+        "member": member,
+        "errors": errors,
+        "out_form": out_form,
+        "in_form": in_form,
+        "classes": ClassGroup.objects.order_by('name'),
+        "reason_choices": MemberTransfer.REASON_CHOICES,
+        "membership_type_choices": Member.MEMBERSHIP_TYPE_CHOICES,
+        "transfers_in_count": transfers_in_count,
+        "transfers_out_count": transfers_out_count,
+        "pending_count": pending_count,
+        "history_query": history_query,
+        "history_page": history_page,
+    })
 
 
 def _search_members(query):

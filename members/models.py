@@ -149,3 +149,58 @@ class MembershipStatusChange(models.Model):
             f"{self.member.get_full_name()}: "
             f"{self.get_previous_status_display()} -> {self.get_new_status_display()}"
         )
+
+
+class MemberTransfer(models.Model):
+    """Record of a member transferring into or out of the society."""
+
+    DIRECTION_CHOICES = [
+        ('IN', 'Incoming'),
+        ('OUT', 'Outgoing'),
+    ]
+    REASON_CHOICES = [
+        ('RELOCATION', 'Relocation'),
+        ('MARRIAGE', 'Marriage'),
+        ('WORK_ASSIGNMENT', 'Work Assignment'),
+        ('OTHER', 'Other'),
+    ]
+
+    direction = models.CharField(max_length=3, choices=DIRECTION_CHOICES)
+    member = models.ForeignKey(
+        Member,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='transfers'
+    )
+    member_name = models.CharField(max_length=200)
+    destination_society = models.CharField(max_length=150, blank=True, default='')
+    previous_society = models.CharField(max_length=150, blank=True, default='')
+    circuit = models.CharField(max_length=150, blank=True, default='')
+    letter_reference = models.CharField(max_length=100, blank=True, default='')
+    reason = models.CharField(max_length=30, choices=REASON_CHOICES, blank=True, default='')
+    membership_type = models.CharField(
+        max_length=20, choices=Member.MEMBERSHIP_TYPE_CHOICES, blank=True, default=''
+    )
+    assigned_class = models.ForeignKey(
+        ClassGroup,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='incoming_transfers'
+    )
+    effective_date = models.DateField()
+    recorded_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='recorded_transfers'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-effective_date', '-created_at']
+
+    def __str__(self):
+        return f"{self.get_direction_display()}: {self.member_name}"

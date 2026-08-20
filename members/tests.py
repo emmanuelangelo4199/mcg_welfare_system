@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from accounts.models import UserProfile
 from classes.models import ClassGroup
-from members.models import Member, MemberRegularisation, MembershipStatusChange
+from members.models import Member, MemberRegularisation, MembershipStatusChange, MemberTransfer
 from organisations.models import Organisation
 
 
@@ -377,3 +377,150 @@ class StatusManagementTestCase(MembersTestCase):
         self.assertContains(response, 'Transferred')
         self.assertContains(response, 'Rev. Superintendent Minister')
         self.assertContains(response, 'LDM/2026/08/45')
+
+
+class MemberTransferTestCase(MembersTestCase):
+    def setUp(self):
+        super().setUp()
+        self.admin = User.objects.create_superuser(username='admin', password='admin-password')
+
+    def test_transfer_page_requires_authentication(self):
+        response = self.client.get(reverse('members:member_transfer'))
+        self.assertRedirects(response, reverse('accounts:login'))
+
+    def test_transfer_page_blocked_for_non_admin_users(self):
+        self.client.force_login(self.user)
+        response = self.client.get(reverse('members:member_transfer'))
+        self.assertRedirects(response, reverse('dashboard:dashboard'))
+
+    def test_transfer_page_renders_classes_and_empty_history(self):
+        self.client.force_login(self.admin)
+        response = self.client.get(reverse('members:member_transfer'))
+        self.assertContains(response, 'Ebenezer Class')
+        self.assertContains(response, 'No transfers have been recorded yet.')
+
+    def test_transfer_out_marks_member_and_records_history(self):
+        from core.models import AuditLog
+
+        self.client.force_login(self.admin)
+        response = self.client.post(reverse('members:member_transfer'), {
+            'direction': 'OUT',
+            'member': self.member.id,
+            'destination_society': 'Wesley Society',
+            'destination_circuit': 'Accra North Circuit',
+            'reason': 'RELOCATION',
+            'effective_date': '2026-08-19',
+        })
+
+        self.assertRedirects(response, f"{reverse('members:member_transfer')}?member={self.member.id}")
+        self.member.refresh_from_db()
+        self.assertEqual(self.member.status, 'TRANSFERRED')
+
+        transfer = MemberTransfer.objects.get(member=self.member)
+        self.assertEqual(transfer.direction, 'OUT')
+        self.assertEqual(transfer.destination_society, 'Wesley Society')
+        self.assertEqual(transfer.circuit, 'Accra North Circuit')
+        self.assertEqual(transfer.reason, 'RELOCATION')
+        self.assertEqual(transfer.recorded_by, self.admin)
+        self.assertTrue(
+            AuditLog.objects.filter(user=self.admin, model_name='Member', object_id=str(self.member.id)).exists()
+        )
+
+        page = self.client.get(reverse('members:member_transfer'))
+        self.assertContains(page, 'Kofi Annan')
+        self.assertContains(page, 'Wesley Society (Accra North Circuit)')
+
+    def test_transfer_out_rejects_already_transferred_member(self):
+        self.member.status = 'TRANSFERRED'
+        self.member.save()
+        self.client.force_login(self.admin)
+
+        response = self.client.post(reverse('members:member_transfer'), {
+            'direction': 'OUT',
+            'member': self.member.id,
+            'destination_society': 'Wesley Society',
+            'reason': 'RELOCATION',
+            'effective_date': '2026-08-19',
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'already been transferred out')
+        self.assertEqual(MemberTransfer.objects.count(), 0)
+
+    def test_transfer_out_validates_required_fields(self):
+        self.client.force_login(self.admin)
+        response = self.client.post(reverse('members:member_transfer'), {
+            'direction': 'OUT',
+            'member': self.member.id,
+            'destination_society': '',
+            'reason': '',
+            'effective_date': 'not-a-date',
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Enter the destination society.')
+        self.assertContains(response, 'Select the reason for the transfer.')
+        self.assertContains(response, 'Enter a valid effective date.')
+        self.member.refresh_from_db()
+        self.assertEqual(self.member.status, 'ACTIVE')
+
+    def test_transfer_in_creates_member_and_records_history(self):
+        self.client.force_login(self.admin)
+        response = self.client.post(reverse('members:member_transfer'), {
+            'direction': 'IN',
+            'full_name': 'Akosua Sarpong',
+            'gender': 'F',
+            'previous_society': 'St. Paul&#39;s, Tema',
+            'letter_reference': 'TR-2026-045',
+            'membership_type': 'FULL',
+            'assigned_class': self.class_group.id,
+            'effective_date': '2026-08-19',
+        })
+
+        new_member = Member.objects.get(first_name='Akosua', last_name='Sarpong')
+        self.assertRedirects(response, f"{reverse('members:member_transfer')}?member={new_member.id}")
+        self.assertEqual(new_member.status, 'ACTIVE')
+        self.assertEqual(new_member.assigned_class, self.class_group)
+
+        transfer = MemberTransfer.objects.get(member=new_member)
+        self.assertEqual(transfer.direction, 'IN')
+        self.assertEqual(transfer.letter_reference, 'TR-2026-045')
+        self.assertEqual(transfer.previous_society, 'St. Paul&#39;s, Tema')
+
+    def test_transfer_in_validates_required_fields(self):
+        self.client.force_login(self.admin)
+        response = self.client.post(reverse('members:member_transfer'), {
+            'direction': 'IN',
+            'full_name': 'SoloName',
+            'gender': '',
+            'previous_society': '',
+            'letter_reference': '',
+            'membership_type': 'FULL',
+            'effective_date': '',
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'first and last name')
+        self.assertContains(response, 'Select the member’s gender.')
+        self.assertContains(response, 'Enter the previous society.')
+        self.assertContains(response, 'Enter the transfer letter reference.')
+        self.assertContains(response, 'Enter a valid effective date.')
+        self.assertFalse(Member.objects.filter(first_name='SoloName').exists())
+
+    def test_history_search_filters_by_name(self):
+        MemberTransfer.objects.create(
+            direction='OUT', member=self.member, member_name='Kofi Annan',
+            destination_society='Wesley Society', effective_date='2026-08-01',
+            recorded_by=self.admin,
+        )
+        MemberTransfer.objects.create(
+            direction='IN', member_name='Grace Ofori',
+            previous_society='Calvary Chapel', effective_date='2026-08-02',
+            recorded_by=self.admin,
+        )
+        self.client.force_login(self.admin)
+
+        response = self.client.get(reverse('members:member_transfer'), {'history_q': 'grace'})
+
+        self.assertContains(response, 'Grace Ofori')
+        self.assertNotContains(response, 'Kofi Annan')
