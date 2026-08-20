@@ -217,26 +217,36 @@ def member_profile_view(request):
     member_id = request.GET.get('id')
     members = Member.objects.select_related('assigned_class')
 
-    # Resolve the profile in priority order:
-    # 1. The signed-in user's own linked member record (an ?id= for a
-    #    different member is ignored so members cannot browse each other).
-    # 2. An explicit ?id= request, for users without their own record
-    #    (e.g. leaders opening a profile from the directory).
+    # Privileged users (superusers and holders of an officer role) may open
+    # any member's profile explicitly, e.g. from the directory. Regular
+    # members always resolve to their own linked record instead.
+    user_profile = getattr(request.user, 'profile', None)
+    is_privileged = request.user.is_superuser or (
+        user_profile is not None and user_profile.role != 'MEMBER'
+    )
+
+    # Resolution order:
+    # 1. An explicit ?id= request, for privileged users or users without
+    #    their own linked record (e.g. leaders opening a profile from the
+    #    directory).
+    # 2. The signed-in user's own linked member record.
     # 3. A member whose email uniquely matches the account email: link the
     #    record to the account so future visits resolve directly.
     # 4. No record at all: render the empty profile state instead of
     #    defaulting to the first member in the database.
-    member = members.filter(user=request.user).first()
-    if member is None and member_id:
+    own_member = members.filter(user=request.user).first()
+    if member_id and (is_privileged or own_member is None):
         if not member_id.isdigit():
             raise Http404("Member profile not found.")
         member = get_object_or_404(members, id=member_id)
-    elif member is None and request.user.email:
-        email_matches = list(members.filter(email__iexact=request.user.email)[:2])
-        if len(email_matches) == 1:
-            member = email_matches[0]
-            member.user = request.user
-            member.save()
+    else:
+        member = own_member
+        if member is None and request.user.email:
+            email_matches = list(members.filter(email__iexact=request.user.email)[:2])
+            if len(email_matches) == 1:
+                member = email_matches[0]
+                member.user = request.user
+                member.save()
 
     # The attendance model is class based. Build a clear twelve-week series
     # instead of implying that service or organisation attendance is available
