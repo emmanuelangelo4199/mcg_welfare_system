@@ -524,3 +524,63 @@ class MemberTransferTestCase(MembersTestCase):
 
         self.assertContains(response, 'Grace Ofori')
         self.assertNotContains(response, 'Kofi Annan')
+
+
+class PendingMembersTestCase(MembersTestCase):
+    def setUp(self):
+        super().setUp()
+        self.admin = User.objects.create_superuser(username='admin', password='admin-password')
+        self.pending_member = Member.objects.create(
+            first_name='Kwame',
+            last_name='Mensah',
+            gender='M',
+            assigned_class=self.class_group,
+            status='PENDING',
+        )
+
+    def test_pending_page_requires_authentication(self):
+        response = self.client.get(reverse('members:pending_members'))
+        self.assertRedirects(response, reverse('accounts:login'))
+
+    def test_pending_page_blocked_for_users_without_a_role(self):
+        self.client.force_login(self.user)
+        response = self.client.get(reverse('members:pending_members'))
+        self.assertRedirects(response, reverse('dashboard:dashboard'))
+
+    def test_pending_page_renders_members_with_review_links(self):
+        self.client.force_login(self.admin)
+        response = self.client.get(reverse('members:pending_members'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Kwame Mensah')
+        self.assertContains(response, 'Ebenezer Class')
+        self.assertContains(response, 'Showing 1 pending record')
+        self.assertContains(response, f'/members/regularisation/?id={self.pending_member.id}')
+
+    def test_pending_page_highlights_submissions_older_than_sixty_days(self):
+        from django.utils import timezone as tz
+        from datetime import timedelta
+
+        Member.objects.filter(id=self.pending_member.id).update(
+            created_at=tz.now() - timedelta(days=82)
+        )
+        self.client.force_login(self.admin)
+        response = self.client.get(reverse('members:pending_members'))
+
+        self.assertContains(response, 'bg-[#FEF9C3]')
+        self.assertContains(response, 'text-warning')
+
+    def test_pending_page_shows_empty_state_when_nothing_is_pending(self):
+        self.pending_member.delete()
+        self.client.force_login(self.admin)
+        response = self.client.get(reverse('members:pending_members'))
+
+        self.assertContains(response, 'All members are regularised. Great work!')
+        self.assertNotContains(response, 'Showing 1 pending record')
+
+    def test_class_leader_role_can_access_pending_page(self):
+        from accounts.models import UserProfile
+        UserProfile.objects.create(user=self.user, role='CLASS_LEADER')
+        self.client.force_login(self.user)
+        response = self.client.get(reverse('members:pending_members'))
+        self.assertEqual(response.status_code, 200)

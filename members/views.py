@@ -361,7 +361,21 @@ def edit_member_view(request):
 
 @role_required(allowed_roles=['ADMIN', 'CLASS_LEADER'])
 def pending_members_view(request):
-    pending_members = Member.objects.filter(status='PENDING').select_related('assigned_class')
+    """List members awaiting a leaders' meeting decision, oldest first."""
+    pending = (
+        Member.objects.filter(status='PENDING')
+        .select_related('assigned_class')
+        .order_by('created_at')
+    )
+    today = timezone.localdate()
+    pending_members = [
+        {
+            'member': member,
+            'days_pending': (today - member.created_at.date()).days,
+            'is_urgent': (today - member.created_at.date()).days > 60,
+        }
+        for member in pending
+    ]
     return render(request, "members/c5pending_member_list.html", {
         "active_nav": "members",
         "pending_members": pending_members
