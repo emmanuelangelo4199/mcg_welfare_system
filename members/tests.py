@@ -629,3 +629,119 @@ class PrivilegedProfileAccessTestCase(MembersTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Kofi Annan')
         self.assertNotContains(response, 'Abena Owusu')
+
+
+class EditMemberTestCase(MembersTestCase):
+    def setUp(self):
+        super().setUp()
+        self.admin = User.objects.create_superuser(username='admin', password='admin-password')
+
+    def test_edit_page_requires_authentication(self):
+        response = self.client.get(reverse('members:edit_member'))
+        self.assertRedirects(response, reverse('accounts:login'))
+
+    def test_edit_page_blocked_for_users_without_a_role(self):
+        self.client.force_login(self.user)
+        response = self.client.get(reverse('members:edit_member'), {'id': self.member.id})
+        self.assertRedirects(response, reverse('dashboard:dashboard'))
+
+    def test_edit_page_without_a_member_redirects_to_directory(self):
+        self.client.force_login(self.admin)
+        response = self.client.get(reverse('members:edit_member'))
+        self.assertRedirects(response, reverse('members:member_directory'))
+
+    def test_edit_page_renders_member_values_and_class_options(self):
+        self.client.force_login(self.admin)
+        response = self.client.get(reverse('members:edit_member'), {'id': self.member.id})
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'value="Kofi"')
+        self.assertContains(response, 'value="Annan"')
+        self.assertContains(response, 'Ebenezer Class')
+        self.assertContains(response, 'name="gender"')
+        self.assertContains(response, 'name="assigned_class"')
+        self.assertContains(response, 'name="membership_type"')
+        self.assertContains(response, 'name="residential_address"')
+
+    def test_edit_updates_all_fields_and_writes_audit_log(self):
+        from core.models import AuditLog
+
+        other_class = ClassGroup.objects.create(name='John Wesley Class')
+        self.client.force_login(self.admin)
+        response = self.client.post(f"{reverse('members:edit_member')}?id={self.member.id}", {
+            'first_name': 'Kwame',
+            'last_name': 'Annan',
+            'gender': 'M',
+            'date_of_birth': '1980-06-15',
+            'date_of_baptism': '1995-03-12',
+            'membership_type': 'ADHERENT',
+            'assigned_class': other_class.id,
+            'phone_number': '0209998877',
+            'email': 'kofi.annan@example.com',
+            'residential_address': '12 Wesley Road, Kumasi',
+        })
+
+        self.assertRedirects(response, f"{reverse('members:member_profile')}?id={self.member.id}")
+        self.member.refresh_from_db()
+        self.assertEqual(self.member.first_name, 'Kwame')
+        self.assertEqual(self.member.date_of_birth.isoformat(), '1980-06-15')
+        self.assertEqual(self.member.date_of_baptism.isoformat(), '1995-03-12')
+        self.assertEqual(self.member.membership_type, 'ADHERENT')
+        self.assertEqual(self.member.assigned_class, other_class)
+        self.assertEqual(self.member.residential_address, '12 Wesley Road, Kumasi')
+        self.assertTrue(
+            AuditLog.objects.filter(
+                user=self.admin,
+                model_name='Member',
+                object_id=str(self.member.id),
+                details__contains='first_name',
+            ).exists()
+        )
+
+    def test_edit_validates_fields_and_preserves_input(self):
+        self.client.force_login(self.admin)
+        response = self.client.post(f"{reverse('members:edit_member')}?id={self.member.id}", {
+            'first_name': '',
+            'last_name': '',
+            'gender': 'X',
+            'date_of_birth': 'not-a-date',
+            'membership_type': 'NOT_A_TYPE',
+            'assigned_class': '99999',
+            'email': 'not-an-email',
+            'phone_number': '',
+            'residential_address': '',
+            'date_of_baptism': '',
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Enter the member’s first name.')
+        self.assertContains(response, 'Enter the member’s last name.')
+        self.assertContains(response, 'Select the member’s gender.')
+        self.assertContains(response, 'valid date of birth')
+        self.assertContains(response, 'valid membership type')
+        self.assertContains(response, 'Select a valid class.')
+        self.assertContains(response, 'valid email address')
+        self.assertContains(response, 'value="not-an-email"')
+        self.member.refresh_from_db()
+        self.assertEqual(self.member.first_name, 'Kofi')
+
+    def test_edit_without_changes_skips_audit_log(self):
+        from core.models import AuditLog
+
+        self.client.force_login(self.admin)
+        self.client.post(f"{reverse('members:edit_member')}?id={self.member.id}", {
+            'first_name': self.member.first_name,
+            'last_name': self.member.last_name,
+            'gender': self.member.gender,
+            'date_of_birth': '',
+            'date_of_baptism': '',
+            'membership_type': self.member.membership_type,
+            'assigned_class': self.member.assigned_class_id or '',
+            'phone_number': self.member.phone_number or '',
+            'email': self.member.email or '',
+            'residential_address': self.member.residential_address or '',
+        })
+
+        self.assertFalse(
+            AuditLog.objects.filter(model_name='Member', object_id=str(self.member.id)).exists()
+        )

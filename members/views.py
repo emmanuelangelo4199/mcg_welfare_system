@@ -344,30 +344,119 @@ def member_profile_view(request):
         "status_changes": status_changes,
     })
 
-@login_required(login_url='accounts:login')
+@role_required(allowed_roles=['ADMIN', 'CLASS_LEADER'])
 def edit_member_view(request):
-    member_id = request.GET.get('id')
-    member = get_object_or_404(Member, id=member_id) if member_id else Member.objects.first()
-
-    if request.method == 'POST' and member:
-        member.first_name = (request.POST.get('first_name') or member.first_name or '').strip()
-        member.last_name = (request.POST.get('last_name') or member.last_name or '').strip()
-
-        phone_number = request.POST.get('phone_number', member.phone_number or '')
-        email = request.POST.get('email', member.email or '')
-        member.phone_number = phone_number.strip() if phone_number else None
-        member.email = email.strip() if email else None
-
-        member.save()
-        messages.success(request, f"Updated profile for {member.get_full_name()}")
+    """Edit an existing member record with validation and an audit trail."""
+    member_id = request.GET.get('id', '').strip()
+    if not member_id.isdigit():
+        messages.error(request, 'Select a member to edit from the directory.')
         return redirect('members:member_directory')
+    member = get_object_or_404(Member.objects.select_related('assigned_class'), id=member_id)
 
-    classes = ClassGroup.objects.all()
-    return render(request, "members/c4edit_member.html", {
-        "active_nav": "members",
-        "member": member,
-        "classes": classes
-    })
+    fields = (
+        'first_name', 'last_name', 'date_of_birth', 'gender', 'assigned_class',
+        'date_of_baptism', 'membership_type', 'phone_number', 'email',
+        'residential_address',
+    )
+
+    def form_data_from(member):
+        return {
+            'first_name': member.first_name or '',
+            'last_name': member.last_name or '',
+            'date_of_birth': member.date_of_birth.isoformat() if member.date_of_birth else '',
+            'gender': member.gender or '',
+            'assigned_class': str(member.assigned_class_id or ''),
+            'date_of_baptism': member.date_of_baptism.isoformat() if member.date_of_baptism else '',
+            'membership_type': member.membership_type or 'FULL',
+            'phone_number': member.phone_number or '',
+            'email': member.email or '',
+            'residential_address': member.residential_address or '',
+        }
+
+    def render_edit(form_data, errors=None):
+        return render(request, "members/c4edit_member.html", {
+            "active_nav": "members",
+            "member": member,
+            "classes": ClassGroup.objects.order_by('name'),
+            "gender_choices": Member.GENDER_CHOICES,
+            "membership_type_choices": Member.MEMBERSHIP_TYPE_CHOICES,
+            "form_data": form_data,
+            "errors": errors or {},
+        })
+
+    form_data = form_data_from(member)
+
+    if request.method != 'POST':
+        return render_edit(form_data)
+
+    form_data = {field: request.POST.get(field, '').strip() for field in fields}
+    errors = {}
+
+    if not form_data['first_name']:
+        errors['first_name'] = 'Enter the member’s first name.'
+    if not form_data['last_name']:
+        errors['last_name'] = 'Enter the member’s last name.'
+
+    if form_data['gender'] not in dict(Member.GENDER_CHOICES):
+        errors['gender'] = 'Select the member’s gender.'
+
+    if form_data['membership_type'] not in dict(Member.MEMBERSHIP_TYPE_CHOICES):
+        errors['membership_type'] = 'Select a valid membership type.'
+
+    assigned_class = None
+    if form_data['assigned_class']:
+        assigned_class = ClassGroup.objects.filter(id=form_data['assigned_class']).first()
+        if assigned_class is None:
+            errors['assigned_class'] = 'Select a valid class.'
+
+    date_of_birth = parse_date(form_data['date_of_birth']) if form_data['date_of_birth'] else None
+    if form_data['date_of_birth'] and date_of_birth is None:
+        errors['date_of_birth'] = 'Enter a valid date of birth.'
+    date_of_baptism = parse_date(form_data['date_of_baptism']) if form_data['date_of_baptism'] else None
+    if form_data['date_of_baptism'] and date_of_baptism is None:
+        errors['date_of_baptism'] = 'Enter a valid baptism date.'
+
+    if form_data['email']:
+        try:
+            validate_email(form_data['email'])
+        except ValidationError:
+            errors['email'] = 'Enter a valid email address.'
+
+    if errors:
+        return render_edit(form_data, errors)
+
+    changes = {}
+    updates = {
+        'first_name': form_data['first_name'],
+        'last_name': form_data['last_name'],
+        'gender': form_data['gender'],
+        'date_of_birth': date_of_birth,
+        'date_of_baptism': date_of_baptism,
+        'membership_type': form_data['membership_type'],
+        'assigned_class': assigned_class,
+        'phone_number': form_data['phone_number'] or None,
+        'email': form_data['email'] or None,
+        'residential_address': form_data['residential_address'] or None,
+    }
+    for field, value in updates.items():
+        if getattr(member, field) != value:
+            changes[field] = value
+            setattr(member, field, value)
+
+    if changes:
+        member.save()
+        AuditLog.objects.create(
+            user=request.user,
+            action=f'Edited member record for {member.get_full_name()}',
+            model_name='Member',
+            object_id=str(member.id),
+            details=f'Updated fields: {", ".join(sorted(changes))}',
+        )
+        messages.success(request, f"Updated profile for {member.get_full_name()}.")
+    else:
+        messages.info(request, f'No changes were made to {member.get_full_name()}’s record.')
+
+    return redirect(f"{reverse('members:member_profile')}?id={member.id}")
 
 @role_required(allowed_roles=['ADMIN', 'CLASS_LEADER'])
 def pending_members_view(request):
