@@ -1,499 +1,316 @@
+{% load static %}
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Notification Settings - Methodist Church Ghana</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind Configuration -->
-<script id="tailwind-config">
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Notification Settings - Methodist Church Ghana</title>
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
             "colors": {
-                "border": "#E4E2DD",
-                "on-tertiary-fixed": "#1a1c1b",
-                "inverse-on-surface": "#f7efeb",
-                "info": "#2563EB",
-                "on-error": "#ffffff",
-                "on-tertiary": "#ffffff",
-                "outline": "#897172",
-                "on-secondary": "#ffffff",
-                "gold-muted": "#FDF6E3",
-                "surface": "#F8F7F5",
-                "warning": "#D97706",
-                "tertiary": "#2a2b2a",
-                "on-secondary-fixed-variant": "#5a4300",
-                "tertiary-fixed": "#e3e2e0",
-                "on-background": "#1e1b19",
-                "error": "#ba1a1a",
-                "secondary": "#775a00",
-                "on-error-container": "#93000a",
-                "surface-container-highest": "#e9e1dd",
-                "success": "#16A34A",
-                "surface-variant": "#e9e1dd",
-                "surface-dim": "#e0d8d5",
-                "primary-muted": "#F5EAEC",
-                "tertiary-container": "#404140",
-                "on-secondary-fixed": "#251a00",
-                "on-surface": "#1e1b19",
-                "primary": "#5c0219",
-                "on-primary-fixed-variant": "#832233",
-                "inverse-primary": "#ffb2b7",
-                "error-container": "#ffdad6",
-                "outline-variant": "#dcc0c1",
-                "surface-bright": "#fff8f5",
-                "background": "#fff8f5",
-                "surface-container-high": "#eee7e3",
-                "text-secondary": "#6B7280",
-                "on-secondary-container": "#745700",
-                "surface-container": "#f4ece8",
-                "secondary-container": "#fece5b",
-                "card": "#FFFFFF",
-                "on-tertiary-fixed-variant": "#464746",
-                "secondary-fixed-dim": "#eec04f",
-                "primary-light": "#A3283F",
-                "primary-container": "#7b1c2d",
-                "on-surface-variant": "#564243",
-                "surface-container-low": "#faf2ee",
-                "primary-fixed": "#ffdadb",
-                "on-primary-fixed": "#40000e",
-                "on-primary": "#ffffff",
-                "inverse-surface": "#33302d",
-                "on-primary-container": "#ff8a95",
-                "surface-container-lowest": "#ffffff",
-                "tertiary-fixed-dim": "#c7c6c5",
-                "danger": "#DC2626",
-                "on-tertiary-container": "#adadab",
-                "surface-tint": "#a33a49",
-                "secondary-fixed": "#ffdf9a",
-                "primary-fixed-dim": "#ffb2b7"
+              "border": "#E4E2DD",
+              "on-tertiary-fixed": "#1a1c1b",
+              "inverse-on-surface": "#f7efeb",
+              "info": "#2563EB",
+              "on-error": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "outline": "#897172",
+              "on-secondary": "#ffffff",
+              "gold-muted": "#FDF6E3",
+              "surface": "#F8F7F5",
+              "warning": "#D97706",
+              "tertiary": "#2a2b2a",
+              "on-secondary-fixed-variant": "#5a4300",
+              "tertiary-fixed": "#e3e2e0",
+              "on-background": "#1e1b19",
+              "error": "#ba1a1a",
+              "secondary": "#775a00",
+              "on-error-container": "#93000a",
+              "surface-container-highest": "#e9e1dd",
+              "success": "#16A34A",
+              "surface-variant": "#e9e1dd",
+              "surface-dim": "#e0d8d5",
+              "primary-muted": "#F5EAEC",
+              "tertiary-container": "#404140",
+              "on-secondary-fixed": "#251a00",
+              "on-surface": "#1e1b19",
+              "primary": "#5c0219",
+              "on-primary-fixed-variant": "#832233",
+              "inverse-primary": "#ffb2b7",
+              "error-container": "#ffdad6",
+              "outline-variant": "#dcc0c1",
+              "surface-bright": "#fff8f5",
+              "background": "#fff8f5",
+              "surface-container-high": "#eee7e3",
+              "text-secondary": "#6B7280",
+              "on-secondary-container": "#745700",
+              "surface-container": "#f4ece8",
+              "secondary-container": "#fece5b",
+              "card": "#FFFFFF",
+              "on-tertiary-fixed-variant": "#464746",
+              "secondary-fixed-dim": "#eec04f",
+              "primary-light": "#A3283F",
+              "primary-container": "#7b1c2d",
+              "on-surface-variant": "#564243",
+              "surface-container-low": "#faf2ee",
+              "primary-fixed": "#ffdadb",
+              "on-primary-fixed": "#40000e",
+              "on-primary": "#ffffff",
+              "inverse-surface": "#33302d",
+              "on-primary-container": "#ff8a95",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-fixed-dim": "#c7c6c5",
+              "danger": "#DC2626",
+              "on-tertiary-container": "#adadab",
+              "surface-tint": "#a33a49",
+              "secondary-fixed": "#ffdf9a",
+              "primary-fixed-dim": "#ffb2b7"
             },
             "borderRadius": {
-                "DEFAULT": "0.25rem",
-                "lg": "0.5rem",
-                "xl": "0.75rem",
-                "full": "9999px"
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
             },
             "spacing": {
-                "lg": "24px",
-                "md": "16px",
-                "xs": "4px",
-                "sidebar-width": "256px",
-                "xl": "32px",
-                "header-height": "64px",
-                "base": "8px",
-                "sm": "8px"
+              "lg": "24px",
+              "md": "16px",
+              "xs": "4px",
+              "sidebar-width": "256px",
+              "xl": "32px",
+              "header-height": "64px",
+              "base": "8px",
+              "sm": "8px"
             },
             "fontFamily": {
-                "headline-lg": ["Lora"],
-                "headline-md": ["Inter"],
-                "data-label": ["JetBrains Mono"],
-                "body-md": ["Inter"],
-                "label-md": ["Inter"],
-                "body-lg": ["Inter"]
+              "headline-lg": ["Lora"],
+              "headline-md": ["Inter"],
+              "data-label": ["JetBrains Mono"],
+              "body-md": ["Inter"],
+              "label-md": ["Inter"],
+              "body-lg": ["Inter"]
             }
           }
         }
       }
     </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            display: inline-block;
-            line-height: 1;
-            text-transform: none;
-            letter-spacing: normal;
-            word-wrap: normal;
-            white-space: nowrap;
-            direction: ltr;
-        }
-        
-        .toggle-switch:checked + .toggle-slider {
-            background-color: #5c0219;
-        }
-        .toggle-switch:checked + .toggle-slider:before {
-            transform: translateX(18px);
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #e9e1dd;
-            border-radius: 10px;
-        }
-    </style>
-</head>
-<body class="bg-surface text-on-surface font-body-md min-h-screen flex min-h-screen">
-{% include 'components/sidebar.html' %}
-<!-- Main Content Shell -->
-<div class=" min-h-screen flex flex-col">
-<!-- Top App Bar -->
-<header class="h-header-height fixed top-0 right-0 w-[calc(100%-256px)] bg-surface dark:bg-inverse-surface shadow-sm z-40 flex items-center justify-between px-xl">
-<div class="flex items-center gap-md">
-<div class="relative">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-<input class="pl-10 pr-md py-2 bg-surface-container rounded-lg border-none focus:ring-2 focus:ring-primary text-label-md w-64" placeholder="Search setting..." type="text"/>
-</div>
-</div>
-<div class="flex items-center gap-xl">
-<div class="flex gap-md">
-<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-all">
-<span class="material-symbols-outlined text-primary">notifications</span>
-</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-all">
-<span class="material-symbols-outlined text-primary">settings</span>
-</button>
-</div>
-<div class="flex items-center gap-md">
-<div class="text-right">
-<p class="font-label-md text-primary font-semibold">Admin User</p>
-<p class="text-[10px] text-on-surface-variant">Administrator Profile</p>
-</div>
-<div class="w-10 h-10 rounded-full border-2 border-primary-muted overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a senior West African church administrator in formal business attire, looking warm and approachable against a soft neutral background. High-end photography lighting, clean corporate style, Methodist Church Ghana professional branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ7ghfHi5DGBljphIbUXRnEO1GjXj02eoZDHEd8dcKQzlZ9tIyA-vfO94Z187eQxNZOtdBKRTNPHzhak4ehTsjB_ii2EecW-iB5Mm6AOwPGNSKCPjc0StWd8yfKKYUD9pm1jH_-jPa4BRGDqVs5RjA7vdg4JGi-UUt6fU_z95aZDZeY1VRkny14bTP31Tx2tZO1-wyI18BdgTRIzut2P6bIdOQjnrHrCf-2Pcwv_owUSBFgKLQY-505CpTBTt3FwnLdnJrjkDqalvt"/>
-</div>
-</div>
-</div>
-</header>
-<!-- Canvas Area -->
-<main class="mt-header-height p-xl flex-1 max-w-5xl mx-auto w-full">
-<!-- Breadcrumbs -->
-<nav class="flex items-center gap-xs text-label-sm text-on-surface-variant mb-md">
-<a class="hover:text-primary" href="#">Dashboard</a>
-<span class="material-symbols-outlined text-[14px]">chevron_right</span>
-<a class="hover:text-primary" href="#">Settings</a>
-<span class="material-symbols-outlined text-[14px]">chevron_right</span>
-<span class="text-primary font-semibold">Notifications</span>
-</nav>
-<!-- Page Title -->
-<div class="mb-xl">
-<h2 class="font-headline-lg text-headline-lg text-primary">Notification Settings</h2>
-<p class="text-on-surface-variant mt-base">Configure how you receive administrative alerts and updates.</p>
-</div>
-<!-- Settings Sections -->
-<div class="space-y-xl pb-xl">
-<!-- Section 1: Membership & Welfare -->
-<section class="bg-card rounded-xl shadow-sm overflow-hidden border border-border">
-<div class="px-lg py-md bg-surface-container-low border-b border-border flex items-center gap-md">
-<span class="material-symbols-outlined text-primary">group</span>
-<h3 class="font-headline-md text-primary">Membership &amp; Welfare</h3>
-</div>
-<div class="divide-y divide-border">
-<!-- Row Template -->
-<div class="grid grid-cols-12 px-lg py-lg hover:bg-surface-bright transition-colors">
-<div class="col-span-8 pr-xl">
-<p class="font-semibold text-on-surface">New Member Pending Regularisation</p>
-<p class="text-on-surface-variant text-label-md">Alert when a new member joins and requires administrative approval.</p>
-</div>
-<div class="col-span-4 flex items-center justify-end gap-xl">
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">Email</span>
-</div>
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">In-App</span>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-12 px-lg py-lg hover:bg-surface-bright transition-colors">
-<div class="col-span-8 pr-xl">
-<p class="font-semibold text-on-surface">Member Regularised</p>
-<p class="text-on-surface-variant text-label-md">Notifications for completed membership verification processes.</p>
-</div>
-<div class="col-span-4 flex items-center justify-end gap-xl">
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">Email</span>
-</div>
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">In-App</span>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-12 px-lg py-lg hover:bg-surface-bright transition-colors">
-<div class="col-span-8 pr-xl">
-<p class="font-semibold text-on-surface">Transfer Received</p>
-<p class="text-on-surface-variant text-label-md">When a member's record is transferred from another society.</p>
-</div>
-<div class="col-span-4 flex items-center justify-end gap-xl">
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">Email</span>
-</div>
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">In-App</span>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-12 px-lg py-lg hover:bg-surface-bright transition-colors">
-<div class="col-span-8 pr-xl">
-<div class="flex items-center gap-sm">
-<p class="font-semibold text-on-surface">New Welfare Case Opened</p>
-<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-[10px] font-bold">SENSITIVE</span>
-</div>
-<p class="text-on-surface-variant text-label-md">High-priority alerts for new pastoral care or financial aid requests.</p>
-</div>
-<div class="col-span-4 flex items-center justify-end gap-xl">
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">Email</span>
-</div>
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">In-App</span>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-12 px-lg py-lg hover:bg-surface-bright transition-colors">
-<div class="col-span-8 pr-xl">
-<p class="font-semibold text-on-surface">Welfare Case Updated</p>
-<p class="text-on-surface-variant text-label-md">Status changes or new notes added to existing welfare files.</p>
-</div>
-<div class="col-span-4 flex items-center justify-end gap-xl">
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">Email</span>
-</div>
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">In-App</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Section 2: Finance -->
-<section class="bg-card rounded-xl shadow-sm overflow-hidden border border-border">
-<div class="px-lg py-md bg-surface-container-low border-b border-border flex items-center gap-md">
-<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
-<h3 class="font-headline-md text-primary">Finance</h3>
-</div>
-<div class="divide-y divide-border">
-<div class="grid grid-cols-12 px-lg py-lg hover:bg-surface-bright transition-colors">
-<div class="col-span-8 pr-xl">
-<p class="font-semibold text-on-surface">Expense Awaiting Approval</p>
-<p class="text-on-surface-variant text-label-md">Request notification for steward or treasurer approval actions.</p>
-</div>
-<div class="col-span-4 flex items-center justify-end gap-xl">
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">Email</span>
-</div>
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">In-App</span>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-12 px-lg py-lg hover:bg-surface-bright transition-colors">
-<div class="col-span-8 pr-xl">
-<p class="font-semibold text-on-surface">Expense Approved or Rejected</p>
-<p class="text-on-surface-variant text-label-md">Notification to the initiator when a claim has been processed.</p>
-</div>
-<div class="col-span-4 flex items-center justify-end gap-xl">
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">Email</span>
-</div>
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">In-App</span>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-12 px-lg py-lg hover:bg-surface-bright transition-colors">
-<div class="col-span-8 pr-xl">
-<p class="font-semibold text-on-surface">Statutory Payment Due</p>
-<p class="text-on-surface-variant text-label-md">Reminders for conference assessments and other mandatory levies.</p>
-</div>
-<div class="col-span-4 flex items-center justify-end gap-xl">
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">Email</span>
-</div>
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">In-App</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Section 3: Meetings & Reminders -->
-<section class="bg-card rounded-xl shadow-sm overflow-hidden border border-border">
-<div class="px-lg py-md bg-surface-container-low border-b border-border flex items-center gap-md">
-<span class="material-symbols-outlined text-primary">groups</span>
-<h3 class="font-headline-md text-primary">Meetings &amp; Reminders</h3>
-</div>
-<div class="divide-y divide-border">
-<div class="grid grid-cols-12 px-lg py-lg hover:bg-surface-bright transition-colors">
-<div class="col-span-8 pr-xl">
-<p class="font-semibold text-on-surface">Leaders' Meeting Scheduled</p>
-<p class="text-on-surface-variant text-label-md">Notifications when a new Society, Circuit, or Diocesan meeting is set.</p>
-</div>
-<div class="col-span-4 flex items-center justify-end gap-xl">
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">Email</span>
-</div>
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">In-App</span>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-12 px-lg py-lg hover:bg-surface-bright transition-colors">
-<div class="col-span-8 pr-xl">
-<p class="font-semibold text-on-surface">Minutes Published</p>
-<p class="text-on-surface-variant text-label-md">Alert when official minutes from the latest council are available for review.</p>
-</div>
-<div class="col-span-4 flex items-center justify-end gap-xl">
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">Email</span>
-</div>
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">In-App</span>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-12 px-lg py-lg hover:bg-surface-bright transition-colors">
-<div class="col-span-8 pr-xl">
-<p class="font-semibold text-on-surface">Birthday Today</p>
-<p class="text-on-surface-variant text-label-md">Daily summary of members celebrating birthdays for pastoral outreach.</p>
-</div>
-<div class="col-span-4 flex items-center justify-end gap-xl">
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">Email</span>
-</div>
-<div class="flex flex-col items-center gap-xs">
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only toggle-switch" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
-</label>
-<span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">In-App</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Reset Action -->
-<div class="flex items-center justify-between pt-md">
-<button class="text-on-surface-variant text-label-md hover:text-primary hover:underline transition-all flex items-center gap-xs" onclick="resetDefaults()">
-<span class="material-symbols-outlined text-[18px]">restart_alt</span>
-                        Reset to Defaults
-                    </button>
-<div class="flex gap-md">
-<button class="px-lg py-2 border border-border rounded-lg text-label-md font-semibold hover:bg-surface-container transition-all">Cancel</button>
-<button class="px-lg py-2 bg-primary text-on-primary rounded-lg text-label-md font-semibold hover:bg-primary-light transition-all shadow-sm">Save Changes</button>
-</div>
-</div>
-</div>
-</main>
-<!-- Footer Info -->
-<footer class="p-xl text-center text-on-surface-variant opacity-60 text-label-sm">
-            © 2026 Methodist Church Ghana - Connexional Administration System. All rights reserved.
-        </footer>
-</div>
-<!-- Interaction Script -->
-<script>
-        function resetDefaults() {
-            if (confirm("Are you sure you want to reset all notification preferences to their default states?")) {
-                const toggles = document.querySelectorAll('.toggle-switch');
-                toggles.forEach((toggle, index) => {
-                    // Simulating a reset logic
-                    toggle.checked = (index % 2 === 0);
-                });
-                alert("Settings reset to defaults.");
-            }
-        }
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+      }
 
-        // Simple animation on toggle
-        document.querySelectorAll('.toggle-switch').forEach(toggle => {
-            toggle.addEventListener('change', function() {
-                const row = this.closest('.grid');
-                row.classList.add('bg-gold-muted');
-                setTimeout(() => {
-                    row.classList.remove('bg-gold-muted');
-                }, 400);
-            });
+      .toggle-switch:checked + .toggle-slider {
+        background-color: #5c0219;
+      }
+      .toggle-switch:checked + .toggle-slider:before {
+        transform: translateX(18px);
+      }
+
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #e9e1dd;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body class="bg-surface text-on-surface font-body-md min-h-screen flex">
+    {% include 'components/sidebar.html' %}
+
+    <!-- Main Content Shell -->
+    <div class="m-5 min-h-screen flex flex-col">
+
+      <!-- Top App Bar -->
+      <header class="h-header-height fixed top-0 right-0 w-[calc(100%-256px)] bg-surface shadow-sm z-40 flex items-center justify-between px-xl">
+        <div class="flex items-center gap-md">
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+            <input
+              id="setting-search"
+              class="pl-10 pr-md py-2 bg-surface-container rounded-lg border-none focus:ring-2 focus:ring-primary text-label-md w-64"
+              placeholder="Search setting..."
+              type="text"/>
+          </div>
+        </div>
+        <div class="flex items-center gap-xl">
+          <div class="flex gap-md">
+            <a class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-all" href="{% url 'notifications:notification_board' %}" title="Notification inbox">
+              <span class="material-symbols-outlined text-primary">notifications</span>
+            </a>
+            <a class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-all" href="{% url 'core:system_settings' %}" title="System settings">
+              <span class="material-symbols-outlined text-primary">settings</span>
+            </a>
+          </div>
+          <div class="flex items-center gap-md">
+            <div class="text-right">
+              <p class="font-label-md text-primary font-semibold">{{ display_name }}</p>
+              <p class="text-[10px] text-on-surface-variant">{{ role_label }}</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Canvas Area -->
+      <main class="mt-header-height p-xl flex-1 max-w-5xl mx-auto w-full">
+
+        <!-- Breadcrumbs -->
+        <nav class="flex items-center gap-xs text-label-sm text-on-surface-variant mb-md">
+          <a class="hover:text-primary" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+          <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+          <a class="hover:text-primary" href="{% url 'core:system_settings' %}">Settings</a>
+          <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+          <span class="text-primary font-semibold">Notifications</span>
+        </nav>
+
+        <!-- Page Title -->
+        <div class="mb-xl">
+          <h2 class="font-headline-lg text-headline-lg text-primary">Notification Settings</h2>
+          <p class="text-on-surface-variant mt-base">Configure how you receive administrative alerts and updates.</p>
+        </div>
+
+        <form method="post" action="{% url 'notifications:notification_settings' %}">
+          {% csrf_token %}
+
+          <!-- Settings Sections -->
+          <div class="space-y-xl pb-xl">
+            {% for group in groups %}
+              <section class="setting-section bg-card rounded-xl shadow-sm overflow-hidden border border-border">
+                <div class="px-lg py-md bg-surface-container-low border-b border-border flex items-center gap-md">
+                  <span class="material-symbols-outlined text-primary">{{ group.icon }}</span>
+                  <h3 class="font-headline-md text-primary">{{ group.title }}</h3>
+                </div>
+                <div class="divide-y divide-border">
+                  {% for pref in group.preferences %}
+                    <div class="setting-row grid grid-cols-12 px-lg py-lg hover:bg-surface-bright transition-colors" data-search="{{ pref.title }} {{ pref.description }}">
+                      <div class="col-span-8 pr-xl">
+                        <div class="flex items-center gap-sm">
+                          <p class="font-semibold text-on-surface">{{ pref.title }}</p>
+                          {% if pref.sensitive %}
+                            <span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-[10px] font-bold">SENSITIVE</span>
+                          {% endif %}
+                        </div>
+                        <p class="text-on-surface-variant text-label-md">{{ pref.description }}</p>
+                      </div>
+                      <div class="col-span-4 flex items-center justify-end gap-xl">
+                        <div class="flex flex-col items-center gap-xs">
+                          <label class="relative inline-flex items-center cursor-pointer">
+                            <input
+                              {% if pref.email %}checked{% endif %}
+                              class="sr-only toggle-switch"
+                              name="pref_{{ pref.key }}_email"
+                              type="checkbox"/>
+                            <div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
+                          </label>
+                          <span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">Email</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-xs">
+                          <label class="relative inline-flex items-center cursor-pointer">
+                            <input
+                              {% if pref.in_app %}checked{% endif %}
+                              class="sr-only toggle-switch"
+                              name="pref_{{ pref.key }}_inapp"
+                              type="checkbox"/>
+                            <div class="w-10 h-5 bg-surface-container-highest rounded-full toggle-slider before:content-[''] before:absolute before:top-1 before:left-1 before:bg-white before:w-3 before:h-3 before:rounded-full before:transition-all"></div>
+                          </label>
+                          <span class="text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">In-App</span>
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </section>
+            {% endfor %}
+
+            <!-- Search: no matches -->
+            <div id="search-empty" class="hidden bg-card rounded-xl shadow-sm border border-border px-lg py-xl text-center">
+              <h4 class="font-headline-md text-on-surface-variant mb-2">No matching settings.</h4>
+              <p class="text-body-md text-outline">Try a different search term.</p>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center justify-between pt-md">
+              <button
+                class="text-on-surface-variant text-label-md hover:text-primary hover:underline transition-all flex items-center gap-xs"
+                type="submit"
+                name="action"
+                value="reset"
+                onclick="return confirm('Are you sure you want to reset all notification preferences to their default states?');">
+                <span class="material-symbols-outlined text-[18px]">restart_alt</span>
+                Reset to Defaults
+              </button>
+              <div class="flex gap-md">
+                <a class="px-lg py-2 border border-border rounded-lg text-label-md font-semibold hover:bg-surface-container transition-all" href="{% url 'notifications:notification_board' %}">Cancel</a>
+                <button class="px-lg py-2 bg-primary text-on-primary rounded-lg text-label-md font-semibold hover:bg-primary-light transition-all shadow-sm" type="submit" name="action" value="save">Save Changes</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </main>
+
+      <!-- Footer Info -->
+      <footer class="p-xl text-center text-on-surface-variant opacity-60 text-label-sm">
+        © 2026 Methodist Church Ghana - Connexional Administration System. All rights reserved.
+      </footer>
+    </div>
+
+    {% include 'components/toast_messages.html' %}
+
+    <!-- Interaction Script -->
+    <script>
+      // Client-side search across settings rows.
+      (function () {
+        const input = document.getElementById('setting-search');
+        const empty = document.getElementById('search-empty');
+
+        input.addEventListener('input', function () {
+          const term = this.value.trim().toLowerCase();
+          let visible = 0;
+
+          document.querySelectorAll('.setting-row').forEach(row => {
+            const hay = (row.dataset.search || '').toLowerCase();
+            const match = !term || hay.indexOf(term) !== -1;
+            row.classList.toggle('hidden', !match);
+            if (match) visible += 1;
+          });
+
+          document.querySelectorAll('.setting-section').forEach(section => {
+            const hasVisible = section.querySelectorAll('.setting-row:not(.hidden)').length > 0;
+            section.classList.toggle('hidden', !hasVisible);
+          });
+
+          empty.classList.toggle('hidden', !term || visible > 0);
         });
+      })();
+
+      // Simple animation on toggle.
+      document.querySelectorAll('.toggle-switch').forEach(toggle => {
+        toggle.addEventListener('change', function () {
+          const row = this.closest('.setting-row');
+          row.classList.add('bg-gold-muted');
+          setTimeout(() => {
+            row.classList.remove('bg-gold-muted');
+          }, 400);
+        });
+      });
     </script>
-</body></html>
+  </body>
+</html>

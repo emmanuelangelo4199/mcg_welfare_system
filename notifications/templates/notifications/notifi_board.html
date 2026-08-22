@@ -152,9 +152,12 @@
           </form>
         </div>
         <div class="flex items-center space-x-lg">
-          <button class="text-on-surface-variant hover:text-primary transition-all duration-150">
+          <a href="{% url 'notifications:notification_board' %}" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-all" title="notification board">
             <span class="material-symbols-outlined">notifications</span>
-          </button>
+          </a>
+          <a class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-all" href="{% url 'notifications:notification_settings' %}" title="notification settings">
+            <span class="material-symbols-outlined text-primary">settings</span>
+          </a>
         </div>
       </header>
 

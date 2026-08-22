@@ -5,7 +5,65 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.http import urlencode
 
-from .models import SystemNotification
+from .models import NotificationPreference, SystemNotification
+
+
+# Catalogue of the notification preferences surfaced on the settings page.
+# Each preference has two delivery channels (email / in-app) and an optional
+# "sensitive" badge for high-priority events.
+NOTIFICATION_PREFERENCE_GROUPS = [
+    {
+        'title': 'Membership & Welfare',
+        'icon': 'group',
+        'preferences': [
+            {'key': 'member_pending_regularisation', 'title': 'New Member Pending Regularisation',
+             'description': 'Alert when a new member joins and requires administrative approval.',
+             'email_default': True, 'in_app_default': True, 'sensitive': False},
+            {'key': 'member_regularised', 'title': 'Member Regularised',
+             'description': 'Notifications for completed membership verification processes.',
+             'email_default': False, 'in_app_default': True, 'sensitive': False},
+            {'key': 'transfer_received', 'title': 'Transfer Received',
+             'description': "When a member's record is transferred from another society.",
+             'email_default': True, 'in_app_default': True, 'sensitive': False},
+            {'key': 'welfare_case_opened', 'title': 'New Welfare Case Opened',
+             'description': 'High-priority alerts for new pastoral care or financial aid requests.',
+             'email_default': True, 'in_app_default': True, 'sensitive': True},
+            {'key': 'welfare_case_updated', 'title': 'Welfare Case Updated',
+             'description': 'Status changes or new notes added to existing welfare files.',
+             'email_default': False, 'in_app_default': True, 'sensitive': False},
+        ],
+    },
+    {
+        'title': 'Finance',
+        'icon': 'account_balance_wallet',
+        'preferences': [
+            {'key': 'expense_awaiting_approval', 'title': 'Expense Awaiting Approval',
+             'description': 'Request notification for steward or treasurer approval actions.',
+             'email_default': True, 'in_app_default': True, 'sensitive': False},
+            {'key': 'expense_processed', 'title': 'Expense Approved or Rejected',
+             'description': 'Notification to the initiator when a claim has been processed.',
+             'email_default': True, 'in_app_default': True, 'sensitive': False},
+            {'key': 'statutory_payment_due', 'title': 'Statutory Payment Due',
+             'description': 'Reminders for conference assessments and other mandatory levies.',
+             'email_default': True, 'in_app_default': False, 'sensitive': False},
+        ],
+    },
+    {
+        'title': 'Meetings & Reminders',
+        'icon': 'groups',
+        'preferences': [
+            {'key': 'meeting_scheduled', 'title': "Leaders' Meeting Scheduled",
+             'description': 'Notifications when a new Society, Circuit, or Diocesan meeting is set.',
+             'email_default': True, 'in_app_default': True, 'sensitive': False},
+            {'key': 'minutes_published', 'title': 'Minutes Published',
+             'description': 'Alert when official minutes from the latest council are available for review.',
+             'email_default': False, 'in_app_default': True, 'sensitive': False},
+            {'key': 'birthday_today', 'title': 'Birthday Today',
+             'description': 'Daily summary of members celebrating birthdays for pastoral outreach.',
+             'email_default': False, 'in_app_default': True, 'sensitive': False},
+        ],
+    },
+]
 
 
 def _notifications_for(request):
@@ -110,6 +168,68 @@ def notification_clear_all(request):
             messages.info(request, "Your inbox is already empty.")
     return _board_redirect(request)
 
+
+def _settings_groups(user):
+    """Return the preference catalogue with the user's saved values merged in."""
+    stored = {
+        pref.key: pref
+        for pref in NotificationPreference.objects.filter(user=user)
+    }
+
+    groups = []
+    for group in NOTIFICATION_PREFERENCE_GROUPS:
+        preferences = []
+        for spec in group['preferences']:
+            pref = stored.get(spec['key'])
+            preferences.append({
+                'key': spec['key'],
+                'title': spec['title'],
+                'description': spec['description'],
+                'sensitive': spec['sensitive'],
+                'email': pref.email if pref else spec['email_default'],
+                'in_app': pref.in_app if pref else spec['in_app_default'],
+            })
+        groups.append({
+            'title': group['title'],
+            'icon': group['icon'],
+            'preferences': preferences,
+        })
+    return groups
+
+
 @login_required(login_url='accounts:login')
 def notification_settings_view(request):
-    return render(request, "notifications/notifi_setting.html", {"active_nav": "notifications"})
+    if request.method == 'POST':
+        action = request.POST.get('action', 'save')
+        if action == 'reset':
+            NotificationPreference.objects.filter(user=request.user).delete()
+            messages.success(request, "Notification preferences reset to defaults.")
+        else:
+            for group in NOTIFICATION_PREFERENCE_GROUPS:
+                for spec in group['preferences']:
+                    key = spec['key']
+                    NotificationPreference.objects.update_or_create(
+                        user=request.user,
+                        key=key,
+                        defaults={
+                            'email': f"pref_{key}_email" in request.POST,
+                            'in_app': f"pref_{key}_inapp" in request.POST,
+                        },
+                    )
+            messages.success(request, "Notification preferences saved.")
+        return redirect('notifications:notification_settings')
+
+    user = request.user
+    profile = getattr(user, 'profile', None)
+    if profile:
+        role_label = profile.get_role_display()
+    else:
+        role_label = 'Administrator' if user.is_superuser else 'Society Member'
+
+    context = {
+        "active_nav": "notifications",
+        "groups": _settings_groups(user),
+        "display_name": user.get_full_name().strip() or user.username,
+        "role_label": f"{role_label} Profile",
+    }
+    return render(request, "notifications/notifi_setting.html", context)
