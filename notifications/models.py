@@ -84,3 +84,23 @@ class SystemNotification(models.Model):
     def meta(self):
         """Presentation metadata (icon, colours, label) for the category."""
         return self.CATEGORY_META.get(self.category, self.CATEGORY_META[self.CATEGORY_GENERAL])
+
+
+class NotificationPreference(models.Model):
+    """Per-user, per-event delivery preferences (email and in-app channels)."""
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='notification_preferences',
+    )
+    key = models.CharField(max_length=64)
+    email = models.BooleanField(default=True)
+    in_app = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['key']
+        unique_together = ('user', 'key')
+
+    def __str__(self):
+        return f"{self.user.username}: {self.key} (email={self.email}, in_app={self.in_app})"
