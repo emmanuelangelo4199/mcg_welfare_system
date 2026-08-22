@@ -1,8 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth import (
+    authenticate,
+    get_user_model,
+    login,
+    logout,
+    update_session_auth_hash,
+)
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from core.decorators import role_required
+from core.models import AuditLog
 from .models import UserProfile
 from members.models import Member
 
@@ -92,14 +99,52 @@ def password_reset_view(request):
 
 @login_required(login_url='accounts:login')
 def profile_view(request):
-    """Display the account that is currently authenticated, not a sample user."""
-    user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
-    member = Member.objects.filter(user=request.user).first()
+    """Display and update the authenticated user's account details."""
+    user = request.user
+    user_profile, _ = UserProfile.objects.get_or_create(user=user)
+    member = Member.objects.filter(user=user).first()
+
+    if request.method == 'POST':
+        action = request.POST.get('action', 'info')
+
+        if action == 'password':
+            current_password = request.POST.get('current_password', '')
+            new_password = request.POST.get('new_password', '')
+            confirm_password = request.POST.get('confirm_password', '')
+
+            if not user.check_password(current_password):
+                messages.error(request, "Your current password is incorrect.")
+            elif len(new_password) < 8:
+                messages.error(request, "New password must be at least 8 characters long.")
+            elif new_password != confirm_password:
+                messages.error(request, "New password and confirmation do not match.")
+            else:
+                user.set_password(new_password)
+                user.save(update_fields=['password'])
+                update_session_auth_hash(request, user)
+                messages.success(request, "Password updated successfully.")
+        else:
+            email = request.POST.get('email', '').strip()
+            phone = request.POST.get('phone', '').strip()
+
+            if email and User.objects.exclude(id=user.id).filter(email=email).exists():
+                messages.error(request, "That email address is already in use.")
+            else:
+                user.email = email
+                user.save(update_fields=['email'])
+                user_profile.phone_number = phone or None
+                user_profile.save(update_fields=['phone_number'])
+                messages.success(request, "Profile updated successfully.")
+
+        return redirect('accounts:profile')
+
+    last_audit = AuditLog.objects.filter(user=user).order_by('-timestamp').first()
 
     context = {
         "active_nav": "accounts",
         "profile": user_profile,
         "member": member,
+        "last_audited": last_audit.timestamp if last_audit else None,
     }
     return render(request, "accounts/my_profile.html", context)
 
