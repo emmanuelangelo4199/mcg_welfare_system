@@ -92,3 +92,71 @@ class SystemSettingsTestCase(TestCase):
         self.client.force_login(self.admin)
         response = self.client.get(reverse('core:system_settings'), {'tab': 'financial-config'})
         self.assertContains(response, 'data-initial-tab="financial-config"')
+
+
+class AuditLogViewTestCase(TestCase):
+    def setUp(self):
+        self.admin = User.objects.create_superuser(username='admin', password='admin-password')
+        self.other = User.objects.create_user(username='clerk', first_name='John', last_name='Owusu', password='password')
+        AuditLog.objects.create(user=self.admin, action='Updated membership status for Kofi Annan', model_name='Member', object_id='1', details='ACTIVE -> INACTIVE')
+        AuditLog.objects.create(user=self.other, action='Recorded transfer in for Akosua Sarpong', model_name='Member', object_id='7', details='From Wesley Cathedral')
+        AuditLog.objects.create(user=self.admin, action='Updated system settings: security', model_name='SystemSetting', object_id='session-security', details='Changed keys: SESSION_TIMEOUT_MINUTES')
+        AuditLog.objects.create(action='Nightly backup completed', model_name='Backup', object_id='nightly', details='completed')
+
+    def test_audit_page_requires_authentication(self):
+        response = self.client.get(reverse('core:audit_log'))
+        self.assertRedirects(response, reverse('accounts:login'))
+
+    def test_audit_page_blocked_for_users_without_a_role(self):
+        self.client.force_login(self.other)
+        response = self.client.get(reverse('core:audit_log'))
+        self.assertRedirects(response, reverse('dashboard:dashboard'))
+
+    def test_audit_page_renders_entries_and_audit_icon(self):
+        self.client.force_login(self.admin)
+        response = self.client.get(reverse('core:audit_log'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Updated membership status for Kofi Annan')
+        self.assertContains(response, 'John Owusu')
+        self.assertContains(response, 'System Process')
+        self.assertContains(response, 'Showing 1–4 of 4 entries')
+        self.assertContains(response, 'href="/core/audit-log/"')
+
+    def test_audit_filters_by_user_and_module(self):
+        self.client.force_login(self.admin)
+
+        by_user = self.client.get(reverse('core:audit_log'), {'q': 'clerk'})
+        self.assertContains(by_user, 'Recorded transfer in for Akosua Sarpong')
+        self.assertNotContains(by_user, 'Updated membership status')
+
+        by_module = self.client.get(reverse('core:audit_log'), {'module': 'SystemSetting'})
+        self.assertContains(by_module, 'Updated system settings: security')
+        self.assertNotContains(by_module, 'Recorded transfer in')
+
+    def test_audit_filters_by_action_text(self):
+        self.client.force_login(self.admin)
+        response = self.client.get(reverse('core:audit_log'), {'action': 'transfer'})
+        self.assertContains(response, 'Akosua Sarpong')
+        self.assertNotContains(response, 'membership status')
+
+    def test_audit_csv_export_respects_filters(self):
+        self.client.force_login(self.admin)
+        response = self.client.get(reverse('core:audit_log'), {'export': 'csv', 'module': 'Member'})
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['Content-Type'], 'text/csv')
+        content = response.content.decode()
+        self.assertIn('Timestamp,User,Action,Module,Record,Details', content)
+        self.assertIn('Updated membership status', content)
+        self.assertNotIn('Nightly backup', content)
+
+    def test_audit_pagination_splits_entries(self):
+        for index in range(25):
+            AuditLog.objects.create(user=self.admin, action=f'Bulk event {index}', model_name='Member')
+        self.client.force_login(self.admin)
+
+        response = self.client.get(reverse('core:audit_log'))
+        self.assertContains(response, 'page=2')
+        page_two = self.client.get(reverse('core:audit_log'), {'page': 2})
+        self.assertEqual(page_two.status_code, 200)

@@ -180,6 +180,13 @@
             <span class="material-symbols-outlined" aria-hidden="true">notifications</span>
             <span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full" aria-hidden="true"></span>
           </a>
+          <a
+            aria-label="Audit log"
+            class="p-xs text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors rounded-full"
+            href="{% url 'core:audit_log' %}"
+            title="Audit log">
+            <span class="material-symbols-outlined" aria-hidden="true">history</span>
+          </a>
           <span class="material-symbols-outlined text-on-surface-variant cursor-help" aria-hidden="true">help_outline</span>
           <div class="flex items-center gap-sm">
             <div class="w-8 h-8 rounded-full bg-primary-muted flex items-center justify-center" aria-hidden="true">
