@@ -3,8 +3,13 @@ from django.urls import reverse
 from django.contrib import messages
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from django.db.models import Q
+from django.http import HttpResponse
+from django.core.paginator import Paginator
+from django.utils.dateparse import parse_date
 from core.decorators import role_required
 from .models import SystemSetting, AuditLog
+import csv
 
 # Each settings panel maps to a list of (key, label, kind) stored in the
 # SystemSetting key/value store. Kinds drive validation and rendering.
@@ -177,10 +182,92 @@ def _settings_context(submitted=None, errors=None, active_tab='society-profile')
 
 @role_required(allowed_roles=['ADMIN'])
 def audit_log_view(request):
-    logs = AuditLog.objects.select_related('user').all()[:100]
+    """Filterable, paginated audit trail with a CSV export."""
+    logs = AuditLog.objects.select_related('user').all()
+
+    query = request.GET.get('q', '').strip()
+    module = request.GET.get('module', '').strip()
+    action_query = request.GET.get('action', '').strip()
+    date_from = parse_date(request.GET.get('from', '')) if request.GET.get('from', '').strip() else None
+    date_to = parse_date(request.GET.get('to', '')) if request.GET.get('to', '').strip() else None
+
+    if query:
+        logs = logs.filter(
+            Q(user__first_name__icontains=query)
+            | Q(user__last_name__icontains=query)
+            | Q(user__username__icontains=query)
+        )
+    if module:
+        logs = logs.filter(model_name__iexact=module)
+    if action_query:
+        logs = logs.filter(action__icontains=action_query)
+    if date_from:
+        logs = logs.filter(timestamp__date__gte=date_from)
+    if date_to:
+        logs = logs.filter(timestamp__date__lte=date_to)
+
+    logs = logs.order_by('-timestamp')
+
+    if request.GET.get('export') == 'csv':
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="mcg_audit_log.csv"'
+        writer = csv.writer(response)
+        writer.writerow(['Timestamp', 'User', 'Action', 'Module', 'Record', 'Details'])
+        for log in logs[:5000]:
+            writer.writerow([
+                log.timestamp.strftime('%Y-%m-%d %H:%M:%S'),
+                log.user.get_full_name() if log.user else 'System',
+                log.action,
+                log.model_name or '',
+                log.object_id or '',
+                log.details or '',
+            ])
+        return response
+
+    def badge_for(action):
+        lowered = action.lower()
+        if any(word in lowered for word in ('delete', 'remove', 'reject')):
+            return 'danger'
+        if any(word in lowered for word in ('create', 'register', 'receive')):
+            return 'success'
+        if any(word in lowered for word in ('update', 'edit', 'status', 'transfer', 'setting')):
+            return 'warning'
+        return 'info'
+
+    page = Paginator(logs, 20).get_page(request.GET.get('page'))
+    rows = []
+    for log in page:
+        if log.user:
+            user_display = log.user.get_full_name() or log.user.username
+            role = 'User'
+            initials = log.user.username[:2].upper()
+        else:
+            user_display, role, initials = 'System Process', 'Automatic', ''
+        rows.append({
+            'log': log,
+            'badge': badge_for(log.action),
+            'user_display': user_display,
+            'role': role,
+            'initials': initials,
+        })
+    modules = (
+        AuditLog.objects.exclude(model_name='')
+        .values_list('model_name', flat=True)
+        .distinct()
+        .order_by('model_name')
+    )
 
     context = {
         "active_nav": "core",
-        "logs": logs
+        "rows": rows,
+        "page": page,
+        "modules": modules,
+        "filters": {
+            "q": query,
+            "module": module,
+            "action": action_query,
+            "from": request.GET.get('from', ''),
+            "to": request.GET.get('to', ''),
+        },
     }
     return render(request, "core/audit_log.html", context)

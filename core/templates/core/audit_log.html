@@ -1,20 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Audit Log | MCG-SMS</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind Configuration -->
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Audit Log · MCG-SMS</title>
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      try {
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
                 "tertiary": "#2a2b2a",
                 "primary-fixed": "#ffdadb",
                 "primary-fixed-dim": "#ffb2b7",
@@ -72,410 +73,404 @@
                 "background": "#fff8f5",
                 "tertiary-fixed": "#e3e2e0",
                 "on-secondary-fixed": "#251a00"
-            },
-            "borderRadius": {
-                "DEFAULT": "0.25rem",
-                "lg": "0.5rem",
-                "xl": "0.75rem",
-                "full": "9999px"
-            },
-            "spacing": {
-                "xs": "4px",
-                "sm": "8px",
-                "xl": "32px",
+              },
+              borderRadius: {
+                DEFAULT: "0.25rem",
+                lg: "0.5rem",
+                xl: "0.75rem",
+                full: "9999px"
+              },
+              spacing: {
+                xs: "4px",
+                sm: "8px",
+                base: "8px",
+                md: "16px",
+                lg: "24px",
+                xl: "32px",
                 "sidebar-width": "256px",
-                "md": "16px",
-                "lg": "24px",
-                "header-height": "64px",
-                "base": "8px"
-            },
-            "fontFamily": {
-                "data-display": ["JetBrains Mono"],
-                "body-lg": ["Inter"],
-                "label-md": ["Inter"],
+                "header-height": "64px"
+              },
+              fontFamily: {
                 "headline-lg": ["Lora"],
                 "headline-md": ["Inter"],
-                "body-md": ["Inter"]
+                "label-md": ["Inter"],
+                "label-sm": ["Inter"],
+                "body-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "data-label": ["JetBrains Mono"],
+                "data-display": ["JetBrains Mono"]
+              },
+              fontSize: {
+                "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+                "headline-md": ["20px", { lineHeight: "1.3", fontWeight: "600" }],
+                "label-md": ["13px", { lineHeight: "1.2", fontWeight: "500" }],
+                "label-sm": ["11px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "500" }],
+                "body-md": ["14px", { lineHeight: "1.6", fontWeight: "400" }],
+                "body-lg": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                "data-label": ["14px", { lineHeight: "1.0", fontWeight: "500" }],
+                "data-display": ["18px", { lineHeight: "1.0", fontWeight: "500" }]
+              }
             }
           }
-        }
-      }
+        };
+      } catch (_e) {}
     </script>
-<style>
-        body {
-            background-color: #fff8f5;
-            color: #1e1b19;
-            font-family: 'Inter', sans-serif;
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .audit-table-container::-webkit-scrollbar {
-            height: 6px;
-        }
-        .audit-table-container::-webkit-scrollbar-thumb {
-            background: #dcc0c1;
-            border-radius: 10px;
-        }
-        .truncate-mono {
-            max-width: 120px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+
+      .audit-table-container::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      .audit-table-container::-webkit-scrollbar-thumb {
+        background: #dcc0c1;
+        border-radius: 10px;
+      }
     </style>
-</head>
-<body class="flex min-h-screen overflow-x-hidden" style="font-size: 13px;">
-<!-- SideNavBar (from Shared Components) -->
-{% include 'components/sidebar.html' %}
-<!-- Main Content Canvas -->
-<main class="flex-1  min-h-screen">
-<!-- TopAppBar (from Shared Components) -->
-<header class="flex justify-between items-center w-full px-lg h-header-height sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
-<div class="flex items-center gap-md">
-<nav class="flex items-center gap-xs text-label-md font-label-md text-on-surface-variant">
-<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
-<span class="material-symbols-outlined text-[14px]">chevron_right</span>
-<a class="hover:text-primary transition-colors" href="#">Settings</a>
-<span class="material-symbols-outlined text-[14px]">chevron_right</span>
-<span class="text-primary font-bold">Audit Log</span>
-</nav>
-</div>
-<div class="flex items-center gap-lg">
-<div class="flex items-center gap-md">
-<button class="p-xs text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-<button class="p-xs text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full">
-<span class="material-symbols-outlined">help_outline</span>
-</button>
-</div>
-<div class="h-8 w-px bg-border"></div>
-<div class="flex items-center gap-sm">
-<div class="text-right hidden sm:block">
-<p class="text-label-md font-label-md font-bold text-on-surface">Ekow Mensah</p>
-<p class="text-label-sm font-label-sm text-on-surface-variant">Chief Auditor</p>
-</div>
-<img class="w-10 h-10 rounded-full border border-border object-cover" data-alt="Professional studio portrait of a mature West African man wearing a formal suit, soft natural lighting, high-end photography style, corporate but warm atmosphere, white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEqFS9e0mrqq_KB369BQTRS2rNAcV0WckthRdh8C2WNUZ9iqZgze8WjrpWcfLoWYOvrLmXpuRMLx-kfbgvR3K-R7zk1VDggHTc8mDJR9arQ6iX2_R0zdu0EKv-h-EJ_Vsmuxg1YcWGl13xxA246HjXOKtSBCQUFgYg_b4fI29d0N57ymJl7pKK5JoUxP34kSYeUW864V34FeOmO2_5zg4VuVc3NSwwg5oPhyjvYBs1zSiQ6TOVRgBXMB8O0prJEI_45kxW6pOXalW6"/>
-</div>
-</div>
-</header>
-<div class="p-xl max-w-[1400px] mx-auto">
-<!-- Header Section -->
-<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md mb-xl">
-<div>
-<h2 class="text-headline-lg font-headline-lg text-primary mb-xs capitalize">Audit Log</h2>
-<p class="text-body-md font-body-md text-on-surface-variant max-w-xl">
-                        A complete record of administrative actions, modifications, and system events. This log provides institutional oversight and financial transparency.
-                    </p>
-</div>
-<!-- Export Button - Restricted to Auditor role -->
-<button class="flex items-center gap-sm px-lg py-sm bg-primary text-on-primary rounded-lg font-label-md hover:bg-primary-light transition-all shadow-sm">
-<span class="material-symbols-outlined">download</span>
-                    Export CSV
-                </button>
-</div>
-<!-- Filter Bar Section -->
-<div class="bg-card rounded-xl p-md shadow-sm mb-lg flex flex-wrap gap-md items-end">
-<div class="flex-1 min-w-[200px]">
-<label class="block text-label-sm font-label-sm text-on-surface-variant mb-xs capitalize">User / Performed By</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">person</span>
-<input class="w-full pl-xl pr-md py-sm rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-body-md" placeholder="Search by name..." type="text"/>
-</div>
-</div>
-<div class="w-48">
-<label class="block text-label-sm font-label-sm text-on-surface-variant mb-xs capitalize">Module</label>
-<select class="w-full px-md py-sm rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-md bg-white">
-<option>All Modules</option>
-<option>Finances</option>
-<option>Membership</option>
-<option>Welfare</option>
-<option>Governance</option>
-</select>
-</div>
-<div class="w-48">
-<label class="block text-label-sm font-label-sm text-on-surface-variant mb-xs capitalize">Action Type</label>
-<select class="w-full px-md py-sm rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-md bg-white">
-<option>All Actions</option>
-<option>Create</option>
-<option>Update</option>
-<option>Delete</option>
-<option>Status Change</option>
-</select>
-</div>
-<div class="w-48">
-<label class="block text-label-sm font-label-sm text-on-surface-variant mb-xs capitalize">Date Range</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">calendar_today</span>
-<input class="w-full pl-xl pr-md py-sm rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-md" placeholder="Select dates" type="text"/>
-</div>
-</div>
-<button class="px-lg py-sm bg-surface-container-high text-on-surface-variant rounded-lg font-label-md hover:bg-surface-container-highest transition-all flex items-center gap-xs">
-<span class="material-symbols-outlined">filter_list</span>
-                    Apply
-                </button>
-</div>
-<!-- Table Section -->
-<div class="bg-card rounded-xl shadow-sm border border-border/50 overflow-hidden">
-<div class="audit-table-container overflow-x-auto">
-<table class="w-full text-left border-collapse min-w-[1000px]">
-<thead>
-<tr class="bg-surface-container-low border-b border-border text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">
-<th class="px-lg py-md font-semibold capitalize">Timestamp</th>
-<th class="px-lg py-md font-semibold capitalize">User</th>
-<th class="px-lg py-md font-semibold capitalize">Action</th>
-<th class="px-lg py-md font-semibold capitalize">Module</th>
-<th class="px-lg py-md font-semibold capitalize">Record Affected</th>
-<th class="px-lg py-md font-semibold capitalize">Old Value</th>
-<th class="px-lg py-md font-semibold capitalize">New Value</th>
-<th class="px-lg py-md font-semibold capitalize">IP Address</th>
-</tr>
-</thead>
-<tbody class="text-body-md font-body-md divide-y divide-border">
-{% for log in logs %}
-<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer group">
-<td class="px-lg py-md whitespace-nowrap text-on-surface-variant capitalize">{{ log.timestamp|date:"Y-m-d H:i:s" }}</td>
-<td class="px-lg py-md capitalize">
-<div class="flex items-center gap-sm">
-<div class="w-8 h-8 rounded-full bg-primary-muted text-primary flex items-center justify-center font-bold text-xs">
-{{ log.user.username|slice:":2"|upper }}
-</div>
-<div>
-<p class="font-semibold text-on-surface">{{ log.user.get_full_name|default:log.user.username }}</p>
-<span class="text-xs bg-secondary-container text-on-secondary-container px-xs rounded-xs font-label-sm">User</span>
-</div>
-</div>
-</td>
-<td class="px-lg py-md capitalize">
-<span class="bg-blue-100 text-blue-800 px-sm py-xs rounded-full text-xs font-semibold">{{ log.action }}</span>
-</td>
-<td class="px-lg py-md capitalize font-medium text-primary">{{ log.model_name|default:"General" }}</td>
-<td class="px-lg py-md capitalize text-on-surface">{{ log.object_id|default:"N/A" }}</td>
-<td class="px-lg py-md font-mono text-xs text-on-surface-variant max-w-xs truncate">{{ log.details|default:"--" }}</td>
-<td class="px-lg py-md font-mono text-xs text-success max-w-xs truncate">Updated</td>
-<td class="px-lg py-md font-mono text-xs text-on-surface-variant">127.0.0.1</td>
-</tr>
-{% empty %}
-<tr>
-<td colspan="8" class="px-lg py-xl text-center text-on-surface-variant">No audit log records found.</td>
-</tr>
-{% endfor %}
-</tbody>
-<td class="px-lg py-md font-medium capitalize">Finances</td>
-<td class="px-lg py-md italic text-on-surface-variant capitalize">Tithes_Record_2039</td>
-<td class="px-lg py-md capitalize"><code class="font-data-display text-data-label truncate-mono text-error">GHS 1,200.00</code></td>
-<td class="px-lg py-md capitalize"><code class="font-data-display text-data-label truncate-mono text-success">GHS 1,500.00</code></td>
-<td class="px-lg py-md text-xs text-on-surface-variant capitalize">192.168.1.45</td>
-</tr>
-<!-- Row 2: Sensitive Welfare Case (CRITICAL Requirement) -->
-<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer border-l-4 border-l-error" onclick="toggleSlideOver()">
-<td class="px-lg py-md whitespace-nowrap text-on-surface-variant capitalize">2023-10-24 10:05:22</td>
-<td class="px-lg py-md capitalize">
-<div class="flex items-center gap-sm">
-<div class="w-8 h-8 rounded-full bg-primary-muted text-primary flex items-center justify-center font-bold text-xs">SA</div>
-<div>
-<p class="font-semibold text-on-surface">Sarah Ansah</p>
-<span class="text-xs bg-secondary-container text-on-secondary-container px-xs rounded-xs font-label-sm">Coordinator</span>
-</div>
-</div>
-</td>
-<td class="px-lg py-md capitalize">
-<span class="bg-amber-100 text-amber-800 px-sm py-xs rounded-full text-xs font-semibold">MODIFY</span>
-</td>
-<td class="px-lg py-md font-medium text-error capitalize">Welfare</td>
-<td class="px-lg py-md italic text-on-surface-variant capitalize">Case_7721_Financial_Aid</td>
-<td class="px-lg py-md capitalize"><span class="italic text-on-surface-variant text-xs opacity-70">Record modified</span></td>
-<td class="px-lg py-md capitalize"><span class="italic text-on-surface-variant text-xs opacity-70">Status changed</span></td>
-<td class="px-lg py-md text-xs text-on-surface-variant capitalize">192.168.1.112</td>
-</tr>
-<!-- Row 3: Membership -->
-<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer" onclick="toggleSlideOver()">
-<td class="px-lg py-md whitespace-nowrap text-on-surface-variant capitalize">2023-10-24 11:30:10</td>
-<td class="px-lg py-md capitalize">
-<div class="flex items-center gap-sm">
-<div class="w-8 h-8 rounded-full bg-primary-muted text-primary flex items-center justify-center font-bold text-xs">JO</div>
-<div>
-<p class="font-semibold text-on-surface">John Owusu</p>
-<span class="text-xs bg-secondary-container text-on-secondary-container px-xs rounded-xs font-label-sm">Clerk</span>
-</div>
-</div>
-</td>
-<td class="px-lg py-md capitalize">
-<span class="bg-green-100 text-green-800 px-sm py-xs rounded-full text-xs font-semibold">CREATE</span>
-</td>
-<td class="px-lg py-md font-medium capitalize">Membership</td>
-<td class="px-lg py-md italic text-on-surface-variant capitalize">Member_Alice_Appiah</td>
-<td class="px-lg py-md capitalize"><code class="font-data-display text-data-label truncate-mono text-on-surface-variant">null</code></td>
-<td class="px-lg py-md capitalize"><code class="font-data-display text-data-label truncate-mono text-success">active_member</code></td>
-<td class="px-lg py-md text-xs text-on-surface-variant capitalize">10.0.0.89</td>
-</tr>
-<!-- Row 4: System Event -->
-<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer" onclick="toggleSlideOver()">
-<td class="px-lg py-md whitespace-nowrap text-on-surface-variant capitalize">2023-10-24 12:00:00</td>
-<td class="px-lg py-md capitalize">
-<div class="flex items-center gap-sm">
-<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center">
-<span class="material-symbols-outlined text-xs">settings_suggest</span>
-</div>
-<div>
-<p class="font-semibold text-on-surface">System Process</p>
-<span class="text-xs bg-surface-container-highest text-on-surface-variant px-xs rounded-xs font-label-sm">Automatic</span>
-</div>
-</div>
-</td>
-<td class="px-lg py-md capitalize">
-<span class="bg-gray-100 text-gray-800 px-sm py-xs rounded-full text-xs font-semibold">BACKUP</span>
-</td>
-<td class="px-lg py-md font-medium capitalize">Governance</td>
-<td class="px-lg py-md italic text-on-surface-variant capitalize">Nightly_Global_Sync</td>
-<td class="px-lg py-md capitalize"><code class="font-data-display text-data-label truncate-mono text-on-surface-variant">pending</code></td>
-<td class="px-lg py-md capitalize"><code class="font-data-display text-data-label truncate-mono text-success">completed</code></td>
-<td class="px-lg py-md text-xs text-on-surface-variant capitalize">127.0.0.1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Pagination -->
-<div class="px-lg py-md flex items-center justify-between bg-surface-container-low border-t border-border">
-<p class="text-label-sm font-label-sm text-on-surface-variant">Showing 1-10 of 1,248 entries</p>
-<div class="flex items-center gap-xs">
-<button class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded transition-colors disabled:opacity-30" disabled="">
-<span class="material-symbols-outlined">first_page</span>
-</button>
-<button class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded transition-colors disabled:opacity-30" disabled="">
-<span class="material-symbols-outlined">chevron_left</span>
-</button>
-<div class="flex items-center gap-xs mx-md">
-<button class="w-8 h-8 rounded bg-primary text-on-primary font-bold text-xs">1</button>
-<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant font-bold text-xs">2</button>
-<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant font-bold text-xs">3</button>
-<span class="text-on-surface-variant">...</span>
-<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant font-bold text-xs">125</button>
-</div>
-<button class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded transition-colors">
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-<button class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded transition-colors">
-<span class="material-symbols-outlined">last_page</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- Slide-over Overlay -->
-<div class="fixed inset-0 bg-black/50 z-[60] hidden opacity-0 transition-opacity duration-300 pointer-events-none" id="slide-over-bg" onclick="toggleSlideOver()"></div>
-<!-- Slide-over Component -->
-<div class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-card shadow-2xl z-[70] translate-x-full transition-transform duration-300 ease-in-out" id="slide-over">
-<div class="h-full flex flex-col">
-<div class="p-lg border-b border-border flex items-center justify-between">
-<div>
-<h3 class="text-headline-md font-headline-md text-primary capitalize">Audit Details</h3>
-<p class="text-label-sm font-label-sm text-on-surface-variant">Log ID: #AL-20231024-001</p>
-</div>
-<button class="p-sm hover:bg-surface-container-low rounded-full transition-colors" onclick="toggleSlideOver()">
-<span class="material-symbols-outlined">close</span>
-</button>
-</div>
-<div class="flex-1 overflow-y-auto p-lg space-y-lg">
-<section>
-<h4 class="text-label-sm font-bold uppercase tracking-widest text-outline mb-md capitalize">Actor Information</h4>
-<div class="bg-surface-container-low rounded-xl p-md flex items-center gap-md">
-<img class="w-12 h-12 rounded-full object-cover" data-alt="Close-up avatar of a professional church administrator, friendly expression, clean lighting, blurred ecclesiastical background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb7Zeimp0IyHzx3xNCbbqrcltS5ajPy5F2zoa9dq_9gOHPqLY6bLlbBIMZfcpH0249ze79KdtW5S0N16X6tMAzdw4vqC5wD2cjiurBa3auo-iKcNYOUsi9uaCyjLrEBvTBBn-GyvrhnjVmcejPG8-TVn2r6Sh0jWFE0N8KJPbWFmG-wxhkcXz661AquIKgTB524h7ozLdNaBLjjubLZPg4kwaPmdRA-nBzUniJcJPGohNZfILhUpeHPWl0O1O9vKY8aAwYhHJFc9kx"/>
-<div>
-<p class="text-body-lg font-bold text-on-surface">Kofi Nimako</p>
-<p class="text-label-md text-on-surface-variant">Administrator • k.nimako@mcg.org</p>
-<p class="text-label-sm font-data-display text-primary mt-xs">IP: 192.168.1.45</p>
-</div>
-</div>
-</section>
-<section>
-<h4 class="text-label-sm font-bold uppercase tracking-widest text-outline mb-md capitalize">Action Context</h4>
-<div class="grid grid-cols-2 gap-md">
-<div class="p-md border border-border rounded-lg">
-<p class="text-label-sm text-on-surface-variant mb-xs">Module</p>
-<p class="text-body-md font-bold">Finances</p>
-</div>
-<div class="p-md border border-border rounded-lg">
-<p class="text-label-sm text-on-surface-variant mb-xs">Action Type</p>
-<span class="bg-blue-100 text-blue-800 px-sm py-xs rounded-full text-xs font-semibold">UPDATE</span>
-</div>
-</div>
-</section>
-<section>
-<h4 class="text-label-sm font-bold uppercase tracking-widest text-outline mb-md capitalize">Modification Delta</h4>
-<div class="space-y-md">
-<div>
-<p class="text-label-sm text-on-surface-variant mb-xs">Previous State</p>
-<div class="p-md bg-red-50/30 border border-red-100 rounded-lg">
-<pre class="font-data-display text-xs text-error overflow-x-auto">{
-  "amount": 1200.00,
-  "currency": "GHS",
-  "status": "pending",
-  "last_verified": "2023-10-23"
-}</pre>
-</div>
-</div>
-<div class="flex justify-center py-xs">
-<span class="material-symbols-outlined text-outline">arrow_downward</span>
-</div>
-<div>
-<p class="text-label-sm text-on-surface-variant mb-xs">New State</p>
-<div class="p-md bg-green-50/30 border border-green-100 rounded-lg">
-<pre class="font-data-display text-xs text-success overflow-x-auto">{
-  "amount": 1500.00,
-  "currency": "GHS",
-  "status": "confirmed",
-  "last_verified": "2023-10-24"
-}</pre>
-</div>
-</div>
-</div>
-</section>
-<div class="p-md bg-gold-muted rounded-lg border border-secondary-fixed-dim/30 flex gap-sm">
-<span class="material-symbols-outlined text-secondary">info</span>
-<p class="text-label-sm text-on-secondary-container">This audit entry is verified by the central governance module and cannot be altered or purged from the database.</p>
-</div>
-</div>
-<div class="p-lg border-t border-border flex gap-md">
-<button class="flex-1 px-lg py-sm bg-primary text-on-primary rounded-lg font-label-md hover:bg-primary-light transition-all">Verify Hash</button>
-<button class="px-lg py-sm border border-border text-on-surface-variant rounded-lg font-label-md hover:bg-surface-container-low transition-all">Report Error</button>
-</div>
-</div>
-</div>
-<script>
-        function toggleSlideOver() {
-            const slideOver = document.getElementById('slide-over');
-            const slideOverBg = document.getElementById('slide-over-bg');
-            
-            if (slideOver.classList.contains('translate-x-full')) {
-                slideOver.classList.remove('translate-x-full');
-                slideOverBg.classList.remove('hidden');
-                setTimeout(() => {
-                    slideOverBg.classList.remove('opacity-0');
-                    slideOverBg.classList.add('opacity-100', 'pointer-events-auto');
-                }, 10);
-            } else {
-                slideOver.classList.add('translate-x-full');
-                slideOverBg.classList.remove('opacity-100');
-                slideOverBg.classList.add('opacity-0');
-                slideOverBg.classList.remove('pointer-events-auto');
-                setTimeout(() => {
-                    slideOverBg.classList.add('hidden');
-                }, 300);
-            }
+  </head>
+
+  <body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex min-h-screen">
+
+    {% include 'components/toast_messages.html' %}
+
+    <!-- Desktop Sidebar (hidden on mobile) -->
+    {% include 'components/sidebar.html' %}
+
+    <!-- Main Content Canvas -->
+    <main class="min-w-0 flex-1 min-h-screen">
+
+      <!-- Top App Bar -->
+      <header class="flex justify-between items-center w-full px-lg h-header-height sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
+        <div class="flex items-center gap-md">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-xs font-label-md text-label-md text-on-surface-variant">
+            <ol class="flex items-center gap-xs">
+              <li><a class="hover:text-primary transition-colors" href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+              <li><span class="material-symbols-outlined text-[14px]" aria-hidden="true">chevron_right</span></li>
+              <li><a class="hover:text-primary transition-colors" href="{% url 'core:system_settings' %}">Settings</a></li>
+              <li><span class="material-symbols-outlined text-[14px]" aria-hidden="true">chevron_right</span></li>
+              <li aria-current="page" class="text-primary font-bold">Audit Log</li>
+            </ol>
+          </nav>
+        </div>
+        <div class="flex items-center gap-lg">
+          <div class="flex items-center gap-md">
+            <a
+              aria-label="Notifications"
+              class="p-xs text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full"
+              href="{% url 'notifications:notification_board' %}">
+              <span class="material-symbols-outlined" aria-hidden="true">notifications</span>
+            </a>
+            <a
+              aria-label="Audit log"
+              class="p-xs text-primary bg-primary-muted hover:bg-primary-muted/70 transition-colors rounded-full"
+              href="{% url 'core:audit_log' %}" title="Audit log">
+              <span class="material-symbols-outlined" aria-hidden="true">history</span>
+            </a>
+            <span class="p-xs text-on-surface-variant cursor-help" title="Help">
+              <span class="material-symbols-outlined" aria-hidden="true">help_outline</span>
+            </span>
+          </div>
+          <div class="h-8 w-px bg-border" aria-hidden="true"></div>
+          <div class="flex items-center gap-sm">
+            <div class="text-right hidden sm:block">
+              <p class="font-label-md text-label-md font-bold text-on-surface">{{ request.user.get_full_name|default:request.user.username }}</p>
+              <p class="font-label-sm text-label-sm text-on-surface-variant">Administrator</p>
+            </div>
+            <div class="w-10 h-10 rounded-full border border-border bg-primary-muted text-primary flex items-center justify-center" aria-hidden="true">
+              <span class="material-symbols-outlined">person</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="p-lg md:p-xl max-w-[1400px] mx-auto">
+
+        <!-- Header Section -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md mb-xl">
+          <div>
+            <h1 class="font-headline-lg text-headline-lg text-primary mb-xs">Audit Log</h1>
+            <p class="text-body-md font-body-md text-on-surface-variant max-w-xl">
+              A complete record of administrative actions, modifications, and system events. This log provides institutional oversight and financial transparency.
+            </p>
+          </div>
+          <!-- Export respects the active filters -->
+          <a
+            class="flex items-center gap-sm px-lg py-sm bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-primary-light transition-all shadow-sm"
+            href="?export=csv&amp;q={{ filters.q|urlencode }}&amp;module={{ filters.module|urlencode }}&amp;action={{ filters.action|urlencode }}&amp;from={{ filters.from }}&amp;to={{ filters.to }}">
+            <span class="material-symbols-outlined" aria-hidden="true">download</span>
+            Export CSV
+          </a>
+        </div>
+
+        <!-- Filter Bar -->
+        <form class="bg-card rounded-xl p-md shadow-sm mb-lg flex flex-wrap gap-md items-end" method="get">
+          <div class="flex-1 min-w-[200px]">
+            <label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs" for="filter-user">User / Performed By</label>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline pointer-events-none" aria-hidden="true">person</span>
+              <input
+                class="w-full pl-xl pr-md py-sm rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-body-md"
+                id="filter-user"
+                name="q"
+                placeholder="Search by name..."
+                type="text"
+                value="{{ filters.q }}"/>
+            </div>
+          </div>
+          <div class="w-48">
+            <label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs" for="filter-module">Module</label>
+            <select
+              class="w-full px-md py-sm rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-md bg-surface-container-lowest"
+              id="filter-module"
+              name="module">
+              <option value="">All Modules</option>
+              {% for module_name in modules %}
+              <option value="{{ module_name }}" {% if filters.module == module_name %}selected{% endif %}>{{ module_name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="w-48">
+            <label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs" for="filter-action">Action Contains</label>
+            <input
+              class="w-full px-md py-sm rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-md"
+              id="filter-action"
+              name="action"
+              placeholder="e.g. status, transfer"
+              type="text"
+              value="{{ filters.action }}"/>
+          </div>
+          <div class="w-44">
+            <label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs" for="filter-from">From</label>
+            <input
+              class="w-full px-md py-sm rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-md"
+              id="filter-from"
+              name="from"
+              type="date"
+              value="{{ filters.from }}"/>
+          </div>
+          <div class="w-44">
+            <label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs" for="filter-to">To</label>
+            <input
+              class="w-full px-md py-sm rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-md"
+              id="filter-to"
+              name="to"
+              type="date"
+              value="{{ filters.to }}"/>
+          </div>
+          <button class="px-lg py-sm bg-surface-container-high text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container-highest transition-all flex items-center gap-xs" type="submit">
+            <span class="material-symbols-outlined" aria-hidden="true">filter_list</span>
+            Apply
+          </button>
+          <a class="px-md py-sm text-on-surface-variant hover:text-primary font-label-md text-label-md transition-colors" href="{% url 'core:audit_log' %}">Clear</a>
+        </form>
+
+        <!-- Table Section -->
+        <div class="bg-card rounded-xl shadow-sm border border-border/50 overflow-hidden">
+          <div class="audit-table-container overflow-x-auto">
+            <table class="w-full text-left border-collapse min-w-[900px]">
+              <thead>
+                <tr class="bg-surface-container-low border-b border-border font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+                  <th class="px-lg py-md font-semibold" scope="col">Timestamp</th>
+                  <th class="px-lg py-md font-semibold" scope="col">User</th>
+                  <th class="px-lg py-md font-semibold" scope="col">Action</th>
+                  <th class="px-lg py-md font-semibold" scope="col">Module</th>
+                  <th class="px-lg py-md font-semibold" scope="col">Record</th>
+                  <th class="px-lg py-md font-semibold" scope="col">Details</th>
+                </tr>
+              </thead>
+              <tbody class="font-body-md text-body-md divide-y divide-border">
+                {% for row in rows %}
+                <tr
+                  class="hover:bg-surface-container-lowest transition-colors cursor-pointer"
+                  data-timestamp="{{ row.log.timestamp|date:'Y-m-d H:i:s' }}"
+                  data-user="{{ row.log.user.get_full_name|default:row.log.user.username|default:'System' }}"
+                  data-role="{% if row.log.user %}User{% else %}Automatic{% endif %}"
+                  data-action="{{ row.log.action }}"
+                  data-module="{{ row.log.model_name|default:'General' }}"
+                  data-record="{{ row.log.object_id|default:'N/A' }}"
+                  data-details="{{ row.log.details|default:'--' }}"
+                  onclick="toggleSlideOver(this)">
+                  <td class="px-lg py-md whitespace-nowrap text-on-surface-variant">{{ row.log.timestamp|date:"Y-m-d H:i:s" }}</td>
+                  <td class="px-lg py-md">
+                    <div class="flex items-center gap-sm">
+                      <div class="w-8 h-8 rounded-full bg-primary-muted text-primary flex items-center justify-center font-bold text-xs" aria-hidden="true">
+                        {% if row.log.user %}{{ row.log.user.username|slice:":2"|upper }}{% else %}<span class="material-symbols-outlined text-xs">settings_suggest</span>{% endif %}
+                      </div>
+                      <div>
+                        <p class="font-semibold text-on-surface">{{ row.log.user.get_full_name|default:row.log.user.username|default:"System Process" }}</p>
+                        <span class="text-xs {% if row.log.user %}bg-secondary-container text-on-secondary-container{% else %}bg-surface-container-highest text-on-surface-variant{% endif %} px-xs rounded font-label-sm text-label-sm">
+                          {% if row.log.user %}User{% else %}Automatic{% endif %}
+                        </span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-lg py-md">
+                    <span class="px-sm py-xs rounded-full text-xs font-semibold
+                      {% if row.badge == 'danger' %}bg-red-100 text-red-800
+                      {% elif row.badge == 'success' %}bg-green-100 text-green-800
+                      {% elif row.badge == 'warning' %}bg-amber-100 text-amber-800
+                      {% else %}bg-blue-100 text-blue-800{% endif %}">
+                      {{ row.log.action }}
+                    </span>
+                  </td>
+                  <td class="px-lg py-md font-medium text-primary">{{ row.log.model_name|default:"General" }}</td>
+                  <td class="px-lg py-md text-on-surface-variant">{{ row.log.object_id|default:"N/A" }}</td>
+                  <td class="px-lg py-md font-data-label text-data-label text-on-surface-variant max-w-xs truncate">{{ row.log.details|default:"--" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td class="px-lg py-xl text-center text-on-surface-variant" colspan="6">No audit log records found.</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <div class="px-lg py-md flex flex-wrap gap-sm items-center justify-between bg-surface-container-low border-t border-border">
+            <p class="font-label-sm text-label-sm text-on-surface-variant">
+              {% if page.paginator.count %}Showing {{ page.start_index }}–{{ page.end_index }} of {{ page.paginator.count }} entr{{ page.paginator.count|pluralize:"y,ies" }}{% else %}No entries{% endif %}
+            </p>
+            <div class="flex items-center gap-xs">
+              {% if page.has_previous %}
+              <a class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded transition-colors" aria-label="Previous page" href="?page={{ page.previous_page_number }}&amp;q={{ filters.q|urlencode }}&amp;module={{ filters.module|urlencode }}&amp;action={{ filters.action|urlencode }}&amp;from={{ filters.from }}&amp;to={{ filters.to }}">
+                <span class="material-symbols-outlined" aria-hidden="true">chevron_left</span>
+              </a>
+              {% else %}
+              <button class="p-xs text-on-surface-variant rounded transition-colors disabled:opacity-30" disabled type="button">
+                <span class="material-symbols-outlined" aria-hidden="true">chevron_left</span>
+              </button>
+              {% endif %}
+              <div class="flex items-center gap-xs mx-md">
+                {% for num in page.paginator.page_range %}
+                {% if num == page.number %}
+                <span class="w-8 h-8 rounded bg-primary text-on-primary font-bold text-xs flex items-center justify-center">{{ num }}</span>
+                {% elif num > page.number|add:"-3" and num < page.number|add:"3" %}
+                <a class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant font-bold text-xs flex items-center justify-center" href="?page={{ num }}&amp;q={{ filters.q|urlencode }}&amp;module={{ filters.module|urlencode }}&amp;action={{ filters.action|urlencode }}&amp;from={{ filters.from }}&amp;to={{ filters.to }}">{{ num }}</a>
+                {% endif %}
+                {% endfor %}
+              </div>
+              {% if page.has_next %}
+              <a class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded transition-colors" aria-label="Next page" href="?page={{ page.next_page_number }}&amp;q={{ filters.q|urlencode }}&amp;module={{ filters.module|urlencode }}&amp;action={{ filters.action|urlencode }}&amp;from={{ filters.from }}&amp;to={{ filters.to }}">
+                <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+              </a>
+              {% else %}
+              <button class="p-xs text-on-surface-variant rounded transition-colors disabled:opacity-30" disabled type="button">
+                <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+              </button>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Slide-over Overlay -->
+    <div class="fixed inset-0 bg-black/50 z-[60] hidden opacity-0 transition-opacity duration-300 pointer-events-none" id="slide-over-bg" onclick="toggleSlideOver()"></div>
+
+    <!-- Slide-over Component -->
+    <div class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-card shadow-2xl z-[70] translate-x-full transition-transform duration-300 ease-in-out" id="slide-over">
+      <div class="h-full flex flex-col">
+        <div class="p-lg border-b border-border flex items-center justify-between">
+          <div>
+            <h2 class="font-headline-md text-headline-md text-primary">Audit Details</h2>
+            <p class="font-label-sm text-label-sm text-on-surface-variant">Recorded system event</p>
+          </div>
+          <button class="p-sm hover:bg-surface-container-low rounded-full transition-colors" onclick="toggleSlideOver()" aria-label="Close details" type="button">
+            <span class="material-symbols-outlined" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-lg flex flex-col gap-lg">
+          <section>
+            <h3 class="font-label-sm text-label-sm font-bold uppercase tracking-widest text-outline mb-md">Actor Information</h3>
+            <div class="bg-surface-container-low rounded-xl p-md flex items-center gap-md">
+              <div class="w-12 h-12 rounded-full bg-primary-muted text-primary flex items-center justify-center" aria-hidden="true">
+                <span class="material-symbols-outlined">person</span>
+              </div>
+              <div>
+                <p class="font-body-lg text-body-lg font-bold text-on-surface" id="detail-user">&mdash;</p>
+                <p class="font-label-md text-label-md text-on-surface-variant" id="detail-role">&mdash;</p>
+                <p class="font-label-sm text-label-sm font-data-label text-primary mt-xs" id="detail-timestamp">&mdash;</p>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3 class="font-label-sm text-label-sm font-bold uppercase tracking-widest text-outline mb-md">Action Context</h3>
+            <div class="grid grid-cols-2 gap-md">
+              <div class="p-md border border-border rounded-lg">
+                <p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Module</p>
+                <p class="font-body-md text-body-md font-bold" id="detail-module">&mdash;</p>
+              </div>
+              <div class="p-md border border-border rounded-lg">
+                <p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Record</p>
+                <p class="font-body-md text-body-md font-bold" id="detail-record">&mdash;</p>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3 class="font-label-sm text-label-sm font-bold uppercase tracking-widest text-outline mb-md">Action</h3>
+            <p class="p-md bg-surface-container-low rounded-lg font-body-md text-on-surface" id="detail-action">&mdash;</p>
+          </section>
+          <section>
+            <h3 class="font-label-sm text-label-sm font-bold uppercase tracking-widest text-outline mb-md">Details</h3>
+            <div class="p-md bg-surface-container-low border border-border rounded-lg">
+              <pre class="font-data-display text-data-label text-on-surface whitespace-pre-wrap break-words" id="detail-details">&mdash;</pre>
+            </div>
+          </section>
+          <div class="p-md bg-gold-muted rounded-lg border border-secondary-fixed-dim/30 flex gap-sm">
+            <span class="material-symbols-outlined text-secondary" aria-hidden="true">info</span>
+            <p class="font-label-sm text-label-sm text-on-secondary-container">
+              Entries are written automatically when administrative actions occur and cannot be edited from this screen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleSlideOver(row) {
+        const slideOver = document.getElementById('slide-over');
+        const slideOverBg = document.getElementById('slide-over-bg');
+        const isOpen = !slideOver.classList.contains('translate-x-full');
+
+        if (!isOpen && row) {
+          const data = row.dataset;
+          document.getElementById('detail-user').textContent = data.user || 'System Process';
+          document.getElementById('detail-role').textContent = data.role || '\u2014';
+          document.getElementById('detail-timestamp').textContent = data.timestamp || '\u2014';
+          document.getElementById('detail-module').textContent = data.module || '\u2014';
+          document.getElementById('detail-record').textContent = data.record || '\u2014';
+          document.getElementById('detail-action').textContent = data.action || '\u2014';
+          document.getElementById('detail-details').textContent = data.details || '\u2014';
         }
 
-        // Simulate tooltips or subtle hover effects
-        document.querySelectorAll('tr').forEach(row => {
-            row.addEventListener('mouseenter', () => {
-                row.style.transform = 'translateX(4px)';
-                row.style.transition = 'transform 0.2s ease';
-            });
-            row.addEventListener('mouseleave', () => {
-                row.style.transform = 'translateX(0)';
-            });
+        if (!isOpen) {
+          slideOver.classList.remove('translate-x-full');
+          slideOverBg.classList.remove('hidden');
+          setTimeout(() => {
+            slideOverBg.classList.remove('opacity-0');
+            slideOverBg.classList.add('opacity-100', 'pointer-events-auto');
+          }, 10);
+        } else {
+          slideOver.classList.add('translate-x-full');
+          slideOverBg.classList.remove('opacity-100', 'pointer-events-auto');
+          slideOverBg.classList.add('opacity-0');
+          setTimeout(() => slideOverBg.classList.add('hidden'), 300);
+        }
+      }
+
+      // Subtle row hover feedback.
+      document.querySelectorAll('tbody tr[data-timestamp]').forEach((row) => {
+        row.addEventListener('mouseenter', () => {
+          row.style.transform = 'translateX(4px)';
+          row.style.transition = 'transform 0.2s ease';
         });
+        row.addEventListener('mouseleave', () => {
+          row.style.transform = 'translateX(0)';
+        });
+      });
     </script>
-</body></html>
+  </body>
+</html>
