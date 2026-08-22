@@ -18,6 +18,13 @@ class WelfareCase(models.Model):
         ('CLOSED', 'Closed'),
         ('REJECTED', 'Rejected'),
     ]
+    CLOSURE_OUTCOME_CHOICES = [
+        ('RESOLVED', 'Resolved / Improved'),
+        ('DECEASED', 'Deceased'),
+        ('TRANSFERRED', 'Transferred to External Org'),
+        ('WITHDRAWN', 'Member Withdrawn'),
+        ('OTHER', 'Other'),
+    ]
 
     member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='welfare_cases')
     case_type = models.CharField(max_length=30, choices=CASE_TYPE_CHOICES)
@@ -36,6 +43,9 @@ class WelfareCase(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    closure_outcome = models.CharField(max_length=20, choices=CLOSURE_OUTCOME_CHOICES, blank=True, null=True)
+    closure_notes = models.TextField(blank=True, null=True)
+    closed_at = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return f"[{self.get_case_type_display()}] {self.member.get_full_name()} - {self.title}"
