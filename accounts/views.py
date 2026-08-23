@@ -215,7 +215,7 @@ def profile_view(request):
 
             if not has_error:
                 user_profile.phone_number = phone
-                user_profile.save(update_fields=["phone_number", "updated_at"])
+                user_profile.save(update_fields=["phone_number"])
 
                 AuditLog.objects.create(
                     user=request.user,
