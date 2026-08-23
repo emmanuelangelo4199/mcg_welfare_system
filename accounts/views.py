@@ -2,13 +2,111 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout, get_user_model, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db import transaction, models
 from core.decorators import role_required
 from core.models import AuditLog
-from .models import UserProfile
+from .models import UserProfile, Role, Module, RolePermission
 from members.models import Member
+
 
 User = get_user_model()
 
+# ------------------------------------------------------------------
+# Helpers to seed default data
+# ------------------------------------------------------------------
+DEFAULT_ROLES = [
+    {"code": "ADMIN", "name": "Administrator", "description": "Global access to all system functions and configurations.", "is_system_protected": True},
+    {"code": "SUPERINTENDENT_MINISTER", "name": "Superintendent Minister", "description": "Oversees circuit and society operations.", "is_system_protected": False},
+    {"code": "SOCIETY_STEWARD", "name": "Society Steward", "description": "Manages society administration and stewardship.", "is_system_protected": False},
+    {"code": "LEADERS_MEETING_SECRETARY", "name": "Leaders’ Meeting Secretary", "description": "Records minutes and manages governance docs.", "is_system_protected": False},
+    {"code": "AUDITOR", "name": "Auditor", "description": "Reviews financial and operational records.", "is_system_protected": False},
+    {"code": "TREASURER", "name": "Treasurer", "description": "Handles finance, budgets and reporting.", "is_system_protected": False},
+    {"code": "CATECHIST", "name": "Catechist", "description": "Supports teaching and membership preparation.", "is_system_protected": False},
+    {"code": "CIRCUIT_MINISTER", "name": "Circuit Minister", "description": "Circuit pastoral oversight.", "is_system_protected": False},
+    {"code": "BIBLE_STUDY_LEADER", "name": "Bible Study Leaders", "description": "Leads bible study groups.", "is_system_protected": False},
+    {"code": "CLASS_LEADER", "name": "Class Leaders", "description": "Manages class groups and attendance.", "is_system_protected": False},
+    {"code": "ORGANISATION_LEADER", "name": "Organisation Leaders", "description": "Leads church organisations and groups.", "is_system_protected": False},
+    {"code": "FINANCIAL_SECRETARY", "name": "Financial Secretary", "description": "Assists treasurer with records.", "is_system_protected": False},
+    {"code": "SOCIETY_MINISTER", "name": "Society Minister", "description": "Society pastoral care.", "is_system_protected": False},
+    {"code": "WELFARE_OFFICER", "name": "Welfare Officer", "description": "Manages welfare cases and support.", "is_system_protected": False},
+    {"code": "MEMBER", "name": "Society Member", "description": "General member with limited access.", "is_system_protected": False},
+]
+
+DEFAULT_MODULES = [
+    {"code": "MEMBERS", "name": "Members", "description": "Profiles and directory management", "order": 1, "is_sensitive": False},
+    {"code": "CLASSES", "name": "Classes", "description": "Class groups and membership", "order": 2, "is_sensitive": False},
+    {"code": "ORGANISATIONS", "name": "Organisations", "description": "Church organisations and groups", "order": 3, "is_sensitive": False},
+    {"code": "SERVICES", "name": "Services", "description": "Service programs and events", "order": 4, "is_sensitive": False},
+    {"code": "ATTENDANCE", "name": "Attendance", "description": "Service and class attendance", "order": 5, "is_sensitive": False},
+    {"code": "FINANCE", "name": "Finance", "description": "Offerings, Tithes and Budgets", "order": 6, "is_sensitive": False},
+    {"code": "WELFARE", "name": "Welfare", "description": "Sensitive support cases", "order": 7, "is_sensitive": True},
+    {"code": "MEETINGS", "name": "Governance", "description": "Minutes, Agendas and Decisions", "order": 8, "is_sensitive": False},
+    {"code": "COMMUNICATIONS", "name": "Communications", "description": "Messages and announcements", "order": 9, "is_sensitive": False},
+    {"code": "REPORTS", "name": "Reports", "description": "Analytical and periodic statements", "order": 10, "is_sensitive": False},
+    {"code": "SETTINGS", "name": "Settings", "description": "System-wide configurations", "order": 11, "is_sensitive": False},
+]
+
+
+def ensure_default_roles_and_modules():
+    """Idempotent seeder for roles, modules and permissions."""
+    for role_data in DEFAULT_ROLES:
+        Role.objects.get_or_create(
+            code=role_data["code"],
+            defaults={
+                "name": role_data["name"],
+                "description": role_data["description"],
+                "is_system_protected": role_data["is_system_protected"],
+            },
+        )
+
+    for mod_data in DEFAULT_MODULES:
+        Module.objects.get_or_create(
+            code=mod_data["code"],
+            defaults={
+                "name": mod_data["name"],
+                "description": mod_data["description"],
+                "order": mod_data["order"],
+                "is_sensitive": mod_data["is_sensitive"],
+            },
+        )
+
+    # Ensure every role has a permission row per module
+    roles = Role.objects.all()
+    modules = Module.objects.all()
+    for role in roles:
+        for module in modules:
+            perm, created = RolePermission.objects.get_or_create(
+                role=role,
+                module=module,
+                defaults={
+                    "can_view": True if role.code == "ADMIN" else False,
+                    "can_create": True if role.code == "ADMIN" else False,
+                    "can_edit": True if role.code == "ADMIN" else False,
+                    "can_delete": True if role.code == "ADMIN" else False,
+                    "can_approve": True if role.code == "ADMIN" else False,
+                },
+            )
+            # For demo: give some sensible defaults for non-admin roles
+            if created and role.code != "ADMIN":
+                if role.code in ["TREASURER", "FINANCIAL_SECRETARY", "AUDITOR"] and module.code in ["FINANCE", "REPORTS"]:
+                    perm.can_view = True
+                    perm.can_create = role.code != "AUDITOR"
+                    perm.can_edit = role.code != "AUDITOR"
+                    perm.save()
+                elif role.code in ["CLASS_LEADER"] and module.code in ["MEMBERS", "CLASSES", "ATTENDANCE"]:
+                    perm.can_view = True
+                    perm.can_edit = True
+                    perm.save()
+                elif role.code in ["WELFARE_OFFICER"] and module.code in ["WELFARE", "MEMBERS"]:
+                    perm.can_view = True
+                    perm.can_create = True
+                    perm.can_edit = True
+                    perm.save()
+
+
+# ------------------------------------------------------------------
+# Auth views (unchanged)
+# --------------------------------
 def login_view(request):
     if request.user.is_authenticated:
         return redirect('dashboard:dashboard')
@@ -36,6 +134,7 @@ def login_view(request):
             messages.error(request, "Invalid username/email or password.")
 
     return render(request, "accounts/a1.html")
+
 
 def register_view(request):
     if request.user.is_authenticated:
@@ -73,6 +172,7 @@ def register_view(request):
             return redirect('accounts:login')
 
     return render(request, "accounts/a2.html")
+
 
 def logout_view(request):
     if request.method == 'POST':
@@ -179,6 +279,7 @@ def profile_view(request):
     }
     return render(request, "accounts/my_profile.html", context)
 
+
 @role_required(allowed_roles=['ADMIN'])
 def user_list_view(request):
     if request.method == 'POST':
@@ -187,36 +288,172 @@ def user_list_view(request):
         if user_id and new_role:
             target_user = get_object_or_404(User, id=user_id)
             profile, _ = UserProfile.objects.get_or_create(user=target_user)
+            old_role = profile.role
             profile.role = new_role
             profile.save()
+
+            AuditLog.objects.create(
+                user=request.user,
+                action=f"Changed user role from {old_role} to {new_role}",
+                model_name="UserProfile",
+                object_id=str(profile.pk),
+                details=f"User: {target_user.username}, New role: {new_role}",
+            )
+
             messages.success(request, f"Updated role for '{target_user.username}' to {profile.get_role_display()}.")
             return redirect('accounts:user_list')
 
     users = User.objects.select_related('profile').all()
+    roles = Role.objects.filter(is_active=True).order_by('name')
+    if not roles.exists():
+        ensure_default_roles_and_modules()
+        roles = Role.objects.filter(is_active=True).order_by('name')
 
     context = {
         "active_nav": "accounts",
-        "users": users
+        "users": users,
+        "roles": roles,
+        "role_choices": UserProfile.ROLE_CHOICES,
     }
     return render(request, "accounts/user_management.html", context)
 
 @role_required(allowed_roles=['ADMIN'])
 def roles_permissions_view(request):
-    if request.method == 'POST':
-        user_id = request.POST.get('user_id')
-        new_role = request.POST.get('role')
-        if user_id and new_role:
-            target_user = get_object_or_404(User, id=user_id)
-            profile, _ = UserProfile.objects.get_or_create(user=target_user)
-            profile.role = new_role
-            profile.save()
-            messages.success(request, f"Role for '{target_user.username}' updated to {profile.get_role_display()}.")
-            return redirect('accounts:roles_permissions')
+    """
+    Dynamic Role & Permission Management:
+    - Lists all roles (left panel)
+    - Shows permission matrix for selected role (right panel)
+    - Allows saving permissions
+    """
+    ensure_default_roles_and_modules()
 
-    users = User.objects.select_related('profile').all()
+    # Determine selected role
+    selected_code = request.GET.get('role', 'ADMIN')
+    selected_role = Role.objects.filter(code=selected_code, is_active=True).first()
+    if not selected_role:
+        selected_role = Role.objects.filter(code='ADMIN').first()
+        if not selected_role:
+            selected_role = Role.objects.filter(is_active=True).first()
+
+    roles = Role.objects.filter(is_active=True).order_by('name')
+    modules = Module.objects.all().order_by('order', 'name')
+
+    # Ensure permissions exist for selected role
+    for module in modules:
+        RolePermission.objects.get_or_create(role=selected_role, module=module)
+
+    permissions_qs = RolePermission.objects.filter(role=selected_role).select_related('module')
+    permissions_map = {p.module.code: p for p in permissions_qs}
+
+    if request.method == 'POST':
+        action = request.POST.get('action', '').strip()
+
+        if action == 'save_permissions':
+            role_code = request.POST.get('role_code', '').strip()
+            role_obj = get_object_or_404(Role, code=role_code)
+
+            if role_obj.is_system_protected:
+                messages.error(request, f"{role_obj.name} is system protected and cannot be modified.")
+                return redirect(f"{request.path}?role={role_code}")
+
+            updated_count = 0
+            with transaction.atomic():
+                for module in modules:
+                    perm = RolePermission.objects.get(role=role_obj, module=module)
+                    # Checkbox values: if checked, key exists in POST
+                    perm.can_view = f"perm_{module.code}_view" in request.POST
+                    perm.can_create = f"perm_{module.code}_create" in request.POST
+                    perm.can_edit = f"perm_{module.code}_edit" in request.POST
+                    perm.can_delete = f"perm_{module.code}_delete" in request.POST
+                    perm.can_approve = f"perm_{module.code}_approve" in request.POST
+                    perm.save()
+                    updated_count += 1
+
+                AuditLog.objects.create(
+                    user=request.user,
+                    action=f"Updated permissions for role {role_obj.name}",
+                    model_name="RolePermission",
+                    object_id=str(role_obj.pk),
+                    details=f"Updated {updated_count} module permissions for role {role_code}",
+                )
+
+            messages.success(request, f"Permissions for {role_obj.name} saved successfully.")
+            return redirect(f"{request.path}?role={role_code}")
+
+        elif action == 'create_role':
+            code = request.POST.get('code', '').strip().upper().replace(' ', '_')
+            name = request.POST.get('name', '').strip()
+            description = request.POST.get('description', '').strip()
+
+            if not code or not name:
+                messages.error(request, "Role code and name are required.")
+                return redirect(f"{request.path}?role={selected_role.code}")
+
+            if Role.objects.filter(code=code).exists():
+                messages.error(request, f"Role with code {code} already exists.")
+                return redirect(f"{request.path}?role={code}")
+
+            role = Role.objects.create(
+                code=code,
+                name=name,
+                description=description,
+                is_system_protected=False,
+            )
+
+            # Create permissions for all modules
+            for module in modules:
+                RolePermission.objects.create(role=role, module=module)
+
+            AuditLog.objects.create(
+                user=request.user,
+                action=f"Created new role {name}",
+                model_name="Role",
+                object_id=str(role.pk),
+                details=f"Code: {code}, Name: {name}",
+            )
+
+            messages.success(request, f"Role {name} created successfully.")
+            return redirect(f"{request.path}?role={code}")
+
+        # Legacy: user role assignment (kept for backwards compatibility)
+        elif action == 'assign_user_role' or request.POST.get('user_id'):
+            user_id = request.POST.get('user_id')
+            new_role = request.POST.get('role')
+            if user_id and new_role:
+                target_user = get_object_or_404(User, id=user_id)
+                profile, _ = UserProfile.objects.get_or_create(user=target_user)
+                old_role = profile.role
+                profile.role = new_role
+                profile.save()
+
+                AuditLog.objects.create(
+                    user=request.user,
+                    action=f"Changed user role from {old_role} to {new_role} via role management",
+                    model_name="UserProfile",
+                    object_id=str(profile.pk),
+                    details=f"User: {target_user.username}",
+                )
+
+                messages.success(request, f"Role for '{target_user.username}' updated to {profile.get_role_display()}.")
+                return redirect(f"{request.path}?role={new_role}")
+
+    # For sidebar: count users per role
+    role_user_counts = {
+        up['role']: up['count']
+        for up in UserProfile.objects.values('role').annotate(count=models.Count('role'))
+    }
+
+    # Recent audit logs for this feature
+    recent_logs = AuditLog.objects.filter(model_name__in=['Role', 'RolePermission', 'UserProfile']).order_by('-timestamp')[:10]
 
     context = {
         "active_nav": "accounts",
-        "users": users
+        "roles": roles,
+        "selected_role": selected_role,
+        "modules": modules,
+        "permissions_map": permissions_map,
+        "role_user_counts": role_user_counts,
+        "recent_logs": recent_logs,
+        "role_choices": UserProfile.ROLE_CHOICES,
     }
     return render(request, "accounts/role_management.html", context)
