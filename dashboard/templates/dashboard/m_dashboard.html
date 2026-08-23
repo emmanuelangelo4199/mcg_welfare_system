@@ -157,7 +157,72 @@
     {% include 'components/sidebar.html' %}
 
     <!-- Main Content Canvas -->
-    <main class="flex-1 min-w-0 h-full overflow-y-auto bg-surface p-xl pb-24 md:pb-xl">
+    <main class="flex-1 min-w-0 h-full overflow-y-auto bg-surface">
+
+      <!-- Top App Bar -->
+      <header class="sticky top-0 z-40 flex items-center justify-between gap-md h-header-height px-lg bg-surface-container-lowest shadow-sm border-b border-border">
+        <div class="flex items-center gap-4 min-w-0">
+          <span class="font-headline-md text-headline-md font-black text-primary truncate">Society Portal</span>
+          <div class="hidden h-6 w-px bg-outline-variant md:block"></div>
+          <nav class="hidden items-center gap-6 md:flex" aria-label="Dashboard shortcuts">
+            <a class="font-label-sm text-label-sm text-on-surface-variant transition-colors hover:text-primary" href="{% url 'members:member_directory' %}">Members</a>
+            <a class="font-label-sm text-label-sm text-on-surface-variant transition-colors hover:text-primary" href="{% url 'finance:dashboard' %}">Finance</a>
+            <a class="font-label-sm text-label-sm text-on-surface-variant transition-colors hover:text-primary" href="{% url 'welfare_cases:welfare_cases_list' %}">Welfare</a>
+            <a class="font-label-sm text-label-sm text-on-surface-variant transition-colors hover:text-primary" href="{% url 'reports:reports_hub' %}">Reports</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <form class="relative hidden sm:block" method="get" action="{% url 'members:member_directory' %}" role="search">
+            <label class="sr-only" for="topbar-member-search">Search members</label>
+            <span class="material-symbols-outlined pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">search</span>
+            <input
+              class="w-44 md:w-64 pl-10 pr-4 py-2 rounded-lg bg-surface-container border-none font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant focus:ring-2 focus:ring-primary"
+              id="topbar-member-search"
+              name="q"
+              placeholder="Search members..."
+              type="search"/>
+          </form>
+
+          <a
+            class="sm:hidden w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant transition-colors hover:bg-surface-container-highest"
+            href="{% url 'members:member_directory' %}"
+            title="Search members"
+            aria-label="Search members">
+            <span class="material-symbols-outlined">search</span>
+          </a>
+
+          <a
+            class="relative w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant transition-colors hover:bg-surface-container-highest"
+            href="{% url 'notifications:notification_board' %}"
+            title="Notifications"
+            aria-label="Notifications{% if unread_notification_count %} ({{ unread_notification_count }} unread){% endif %}">
+            <span class="material-symbols-outlined">notifications</span>
+            {% if unread_notification_count %}
+            <span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error"></span>
+            {% endif %}
+          </a>
+
+          <a
+            class="flex items-center gap-sm pl-2 sm:pl-md border-l border-outline-variant"
+            href="{% url 'accounts:profile' %}"
+            title="My profile">
+            <div class="hidden text-right sm:block">
+              <p class="max-w-[140px] truncate font-label-md text-label-md font-bold leading-tight text-on-surface">
+                {% firstof request.user.get_full_name request.user.username "Leader" %}
+              </p>
+              <p class="font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant">
+                {% firstof request.user.profile.get_role_display "Society Member" %}
+              </p>
+            </div>
+            <div class="w-9 h-9 flex items-center justify-center rounded-full border-2 border-primary/10 bg-primary-muted font-bold text-label-md text-primary">
+              {{ user_initials|default:"MC" }}
+            </div>
+          </a>
+        </div>
+      </header>
+
+      <div class="p-xl pb-24 md:pb-xl">
 
       <!-- 1. Welcome Banner -->
       <section class="mb-xl">
@@ -478,6 +543,7 @@
           </div>
         </div>
       </section>
+      </div>
     </main>
 
     <!-- Bottom Navigation (mobile) -->

@@ -8,6 +8,7 @@ from django.utils import timezone
 
 from accounts.models import UserProfile
 from finance.models import Budget, ExpenseLedger
+from notifications.models import SystemNotification
 
 User = get_user_model()
 
@@ -56,3 +57,28 @@ class TreasurerBudgetPanelTests(TestCase):
         response = self.client.get(reverse('dashboard:treasurer_dashboard'))
         welfare = response.context['budgets'][0]
         self.assertEqual(welfare['spent'], 0)
+
+
+class MainDashboardTopbarTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username='steward', first_name='Ama', last_name='Boateng',
+            email='ama@example.com', password='Password123!')
+        UserProfile.objects.create(user=self.user, role='SOCIETY_STEWARD')
+        self.client.login(username='steward', password='Password123!')
+
+    def test_topbar_renders_identity_and_search(self):
+        response = self.client.get(reverse('dashboard:dashboard'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Society Portal')
+        self.assertContains(response, 'Search members')
+        self.assertContains(response, 'Ama Boateng')
+        self.assertEqual(response.context['user_initials'], 'AB')
+        self.assertEqual(response.context['unread_notification_count'], 0)
+
+    def test_topbar_shows_unread_notification_badge(self):
+        SystemNotification.objects.create(
+            user=self.user, title='Pending approval', message='A case needs review')
+        response = self.client.get(reverse('dashboard:dashboard'))
+        self.assertEqual(response.context['unread_notification_count'], 1)
+        self.assertContains(response, '1 unread')

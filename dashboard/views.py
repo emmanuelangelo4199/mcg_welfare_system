@@ -12,6 +12,7 @@ from services.models import ChurchService
 from classes.models import ClassGroup
 from communications.models import Announcement
 from attendance.models import ClassAttendanceRecord, ServiceAttendance
+from notifications.models import SystemNotification
 
 
 def _month_starts(today, count=6):
@@ -65,6 +66,18 @@ def _upcoming_birthdays(today, days=7):
 
     return [member for _, member in sorted(upcoming, key=lambda pair: pair[0])]
 
+
+def _user_initials(user):
+    first = (getattr(user, 'first_name', '') or '').strip()
+    last = (getattr(user, 'last_name', '') or '').strip()
+    if first and last:
+        return f'{first[0]}{last[0]}'.upper()
+    if first:
+        return first[:2].upper()
+    username = (getattr(user, 'username', '') or '?').strip()
+    return username[:2].upper()
+
+
 @login_required(login_url='accounts:login')
 def main_dashboard(request):
     today = timezone.localdate()
@@ -116,6 +129,9 @@ def main_dashboard(request):
         "birthdays": _upcoming_birthdays(today),
         "welfare_alerts": WelfareCase.objects.select_related('member').exclude(status__in=['CLOSED', 'REJECTED']).order_by('-created_at')[:4],
         "announcements": Announcement.objects.filter(is_active=True).order_by('-created_at')[:3],
+        "user_initials": _user_initials(request.user),
+        "unread_notification_count": SystemNotification.objects.filter(
+            user=request.user, is_read=False).count(),
     }
     return render(request, "dashboard/m_dashboard.html", context)
 
