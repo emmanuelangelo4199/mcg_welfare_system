@@ -1,457 +1,272 @@
-<!DOCTYPE html><html class="light" lang="en" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Message History - MCG-SMS Communications</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet">
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "on-secondary-container": "#745700",
-                        "primary-fixed-dim": "#ffb2b7",
-                        "border": "#E4E2DD",
-                        "tertiary-fixed": "#e3e2e0",
-                        "tertiary": "#2a2b2a",
-                        "card": "#FFFFFF",
-                        "on-tertiary": "#ffffff",
-                        "danger": "#DC2626",
-                        "surface-container-lowest": "#ffffff",
-                        "surface-container-high": "#eee7e3",
-                        "on-tertiary-fixed": "#1a1c1b",
-                        "on-tertiary-fixed-variant": "#464746",
-                        "surface-variant": "#e9e1dd",
-                        "surface-tint": "#a33a49",
-                        "inverse-primary": "#ffb2b7",
-                        "surface-container-low": "#faf2ee",
-                        "on-surface-variant": "#564243",
-                        "secondary": "#775a00",
-                        "tertiary-container": "#404140",
-                        "secondary-container": "#fece5b",
-                        "on-error": "#ffffff",
-                        "primary-container": "#7b1c2d",
-                        "outline": "#897172",
-                        "background": "#fff8f5",
-                        "on-primary-fixed-variant": "#832233",
-                        "gold-muted": "#FDF6E3",
-                        "secondary-fixed": "#ffdf9a",
-                        "success": "#16A34A",
-                        "secondary-fixed-dim": "#eec04f",
-                        "primary-muted": "#F5EAEC",
-                        "error-container": "#ffdad6",
-                        "inverse-surface": "#33302d",
-                        "primary-light": "#A3283F",
-                        "on-background": "#1e1b19",
-                        "surface-bright": "#fff8f5",
-                        "on-tertiary-container": "#adadab",
-                        "on-primary-container": "#ff8a95",
-                        "surface-dim": "#e0d8d5",
-                        "outline-variant": "#dcc0c1",
-                        "error": "#ba1a1a",
-                        "info": "#2563EB",
-                        "surface-container": "#f4ece8",
-                        "on-secondary-fixed-variant": "#5a4300",
-                        "on-primary": "#ffffff",
-                        "tertiary-fixed-dim": "#c7c6c5",
-                        "on-primary-fixed": "#40000e",
-                        "inverse-on-surface": "#f7efeb",
-                        "on-surface": "#1e1b19",
-                        "warning": "#D97706",
-                        "text-secondary": "#6B7280",
-                        "on-error-container": "#93000a",
-                        "on-secondary": "#ffffff",
-                        "primary": "#5c0219",
-                        "on-secondary-fixed": "#251a00",
-                        "surface-container-highest": "#e9e1dd",
-                        "primary-fixed": "#ffdadb",
-                        "surface": "#F8F7F5"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "lg": "24px",
-                        "header-height": "64px",
-                        "xl": "32px",
-                        "sidebar-width": "256px",
-                        "sm": "8px",
-                        "md": "16px",
-                        "base": "8px",
-                        "xs": "4px"
-                    },
-                    "fontFamily": {
-                        "headline-lg": ["Lora"],
-                        "label-md": ["Inter"],
-                        "data-label": ["JetBrains Mono"],
-                        "body-lg": ["Inter"],
-                        "data-display": ["JetBrains Mono"],
-                        "body-md": ["Inter"],
-                        "label-sm": ["Inter"],
-                        "headline-md": ["Inter"],
-                        "headline-lg-mobile": ["Lora"]
-                    },
-                    "fontSize": {
-                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                        "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
-                        "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                        "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}]
-                    }
-                },
+{% load static %}
+<!DOCTYPE html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Message History | MCG-SMS</title>
+
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              tertiary: "#2a2b2a",
+              "primary-fixed": "#ffdadb",
+              "primary-fixed-dim": "#ffb2b7",
+              "on-primary-fixed-variant": "#832233",
+              "secondary-fixed-dim": "#eec04f",
+              outline: "#897172",
+              "primary-light": "#A3283F",
+              error: "#ba1a1a",
+              border: "#E4E2DD",
+              "surface-container-highest": "#e9e1dd",
+              "on-secondary-fixed-variant": "#5a4300",
+              info: "#2563EB",
+              danger: "#DC2626",
+              "inverse-primary": "#ffb2b7",
+              "surface-bright": "#fff8f5",
+              "inverse-on-surface": "#f7efeb",
+              warning: "#D97706",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "tertiary-container": "#404140",
+              "on-primary-fixed": "#40000e",
+              "surface-dim": "#e0d8d5",
+              "surface-container-lowest": "#ffffff",
+              "gold-muted": "#FDF6E3",
+              "secondary-fixed": "#ffdf9a",
+              secondary: "#775a00",
+              "secondary-container": "#fece5b",
+              "surface-container": "#f4ece8",
+              "outline-variant": "#dcc0c1",
+              card: "#FFFFFF",
+              "on-surface": "#1e1b19",
+              "surface-variant": "#e9e1dd",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed-dim": "#c7c6c5",
+              "surface-tint": "#a33a49",
+              "on-background": "#1e1b19",
+              "surface-container-high": "#eee7e3",
+              "primary-muted": "#F5EAEC",
+              "on-tertiary-fixed": "#1a1c1b",
+              "on-error": "#ffffff",
+              "primary-container": "#7b1c2d",
+              "on-tertiary-container": "#adadab",
+              "text-secondary": "#6B7280",
+              success: "#16A34A",
+              "error-container": "#ffdad6",
+              "on-surface-variant": "#564243",
+              "inverse-surface": "#33302d",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#745700",
+              "surface-container-low": "#faf2ee",
+              "on-tertiary-fixed-variant": "#464746",
+              surface: "#F8F7F5",
+              "on-primary-container": "#ff8a95",
+              primary: "#5c0219",
+              background: "#fff8f5",
+              "tertiary-fixed": "#e3e2e0",
+              "on-secondary-fixed": "#251a00",
             },
-        }
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              xs: "4px",
+              sm: "8px",
+              xl: "32px",
+              "sidebar-width": "256px",
+              md: "16px",
+              lg: "24px",
+              "header-height": "64px",
+              base: "8px",
+            },
+            fontFamily: {
+              "headline-lg": ["Lora"],
+              "headline-md": ["Inter"],
+              "body-md": ["Inter"],
+            },
+          },
+        },
+      };
     </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        body { font-family: 'Inter', sans-serif; }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e9e1dd; border-radius: 10px; }
-        .nav-item-active { border-left: 3px solid #fece5b; background-color: #7b1c2d; color: #fece5b; }
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8f7f5;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #e4e2dd;
+        border-radius: 10px;
+      }
     </style>
-</head>
-<body class="bg-surface text-on-surface flex min-h-screen">
-<!-- SideNavBar -->
-{% include 'components/sidebar.html' %}
-<!-- Main Content -->
-<main class=" flex-1 flex flex-col min-h-screen">
-<!-- TopAppBar -->
-<header class="bg-surface shadow-sm h-header-height flex justify-between items-center w-full px-lg sticky top-0 z-40">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined text-primary">menu_open</span>
-<nav class="hidden md:flex gap-md">
-<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Dashboard</a>
-<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Analytics</a>
-<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Templates</a>
-</nav>
-</div>
-<div class="flex items-center gap-lg">
-<div class="relative hidden lg:block">
-<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">search</span>
-<input class="bg-surface-container-low border-none rounded-full py-xs pl-xl pr-md text-body-md focus:ring-2 focus:ring-primary w-64" placeholder="Search history..." type="text">
-</div>
-<div class="flex items-center gap-md">
-<button class="relative p-1 text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined">notifications</span>
-<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
-</button>
-<button class="p-1 text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined">help_outline</span>
-</button>
-<div class="w-8 h-8 rounded-full bg-primary-muted border border-border overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A professional headshot of an African elder in a formal suit, exuding wisdom and authority. The lighting is soft and corporate, set against a blurred background of a modern administrative office with religious symbols." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6y4jgJ4BnkRMrwVgN1tozWqlMckS1q3JDxV5aNfvv6Ts3R8nlC-yLZxTb11bEkz8b2IkVsi1drNqHu5LYWN5Ss8mwKZPzqD6BGnfE5b4Sv6wL01nec_jpgYHRx3Wy-VP9vkTgxfOViQFqtLPDIDxcetOHQnr6jOBJhfHm7aVT3WTjZ3yLDfh4lFeCdwTmh8mQdMqZ3ZzOi_5T405Ua8iHdhfa1k7fMIaoXZ4NXNAob4W8I_asq85JTzL2JDA7vI7gUfAI7fN9L9bg">
-</div>
-</div>
-</div>
-</header>
-<div class="p-xl space-y-lg">
-<!-- Breadcrumb & Header -->
-<div class="flex justify-between items-end">
-<div>
-<nav class="flex items-center gap-xs text-label-sm text-on-surface-variant mb-xs">
-<span class="">Dashboard</span>
-<span class="material-symbols-outlined text-[14px]">chevron_right</span>
-<span class="">Comms</span>
-<span class="material-symbols-outlined text-[14px]">chevron_right</span>
-<span class="text-primary font-medium">History</span>
-</nav>
-<h2 class="font-headline-lg text-primary">Message History</h2>
-</div>
-<div class="relative inline-block group">
-<button class="bg-primary text-on-primary px-md py-sm rounded-lg flex items-center gap-sm font-label-md hover:bg-primary-light transition-colors shadow-sm">
-<span class="">Download Message Log</span>
-<span class="material-symbols-outlined">expand_more</span>
-</button>
-<!-- Dropdown Mock -->
-<div class="hidden group-hover:block absolute right-0 mt-1 w-48 bg-card shadow-xl border border-border rounded-lg z-10 py-1 overflow-hidden">
-<a class="block px-md py-sm text-body-md hover:bg-surface-container transition-colors" href="#">Export as PDF</a>
-<a class="block px-md py-sm text-body-md hover:bg-surface-container transition-colors" href="#">Export as CSV</a>
-</div>
-</div>
-</div>
-<!-- Filter Bar -->
-<div class="bg-card p-md rounded-xl border border-border shadow-sm flex flex-wrap items-end gap-md">
-<div class="space-y-xs min-w-[140px]">
-<label class="font-label-sm text-on-surface-variant">Date Start</label>
-<input class="w-full border-border rounded-lg text-body-md focus:border-primary focus:ring-primary h-10 px-sm" type="date">
-</div>
-<div class="space-y-xs min-w-[140px]">
-<label class="font-label-sm text-on-surface-variant">Date End</label>
-<input class="w-full border-border rounded-lg text-body-md focus:border-primary focus:ring-primary h-10 px-sm" type="date">
-</div>
-<div class="space-y-xs min-w-[140px]">
-<label class="font-label-sm text-on-surface-variant">Type</label>
-<select class="w-full border-border rounded-lg text-body-md focus:border-primary focus:ring-primary h-10 px-sm">
-<option>All Types</option>
-<option>SMS</option>
-<option>Email</option>
-<option>Announcement</option>
-</select>
-</div>
-<div class="space-y-xs min-w-[140px]">
-<label class="font-label-sm text-on-surface-variant">Recipient Group</label>
-<select class="w-full border-border rounded-lg text-body-md focus:border-primary focus:ring-primary h-10 px-sm">
-<option>All Groups</option>
-<option>Wesley Guild</option>
-<option>Choir</option>
-<option>Church Council</option>
-</select>
-</div>
-<div class="space-y-xs flex-1 min-w-[180px]">
-<label class="font-label-sm text-on-surface-variant">Sent By</label>
-<input class="w-full border-border rounded-lg text-body-md focus:border-primary focus:ring-primary h-10 px-sm" placeholder="Search sender..." type="text">
-</div>
-<button class="bg-surface-container-high text-on-surface px-md py-sm h-10 rounded-lg font-label-md hover:bg-surface-variant transition-colors">
-                    Reset
-                </button>
-</div>
-<!-- Data Table -->
-<div class="bg-card rounded-xl border border-border shadow-sm overflow-hidden">
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container-low border-b border-border">
-<th class="px-md py-md font-label-md text-on-surface-variant">Date Sent</th>
-<th class="px-md py-md font-label-md text-on-surface-variant">Type</th>
-<th class="px-md py-md font-label-md text-on-surface-variant">Subject / Preview</th>
-<th class="px-md py-md font-label-md text-on-surface-variant">Recipient Group</th>
-<th class="px-md py-md font-label-md text-on-surface-variant text-center">Sent To</th>
-<th class="px-md py-md font-label-md text-on-surface-variant text-center">Delivered</th>
-<th class="px-md py-md font-label-md text-on-surface-variant">Sent By</th>
-<th class="px-md py-md font-label-md text-on-surface-variant text-right">Actions</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-border">
-<!-- Row 1 -->
-<tr class="hover:bg-surface-container-lowest transition-colors group">
-<td class="px-md py-md">
-<div class="text-body-md font-medium">24 Oct 2023</div>
-<div class="text-label-sm text-on-surface-variant">14:00</div>
-</td>
-<td class="px-md py-md">
-<span class="px-sm py-xs rounded-full bg-info/10 text-info text-label-sm font-semibold uppercase tracking-wider">SMS</span>
-</td>
-<td class="px-md py-md max-w-xs">
-<div class="text-body-md truncate font-medium">Sunday Service Reminder</div>
-<div class="text-label-sm text-on-surface-variant truncate">Please join us for a special harvest thanksgiving service this...</div>
-</td>
-<td class="px-md py-md">
-<span class="text-body-md">Wesley Guild</span>
-</td>
-<td class="px-md py-md text-center">
-<span class="font-data-label text-data-label text-on-surface">142</span>
-</td>
-<td class="px-md py-md text-center">
-<div class="flex items-center justify-center gap-xs">
-<span class="font-data-label text-data-label text-on-surface">140</span>
-<span class="material-symbols-outlined text-warning text-[18px] cursor-help" title="2 messages failed delivery">warning</span>
-</div>
-</td>
-<td class="px-md py-md">
-<div class="flex items-center gap-sm">
-<div class="w-6 h-6 rounded-full bg-primary-muted border border-border flex-shrink-0"></div>
-<span class="text-body-md">Eld. Samuel Owusu</span>
-</div>
-</td>
-<td class="px-md py-md text-right">
-<div class="flex items-center justify-end gap-sm">
-<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-primary-muted rounded-full transition-all">
-<span class="material-symbols-outlined text-[20px]">visibility</span>
-</button>
-<button class="p-1.5 text-warning hover:bg-warning/10 rounded-full transition-all" title="Resend failed messages">
-<span class="material-symbols-outlined text-[20px]">refresh</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 2 -->
-<tr class="hover:bg-surface-container-lowest transition-colors group">
-<td class="px-md py-md">
-<div class="text-body-md font-medium">23 Oct 2023</div>
-<div class="text-label-sm text-on-surface-variant">09:15</div>
-</td>
-<td class="px-md py-md">
-<span class="px-sm py-xs rounded-full bg-secondary-container/20 text-on-secondary-container text-label-sm font-semibold uppercase tracking-wider">Email</span>
-</td>
-<td class="px-md py-md max-w-xs">
-<div class="text-body-md truncate font-medium">Quarterly Finance Brief</div>
-<div class="text-label-sm text-on-surface-variant truncate">The quarterly financial report for Q3 is now available for review...</div>
-</td>
-<td class="px-md py-md">
-<span class="text-body-md">All Members</span>
-</td>
-<td class="px-md py-md text-center">
-<span class="font-data-label text-data-label text-on-surface">850</span>
-</td>
-<td class="px-md py-md text-center">
-<div class="flex items-center justify-center gap-xs">
-<span class="font-data-label text-data-label text-success">850</span>
-<span class="material-symbols-outlined text-success text-[18px]">check_circle</span>
-</div>
-</td>
-<td class="px-md py-md">
-<div class="flex items-center gap-sm">
-<div class="w-6 h-6 rounded-full bg-primary-muted border border-border flex-shrink-0"></div>
-<span class="text-body-md">Sis. Joyce Mensah</span>
-</div>
-</td>
-<td class="px-md py-md text-right">
-<div class="flex items-center justify-end gap-sm">
-<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-primary-muted rounded-full transition-all">
-<span class="material-symbols-outlined text-[20px]">visibility</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 3 -->
-<tr class="hover:bg-surface-container-lowest transition-colors group">
-<td class="px-md py-md">
-<div class="text-body-md font-medium">21 Oct 2023</div>
-<div class="text-label-sm text-on-surface-variant">18:45</div>
-</td>
-<td class="px-md py-md">
-<span class="px-sm py-xs rounded-full bg-primary-muted text-primary text-label-sm font-semibold uppercase tracking-wider">Announcement</span>
-</td>
-<td class="px-md py-md max-w-xs">
-<div class="text-body-md truncate font-medium">Bereavement Notice</div>
-<div class="text-label-sm text-on-surface-variant truncate">It is with heavy hearts that we announce the passing of...</div>
-</td>
-<td class="px-md py-md">
-<span class="text-body-md">All Members</span>
-</td>
-<td class="px-md py-md text-center">
-<span class="font-data-label text-data-label text-on-surface">850</span>
-</td>
-<td class="px-md py-md text-center">
-<div class="flex items-center justify-center gap-xs">
-<span class="font-data-label text-data-label text-on-surface">842</span>
-<span class="material-symbols-outlined text-warning text-[18px]">warning</span>
-</div>
-</td>
-<td class="px-md py-md">
-<div class="flex items-center gap-sm">
-<div class="w-6 h-6 rounded-full bg-primary-muted border border-border flex-shrink-0"></div>
-<span class="text-body-md">Admin Admin</span>
-</div>
-</td>
-<td class="px-md py-md text-right">
-<div class="flex items-center justify-end gap-sm">
-<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-primary-muted rounded-full transition-all">
-<span class="material-symbols-outlined text-[20px]">visibility</span>
-</button>
-<button class="p-1.5 text-warning hover:bg-warning/10 rounded-full transition-all">
-<span class="material-symbols-outlined text-[20px]">refresh</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 4 -->
-<tr class="hover:bg-surface-container-lowest transition-colors group border-b-0">
-<td class="px-md py-md">
-<div class="text-body-md font-medium">20 Oct 2023</div>
-<div class="text-label-sm text-on-surface-variant">10:00</div>
-</td>
-<td class="px-md py-md">
-<span class="px-sm py-xs rounded-full bg-info/10 text-info text-label-sm font-semibold uppercase tracking-wider">SMS</span>
-</td>
-<td class="px-md py-md max-w-xs">
-<div class="text-body-md truncate font-medium">Youth Fellowship Night</div>
-<div class="text-label-sm text-on-surface-variant truncate">Don't miss the youth night tonight. Games, worship and...</div>
-</td>
-<td class="px-md py-md">
-<span class="text-body-md">Youth Ministry</span>
-</td>
-<td class="px-md py-md text-center">
-<span class="font-data-label text-data-label text-on-surface">125</span>
-</td>
-<td class="px-md py-md text-center">
-<div class="flex items-center justify-center gap-xs">
-<span class="font-data-label text-data-label text-success">125</span>
-<span class="material-symbols-outlined text-success text-[18px]">check_circle</span>
-</div>
-</td>
-<td class="px-md py-md">
-<div class="flex items-center gap-sm">
-<div class="w-6 h-6 rounded-full bg-primary-muted border border-border flex-shrink-0"></div>
-<span class="text-body-md">Bro. Kofi Ansah</span>
-</div>
-</td>
-<td class="px-md py-md text-right">
-<div class="flex items-center justify-end gap-sm">
-<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-primary-muted rounded-full transition-all">
-<span class="material-symbols-outlined text-[20px]">visibility</span>
-</button>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Pagination -->
-<div class="bg-surface-container-low border-t border-border px-lg py-md flex flex-wrap items-center justify-between gap-md">
-<p class="font-label-sm text-on-surface-variant">Showing 1 to 4 of 128 entries</p>
-<div class="flex items-center gap-sm">
-<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border bg-card text-on-surface-variant hover:border-primary hover:text-primary transition-all disabled:opacity-50 disabled:cursor-not-allowed" disabled="">
-<span class="material-symbols-outlined">first_page</span>
-</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border bg-card text-on-surface-variant hover:border-primary hover:text-primary transition-all disabled:opacity-50 disabled:cursor-not-allowed" disabled="">
-<span class="material-symbols-outlined">chevron_left</span>
-</button>
-<div class="flex items-center gap-xs px-md">
-<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-on-primary font-label-md">1</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-card text-on-surface-variant font-label-md hover:bg-surface-container transition-all">2</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-card text-on-surface-variant font-label-md hover:bg-surface-container transition-all">3</button>
-<span class="px-sm text-on-surface-variant">...</span>
-<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-card text-on-surface-variant font-label-md hover:bg-surface-container transition-all">32</button>
-</div>
-<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border bg-card text-on-surface-variant hover:border-primary hover:text-primary transition-all">
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border bg-card text-on-surface-variant hover:border-primary hover:text-primary transition-all">
-<span class="material-symbols-outlined">last_page</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-<!-- Footer Info -->
-<footer class="mt-auto p-lg border-t border-border flex justify-between items-center bg-surface-container-low">
-<p class="text-label-sm text-on-surface-variant">© 2023 Methodist Church Ghana. All rights reserved.</p>
-<div class="flex gap-md">
-<a class="text-label-sm text-primary hover:underline" href="#">Privacy Policy</a>
-<a class="text-label-sm text-primary hover:underline" href="#">Terms of Service</a>
-</div>
-</footer>
-</main>
-<!-- Contextual FAB -->
-<button class="fixed bottom-lg right-lg w-14 h-14 bg-secondary-container text-on-secondary-container rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-50 group">
-<span class="material-symbols-outlined text-[28px]">add</span>
-<span class="absolute right-full mr-md bg-inverse-surface text-inverse-on-surface px-md py-xs rounded-lg text-label-md opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap">New Broadcast</span>
-</button>
-<script>
-        // Simple micro-interaction for dropdowns and rows
-        document.querySelectorAll('tr').forEach(row => {
-            row.addEventListener('click', (e) => {
-                if(e.target.closest('button')) return;
-                console.log('Row clicked, navigating to details...');
-            });
-        });
-    </script>
+  </head>
 
+  <body class="bg-surface text-on-surface font-body-md antialiased flex h-screen overflow-hidden">
+    {% include 'components/sidebar.html' %}
 
+    <main class="flex-1 min-w-0 h-full overflow-y-auto bg-surface flex flex-col">
+      <header class="flex justify-between items-center w-full px-xl h-header-height sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
+        <nav class="flex items-center text-body-md text-on-surface-variant">
+          <a class="hover:text-primary-light transition-colors" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+          <span class="material-symbols-outlined text-[16px] mx-xs">chevron_right</span>
+          <a class="hover:text-primary-light transition-colors" href="{% url 'communications:compose_message' %}">Communications</a>
+          <span class="material-symbols-outlined text-[16px] mx-xs">chevron_right</span>
+          <span class="text-primary font-bold">History</span>
+        </nav>
+        <a href="{% url 'communications:compose_message' %}" class="bg-primary hover:bg-primary-light text-on-primary px-md py-sm rounded-lg font-bold flex items-center gap-xs text-label-md transition-colors shadow-sm">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+          Compose
+        </a>
+      </header>
 
-</body>
+      <div class="p-xl pb-24 flex-1">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-xl gap-lg">
+          <div>
+            <h2 class="font-headline-lg text-[32px] font-bold text-primary tracking-tight">Message History</h2>
+            <p class="text-body-md text-on-surface-variant mt-xs">View all outgoing messages and delivery status.</p>
+            <div class="mt-sm flex items-center gap-sm text-[11px]">
+              <span class="px-2 py-1 rounded-full bg-surface-container-high font-data-label">{{ total }} total</span>
+              <span class="px-2 py-1 rounded-full bg-success/10 text-success font-medium">{{ sent }} sent</span>
+              <span class="px-2 py-1 rounded-full bg-error-container text-on-error-container font-medium">{{ failed }} failed</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <section class="bg-card rounded-xl shadow-sm border border-border p-md mb-lg">
+          <form method="get" class="flex flex-wrap items-center gap-md">
+            <div class="flex-1 min-w-[260px] relative">
+              <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+              <input name="q" value="{{ q }}" placeholder="Search group, subject, content..." class="w-full pl-xl pr-md py-md border border-border rounded-lg focus:ring-2 focus:ring-primary-light outline-none text-body-md" type="text" />
+            </div>
+            <select name="type" class="border border-border rounded-lg py-md px-lg text-body-md bg-white min-w-[140px] focus:ring-2 focus:ring-primary-light">
+              <option value="">All Types</option>
+              {% for code, label in type_choices %}
+                <option value="{{ code }}" {% if type_filter == code %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            <select name="status" class="border border-border rounded-lg py-md px-lg text-body-md bg-white min-w-[140px] focus:ring-2 focus:ring-primary-light">
+              <option value="">All Status</option>
+              {% for code, label in status_choices %}
+                <option value="{{ code }}" {% if status_filter == code %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            <button type="submit" class="p-md border border-border rounded-lg bg-white hover:bg-surface-container-low text-on-surface-variant transition-colors">
+              <span class="material-symbols-outlined">filter_list</span>
+            </button>
+            {% if q or type_filter or status_filter %}
+              <a href="{% url 'communications:message_history' %}" class="p-md border border-border rounded-lg bg-white hover:bg-surface-container-low text-on-surface-variant transition-colors">
+                <span class="material-symbols-outlined">clear</span>
+              </a>
+            {% endif %}
+          </form>
+          {% if q or type_filter or status_filter %}
+            <div class="mt-md text-[11px] text-on-surface-variant">Filtered: {{ filtered_count }} result{{ filtered_count|pluralize }}</div>
+          {% endif %}
+        </section>
+
+        <!-- Table -->
+        <div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left border-collapse min-w-[800px]">
+              <thead>
+                <tr class="bg-surface-container-low border-b border-border">
+                  <th class="px-lg py-md text-label-md font-bold uppercase tracking-wider">Type / Group</th>
+                  <th class="px-lg py-md text-label-md font-bold uppercase tracking-wider">Subject / Content</th>
+                  <th class="px-lg py-md text-label-md font-bold uppercase tracking-wider text-center">Recipients</th>
+                  <th class="px-lg py-md text-label-md font-bold uppercase tracking-wider">Status</th>
+                  <th class="px-lg py-md text-label-md font-bold uppercase tracking-wider">Sent</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border">
+                {% for msg in messages_list %}
+                  <tr class="hover:bg-surface-container-lowest transition-colors">
+                    <td class="px-lg py-md">
+                      <div class="flex items-center gap-sm">
+                        <span class="w-8 h-8 rounded-full flex items-center justify-center text-[14px] {% if msg.message_type == 'SMS' %}bg-info/10 text-info{% elif msg.message_type == 'EMAIL' %}bg-success/10 text-success{% else %}bg-secondary-container text-on-secondary-container{% endif %}">
+                          <span class="material-symbols-outlined text-[18px]">{% if msg.message_type == 'SMS' %}sms{% elif msg.message_type == 'EMAIL' %}mail{% else %}chat{% endif %}</span>
+                        </span>
+                        <div>
+                          <p class="font-bold text-[13px]">{{ msg.message_type }} • {{ msg.recipient_group }}</p>
+                          <p class="text-[11px] text-on-surface-variant">{{ msg.created_by|default:"System" }}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-lg py-md max-w-[400px]">
+                      {% if msg.subject %}
+                        <p class="font-medium text-[13px] truncate">{{ msg.subject }}</p>
+                      {% endif %}
+                      <p class="text-[13px] text-on-surface-variant truncate">{{ msg.content|truncatechars:80 }}</p>
+                    </td>
+                    <td class="px-lg py-md text-center">
+                      <span class="font-data-label text-[13px]">{{ msg.recipient_count }}</span>
+                    </td>
+                    <td class="px-lg py-md text-center">
+                      <span class="px-2 py-1 rounded-full text-[11px] font-bold uppercase {% if msg.status == 'SENT' %}bg-success/10 text-success{% elif msg.status == 'FAILED' %}bg-error-container text-on-error-container{% elif msg.status == 'PENDING' %}bg-warning/10 text-warning{% else %}bg-surface-container-high text-on-surface-variant{% endif %}">{{ msg.get_status_display }}</span>
+                    </td>
+                    <td class="px-lg py-md">
+                      <p class="text-[13px] font-data-label">{{ msg.sent_at|date:"d M Y, H:i" }}</p>
+                      <p class="text-[11px] text-outline">{{ msg.sent_at|timesince }} ago</p>
+                    </td>
+                  </tr>
+                {% empty %}
+                  <tr>
+                    <td colspan="5" class="px-lg py-xl text-center">
+                      <div class="flex flex-col items-center gap-sm text-on-surface-variant">
+                        <span class="material-symbols-outlined text-[48px] opacity-30">mail_off</span>
+                        <p class="font-medium">No messages found.</p>
+                        <a href="{% url 'communications:compose_message' %}" class="mt-sm text-primary hover:underline">Compose first message</a>
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="px-lg py-md bg-surface-container-low flex justify-between items-center border-t border-border">
+            <p class="text-label-md text-on-surface-variant">Showing {{ messages_list.start_index }}–{{ messages_list.end_index }} of {{ paginator.count }}</p>
+            <div class="flex gap-sm">
+              {% if messages_list.has_previous %}
+                <a href="?page={{ messages_list.previous_page_number }}&q={{ q }}&type={{ type_filter }}&status={{ status_filter }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Previous</a>
+              {% else %}
+                <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Previous</button>
+              {% endif %}
+              <span class="px-md py-sm text-label-md">Page {{ messages_list.number }} of {{ messages_list.paginator.num_pages }}</span>
+              {% if messages_list.has_next %}
+                <a href="?page={{ messages_list.next_page_number }}&q={{ q }}&type={{ type_filter }}&status={{ status_filter }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Next</a>
+              {% else %}
+                <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Next</button>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {% include 'components/toast_messages.html' %}
+  </body>
 </html>

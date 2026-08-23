@@ -1,341 +1,327 @@
-<!DOCTYPE html><html class="light" lang="en"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Announcement Board | MCG-SMS Communications</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
-<!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
+{% load static %}
+<!DOCTYPE html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Announcement Board | MCG-SMS</title>
+
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
-            "colors": {
-                    "on-secondary-container": "#745700",
-                    "primary-fixed-dim": "#ffb2b7",
-                    "border": "#E4E2DD",
-                    "tertiary-fixed": "#e3e2e0",
-                    "tertiary": "#2a2b2a",
-                    "card": "#FFFFFF",
-                    "on-tertiary": "#ffffff",
-                    "danger": "#DC2626",
-                    "surface-container-lowest": "#ffffff",
-                    "surface-container-high": "#eee7e3",
-                    "on-tertiary-fixed": "#1a1c1b",
-                    "on-tertiary-fixed-variant": "#464746",
-                    "surface-variant": "#e9e1dd",
-                    "surface-tint": "#a33a49",
-                    "inverse-primary": "#ffb2b7",
-                    "surface-container-low": "#faf2ee",
-                    "on-surface-variant": "#564243",
-                    "secondary": "#775a00",
-                    "tertiary-container": "#404140",
-                    "secondary-container": "#fece5b",
-                    "on-error": "#ffffff",
-                    "primary-container": "#7b1c2d",
-                    "outline": "#897172",
-                    "background": "#fff8f5",
-                    "on-primary-fixed-variant": "#832233",
-                    "gold-muted": "#FDF6E3",
-                    "secondary-fixed": "#ffdf9a",
-                    "success": "#16A34A",
-                    "secondary-fixed-dim": "#eec04f",
-                    "primary-muted": "#F5EAEC",
-                    "error-container": "#ffdad6",
-                    "inverse-surface": "#33302d",
-                    "primary-light": "#A3283F",
-                    "on-background": "#1e1b19",
-                    "surface-bright": "#fff8f5",
-                    "on-tertiary-container": "#adadab",
-                    "on-primary-container": "#ff8a95",
-                    "surface-dim": "#e0d8d5",
-                    "outline-variant": "#dcc0c1",
-                    "error": "#ba1a1a",
-                    "info": "#2563EB",
-                    "surface-container": "#f4ece8",
-                    "on-secondary-fixed-variant": "#5a4300",
-                    "on-primary": "#ffffff",
-                    "tertiary-fixed-dim": "#c7c6c5",
-                    "on-primary-fixed": "#40000e",
-                    "inverse-on-surface": "#f7efeb",
-                    "on-surface": "#1e1b19",
-                    "warning": "#D97706",
-                    "text-secondary": "#6B7280",
-                    "on-error-container": "#93000a",
-                    "on-secondary": "#ffffff",
-                    "primary": "#5c0219",
-                    "on-secondary-fixed": "#251a00",
-                    "surface-container-highest": "#e9e1dd",
-                    "primary-fixed": "#ffdadb",
-                    "surface": "#F8F7F5"
+            colors: {
+              tertiary: "#2a2b2a",
+              "primary-fixed": "#ffdadb",
+              "primary-fixed-dim": "#ffb2b7",
+              "on-primary-fixed-variant": "#832233",
+              "secondary-fixed-dim": "#eec04f",
+              outline: "#897172",
+              "primary-light": "#A3283F",
+              error: "#ba1a1a",
+              border: "#E4E2DD",
+              "surface-container-highest": "#e9e1dd",
+              "on-secondary-fixed-variant": "#5a4300",
+              info: "#2563EB",
+              danger: "#DC2626",
+              "inverse-primary": "#ffb2b7",
+              "surface-bright": "#fff8f5",
+              "inverse-on-surface": "#f7efeb",
+              warning: "#D97706",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "tertiary-container": "#404140",
+              "on-primary-fixed": "#40000e",
+              "surface-dim": "#e0d8d5",
+              "surface-container-lowest": "#ffffff",
+              "gold-muted": "#FDF6E3",
+              "secondary-fixed": "#ffdf9a",
+              secondary: "#775a00",
+              "secondary-container": "#fece5b",
+              "surface-container": "#f4ece8",
+              "outline-variant": "#dcc0c1",
+              card: "#FFFFFF",
+              "on-surface": "#1e1b19",
+              "surface-variant": "#e9e1dd",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed-dim": "#c7c6c5",
+              "surface-tint": "#a33a49",
+              "on-background": "#1e1b19",
+              "surface-container-high": "#eee7e3",
+              "primary-muted": "#F5EAEC",
+              "on-tertiary-fixed": "#1a1c1b",
+              "on-error": "#ffffff",
+              "primary-container": "#7b1c2d",
+              "on-tertiary-container": "#adadab",
+              "text-secondary": "#6B7280",
+              success: "#16A34A",
+              "error-container": "#ffdad6",
+              "on-surface-variant": "#564243",
+              "inverse-surface": "#33302d",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#745700",
+              "surface-container-low": "#faf2ee",
+              "on-tertiary-fixed-variant": "#464746",
+              surface: "#F8F7F5",
+              "on-primary-container": "#ff8a95",
+              primary: "#5c0219",
+              background: "#fff8f5",
+              "tertiary-fixed": "#e3e2e0",
+              "on-secondary-fixed": "#251a00",
             },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
             },
-            "spacing": {
-                    "lg": "24px",
-                    "header-height": "64px",
-                    "xl": "32px",
-                    "sidebar-width": "256px",
-                    "sm": "8px",
-                    "md": "16px",
-                    "base": "8px",
-                    "xs": "4px"
+            spacing: {
+              xs: "4px",
+              sm: "8px",
+              xl: "32px",
+              "sidebar-width": "256px",
+              md: "16px",
+              lg: "24px",
+              "header-height": "64px",
+              base: "8px",
             },
-            "fontFamily": {
-                    "headline-lg": ["Lora"],
-                    "label-md": ["Inter"],
-                    "data-label": ["JetBrains Mono"],
-                    "body-lg": ["Inter"],
-                    "data-display": ["JetBrains Mono"],
-                    "body-md": ["Inter"],
-                    "label-sm": ["Inter"],
-                    "headline-md": ["Inter"],
-                    "headline-lg-mobile": ["Lora"]
+            fontFamily: {
+              "headline-lg": ["Lora"],
+              "headline-md": ["Inter"],
+              "body-md": ["Inter"],
             },
-            "fontSize": {
-                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                    "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
-                    "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                    "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}]
-            }
           },
         },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8f7f5;
       }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .card-shadow {
-            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-        }
-        .card-shadow:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #F8F7F5;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #E4E2DD;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #897172;
-        }
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
     </style>
-</head>
-<body class="bg-surface text-on-surface font-body-md overflow-hidden flex min-h-screen">
-<div class="flex h-screen w-full">
-<!-- SideNavBar (Execution from JSON) -->
-{% include 'components/sidebar.html' %}
-<!-- Main Content Canvas -->
-<main class="flex-1  flex flex-col min-h-0 bg-surface">
-<!-- TopNavBar (Execution from JSON) -->
-<header class="flex justify-between items-center w-full px-lg h-header-height bg-surface dark:bg-on-background shadow-sm sticky top-0 z-40">
-<div class="flex items-center gap-md">
-<button class="md:hidden p-sm text-primary">
-<span class="material-symbols-outlined">menu</span>
-</button>
-<div class="hidden lg:flex items-center gap-xs text-on-surface-variant font-label-md text-label-md">
-<span class="">Dashboard</span>
-<span class="material-symbols-outlined text-sm opacity-50">chevron_right</span>
-<span class="">Comms</span>
-<span class="material-symbols-outlined text-sm opacity-50">chevron_right</span>
-<span class="text-primary font-bold">Announcements</span>
-</div>
-</div>
-<div class="flex items-center gap-lg">
-<div class="hidden sm:flex items-center bg-surface-container rounded-full px-md py-xs border border-border">
-<span class="material-symbols-outlined text-on-surface-variant mr-xs">search</span>
-<input class="bg-transparent border-none focus:ring-0 text-sm w-48" placeholder="Search announcements..." type="text">
-</div>
-<div class="flex items-center gap-md">
-<button class="text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-<button class="text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined">help_outline</span>
-</button>
-<div class="w-8 h-8 rounded-full bg-primary-muted border border-primary/10 overflow-hidden cursor-pointer">
-<img class="w-full h-full object-cover" data-alt="A professional headshot of a Methodist church administrator, dressed in formal attire with a clerical collar, looking friendly and approachable. The lighting is soft and professional, emphasizing a warm, trustworthy community leader persona in a clean, brightly lit administrative office setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGEqkdjW_90Lfh6NFOXkmO5zCq0JYvZxAGrZrZiXU6PNY6CMYGZOtlkbaNA6NLmzTmldbkkLhPb88bMNQIgNq0cySoztkDF61J7JUQJm9XlwoDtvkXucZ6NFRL9oHqUuzW42XM38rCri7uC6v_Yn869SpbIIrhgwVgQgWt9quKvM7y_oaGNTYPDZYLAch_-eDS-iiv56P9HiTD5OzI4fzwFo_jo1hWqwG6kUJcaiqb8mfWG-jLkuhHw061MyU9XLvSWRbMZTF_IhQQ">
-</div>
-</div>
-</div>
-</header>
-<!-- Scrollable Content Area -->
-<div class="flex-1 overflow-y-auto px-lg py-xl" style="scroll-behavior: smooth;">
-<!-- Page Header & Action -->
-<div class="flex flex-col md:flex-row md:items-center justify-between mb-xl gap-md">
-<div>
-<h2 class="font-headline-lg text-headline-lg text-primary">Announcement Board</h2>
-<p class="text-on-surface-variant font-body-md">Share updates, theme releases, and events with your congregation.</p>
-</div>
-<button class="flex items-center justify-center gap-sm bg-primary text-on-primary px-lg py-md rounded-lg font-label-md text-label-md hover:bg-primary-light transition-all shadow-md active:scale-95">
-<span class="material-symbols-outlined">add</span>
-                        Post New Announcement
+  </head>
+
+  <body class="bg-surface text-on-surface font-body-md antialiased flex h-screen overflow-hidden">
+    {% include 'components/sidebar.html' %}
+
+    <main class="flex-1 min-w-0 h-full overflow-y-auto bg-surface flex flex-col">
+      <header class="flex justify-between items-center w-full px-xl h-header-height sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
+        <nav class="flex items-center text-body-md text-on-surface-variant">
+          <a class="hover:text-primary-light transition-colors" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+          <span class="material-symbols-outlined text-[16px] mx-xs">chevron_right</span>
+          <a class="hover:text-primary-light transition-colors" href="{% url 'communications:message_history' %}">Communications</a>
+          <span class="material-symbols-outlined text-[16px] mx-xs">chevron_right</span>
+          <span class="text-primary font-bold">Announcements</span>
+        </nav>
+        <button type="button" onclick="document.getElementById('ann-modal').classList.remove('hidden')" class="bg-primary hover:bg-primary-light text-on-primary px-md py-sm rounded-lg font-bold flex items-center gap-xs text-label-md transition-colors shadow-sm">
+          <span class="material-symbols-outlined text-[18px]">campaign</span>
+          New Announcement
+        </button>
+      </header>
+
+      <div class="p-xl pb-24 max-w-6xl mx-auto w-full">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-xl gap-lg">
+          <div>
+            <h2 class="font-headline-lg text-[32px] font-bold text-primary tracking-tight">Announcement Board</h2>
+            <p class="text-body-md text-on-surface-variant mt-xs leading-relaxed">Post and manage church-wide announcements and notices.</p>
+            <div class="mt-sm flex items-center gap-sm text-[11px]">
+              <span class="px-2 py-1 rounded-full bg-surface-container-high font-data-label">{{ total_announcements }} total</span>
+              <span class="px-2 py-1 rounded-full bg-success/10 text-success font-medium">{{ active_announcements }} active</span>
+            </div>
+          </div>
+        </div>
+
+        {% if messages %}
+          <div class="mb-lg space-y-sm">
+            {% for message in messages %}
+              <div class="p-md rounded-lg border flex items-start gap-sm {% if message.tags == 'error' %}bg-error-container/30 text-error border-error/20{% else %}bg-success/10 text-success border-success/20{% endif %}">
+                <span class="material-symbols-outlined text-[20px]">{% if message.tags == 'error' %}error{% else %}check_circle{% endif %}</span>
+                <span>{{ message }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <!-- Filters -->
+        <section class="bg-card rounded-xl shadow-sm border border-border p-md mb-lg">
+          <form method="get" class="flex flex-wrap items-center gap-md">
+            <div class="flex-1 min-w-[260px] relative">
+              <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+              <input name="q" value="{{ q }}" placeholder="Search announcements..." class="w-full pl-xl pr-md py-md border border-border rounded-lg focus:ring-2 focus:ring-primary-light outline-none text-body-md" type="text" />
+            </div>
+            <select name="category" class="border border-border rounded-lg py-md px-lg text-body-md bg-white min-w-[140px] focus:ring-2 focus:ring-primary-light">
+              <option value="">All Categories</option>
+              {% for code, label in category_choices %}
+                <option value="{{ code }}" {% if category_filter == code %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            <select name="active" class="border border-border rounded-lg py-md px-lg text-body-md bg-white min-w-[140px] focus:ring-2 focus:ring-primary-light">
+              <option value="">All</option>
+              <option value="active" {% if active_filter == 'active' %}selected{% endif %}>Active Only</option>
+              <option value="inactive" {% if active_filter == 'inactive' %}selected{% endif %}>Inactive Only</option>
+            </select>
+            <button type="submit" class="p-md border border-border rounded-lg bg-white hover:bg-surface-container-low text-on-surface-variant transition-colors">
+              <span class="material-symbols-outlined">filter_list</span>
+            </button>
+            {% if q or category_filter or active_filter %}
+              <a href="{% url 'communications:announcement_board' %}" class="p-md border border-border rounded-lg bg-white hover:bg-surface-container-low text-on-surface-variant transition-colors">
+                <span class="material-symbols-outlined">clear</span>
+              </a>
+            {% endif %}
+          </form>
+        </section>
+
+        <!-- Announcements Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+          {% for ann in announcements %}
+            <div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden flex flex-col {% if ann.is_pinned %}ring-2 ring-secondary-fixed-dim{% endif %}">
+              {% if ann.is_pinned %}
+                <div class="h-1 bg-secondary-fixed-dim"></div>
+              {% endif %}
+              <div class="p-lg flex-1">
+                <div class="flex items-start justify-between gap-md mb-sm">
+                  <div class="flex items-center gap-sm flex-wrap">
+                    <span class="px-2 py-1 rounded-full text-[10px] font-bold uppercase {% if ann.category == 'URGENT' %}bg-error text-on-error{% elif ann.category == 'EVENT' %}bg-info/10 text-info{% elif ann.category == 'WELFARE' %}bg-warning/10 text-warning{% else %}bg-surface-container-high text-on-surface-variant{% endif %}">{{ ann.get_category_display }}</span>
+                    <span class="px-2 py-1 rounded-full text-[10px] font-bold uppercase {% if ann.priority == 'URGENT' %}bg-error-container text-on-error-container{% elif ann.priority == 'HIGH' %}bg-warning/20 text-warning{% else %}bg-surface-container-high text-on-surface-variant{% endif %}">{{ ann.get_priority_display }}</span>
+                    {% if ann.is_pinned %}
+                      <span class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-secondary-fixed-dim text-on-secondary-fixed-variant text-[10px] font-bold"><span class="material-symbols-outlined text-[14px]">push_pin</span> Pinned</span>
+                    {% endif %}
+                    {% if not ann.is_active %}
+                      <span class="px-2 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-[10px] font-bold">Inactive</span>
+                    {% endif %}
+                  </div>
+                  <span class="text-[11px] text-outline">{{ ann.created_at|date:"d M Y" }}</span>
+                </div>
+                <h3 class="font-headline-md text-[18px] font-bold text-on-surface leading-tight">{{ ann.title }}</h3>
+                <p class="text-body-md text-on-surface-variant mt-sm leading-relaxed line-clamp-4">{{ ann.content }}</p>
+                <div class="mt-md flex items-center gap-sm text-[11px] text-outline">
+                  <span>By {{ ann.created_by|default:"System" }}</span>
+                  <span>•</span>
+                  <span>{{ ann.views_count }} views</span>
+                  {% if ann.expiry_date %}
+                    <span>•</span>
+                    <span class="{% if ann.is_expired %}text-error font-bold{% endif %}">Expires {{ ann.expiry_date|date:"d M Y" }}</span>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="px-lg py-md bg-surface-container-low border-t border-border flex justify-between items-center">
+                <div class="flex gap-xs">
+                  <form method="post" action="{% url 'communications:announcement_board' %}" class="inline">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="toggle_active" />
+                    <input type="hidden" name="announcement_id" value="{{ ann.id }}" />
+                    <button type="submit" class="p-xs rounded-full hover:bg-surface-container text-on-surface-variant transition-colors" title="Toggle Active">
+                      <span class="material-symbols-outlined text-[18px]">{% if ann.is_active %}visibility_off{% else %}visibility{% endif %}</span>
                     </button>
-</div>
-<!-- Pinned Section -->
-<section class="mb-xl">
-<div class="flex items-center gap-xs mb-md">
-<span class="material-symbols-outlined text-secondary text-[14px]" style="font-variation-settings: 'FILL' 1;">push_pin</span>
-<h3 class="text-secondary font-label-sm text-label-sm uppercase tracking-[0.1em] font-bold">Pinned</h3>
-</div>
-<!-- Pinned Card -->
-<div class="bg-card rounded-xl p-lg card-shadow border-l-4 border-secondary transition-all group relative">
-<div class="absolute top-md right-md">
-<span class="inline-flex items-center px-sm py-xs rounded-full bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold uppercase">
-                                All Members
-                            </span>
-</div>
-<div class="max-w-4xl">
-<h4 class="font-headline-lg text-headline-md text-on-surface group-hover:text-primary transition-colors mb-xs">
-                                Annual Harvest 2024 Theme Announcement
-                            </h4>
-<div class="flex items-center gap-sm text-on-surface-variant text-label-sm mb-md">
-<span class="font-semibold text-primary">Rev. John Opoku</span>
-<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
-<span class="">2 days ago</span>
-</div>
-<div class="text-on-surface-variant text-body-lg leading-relaxed mb-md">
-<p class="line-clamp-3">
-                                    Grace and peace be unto you in the name of our Lord Jesus Christ. We are thrilled to announce that the theme for the 2024 Annual Harvest is "Sowing in Faith, Reaping in Abundance". This year, we focus on the collective responsibility of our society to support our ongoing mission work in the northern regions. Let us begin our preparations with prayer and joyful hearts...
-                                </p>
-</div>
-<a class="inline-flex items-center text-primary font-bold hover:underline gap-xs" href="#">
-                                Read more...
-                                <span class="material-symbols-outlined text-base">arrow_forward</span>
-</a>
-</div>
-</div>
-</section>
-<!-- Divider -->
-<div class="h-[1px] bg-border mb-xl"></div>
-<!-- Chronological Section -->
-<section class="space-y-lg">
-<div class="flex items-center justify-between mb-md">
-<h3 class="text-on-surface font-headline-md text-headline-md">Latest Updates</h3>
-<div class="flex items-center gap-sm text-on-surface-variant font-label-md cursor-pointer hover:text-primary transition-colors">
-<span class="">Filter by Group</span>
-<span class="material-symbols-outlined">filter_list</span>
-</div>
-</div>
-<!-- Chronological Card 1 -->
-<div class="bg-card rounded-xl p-lg card-shadow border border-border/50 hover:border-primary/20 transition-all group">
-<div class="flex flex-col md:flex-row md:items-start justify-between gap-md">
-<div class="flex-1">
-<div class="flex items-center gap-sm mb-xs">
-<span class="inline-flex items-center px-sm py-xs rounded-full bg-primary-muted text-primary text-[10px] font-bold uppercase">
-                                        Youth Fellowship
-                                    </span>
-</div>
-<h4 class="font-headline-lg text-[18px] font-semibold text-on-surface group-hover:text-primary transition-colors mb-xs leading-snug">
-                                    Youth Fellowship Weekend Retreat
-                                </h4>
-<div class="flex items-center gap-sm text-on-surface-variant text-label-sm">
-<span class="font-semibold">Sis. Abigail</span>
-<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
-<span class="">4 days ago</span>
-</div>
-</div>
-<div class="flex items-center gap-md">
-<button class="text-on-surface-variant hover:text-primary transition-colors" title="Bookmark">
-<span class="material-symbols-outlined">bookmark</span>
-</button>
-<button class="text-on-surface-variant hover:text-primary transition-colors" title="Share">
-<span class="material-symbols-outlined">share</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Chronological Card 2 -->
-<div class="bg-card rounded-xl p-lg card-shadow border border-border/50 hover:border-primary/20 transition-all group">
-<div class="flex flex-col md:flex-row md:items-start justify-between gap-md">
-<div class="flex-1">
-<div class="flex items-center gap-sm mb-xs">
-<span class="inline-flex items-center px-sm py-xs rounded-full bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold uppercase">
-                                        All Members
-                                    </span>
-</div>
-<h4 class="font-headline-lg text-[18px] font-semibold text-on-surface group-hover:text-primary transition-colors mb-xs leading-snug">
-                                    Midweek Service Time Change
-                                </h4>
-<div class="flex items-center gap-sm text-on-surface-variant text-label-sm">
-<span class="font-semibold">Bro. Kojo</span>
-<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
-<span class="">1 week ago</span>
-</div>
-</div>
-<div class="flex items-center gap-md">
-<button class="text-on-surface-variant hover:text-primary transition-colors" title="Bookmark">
-<span class="material-symbols-outlined">bookmark</span>
-</button>
-<button class="text-on-surface-variant hover:text-primary transition-colors" title="Share">
-<span class="material-symbols-outlined">share</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Load More Action -->
-<div class="flex justify-center py-lg">
-<button class="text-primary font-label-md text-label-md flex items-center gap-sm hover:opacity-70 transition-opacity">
-<span class="material-symbols-outlined">expand_more</span>
-                            Load Previous Announcements
-                        </button>
-</div>
-</section>
-</div>
-<!-- Contextual FAB (Suppressed on Details/Settings as per logic, but active here for quick post) -->
-<button class="fixed bottom-lg right-lg w-14 h-14 bg-secondary-container text-on-secondary-container rounded-full shadow-xl flex items-center justify-center md:hidden hover:scale-110 active:scale-95 transition-transform z-50">
-<span class="material-symbols-outlined text-3xl">add</span>
-</button>
-</main>
-</div>
-<!-- Micro-interactions Script -->
-<script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Mobile Menu Toggle Simulation
-            const mobileMenuBtn = document.querySelector('button.md\\:hidden');
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    alert('Mobile sidebar navigation menu would toggle here.');
-                });
-            }
+                  </form>
+                  <form method="post" action="{% url 'communications:announcement_board' %}" class="inline" onsubmit="return confirm('Delete announcement?')">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="delete" />
+                    <input type="hidden" name="announcement_id" value="{{ ann.id }}" />
+                    <button type="submit" class="p-xs rounded-full hover:bg-error-container text-error transition-colors" title="Delete">
+                      <span class="material-symbols-outlined text-[18px]">delete</span>
+                    </button>
+                  </form>
+                </div>
+                <span class="text-[11px] text-outline">{{ ann.created_at|timesince }} ago</span>
+              </div>
+            </div>
+          {% empty %}
+            <div class="col-span-2 py-xl text-center bg-card rounded-xl border border-border">
+              <span class="material-symbols-outlined text-[48px] opacity-30">campaign</span>
+              <p class="mt-sm font-medium text-on-surface-variant">No announcements found.</p>
+              <button type="button" onclick="document.getElementById('ann-modal').classList.remove('hidden')" class="mt-md px-lg py-sm bg-primary text-on-primary rounded-lg font-bold hover:bg-primary-light">Post First Announcement</button>
+            </div>
+          {% endfor %}
+        </div>
 
-            // Card hover effects (already handled by Tailwind but could add JS triggers)
-            const cards = document.querySelectorAll('.bg-card');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    // Subtle interaction feedback
-                });
-            });
+        <!-- Pagination -->
+        <div class="mt-lg px-lg py-md bg-surface-container-low rounded-xl border border-border flex justify-between items-center">
+          <p class="text-label-md text-on-surface-variant">Showing {{ announcements.start_index }}–{{ announcements.end_index }} of {{ paginator.count }}</p>
+          <div class="flex gap-sm">
+            {% if announcements.has_previous %}
+              <a href="?page={{ announcements.previous_page_number }}&q={{ q }}&category={{ category_filter }}&active={{ active_filter }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Previous</a>
+            {% else %}
+              <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Previous</button>
+            {% endif %}
+            <span class="px-md py-sm text-label-md">Page {{ announcements.number }} of {{ announcements.paginator.num_pages }}</span>
+            {% if announcements.has_next %}
+              <a href="?page={{ announcements.next_page_number }}&q={{ q }}&category={{ category_filter }}&active={{ active_filter }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Next</a>
+            {% else %}
+              <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Next</button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
 
-            // Smooth Scroll for the main content
-            const mainContent = document.querySelector('main > div');
-            if (mainContent) {
-                mainContent.style.scrollBehavior = 'smooth';
-            }
-        });
-    </script>
+      <!-- New Announcement Modal -->
+      <div id="ann-modal" class="hidden fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-md">
+        <div class="bg-card rounded-xl shadow-lg border border-border w-full max-w-lg overflow-hidden">
+          <div class="p-lg border-b border-border bg-surface-container-low flex justify-between items-center">
+            <h3 class="font-headline-md text-[18px] font-semibold">New Announcement</h3>
+            <button type="button" class="material-symbols-outlined p-xs hover:bg-surface-container rounded-full" onclick="document.getElementById('ann-modal').classList.add('hidden')">close</button>
+          </div>
+          <form method="post" action="{% url 'communications:announcement_board' %}" class="p-lg space-y-md">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="create" />
+            <div class="flex flex-col space-y-xs">
+              <label class="text-label-md font-medium">Title *</label>
+              <input name="title" required class="p-md rounded-lg border border-border focus:ring-2 focus:ring-primary-light outline-none" placeholder="Sunday Service Announcement" />
+            </div>
+            <div class="grid grid-cols-2 gap-md">
+              <div class="flex flex-col space-y-xs">
+                <label class="text-label-md font-medium">Category</label>
+                <select name="category" class="p-md rounded-lg border border-border focus:ring-2 focus:ring-primary-light outline-none bg-white">
+                  {% for code, label in category_choices %}
+                    <option value="{{ code }}">{{ label }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="flex flex-col space-y-xs">
+                <label class="text-label-md font-medium">Priority</label>
+                <select name="priority" class="p-md rounded-lg border border-border focus:ring-2 focus:ring-primary-light outline-none bg-white">
+                  {% for code, label in priority_choices %}
+                    <option value="{{ code }}">{{ label }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="flex flex-col space-y-xs">
+              <label class="text-label-md font-medium">Content *</label>
+              <textarea name="content" required rows="4" class="p-md rounded-lg border border-border focus:ring-2 focus:ring-primary-light outline-none" placeholder="Announcement details..."></textarea>
+            </div>
+            <div class="grid grid-cols-2 gap-md">
+              <div class="flex flex-col space-y-xs">
+                <label class="text-label-md font-medium">Expiry Date</label>
+                <input name="expiry_date" type="date" class="p-md rounded-lg border border-border focus:ring-2 focus:ring-primary-light outline-none" />
+              </div>
+              <label class="flex items-center gap-sm mt-lg cursor-pointer">
+                <input name="is_pinned" type="checkbox" class="w-5 h-5 rounded border-border text-primary focus:ring-primary-light" />
+                <span class="text-label-md font-medium">Pin announcement</span>
+              </label>
+            </div>
+            <div class="flex justify-end gap-md pt-md">
+              <button type="button" class="px-lg py-sm rounded-lg border border-border hover:bg-surface-container" onclick="document.getElementById('ann-modal').classList.add('hidden')">Cancel</button>
+              <button type="submit" class="px-lg py-sm rounded-lg bg-primary text-on-primary font-bold hover:bg-primary-light">Post Announcement</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
 
-
-</body>
+    {% include 'components/toast_messages.html' %}
+  </body>
 </html>
