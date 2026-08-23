@@ -2,9 +2,8 @@ from datetime import date, timedelta
 
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count, Sum
+from django.db.models import Count, Q, Sum
 from django.utils import timezone
-from django.db.models import Sum
 from core.decorators import role_required
 from members.models import Member
 from welfare_cases.models import WelfareCase
@@ -87,11 +86,13 @@ def main_dashboard(request):
         '-service__service_date').first()
 
     class_rows = list(
-        ClassGroup.objects.annotate(member_count=Count('members')).order_by('-member_count')[:6]
+        ClassGroup.objects.annotate(
+            active_member_count=Count('members', filter=Q(members__status='ACTIVE'))
+        ).order_by('-active_member_count')[:6]
     )
-    largest_class = max([row.member_count for row in class_rows] or [0]) or 1
+    largest_class = max([row.active_member_count for row in class_rows] or [0]) or 1
     for row in class_rows:
-        row.share = round(row.member_count / largest_class * 100)
+        row.share = round(row.active_member_count / largest_class * 100)
 
     finance_series, finance_peak = _monthly_finance_series(today)
 
