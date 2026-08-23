@@ -1,330 +1,261 @@
 {% load static %}
 <!DOCTYPE html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Bible Study Classes | MCG-SMS</title>
 
-<html class="light" lang="en" style=""><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MCG-SMS - Bible Study Classes</title>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet"/>
-<!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-    </style>
-<!-- Tailwind Config -->
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "border": "#E4E2DD",
-                        "surface-bright": "#fff8f5",
-                        "on-primary": "#ffffff",
-                        "tertiary-fixed-dim": "#c7c6c5",
-                        "surface-container-low": "#faf2ee",
-                        "on-tertiary-fixed": "#1a1c1b",
-                        "on-secondary-fixed": "#251a00",
-                        "on-secondary": "#ffffff",
-                        "on-secondary-container": "#745700",
-                        "surface-tint": "#a33a49",
-                        "surface-container-high": "#eee7e3",
-                        "success": "#16A34A",
-                        "surface-variant": "#e9e1dd",
-                        "error": "#ba1a1a",
-                        "outline-variant": "#dcc0c1",
-                        "primary": "#5c0219",
-                        "surface-dim": "#e0d8d5",
-                        "warning": "#D97706",
-                        "background": "#fff8f5",
-                        "tertiary-container": "#404140",
-                        "on-surface": "#1e1b19",
-                        "secondary-fixed": "#ffdf9a",
-                        "card": "#FFFFFF",
-                        "secondary": "#775a00",
-                        "primary-container": "#7b1c2d",
-                        "info": "#2563EB",
-                        "danger": "#DC2626",
-                        "gold-muted": "#FDF6E3",
-                        "primary-fixed-dim": "#ffb2b7",
-                        "outline": "#897172",
-                        "secondary-fixed-dim": "#eec04f",
-                        "on-tertiary-fixed-variant": "#464746",
-                        "inverse-primary": "#ffb2b7",
-                        "tertiary": "#2a2b2a",
-                        "on-error-container": "#93000a",
-                        "on-secondary-fixed-variant": "#5a4300",
-                        "on-surface-variant": "#564243",
-                        "on-primary-fixed": "#40000e",
-                        "surface-container-highest": "#e9e1dd",
-                        "on-tertiary-container": "#adadab",
-                        "inverse-surface": "#33302d",
-                        "primary-fixed": "#ffdadb",
-                        "surface-container": "#f4ece8",
-                        "surface-container-lowest": "#ffffff",
-                        "primary-muted": "#F5EAEC",
-                        "primary-light": "#A3283F",
-                        "on-primary-container": "#ff8a95",
-                        "inverse-on-surface": "#f7efeb",
-                        "on-primary-fixed-variant": "#832233",
-                        "text-secondary": "#6B7280",
-                        "secondary-container": "#fece5b",
-                        "on-error": "#ffffff",
-                        "error-container": "#ffdad6",
-                        "surface": "#F8F7F5",
-                        "on-tertiary": "#ffffff",
-                        "tertiary-fixed": "#e3e2e0",
-                        "on-background": "#1e1b19"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "lg": "24px",
-                        "md": "16px",
-                        "xl": "32px",
-                        "sm": "8px",
-                        "base": "8px",
-                        "header-height": "64px",
-                        "sidebar-width": "256px",
-                        "xs": "4px"
-                    },
-                    "fontFamily": {
-                        "headline-md": ["Inter"],
-                        "label-sm": ["Inter"],
-                        "headline-lg": ["Lora"],
-                        "headline-lg-mobile": ["Lora"],
-                        "label-md": ["Inter"],
-                        "body-md": ["Inter"],
-                        "body-lg": ["Inter"],
-                        "data-display": ["JetBrains Mono"],
-                        "data-label": ["JetBrains Mono"]
-                    },
-                    "fontSize": {
-                        "headline-md": ["20px", { "lineHeight": "1.3", "fontWeight": "600" }],
-                        "label-sm": ["11px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
-                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
-                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
-                        "label-md": ["13px", { "lineHeight": "1.2", "fontWeight": "500" }],
-                        "body-md": ["14px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                        "data-display": ["18px", { "lineHeight": "1.0", "fontWeight": "500" }],
-                        "data-label": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }]
-                    }
-                }
-            }
-        }
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Lora:wght@700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              border: "#E4E2DD",
+              "surface-bright": "#fff8f5",
+              "on-primary": "#ffffff",
+              "tertiary-fixed-dim": "#c7c6c5",
+              "surface-container-low": "#faf2ee",
+              "on-tertiary-fixed": "#1a1c1b",
+              "on-secondary-fixed": "#251a00",
+              "on-secondary": "#ffffff",
+              "on-secondary-container": "#745700",
+              "surface-tint": "#a33a49",
+              "surface-container-high": "#eee7e3",
+              success: "#16A34A",
+              "surface-variant": "#e9e1dd",
+              error: "#ba1a1a",
+              "outline-variant": "#dcc0c1",
+              primary: "#5c0219",
+              "surface-dim": "#e0d8d5",
+              warning: "#D97706",
+              background: "#fff8f5",
+              "tertiary-container": "#404140",
+              "on-surface": "#1e1b19",
+              "secondary-fixed": "#ffdf9a",
+              card: "#FFFFFF",
+              secondary: "#775a00",
+              "primary-container": "#7b1c2d",
+              info: "#2563EB",
+              danger: "#DC2626",
+              "gold-muted": "#FDF6E3",
+              "primary-fixed-dim": "#ffb2b7",
+              outline: "#897172",
+              "secondary-fixed-dim": "#eec04f",
+              "on-tertiary-fixed-variant": "#464746",
+              "inverse-primary": "#ffb2b7",
+              tertiary: "#2a2b2a",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed-variant": "#5a4300",
+              "on-surface-variant": "#564243",
+              "on-primary-fixed": "#40000e",
+              "surface-container-highest": "#e9e1dd",
+              "on-tertiary-container": "#adadab",
+              "inverse-surface": "#33302d",
+              "primary-fixed": "#ffdadb",
+              "surface-container": "#f4ece8",
+              "surface-container-lowest": "#ffffff",
+              "primary-muted": "#F5EAEC",
+              "primary-light": "#A3283F",
+              "on-primary-container": "#ff8a95",
+              "inverse-on-surface": "#f7efeb",
+              "on-primary-fixed-variant": "#832233",
+              "text-secondary": "#6B7280",
+              "secondary-container": "#fece5b",
+              "on-error": "#ffffff",
+              "error-container": "#ffdad6",
+              surface: "#F8F7F5",
+              "on-tertiary": "#ffffff",
+              "tertiary-fixed": "#e3e2e0",
+              "on-background": "#1e1b19",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              lg: "24px",
+              md: "16px",
+              xl: "32px",
+              sm: "8px",
+              base: "8px",
+              "header-height": "64px",
+              "sidebar-width": "256px",
+              xs: "4px",
+            },
+            fontFamily: {
+              "headline-lg": ["Lora"],
+              "headline-md": ["Inter"],
+              "body-md": ["Inter"],
+              "label-md": ["Inter"],
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex min-h-screen">
-<!-- SideNavBar -->
-{% include 'components/sidebar.html' %}
-<!-- BottomNavBar (Mobile) -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest pb-safe md:hidden border-t border-border dark:border-outline-variant shadow-[0_-1px_3px_rgba(0,0,0,0.06)] h-[56px]">
-<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high p-2 rounded-lg" href="#">
-<span class="material-symbols-outlined" data-icon="home">home</span>
-<span class="font-label-sm-mobile text-label-sm-mobile mt-1">Home</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high p-2 rounded-lg" href="#">
-<span class="material-symbols-outlined" data-icon="person_search">person_search</span>
-<span class="font-label-sm-mobile text-label-sm-mobile mt-1">Members</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high p-2 rounded-lg" href="#">
-<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
-<span class="font-label-sm-mobile text-label-sm-mobile mt-1">Finance</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high p-2 rounded-lg" href="#">
-<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-<span class="font-label-sm-mobile text-label-sm-mobile mt-1">Reports</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high p-2 rounded-lg" href="#">
-<span class="material-symbols-outlined" data-icon="menu">menu</span>
-<span class="font-label-sm-mobile text-label-sm-mobile mt-1">More</span>
-</a>
-</nav>
-<!-- Main Content Canvas -->
-<main class="md:pt-header-height min-h-screen p-4 md:p-xl pb-24 md:pb-xl flex flex-col gap-lg w-full max-w-7xl mx-auto">
-<!-- Page Header Area -->
-<div class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-md">
-<div>
-<!-- Breadcrumb -->
-<h1 class="font-headline-lg text-headline-lg text-primary md:hidden font-headline-lg-mobile text-headline-lg-mobile">Bible Study Classes</h1>
-<h1 class="font-headline-lg text-headline-lg text-primary hidden md:block">Bible Study Classes</h1>
-<p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-2xl">Manage and view all Bible Study classes within the society.</p>
-</div>
-<div class="flex-shrink-0">
-<button class="w-full md:w-auto bg-primary hover:bg-primary-light text-white font-label-md text-label-md py-2.5 px-4 rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2">
-    <span class="material-symbols-outlined" data-icon="add">add</span>
-Add New Class</button>
-</div>
-</div>
-<!-- 3-Column Card Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-lg">
-<!-- Card 1 -->
-<div class="bg-card rounded-xl p-lg shadow-sm border border-border/50 hover:shadow-md transition-shadow relative overflow-hidden group">
-<!-- Subtle depth marker -->
-<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-container rounded-l-xl"></div>
-<div class="flex justify-between items-start mb-4">
-<h2 class="font-inter font-semibold text-[16px] text-on-surface leading-snug">Class 1 (St. Peter)</h2>
-<button aria-label="Options" class="text-on-surface-variant hover:text-primary transition-colors rounded-full p-1">
-<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
-</button>
-</div>
-<div class="space-y-4 mb-6">
-<!-- Leader -->
-<div class="flex items-center gap-3">
-<div class="h-8 w-8 rounded-full overflow-hidden border border-border shrink-0">
-<img alt="Kwame Mensah avatar" class="w-full h-full object-cover" data-alt="A headshot of a friendly adult male, representing a class leader. The portrait should be brightly lit with a clean, light background, fitting a modern community application aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5SnxQtWcz06NhBvZlxlVSJwxz32YD-V8wMofuFaWNnL7oDWRm4TWHJf78cQGpZsbqPudLlf0_lguKw7ypHc4XokbWMbt7wBbDJs4vNIRZZBLYj6RzBGLwGyHhBK-BZ6EuonGU5aNdVSmTqMx7UOOdqib4-RkBs9yryf87UvRpdGLb8ijmTq-IC0wnBgfB6kxthzsOVkOS2bJoWzdjXM4jVNXEFW7zia41UV38qhadmmvCWcseIOiF8e9-Cpmtpn3yhYYNy-4DnDyI"/>
-</div>
-<div class="flex flex-col">
-<span class="text-xs text-on-surface-variant">Leader</span>
-<span class="font-label-md text-label-md text-on-surface">Kwame Mensah</span>
-</div>
-</div>
-<!-- Meeting Time -->
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="schedule">schedule</span>
-<div class="bg-gold-muted px-3 py-1 rounded-full border border-secondary/20">
-<span class="text-xs font-medium text-secondary">Sundays, 4:00 PM</span>
-</div>
-</div>
-<!-- Location -->
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="location_on">location_on</span>
-<span class="font-body-md text-body-md text-on-surface">Main Sanctuary</span>
-</div>
-<!-- Capacity -->
-<div class="space-y-1.5 mt-2">
-<div class="flex justify-between items-center text-xs">
-<span class="text-on-surface-variant">Capacity</span>
-<span class="font-data-label text-data-label text-on-surface">14 / 20 members</span>
-</div>
-<div class="w-full bg-surface-variant rounded-full h-1.5 overflow-hidden">
-<div class="bg-primary h-1.5 rounded-full" style="width: 70%"></div>
-</div>
-</div>
-</div>
-<!-- Actions -->
-<div class="flex gap-3 pt-4 border-t border-border/50">
-<button class="flex-1 border border-border text-on-surface font-label-md text-label-md py-2 px-3 rounded-lg hover:bg-surface-container-low transition-colors">View</button>
-<button class="flex-1 bg-primary-muted text-primary font-label-md text-label-md py-2 px-3 rounded-lg hover:bg-primary-light hover:text-white transition-colors">Take Attendance</button>
-</div>
-</div>
-<!-- Card 2 (High Capacity - Amber) -->
-<div class="bg-card rounded-xl p-lg shadow-sm border border-border/50 hover:shadow-md transition-shadow relative overflow-hidden group">
-<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-container rounded-l-xl"></div>
-<div class="flex justify-between items-start mb-4">
-<h2 class="font-inter font-semibold text-[16px] text-on-surface leading-snug">Class 2 (St. Paul)</h2>
-<button aria-label="Options" class="text-on-surface-variant hover:text-primary transition-colors rounded-full p-1">
-<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
-</button>
-</div>
-<div class="space-y-4 mb-6">
-<div class="flex items-center gap-3">
-<div class="h-8 w-8 rounded-full overflow-hidden border border-border shrink-0 bg-surface-container-high flex items-center justify-center text-primary font-bold text-xs">
-                            EA
-                        </div>
-<div class="flex flex-col">
-<span class="text-xs text-on-surface-variant">Leader</span>
-<span class="font-label-md text-label-md text-on-surface">Esi Appiah</span>
-</div>
-</div>
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="schedule">schedule</span>
-<div class="bg-gold-muted px-3 py-1 rounded-full border border-secondary/20">
-<span class="text-xs font-medium text-secondary">Tuesdays, 6:00 PM</span>
-</div>
-</div>
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="location_on">location_on</span>
-<span class="font-body-md text-body-md text-on-surface">Chapel Hall A</span>
-</div>
-<div class="space-y-1.5 mt-2">
-<div class="flex justify-between items-center text-xs">
-<span class="text-on-surface-variant">Capacity</span>
-<span class="font-data-label text-data-label text-on-surface">22 / 25 members</span>
-</div>
-<div class="w-full bg-surface-variant rounded-full h-1.5 overflow-hidden">
-<div class="bg-warning h-1.5 rounded-full" style="width: 88%"></div>
-</div>
-</div>
-</div>
-<div class="flex gap-3 pt-4 border-t border-border/50">
-<button class="flex-1 border border-border text-on-surface font-label-md text-label-md py-2 px-3 rounded-lg hover:bg-surface-container-low transition-colors">View</button>
-<button class="flex-1 bg-primary-muted text-primary font-label-md text-label-md py-2 px-3 rounded-lg hover:bg-primary-light hover:text-white transition-colors">Take Attendance</button>
-</div>
-</div>
-<!-- Card 3 (Full Capacity - Red) -->
-<div class="bg-card rounded-xl p-lg shadow-sm border border-border/50 hover:shadow-md transition-shadow relative overflow-hidden group">
-<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-container rounded-l-xl"></div>
-<div class="flex justify-between items-start mb-4">
-<h2 class="font-inter font-semibold text-[16px] text-on-surface leading-snug">Youth Fellowship Class</h2>
-<button aria-label="Options" class="text-on-surface-variant hover:text-primary transition-colors rounded-full p-1">
-<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
-</button>
-</div>
-<div class="space-y-4 mb-6">
-<div class="flex items-center gap-3">
-<div class="h-8 w-8 rounded-full overflow-hidden border border-border shrink-0 bg-surface-container-high flex items-center justify-center text-primary font-bold text-xs">
-                            DA
-                        </div>
-<div class="flex flex-col">
-<span class="text-xs text-on-surface-variant">Leader</span>
-<span class="font-label-md text-label-md text-on-surface">David Asamoah</span>
-</div>
-</div>
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="schedule">schedule</span>
-<div class="bg-gold-muted px-3 py-1 rounded-full border border-secondary/20">
-<span class="text-xs font-medium text-secondary">Saturdays, 10:00 AM</span>
-</div>
-</div>
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="location_on">location_on</span>
-<span class="font-body-md text-body-md text-on-surface">Youth Center</span>
-</div>
-<div class="space-y-1.5 mt-2">
-<div class="flex justify-between items-center text-xs">
-<span class="text-on-surface-variant">Capacity</span>
-<span class="font-data-label text-data-label text-danger">30 / 30 members (Full)</span>
-</div>
-<div class="w-full bg-surface-variant rounded-full h-1.5 overflow-hidden">
-<div class="bg-danger h-1.5 rounded-full" style="width: 100%"></div>
-</div>
-</div>
-</div>
-<div class="flex gap-3 pt-4 border-t border-border/50">
-<button class="flex-1 border border-border text-on-surface font-label-md text-label-md py-2 px-3 rounded-lg hover:bg-surface-container-low transition-colors">View</button>
-<button class="flex-1 bg-primary-muted text-primary font-label-md text-label-md py-2 px-3 rounded-lg hover:bg-primary-light hover:text-white transition-colors">Take Attendance</button>
-</div>
-</div>
-</div>
-<!-- Pagination -->
-<div class="mt-8 flex justify-end">
-<nav aria-label="Pagination" class="inline-flex rounded-md shadow-sm bg-card border border-border">
-<button class="relative inline-flex items-center rounded-l-md px-2 py-2 text-on-surface-variant hover:bg-surface-container-low focus:z-20 focus:outline-offset-0 disabled:opacity-50 disabled:cursor-not-allowed" disabled="">
-<span class="sr-only">Previous</span>
-<span class="material-symbols-outlined text-[20px]" data-icon="chevron_left">chevron_left</span>
-</button>
-<button aria-current="page" class="relative z-10 inline-flex items-center bg-primary-muted px-4 py-2 text-sm font-semibold text-primary focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">1</button>
-<button class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-on-surface hover:bg-surface-container-low focus:z-20 focus:outline-offset-0">2</button>
-<button class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-on-surface hover:bg-surface-container-low focus:z-20 focus:outline-offset-0">3</button>
-<button class="relative inline-flex items-center rounded-r-md px-2 py-2 text-on-surface-variant hover:bg-surface-container-low focus:z-20 focus:outline-offset-0">
-<span class="sr-only">Next</span>
-<span class="material-symbols-outlined text-[20px]" data-icon="chevron_right">chevron_right</span>
-</button>
-</nav>
-</div>
-</main>
-</body>
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+  </head>
+
+  <body class="bg-surface text-on-surface font-body-md antialiased flex min-h-screen">
+    {% include 'components/sidebar.html' %}
+
+    <main class="flex-1 min-w-0 min-h-screen bg-surface">
+      <!-- Top Bar (kept as per Figma – 64px) -->
+      <header class="flex justify-between items-center w-full px-lg h-header-height sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
+        <nav class="flex items-center text-body-md text-on-surface-variant">
+          <a class="hover:text-primary transition-colors" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+          <span class="material-symbols-outlined text-[16px] mx-xs">chevron_right</span>
+          <span class="text-primary font-bold">Classes</span>
+        </nav>
+        <div class="flex items-center gap-md">
+          <a href="{% url 'classes:add_edit_class' %}" class="bg-primary hover:bg-primary-light text-on-primary px-md py-sm rounded-lg font-bold flex items-center gap-xs text-label-md transition-colors shadow-sm">
+            <span class="material-symbols-outlined text-[18px]">add</span>
+            New Class
+          </a>
+        </div>
+      </header>
+
+      <div class="p-xl pb-24 max-w-6xl mx-auto w-full">
+        <!-- Page Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-xl gap-lg">
+          <div>
+            <h2 class="font-headline-lg text-[32px] font-bold text-primary tracking-tight">Bible Study Classes</h2>
+            <p class="text-body-md text-on-surface-variant mt-xs leading-relaxed">Manage class groups, leaders and member assignments.</p>
+            <div class="mt-sm flex flex-wrap gap-sm text-[11px]">
+              <span class="px-2 py-1 rounded-full bg-surface-container-high font-data-label">{{ total_classes }} total</span>
+              <span class="px-2 py-1 rounded-full bg-success/10 text-success font-medium">{{ active_classes }} active</span>
+              <span class="px-2 py-1 rounded-full bg-primary-muted text-primary font-medium">{{ total_members }} members</span>
+              <span class="px-2 py-1 rounded-full bg-info/10 text-info font-medium">Avg {{ avg_occupancy }}% occupancy</span>
+            </div>
+          </div>
+        </div>
+
+        {% if messages %}
+          <div class="mb-lg space-y-sm">
+            {% for message in messages %}
+              <div class="p-md rounded-lg border flex items-start gap-sm {% if message.tags == 'error' %}bg-error-container/30 text-error border-error/20{% else %}bg-success/10 text-success border-success/20{% endif %}">
+                <span class="material-symbols-outlined text-[20px]">{% if message.tags == 'error' %}error{% else %}check_circle{% endif %}</span>
+                <span>{{ message }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <!-- Filters – kept Figma style -->
+        <section class="bg-card rounded-xl shadow-sm border border-border p-md mb-lg flex flex-wrap items-center gap-md">
+          <form method="get" class="flex flex-wrap items-center gap-md w-full">
+            <div class="flex-1 min-w-[260px] relative">
+              <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+              <input name="q" value="{{ q }}" placeholder="Search classes, location, time..." class="w-full pl-xl pr-md py-md border border-border rounded-lg focus:ring-2 focus:ring-primary-light focus:border-primary-light text-body-md outline-none transition-all" type="text" />
+            </div>
+            <select name="category" class="border border-border rounded-lg focus:ring-2 focus:ring-primary-light text-body-md py-md px-lg min-w-[160px] bg-white">
+              <option value="">All Categories</option>
+              {% for code, label in category_choices %}
+                <option value="{{ code }}" {% if category_filter == code %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            <select name="active" class="border border-border rounded-lg focus:ring-2 focus:ring-primary-light text-body-md py-md px-lg min-w-[140px] bg-white">
+              <option value="">All Status</option>
+              <option value="active" {% if active_filter == 'active' %}selected{% endif %}>Active</option>
+              <option value="inactive" {% if active_filter == 'inactive' %}selected{% endif %}>Inactive</option>
+            </select>
+            <button type="submit" class="p-md border border-border rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant bg-white">
+              <span class="material-symbols-outlined">filter_list</span>
+            </button>
+            {% if q or category_filter or active_filter %}
+              <a href="{% url 'classes:class_list' %}" class="p-md border border-border rounded-lg hover:bg-surface-container-low text-on-surface-variant bg-white">
+                <span class="material-symbols-outlined">clear</span>
+              </a>
+            {% endif %}
+          </form>
+        </section>
+
+        <!-- Classes Grid – Figma Bento style preserved -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+          {% for cls in classes %}
+            <div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+              <div class="p-lg flex-1">
+                <div class="flex justify-between items-start gap-sm mb-md">
+                  <span class="text-[10px] font-bold px-2 py-1 rounded-full uppercase {% if cls.category == 'BIBLE_STUDY' %}bg-primary-muted text-primary{% elif cls.category == 'YOUTH' %}bg-info/10 text-info{% elif cls.category == 'SUNDAY_SCHOOL' %}bg-secondary-container text-on-secondary-container{% else %}bg-surface-container-high text-on-surface-variant{% endif %}">{{ cls.get_category_display }}</span>
+                  <span class="text-[11px] px-2 py-1 rounded-full {% if cls.is_active %}bg-success/10 text-success{% else %}bg-surface-container-high text-on-surface-variant{% endif %} font-bold">{{ cls.is_active|yesno:"Active,Inactive" }}</span>
+                </div>
+                <h3 class="font-headline-md text-[18px] font-bold text-on-surface leading-tight">{{ cls.name }}</h3>
+                {% if cls.description %}
+                  <p class="text-body-md text-on-surface-variant mt-sm line-clamp-2 leading-relaxed">{{ cls.description }}</p>
+                {% endif %}
+                <div class="mt-md space-y-xs text-[11px] text-on-surface-variant">
+                  <p class="flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">location_on</span> {{ cls.location|default:"No location" }}</p>
+                  <p class="flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">schedule</span> {{ cls.meeting_time|default:"No time set" }}</p>
+                  <p class="flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">person</span> Leader: {% firstof cls.leader.get_full_name cls.leader.username "Unassigned" %}</p>
+                  {% if cls.assistant_leader %}
+                    <p class="flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">group</span> Assistant: {% firstof cls.assistant_leader.get_full_name cls.assistant_leader.username "" %}</p>
+                  {% endif %}
+                </div>
+                <div class="mt-md">
+                  <div class="flex justify-between text-[11px] font-medium mb-xs">
+                    <span>{{ cls.member_count }} / {{ cls.capacity }} members</span>
+                    <span>{{ cls.occupancy_rate|floatformat:0 }}%</span>
+                  </div>
+                  <div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+                    <div class="h-full bg-primary {% if cls.is_full %}bg-warning{% endif %}" style="width: {{ cls.occupancy_rate|floatformat:0 }}%"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="px-lg py-md bg-surface-container-low border-t border-border flex justify-between items-center">
+                <span class="text-[11px] text-outline">{{ cls.created_at|date:"d M Y" }}</span>
+                <div class="flex gap-sm">
+                  <a href="{% url 'classes:class_detail' %}?id={{ cls.id }}" class="text-primary text-[11px] font-bold hover:underline">View Details</a>
+                  <span class="text-border">•</span>
+                  <a href="{% url 'classes:add_edit_class' %}?edit={{ cls.id }}" class="text-on-surface-variant text-[11px] font-medium hover:underline">Edit</a>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <div class="col-span-3 py-xl text-center bg-card rounded-xl border border-border">
+              <span class="material-symbols-outlined text-[48px] opacity-30">school</span>
+              <p class="mt-sm font-medium text-on-surface-variant">No classes found.</p>
+              <a href="{% url 'classes:add_edit_class' %}" class="mt-md inline-block px-lg py-sm bg-primary text-on-primary rounded-lg font-bold hover:bg-primary-light">Create First Class</a>
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-lg px-lg py-md bg-surface-container-low rounded-xl border border-border flex justify-between items-center">
+          <p class="text-label-md text-on-surface-variant">Showing {{ classes.start_index }}–{{ classes.end_index }} of {{ paginator.count }}</p>
+          <div class="flex gap-sm">
+            {% if classes.has_previous %}
+              <a href="?page={{ classes.previous_page_number }}&q={{ q }}&category={{ category_filter }}&active={{ active_filter }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Previous</a>
+            {% else %}
+              <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Previous</button>
+            {% endif %}
+            <span class="px-md py-sm text-label-md">Page {{ classes.number }} of {{ classes.paginator.num_pages }}</span>
+            {% if classes.has_next %}
+              <a href="?page={{ classes.next_page_number }}&q={{ q }}&category={{ category_filter }}&active={{ active_filter }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Next</a>
+            {% else %}
+              <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Next</button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {% include 'components/toast_messages.html' %}
+  </body>
 </html>

@@ -1,476 +1,262 @@
+{% load static %}
 <!DOCTYPE html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Welfare Report | MCG-SMS</title>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>M-05 — Welfare Report | MCG-SMS</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
-            "colors": {
-                    "inverse-surface": "#33302d",
-                    "on-primary-fixed-variant": "#832233",
-                    "inverse-primary": "#ffb2b7",
-                    "secondary-container": "#fece5b",
-                    "primary-container": "#7b1c2d",
-                    "surface-bright": "#fff8f5",
-                    "on-tertiary-fixed": "#1a1c1b",
-                    "on-surface-variant": "#564243",
-                    "on-secondary-fixed": "#251a00",
-                    "on-tertiary-fixed-variant": "#464746",
-                    "tertiary-fixed": "#e3e2e0",
-                    "secondary-fixed": "#ffdf9a",
-                    "gold-muted": "#FDF6E3",
-                    "surface-container-low": "#faf2ee",
-                    "error": "#ba1a1a",
-                    "tertiary-container": "#404140",
-                    "surface-container": "#f4ece8",
-                    "on-error": "#ffffff",
-                    "primary": "#5c0219",
-                    "on-primary-container": "#ff8a95",
-                    "on-error-container": "#93000a",
-                    "card": "#FFFFFF",
-                    "surface-dim": "#e0d8d5",
-                    "on-secondary": "#ffffff",
-                    "on-background": "#1e1b19",
-                    "on-secondary-container": "#745700",
-                    "on-surface": "#1e1b19",
-                    "background": "#fff8f5",
-                    "on-tertiary-container": "#adadab",
-                    "warning": "#D97706",
-                    "surface-tint": "#a33a49",
-                    "primary-muted": "#F5EAEC",
-                    "inverse-on-surface": "#f7efeb",
-                    "tertiary": "#2a2b2a",
-                    "on-primary-fixed": "#40000e",
-                    "surface": "#F8F7F5",
-                    "surface-variant": "#e9e1dd",
-                    "primary-light": "#A3283F",
-                    "secondary": "#775a00",
-                    "outline-variant": "#dcc0c1",
-                    "primary-fixed-dim": "#ffb2b7",
-                    "surface-container-lowest": "#ffffff",
-                    "on-primary": "#ffffff",
-                    "primary-fixed": "#ffdadb",
-                    "text-secondary": "#6B7280",
-                    "surface-container-highest": "#e9e1dd",
-                    "outline": "#897172",
-                    "danger": "#DC2626",
-                    "info": "#2563EB",
-                    "secondary-fixed-dim": "#eec04f",
-                    "success": "#16A34A",
-                    "tertiary-fixed-dim": "#c7c6c5",
-                    "on-secondary-fixed-variant": "#5a4300",
-                    "on-tertiary": "#ffffff",
-                    "surface-container-high": "#eee7e3",
-                    "error-container": "#ffdad6",
-                    "border": "#E4E2DD"
+            colors: {
+              border: "#E4E2DD",
+              "surface-bright": "#fff8f5",
+              "on-primary": "#ffffff",
+              "tertiary-fixed-dim": "#c7c6c5",
+              "surface-container-low": "#faf2ee",
+              "on-tertiary-fixed": "#1a1c1b",
+              "on-secondary-fixed": "#251a00",
+              "on-secondary": "#ffffff",
+              "on-secondary-container": "#745700",
+              "surface-tint": "#a33a49",
+              "surface-container-high": "#eee7e3",
+              success: "#16A34A",
+              "surface-variant": "#e9e1dd",
+              error: "#ba1a1a",
+              "outline-variant": "#dcc0c1",
+              primary: "#5c0219",
+              "surface-dim": "#e0d8d5",
+              warning: "#D97706",
+              background: "#fff8f5",
+              "tertiary-container": "#404140",
+              "on-surface": "#1e1b19",
+              "secondary-fixed": "#ffdf9a",
+              card: "#FFFFFF",
+              secondary: "#775a00",
+              "primary-container": "#7b1c2d",
+              info: "#2563EB",
+              danger: "#DC2626",
+              "gold-muted": "#FDF6E3",
+              "primary-fixed-dim": "#ffb2b7",
+              outline: "#897172",
+              "secondary-fixed-dim": "#eec04f",
+              "on-tertiary-fixed-variant": "#464746",
+              "inverse-primary": "#ffb2b7",
+              tertiary: "#2a2b2a",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed-variant": "#5a4300",
+              "on-surface-variant": "#564243",
+              "on-primary-fixed": "#40000e",
+              "surface-container-highest": "#e9e1dd",
+              "on-tertiary-container": "#adadab",
+              "inverse-surface": "#33302d",
+              "primary-fixed": "#ffdadb",
+              "surface-container": "#f4ece8",
+              "surface-container-lowest": "#ffffff",
+              "primary-muted": "#F5EAEC",
+              "primary-light": "#A3283F",
+              "on-primary-container": "#ff8a95",
+              "inverse-on-surface": "#f7efeb",
+              "on-primary-fixed-variant": "#832233",
+              "text-secondary": "#6B7280",
+              "secondary-container": "#fece5b",
+              "on-error": "#ffffff",
+              "error-container": "#ffdad6",
+              surface: "#F8F7F5",
+              "on-tertiary": "#ffffff",
+              "tertiary-fixed": "#e3e2e0",
+              "on-background": "#1e1b19",
             },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
             },
-            "spacing": {
-                    "xs": "4px",
-                    "xl": "32px",
-                    "sm": "8px",
-                    "lg": "24px",
-                    "base": "8px",
-                    "sidebar-width": "256px",
-                    "header-height": "64px",
-                    "md": "16px"
+            spacing: {
+              lg: "24px",
+              md: "16px",
+              xl: "32px",
+              sm: "8px",
+              base: "8px",
+              "header-height": "64px",
+              "sidebar-width": "256px",
+              xs: "4px",
             },
-            "fontFamily": {
-                    "label-md": ["Inter"],
-                    "body-md": ["Inter"],
-                    "headline-lg": ["Lora"],
-                    "data-label": ["JetBrains Mono"],
-                    "data-display": ["JetBrains Mono"],
-                    "headline-md": ["Inter"],
-                    "label-sm": ["Inter"],
-                    "body-lg": ["Inter"]
-            }
-          }
-        }
+            fontFamily: {
+              "headline-lg": ["Lora"],
+              "headline-md": ["Inter"],
+              "body-md": ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
       }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            vertical-align: middle;
-        }
-        .mask-text {
-            filter: blur(4px);
-            user-select: none;
-            opacity: 0.6;
-        }
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 24px;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #e4e2dd;
-            border-radius: 10px;
-        }
     </style>
-</head>
-<body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed text-[13px] capitalize flex min-h-screen">
-{% include 'components/sidebar.html' %}
-<!-- Top Bar (Shared Component Reference) -->
-<header class="flex justify-between items-center h-header-height px-lg w-[calc(100%-256px)] fixed top-0 right-0 z-40 bg-surface-container-lowest shadow-sm">
-<div class="flex items-center gap-lg">
-<h2 class="font-headline-md text-headline-md font-bold text-primary">M-05 — Welfare Report</h2>
-<nav class="hidden md:flex gap-md">
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">Dashboard</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">Societies</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">Circuits</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">Dioceses</a>
-</nav>
-</div>
-<div class="flex items-center gap-md">
-<div class="relative w-64">
-<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
-<input class="w-full bg-surface-container-low border-none rounded-full pl-xl py-xs text-body-md focus:ring-2 focus:ring-primary/20" placeholder="Search case files..." type="text"/>
-</div>
-<button class="material-symbols-outlined text-on-surface-variant hover:text-primary" data-icon="notifications">notifications</button>
-<button class="material-symbols-outlined text-on-surface-variant hover:text-primary" data-icon="help">help</button>
-<div class="w-8 h-8 rounded-full bg-primary-fixed overflow-hidden border border-outline-variant">
-<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a Ghanaian man in a formal white shirt, representing a senior administrator of the Methodist Church. The lighting is soft and warm, reflecting a dignified and trustworthy persona. The background is a blurred corporate office setting with subtle wooden textures and a warm ambient glow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYnjYyg1KzTs9DOhBfrbn4AxW1_qMHJt6WPSqsRhc8a5GzGy9YtumkwA4iQbqlhgnBFlPouA_6KzfYck-YXxRCN9IOdgbepfoXzkyAEO3VtmqZHaU6rxk9LFBWw_yWiBSKuc9VeEzPkplOZwoVXYF8Vr_nCc64lX783pTBQxh6UKyZunkBgiP1JOYdQGw3ggQR4VKkrUiv2vNyC9spAvZbWQtawY0-poqZL6SCc0TpuwXb0TM8tr4rdNFka1tINMjNklSfapLj2V3p"/>
-</div>
-</div>
-</header>
-<!-- Main Content -->
-<main class=" pt-[calc(64px+32px)] p-xl max-w-7xl mx-auto">
-<!-- J-01 Confidentiality Banner -->
-<section class="mb-lg">
-<div class="border-2 border-error bg-error-container/30 rounded-xl p-md flex items-center gap-md shadow-sm">
-<div class="bg-error text-on-error p-sm rounded-lg">
-<span class="material-symbols-outlined" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
-</div>
-<div class="flex-1">
-<h3 class="font-headline-md text-on-error-container text-body-lg font-bold leading-tight">CONFIDENTIAL RECORD ACCESS</h3>
-<p class="text-on-surface-variant text-label-md">This report contains sensitive welfare data and PII. Unauthorized disclosure is strictly prohibited under Church Governance Code Art. 14. All access is logged.</p>
-</div>
-<div class="flex flex-col items-end">
-<span class="text-on-error-container font-data-label text-label-sm uppercase tracking-tighter">Level 4 Clearance Required</span>
-<span class="text-on-surface-variant text-[10px] font-data-label">LOG_ID: welfare-2023-009281-x</span>
-</div>
-</div>
-</section>
-<!-- Bento Grid Three-part pattern -->
-<div class="bento-grid">
-<!-- Active Welfare Cases (Hero Metric Card) -->
-<div class="col-span-12 lg:col-span-8 bg-card rounded-xl shadow-sm border-l-4 border-secondary p-lg flex flex-col justify-between overflow-hidden relative group">
-<div class="relative z-10">
-<div class="flex justify-between items-start">
-<div>
-<span class="text-on-surface-variant text-label-sm uppercase font-bold tracking-widest">Active Welfare Cases</span>
-<h4 class="font-headline-lg text-primary mt-xs">142 Total</h4>
-</div>
-<div class="flex items-center gap-xs text-success bg-success/10 px-sm py-xs rounded-full">
-<span class="material-symbols-outlined text-[18px]" data-icon="trending_up">trending_up</span>
-<span class="font-data-label text-label-md">+4% MoM</span>
-</div>
-</div>
-<div class="mt-lg grid grid-cols-2 md:grid-cols-4 gap-md">
-<div class="bg-surface p-md rounded-lg">
-<p class="text-on-surface-variant text-[10px] uppercase font-bold">In Intake</p>
-<p class="text-headline-md font-data-display text-primary">28</p>
-</div>
-<div class="bg-surface p-md rounded-lg">
-<p class="text-on-surface-variant text-[10px] uppercase font-bold">Investigation</p>
-<p class="text-headline-md font-data-display text-primary">15</p>
-</div>
-<div class="bg-surface p-md rounded-lg">
-<p class="text-on-surface-variant text-[10px] uppercase font-bold">Active Support</p>
-<p class="text-headline-md font-data-display text-primary">84</p>
-</div>
-<div class="bg-surface p-md rounded-lg border-l-2 border-warning">
-<p class="text-on-surface-variant text-[10px] uppercase font-bold">High Priority</p>
-<p class="text-headline-md font-data-display text-warning">15</p>
-</div>
-</div>
-</div>
-<!-- Background visual element -->
-<div class="absolute right-0 bottom-0 opacity-5 -mb-4 -mr-4">
-<span class="material-symbols-outlined text-[160px]" data-icon="volunteer_activism">volunteer_activism</span>
-</div>
-</div>
-<!-- Cases by Type (Donut/Radial) -->
-<div class="col-span-12 lg:col-span-4 bg-card rounded-xl shadow-sm border border-border p-lg flex flex-col">
-<h5 class="text-on-surface font-bold font-label-md uppercase mb-md">Cases by Category</h5>
-<div class="flex-1 flex items-center justify-center relative">
-<!-- SVG Chart Mock -->
-<svg class="w-40 h-40 transform -rotate-90" viewbox="0 0 100 100">
-<circle cx="50" cy="50" fill="transparent" r="40" stroke="#E4E2DD" stroke-width="8"></circle>
-<circle cx="50" cy="50" fill="transparent" r="40" stroke="#5c0219" stroke-dasharray="160 251.2" stroke-linecap="round" stroke-width="8"></circle>
-<circle cx="50" cy="50" fill="transparent" r="40" stroke="#fece5b" stroke-dasharray="60 251.2" stroke-dashoffset="-160" stroke-linecap="round" stroke-width="8"></circle>
-</svg>
-<div class="absolute inset-0 flex flex-col items-center justify-center">
-<span class="font-data-display text-headline-md text-primary">82%</span>
-<span class="text-[10px] uppercase text-on-surface-variant">Allocated</span>
-</div>
-</div>
-<ul class="mt-md space-y-xs">
-<li class="flex items-center justify-between text-label-sm">
-<div class="flex items-center gap-xs">
-<div class="w-2 h-2 rounded-full bg-primary"></div> Medical Assistance
-                        </div>
-<span class="font-data-label">64%</span>
-</li>
-<li class="flex items-center justify-between text-label-sm">
-<div class="flex items-center gap-xs">
-<div class="w-2 h-2 rounded-full bg-secondary-container"></div> Educational Grants
-                        </div>
-<span class="font-data-label">24%</span>
-</li>
-<li class="flex items-center justify-between text-label-sm">
-<div class="flex items-center gap-xs">
-<div class="w-2 h-2 rounded-full bg-outline"></div> Other Supports
-                        </div>
-<span class="font-data-label">12%</span>
-</li>
-</ul>
-</div>
-<!-- Welfare Payments (Transaction Table Section) -->
-<div class="col-span-12 lg:col-span-7 bg-card rounded-xl shadow-sm border border-border flex flex-col overflow-hidden">
-<div class="p-lg border-b border-border flex justify-between items-center bg-surface-container-low">
-<h5 class="text-on-surface font-bold font-label-md uppercase">Recent Welfare Payments</h5>
-<div class="flex items-center gap-sm">
-<span class="text-label-sm text-on-surface-variant">Showing last 30 days</span>
-<button class="material-symbols-outlined text-primary text-[20px]" data-icon="filter_list">filter_list</button>
-</div>
-</div>
-<div class="flex-1 overflow-auto custom-scrollbar">
-<table class="w-full text-left">
-<thead>
-<tr class="bg-surface-container-low border-b border-border">
-<th class="py-md px-lg text-label-sm uppercase font-bold text-on-surface-variant">Beneficiary ID</th>
-<th class="py-md px-lg text-label-sm uppercase font-bold text-on-surface-variant">Category</th>
-<th class="py-md px-lg text-label-sm uppercase font-bold text-on-surface-variant">Amount (GHS)</th>
-<th class="py-md px-lg text-label-sm uppercase font-bold text-on-surface-variant">Status</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-border">
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="py-md px-lg font-data-label text-label-md">WLF-23-0881</td>
-<td class="py-md px-lg">
-<span class="px-sm py-xs bg-primary-muted text-primary-light rounded-full text-[11px] font-bold">Medical</span>
-</td>
-<td class="py-md px-lg font-data-display text-primary">2,450.00</td>
-<td class="py-md px-lg">
-<span class="flex items-center gap-xs text-success text-[11px] font-bold">
-<span class="w-2 h-2 bg-success rounded-full"></span> Disbursed
-                                    </span>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="py-md px-lg font-data-label text-label-md">WLF-23-0902</td>
-<td class="py-md px-lg">
-<span class="px-sm py-xs bg-gold-muted text-secondary rounded-full text-[11px] font-bold">Education</span>
-</td>
-<td class="py-md px-lg font-data-display text-primary">1,200.00</td>
-<td class="py-md px-lg">
-<span class="flex items-center gap-xs text-warning text-[11px] font-bold">
-<span class="w-2 h-2 bg-warning rounded-full"></span> Pending
-                                    </span>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="py-md px-lg font-data-label text-label-md">WLF-23-0915</td>
-<td class="py-md px-lg">
-<span class="px-sm py-xs bg-surface-variant text-on-surface-variant rounded-full text-[11px] font-bold">Housing</span>
-</td>
-<td class="py-md px-lg font-data-display text-primary">5,000.00</td>
-<td class="py-md px-lg">
-<span class="flex items-center gap-xs text-info text-[11px] font-bold">
-<span class="w-2 h-2 bg-info rounded-full"></span> Approved
-                                    </span>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="py-md px-lg font-data-label text-label-md">WLF-23-0922</td>
-<td class="py-md px-lg">
-<span class="px-sm py-xs bg-primary-muted text-primary-light rounded-full text-[11px] font-bold">Medical</span>
-</td>
-<td class="py-md px-lg font-data-display text-primary">850.00</td>
-<td class="py-md px-lg">
-<span class="flex items-center gap-xs text-success text-[11px] font-bold">
-<span class="w-2 h-2 bg-success rounded-full"></span> Disbursed
-                                    </span>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<!-- Case Closure Summary (Insights) -->
-<div class="col-span-12 lg:col-span-5 bg-primary dark:bg-on-primary-fixed rounded-xl shadow-lg p-lg text-on-primary overflow-hidden relative">
-<div class="relative z-10 h-full flex flex-col">
-<div class="flex justify-between items-center mb-lg">
-<h5 class="font-bold font-label-md uppercase text-secondary-container">Closure Trends</h5>
-<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
-</div>
-<div class="flex-1 space-y-lg">
-<div>
-<div class="flex justify-between items-end mb-xs">
-<p class="text-label-md">Avg. Resolution Time</p>
-<p class="font-data-display text-headline-md">18.4 Days</p>
-</div>
-<div class="w-full h-1 bg-on-primary/10 rounded-full overflow-hidden">
-<div class="h-full bg-secondary-container rounded-full" style="width: 72%;"></div>
-</div>
-<p class="text-[10px] mt-xs text-on-primary/60">Target: &lt; 14 Days</p>
-</div>
-<div class="grid grid-cols-2 gap-md">
-<div class="bg-primary-container/40 p-md rounded-lg border border-on-primary/10">
-<p class="text-[10px] uppercase font-bold text-on-primary/60 mb-xs">Resolved Q3</p>
-<p class="text-headline-md font-data-display">42</p>
-</div>
-<div class="bg-primary-container/40 p-md rounded-lg border border-on-primary/10">
-<p class="text-[10px] uppercase font-bold text-on-primary/60 mb-xs">Closure Rate</p>
-<p class="text-headline-md font-data-display">91%</p>
-</div>
-</div>
-<div class="mt-auto">
-<div class="bg-secondary-container text-on-secondary-container p-md rounded-lg flex items-center gap-md">
-<span class="material-symbols-outlined text-[24px]" data-icon="lightbulb">lightbulb</span>
-<p class="text-label-md leading-snug">Medical cases currently take 5 days longer than general welfare to close.</p>
-</div>
-</div>
-</div>
-</div>
-<!-- Animated Background Decorative Grid -->
-<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#fece5b 0.5px, transparent 0.5px); background-size: 16px 16px;"></div>
-</div>
-<!-- Detailed Case Log (Full Width with Masking) -->
-<div class="col-span-12 bg-card rounded-xl shadow-sm border border-border flex flex-col">
-<div class="p-lg border-b border-border flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
-<div>
-<h5 class="text-on-surface font-bold font-label-md uppercase">Comprehensive Case History</h5>
-<p class="text-on-surface-variant text-label-sm">Authorized personnel only. Data below is masked for standard viewing.</p>
-</div>
-<!-- Role-based Controls -->
-<div class="flex items-center gap-lg">
-<label class="flex items-center gap-sm cursor-pointer group">
-<div class="relative">
-<input class="peer sr-only" id="fullDetailsExport" type="checkbox"/>
-<div class="w-10 h-5 bg-surface-variant rounded-full peer-checked:bg-primary transition-all"></div>
-<div class="absolute left-1 top-1 w-3 h-3 bg-white rounded-full transition-all peer-checked:translate-x-5"></div>
-</div>
-<span class="text-label-md font-medium text-on-surface-variant group-hover:text-primary transition-colors">Include full case details in export</span>
-</label>
-<button class="bg-primary text-on-primary px-lg py-md rounded-lg font-bold flex items-center gap-sm hover:bg-primary-light transition-all active:scale-95 shadow-sm">
-<span class="material-symbols-outlined" data-icon="download">download</span>
-                            Export Report (PDF)
-                        </button>
-</div>
-</div>
-<div class="overflow-x-auto">
-<table class="w-full text-left min-w-[1000px]">
-<thead>
-<tr class="bg-surface-container-high border-b border-border">
-<th class="py-md px-lg text-label-sm uppercase font-bold text-on-surface-variant w-48">Case Ref</th>
-<th class="py-md px-lg text-label-sm uppercase font-bold text-on-surface-variant w-48">Beneficiary Name</th>
-<th class="py-md px-lg text-label-sm uppercase font-bold text-on-surface-variant">Description / Sensitivity Notes</th>
-<th class="py-md px-lg text-label-sm uppercase font-bold text-on-surface-variant w-40 text-right">Last Update</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-border">
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="py-lg px-lg font-data-label text-primary">WLF-ACT-2031</td>
-<td class="py-lg px-lg font-medium text-on-surface">K. Asamoah (M-112)</td>
-<td class="py-lg px-lg">
-<div class="bg-surface rounded p-sm relative overflow-hidden">
-<span class="mask-text block">Applicant requires urgent intervention for surgical complications following chronic cardiac distress. History of family dependency...</span>
-<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-<span class="material-symbols-outlined text-primary" data-icon="visibility_off">visibility_off</span>
-</div>
-</div>
-</td>
-<td class="py-lg px-lg text-right text-on-surface-variant font-data-label text-label-sm">24 OCT 2023</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="py-lg px-lg font-data-label text-primary">WLF-ACT-2035</td>
-<td class="py-lg px-lg font-medium text-on-surface">J. Mensah (F-982)</td>
-<td class="py-lg px-lg">
-<div class="bg-surface rounded p-sm relative overflow-hidden">
-<span class="mask-text block">Secondary school scholarship renewal for three dependents following loss of primary breadwinner in recent accident...</span>
-</div>
-</td>
-<td class="py-lg px-lg text-right text-on-surface-variant font-data-label text-label-sm">21 OCT 2023</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="py-lg px-lg font-data-label text-primary">WLF-ACT-2039</td>
-<td class="py-lg px-lg font-medium text-on-surface">P. Darko (M-004)</td>
-<td class="py-lg px-lg">
-<div class="bg-surface rounded p-sm relative overflow-hidden">
-<span class="mask-text block">Disability adaptation support for housing. Structural modifications to residence to accommodate mobility aids provided...</span>
-</div>
-</td>
-<td class="py-lg px-lg text-right text-on-surface-variant font-data-label text-label-sm">18 OCT 2023</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="p-lg bg-surface-container-low border-t border-border flex justify-between items-center">
-<div class="flex items-center gap-md">
-<span class="text-label-sm text-on-surface-variant">Page 1 of 12</span>
-<div class="flex gap-xs">
-<button class="w-8 h-8 rounded border border-border flex items-center justify-center hover:bg-card"><span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span></button>
-<button class="w-8 h-8 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-label-sm">1</button>
-<button class="w-8 h-8 rounded border border-border flex items-center justify-center hover:bg-card font-bold text-label-sm">2</button>
-<button class="w-8 h-8 rounded border border-border flex items-center justify-center hover:bg-card font-bold text-label-sm">3</button>
-<button class="w-8 h-8 rounded border border-border flex items-center justify-center hover:bg-card"><span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span></button>
-</div>
-</div>
-<p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wide">End of Page — Audit Signature Required for Printed Copies</p>
-</div>
-</div>
-</div>
-</main>
-<script>
-        // Micro-interaction for the masking/checkbox
-        const exportToggle = document.getElementById('fullDetailsExport');
-        const maskedTexts = document.querySelectorAll('.mask-text');
+  </head>
 
-        exportToggle.addEventListener('change', (e) => {
-            if (e.target.checked) {
-                // In a real app, this would trigger a permission check
-                const proceed = confirm("SECURITY CLEARANCE: Viewing unmasked welfare data requires valid authorization. Do you wish to proceed? This action will be logged.");
-                if (proceed) {
-                    maskedTexts.forEach(el => el.classList.remove('mask-text'));
-                } else {
-                    e.target.checked = false;
-                }
-            } else {
-                maskedTexts.forEach(el => el.classList.add('mask-text'));
-            }
-        });
+  <body class="bg-surface text-on-surface font-body-md antialiased flex min-h-screen">
+    {% include 'components/sidebar.html' %}
 
-        // Hover effect for the confidential banner
-        const banner = document.querySelector('.border-error');
-        banner.addEventListener('mouseenter', () => {
-            banner.style.transform = 'translateY(-2px)';
-            banner.style.transition = 'transform 0.2s ease-out';
-        });
-        banner.addEventListener('mouseleave', () => {
-            banner.style.transform = 'translateY(0)';
-        });
-    </script>
-</body></html> 
+    <main class="flex-1 min-w-0 min-h-screen bg-surface">
+      <header class="flex justify-between items-center w-full px-lg h-header-height sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
+        <nav class="flex items-center text-body-md text-on-surface-variant">
+          <a class="hover:text-primary transition-colors" href="{% url 'reports:reports_hub' %}">Reports</a>
+          <span class="material-symbols-outlined text-[16px] mx-xs">chevron_right</span>
+          <span class="text-primary font-bold">Welfare Report</span>
+        </nav>
+        <a href="{% url 'reports:export_welfare_csv' %}?q={{ q }}&case_type={{ case_type_filter }}&status={{ status_filter }}" class="px-md py-sm rounded-lg border border-border bg-card hover:bg-surface-container-low text-label-md font-medium flex items-center gap-xs">
+          <span class="material-symbols-outlined text-[18px]">download</span>
+          Export CSV
+        </a>
+      </header>
+
+      <div class="p-xl pb-24 max-w-6xl mx-auto w-full">
+        <h2 class="font-headline-lg text-[32px] font-bold text-primary tracking-tight">Welfare Report</h2>
+        <p class="text-body-md text-on-surface-variant mt-xs leading-relaxed">Welfare cases overview with status and type breakdown.</p>
+
+        <div class="mt-sm flex flex-wrap gap-sm text-[11px]">
+          <span class="px-2 py-1 rounded-full bg-surface-container-high font-data-label">{{ total_cases }} total cases</span>
+          <span class="px-2 py-1 rounded-full bg-warning/10 text-warning font-medium">{{ open_cases }} open</span>
+          <span class="px-2 py-1 rounded-full bg-surface-container-high font-data-label">GHS {{ total_requested|floatformat:0 }} requested</span>
+          <span class="px-2 py-1 rounded-full bg-success/10 text-success font-medium">GHS {{ total_approved|floatformat:0 }} approved</span>
+        </div>
+
+        <!-- Stats – Figma preserved -->
+        <div class="mt-xl grid grid-cols-1 md:grid-cols-2 gap-lg">
+          <div class="bg-card rounded-xl border border-border p-lg shadow-sm">
+            <h3 class="font-bold text-[14px] mb-md">By Status</h3>
+            <div class="space-y-sm">
+              {% for item in by_status %}
+                <div class="flex justify-between text-[13px]">
+                  <span class="text-on-surface-variant">{{ item.status }}</span>
+                  <span class="font-bold">{{ item.count }}</span>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="bg-card rounded-xl border border-border p-lg shadow-sm">
+            <h3 class="font-bold text-[14px] mb-md">By Case Type</h3>
+            <div class="space-y-sm">
+              {% for item in by_type %}
+                <div class="flex justify-between text-[13px]">
+                  <span class="text-on-surface-variant">{{ item.case_type }}</span>
+                  <span class="font-bold">{{ item.count }}</span>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <section class="mt-xl bg-card rounded-xl shadow-sm border border-border p-md flex flex-wrap items-center gap-md">
+          <form method="get" class="flex flex-wrap items-center gap-md w-full">
+            <div class="flex-1 min-w-[200px] relative">
+              <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+              <input name="q" value="{{ q }}" placeholder="Search cases, members..." class="w-full pl-xl pr-md py-md border border-border rounded-lg focus:ring-2 focus:ring-primary-light text-body-md outline-none transition-all" type="text" />
+            </div>
+            <select name="case_type" class="border border-border rounded-lg py-md px-lg text-body-md bg-white min-w-[140px] focus:ring-2 focus:ring-primary-light">
+              <option value="">All Types</option>
+              {% for code, label in case_type_choices %}
+                <option value="{{ code }}" {% if case_type_filter == code %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            <select name="status" class="border border-border rounded-lg py-md px-lg text-body-md bg-white min-w-[140px] focus:ring-2 focus:ring-primary-light">
+              <option value="">All Status</option>
+              {% for code, label in status_choices %}
+                <option value="{{ code }}" {% if status_filter == code %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            <select name="priority" class="border border-border rounded-lg py-md px-lg text-body-md bg-white min-w-[120px] focus:ring-2 focus:ring-primary-light">
+              <option value="">All Priority</option>
+              {% for code, label in priority_choices %}
+                <option value="{{ code }}" {% if priority_filter == code %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            <button type="submit" class="p-md border border-border rounded-lg bg-white hover:bg-surface-container-low text-on-surface-variant">
+              <span class="material-symbols-outlined">filter_list</span>
+            </button>
+            {% if q or case_type_filter or status_filter or priority_filter %}
+              <a href="{% url 'reports:welfare_report' %}" class="p-md border border-border rounded-lg bg-white hover:bg-surface-container-low text-on-surface-variant">
+                <span class="material-symbols-outlined">clear</span>
+              </a>
+            {% endif %}
+          </form>
+        </section>
+
+        <!-- Table -->
+        <div class="mt-xl bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse min-w-[700px]">
+              <thead class="bg-surface-container-low border-b border-border">
+                <tr>
+                  <th class="px-lg py-md text-label-md font-bold uppercase tracking-wider">Case</th>
+                  <th class="px-lg py-md text-label-md font-bold uppercase tracking-wider">Member</th>
+                  <th class="px-lg py-md text-label-md font-bold uppercase tracking-wider">Type / Priority</th>
+                  <th class="px-lg py-md text-label-md font-bold uppercase tracking-wider">Amount</th>
+                  <th class="px-lg py-md text-label-md font-bold uppercase tracking-wider text-center">Status</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border">
+                {% for case in cases %}
+                  <tr class="hover:bg-surface-container-lowest transition-colors">
+                    <td class="px-lg py-md">
+                      <p class="font-bold text-[13px]">#{{ case.id }} — {{ case.title }}</p>
+                      <p class="text-[11px] text-on-surface-variant">{{ case.created_at|date:"d M Y" }}</p>
+                    </td>
+                    <td class="px-lg py-md text-[13px]">{{ case.member.get_full_name }}</td>
+                    <td class="px-lg py-md">
+                      <span class="text-[11px] px-2 py-1 rounded-full bg-surface-container-high">{{ case.get_case_type_display }}</span>
+                      <span class="text-[10px] px-2 py-1 rounded-full uppercase font-bold {% if case.priority == 'URGENT' %}bg-error text-on-error{% elif case.priority == 'HIGH' %}bg-warning/20 text-warning{% else %}bg-surface-container-high{% endif %}">{{ case.get_priority_display }}</span>
+                    </td>
+                    <td class="px-lg py-md text-[13px] font-data-label">GHS {{ case.requested_amount|floatformat:2 }} • <span class="text-success">GHS {{ case.approved_amount|floatformat:2 }}</span></td>
+                    <td class="px-lg py-md text-center">
+                      <span class="px-2 py-1 rounded-full text-[11px] font-bold uppercase {% if case.status == 'APPROVED' %}bg-success/10 text-success{% elif case.status == 'DISBURSED' %}bg-primary-muted text-primary{% elif case.status == 'CLOSED' %}bg-surface-container-high text-on-surface-variant{% else %}bg-info/10 text-info{% endif %}">{{ case.get_status_display }}</span>
+                    </td>
+                  </tr>
+                {% empty %}
+                  <tr>
+                    <td colspan="5" class="px-lg py-xl text-center text-on-surface-variant">No welfare cases found.</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="px-lg py-md bg-surface-container-low border-t border-border flex justify-between items-center">
+            <p class="text-label-md text-on-surface-variant">Showing {{ cases.start_index }}–{{ cases.end_index }} of {{ paginator.count }}</p>
+            <div class="flex gap-sm">
+              {% if cases.has_previous %}
+                <a href="?page={{ cases.previous_page_number }}&q={{ q }}&case_type={{ case_type_filter }}&status={{ status_filter }}&priority={{ priority_filter }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Previous</a>
+              {% else %}
+                <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Previous</button>
+              {% endif %}
+              {% if cases.has_next %}
+                <a href="?page={{ cases.next_page_number }}&q={{ q }}&case_type={{ case_type_filter }}&status={{ status_filter }}&priority={{ priority_filter }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Next</a>
+              {% else %}
+                <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Next</button>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {% include 'components/toast_messages.html' %}
+  </body>
+</html>

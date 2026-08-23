@@ -1,380 +1,327 @@
+{% load static %}
 <!DOCTYPE html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Reports | MCG-SMS</title>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MCG-SMS | Reports Landing Page</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
-<!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
-            "colors": {
-                    "inverse-surface": "#33302d",
-                    "on-primary-fixed-variant": "#832233",
-                    "inverse-primary": "#ffb2b7",
-                    "secondary-container": "#fece5b",
-                    "primary-container": "#7b1c2d",
-                    "surface-bright": "#fff8f5",
-                    "on-tertiary-fixed": "#1a1c1b",
-                    "on-surface-variant": "#564243",
-                    "on-secondary-fixed": "#251a00",
-                    "on-tertiary-fixed-variant": "#464746",
-                    "tertiary-fixed": "#e3e2e0",
-                    "secondary-fixed": "#ffdf9a",
-                    "gold-muted": "#FDF6E3",
-                    "surface-container-low": "#faf2ee",
-                    "error": "#ba1a1a",
-                    "tertiary-container": "#404140",
-                    "surface-container": "#f4ece8",
-                    "on-error": "#ffffff",
-                    "primary": "#5c0219",
-                    "on-primary-container": "#ff8a95",
-                    "on-error-container": "#93000a",
-                    "card": "#FFFFFF",
-                    "surface-dim": "#e0d8d5",
-                    "on-secondary": "#ffffff",
-                    "on-background": "#1e1b19",
-                    "on-secondary-container": "#745700",
-                    "on-surface": "#1e1b19",
-                    "background": "#fff8f5",
-                    "on-tertiary-container": "#adadab",
-                    "warning": "#D97706",
-                    "surface-tint": "#a33a49",
-                    "primary-muted": "#F5EAEC",
-                    "inverse-on-surface": "#f7efeb",
-                    "tertiary": "#2a2b2a",
-                    "on-primary-fixed": "#40000e",
-                    "surface": "#F8F7F5",
-                    "surface-variant": "#e9e1dd",
-                    "primary-light": "#A3283F",
-                    "secondary": "#775a00",
-                    "outline-variant": "#dcc0c1",
-                    "primary-fixed-dim": "#ffb2b7",
-                    "surface-container-lowest": "#ffffff",
-                    "on-primary": "#ffffff",
-                    "primary-fixed": "#ffdadb",
-                    "text-secondary": "#6B7280",
-                    "surface-container-highest": "#e9e1dd",
-                    "outline": "#897172",
-                    "danger": "#DC2626",
-                    "info": "#2563EB",
-                    "secondary-fixed-dim": "#eec04f",
-                    "success": "#16A34A",
-                    "tertiary-fixed-dim": "#c7c6c5",
-                    "on-secondary-fixed-variant": "#5a4300",
-                    "on-tertiary": "#ffffff",
-                    "surface-container-high": "#eee7e3",
-                    "error-container": "#ffdad6",
-                    "border": "#E4E2DD"
+            colors: {
+              "inverse-surface": "#33302d",
+              "on-primary-fixed-variant": "#832233",
+              "inverse-primary": "#ffb2b7",
+              "secondary-container": "#fece5b",
+              "primary-container": "#7b1c2d",
+              "surface-bright": "#fff8f5",
+              "on-tertiary-fixed": "#1a1c1b",
+              "on-surface-variant": "#564243",
+              "on-secondary-fixed": "#251a00",
+              "on-tertiary-fixed-variant": "#464746",
+              "tertiary-fixed": "#e3e2e0",
+              "secondary-fixed": "#ffdf9a",
+              "gold-muted": "#FDF6E3",
+              "surface-container-low": "#faf2ee",
+              error: "#ba1a1a",
+              "tertiary-container": "#404140",
+              "surface-container": "#f4ece8",
+              "on-error": "#ffffff",
+              primary: "#5c0219",
+              "on-primary-container": "#ff8a95",
+              "on-error-container": "#93000a",
+              card: "#FFFFFF",
+              "surface-dim": "#e0d8d5",
+              "on-secondary": "#ffffff",
+              "on-background": "#1e1b19",
+              "on-secondary-container": "#745700",
+              "on-surface": "#1e1b19",
+              background: "#fff8f5",
+              "on-tertiary-container": "#adadab",
+              warning: "#D97706",
+              "surface-tint": "#a33a49",
+              "primary-muted": "#F5EAEC",
+              "inverse-on-surface": "#f7efeb",
+              tertiary: "#2a2b2a",
+              "on-primary-fixed": "#40000e",
+              surface: "#F8F7F5",
+              "surface-variant": "#e9e1dd",
+              "primary-light": "#A3283F",
+              secondary: "#775a00",
+              "outline-variant": "#dcc0c1",
+              "primary-fixed-dim": "#ffb2b7",
+              "surface-container-lowest": "#ffffff",
+              "on-primary": "#ffffff",
+              "primary-fixed": "#ffdadb",
+              "text-secondary": "#6B7280",
+              "surface-container-highest": "#e9e1dd",
+              outline: "#897172",
+              danger: "#DC2626",
+              info: "#2563EB",
+              "secondary-fixed-dim": "#eec04f",
+              success: "#16A34A",
+              "tertiary-fixed-dim": "#c7c6c5",
+              "on-secondary-fixed-variant": "#5a4300",
+              "on-tertiary": "#ffffff",
+              "surface-container-high": "#eee7e3",
+              "error-container": "#ffdad6",
+              border: "#E4E2DD",
             },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
             },
-            "spacing": {
-                    "xs": "4px",
-                    "xl": "32px",
-                    "sm": "8px",
-                    "lg": "24px",
-                    "base": "8px",
-                    "sidebar-width": "256px",
-                    "header-height": "64px",
-                    "md": "16px"
+            spacing: {
+              lg: "24px",
+              md: "16px",
+              xl: "32px",
+              sm: "8px",
+              base: "8px",
+              "header-height": "64px",
+              "sidebar-width": "256px",
+              xs: "4px",
             },
-            "fontFamily": {
-                    "label-md": ["Inter"],
-                    "body-md": ["Inter"],
-                    "headline-lg": ["Lora"],
-                    "data-label": ["JetBrains Mono"],
-                    "data-display": ["JetBrains Mono"],
-                    "headline-md": ["Inter"],
-                    "label-sm": ["Inter"],
-                    "body-lg": ["Inter"]
-            }
-          }
-        }
+            fontFamily: {
+              "headline-lg": ["Lora"],
+              "headline-md": ["Inter"],
+              "body-md": ["Inter"],
+              "label-md": ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
       }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            vertical-align: middle;
-        }
-        .report-card-hover:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #e9e1dd;
-            border-radius: 10px;
-        }
     </style>
-</head>
-<body class="bg-background text-on-background font-body-md text-body-md overflow-hidden text-[13px] capitalize flex min-h-screen">
-{% include 'components/sidebar.html' %}
-<!-- Main Canvas -->
-<main class=" h-screen flex flex-col overflow-hidden">
-<!-- Top Bar -->
-<header class="flex justify-between items-center h-header-height px-lg w-full sticky top-0 z-40 bg-surface-container-lowest shadow-sm border-b border-outline/10">
-<div class="flex items-center gap-lg">
-<h2 class="font-headline-lg text-headline-lg text-primary capitalize">Reporting Hub</h2>
-<!-- Global Search -->
-<div class="relative w-96">
-<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
-<input class="w-full bg-surface-container border border-outline/20 rounded-full py-sm pl-xl pr-md focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-body-md" placeholder="Search reports by name..." type="text"/>
-</div>
-</div>
-<div class="flex items-center gap-md">
-<div class="flex gap-sm">
-<button class="p-sm rounded-full hover:bg-surface-container-high transition-colors relative">
-<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
-<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
-</button>
-<button class="p-sm rounded-full hover:bg-surface-container-high transition-colors">
-<span class="material-symbols-outlined text-on-surface-variant" data-icon="help">help</span>
-</button>
-</div>
-<div class="h-8 w-[1px] bg-outline/20 mx-xs"></div>
-<div class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-high p-xs rounded-lg transition-all">
-<img class="w-8 h-8 rounded-full border border-primary/20" data-alt="A professional portrait of a Ghanaian church administrator wearing a formal suit, set against a blurred background of a modern ecclesiastical office. The lighting is soft and natural, emphasizing a look of wisdom and clerical authority. High-end photography style with rich textures and warm tones consistent with the Methodist brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw8dn4J-glTw6XU9GAPx__DDLijSWrIBxzGOurhAv_d81Jzu4e-4w6EOZkn9YjWLyhAnDKDO2HomSe0uCQA-CbYsOavlLQvsSmJmzqQOn4HL7ge34IybOLY1KCej3wG9gAOaS4yfT-4dJMHkdFFxY-bz7BCwYJXEKVyqtdiGBTnnsSBTUP8H0jsFQdcZt4kGZ3VwG9D_RlTFgkmydlQ2gvcyoQDI8mP4mTQlCIy1At3WjvS2-wuz9aEF7sM5t1CgNOL6hp58eq3fuz"/>
-<span class="material-symbols-outlined text-on-surface-variant" data-icon="arrow_drop_down">arrow_drop_down</span>
-</div>
-</div>
-</header>
-<!-- Scrollable Content -->
-<section class="flex-1 overflow-y-auto p-lg custom-scrollbar">
-<!-- Summary Bar (Bento-lite) -->
-<div class="grid grid-cols-1 md:grid-cols-4 gap-lg mb-xl">
-<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary flex flex-col gap-xs transition-all hover:shadow-md">
-<span class="text-label-sm uppercase text-on-surface-variant tracking-wider">Reports Ready</span>
-<span class="font-data-display text-data-display font-bold text-primary">24 Active</span>
-</div>
-<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-primary flex flex-col gap-xs transition-all hover:shadow-md">
-<span class="text-label-sm uppercase text-on-surface-variant tracking-wider">Pending Statutory</span>
-<span class="font-data-display text-data-display font-bold text-primary">03 Actions</span>
-</div>
-<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-success flex flex-col gap-xs transition-all hover:shadow-md">
-<span class="text-label-sm uppercase text-on-surface-variant tracking-wider">Avg. Sync Speed</span>
-<span class="font-data-display text-data-display font-bold text-primary">1.2s</span>
-</div>
-<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-info flex flex-col gap-xs transition-all hover:shadow-md">
-<span class="text-label-sm uppercase text-on-surface-variant tracking-wider">Last System Audit</span>
-<span class="font-data-display text-data-display font-bold text-primary">Today, 08:00</span>
-</div>
-</div>
-<!-- Report Sections -->
-<div class="space-y-xl">
-<!-- Section: Membership Reports -->
-<div>
-<div class="flex items-center gap-sm mb-lg">
-<span class="material-symbols-outlined text-primary" data-icon="groups">groups</span>
-<h3 class="font-headline-md text-headline-md text-on-surface capitalize">Membership Reports</h3>
-<div class="h-[1px] flex-1 bg-outline/10 ml-md"></div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
-<div class="bg-card p-lg rounded-xl shadow-sm border border-outline/10 report-card-hover transition-all flex flex-col justify-between h-48">
-<div>
-<h4 class="font-headline-md text-primary mb-xs capitalize">Active Members Census</h4>
-<p class="text-on-surface-variant text-body-md line-clamp-1">Full breakdown of all registered members across all societies.</p>
-<p class="text-label-sm text-outline mt-md">Last generated: 14 Oct 2023</p>
-</div>
-<button class="self-end bg-primary-muted text-primary hover:bg-primary hover:text-white px-lg py-sm rounded-lg font-label-md transition-all">Generate</button>
-</div>
-<div class="bg-card p-lg rounded-xl shadow-sm border border-outline/10 report-card-hover transition-all flex flex-col justify-between h-48">
-<div>
-<h4 class="font-headline-md text-primary mb-xs capitalize">Baptismal Records</h4>
-<p class="text-on-surface-variant text-body-md line-clamp-1">Chronological log of baptisms performed this quarter.</p>
-<p class="text-label-sm text-outline mt-md">Last generated: 02 Nov 2023</p>
-</div>
-<button class="self-end bg-primary-muted text-primary hover:bg-primary hover:text-white px-lg py-sm rounded-lg font-label-md transition-all">Generate</button>
-</div>
-<div class="bg-card p-lg rounded-xl shadow-sm border border-outline/10 report-card-hover transition-all flex flex-col justify-between h-48">
-<div>
-<h4 class="font-headline-md text-primary mb-xs capitalize">Transfers In/Out</h4>
-<p class="text-on-surface-variant text-body-md line-clamp-1">Movement of members between circuits and dioceses.</p>
-<p class="text-label-sm text-outline mt-md">Last generated: 28 Oct 2023</p>
-</div>
-<button class="self-end bg-primary-muted text-primary hover:bg-primary hover:text-white px-lg py-sm rounded-lg font-label-md transition-all">Generate</button>
-</div>
-</div>
-</div>
-<!-- Section: Attendance Reports -->
-<div>
-<div class="flex items-center gap-sm mb-lg">
-<span class="material-symbols-outlined text-primary" data-icon="event_available">event_available</span>
-<h3 class="font-headline-md text-headline-md text-on-surface capitalize">Attendance Reports</h3>
-<div class="h-[1px] flex-1 bg-outline/10 ml-md"></div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
-<div class="bg-card p-lg rounded-xl shadow-sm border border-outline/10 report-card-hover transition-all flex flex-col justify-between h-48">
-<div>
-<h4 class="font-headline-md text-primary mb-xs capitalize">Sunday Service Attendance</h4>
-<p class="text-on-surface-variant text-body-md line-clamp-1">Weekly headcount for primary worship services.</p>
-<p class="text-label-sm text-outline mt-md">Last generated: Yesterday</p>
-</div>
-<button class="self-end bg-primary-muted text-primary hover:bg-primary hover:text-white px-lg py-sm rounded-lg font-label-md transition-all">Generate</button>
-</div>
-<div class="bg-card p-lg rounded-xl shadow-sm border border-outline/10 report-card-hover transition-all flex flex-col justify-between h-48">
-<div>
-<h4 class="font-headline-md text-primary mb-xs capitalize">Youth Fellowship Tracker</h4>
-<p class="text-on-surface-variant text-body-md line-clamp-1">Participation metrics for the Methodist Youth Fellowship.</p>
-<p class="text-label-sm text-outline mt-md">Last generated: 05 Nov 2023</p>
-</div>
-<button class="self-end bg-primary-muted text-primary hover:bg-primary hover:text-white px-lg py-sm rounded-lg font-label-md transition-all">Generate</button>
-</div>
-</div>
-</div>
-<!-- Section: Financial Reports -->
-<div>
-<div class="flex items-center gap-sm mb-lg">
-<span class="material-symbols-outlined text-primary" data-icon="account_balance_wallet">account_balance_wallet</span>
-<h3 class="font-headline-md text-headline-md text-on-surface capitalize">Financial Reports</h3>
-<div class="h-[1px] flex-1 bg-outline/10 ml-md"></div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
-<div class="bg-card p-lg rounded-xl shadow-sm border border-outline/10 report-card-hover transition-all flex flex-col justify-between h-48">
-<div>
-<h4 class="font-headline-md text-primary mb-xs capitalize">Offertory Analysis</h4>
-<p class="text-on-surface-variant text-body-md line-clamp-1">Detailed summary of weekly tithes and offerings.</p>
-<p class="text-label-sm text-outline mt-md">Last generated: Today</p>
-</div>
-<button class="self-end bg-primary-muted text-primary hover:bg-primary hover:text-white px-lg py-sm rounded-lg font-label-md transition-all">Generate</button>
-</div>
-<div class="bg-card p-lg rounded-xl shadow-sm border border-outline/10 report-card-hover transition-all flex flex-col justify-between h-48">
-<div>
-<h4 class="font-headline-md text-primary mb-xs capitalize">Circuit Assessment Summary</h4>
-<p class="text-on-surface-variant text-body-md line-clamp-1">Tracking assessment fulfillment across the circuit.</p>
-<p class="text-label-sm text-outline mt-md">Last generated: 01 Nov 2023</p>
-</div>
-<button class="self-end bg-primary-muted text-primary hover:bg-primary hover:text-white px-lg py-sm rounded-lg font-label-md transition-all">Generate</button>
-</div>
-</div>
-</div>
-<!-- Section: Welfare Reports -->
-<div>
-<div class="flex items-center gap-sm mb-lg">
-<span class="material-symbols-outlined text-primary" data-icon="medical_services">medical_services</span>
-<h3 class="font-headline-md text-headline-md text-on-surface capitalize">Welfare Reports</h3>
-<div class="h-[1px] flex-1 bg-outline/10 ml-md"></div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
-<div class="bg-card p-lg rounded-xl shadow-sm border border-outline/10 report-card-hover transition-all flex flex-col justify-between h-48 border-l-2 border-danger/30">
-<div>
-<h4 class="font-headline-md text-primary mb-xs capitalize">Sensitive Welfare Fund</h4>
-<p class="text-on-surface-variant text-body-md line-clamp-1">Disbursements for emergency medical and funeral support.</p>
-<p class="text-label-sm text-outline mt-md">Last generated: 10 Nov 2023</p>
-</div>
-<button class="self-end bg-primary-muted text-primary hover:bg-primary hover:text-white px-lg py-sm rounded-lg font-label-md transition-all">Generate</button>
-</div>
-<div class="bg-card p-lg rounded-xl shadow-sm border border-outline/10 report-card-hover transition-all flex flex-col justify-between h-48">
-<div>
-<h4 class="font-headline-md text-primary mb-xs capitalize">Aged Member Visitations</h4>
-<p class="text-on-surface-variant text-body-md line-clamp-1">Log of pastoral care visits to elderly congregants.</p>
-<p class="text-label-sm text-outline mt-md">Last generated: 03 Nov 2023</p>
-</div>
-<button class="self-end bg-primary-muted text-primary hover:bg-primary hover:text-white px-lg py-sm rounded-lg font-label-md transition-all">Generate</button>
-</div>
-</div>
-</div>
-<!-- Section: Leaders' Meeting Reports -->
-<div>
-<div class="flex items-center gap-sm mb-lg">
-<span class="material-symbols-outlined text-primary" data-icon="meeting_room">meeting_room</span>
-<h3 class="font-headline-md text-headline-md text-on-surface capitalize">Leaders' Meeting Reports</h3>
-<div class="h-[1px] flex-1 bg-outline/10 ml-md"></div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
-<div class="bg-card p-lg rounded-xl shadow-sm border border-outline/10 report-card-hover transition-all flex flex-col justify-between h-48">
-<div>
-<h4 class="font-headline-md text-primary mb-xs capitalize">Minutes of Quarterly Meeting</h4>
-<p class="text-on-surface-variant text-body-md line-clamp-1">Full transcript of executive decisions and resolutions.</p>
-<p class="text-label-sm text-outline mt-md">Last generated: 15 Sep 2023</p>
-</div>
-<button class="self-end bg-primary-muted text-primary hover:bg-primary hover:text-white px-lg py-sm rounded-lg font-label-md transition-all">Generate</button>
-</div>
-</div>
-</div>
-<!-- Section: Statutory Reports -->
-<div class="pb-xl">
-<div class="flex items-center gap-sm mb-lg">
-<span class="material-symbols-outlined text-primary" data-icon="gavel">gavel</span>
-<h3 class="font-headline-md text-headline-md text-on-surface capitalize">Statutory Reports</h3>
-<div class="h-[1px] flex-1 bg-outline/10 ml-md"></div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
-<div class="bg-card p-lg rounded-xl shadow-md border-2 border-secondary/20 report-card-hover transition-all flex flex-col justify-between h-48 bg-gold-muted/30">
-<div>
-<div class="flex justify-between items-start">
-<h4 class="font-headline-md text-primary mb-xs capitalize">Statutory Payments Report</h4>
-<span class="bg-secondary/10 text-secondary text-[10px] uppercase font-bold px-sm py-xs rounded">High Priority</span>
-</div>
-<p class="text-on-surface-variant text-body-md line-clamp-1">Compliance tracking for SSNIT, GRA, and Church Levies.</p>
-<p class="text-label-sm text-outline mt-md">Last generated: 08 Nov 2023</p>
-</div>
-<!-- Direct Link to H-09 -->
-<button class="self-end bg-secondary text-on-primary hover:bg-on-secondary-container px-lg py-sm rounded-lg font-label-md transition-all shadow-sm flex items-center gap-xs" onclick="window.location.href='#H-09'">
-<span class="material-symbols-outlined text-[18px]" data-icon="open_in_new">open_in_new</span>
-                                Open H-09
-                            </button>
-</div>
-<div class="bg-card p-lg rounded-xl shadow-sm border border-outline/10 report-card-hover transition-all flex flex-col justify-between h-48">
-<div>
-<h4 class="font-headline-md text-primary mb-xs capitalize">Annual Conference Audit</h4>
-<p class="text-on-surface-variant text-body-md line-clamp-1">External audit preparation for the Methodist Conference.</p>
-<p class="text-label-sm text-outline mt-md">Last generated: 30 Oct 2023</p>
-</div>
-<button class="self-end bg-primary-muted text-primary hover:bg-primary hover:text-white px-lg py-sm rounded-lg font-label-md transition-all">Generate</button>
-</div>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Interactive Search Script -->
-<script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.querySelector('input[placeholder="Search reports by name..."]');
-            const cards = document.querySelectorAll('.report-card-hover');
+  </head>
 
-            searchInput.addEventListener('input', (e) => {
-                const term = e.target.value.toLowerCase();
-                cards.forEach(card => {
-                    const title = card.querySelector('h4').textContent.toLowerCase();
-                    if (title.includes(term)) {
-                        card.style.display = 'flex';
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
-                    } else {
-                        card.style.display = 'none';
-                        card.style.opacity = '0';
-                        card.style.transform = 'scale(0.95)';
-                    }
-                });
-            });
+  <body class="bg-surface text-on-surface font-body-md antialiased flex min-h-screen">
+    {% include 'components/sidebar.html' %}
 
-            // Micro-interaction for buttons
-            const buttons = document.querySelectorAll('button');
-            buttons.forEach(btn => {
-                btn.addEventListener('mousedown', () => btn.classList.add('scale-95'));
-                btn.addEventListener('mouseup', () => btn.classList.remove('scale-95'));
-                btn.addEventListener('mouseleave', () => btn.classList.remove('scale-95'));
-            });
-        });
-    </script>
-</body></html> 
+    <main class="flex-1 min-w-0 min-h-screen bg-surface">
+      <!-- Top Bar – Figma preserved (64px) -->
+      <header class="flex justify-between items-center w-full px-lg h-header-height sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
+        <nav class="flex items-center text-body-md text-on-surface-variant">
+          <a class="hover:text-primary transition-colors" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+          <span class="material-symbols-outlined text-[16px] mx-xs">chevron_right</span>
+          <span class="text-primary font-bold">Reports</span>
+        </nav>
+      </header>
+
+      <div class="p-xl pb-24 max-w-6xl mx-auto w-full">
+        <h2 class="font-headline-lg text-[32px] font-bold text-primary tracking-tight">Reports Hub</h2>
+        <p class="text-body-md text-on-surface-variant mt-xs leading-relaxed">Generate, view and export church reports and analytics.</p>
+
+        <div class="mt-sm flex flex-wrap gap-sm text-[11px]">
+          <span class="px-2 py-1 rounded-full bg-surface-container-high font-data-label">{{ total_reports }} total reports</span>
+          <span class="px-2 py-1 rounded-full bg-secondary-fixed-dim text-on-secondary-fixed-variant font-bold">{{ pinned_reports }} pinned</span>
+          {% for item in by_type %}
+            <span class="px-2 py-1 rounded-full bg-primary-muted text-primary font-medium">{{ item.report_type }}: {{ item.count }}</span>
+          {% endfor %}
+        </div>
+
+        {% if messages %}
+          <div class="mt-lg space-y-sm">
+            {% for message in messages %}
+              <div class="p-md rounded-lg border flex items-start gap-sm {% if message.tags == 'error' %}bg-error-container/30 text-error border-error/20{% else %}bg-success/10 text-success border-success/20{% endif %}">
+                <span class="material-symbols-outlined text-[20px]">{% if message.tags == 'error' %}error{% else %}check_circle{% endif %}</span>
+                <span>{{ message }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <!-- Quick Links – Figma preserved -->
+        <div class="mt-xl grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-md">
+          <a href="{% url 'reports:membership_report' %}" class="bg-card rounded-xl border border-border p-lg shadow-sm hover:shadow-md transition-shadow">
+            <span class="material-symbols-outlined text-primary text-[24px]">group</span>
+            <h3 class="font-bold text-[14px] mt-sm">Membership</h3>
+            <p class="text-[11px] text-on-surface-variant mt-xs">Member directory &amp; status</p>
+          </a>
+          <a href="{% url 'reports:attendance_report' %}" class="bg-card rounded-xl border border-border p-lg shadow-sm hover:shadow-md transition-shadow">
+            <span class="material-symbols-outlined text-info text-[24px]">how_to_reg</span>
+            <h3 class="font-bold text-[14px] mt-sm">Attendance</h3>
+            <p class="text-[11px] text-on-surface-variant mt-xs">Service &amp; class attendance</p>
+          </a>
+          <a href="{% url 'reports:finance_report' %}" class="bg-card rounded-xl border border-border p-lg shadow-sm hover:shadow-md transition-shadow">
+            <span class="material-symbols-outlined text-success text-[24px]">payments</span>
+            <h3 class="font-bold text-[14px] mt-sm">Finance</h3>
+            <p class="text-[11px] text-on-surface-variant mt-xs">Income &amp; expenses</p>
+          </a>
+          <a href="{% url 'reports:welfare_report' %}" class="bg-card rounded-xl border border-border p-lg shadow-sm hover:shadow-md transition-shadow">
+            <span class="material-symbols-outlined text-warning text-[24px]">volunteer_activism</span>
+            <h3 class="font-bold text-[14px] mt-sm">Welfare</h3>
+            <p class="text-[11px] text-on-surface-variant mt-xs">Cases &amp; disbursements</p>
+          </a>
+          <a href="{% url 'reports:annual_report' %}" class="bg-card rounded-xl border border-border p-lg shadow-sm hover:shadow-md transition-shadow border-l-4 border-l-secondary-container">
+            <span class="material-symbols-outlined text-secondary text-[24px]">analytics</span>
+            <h3 class="font-bold text-[14px] mt-sm">Annual</h3>
+            <p class="text-[11px] text-on-surface-variant mt-xs">Yearly &amp; quarterly</p>
+          </a>
+        </div>
+
+        <!-- Filters -->
+        <section class="mt-xl bg-card rounded-xl shadow-sm border border-border p-md flex flex-wrap items-center gap-md">
+          <form method="get" class="flex flex-wrap items-center gap-md w-full">
+            <div class="flex-1 min-w-[260px] relative">
+              <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+              <input name="q" value="{{ q }}" placeholder="Search reports..." class="w-full pl-xl pr-md py-md border border-border rounded-lg focus:ring-2 focus:ring-primary-light text-body-md outline-none transition-all" type="text" />
+            </div>
+            <select name="type" class="border border-border rounded-lg py-md px-lg text-body-md bg-white min-w-[140px] focus:ring-2 focus:ring-primary-light">
+              <option value="">All Types</option>
+              {% for code, label in type_choices %}
+                <option value="{{ code }}" {% if type_filter == code %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            <select name="status" class="border border-border rounded-lg py-md px-lg text-body-md bg-white min-w-[140px] focus:ring-2 focus:ring-primary-light">
+              <option value="">All Status</option>
+              {% for code, label in status_choices %}
+                <option value="{{ code }}" {% if status_filter == code %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            <button type="submit" class="p-md border border-border rounded-lg bg-white hover:bg-surface-container-low text-on-surface-variant">
+              <span class="material-symbols-outlined">filter_list</span>
+            </button>
+            {% if q or type_filter or status_filter %}
+              <a href="{% url 'reports:reports_hub' %}" class="p-md border border-border rounded-lg bg-white hover:bg-surface-container-low text-on-surface-variant">
+                <span class="material-symbols-outlined">clear</span>
+              </a>
+            {% endif %}
+          </form>
+        </section>
+
+        <!-- Reports List -->
+        <div class="mt-xl grid grid-cols-1 md:grid-cols-2 gap-lg">
+          {% for report in reports %}
+            <div class="bg-card rounded-xl shadow-sm border border-border p-lg flex flex-col {% if report.is_pinned %}ring-2 ring-secondary-fixed-dim{% endif %}">
+              <div class="flex justify-between items-start gap-md mb-sm">
+                <div class="flex items-center gap-sm flex-wrap">
+                  <span class="text-[10px] font-bold px-2 py-1 rounded-full uppercase {% if report.report_type == 'MEMBERSHIP' %}bg-primary-muted text-primary{% elif report.report_type == 'FINANCIAL' %}bg-success/10 text-success{% elif report.report_type == 'WELFARE' %}bg-warning/10 text-warning{% elif report.report_type == 'ANNUAL' %}bg-secondary-container text-on-secondary-container{% else %}bg-surface-container-high text-on-surface-variant{% endif %}">{{ report.get_report_type_display }}</span>
+                  <span class="text-[10px] px-2 py-1 rounded-full uppercase font-bold {% if report.status == 'GENERATED' %}bg-success/10 text-success{% elif report.status == 'PENDING' %}bg-warning/10 text-warning{% else %}bg-surface-container-high text-on-surface-variant{% endif %}">{{ report.get_status_display }}</span>
+                  {% if report.is_pinned %}
+                    <span class="inline-flex items-center gap-xs px-2 py-1 rounded-full bg-secondary-fixed-dim text-on-secondary-fixed-variant text-[10px] font-bold"><span class="material-symbols-outlined text-[14px]">push_pin</span> Pinned</span>
+                  {% endif %}
+                </div>
+                <span class="text-[11px] text-outline">{{ report.generated_at|date:"d M Y" }}</span>
+              </div>
+              <h3 class="font-bold text-[16px] text-on-surface leading-tight">{{ report.title }}</h3>
+              {% if report.description %}
+                <p class="text-body-md text-on-surface-variant mt-sm line-clamp-2 leading-relaxed">{{ report.description }}</p>
+              {% endif %}
+              <div class="mt-md flex items-center gap-sm text-[11px] text-outline">
+                <span>By {{ report.generated_by|default:"System" }}</span>
+                <span>•</span>
+                <span>{{ report.file_size_formatted|default:"No file" }}</span>
+                <span>•</span>
+                <span>{{ report.generated_at|timesince }} ago</span>
+              </div>
+              <div class="mt-md flex justify-between items-center pt-md border-t border-border">
+                <div class="flex gap-xs">
+                  <form method="post" action="{% url 'reports:reports_hub' %}" class="inline">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="toggle_pin" />
+                    <input type="hidden" name="report_id" value="{{ report.id }}" />
+                    <button type="submit" class="p-xs rounded-full hover:bg-surface-container text-on-surface-variant transition-colors" title="Toggle Pin">
+                      <span class="material-symbols-outlined text-[18px]">{% if report.is_pinned %}push_pin{% else %}push_pin{% endif %}</span>
+                    </button>
+                  </form>
+                  <form method="post" action="{% url 'reports:reports_hub' %}" class="inline">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="toggle_favorite" />
+                    <input type="hidden" name="report_id" value="{{ report.id }}" />
+                    <button type="submit" class="p-xs rounded-full hover:bg-surface-container text-warning transition-colors" title="Favorite">
+                      <span class="material-symbols-outlined text-[18px]">star</span>
+                    </button>
+                  </form>
+                  <form method="post" action="{% url 'reports:reports_hub' %}" class="inline" onsubmit="return confirm('Delete report?')">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="delete_report" />
+                    <input type="hidden" name="report_id" value="{{ report.id }}" />
+                    <button type="submit" class="p-xs rounded-full hover:bg-error-container text-error transition-colors" title="Delete">
+                      <span class="material-symbols-outlined text-[18px]">delete</span>
+                    </button>
+                  </form>
+                </div>
+                <span class="text-[11px] text-outline">{{ report.generated_at|date:"H:i" }}</span>
+              </div>
+            </div>
+          {% empty %}
+            <div class="col-span-2 py-xl text-center bg-card rounded-xl border border-border">
+              <span class="material-symbols-outlined text-[48px] opacity-30">analytics</span>
+              <p class="mt-sm font-medium text-on-surface-variant">No reports found.</p>
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-lg px-lg py-md bg-surface-container-low rounded-xl border border-border flex justify-between items-center">
+          <p class="text-label-md text-on-surface-variant">Showing {{ reports.start_index }}–{{ reports.end_index }} of {{ paginator.count }}</p>
+          <div class="flex gap-sm">
+            {% if reports.has_previous %}
+              <a href="?page={{ reports.previous_page_number }}&q={{ q }}&type={{ type_filter }}&status={{ status_filter }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Previous</a>
+            {% else %}
+              <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Previous</button>
+            {% endif %}
+            <span class="px-md py-sm text-label-md">Page {{ reports.number }} of {{ reports.paginator.num_pages }}</span>
+            {% if reports.has_next %}
+              <a href="?page={{ reports.next_page_number }}&q={{ q }}&type={{ type_filter }}&status={{ status_filter }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Next</a>
+            {% else %}
+              <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Next</button>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Favorites & Schedules -->
+        <div class="mt-xl grid grid-cols-1 md:grid-cols-2 gap-lg">
+          <div class="bg-card rounded-xl border border-border p-lg">
+            <h3 class="font-bold text-[16px] mb-md flex items-center gap-sm"><span class="material-symbols-outlined text-warning">star</span> Favorites</h3>
+            <div class="space-y-sm">
+              {% for fav in favorites %}
+                <div class="p-sm rounded-lg border border-border bg-surface-container-lowest flex justify-between items-center">
+                  <span class="text-[13px] font-medium truncate">{{ fav.report.title }}</span>
+                  <span class="text-[11px] text-outline">{{ fav.created_at|date:"d M" }}</span>
+                </div>
+              {% empty %}
+                <p class="text-label-sm text-on-surface-variant">No favorites yet.</p>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="bg-card rounded-xl border border-border p-lg">
+            <h3 class="font-bold text-[16px] mb-md flex items-center gap-sm"><span class="material-symbols-outlined text-info">schedule</span> Scheduled Reports</h3>
+            <div class="space-y-sm">
+              {% for sched in schedules %}
+                <div class="p-sm rounded-lg border border-border bg-surface-container-lowest flex justify-between items-center">
+                  <div>
+                    <p class="text-[13px] font-medium">{{ sched.title }}</p>
+                    <p class="text-[11px] text-on-surface-variant">{{ sched.frequency }} • Next: {{ sched.next_run|date:"d M Y"|default:"Not set" }}</p>
+                  </div>
+                  <span class="text-[11px] px-2 py-1 rounded-full {% if sched.is_active %}bg-success/10 text-success{% else %}bg-surface-container-high{% endif %}">{{ sched.is_active|yesno:"Active,Inactive" }}</span>
+                </div>
+              {% empty %}
+                <p class="text-label-sm text-on-surface-variant">No scheduled reports.</p>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {% include 'components/toast_messages.html' %}
+  </body>
+</html>

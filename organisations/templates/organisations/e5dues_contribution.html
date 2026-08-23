@@ -1,420 +1,315 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-        <title>Dues &amp; Contributions Recording</title>
-        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-        <link href="{% static "img/Methodist Church Ghana Logo.png" %}" rel="icon" type="image/png" />
-        <script id="tailwind-config">
-            tailwind.config = {
-            darkMode: "class",
-            theme: {
-            extend: {
-            "colors": {
-                    "tertiary-container": "#404140",
-                    "on-secondary": "#ffffff",
-                    "on-error": "#ffffff",
-                    "success": "#16A34A",
-                    "surface-container-lowest": "#ffffff",
-                    "on-tertiary-fixed": "#1a1c1b",
-                    "on-primary-container": "#ff8a95",
-                    "on-primary-fixed": "#40000e",
-                    "surface-container-low": "#faf2ee",
-                    "background": "#fff8f5",
-                    "secondary-container": "#fece5b",
-                    "surface-container": "#f4ece8",
-                    "inverse-primary": "#ffb2b7",
-                    "tertiary-fixed": "#e3e2e0",
-                    "surface-container-high": "#eee7e3",
-                    "danger": "#DC2626",
-                    "on-surface": "#1e1b19",
-                    "secondary-fixed-dim": "#eec04f",
-                    "surface-tint": "#a33a49",
-                    "on-tertiary": "#ffffff",
-                    "on-surface-variant": "#564243",
-                    "outline": "#897172",
-                    "error-container": "#ffdad6",
-                    "tertiary-fixed-dim": "#c7c6c5",
-                    "on-tertiary-fixed-variant": "#464746",
-                    "secondary": "#775a00",
-                    "primary": "#5c0219",
-                    "tertiary": "#2a2b2a",
-                    "surface-bright": "#fff8f5",
-                    "gold-muted": "#FDF6E3",
-                    "outline-variant": "#dcc0c1",
-                    "info": "#2563EB",
-                    "error": "#ba1a1a",
-                    "warning": "#D97706",
-                    "secondary-fixed": "#ffdf9a",
-                    "primary-light": "#A3283F",
-                    "card": "#FFFFFF",
-                    "surface-variant": "#e9e1dd",
-                    "surface-dim": "#e0d8d5",
-                    "surface-container-highest": "#e9e1dd",
-                    "on-secondary-fixed": "#251a00",
-                    "primary-fixed": "#ffdadb",
-                    "on-primary": "#ffffff",
-                    "on-secondary-container": "#745700",
-                    "inverse-surface": "#33302d",
-                    "on-secondary-fixed-variant": "#5a4300",
-                    "primary-fixed-dim": "#ffb2b7",
-                    "on-tertiary-container": "#adadab",
-                    "inverse-on-surface": "#f7efeb",
-                    "on-background": "#1e1b19",
-                    "primary-muted": "#F5EAEC",
-                    "surface": "#F8F7F5",
-                    "text-secondary": "#6B7280",
-                    "border": "#E4E2DD",
-                    "primary-container": "#7b1c2d",
-                    "on-primary-fixed-variant": "#832233",
-                    "on-error-container": "#93000a"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "xs": "4px",
-                    "lg": "24px",
-                    "xl": "32px",
-                    "sidebar-width": "256px",
-                    "sm": "8px",
-                    "md": "16px",
-                    "header-height": "64px",
-                    "base": "8px"
-            },
-            "fontFamily": {
-                    "data-label": [
-                            "JetBrains Mono"
-                    ],
-                    "headline-lg-mobile": [
-                            "Lora"
-                    ],
-                    "body-lg": [
-                            "Inter"
-                    ],
-                    "label-sm": [
-                            "Inter"
-                    ],
-                    "headline-md": [
-                            "Inter"
-                    ],
-                    "data-display": [
-                            "JetBrains Mono"
-                    ],
-                    "body-md": [
-                            "Inter"
-                    ],
-                    "headline-lg": [
-                            "Lora"
-                    ],
-                    "label-md": [
-                            "Inter"
-                    ]
-            },
-            "fontSize": {
-                    "data-label": [
-                            "14px",
-                            {
-                                    "lineHeight": "1.0",
-                                    "fontWeight": "500"
-                            }
-                    ],
-                    "headline-lg-mobile": [
-                            "24px",
-                            {
-                                    "lineHeight": "1.2",
-                                    "fontWeight": "700"
-                            }
-                    ],
-                    "body-lg": [
-                            "16px",
-                            {
-                                    "lineHeight": "1.6",
-                                    "fontWeight": "400"
-                            }
-                    ],
-                    "label-sm": [
-                            "11px",
-                            {
-                                    "lineHeight": "1.2",
-                                    "letterSpacing": "0.05em",
-                                    "fontWeight": "500"
-                            }
-                    ],
-                    "headline-md": [
-                            "20px",
-                            {
-                                    "lineHeight": "1.3",
-                                    "fontWeight": "600"
-                            }
-                    ],
-                    "data-display": [
-                            "18px",
-                            {
-                                    "lineHeight": "1.0",
-                                    "fontWeight": "500"
-                            }
-                    ],
-                    "body-md": [
-                            "14px",
-                            {
-                                    "lineHeight": "1.6",
-                                    "fontWeight": "400"
-                            }
-                    ],
-                    "headline-lg": [
-                            "32px",
-                            {
-                                    "lineHeight": "1.2",
-                                    "fontWeight": "700"
-                            }
-                    ],
-                    "label-md": [
-                            "13px",
-                            {
-                                    "lineHeight": "1.2",
-                                    "fontWeight": "500"
-                            }
-                    ]
-            }
-            },
-            }
-            }
-        </script>
-        <style>
-            .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            }
-            .icon-fill {
-            font-variation-settings: 'FILL' 1;
-            }
-            @keyframes toast-slide-in {
-            from { transform: translateY(100%) translateX(-50%); opacity: 0; }
-            to { transform: translateY(0) translateX(-50%); opacity: 1; }
-            }
-            .toast-enter {
-            animation: toast-slide-in 0.3s ease-out forwards;
-            }
-        </style>
-    </head>
-<body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen flex min-h-screen">
-<!-- TopAppBar -->
-{% include 'components/sidebar.html' %}
-<!-- Main Content Canvas -->
-<main class="p-lg md:p-xl max-w-[1600px] mx-auto min-h-[calc(100vh-theme(spacing.header-height))] flex flex-col gap-lg">
-<!-- Page Header -->
-<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2">
-<div>
-<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Dues &amp; Contributions</h2>
-<p class="text-text-secondary mt-1">Record payments and manage organizational dues ledger.</p>
-</div>
-<div class="flex gap-3">
-<button class="flex items-center gap-2 px-4 py-2 border border-border rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors text-label-md font-label-md">
-<span class="material-symbols-outlined text-[18px]">download</span>
-                    Download Dues Report (PDF / Excel)
-                </button>
-</div>
-</div>
-<!-- Top Section: Record a Payment Form (Glassmorphism inspired card) -->
-<div class="bg-card rounded-xl shadow-sm border border-border p-lg relative overflow-hidden">
-<!-- Decorative background element for form -->
-<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary-muted rounded-full blur-3xl opacity-50 pointer-events-none"></div>
-<h3 class="font-headline-md text-headline-md text-on-surface mb-md relative z-10 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">add_circle</span>
-                Record a Payment
-            </h3>
-<form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-md relative z-10">
-<!-- Organisation Dropdown -->
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface-variant">Organisation</label>
-<div class="relative">
-<select class="w-full bg-surface border border-border rounded-lg px-4 py-2.5 appearance-none focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-body-md">
-<option>Men's Fellowship</option>
-<option>Women's Fellowship</option>
-<option>Youth Guild</option>
-<option>Choir</option>
-</select>
-<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-text-secondary">expand_more</span>
-</div>
-</div>
-<!-- Member Search (Autocomplete simulation) -->
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface-variant">Member</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary">person_search</span>
-<input class="w-full bg-surface border border-border rounded-lg pl-10 pr-4 py-2.5 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-body-md" placeholder="Search by name or ID..." type="text" value="Kwame Mensah"/>
-<!-- Simulated autocomplete dropdown -->
-<div class="absolute top-full left-0 w-full mt-1 bg-surface-container-lowest border border-border rounded-lg shadow-md z-20 hidden">
-<!-- items would go here -->
-</div>
-</div>
-</div>
-<!-- Period (Month/Year) -->
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface-variant">Period</label>
-<input class="w-full bg-surface border border-border rounded-lg px-4 py-2.5 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-body-md" type="month" value="2023-10"/>
-</div>
-<!-- Amount -->
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface-variant">Amount</label>
-<div class="relative">
-<span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary font-data-label text-data-label">GH₵</span>
-<input class="w-full bg-surface border border-border rounded-lg pl-12 pr-4 py-2.5 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-data-label text-data-label" placeholder="0.00" step="0.01" type="number" value="50.00"/>
-</div>
-</div>
-<!-- Payment Method -->
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface-variant">Payment Method</label>
-<div class="relative">
-<select class="w-full bg-surface border border-border rounded-lg px-4 py-2.5 appearance-none focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-body-md">
-<option>Cash</option>
-<option>Mobile Money</option>
-<option>Bank Transfer</option>
-<option>Cheque</option>
-</select>
-<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-text-secondary">expand_more</span>
-</div>
-</div>
-<!-- Date Received -->
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface-variant">Date Received</label>
-<input class="w-full bg-surface border border-border rounded-lg px-4 py-2.5 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-body-md" type="date" value="2023-10-24"/>
-</div>
-<!-- Recorded By (Auto-filled) -->
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface-variant">Recorded By</label>
-<input class="w-full bg-surface-container-high border border-border rounded-lg px-4 py-2.5 text-text-secondary cursor-not-allowed text-body-md" disabled="" type="text" value="Admin User"/>
-</div>
-<!-- Remarks -->
-<div class="flex flex-col gap-2 lg:col-span-2">
-<label class="font-label-md text-label-md text-on-surface-variant">Remarks (Optional)</label>
-<input class="w-full bg-surface border border-border rounded-lg px-4 py-2.5 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-body-md" placeholder="Add any notes here..." type="text"/>
-</div>
-<!-- Submit Action -->
-<div class="lg:col-span-4 flex justify-end mt-2">
-<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md text-label-md hover:bg-primary-light transition-colors shadow-sm flex items-center gap-2" onclick="showToast()" type="button">
-<span class="material-symbols-outlined text-[18px]">save</span>
-                        Record Payment
-                    </button>
-</div>
-</form>
-</div>
-<!-- Bottom Section: Dues Ledger (Bento grid style structural container) -->
-<div class="flex flex-col gap-4">
-<div class="flex items-center justify-between">
-<h3 class="font-headline-md text-headline-md text-on-surface">Men's Fellowship - Dues Ledger</h3>
-<!-- Quick Summary Stats above table -->
-<div class="flex gap-4">
-<div class="bg-surface-container-lowest border border-border rounded-lg px-4 py-2 flex items-center gap-3 shadow-sm border-l-4 border-l-success">
-<div class="text-label-sm font-label-sm text-text-secondary uppercase tracking-wider">Total Collected</div>
-<div class="font-data-display text-data-display text-on-surface font-semibold">GH₵ 4,250.00</div>
-</div>
-<div class="bg-surface-container-lowest border border-border rounded-lg px-4 py-2 flex items-center gap-3 shadow-sm border-l-4 border-l-danger">
-<div class="text-label-sm font-label-sm text-text-secondary uppercase tracking-wider">Outstanding</div>
-<div class="font-data-display text-data-display text-on-surface font-semibold">GH₵ 1,150.00</div>
-</div>
-</div>
-</div>
-<!-- Ledger Table Container -->
-<div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider border-b border-border">
-<th class="p-4 font-medium">Member Name</th>
-<th class="p-4 font-medium">Period</th>
-<th class="p-4 font-medium text-right">Amount Paid</th>
-<th class="p-4 font-medium">Date Paid</th>
-<th class="p-4 font-medium">Payment Method</th>
-<th class="p-4 font-medium">Recorded By</th>
-<th class="p-4 font-medium text-right">Balance</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-border text-body-md font-body-md text-on-surface">
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="p-4 font-medium">Kwame Mensah</td>
-<td class="p-4 text-text-secondary">Oct 2023</td>
-<td class="p-4 text-right font-data-label text-data-label">GH₵ 50.00</td>
-<td class="p-4 text-text-secondary">24 Oct, 2023</td>
-<td class="p-4"><span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-surface-container text-label-sm font-label-sm"><span class="material-symbols-outlined text-[14px]">payments</span>Cash</span></td>
-<td class="p-4 text-text-secondary">Admin User</td>
-<td class="p-4 text-right font-data-label text-data-label text-success">Settled</td>
-</tr>
-<tr class="hover:bg-surface-container-lowest transition-colors bg-error-container/20">
-<td class="p-4 font-medium">Kofi Osei</td>
-<td class="p-4 text-text-secondary">Oct 2023</td>
-<td class="p-4 text-right font-data-label text-data-label">GH₵ 0.00</td>
-<td class="p-4 text-text-secondary">-</td>
-<td class="p-4 text-text-secondary">-</td>
-<td class="p-4 text-text-secondary">-</td>
-<td class="p-4 text-right font-data-label text-data-label text-danger">- GH₵ 50.00</td>
-</tr>
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="p-4 font-medium">Abena Appiah</td>
-<td class="p-4 text-text-secondary">Oct 2023</td>
-<td class="p-4 text-right font-data-label text-data-label">GH₵ 50.00</td>
-<td class="p-4 text-text-secondary">22 Oct, 2023</td>
-<td class="p-4"><span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-info/10 text-info text-label-sm font-label-sm"><span class="material-symbols-outlined text-[14px]">smartphone</span>MoMo</span></td>
-<td class="p-4 text-text-secondary">System</td>
-<td class="p-4 text-right font-data-label text-data-label text-success">Settled</td>
-</tr>
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="p-4 font-medium">Yaw Ansah</td>
-<td class="p-4 text-text-secondary">Oct 2023</td>
-<td class="p-4 text-right font-data-label text-data-label">GH₵ 25.00</td>
-<td class="p-4 text-text-secondary">20 Oct, 2023</td>
-<td class="p-4"><span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-surface-container text-label-sm font-label-sm"><span class="material-symbols-outlined text-[14px]">account_balance</span>Bank</span></td>
-<td class="p-4 text-text-secondary">Admin User</td>
-<td class="p-4 text-right font-data-label text-data-label text-warning">- GH₵ 25.00</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Pagination Footer -->
-<div class="border-t border-border p-4 flex items-center justify-between bg-surface-container-lowest">
-<span class="text-label-sm font-label-sm text-text-secondary">Showing 1-4 of 120 members</span>
-<div class="flex gap-2">
-<button class="p-1 rounded hover:bg-surface-container text-text-secondary disabled:opacity-50" disabled=""><span class="material-symbols-outlined text-[20px]">chevron_left</span></button>
-<button class="p-1 rounded hover:bg-surface-container text-text-secondary"><span class="material-symbols-outlined text-[20px]">chevron_right</span></button>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- Success Toast Notification (Hidden by default) -->
-<div class="fixed bottom-lg left-1/2 -translate-x-1/2 hidden z-50" id="toast-success">
-<div class="bg-success text-on-primary px-6 py-3 rounded-lg shadow-lg flex items-center gap-3 font-body-md text-body-md">
-<span class="material-symbols-outlined icon-fill">check_circle</span>
-<span class="">Payment recorded for <strong>Kwame Mensah</strong></span>
-<button class="ml-4 hover:opacity-80" onclick="hideToast()">
-<span class="material-symbols-outlined text-[18px]">close</span>
-</button>
-</div>
-</div>
-<script>
-        function showToast() {
-            const toast = document.getElementById('toast-success');
-            toast.classList.remove('hidden');
-            toast.classList.add('toast-enter');
-            
-            // Auto hide after 3 seconds
-            setTimeout(() => {
-                hideToast();
-            }, 3000);
-        }
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Dues &amp; Contributions | MCG-SMS</title>
 
-        function hideToast() {
-            const toast = document.getElementById('toast-success');
-            toast.classList.add('hidden');
-            toast.classList.remove('toast-enter');
-        }
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Lora:wght@700&display=swap" rel="stylesheet" />
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#404140",
+              "on-secondary": "#ffffff",
+              "on-error": "#ffffff",
+              success: "#16A34A",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed": "#1a1c1b",
+              "on-primary-container": "#ff8a95",
+              "on-primary-fixed": "#40000e",
+              "surface-container-low": "#faf2ee",
+              background: "#fff8f5",
+              "secondary-container": "#fece5b",
+              "surface-container": "#f4ece8",
+              "inverse-primary": "#ffb2b7",
+              "tertiary-fixed": "#e3e2e0",
+              "surface-container-high": "#eee7e3",
+              danger: "#DC2626",
+              "on-surface": "#1e1b19",
+              "secondary-fixed-dim": "#eec04f",
+              "surface-tint": "#a33a49",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#564243",
+              outline: "#897172",
+              "error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#c7c6c5",
+              "on-tertiary-fixed-variant": "#464746",
+              secondary: "#775a00",
+              primary: "#5c0219",
+              tertiary: "#2a2b2a",
+              "surface-bright": "#fff8f5",
+              "gold-muted": "#FDF6E3",
+              "outline-variant": "#dcc0c1",
+              info: "#2563EB",
+              error: "#ba1a1a",
+              warning: "#D97706",
+              "secondary-fixed": "#ffdf9a",
+              "primary-light": "#A3283F",
+              card: "#FFFFFF",
+              "surface-variant": "#e9e1dd",
+              "surface-dim": "#e0d8d5",
+              "surface-container-highest": "#e9e1dd",
+              "on-secondary-fixed": "#251a00",
+              "primary-fixed": "#ffdadb",
+              "on-primary": "#ffffff",
+              "on-secondary-container": "#745700",
+              "inverse-surface": "#33302d",
+              "on-secondary-fixed-variant": "#5a4300",
+              "primary-fixed-dim": "#ffb2b7",
+              "on-tertiary-container": "#adadab",
+              "inverse-on-surface": "#f7efeb",
+              "on-background": "#1e1b19",
+              "primary-muted": "#F5EAEC",
+              surface: "#F8F7F5",
+              "text-secondary": "#6B7280",
+              border: "#E4E2DD",
+              "primary-container": "#7b1c2d",
+              "on-primary-fixed-variant": "#832233",
+              "on-error-container": "#93000a",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              lg: "24px",
+              md: "16px",
+              xl: "32px",
+              sm: "8px",
+              base: "8px",
+              "header-height": "64px",
+              "sidebar-width": "256px",
+              xs: "4px",
+            },
+            fontFamily: {
+              "headline-lg": ["Lora"],
+              "headline-md": ["Inter"],
+              "body-md": ["Inter"],
+              "label-md": ["Inter"],
+            },
+          },
+        },
+      };
     </script>
-</body></html>
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+
+  <body class="bg-surface text-on-surface font-body-md antialiased flex min-h-screen">
+    {% include 'components/sidebar.html' %}
+
+    <main class="flex-1 min-w-0 min-h-screen bg-surface">
+      <header class="flex justify-between items-center w-full px-lg h-header-height sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
+        <nav class="flex items-center text-body-md text-on-surface-variant">
+          <a class="hover:text-primary transition-colors" href="{% url 'organisations:org_list' %}">Organisations</a>
+          <span class="material-symbols-outlined text-[16px] mx-xs">chevron_right</span>
+          <span class="text-primary font-bold">Dues &amp; Contributions</span>
+        </nav>
+      </header>
+
+      <div class="p-xl pb-24 max-w-6xl mx-auto w-full">
+        <h2 class="font-headline-lg text-[32px] font-bold text-primary tracking-tight">Dues &amp; Contributions Recording</h2>
+        <p class="text-body-md text-on-surface-variant mt-xs leading-relaxed">Record and track organisation dues and member contributions.</p>
+
+        <div class="mt-sm flex flex-wrap gap-sm text-[11px]">
+          <span class="px-2 py-1 rounded-full bg-surface-container-high font-data-label">{{ total_records }} records</span>
+          <span class="px-2 py-1 rounded-full bg-success/10 text-success font-medium">GHS {{ total_dues|floatformat:0 }} total</span>
+          <span class="px-2 py-1 rounded-full bg-surface-container-high font-data-label">{{ filtered_count }} filtered</span>
+        </div>
+
+        {% if messages %}
+          <div class="mt-lg space-y-sm">
+            {% for message in messages %}
+              <div class="p-md rounded-lg border flex items-start gap-sm {% if message.tags == 'error' %}bg-error-container/30 text-error border-error/20{% else %}bg-success/10 text-success border-success/20{% endif %}">
+                <span class="material-symbols-outlined text-[20px]">{% if message.tags == 'error' %}error{% else %}check_circle{% endif %}</span>
+                <span>{{ message }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="mt-xl grid grid-cols-1 lg:grid-cols-12 gap-lg">
+          <!-- Form -->
+          <div class="lg:col-span-5">
+            <form method="post" action="{% url 'organisations:dues_contribution' %}" class="bg-card rounded-xl shadow-sm border border-border p-lg space-y-lg">
+              {% csrf_token %}
+              <input type="hidden" name="action" value="create" />
+
+              <h3 class="font-headline-md text-[18px] font-semibold flex items-center gap-sm">
+                <span class="material-symbols-outlined text-primary">payments</span>
+                Record Dues Contribution
+              </h3>
+
+              <div class="flex flex-col space-y-xs">
+                <label class="text-label-md font-medium">Organisation *</label>
+                <select name="org_id" required class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md">
+                  <option value="">Select organisation...</option>
+                  {% for org in organisations %}
+                    <option value="{{ org.id }}">{{ org.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <div class="flex flex-col space-y-xs">
+                <label class="text-label-md font-medium">Member (from directory)</label>
+                <select name="member_id" class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md">
+                  <option value="">Select member or type name below</option>
+                  {% for m in members %}
+                    <option value="{{ m.id }}">{{ m.get_full_name }} — {{ m.phone_number|default:"No phone" }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <div class="flex flex-col space-y-xs">
+                <label class="text-label-md font-medium">Member Name (if not in directory) *</label>
+                <input name="member_name" type="text" placeholder="Kwame Mensah" class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md" />
+              </div>
+
+              <div class="grid grid-cols-2 gap-md">
+                <div class="flex flex-col space-y-xs">
+                  <label class="text-label-md font-medium">Amount (GHS) *</label>
+                  <input name="amount" required type="number" step="0.01" min="0.01" placeholder="50.00" class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md" />
+                </div>
+
+                <div class="flex flex-col space-y-xs">
+                  <label class="text-label-md font-medium">Payment Method</label>
+                  <select name="payment_method" class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md">
+                    {% for code, label in payment_method_choices %}
+                      <option value="{{ code }}">{{ label }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-md">
+                <div class="flex flex-col space-y-xs">
+                  <label class="text-label-md font-medium">Date Paid *</label>
+                  <input name="date_paid" required type="date" value="{{ today }}" class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md" />
+                </div>
+
+                <div class="flex flex-col space-y-xs">
+                  <label class="text-label-md font-medium">Receipt Number</label>
+                  <input name="receipt_number" type="text" placeholder="REC-001" class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md" />
+                </div>
+              </div>
+
+              <div class="flex flex-col space-y-xs">
+                <label class="text-label-md font-medium">Remarks</label>
+                <input name="remarks" type="text" placeholder="Monthly dues, special contribution..." class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md" />
+              </div>
+
+              <button type="submit" class="w-full py-md px-lg bg-primary text-on-primary rounded-lg font-bold hover:bg-primary-light transition-all shadow-sm active:scale-95 flex items-center justify-center gap-xs">
+                <span class="material-symbols-outlined text-[18px]">save</span>
+                Save Contribution
+              </button>
+            </form>
+
+            <!-- Summary by Org -->
+            {% if by_org %}
+              <div class="mt-lg bg-card rounded-xl border border-border p-lg shadow-sm">
+                <h3 class="font-bold text-[14px] mb-md">Top Organisations by Dues</h3>
+                <div class="space-y-sm">
+                  {% for item in by_org %}
+                    <div class="flex justify-between text-[13px]">
+                      <span class="text-on-surface-variant truncate">{{ item.organisation__name }}</span>
+                      <span class="font-bold text-success">GHS {{ item.total|floatformat:0 }}</span>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Records Table -->
+          <div class="lg:col-span-7">
+            <div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+              <div class="p-lg border-b border-border bg-surface-container-low flex flex-col sm:flex-row justify-between gap-md">
+                <h3 class="font-headline-md text-[18px] font-semibold">Recent Contributions</h3>
+                <form method="get" class="flex gap-sm">
+                  <input name="q" value="{{ q }}" placeholder="Search member, receipt..." class="p-sm rounded-lg border border-border text-body-md" type="text" />
+                  <select name="org_filter" class="p-sm rounded-lg border border-border text-body-md bg-white min-w-[120px]">
+                    <option value="">All Orgs</option>
+                    {% for org in organisations %}
+                      <option value="{{ org.id }}" {% if org_filter == org.id|stringformat:"s" %}selected{% endif %}>{{ org.name }}</option>
+                    {% endfor %}
+                  </select>
+                  <button type="submit" class="p-sm border border-border rounded-lg bg-white hover:bg-surface-container-low">
+                    <span class="material-symbols-outlined text-[18px]">search</span>
+                  </button>
+                </form>
+              </div>
+
+              <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse min-w-[600px]">
+                  <thead class="bg-surface-container-low border-b border-border">
+                    <tr>
+                      <th class="px-lg py-md text-label-md font-bold uppercase tracking-wider">Member</th>
+                      <th class="px-lg py-md text-label-md font-bold uppercase tracking-wider">Organisation</th>
+                      <th class="px-lg py-md text-label-md font-bold uppercase tracking-wider text-right">Amount</th>
+                      <th class="px-lg py-md text-label-md font-bold uppercase tracking-wider">Date / Method</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-border">
+                    {% for due in dues %}
+                      <tr class="hover:bg-surface-container-lowest transition-colors">
+                        <td class="px-lg py-md">
+                          <p class="font-medium text-[13px]">{{ due.member_name }}</p>
+                          <p class="text-[11px] text-on-surface-variant">{{ due.receipt_number|default:"No receipt" }}</p>
+                        </td>
+                        <td class="px-lg py-md text-[13px] text-on-surface-variant">{{ due.organisation.name }}</td>
+                        <td class="px-lg py-md text-right font-data-label font-bold text-success">GHS {{ due.amount|floatformat:2 }}</td>
+                        <td class="px-lg py-md">
+                          <p class="text-[13px]">{{ due.date_paid|date:"d M Y" }}</p>
+                          <p class="text-[11px] text-on-surface-variant">{{ due.get_payment_method_display }} • {{ due.recorded_by.username|default:"System" }}</p>
+                        </td>
+                      </tr>
+                    {% empty %}
+                      <tr>
+                        <td colspan="4" class="px-lg py-xl text-center text-on-surface-variant">No dues records found.</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="px-lg py-md bg-surface-container-low border-t border-border flex justify-between items-center">
+                <p class="text-label-md text-on-surface-variant">Showing {{ dues.start_index }}–{{ dues.end_index }} of {{ paginator.count }}</p>
+                <div class="flex gap-sm">
+                  {% if dues.has_previous %}
+                    <a href="?page={{ dues.previous_page_number }}&q={{ q }}&org_filter={{ org_filter }}&date_from={{ date_from }}&date_to={{ date_to }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Previous</a>
+                  {% else %}
+                    <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Previous</button>
+                  {% endif %}
+                  {% if dues.has_next %}
+                    <a href="?page={{ dues.next_page_number }}&q={{ q }}&org_filter={{ org_filter }}&date_from={{ date_from }}&date_to={{ date_to }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Next</a>
+                  {% else %}
+                    <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Next</button>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {% include 'components/toast_messages.html' %}
+  </body>
+</html>

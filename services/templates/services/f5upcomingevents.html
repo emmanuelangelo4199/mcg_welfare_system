@@ -1,442 +1,295 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-        <title>Upcoming Events | MCG-SMS</title>
-        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-        <link href="{% static "img/Methodist Church Ghana Logo.png" %}" rel="icon" type="image/png" />
-        <script id="tailwind-config">
-            tailwind.config = {
-                darkMode: "class",
-                theme: {
-                    extend: {
-                        "colors": {
-                            "gold-muted": "#FDF6E3",
-                            "outline-variant": "#dcc0c1",
-                            "tertiary-container": "#404140",
-                            "surface-container": "#f4ece8",
-                            "on-secondary-fixed-variant": "#5a4300",
-                            "success": "#16A34A",
-                            "surface-variant": "#e9e1dd",
-                            "surface": "#F8F7F5",
-                            "on-surface-variant": "#564243",
-                            "border": "#E4E2DD",
-                            "outline": "#897172",
-                            "surface-container-low": "#faf2ee",
-                            "info": "#2563EB",
-                            "text-secondary": "#6B7280",
-                            "surface-container-highest": "#e9e1dd",
-                            "surface-bright": "#fff8f5",
-                            "on-secondary-fixed": "#251a00",
-                            "inverse-surface": "#33302d",
-                            "secondary-fixed": "#ffdf9a",
-                            "tertiary-fixed-dim": "#c7c6c5",
-                            "primary-container": "#7b1c2d",
-                            "on-primary": "#ffffff",
-                            "on-secondary": "#ffffff",
-                            "inverse-on-surface": "#f7efeb",
-                            "primary-fixed": "#ffdadb",
-                            "surface-dim": "#e0d8d5",
-                            "on-secondary-container": "#745700",
-                            "on-surface": "#1e1b19",
-                            "secondary-fixed-dim": "#eec04f",
-                            "error": "#ba1a1a",
-                            "tertiary-fixed": "#e3e2e0",
-                            "warning": "#D97706",
-                            "primary-muted": "#F5EAEC",
-                            "on-primary-fixed": "#40000e",
-                            "inverse-primary": "#ffb2b7",
-                            "on-tertiary": "#ffffff",
-                            "surface-container-high": "#eee7e3",
-                            "on-error": "#ffffff",
-                            "on-primary-fixed-variant": "#832233",
-                            "surface-container-lowest": "#ffffff",
-                            "on-background": "#1e1b19",
-                            "on-error-container": "#93000a",
-                            "on-tertiary-container": "#adadab",
-                            "card": "#FFFFFF",
-                            "tertiary": "#2a2b2a",
-                            "danger": "#DC2626",
-                            "primary-light": "#A3283F",
-                            "on-tertiary-fixed-variant": "#464746",
-                            "secondary": "#775a00",
-                            "primary-fixed-dim": "#ffb2b7",
-                            "secondary-container": "#fece5b",
-                            "background": "#fff8f5",
-                            "on-primary-container": "#ff8a95",
-                            "surface-tint": "#a33a49",
-                            "primary": "#5c0219",
-                            "error-container": "#ffdad6",
-                            "on-tertiary-fixed": "#1a1c1b"
-                        },
-                        "borderRadius": {
-                            "DEFAULT": "0.25rem",
-                            "lg": "0.5rem",
-                            "xl": "0.75rem",
-                            "full": "9999px"
-                        },
-                        "spacing": {
-                            "md": "16px",
-                            "lg": "24px",
-                            "base": "8px",
-                            "sm": "8px",
-                            "xs": "4px",
-                            "xl": "32px",
-                            "sidebar-width": "256px",
-                            "header-height": "64px"
-                        },
-                        "fontFamily": {
-                            "label-md": ["Inter"],
-                            "data-display": ["JetBrains Mono"],
-                            "label-sm": ["Inter"],
-                            "body-lg": ["Inter"],
-                            "data-label": ["JetBrains Mono"],
-                            "headline-md": ["Inter"],
-                            "headline-lg-mobile": ["Lora"],
-                            "headline-lg": ["Lora"],
-                            "body-md": ["Inter"]
-                        },
-                        "fontSize": {
-                            "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
-                            "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                            "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                            "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                            "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                            "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                            "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                            "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                            "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
-                        }
-                    }
-                }
-            }
-        </script>
-        <style>
-            .material-symbols-outlined {
-                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-                display: inline-block;
-                vertical-align: middle;
-            }
-            .sidebar-active {
-                border-left: 4px solid #fece5b; /* secondary-container */
-                background-color: rgba(163, 40, 63, 0.2);
-                color: #ffdf9a; /* secondary-fixed */
-            }
-            tr.cancelled td {
-                text-decoration: line-through;
-                opacity: 0.6;
-            }
-            tr.cancelled .no-strike {
-                text-decoration: none !important;
-                opacity: 1;
-            }
-            ::-webkit-scrollbar {
-                width: 8px;
-            }
-            ::-webkit-scrollbar-track {
-                background: transparent;
-            }
-            ::-webkit-scrollbar-thumb {
-                background: #E4E2DD;
-                border-radius: 4px;
-            }
-        </style>
-    </head>
-    <body class="bg-background text-on-surface font-body-md text-body-md overflow-x-hidden flex min-h-screen">
-    <!-- SideNavBar -->
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Upcoming Events | MCG-SMS</title>
+
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              tertiary: "#2a2b2a",
+              "primary-fixed": "#ffdadb",
+              "primary-fixed-dim": "#ffb2b7",
+              "on-primary-fixed-variant": "#832233",
+              "secondary-fixed-dim": "#eec04f",
+              outline: "#897172",
+              "primary-light": "#A3283F",
+              error: "#ba1a1a",
+              border: "#E4E2DD",
+              "surface-container-highest": "#e9e1dd",
+              "on-secondary-fixed-variant": "#5a4300",
+              info: "#2563EB",
+              danger: "#DC2626",
+              "inverse-primary": "#ffb2b7",
+              "surface-bright": "#fff8f5",
+              "inverse-on-surface": "#f7efeb",
+              warning: "#D97706",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "tertiary-container": "#404140",
+              "on-primary-fixed": "#40000e",
+              "surface-dim": "#e0d8d5",
+              "surface-container-lowest": "#ffffff",
+              "gold-muted": "#FDF6E3",
+              "secondary-fixed": "#ffdf9a",
+              secondary: "#775a00",
+              "secondary-container": "#fece5b",
+              "surface-container": "#f4ece8",
+              "outline-variant": "#dcc0c1",
+              card: "#FFFFFF",
+              "on-surface": "#1e1b19",
+              "surface-variant": "#e9e1dd",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed-dim": "#c7c6c5",
+              "surface-tint": "#a33a49",
+              "on-background": "#1e1b19",
+              "surface-container-high": "#eee7e3",
+              "primary-muted": "#F5EAEC",
+              "on-tertiary-fixed": "#1a1c1b",
+              "on-error": "#ffffff",
+              "primary-container": "#7b1c2d",
+              "on-tertiary-container": "#adadab",
+              "text-secondary": "#6B7280",
+              success: "#16A34A",
+              "error-container": "#ffdad6",
+              "on-surface-variant": "#564243",
+              "inverse-surface": "#33302d",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#745700",
+              "surface-container-low": "#faf2ee",
+              "on-tertiary-fixed-variant": "#464746",
+              surface: "#F8F7F5",
+              "on-primary-container": "#ff8a95",
+              primary: "#5c0219",
+              background: "#fff8f5",
+              "tertiary-fixed": "#e3e2e0",
+              "on-secondary-fixed": "#251a00",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              xs: "4px",
+              sm: "8px",
+              xl: "32px",
+              "sidebar-width": "256px",
+              md: "16px",
+              lg: "24px",
+              "header-height": "64px",
+              base: "8px",
+            },
+            fontFamily: {
+              "headline-lg": ["Lora"],
+              "headline-md": ["Inter"],
+              "body-md": ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8f7f5;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+  </head>
+
+  <body class="bg-surface text-on-surface font-body-md antialiased flex h-screen overflow-hidden">
     {% include 'components/sidebar.html' %}
-    <!-- Main Content -->
-    <main class="m-5 pt-[calc(10px+32px)] pl-[calc(50px+32px)] pr-xl pb-xl min-h-screen">
-    <!-- Breadcrumb & Title -->
-    <nav class="mb-lg flex justify-between items-end">
-    <div>
-    <div class="flex items-center gap-xs text-on-surface-variant mb-xs">
-    <a class="hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Dashboard</a>
-    <span class="material-symbols-outlined text-[14px]">chevron_right</span>
-    <a class="hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Services &amp; Programmes</a>
-    <span class="material-symbols-outlined text-[14px]">chevron_right</span>
-    <span class="font-label-sm text-label-sm text-primary font-bold">Upcoming Events</span>
-    </div>
-    <h3 class="font-headline-lg text-headline-lg text-primary">Programme Calendar</h3>
-    </div>
-    <div class="relative group">
-    <button class="flex items-center gap-xs bg-primary text-on-primary px-lg py-md rounded-lg font-label-md text-label-md shadow-sm hover:bg-primary-light transition-all">
-        <span class="material-symbols-outlined">download</span>
-        Export Calendar
-        <span class="material-symbols-outlined">expand_more</span>
-    </button>
-    <div class="absolute right-0 mt-xs w-48 bg-white rounded-xl shadow-lg border border-border hidden group-hover:block z-50">
-    <a class="block px-md py-sm hover:bg-surface-container-low first:rounded-t-xl transition-colors text-label-md" href="#">Export as PDF</a>
-    <a class="block px-md py-sm hover:bg-surface-container-low last:rounded-b-xl transition-colors text-label-md" href="#">Export to iCal / Google</a>
-    </div>
-    </div>
-    </nav>
-    <!-- Filter Bar -->
-    <div class="bg-card p-lg rounded-xl shadow-sm border border-border mb-lg flex flex-wrap gap-lg items-end">
-    <div class="flex flex-col gap-xs flex-1 min-w-[200px]">
-    <label class="font-label-md text-label-md text-on-surface-variant">Date Range</label>
-    <div class="relative">
-    <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline">calendar_month</span>
-    <select class="w-full pl-[44px] pr-md py-sm rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all appearance-none bg-white">
-    <option>Next 3 Months (Default)</option>
-    <option>Next 6 Months</option>
-    <option>Year 2024</option>
-    <option>Custom Range...</option>
-    </select>
-    </div>
-    </div>
-    <div class="flex flex-col gap-xs flex-1 min-w-[180px]">
-    <label class="font-label-md text-label-md text-on-surface-variant">Event Type</label>
-    <select class="w-full px-md py-sm rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none bg-white">
-    <option>All Types</option>
-    <option>Worship Service</option>
-    <option>Prayer Meeting</option>
-    <option>Leaders' Meeting</option>
-    <option>Social/Welfare</option>
-    </select>
-    </div>
-    <div class="flex flex-col gap-xs flex-1 min-w-[180px]">
-    <label class="font-label-md text-label-md text-on-surface-variant">Venue</label>
-    <select class="w-full px-md py-sm rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none bg-white">
-    <option>All Venues</option>
-    <option>Main Sanctuary</option>
-    <option>Society Hall</option>
-    <option>Classroom 4</option>
-    <option>External / Offsite</option>
-    </select>
-    </div>
-    <button class="bg-surface-container-high text-primary font-label-md text-label-md px-lg h-[42px] rounded-lg border border-outline-variant hover:bg-surface-container-highest transition-colors flex items-center gap-xs">
-    <span class="material-symbols-outlined">filter_list</span>
-                    Reset Filters
-                </button>
-    </div>
-    <!-- Table View -->
-    <div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
-    <div class="overflow-x-auto">
-    <table class="w-full text-left border-collapse">
-    <thead class="bg-surface-container-low border-b border-border">
-    <tr>
-    <th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Date &amp; Day</th>
-    <th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Countdown</th>
-    <th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Event Name</th>
-    <th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Type</th>
-    <th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Venue</th>
-    <th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
-    </tr>
-    </thead>
-    <tbody class="divide-y divide-border">
-    <!-- Row 1: Immediate Event -->
-    <tr class="hover:bg-primary-muted cursor-pointer transition-colors" onclick="location.href='#F-03'">
-    <td class="px-lg py-lg">
-    <div class="flex flex-col">
-    <span class="font-bold text-on-surface">12 May 2024</span>
-    <span class="text-xs text-on-surface-variant">Sunday</span>
-    </div>
-    </td>
-    <td class="px-lg py-lg">
-    <span class="bg-success/10 text-success px-sm py-xs rounded-full font-label-sm text-label-sm flex items-center gap-xs w-fit">
-    <span class="w-1.5 h-1.5 bg-success rounded-full animate-pulse"></span>
-                                        3 Days
-                                    </span>
-    </td>
-    <td class="px-lg py-lg font-headline-md text-headline-md text-primary">Annual Harvest Service</td>
-    <td class="px-lg py-lg">
-    <span class="bg-primary-muted text-primary-light px-md py-1 rounded-lg border border-primary-fixed font-label-md text-label-md">Worship</span>
-    </td>
-    <td class="px-lg py-lg text-on-surface-variant">Main Sanctuary</td>
-    <td class="px-lg py-lg">
-    <span class="bg-info/10 text-info px-sm py-xs rounded font-label-sm text-label-sm uppercase tracking-wide border border-info/20">Scheduled</span>
-    </td>
-    </tr>
-    <!-- Row 2: Medium Range -->
-    <tr class="hover:bg-primary-muted cursor-pointer transition-colors" onclick="location.href='#F-03'">
-    <td class="px-lg py-lg">
-    <div class="flex flex-col">
-    <span class="font-bold text-on-surface">25 May 2024</span>
-    <span class="text-xs text-on-surface-variant">Saturday</span>
-    </div>
-    </td>
-    <td class="px-lg py-lg">
-    <span class="bg-warning/10 text-warning px-sm py-xs rounded-full font-label-sm text-label-sm flex items-center gap-xs w-fit">
-    <span class="w-1.5 h-1.5 bg-warning rounded-full"></span>
-                                        16 Days
-                                    </span>
-    </td>
-    <td class="px-lg py-lg font-headline-md text-headline-md text-primary">Welfare Committee Quarterly Brief</td>
-    <td class="px-lg py-lg">
-    <span class="bg-surface-container-highest text-on-surface-variant px-md py-1 rounded-lg border border-border font-label-md text-label-md">Meeting</span>
-    </td>
-    <td class="px-lg py-lg text-on-surface-variant">Conference Room A</td>
-    <td class="px-lg py-lg">
-    <span class="bg-info/10 text-info px-sm py-xs rounded font-label-sm text-label-sm uppercase tracking-wide border border-info/20">Scheduled</span>
-    </td>
-    </tr>
-    <!-- Row 3: Cancelled Row -->
-    <tr class="cancelled bg-surface-container-low opacity-60 cursor-not-allowed">
-    <td class="px-lg py-lg">
-    <div class="flex flex-col">
-    <span class="font-bold">02 June 2024</span>
-    <span class="text-xs">Sunday</span>
-    </div>
-    </td>
-    <td class="px-lg py-lg no-strike">
-    <span class="bg-on-surface-variant/10 text-on-surface-variant px-sm py-xs rounded-full font-label-sm text-label-sm flex items-center gap-xs w-fit">
-    <span class="w-1.5 h-1.5 bg-on-surface-variant rounded-full"></span>
-                                        24 Days
-                                    </span>
-    </td>
-    <td class="px-lg py-lg font-headline-md text-headline-md">Children's Day Rehearsals</td>
-    <td class="px-lg py-lg">
-    <span class="bg-surface-container-highest px-md py-1 rounded-lg border border-border font-label-md text-label-md">Education</span>
-    </td>
-    <td class="px-lg py-lg">Sunday School Block</td>
-    <td class="px-lg py-lg no-strike">
-    <span class="bg-error/10 text-error px-sm py-xs rounded font-label-sm text-label-sm uppercase tracking-wide border border-error/20 font-bold">Cancelled</span>
-    </td>
-    </tr>
-    <!-- Row 4: Distant Range -->
-    <tr class="hover:bg-primary-muted cursor-pointer transition-colors" onclick="location.href='#F-03'">
-    <td class="px-lg py-lg">
-    <div class="flex flex-col">
-    <span class="font-bold text-on-surface">15 July 2024</span>
-    <span class="text-xs text-on-surface-variant">Monday</span>
-    </div>
-    </td>
-    <td class="px-lg py-lg">
-    <span class="bg-on-surface-variant/10 text-on-surface-variant px-sm py-xs rounded-full font-label-sm text-label-sm flex items-center gap-xs w-fit">
-    <span class="w-1.5 h-1.5 bg-on-surface-variant rounded-full opacity-40"></span>
-                                        67 Days
-                                    </span>
-    </td>
-    <td class="px-lg py-lg font-headline-md text-headline-md text-primary">Annual Society Retreat</td>
-    <td class="px-lg py-lg">
-    <span class="bg-secondary-container/20 text-secondary px-md py-1 rounded-lg border border-secondary-container font-label-md text-label-md">Spiritual</span>
-    </td>
-    <td class="px-lg py-lg text-on-surface-variant">Retreat Grounds, Aburi</td>
-    <td class="px-lg py-lg">
-    <span class="bg-info/10 text-info px-sm py-xs rounded font-label-sm text-label-sm uppercase tracking-wide border border-info/20">Scheduled</span>
-    </td>
-    </tr>
-    <!-- Row 5: Immediate Range -->
-    <tr class="hover:bg-primary-muted cursor-pointer transition-colors" onclick="location.href='#F-03'">
-    <td class="px-lg py-lg">
-    <div class="flex flex-col">
-    <span class="font-bold text-on-surface">14 May 2024</span>
-    <span class="text-xs text-on-surface-variant">Tuesday</span>
-    </div>
-    </td>
-    <td class="px-lg py-lg">
-    <span class="bg-success/10 text-success px-sm py-xs rounded-full font-label-sm text-label-sm flex items-center gap-xs w-fit">
-    <span class="w-1.5 h-1.5 bg-success rounded-full animate-pulse"></span>
-                                        5 Days
-                                    </span>
-    </td>
-    <td class="px-lg py-lg font-headline-md text-headline-md text-primary">Tuesday Prayer Hour</td>
-    <td class="px-lg py-lg">
-    <span class="bg-primary-muted text-primary-light px-md py-1 rounded-lg border border-primary-fixed font-label-md text-label-md">Prayer</span>
-    </td>
-    <td class="px-lg py-lg text-on-surface-variant">Vestry</td>
-    <td class="px-lg py-lg">
-    <span class="bg-info/10 text-info px-sm py-xs rounded font-label-sm text-label-sm uppercase tracking-wide border border-info/20">Scheduled</span>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-    </div>
-    <!-- Table Footer / Pagination -->
-    <div class="px-lg py-md bg-surface-container-lowest border-t border-border flex justify-between items-center">
-    <span class="text-label-sm text-on-surface-variant">Showing 1-15 of 48 events</span>
-    <div class="flex gap-xs">
-    <button class="p-xs hover:bg-surface-container-low rounded border border-border transition-colors disabled:opacity-30" disabled="">
-    <span class="material-symbols-outlined">chevron_left</span>
-    </button>
-    <button class="px-md h-8 flex items-center justify-center bg-primary text-on-primary rounded font-label-sm text-label-sm">1</button>
-    <button class="px-md h-8 flex items-center justify-center hover:bg-surface-container-low rounded font-label-sm text-label-sm">2</button>
-    <button class="px-md h-8 flex items-center justify-center hover:bg-surface-container-low rounded font-label-sm text-label-sm">3</button>
-    <button class="p-xs hover:bg-surface-container-low rounded border border-border transition-colors">
-    <span class="material-symbols-outlined">chevron_right</span>
-    </button>
-    </div>
-    </div>
-    </div>
-    <!-- Bottom Narrative Card (Bento Style) -->
-    <div class="mt-lg grid grid-cols-1 md:grid-cols-3 gap-lg">
-    <div class="md:col-span-2 bg-card p-lg rounded-xl border border-border shadow-sm relative overflow-hidden group">
-    <div class="absolute top-0 left-0 w-1 h-full bg-primary transition-all group-hover:w-2"></div>
-    <div class="flex items-start gap-md">
-    <div class="bg-primary-muted p-md rounded-xl text-primary">
-    <span class="material-symbols-outlined text-[32px]">event_note</span>
-    </div>
-    <div>
-    <h4 class="font-headline-md text-headline-md text-primary mb-xs">Calendar Synchronization</h4>
-    <p class="text-on-surface-variant max-w-prose">
-                                Ensure all society leaders are aligned. By syncing this calendar with your personal mobile devices, you'll receive automated reminders 24 hours prior to any scheduled meeting or service. 
-                            </p>
-    <button class="mt-md text-primary font-bold font-label-md text-label-md hover:underline flex items-center gap-xs">
-                                Learn how to sync
-                                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-    </button>
-    </div>
-    </div>
-    </div>
-    <div class="bg-gold-muted p-lg rounded-xl border border-secondary-container shadow-sm flex flex-col justify-between">
-    <div>
-    <span class="text-secondary font-bold text-label-sm uppercase tracking-widest mb-xs block">Upcoming Milestone</span>
-    <h5 class="font-headline-md text-headline-md text-on-secondary-container">120th Anniversary Planning</h5>
-    </div>
-    <div class="mt-md">
-    <div class="flex justify-between text-label-sm text-secondary mb-xs">
-    <span class="">Project Progress</span>
-    <span class="">65%</span>
-    </div>
-    <div class="w-full h-2 bg-white/50 rounded-full overflow-hidden">
-    <div class="h-full bg-secondary w-[65%] rounded-full shadow-[0_0_8px_rgba(119,90,0,0.3)]"></div>
-    </div>
-    </div>
-    </div>
-    </div>
+
+    <main class="flex-1 min-w-0 h-full overflow-y-auto bg-surface flex flex-col">
+      <header class="flex justify-between items-center w-full px-xl h-[80px] min-h-[80px] sticky top-0 z-40 bg-surface-container-lowest shadow-sm border-b border-border">
+        <nav class="flex items-center text-body-md text-on-surface-variant">
+          <a class="hover:text-primary-light transition-colors" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+          <span class="material-symbols-outlined text-[16px] mx-xs">chevron_right</span>
+          <span class="text-primary font-bold">Upcoming Events</span>
+        </nav>
+        <div class="flex items-center gap-md">
+          <a href="{% url 'services:event_calendar' %}" class="px-md py-sm rounded-lg border border-border bg-card hover:bg-surface-container-low text-label-md font-medium transition-colors flex items-center gap-xs">
+            <span class="material-symbols-outlined text-[18px]">calendar_month</span>
+            Calendar
+          </a>
+          <a href="{% url 'services:service_program_form' %}" class="bg-primary hover:bg-primary-light text-on-primary px-md py-sm rounded-lg font-bold flex items-center gap-xs text-label-md transition-colors shadow-sm border-b border-border">
+            <span class="material-symbols-outlined text-[18px]">add</span>
+            New Service
+          </a>
+        </div>
+      </header>
+
+      <div class="p-xl pb-24 flex-1">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-xl gap-lg">
+          <div>
+            <h2 class="font-headline-lg text-[32px] font-bold text-primary tracking-tight">Upcoming Events</h2>
+            <p class="text-body-md text-on-surface-variant mt-xs leading-relaxed">Scheduled church services and special programmes.</p>
+            <div class="mt-sm flex flex-wrap items-center gap-sm text-[11px]">
+              <span class="px-2 py-1 rounded-full bg-surface-container-high font-data-label">{{ total_services }} total</span>
+              <span class="px-2 py-1 rounded-full bg-info/10 text-info font-medium">{{ upcoming_count }} upcoming</span>
+              <span class="px-2 py-1 rounded-full bg-success/10 text-success font-medium">{{ completed_count }} completed</span>
+            </div>
+          </div>
+        </div>
+
+        {% if messages %}
+          <div class="mb-lg space-y-sm">
+            {% for message in messages %}
+              <div class="p-md rounded-lg border flex items-start gap-sm {% if message.tags == 'error' %}bg-error-container/30 text-error border-error/20{% else %}bg-success/10 text-success border-success/20{% endif %}">
+                <span class="material-symbols-outlined text-[20px]">{% if message.tags == 'error' %}error{% else %}check_circle{% endif %}</span>
+                <span>{{ message }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <!-- Featured -->
+        {% if featured_services %}
+          <div class="mb-xl">
+            <h3 class="font-headline-md text-[18px] font-semibold mb-md flex items-center gap-sm">
+              <span class="material-symbols-outlined text-secondary">star</span>
+              Featured
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+              {% for svc in featured_services %}
+                <div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden border-l-4 border-secondary-container">
+                  <div class="p-lg">
+                    <div class="flex justify-between items-start gap-sm mb-sm">
+                      <span class="text-[10px] font-bold px-2 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant uppercase">{{ svc.get_service_type_display }}</span>
+                      <span class="text-[11px] text-outline">{{ svc.service_date|date:"d M Y" }}</span>
+                    </div>
+                    <h4 class="font-bold text-on-surface leading-tight">{{ svc.title }}</h4>
+                    {% if svc.theme %}
+                      <p class="text-[11px] text-on-surface-variant mt-xs italic">"{{ svc.theme }}"</p>
+                    {% endif %}
+                    <p class="text-[11px] text-on-surface-variant mt-sm flex items-center gap-xs">
+                      <span class="material-symbols-outlined text-[14px]">schedule</span>
+                      {{ svc.start_time|time:"H:i" }}{% if svc.end_time %} – {{ svc.end_time|time:"H:i" }}{% endif %} • {{ svc.location }}
+                    </p>
+                  </div>
+                  <div class="px-lg py-sm bg-surface-container-low border-t border-border flex justify-between items-center">
+                    <span class="text-[11px] text-on-surface-variant">{{ svc.preacher|default:"TBA" }}</span>
+                    <a href="{% url 'services:service_detail' %}?id={{ svc.id }}" class="text-primary text-[11px] font-bold hover:underline">View →</a>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        <!-- Filters -->
+        <section class="bg-card rounded-xl shadow-sm border border-border p-md mb-lg">
+          <form method="get" class="flex flex-wrap items-center gap-md">
+            <div class="flex-1 min-w-[260px] relative">
+              <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+              <input name="q" value="{{ q }}" placeholder="Search services, theme, preacher..." class="w-full pl-xl pr-md py-md border border-border rounded-lg focus:ring-2 focus:ring-primary-light outline-none text-body-md" type="text" />
+            </div>
+            <select name="type" class="border border-border rounded-lg py-md px-lg text-body-md bg-white min-w-[140px] focus:ring-2 focus:ring-primary-light">
+              <option value="">All Types</option>
+              {% for code, label in type_choices %}
+                <option value="{{ code }}" {% if type_filter == code %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            <select name="status" class="border border-border rounded-lg py-md px-lg text-body-md bg-white min-w-[140px] focus:ring-2 focus:ring-primary-light">
+              <option value="">All Status</option>
+              {% for code, label in status_choices %}
+                <option value="{{ code }}" {% if status_filter == code %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            <select name="date" class="border border-border rounded-lg py-md px-lg text-body-md bg-white min-w-[140px] focus:ring-2 focus:ring-primary-light">
+              <option value="">All Dates</option>
+              <option value="upcoming" {% if date_filter == 'upcoming' %}selected{% endif %}>Upcoming</option>
+              <option value="today" {% if date_filter == 'today' %}selected{% endif %}>Today</option>
+              <option value="past" {% if date_filter == 'past' %}selected{% endif %}>Past</option>
+            </select>
+            <button type="submit" class="p-md border border-border rounded-lg bg-white hover:bg-surface-container-low text-on-surface-variant transition-colors">
+              <span class="material-symbols-outlined">filter_list</span>
+            </button>
+            {% if q or type_filter or status_filter or date_filter %}
+              <a href="{% url 'services:upcoming_events' %}" class="p-md border border-border rounded-lg bg-white hover:bg-surface-container-low text-on-surface-variant">
+                <span class="material-symbols-outlined">clear</span>
+              </a>
+            {% endif %}
+          </form>
+        </section>
+
+        <!-- Services Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+          {% for svc in services %}
+            <div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+              <div class="p-lg flex-1">
+                <div class="flex justify-between items-start gap-sm mb-sm">
+                  <span class="text-[10px] font-bold px-2 py-1 rounded-full uppercase {% if svc.service_type == 'SUNDAY' %}bg-primary-muted text-primary{% elif svc.service_type == 'BIBLE_STUDY' %}bg-info/10 text-info{% elif svc.service_type == 'PRAYER' %}bg-secondary-container text-on-secondary-container{% else %}bg-surface-container-high text-on-surface-variant{% endif %}">{{ svc.get_service_type_display }}</span>
+                  <span class="text-[11px] px-2 py-1 rounded-full {% if svc.status == 'SCHEDULED' %}bg-info/10 text-info{% elif svc.status == 'COMPLETED' %}bg-success/10 text-success{% elif svc.status == 'CANCELLED' %}bg-error-container text-on-error-container{% else %}bg-surface-container-high text-on-surface-variant{% endif %} font-bold uppercase">{{ svc.get_status_display }}</span>
+                </div>
+                <h3 class="font-bold text-on-surface leading-tight line-clamp-2">{{ svc.title }}</h3>
+                {% if svc.theme %}
+                  <p class="text-[12px] text-on-surface-variant mt-xs italic line-clamp-2">"{{ svc.theme }}"</p>
+                {% endif %}
+                <div class="mt-md space-y-xs text-[11px] text-on-surface-variant">
+                  <p class="flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">calendar_today</span> {{ svc.service_date|date:"D, d M Y" }}</p>
+                  <p class="flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">schedule</span> {{ svc.start_time|time:"H:i" }}{% if svc.end_time %} – {{ svc.end_time|time:"H:i" }}{% endif %} {% if svc.duration_minutes %}• {{ svc.duration_minutes }} mins{% endif %}</p>
+                  <p class="flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">location_on</span> {{ svc.location }}</p>
+                  {% if svc.preacher %}
+                    <p class="flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">person</span> Preacher: {{ svc.preacher }}</p>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="px-lg py-md bg-surface-container-low border-t border-border flex justify-between items-center">
+                <span class="text-[11px] text-outline">{{ svc.attendance_count }} attending</span>
+                <div class="flex gap-sm">
+                  <a href="{% url 'services:service_detail' %}?id={{ svc.id }}" class="text-primary text-[11px] font-bold hover:underline">Details</a>
+                  <span class="text-border">•</span>
+                  <a href="{% url 'services:service_attendance' %}?service_id={{ svc.id }}" class="text-on-surface-variant text-[11px] font-medium hover:underline">Attendance</a>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <div class="col-span-3 py-xl text-center bg-card rounded-xl border border-border">
+              <span class="material-symbols-outlined text-[48px] opacity-30">event_busy</span>
+              <p class="mt-sm font-medium text-on-surface-variant">No services found.</p>
+              <a href="{% url 'services:service_program_form' %}" class="mt-md inline-block px-lg py-sm bg-primary text-on-primary rounded-lg font-bold hover:bg-primary-light">Schedule First Service</a>
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-lg px-lg py-md bg-surface-container-low rounded-xl border border-border flex justify-between items-center">
+          <p class="text-label-md text-on-surface-variant">Showing {{ services.start_index }}–{{ services.end_index }} of {{ paginator.count }}</p>
+          <div class="flex gap-sm">
+            {% if services.has_previous %}
+              <a href="?page={{ services.previous_page_number }}&q={{ q }}&type={{ type_filter }}&status={{ status_filter }}&date={{ date_filter }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Previous</a>
+            {% else %}
+              <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Previous</button>
+            {% endif %}
+            <span class="px-md py-sm text-label-md">Page {{ services.number }} of {{ services.paginator.num_pages }}</span>
+            {% if services.has_next %}
+              <a href="?page={{ services.next_page_number }}&q={{ q }}&type={{ type_filter }}&status={{ status_filter }}&date={{ date_filter }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Next</a>
+            {% else %}
+              <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Next</button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
     </main>
-    <!-- BottomNavBar (Mobile Only) -->
-    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest pb-safe md:hidden h-[56px] border-t border-border shadow-[0_-1px_3px_rgba(0,0,0,0.06)]">
-    <a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:scale-90 transition-transform" href="#">
-    <span class="material-symbols-outlined">home</span>
-    <span class="font-label-sm text-label-sm">Home</span>
-    </a>
-    <a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:scale-90 transition-transform" href="#">
-    <span class="material-symbols-outlined">person_search</span>
-    <span class="font-label-sm text-label-sm">Members</span>
-    </a>
-    <a class="flex flex-col items-center justify-center text-primary dark:text-secondary-fixed font-bold active:scale-90 transition-transform" href="#">
-    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
-    <span class="font-label-sm text-label-sm">Events</span>
-    </a>
-    <a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:scale-90 transition-transform" href="#">
-    <span class="material-symbols-outlined">account_balance_wallet</span>
-    <span class="font-label-sm text-label-sm">Finance</span>
-    </a>
-    <a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:scale-90 transition-transform" href="#">
-    <span class="material-symbols-outlined">menu</span>
-    <span class="font-label-sm text-label-sm">More</span>
-    </a>
-    </nav>
-    <script>
-        // Micro-interaction for row hover and selection
-        document.querySelectorAll('tbody tr:not(.cancelled)').forEach(row => {
-            row.addEventListener('mousedown', () => {
-                row.classList.add('opacity-80', 'scale-[0.99]');
-            });
-            row.addEventListener('mouseup', () => {
-                row.classList.remove('opacity-80', 'scale-[0.99]');
-            });
-            row.addEventListener('mouseleave', () => {
-                row.classList.remove('opacity-80', 'scale-[0.99]');
-            });
-        });
-        </script>
-    </body>
+
+    {% include 'components/toast_messages.html' %}
+  </body>
 </html>

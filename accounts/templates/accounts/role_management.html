@@ -169,7 +169,7 @@
     <!-- Main Content Canvas -->
     <main class="flex-1 min-w-0 h-full overflow-y-auto bg-surface flex flex-col relative">
       <!-- Top Navigation -->
-      <header class="flex justify-between items-center w-full px-xl h-header-height sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
+      <header class="flex justify-between items-center w-full px-xl h-[80px] min-h-[80px] sticky top-0 z-40 bg-surface-container-lowest shadow-sm border-b border-border">
         <div class="flex items-center gap-md">
           <nav class="flex items-center text-body-md font-body-md text-on-surface-variant">
             <a class="hover:text-primary-light transition-colors" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
@@ -330,7 +330,7 @@
 
             <div class="flex-1 overflow-auto custom-scrollbar">
               <table class="w-full border-collapse">
-                <thead class="sticky top-0 bg-white z-10 shadow-sm">
+                <thead class="sticky top-0 bg-white z-10 shadow-sm border-b border-border">
                   <tr>
                     <th class="text-left px-lg py-md bg-white border-b border-border text-label-md text-outline uppercase font-bold w-1/4">Module Name</th>
                     <th class="px-lg py-md bg-white border-b border-border text-label-md text-outline uppercase font-bold text-center">View</th>

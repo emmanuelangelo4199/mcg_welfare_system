@@ -128,7 +128,7 @@
     {% include 'components/sidebar.html' %}
 
     <main class="flex-1 min-w-0 h-full overflow-y-auto bg-surface flex flex-col">
-      <header class="flex justify-between items-center w-full px-xl h-header-height sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
+      <header class="flex justify-between items-center w-full px-xl h-[80px] min-h-[80px] sticky top-0 z-40 bg-surface-container-lowest shadow-sm border-b border-border">
         <nav class="flex items-center text-body-md text-on-surface-variant">
           <a class="hover:text-primary-light transition-colors" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
           <span class="material-symbols-outlined text-[16px] mx-xs">chevron_right</span>
@@ -136,7 +136,7 @@
           <span class="material-symbols-outlined text-[16px] mx-xs">chevron_right</span>
           <span class="text-primary font-bold">History</span>
         </nav>
-        <a href="{% url 'communications:compose_message' %}" class="bg-primary hover:bg-primary-light text-on-primary px-md py-sm rounded-lg font-bold flex items-center gap-xs text-label-md transition-colors shadow-sm">
+        <a href="{% url 'communications:compose_message' %}" class="bg-primary hover:bg-primary-light text-on-primary px-md py-sm rounded-lg font-bold flex items-center gap-xs text-label-md transition-colors shadow-sm border-b border-border">
           <span class="material-symbols-outlined text-[18px]">add</span>
           Compose
         </a>

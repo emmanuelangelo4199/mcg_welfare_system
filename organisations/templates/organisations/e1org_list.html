@@ -1,311 +1,258 @@
+{% load static %}
 <!DOCTYPE html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Organisation List | MCG-SMS</title>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MCG-SMS - Organisation List</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "tertiary-container": "#404140",
-                        "on-secondary": "#ffffff",
-                        "on-error": "#ffffff",
-                        "success": "#16A34A",
-                        "surface-container-lowest": "#ffffff",
-                        "on-tertiary-fixed": "#1a1c1b",
-                        "on-primary-container": "#ff8a95",
-                        "on-primary-fixed": "#40000e",
-                        "surface-container-low": "#faf2ee",
-                        "background": "#fff8f5",
-                        "secondary-container": "#fece5b",
-                        "surface-container": "#f4ece8",
-                        "inverse-primary": "#ffb2b7",
-                        "tertiary-fixed": "#e3e2e0",
-                        "surface-container-high": "#eee7e3",
-                        "danger": "#DC2626",
-                        "on-surface": "#1e1b19",
-                        "secondary-fixed-dim": "#eec04f",
-                        "surface-tint": "#a33a49",
-                        "on-tertiary": "#ffffff",
-                        "on-surface-variant": "#564243",
-                        "outline": "#897172",
-                        "error-container": "#ffdad6",
-                        "tertiary-fixed-dim": "#c7c6c5",
-                        "on-tertiary-fixed-variant": "#464746",
-                        "secondary": "#775a00",
-                        "primary": "#5c0219",
-                        "tertiary": "#2a2b2a",
-                        "surface-bright": "#fff8f5",
-                        "gold-muted": "#FDF6E3",
-                        "outline-variant": "#dcc0c1",
-                        "info": "#2563EB",
-                        "error": "#ba1a1a",
-                        "warning": "#D97706",
-                        "secondary-fixed": "#ffdf9a",
-                        "primary-light": "#A3283F",
-                        "card": "#FFFFFF",
-                        "surface-variant": "#e9e1dd",
-                        "surface-dim": "#e0d8d5",
-                        "surface-container-highest": "#e9e1dd",
-                        "on-secondary-fixed": "#251a00",
-                        "primary-fixed": "#ffdadb",
-                        "on-primary": "#ffffff",
-                        "on-secondary-container": "#745700",
-                        "inverse-surface": "#33302d",
-                        "on-secondary-fixed-variant": "#5a4300",
-                        "primary-fixed-dim": "#ffb2b7",
-                        "on-tertiary-container": "#adadab",
-                        "inverse-on-surface": "#f7efeb",
-                        "on-background": "#1e1b19",
-                        "primary-muted": "#F5EAEC",
-                        "surface": "#F8F7F5",
-                        "text-secondary": "#6B7280",
-                        "border": "#E4E2DD",
-                        "primary-container": "#7b1c2d",
-                        "on-primary-fixed-variant": "#832233",
-                        "on-error-container": "#93000a"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "xs": "4px",
-                        "lg": "24px",
-                        "xl": "32px",
-                        "sidebar-width": "256px",
-                        "sm": "8px",
-                        "md": "16px",
-                        "header-height": "64px",
-                        "base": "8px"
-                    },
-                    "fontFamily": {
-                        "data-label": ["JetBrains Mono"],
-                        "headline-lg-mobile": ["Lora"],
-                        "body-lg": ["Inter"],
-                        "label-sm": ["Inter"],
-                        "headline-md": ["Inter"],
-                        "data-display": ["JetBrains Mono"],
-                        "body-md": ["Inter"],
-                        "headline-lg": ["Lora"],
-                        "label-md": ["Inter"]
-                    },
-                    "fontSize": {
-                        "data-label": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }],
-                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
-                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                        "label-sm": ["11px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }],
-                        "headline-md": ["20px", { "lineHeight": "1.3", "fontWeight": "600" }],
-                        "data-display": ["18px", { "lineHeight": "1.0", "fontWeight": "500" }],
-                        "body-md": ["14px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
-                        "label-md": ["13px", { "lineHeight": "1.2", "fontWeight": "500" }]
-                    }
-                }
-            }
-        }
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Lora:wght@700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#404140",
+              "on-secondary": "#ffffff",
+              "on-error": "#ffffff",
+              success: "#16A34A",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed": "#1a1c1b",
+              "on-primary-container": "#ff8a95",
+              "on-primary-fixed": "#40000e",
+              "surface-container-low": "#faf2ee",
+              background: "#fff8f5",
+              "secondary-container": "#fece5b",
+              "surface-container": "#f4ece8",
+              "inverse-primary": "#ffb2b7",
+              "tertiary-fixed": "#e3e2e0",
+              "surface-container-high": "#eee7e3",
+              danger: "#DC2626",
+              "on-surface": "#1e1b19",
+              "secondary-fixed-dim": "#eec04f",
+              "surface-tint": "#a33a49",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#564243",
+              outline: "#897172",
+              "error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#c7c6c5",
+              "on-tertiary-fixed-variant": "#464746",
+              secondary: "#775a00",
+              primary: "#5c0219",
+              tertiary: "#2a2b2a",
+              "surface-bright": "#fff8f5",
+              "gold-muted": "#FDF6E3",
+              "outline-variant": "#dcc0c1",
+              info: "#2563EB",
+              error: "#ba1a1a",
+              warning: "#D97706",
+              "secondary-fixed": "#ffdf9a",
+              "primary-light": "#A3283F",
+              card: "#FFFFFF",
+              "surface-variant": "#e9e1dd",
+              "surface-dim": "#e0d8d5",
+              "surface-container-highest": "#e9e1dd",
+              "on-secondary-fixed": "#251a00",
+              "primary-fixed": "#ffdadb",
+              "on-primary": "#ffffff",
+              "on-secondary-container": "#745700",
+              "inverse-surface": "#33302d",
+              "on-secondary-fixed-variant": "#5a4300",
+              "primary-fixed-dim": "#ffb2b7",
+              "on-tertiary-container": "#adadab",
+              "inverse-on-surface": "#f7efeb",
+              "on-background": "#1e1b19",
+              "primary-muted": "#F5EAEC",
+              surface: "#F8F7F5",
+              "text-secondary": "#6B7280",
+              border: "#E4E2DD",
+              "primary-container": "#7b1c2d",
+              "on-primary-fixed-variant": "#832233",
+              "on-error-container": "#93000a",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              lg: "24px",
+              md: "16px",
+              xl: "32px",
+              sm: "8px",
+              base: "8px",
+              "header-height": "64px",
+              "sidebar-width": "256px",
+              xs: "4px",
+            },
+            fontFamily: {
+              "headline-lg": ["Lora"],
+              "headline-md": ["Inter"],
+              "body-md": ["Inter"],
+              "label-md": ["Inter"],
+            },
+          },
+        },
+      };
     </script>
-<style>
-        .material-symbols-outlined {
-          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        vertical-align: middle;
+      }
     </style>
-</head>
-<body class="bg-surface text-on-surface antialiased font-body-md h-screen overflow-hidden flex">
-{% include 'components/sidebar.html' %}
-<!-- Main Content Area -->
-<div class="flex-1 flex flex-col  h-full w-[calc(100%-theme(spacing.sidebar-width))]">
-<!-- Top App Bar -->
-<!-- Page Canvas -->
-<main class="flex-1 overflow-y-auto p-xl">
-<!-- Page Header -->
-<div class="flex justify-between items-end mb-lg">
-<div>
-<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Organisations</h2>
-<p class="font-body-md text-body-md text-text-secondary mt-1">Manage all church organisations, fellowships, and bands.</p>
-</div>
-<button class="bg-primary hover:bg-primary-light text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md font-medium transition-colors shadow-sm flex items-center gap-2">
-<span class="material-symbols-outlined text-[18px]">add</span>
-                    Add New Organisation
-                </button>
-</div>
-<!-- Filter Bar -->
-<div class="bg-card rounded-xl shadow-sm border border-border p-md mb-lg flex flex-wrap gap-4 items-center">
-<div class="relative flex-1 min-w-[250px]">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
-<input class="w-full pl-9 pr-3 py-2 bg-surface rounded-lg border border-border focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none font-body-md text-body-md text-on-surface h-[38px]" placeholder="Filter by name..." type="text"/>
-</div>
-<div class="min-w-[200px]">
-<select class="w-full px-3 py-2 bg-surface rounded-lg border border-border focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none font-body-md text-body-md text-on-surface h-[38px] appearance-none cursor-pointer">
-<option value="">All Types</option>
-<option value="choir">Choir</option>
-<option value="singing-band">Singing Band</option>
-<option value="womens-fellowship">Women's Fellowship</option>
-<option value="mens-fellowship">Men's Fellowship</option>
-<option value="guild">Guild</option>
-</select>
-</div>
-<div class="flex bg-surface rounded-lg border border-border p-1 h-[38px]">
-<button class="px-3 py-1 rounded-md bg-white shadow-sm font-label-sm text-label-sm font-medium text-on-surface">All</button>
-<button class="px-3 py-1 rounded-md text-text-secondary hover:text-on-surface font-label-sm text-label-sm font-medium transition-colors">Active</button>
-<button class="px-3 py-1 rounded-md text-text-secondary hover:text-on-surface font-label-sm text-label-sm font-medium transition-colors">Inactive</button>
-</div>
-</div>
-<!-- Table Container -->
-<div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="border-b border-border bg-surface-container-lowest">
-<th class="px-6 py-4 font-label-sm text-label-sm font-semibold text-text-secondary uppercase tracking-wider">Organisation Name</th>
-<th class="px-6 py-4 font-label-sm text-label-sm font-semibold text-text-secondary uppercase tracking-wider">Type</th>
-<th class="px-6 py-4 font-label-sm text-label-sm font-semibold text-text-secondary uppercase tracking-wider">Leader</th>
-<th class="px-6 py-4 font-label-sm text-label-sm font-semibold text-text-secondary uppercase tracking-wider">Meeting Day</th>
-<th class="px-6 py-4 font-label-sm text-label-sm font-semibold text-text-secondary uppercase tracking-wider">Members</th>
-<th class="px-6 py-4 font-label-sm text-label-sm font-semibold text-text-secondary uppercase tracking-wider">Status</th>
-<th class="px-6 py-4 font-label-sm text-label-sm font-semibold text-text-secondary uppercase tracking-wider text-right">Actions</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-border font-body-md text-body-md text-on-surface">
-<!-- Row 1 -->
-<tr class="hover:bg-surface-container/30 transition-colors group">
-<td class="px-6 py-4 font-medium text-on-surface">Christ Little Band</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gold-muted text-secondary-container border border-secondary-container/20">Singing Band</span>
-</td>
-<td class="px-6 py-4 text-on-surface-variant">Bro. James Kumi</td>
-<td class="px-6 py-4 text-on-surface-variant">Wednesday, 5:30 PM</td>
-<td class="px-6 py-4 font-data-label text-data-label text-on-surface">45</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">Active</span>
-</td>
-<td class="px-6 py-4 text-right">
-<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-<button class="p-1.5 text-text-secondary hover:text-primary hover:bg-primary-muted rounded-md transition-colors" title="View Details">
-<span class="material-symbols-outlined text-[18px]">visibility</span>
-</button>
-<button class="p-1.5 text-text-secondary hover:text-info hover:bg-blue-50 rounded-md transition-colors" title="Edit">
-<span class="material-symbols-outlined text-[18px]">edit</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 2 -->
-<tr class="hover:bg-surface-container/30 transition-colors group">
-<td class="px-6 py-4 font-medium text-on-surface">Susanna Wesley Mission Auxiliary (SUWMA)</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gold-muted text-secondary-container border border-secondary-container/20">Women's Fellowship</span>
-</td>
-<td class="px-6 py-4 text-on-surface-variant">Sis. Mary Ansah</td>
-<td class="px-6 py-4 text-on-surface-variant">Tuesday, 4:00 PM</td>
-<td class="px-6 py-4 font-data-label text-data-label text-on-surface">120</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">Active</span>
-</td>
-<td class="px-6 py-4 text-right">
-<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-<button class="p-1.5 text-text-secondary hover:text-primary hover:bg-primary-muted rounded-md transition-colors" title="View Details">
-<span class="material-symbols-outlined text-[18px]">visibility</span>
-</button>
-<button class="p-1.5 text-text-secondary hover:text-info hover:bg-blue-50 rounded-md transition-colors" title="Edit">
-<span class="material-symbols-outlined text-[18px]">edit</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 3 -->
-<tr class="hover:bg-surface-container/30 transition-colors group">
-<td class="px-6 py-4 font-medium text-on-surface">Men's Fellowship</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gold-muted text-secondary-container border border-secondary-container/20">Men's Fellowship</span>
-</td>
-<td class="px-6 py-4 text-on-surface-variant">Bro. Thomas Osei</td>
-<td class="px-6 py-4 text-on-surface-variant">Sunday, 9:00 AM</td>
-<td class="px-6 py-4 font-data-label text-data-label text-on-surface">85</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 border border-yellow-200">On Hiatus</span>
-</td>
-<td class="px-6 py-4 text-right">
-<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-<button class="p-1.5 text-text-secondary hover:text-primary hover:bg-primary-muted rounded-md transition-colors" title="View Details">
-<span class="material-symbols-outlined text-[18px]">visibility</span>
-</button>
-<button class="p-1.5 text-text-secondary hover:text-info hover:bg-blue-50 rounded-md transition-colors" title="Edit">
-<span class="material-symbols-outlined text-[18px]">edit</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 4 -->
-<tr class="hover:bg-surface-container/30 transition-colors group">
-<td class="px-6 py-4 font-medium text-on-surface">Methodist Youth Fellowship (MYF)</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gold-muted text-secondary-container border border-secondary-container/20">Youth</span>
-</td>
-<td class="px-6 py-4 text-on-surface-variant">Bro. Emmanuel Mensah</td>
-<td class="px-6 py-4 text-on-surface-variant">Friday, 6:00 PM</td>
-<td class="px-6 py-4 font-data-label text-data-label text-on-surface">210</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">Active</span>
-</td>
-<td class="px-6 py-4 text-right">
-<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-<button class="p-1.5 text-text-secondary hover:text-primary hover:bg-primary-muted rounded-md transition-colors" title="View Details">
-<span class="material-symbols-outlined text-[18px]">visibility</span>
-</button>
-<button class="p-1.5 text-text-secondary hover:text-info hover:bg-blue-50 rounded-md transition-colors" title="Edit">
-<span class="material-symbols-outlined text-[18px]">edit</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 5 -->
-<tr class="hover:bg-surface-container/30 transition-colors group opacity-75">
-<td class="px-6 py-4 font-medium text-on-surface line-through decoration-text-secondary/50">Junior Choir</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gold-muted text-secondary-container border border-secondary-container/20">Choir</span>
-</td>
-<td class="px-6 py-4 text-on-surface-variant">-</td>
-<td class="px-6 py-4 text-on-surface-variant">-</td>
-<td class="px-6 py-4 font-data-label text-data-label text-on-surface">0</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 border border-red-200">Inactive</span>
-</td>
-<td class="px-6 py-4 text-right">
-<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-<button class="p-1.5 text-text-secondary hover:text-primary hover:bg-primary-muted rounded-md transition-colors" title="View Details">
-<span class="material-symbols-outlined text-[18px]">visibility</span>
-</button>
-<button class="p-1.5 text-text-secondary hover:text-info hover:bg-blue-50 rounded-md transition-colors" title="Edit">
-<span class="material-symbols-outlined text-[18px]">edit</span>
-</button>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Pagination -->
-<div class="px-6 py-3 border-t border-border flex items-center justify-between bg-surface-container-lowest">
-<span class="font-label-sm text-label-sm text-text-secondary">Showing 1 to 5 of 12 organisations</span>
-<div class="flex gap-1">
-<button class="px-3 py-1 border border-border rounded-md text-on-surface-variant hover:bg-surface disabled:opacity-50 font-label-md text-label-md" disabled="">Prev</button>
-<button class="px-3 py-1 border border-primary bg-primary text-on-primary rounded-md font-label-md text-label-md">1</button>
-<button class="px-3 py-1 border border-border rounded-md text-on-surface-variant hover:bg-surface font-label-md text-label-md">2</button>
-<button class="px-3 py-1 border border-border rounded-md text-on-surface-variant hover:bg-surface font-label-md text-label-md">3</button>
-<button class="px-3 py-1 border border-border rounded-md text-on-surface-variant hover:bg-surface font-label-md text-label-md">Next</button>
-</div>
-</div>
-</div>
-</main>
-</div>
-</body></html>
+  </head>
+
+  <body class="bg-surface text-on-surface font-body-md antialiased flex min-h-screen">
+    {% include 'components/sidebar.html' %}
+
+    <main class="flex-1 min-w-0 min-h-screen bg-surface">
+      <!-- Top Bar – Figma preserved (64px) -->
+      <header class="flex justify-between items-center w-full px-lg h-header-height sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
+        <nav class="flex items-center text-body-md text-on-surface-variant">
+          <a class="hover:text-primary transition-colors" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+          <span class="material-symbols-outlined text-[16px] mx-xs">chevron_right</span>
+          <span class="text-primary font-bold">Organisations</span>
+        </nav>
+        <div class="flex items-center gap-sm">
+          <a href="{% url 'organisations:add_edit_org' %}" class="bg-primary hover:bg-primary-light text-on-primary px-md py-sm rounded-lg font-bold flex items-center gap-xs text-label-md transition-colors shadow-sm">
+            <span class="material-symbols-outlined text-[18px]">add</span>
+            New Organisation
+          </a>
+        </div>
+      </header>
+
+      <div class="p-xl pb-24 max-w-6xl mx-auto w-full">
+        <h2 class="font-headline-lg text-[32px] font-bold text-primary tracking-tight">Organisation List</h2>
+        <p class="text-body-md text-on-surface-variant mt-xs leading-relaxed">Manage church organisations, fellowships and their members.</p>
+
+        <div class="mt-sm flex flex-wrap gap-sm text-[11px]">
+          <span class="px-2 py-1 rounded-full bg-surface-container-high font-data-label">{{ total_orgs }} total</span>
+          <span class="px-2 py-1 rounded-full bg-success/10 text-success font-medium">{{ active_orgs }} active</span>
+          <span class="px-2 py-1 rounded-full bg-primary-muted text-primary font-medium">{{ total_members }} members</span>
+          <span class="px-2 py-1 rounded-full bg-gold-muted text-secondary font-medium">GHS {{ total_dues|floatformat:0 }} total dues</span>
+        </div>
+
+        {% if messages %}
+          <div class="mt-lg space-y-sm">
+            {% for message in messages %}
+              <div class="p-md rounded-lg border flex items-start gap-sm {% if message.tags == 'error' %}bg-error-container/30 text-error border-error/20{% else %}bg-success/10 text-success border-success/20{% endif %}">
+                <span class="material-symbols-outlined text-[20px]">{% if message.tags == 'error' %}error{% else %}check_circle{% endif %}</span>
+                <span>{{ message }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <!-- Filters – Figma style -->
+        <section class="mt-xl bg-card rounded-xl shadow-sm border border-border p-md flex flex-wrap items-center gap-md">
+          <form method="get" class="flex flex-wrap items-center gap-md w-full">
+            <div class="flex-1 min-w-[260px] relative">
+              <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+              <input name="q" value="{{ q }}" placeholder="Search organisations, location, schedule..." class="w-full pl-xl pr-md py-md border border-border rounded-lg focus:ring-2 focus:ring-primary-light text-body-md outline-none transition-all" type="text" />
+            </div>
+            <select name="category" class="border border-border rounded-lg py-md px-lg text-body-md bg-white min-w-[160px] focus:ring-2 focus:ring-primary-light">
+              <option value="">All Categories</option>
+              {% for code, label in category_choices %}
+                <option value="{{ code }}" {% if category_filter == code %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            <select name="active" class="border border-border rounded-lg py-md px-lg text-body-md bg-white min-w-[140px] focus:ring-2 focus:ring-primary-light">
+              <option value="">All Status</option>
+              <option value="active" {% if active_filter == 'active' %}selected{% endif %}>Active</option>
+              <option value="inactive" {% if active_filter == 'inactive' %}selected{% endif %}>Inactive</option>
+            </select>
+            <button type="submit" class="p-md border border-border rounded-lg bg-white hover:bg-surface-container-low text-on-surface-variant">
+              <span class="material-symbols-outlined">filter_list</span>
+            </button>
+            {% if q or category_filter or active_filter %}
+              <a href="{% url 'organisations:org_list' %}" class="p-md border border-border rounded-lg bg-white hover:bg-surface-container-low text-on-surface-variant">
+                <span class="material-symbols-outlined">clear</span>
+              </a>
+            {% endif %}
+          </form>
+        </section>
+
+        <!-- Organisations Grid – Figma preserved -->
+        <div class="mt-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+          {% for org in organisations %}
+            <div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+              <div class="p-lg flex-1">
+                <div class="flex justify-between items-start gap-sm mb-md">
+                  <span class="text-[10px] font-bold px-2 py-1 rounded-full uppercase {% if org.category == 'CHOIR' %}bg-info/10 text-info{% elif org.category == 'YOUTH' %}bg-secondary-container text-on-secondary-container{% elif org.category == 'MEN' %}bg-primary-muted text-primary{% elif org.category == 'WOMEN' %}bg-error-container/50 text-on-error-container{% else %}bg-surface-container-high text-on-surface-variant{% endif %}">{{ org.get_category_display }}</span>
+                  <span class="text-[11px] px-2 py-1 rounded-full {% if org.is_active %}bg-success/10 text-success{% else %}bg-surface-container-high text-on-surface-variant{% endif %} font-bold">{{ org.is_active|yesno:"Active,Inactive" }}</span>
+                </div>
+                <h3 class="font-headline-md text-[18px] font-bold text-on-surface leading-tight">{{ org.name }}</h3>
+                {% if org.description %}
+                  <p class="text-body-md text-on-surface-variant mt-sm line-clamp-2 leading-relaxed">{{ org.description }}</p>
+                {% endif %}
+                <div class="mt-md space-y-xs text-[11px] text-on-surface-variant">
+                  <p class="flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">location_on</span> {{ org.location|default:"No location" }}</p>
+                  <p class="flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">schedule</span> {{ org.meeting_schedule|default:"No schedule" }}</p>
+                  <p class="flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">person</span> President: {% firstof org.president.get_full_name org.president.username "Unassigned" %}</p>
+                </div>
+                <div class="mt-md grid grid-cols-3 gap-sm text-center">
+                  <div class="bg-surface-container-low rounded-lg p-sm">
+                    <p class="text-[18px] font-bold text-on-surface">{{ org.member_count }}</p>
+                    <p class="text-[10px] uppercase text-on-surface-variant">Members</p>
+                  </div>
+                  <div class="bg-surface-container-low rounded-lg p-sm">
+                    <p class="text-[18px] font-bold text-success">GHS {{ org.total_dues|floatformat:0 }}</p>
+                    <p class="text-[10px] uppercase text-on-surface-variant">Dues</p>
+                  </div>
+                  <div class="bg-surface-container-low rounded-lg p-sm">
+                    <p class="text-[18px] font-bold text-primary">{{ org.meetings.count }}</p>
+                    <p class="text-[10px] uppercase text-on-surface-variant">Meetings</p>
+                  </div>
+                </div>
+              </div>
+              <div class="px-lg py-md bg-surface-container-low border-t border-border flex justify-between items-center">
+                <span class="text-[11px] text-outline">{{ org.created_at|date:"d M Y" }}</span>
+                <div class="flex gap-sm">
+                  <a href="{% url 'organisations:org_details' %}?id={{ org.id }}" class="text-primary text-[11px] font-bold hover:underline">View Details</a>
+                  <span class="text-border">•</span>
+                  <a href="{% url 'organisations:add_edit_org' %}?edit={{ org.id }}" class="text-on-surface-variant text-[11px] font-medium hover:underline">Edit</a>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <div class="col-span-3 py-xl text-center bg-card rounded-xl border border-border">
+              <span class="material-symbols-outlined text-[48px] opacity-30">account_balance</span>
+              <p class="mt-sm font-medium text-on-surface-variant">No organisations found.</p>
+              <a href="{% url 'organisations:add_edit_org' %}" class="mt-md inline-block px-lg py-sm bg-primary text-on-primary rounded-lg font-bold hover:bg-primary-light">Create First Organisation</a>
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-lg px-lg py-md bg-surface-container-low rounded-xl border border-border flex justify-between items-center">
+          <p class="text-label-md text-on-surface-variant">Showing {{ organisations.start_index }}–{{ organisations.end_index }} of {{ paginator.count }}</p>
+          <div class="flex gap-sm">
+            {% if organisations.has_previous %}
+              <a href="?page={{ organisations.previous_page_number }}&q={{ q }}&category={{ category_filter }}&active={{ active_filter }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Previous</a>
+            {% else %}
+              <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Previous</button>
+            {% endif %}
+            <span class="px-md py-sm text-label-md">Page {{ organisations.number }} of {{ organisations.paginator.num_pages }}</span>
+            {% if organisations.has_next %}
+              <a href="?page={{ organisations.next_page_number }}&q={{ q }}&category={{ category_filter }}&active={{ active_filter }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Next</a>
+            {% else %}
+              <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Next</button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {% include 'components/toast_messages.html' %}
+  </body>
+</html>

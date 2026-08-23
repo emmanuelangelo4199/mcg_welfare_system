@@ -1,497 +1,333 @@
 {% load static %}
 <!DOCTYPE html>
 <html class="light" lang="en">
-    <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Absentee Report - MCG-SMS</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Lora:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link rel="icon" type="icon-image" href="{% static 'img/Methodist Church Ghana Logo.png' %}">
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "on-surface": "#1e1b19",
-                        "on-primary-container": "#ff8a95",
-                        "secondary": "#775a00",
-                        "error-container": "#ffdad6",
-                        "surface": "#F8F7F5",
-                        "secondary-fixed-dim": "#eec04f",
-                        "surface-container-low": "#faf2ee",
-                        "on-secondary": "#ffffff",
-                        "text-secondary": "#6B7280",
-                        "tertiary-fixed": "#e3e2e0",
-                        "surface-container-high": "#eee7e3",
-                        "on-primary-fixed-variant": "#832233",
-                        "secondary-fixed": "#ffdf9a",
-                        "gold-muted": "#FDF6E3",
-                        "on-primary": "#ffffff",
-                        "on-error-container": "#93000a",
-                        "error": "#ba1a1a",
-                        "primary-container": "#7b1c2d",
-                        "secondary-container": "#fece5b",
-                        "surface-container-highest": "#e9e1dd",
-                        "outline-variant": "#dcc0c1",
-                        "border": "#E4E2DD",
-                        "success": "#16A34A",
-                        "danger": "#DC2626",
-                        "inverse-primary": "#ffb2b7",
-                        "on-tertiary-fixed-variant": "#464746",
-                        "on-tertiary": "#ffffff",
-                        "background": "#fff8f5",
-                        "surface-container": "#f4ece8",
-                        "on-error": "#ffffff",
-                        "surface-variant": "#e9e1dd",
-                        "tertiary-fixed-dim": "#c7c6c5",
-                        "primary-fixed": "#ffdadb",
-                        "primary-fixed-dim": "#ffb2b7",
-                        "surface-dim": "#e0d8d5",
-                        "surface-container-lowest": "#ffffff",
-                        "on-primary-fixed": "#40000e",
-                        "on-secondary-fixed": "#251a00",
-                        "inverse-on-surface": "#f7efeb",
-                        "surface-tint": "#a33a49",
-                        "on-surface-variant": "#564243",
-                        "inverse-surface": "#33302d",
-                        "surface-bright": "#fff8f5",
-                        "card": "#FFFFFF",
-                        "tertiary-container": "#404140",
-                        "on-secondary-fixed-variant": "#5a4300",
-                        "info": "#2563EB",
-                        "on-tertiary-fixed": "#1a1c1b",
-                        "primary-light": "#A3283F",
-                        "primary": "#5c0219",
-                        "on-background": "#1e1b19",
-                        "primary-muted": "#F5EAEC",
-                        "on-tertiary-container": "#adadab",
-                        "warning": "#D97706",
-                        "on-secondary-container": "#745700",
-                        "outline": "#897172",
-                        "tertiary": "#2a2b2a"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "xl": "32px",
-                        "lg": "24px",
-                        "base": "8px",
-                        "xs": "4px",
-                        "md": "16px",
-                        "sm": "8px",
-                        "sidebar-width": "256px",
-                        "header-height": "64px"
-                    },
-                    "fontFamily": {
-                        "body-md": ["Inter"],
-                        "label-md": ["Inter"],
-                        "headline-lg": ["Lora"],
-                        "label-sm": ["Inter"],
-                        "headline-md": ["Inter"],
-                        "data-label": ["JetBrains Mono"],
-                        "data-display": ["JetBrains Mono"],
-                        "headline-lg-mobile": ["Lora"],
-                        "body-lg": ["Inter"]
-                    },
-                    "fontSize": {
-                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
-                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                        "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                        "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                        "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                        "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
-                    }
-                },
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Absentee Report | MCG-SMS</title>
+
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              tertiary: "#2a2b2a",
+              "primary-fixed": "#ffdadb",
+              "primary-fixed-dim": "#ffb2b7",
+              "on-primary-fixed-variant": "#832233",
+              "secondary-fixed-dim": "#eec04f",
+              outline: "#897172",
+              "primary-light": "#A3283F",
+              error: "#ba1a1a",
+              border: "#E4E2DD",
+              "surface-container-highest": "#e9e1dd",
+              "on-secondary-fixed-variant": "#5a4300",
+              info: "#2563EB",
+              danger: "#DC2626",
+              "inverse-primary": "#ffb2b7",
+              "surface-bright": "#fff8f5",
+              "inverse-on-surface": "#f7efeb",
+              warning: "#D97706",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "tertiary-container": "#404140",
+              "on-primary-fixed": "#40000e",
+              "surface-dim": "#e0d8d5",
+              "surface-container-lowest": "#ffffff",
+              "gold-muted": "#FDF6E3",
+              "secondary-fixed": "#ffdf9a",
+              secondary: "#775a00",
+              "secondary-container": "#fece5b",
+              "surface-container": "#f4ece8",
+              "outline-variant": "#dcc0c1",
+              card: "#FFFFFF",
+              "on-surface": "#1e1b19",
+              "surface-variant": "#e9e1dd",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed-dim": "#c7c6c5",
+              "surface-tint": "#a33a49",
+              "on-background": "#1e1b19",
+              "surface-container-high": "#eee7e3",
+              "primary-muted": "#F5EAEC",
+              "on-tertiary-fixed": "#1a1c1b",
+              "on-error": "#ffffff",
+              "primary-container": "#7b1c2d",
+              "on-tertiary-container": "#adadab",
+              "text-secondary": "#6B7280",
+              success: "#16A34A",
+              "error-container": "#ffdad6",
+              "on-surface-variant": "#564243",
+              "inverse-surface": "#33302d",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#745700",
+              "surface-container-low": "#faf2ee",
+              "on-tertiary-fixed-variant": "#464746",
+              surface: "#F8F7F5",
+              "on-primary-container": "#ff8a95",
+              primary: "#5c0219",
+              background: "#fff8f5",
+              "tertiary-fixed": "#e3e2e0",
+              "on-secondary-fixed": "#251a00",
             },
-        }
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              xs: "4px",
+              sm: "8px",
+              xl: "32px",
+              "sidebar-width": "256px",
+              md: "16px",
+              lg: "24px",
+              "header-height": "64px",
+              base: "8px",
+            },
+            fontFamily: {
+              "headline-lg": ["Lora"],
+              "headline-md": ["Inter"],
+              "body-md": ["Inter"],
+            },
+          },
+        },
+      };
     </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            vertical-align: middle;
-        }
-        .sidebar-active-indicator {
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background-color: #fece5b;
-        }
-        .stat-card-accent {
-            border-left: 4px solid #C49A2B;
-        }
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8f7f5;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
     </style>
-</head>
-<body class="bg-surface font-body-md text-on-surface flex min-h-screen">
-<!-- Side Navigation Bar -->
-{% include 'components/sidebar.html' %}
-<!-- Top App Bar -->
-<header class="fixed top-0 right-0 h-header-height w-[calc(100%-theme(spacing.sidebar-width))] bg-surface-container-lowest dark:bg-surface-dim shadow-sm flex justify-between items-center px-xl z-40">
-<div class="flex items-center gap-4">
-<div class="bg-surface-container flex items-center px-4 py-2 rounded-full w-80">
-<span class="material-symbols-outlined text-outline">search</span>
-<input class="bg-transparent border-none focus:ring-0 text-body-md w-full ml-2 placeholder:text-outline-variant" placeholder="Search members or records..." type="text"/>
-</div>
-</div>
-</header>
-<!-- Main Content Canvas -->
-<main class=" pt-header-height p-xl">
-<!-- Breadcrumb -->
-<nav class="flex items-center gap-2 mt-5 mb-4 text-text-secondary font-label-md text-label-md">
-<span class="">Dashboard</span>
-<span class="material-symbols-outlined text-sm">chevron_right</span>
-<span class="">Attendance</span>
-<span class="material-symbols-outlined text-sm">chevron_right</span>
-<span class="text-primary font-bold">Absentee Report</span>
-</nav>
-<!-- Red-bordered Critical Notice -->
-<div class="bg-red-50 border-2 border-red-500 rounded-xl p-4 mb-lg flex items-start gap-4">
-<div class="bg-red-500 text-white rounded-full p-1">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
-</div>
-<div>
-<h3 class="font-headline-md text-[16px] text-red-700 font-bold">Pastoral Action Required</h3>
-<p class="text-red-600 text-body-md">Attendance monitoring for follow-up. High number of consecutive absences detected in the current month. Immediate visitation or calls recommended for highlighted members.</p>
-</div>
-</div>
-<div class="mb-lg">
-<h2 class="font-headline-lg text-headline-lg text-primary mb-2">Absentee Report</h2>
-<p class="text-text-secondary">Analyze patterns of absence and schedule pastoral visitations.</p>
-</div>
-<!-- Two-row Filter Bar -->
-<section class="bg-white rounded-xl shadow-sm border border-border p-lg mb-xl">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-lg mb-lg">
-<div class="space-y-2">
-<label class="font-label-md text-label-md text-on-surface-variant">Scope</label>
-<select class="w-full rounded-lg border-border focus:border-primary focus:ring-primary text-body-md py-2.5">
-<option>Both (Sunday &amp; Classes)</option>
-<option>Sunday Service Only</option>
-<option>Class Meetings Only</option>
-</select>
-</div>
-<div class="space-y-2">
-<label class="font-label-md text-label-md text-on-surface-variant">Class</label>
-<select class="w-full rounded-lg border-border focus:border-primary focus:ring-primary text-body-md py-2.5">
-<option>All Society Classes</option>
-<option>Susanna Wesley Class</option>
-<option>John Wesley Class</option>
-<option>Charles Wesley Class</option>
-</select>
-</div>
-<div class="space-y-2">
-<label class="font-label-md text-label-md text-on-surface-variant">Date Range</label>
-<div class="flex items-center gap-2">
-<input class="w-full rounded-lg border-border focus:border-primary focus:ring-primary text-body-md py-2" type="date"/>
-<span class="text-outline">-</span>
-<input class="w-full rounded-lg border-border focus:border-primary focus:ring-primary text-body-md py-2" type="date"/>
-</div>
-</div>
-<div class="space-y-2">
-<label class="font-label-md text-label-md text-on-surface-variant">Absence Threshold</label>
-<select class="w-full rounded-lg border-border focus:border-primary focus:ring-primary text-body-md py-2.5">
-<option>2+ Consecutive Weeks</option>
-<option selected="">4+ Consecutive Weeks</option>
-<option>8+ Consecutive Weeks</option>
-<option>Chronic (12+ Weeks)</option>
-</select>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-4 gap-lg items-end">
-<div class="space-y-2">
-<label class="font-label-md text-label-md text-on-surface-variant">Gender</label>
-<div class="flex gap-2">
-<button class="flex-1 py-2 rounded-lg border border-border bg-white text-body-md hover:bg-surface transition-colors active:bg-primary-muted active:border-primary">All</button>
-<button class="flex-1 py-2 rounded-lg border border-border bg-white text-body-md hover:bg-surface transition-colors">Male</button>
-<button class="flex-1 py-2 rounded-lg border border-border bg-white text-body-md hover:bg-surface transition-colors">Female</button>
-</div>
-</div>
-<div class="space-y-2">
-<label class="font-label-md text-label-md text-on-surface-variant">Age Group</label>
-<select class="w-full rounded-lg border-border focus:border-primary focus:ring-primary text-body-md py-2.5">
-<option>All Ages</option>
-<option>Youth (0-35)</option>
-<option>Adults (36-60)</option>
-<option>Seniors (60+)</option>
-</select>
-</div>
-<div class="md:col-span-2 flex justify-end gap-3">
-<button class="px-6 py-2.5 bg-primary-muted text-primary font-bold rounded-lg border border-primary-light/20 hover:bg-primary-light/10 transition-colors">Clear Filters</button>
-<button class="px-8 py-2.5 bg-primary text-white font-bold rounded-lg hover:bg-primary-light transition-all flex items-center gap-2 shadow-sm">
-<span class="material-symbols-outlined">refresh</span>
-                        Generate Report
+  </head>
+
+  <body class="bg-surface text-on-surface font-body-md antialiased flex h-screen overflow-hidden">
+    {% include 'components/sidebar.html' %}
+
+    <main class="flex-1 min-w-0 h-full overflow-y-auto bg-surface flex flex-col">
+      <header class="flex justify-between items-center w-full px-xl h-[80px] min-h-[80px] sticky top-0 z-40 bg-surface-container-lowest shadow-sm border-b border-border">
+        <nav class="flex items-center text-body-md text-on-surface-variant">
+          <a class="hover:text-primary-light transition-colors" href="{% url 'attendance:overview' %}">Attendance</a>
+          <span class="material-symbols-outlined text-[16px] mx-xs">chevron_right</span>
+          <span class="text-primary font-bold">Absentee Report</span>
+        </nav>
+        <a href="{% url 'attendance:class_attendance' %}" class="px-md py-sm rounded-lg border border-border bg-card hover:bg-surface-container-low text-label-md font-medium transition-colors">Record Class</a>
+      </header>
+
+      <div class="p-xl pb-24 max-w-6xl mx-auto w-full">
+        <h2 class="font-headline-lg text-[32px] font-bold text-primary tracking-tight">Absentee Report &amp; Follow-up</h2>
+        <p class="text-body-md text-on-surface-variant mt-xs leading-relaxed">Track members absent from class meetings and manage follow-up actions.</p>
+
+        <div class="mt-sm flex flex-wrap gap-sm text-[11px]">
+          <span class="px-2 py-1 rounded-full bg-error-container text-on-error-container font-bold">{{ total_absentees }} absentees (last 7 days)</span>
+          <span class="px-2 py-1 rounded-full bg-warning/10 text-warning font-medium">{{ pending_followups }} pending follow-ups</span>
+          <span class="px-2 py-1 rounded-full bg-success/10 text-success font-medium">{{ contacted }} contacted</span>
+        </div>
+
+        {% if messages %}
+          <div class="mt-lg space-y-sm">
+            {% for message in messages %}
+              <div class="p-md rounded-lg border flex items-start gap-sm {% if message.tags == 'error' %}bg-error-container/30 text-error border-error/20{% else %}bg-success/10 text-success border-success/20{% endif %}">
+                <span class="material-symbols-outlined text-[20px]">{% if message.tags == 'error' %}error{% else %}check_circle{% endif %}</span>
+                <span>{{ message }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="mt-xl grid grid-cols-1 lg:grid-cols-12 gap-lg">
+          <!-- Absentees List -->
+          <div class="lg:col-span-5">
+            <div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+              <div class="p-lg border-b border-border bg-surface-container-low flex justify-between items-center">
+                <h3 class="font-headline-md text-[18px] font-semibold flex items-center gap-sm">
+                  <span class="material-symbols-outlined text-error">person_off</span>
+                  Absentees (Last 7 Days)
+                </h3>
+                <span class="text-[11px] px-2 py-1 rounded-full bg-surface-container-high font-data-label">{{ absentees|length }}</span>
+              </div>
+
+              <div class="divide-y divide-border max-h-[600px] overflow-y-auto">
+                {% for member in absentees %}
+                  <div class="p-md flex items-center justify-between gap-md hover:bg-surface-container-lowest transition-colors">
+                    <div class="flex items-center gap-sm min-w-0">
+                      <div class="w-8 h-8 rounded-full bg-error-container flex items-center justify-center font-bold text-on-error-container text-[11px]">{{ member.first_name|slice:":1"|upper }}{{ member.last_name|slice:":1"|upper }}</div>
+                      <div class="min-w-0">
+                        <p class="font-medium text-[13px] truncate">{{ member.get_full_name }}</p>
+                        <p class="text-[11px] text-on-surface-variant truncate">{{ member.assigned_class.name|default:"Unassigned" }} • {{ member.phone_number|default:"No phone" }}</p>
+                      </div>
+                    </div>
+                    <button type="button" onclick="prefillFollowUp('{{ member.id }}', '{{ member.get_full_name }}')" class="p-xs rounded-full hover:bg-surface-container text-primary transition-colors" title="Follow Up">
+                      <span class="material-symbols-outlined text-[18px]">contact_page</span>
                     </button>
-</div>
-</div>
-</section>
-<!-- Results Table Section -->
-<div class="bg-white rounded-xl shadow-sm border border-border overflow-hidden">
-<!-- Bulk Action Bar -->
-<div class="bg-surface-container-low px-lg py-3 border-b border-border flex justify-between items-center">
-<div class="flex items-center gap-4">
-<label class="flex items-center gap-2 cursor-pointer">
-<input class="rounded border-border text-primary focus:ring-primary" type="checkbox"/>
-<span class="font-label-md text-label-md text-on-surface-variant">Select All (128 flagged)</span>
-</label>
-<div class="h-4 w-px bg-outline-variant"></div>
-<button class="text-primary font-bold text-label-md flex items-center gap-1 hover:underline">
-<span class="material-symbols-outlined text-lg">assignment_ind</span>
-                        Batch Assign for Visitation
-                    </button>
-</div>
-<button class="bg-white px-4 py-1.5 border border-border rounded-lg text-label-md font-bold text-primary flex items-center gap-2 hover:bg-primary-muted transition-colors">
-<span class="material-symbols-outlined text-lg">picture_as_pdf</span>
-                    Export for Pastoral Follow-up (PDF)
+                  </div>
+                {% empty %}
+                  <div class="p-xl text-center text-on-surface-variant">
+                    <span class="material-symbols-outlined text-[48px] opacity-30">how_to_reg</span>
+                    <p class="mt-sm font-medium">No absentees in last 7 days!</p>
+                    <p class="text-label-sm">Great attendance this week.</p>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <!-- Follow-up Form & List -->
+          <div class="lg:col-span-7 space-y-lg">
+            <!-- Follow-up Form -->
+            <div class="bg-card rounded-xl shadow-sm border border-border p-lg space-y-md">
+              <h3 class="font-headline-md text-[16px] font-semibold flex items-center gap-sm">
+                <span class="material-symbols-outlined text-primary">contact_page</span>
+                Log Follow-up
+              </h3>
+              <form method="post" action="{% url 'attendance:absentee_report' %}" class="space-y-md">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="create_followup" />
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                  <div class="flex flex-col space-y-xs">
+                    <label class="text-label-md font-medium">Member *</label>
+                    <select name="member_id" required id="followup-member" class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md">
+                      <option value="">Select member...</option>
+                      {% for m in absentees %}
+                        <option value="{{ m.id }}">{{ m.get_full_name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="flex flex-col space-y-xs">
+                    <label class="text-label-md font-medium">Absence Date *</label>
+                    <input name="absence_date" required type="date" value="{{ today }}" class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md" />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                  <div class="flex flex-col space-y-xs">
+                    <label class="text-label-md font-medium">Reason</label>
+                    <input name="reason" type="text" placeholder="Illness, travel, work..." class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md" />
+                  </div>
+                  <div class="flex flex-col space-y-xs">
+                    <label class="text-label-md font-medium">Follow-up Status</label>
+                    <select name="follow_up_status" class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md">
+                      {% for code, label in status_choices %}
+                        <option value="{{ code }}">{{ label }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="flex flex-col space-y-xs">
+                  <label class="text-label-md font-medium">Follow-up Notes</label>
+                  <textarea name="follow_up_notes" rows="3" placeholder="Details of contact, visit, prayer, etc." class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-md px-lg bg-primary text-on-primary rounded-lg font-bold hover:bg-primary-light transition-colors shadow-sm flex items-center justify-center gap-xs">
+                  <span class="material-symbols-outlined text-[18px]">save</span>
+                  Save Follow-up
                 </button>
-</div>
-<table class="w-full border-collapse">
-<thead>
-<tr class="bg-surface-container-lowest text-left border-b border-border">
-<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Member</th>
-<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Class</th>
-<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-center">Last Attended</th>
-<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-center">Weeks Absent</th>
-<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Class Leader</th>
-<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Contact</th>
-<th class="px-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Action</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-border">
-<!-- Member Row 1 -->
-<tr class="hover:bg-surface-container transition-colors group">
-<td class="px-lg py-4">
-<div class="flex items-center gap-3">
-<img class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a middle-aged woman with a friendly, dignified appearance, reflecting a sense of community belonging. The background is a warm, softly blurred church interior with soft morning light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvp68QcE2tFqPpCOr007v98cP0-M0NcChy86V3tmctPbI0qVX5R-p6DkKzH06f10a18khPXrRiW4ht3EtutuLdRflJSdnTsSfvbtiKuY22O6vjvMqx7PPFIvLMdXHLHBtWuXItlQjPDOI86RTY_39oiIV0ZJRBPWraQ003Ee8JI8T-Pr7jbrCCXfTge0MrLnBHhIqOTIvy7BpsPmt9EOxHCeM18m3bDqRy8E2VWoKU4fbmx6Oh6sWwkp7ZgZ57Dz1kkVus_aPZbEBG"/>
-<div>
-<p class="font-bold text-on-surface">Mrs. Abigail Mensah</p>
-<p class="text-xs text-text-secondary">ID: MCG-004592</p>
-</div>
-</div>
-</td>
-<td class="px-lg py-4">
-<span class="bg-gold-muted text-secondary font-medium px-2 py-1 rounded text-xs border border-secondary-container">Susanna Wesley</span>
-</td>
-<td class="px-lg py-4 text-center">
-<span class="text-danger font-bold">12 Aug, 2023</span>
-<p class="text-[10px] text-danger/70">8 Weeks ago</p>
-</td>
-<td class="px-lg py-4 text-center">
-<span class="font-data-label text-data-display text-danger">08</span>
-</td>
-<td class="px-lg py-4">
-<p class="text-body-md">Sis. Faustina Baah</p>
-</td>
-<td class="px-lg py-4">
-<p class="text-body-md font-medium">+233 244 556 789</p>
-<p class="text-xs text-text-secondary italic">Kumasi, Bantama</p>
-</td>
-<td class="px-lg py-4 text-right">
-<button class="bg-primary text-white text-label-sm font-bold py-2 px-3 rounded-lg hover:bg-primary-light shadow-sm transition-all flex items-center gap-1 ml-auto" onclick="toggleAssignmentForm('row1')">
-<span class="material-symbols-outlined text-sm">handshake</span>
-                                Assign for Visitation
-                            </button>
-</td>
-</tr>
-<!-- Inline Form for Row 1 -->
-<tr class="hidden bg-surface-container-low border-l-4 border-primary" id="row1-form">
-<td class="px-lg py-6" colspan="7">
-<div class="max-w-4xl mx-auto flex gap-lg">
-<div class="flex-1 bg-white p-4 rounded-lg shadow-sm border border-border">
-<h4 class="font-bold text-primary mb-3 flex items-center gap-2">
-<span class="material-symbols-outlined">person_add</span>
-                                        Pastoral Assignment Details
-                                    </h4>
-<div class="grid grid-cols-2 gap-4">
-<div class="space-y-1">
-<label class="text-[11px] font-bold text-text-secondary uppercase">Assign To</label>
-<select class="w-full text-sm rounded border-border focus:ring-primary focus:border-primary">
-<option>Steward - Bro. Kofi Ansah</option>
-<option>Society Steward</option>
-<option>Circuit Minister</option>
-<option>Visiting Committee</option>
-</select>
-</div>
-<div class="space-y-1">
-<label class="text-[11px] font-bold text-text-secondary uppercase">Priority Level</label>
-<div class="flex gap-2">
-<label class="flex-1 text-center py-1 border border-border rounded cursor-pointer hover:bg-red-50 has-[:checked]:bg-red-500 has-[:checked]:text-white transition-colors">
-<input checked="" class="hidden" name="priority" type="radio"/> High
-                                                </label>
-<label class="flex-1 text-center py-1 border border-border rounded cursor-pointer hover:bg-yellow-50 has-[:checked]:bg-warning has-[:checked]:text-white transition-colors">
-<input class="hidden" name="priority" type="radio"/> Medium
-                                                </label>
-</div>
-</div>
-<div class="col-span-2 space-y-1">
-<label class="text-[11px] font-bold text-text-secondary uppercase">Instructions / Special Notes</label>
-<textarea class="w-full text-sm rounded border-border focus:ring-primary focus:border-primary" placeholder="Mention the upcoming harvest and check on her health..." rows="2"></textarea>
-</div>
-</div>
-<div class="mt-4 flex justify-end gap-2">
-<button class="px-4 py-1.5 text-label-md font-medium text-text-secondary hover:bg-surface-container rounded transition-colors" onclick="toggleAssignmentForm('row1')">Cancel</button>
-<button class="px-6 py-1.5 bg-primary text-white font-bold rounded text-label-md shadow hover:bg-primary-light transition-all">Submit Assignment</button>
-</div>
-</div>
-<div class="w-64 bg-white p-4 rounded-lg shadow-sm border border-border">
-<h4 class="font-bold text-on-surface mb-2 text-sm uppercase">Quick Stats</h4>
-<div class="space-y-3">
-<div class="flex justify-between border-b border-border pb-2">
-<span class="text-xs text-text-secondary">Consecutive</span>
-<span class="font-data-label text-danger font-bold">8 Wks</span>
-</div>
-<div class="flex justify-between border-b border-border pb-2">
-<span class="text-xs text-text-secondary">Last Visit</span>
-<span class="text-xs font-bold text-on-surface">None Recorded</span>
-</div>
-<div class="flex justify-between">
-<span class="text-xs text-text-secondary">Org. Link</span>
-<span class="text-xs font-bold text-on-surface">Welfare Com.</span>
-</div>
-</div>
-</div>
-</div>
-</td>
-</tr>
-<!-- Member Row 2 -->
-<tr class="hover:bg-surface-container transition-colors group">
-<td class="px-lg py-4">
-<div class="flex items-center gap-3">
-<img class="w-10 h-10 rounded-full object-cover" data-alt="A photo of an elderly gentleman with white hair, wearing a traditional Ghanaian cloth. He has a peaceful expression, captured in a brightly lit church environment with a focus on historical and communal architectural elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgjj0TddwOxtlK3TumBvb5pZRNipI7hCpwpT1JWDIVnV8AI0C7JMRiT1XkCvc-yUbtNOpgMZ1hqzn7n5S1vbjSEZoenqfX-QpJqG2AsFnkLRQftH0m1xDlXFMoi_GqON5e6SDQLz5ExeanFAqwgeVUEhb5MPZvMFLE8WvW2bvSjulF5ao9pLKga_gxxir_0Ar04TniejEUvLfcuipPwFHdKTAznAxA87nThPPSPr9y4azvKEJT7nmUQdQmJUsOHpzfIZC8TbihtfTk"/>
-<div>
-<p class="font-bold text-on-surface">Paapa Kwesi Adu</p>
-<p class="text-xs text-text-secondary">ID: MCG-009121</p>
-</div>
-</div>
-</td>
-<td class="px-lg py-4">
-<span class="bg-surface-container-high text-on-surface-variant font-medium px-2 py-1 rounded text-xs border border-outline-variant">John Wesley</span>
-</td>
-<td class="px-lg py-4 text-center">
-<span class="text-warning font-bold">10 Sep, 2023</span>
-<p class="text-[10px] text-warning/70">4 Weeks ago</p>
-</td>
-<td class="px-lg py-4 text-center">
-<span class="font-data-label text-data-display text-warning">04</span>
-</td>
-<td class="px-lg py-4">
-<p class="text-body-md">Bro. Samuel Darko</p>
-</td>
-<td class="px-lg py-4">
-<p class="text-body-md font-medium">+233 502 112 334</p>
-<p class="text-xs text-text-secondary italic">Ahinsan Estate</p>
-</td>
-<td class="px-lg py-4 text-right">
-<button class="bg-primary text-white text-label-sm font-bold py-2 px-3 rounded-lg hover:bg-primary-light shadow-sm transition-all flex items-center gap-1 ml-auto" onclick="toggleAssignmentForm('row2')">
-<span class="material-symbols-outlined text-sm">handshake</span>
-                                Assign for Visitation
-                            </button>
-</td>
-</tr>
-<tr class="hidden bg-surface-container-low border-l-4 border-primary" id="row2-form">
-<td class="px-lg py-6 text-center text-text-secondary italic" colspan="7">
-                            Assignment form loading...
-                        </td>
-</tr>
-<!-- Member Row 3 -->
-<tr class="hover:bg-surface-container transition-colors group">
-<td class="px-lg py-4">
-<div class="flex items-center gap-3">
-<img class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a young male adult with a smart, respectful look, wearing a casual polo shirt. The background is a modern, light-filled church foyer with a soft, clean aesthetic and minimalist lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjQL3vjVk-EsNRq3OIeh-psryIjfhex336Lxv26605KlfgM00gV77HynfRDk7G4p1xPO4WizLaGbmsfNQWcH0Ms-Kug43e1m5EddIIh94qmnxgzHOZDJEaOKO9SPxARV94gz3nc3suF7xXQlmU5H8AQk0cN7lRVODQtEoCrAwVYQrG64O_njp9wMtZzngiraBLCm4q50TPGapZiTRNgPcaK7B8PPf8KSvF3rWWOq_EhMqzfLK__hkKq5FtzF49Za_z0AinoqlKClCk"/>
-<div>
-<p class="font-bold text-on-surface">Mr. Emmanuel Osei</p>
-<p class="text-xs text-text-secondary">ID: MCG-011234</p>
-</div>
-</div>
-</td>
-<td class="px-lg py-4">
-<span class="bg-gold-muted text-secondary font-medium px-2 py-1 rounded text-xs border border-secondary-container">Youth Class B</span>
-</td>
-<td class="px-lg py-4 text-center">
-<span class="text-danger font-bold">27 Aug, 2023</span>
-<p class="text-[10px] text-danger/70">6 Weeks ago</p>
-</td>
-<td class="px-lg py-4 text-center">
-<span class="font-data-label text-data-display text-danger">06</span>
-</td>
-<td class="px-lg py-4">
-<p class="text-body-md">Sis. Janet Boateng</p>
-</td>
-<td class="px-lg py-4">
-<p class="text-body-md font-medium">+233 243 009 887</p>
-<p class="text-xs text-text-secondary italic">Tanoso</p>
-</td>
-<td class="px-lg py-4 text-right">
-<button class="bg-primary text-white text-label-sm font-bold py-2 px-3 rounded-lg hover:bg-primary-light shadow-sm transition-all flex items-center gap-1 ml-auto">
-<span class="material-symbols-outlined text-sm">handshake</span>
-                                Assign for Visitation
-                            </button>
-</td>
-</tr>
-</tbody>
-</table>
-<!-- Pagination / Footer -->
-<div class="px-lg py-4 flex justify-between items-center bg-white border-t border-border">
-<span class="text-body-md text-text-secondary">Showing 1 to 3 of 128 identified absentees</span>
-<div class="flex gap-2">
-<button class="px-3 py-1.5 border border-border rounded hover:bg-surface transition-colors disabled:opacity-50" disabled="">Previous</button>
-<button class="px-3 py-1.5 bg-primary text-white rounded font-bold">1</button>
-<button class="px-3 py-1.5 border border-border rounded hover:bg-surface transition-colors">2</button>
-<button class="px-3 py-1.5 border border-border rounded hover:bg-surface transition-colors">3</button>
-<button class="px-3 py-1.5 border border-border rounded hover:bg-surface transition-colors">Next</button>
-</div>
-</div>
-</div>
-<!-- Analytical Bento Grid for Context -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mt-xl">
-<div class="bg-white p-lg rounded-xl shadow-sm border-l-4 border-[#C49A2B] flex flex-col justify-between">
-<div>
-<h4 class="font-label-md text-label-md text-text-secondary uppercase mb-2">Recovery Rate</h4>
-<p class="font-data-label text-headline-lg text-primary">64.2%</p>
-</div>
-<p class="text-xs text-success mt-4 flex items-center gap-1 font-bold">
-<span class="material-symbols-outlined text-sm">trending_up</span>
-                    +12% from last month
-                </p>
-</div>
-<div class="bg-white p-lg rounded-xl shadow-sm border-l-4 border-[#C49A2B] flex flex-col justify-between">
-<div>
-<h4 class="font-label-md text-label-md text-text-secondary uppercase mb-2">Pending Visitations</h4>
-<p class="font-data-label text-headline-lg text-primary">42</p>
-</div>
-<div class="flex -space-x-2 mt-4">
-<div class="w-8 h-8 rounded-full border-2 border-white bg-primary text-[10px] text-white flex items-center justify-center font-bold">KA</div>
-<div class="w-8 h-8 rounded-full border-2 border-white bg-secondary text-[10px] text-white flex items-center justify-center font-bold">FD</div>
-<div class="w-8 h-8 rounded-full border-2 border-white bg-tertiary text-[10px] text-white flex items-center justify-center font-bold">SD</div>
-<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-container-highest text-[10px] text-on-surface-variant flex items-center justify-center font-bold">+39</div>
-</div>
-</div>
-<div class="bg-white p-lg rounded-xl shadow-sm border-l-4 border-danger flex flex-col justify-between">
-<div>
-<h4 class="font-label-md text-label-md text-text-secondary uppercase mb-2">Total High Risk</h4>
-<p class="font-data-label text-headline-lg text-danger">18</p>
-</div>
-<p class="text-xs text-danger mt-4 font-medium italic">Absent for &gt;12 consecutive weeks</p>
-</div>
-</div>
-</main>
-<script>
-        function toggleAssignmentForm(rowId) {
-            const formRow = document.getElementById(rowId + '-form');
-            if (formRow.classList.contains('hidden')) {
-                formRow.classList.remove('hidden');
-            } else {
-                formRow.classList.add('hidden');
-            }
+              </form>
+            </div>
+
+            <!-- Follow-ups List -->
+            <div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+              <div class="p-lg border-b border-border bg-surface-container-low flex flex-col sm:flex-row justify-between gap-md">
+                <h3 class="font-headline-md text-[16px] font-semibold">Follow-up Records</h3>
+                <form method="get" class="flex gap-sm">
+                  <input name="q" value="{{ q }}" placeholder="Search member..." class="p-sm rounded-lg border border-border text-body-md" type="text" />
+                  <select name="status" class="p-sm rounded-lg border border-border text-body-md bg-white">
+                    <option value="">All Status</option>
+                    {% for code, label in status_choices %}
+                      <option value="{{ code }}" {% if status_filter == code %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                  </select>
+                  <button type="submit" class="p-sm border border-border rounded-lg bg-white hover:bg-surface-container-low">
+                    <span class="material-symbols-outlined text-[18px]">search</span>
+                  </button>
+                </form>
+              </div>
+
+              <div class="divide-y divide-border max-h-[600px] overflow-y-auto">
+                {% for fu in followups %}
+                  <div class="p-lg hover:bg-surface-container-lowest transition-colors">
+                    <div class="flex justify-between items-start gap-md mb-sm">
+                      <div>
+                        <p class="font-bold text-[14px]">{{ fu.member.get_full_name }}</p>
+                        <p class="text-[11px] text-on-surface-variant">Absent: {{ fu.absence_date|date:"d M Y" }} • Reason: {{ fu.reason|default:"Not specified" }}</p>
+                      </div>
+                      <span class="text-[11px] px-2 py-1 rounded-full font-bold uppercase {% if fu.follow_up_status == 'PENDING' %}bg-warning/10 text-warning{% elif fu.follow_up_status == 'CONTACTED' %}bg-info/10 text-info{% elif fu.follow_up_status == 'VISITED' %}bg-primary-muted text-primary{% else %}bg-success/10 text-success{% endif %}">{{ fu.get_follow_up_status_display }}</span>
+                    </div>
+                    {% if fu.follow_up_notes %}
+                      <p class="text-body-md text-on-surface-variant mt-sm leading-relaxed">{{ fu.follow_up_notes }}</p>
+                    {% endif %}
+                    <p class="text-[11px] text-outline mt-sm">{{ fu.followed_up_by|default:"System" }} • {{ fu.followed_up_at|date:"d M Y H:i"|default:fu.created_at|date:"d M Y" }}</p>
+
+                    <form method="post" action="{% url 'attendance:absentee_report' %}" class="mt-md flex gap-sm">
+                      {% csrf_token %}
+                      <input type="hidden" name="action" value="update_followup" />
+                      <input type="hidden" name="followup_id" value="{{ fu.id }}" />
+                      <select name="follow_up_status" class="p-sm rounded-lg border border-border text-[11px] bg-white">
+                        {% for code, label in status_choices %}
+                          <option value="{{ code }}" {% if fu.follow_up_status == code %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                      </select>
+                      <input name="follow_up_notes" placeholder="Update notes..." class="flex-1 p-sm rounded-lg border border-border text-[11px]" type="text" />
+                      <button type="submit" class="px-md py-sm bg-primary text-on-primary rounded-lg text-[11px] font-bold hover:bg-primary-light">Update</button>
+                    </form>
+                  </div>
+                {% empty %}
+                  <div class="p-xl text-center text-on-surface-variant">
+                    <span class="material-symbols-outlined text-[32px] opacity-30">contact_page</span>
+                    <p class="mt-sm">No follow-up records yet.</p>
+                  </div>
+                {% endfor %}
+              </div>
+
+              <div class="px-lg py-md bg-surface-container-low border-t border-border flex justify-between items-center">
+                <p class="text-label-md text-on-surface-variant">Showing {{ followups.start_index }}–{{ followups.end_index }} of {{ paginator.count }}</p>
+                <div class="flex gap-sm">
+                  {% if followups.has_previous %}
+                    <a href="?page={{ followups.previous_page_number }}&q={{ q }}&status={{ status_filter }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Previous</a>
+                  {% else %}
+                    <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Previous</button>
+                  {% endif %}
+                  {% if followups.has_next %}
+                    <a href="?page={{ followups.next_page_number }}&q={{ q }}&status={{ status_filter }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Next</a>
+                  {% else %}
+                    <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Next</button>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {% include 'components/toast_messages.html' %}
+
+    <script>
+      function prefillFollowUp(memberId, memberName) {
+        const select = document.getElementById("followup-member");
+        if (select) {
+          select.value = memberId;
+          select.scrollIntoView({ behavior: "smooth", block: "center" });
+          // Flash
+          select.classList.add("ring-2", "ring-primary-light");
+          setTimeout(() => select.classList.remove("ring-2", "ring-primary-light"), 1000);
         }
+      }
     </script>
-</body></html>
+  </body>
+</html>

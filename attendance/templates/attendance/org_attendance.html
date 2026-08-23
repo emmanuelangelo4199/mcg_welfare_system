@@ -1,425 +1,271 @@
 {% load static %}
 <!DOCTYPE html>
 <html class="light" lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-        <title>MCG-SMS | Organisation Attendance Summary</title>
-        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Lora:ital,wght@0,400;0,700;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-        <link rel="icon" type="icon-image" href="{% static 'img/Methodist Church Ghana Logo.png' %}">
-        <!-- Tailwind Theme Configuration -->
-        <script id="tailwind-config">
-            tailwind.config = {
-                darkMode: "class",
-                theme: {
-                extend: {
-                    "colors": {
-                        "on-surface": "#1e1b19",
-                        "on-primary-container": "#ff8a95",
-                        "secondary": "#775a00",
-                        "error-container": "#ffdad6",
-                        "surface": "#F8F7F5",
-                        "secondary-fixed-dim": "#eec04f",
-                        "surface-container-low": "#faf2ee",
-                        "on-secondary": "#ffffff",
-                        "text-secondary": "#6B7280",
-                        "tertiary-fixed": "#e3e2e0",
-                        "surface-container-high": "#eee7e3",
-                        "on-primary-fixed-variant": "#832233",
-                        "secondary-fixed": "#ffdf9a",
-                        "gold-muted": "#FDF6E3",
-                        "on-primary": "#ffffff",
-                        "on-error-container": "#93000a",
-                        "error": "#ba1a1a",
-                        "primary-container": "#7b1c2d",
-                        "secondary-container": "#fece5b",
-                        "surface-container-highest": "#e9e1dd",
-                        "outline-variant": "#dcc0c1",
-                        "border": "#E4E2DD",
-                        "success": "#16A34A",
-                        "danger": "#DC2626",
-                        "inverse-primary": "#ffb2b7",
-                        "on-tertiary-fixed-variant": "#464746",
-                        "on-tertiary": "#ffffff",
-                        "background": "#fff8f5",
-                        "surface-container": "#f4ece8",
-                        "on-error": "#ffffff",
-                        "surface-variant": "#e9e1dd",
-                        "tertiary-fixed-dim": "#c7c6c5",
-                        "primary-fixed": "#ffdadb",
-                        "primary-fixed-dim": "#ffb2b7",
-                        "surface-dim": "#e0d8d5",
-                        "surface-container-lowest": "#ffffff",
-                        "on-primary-fixed": "#40000e",
-                        "on-secondary-fixed": "#251a00",
-                        "inverse-on-surface": "#f7efeb",
-                        "surface-tint": "#a33a49",
-                        "on-surface-variant": "#564243",
-                        "inverse-surface": "#33302d",
-                        "surface-bright": "#fff8f5",
-                        "card": "#FFFFFF",
-                        "tertiary-container": "#404140",
-                        "on-secondary-fixed-variant": "#5a4300",
-                        "info": "#2563EB",
-                        "on-tertiary-fixed": "#1a1c1b",
-                        "primary-light": "#A3283F",
-                        "primary": "#5c0219",
-                        "on-background": "#1e1b19",
-                        "primary-muted": "#F5EAEC",
-                        "on-tertiary-container": "#adadab",
-                        "warning": "#D97706",
-                        "on-secondary-container": "#745700",
-                        "outline": "#897172",
-                        "tertiary": "#2a2b2a"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "xl": "32px",
-                        "lg": "24px",
-                        "base": "8px",
-                        "xs": "4px",
-                        "md": "16px",
-                        "sm": "8px",
-                        "sidebar-width": "256px",
-                        "header-height": "64px"
-                    },
-                    "fontFamily": {
-                        "body-md": ["Inter"],
-                        "label-md": ["Inter"],
-                        "headline-lg": ["Lora"],
-                        "label-sm": ["Inter"],
-                        "headline-md": ["Inter"],
-                        "data-label": ["JetBrains Mono"],
-                        "data-display": ["JetBrains Mono"],
-                        "headline-lg-mobile": ["Lora"],
-                        "body-lg": ["Inter"]
-                    }
-                }
-                }
-            }
-        </script>
-        <style>
-            .material-symbols-outlined {
-                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-                display: inline-block;
-                line-height: 1;
-                text-transform: none;
-                letter-spacing: normal;
-                word-wrap: normal;
-                white-space: nowrap;
-                direction: ltr;
-            }
-            body { font-family: 'Inter', sans-serif; }
-            .glass-effect {
-                background: rgba(255, 255, 255, 0.85);
-                backdrop-filter: blur(10px);
-            }
-            .sidebar-active {
-                border-left: 3px solid #fece5b;
-                background-color: rgba(163, 40, 63, 0.1);
-            }
-        </style>
-    </head>
-    <body class="bg-surface text-on-surface flex min-h-screen">
-        <!-- SideNavBar -->
-        {% include 'components/sidebar.html' %}
-        <!-- TopAppBar -->
-        <header class="fixed top-0 right-0 h-header-height flex justify-between items-center px-xl  w-[calc(100%-theme(spacing.sidebar-width))] bg-surface-container-lowest shadow-sm z-40">
-        <div class="flex items-center gap-md">
-        <div class="relative">
-        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant material-symbols-outlined">search</span>
-        <input class="pl-10 pr-4 py-2 bg-surface-container rounded-full border-none focus:ring-2 focus:ring-primary text-sm w-64" placeholder="Search organisations..." type="text"/>
-        </div>
-        </div>
-        <div class="flex items-center gap-lg">
-        <button class="relative hover:bg-surface-container rounded-full p-2 text-on-surface-variant">
-        <span class="material-symbols-outlined">notifications</span>
-        <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border-2 border-surface-container-lowest"></span>
-        </button>
-        <button class="hover:bg-surface-container rounded-full p-2 text-on-surface-variant">
-        <span class="material-symbols-outlined">help_outline</span>
-        </button>
-        </header>
-        <!-- Main Content Canvas -->
-        <main class=" pt-[calc(theme(spacing.header-height)+32px)] px-xl pb-xl min-h-screen">
-        <!-- Breadcrumb & Header -->
-        <div class="mb-lg">
-        <nav class="flex mb-base text-on-surface-variant">
-        <ol class="flex items-center gap-xs font-label-md text-label-md">
-        <li><a class="hover:text-primary" href="#">Dashboard</a></li>
-        <li><span class="material-symbols-outlined text-sm">chevron_right</span></li>
-        <li><a class="hover:text-primary" href="#">Attendance</a></li>
-        <li><span class="material-symbols-outlined text-sm">chevron_right</span></li>
-        <li class="font-bold text-primary">Organisation Attendance Summary</li>
-        </ol>
-        </nav>
-        <!-- RECORD ORGANISATION ATTENDANCE FORM -->
-        <form method="POST" action="{% url 'attendance:org_attendance' %}" class="bg-card p-lg rounded-xl border border-border shadow-sm mb-lg space-y-md">
-        {% csrf_token %}
-        <h3 class="font-headline-md text-primary font-bold">Record Organisation / Guild Attendance</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
-        <div>
-        <label class="block text-label-sm font-bold text-on-surface-variant mb-1">Organisation / Guild</label>
-        <select name="org_id" class="w-full px-md py-2 border border-border rounded-lg bg-surface">
-        {% for org in organisations %}
-        <option value="{{ org.id }}">{{ org.name }}</option>
-        {% endfor %}
-        </select>
-        </div>
-        <div>
-        <label class="block text-label-sm font-bold text-on-surface-variant mb-1">Meeting Date</label>
-        <input type="date" name="date" class="w-full px-md py-2 border border-border rounded-lg bg-surface" required/>
-        </div>
-        <div>
-        <label class="block text-label-sm font-bold text-on-surface-variant mb-1">Attendees Count</label>
-        <input type="number" name="attendees_count" min="0" value="0" class="w-full px-md py-2 border border-border rounded-lg bg-surface" required/>
-        </div>
-        </div>
-        <div>
-        <label class="block text-label-sm font-bold text-on-surface-variant mb-1">Remarks / Agenda Summary</label>
-        <input type="text" name="remarks" placeholder="Optional meeting notes..." class="w-full px-md py-2 border border-border rounded-lg bg-surface"/>
-        </div>
-        <button type="submit" class="bg-primary text-on-primary px-lg py-2.5 rounded-lg font-bold hover:bg-primary-light transition-all">Save Organisation Attendance</button>
-        </form>
-        <div class="flex justify-between items-end">
-        <div>
-        <h2 class="font-headline-lg text-headline-lg text-primary">Organisation Attendance Summary</h2>
-        <p class="font-body-md text-body-md text-on-surface-variant">Consolidated metrics for all service organisations within the society.</p>
-        </div>
-        <div class="flex gap-base">
-        <select class="rounded-lg border-border bg-card font-label-md text-label-md focus:ring-primary focus:border-primary">
-        <option>All Organisations</option>
-        <option>Christ's Little Band</option>
-        <option>Women's Fellowship</option>
-        <option>Men's Fellowship</option>
-        <option>Youth Fellowship</option>
-        </select>
-        <button class="bg-primary hover:bg-primary-light text-on-primary px-lg py-sm rounded-lg font-label-md text-label-md flex items-center gap-xs transition-colors">
-        <span class="material-symbols-outlined text-sm">filter_list</span>
-                                Advanced Filters
-                            </button>
-        </div>
-        </div>
-        </div>
-        <!-- Top Stat Cards (Bento Style) -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-lg mb-xl">
-        <!-- Avg Attendance -->
-        <div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary flex flex-col justify-between">
-        <div>
-        <div class="flex justify-between items-start mb-base">
-        <span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Avg. Organisation Presence</span>
-        <span class="material-symbols-outlined text-secondary">groups</span>
-        </div>
-        <div class="font-data-display text-headline-lg text-primary">84.2%</div>
-        </div>
-        <div class="mt-md flex items-center gap-xs text-success font-label-sm text-label-sm">
-        <span class="material-symbols-outlined text-sm">trending_up</span>
-        <span>+3.2% vs last month</span>
-        </div>
-        </div>
-        <!-- Most Active Organisation -->
-        <div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-success flex flex-col justify-between">
-        <div>
-        <div class="flex justify-between items-start mb-base">
-        <span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Most Active Organisation</span>
-        <span class="material-symbols-outlined text-success">verified</span>
-        </div>
-        <div class="font-headline-md text-headline-md text-on-surface">Women's Fellowship</div>
-        </div>
-        <div class="mt-md">
-        <p class="font-label-sm text-label-sm text-on-surface-variant">96% Average Attendance</p>
-        </div>
-        </div>
-        <!-- Needing Attention -->
-        <div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-error flex flex-col justify-between">
-        <div>
-        <div class="flex justify-between items-start mb-base">
-        <span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Needs Attention</span>
-        <span class="material-symbols-outlined text-error">warning</span>
-        </div>
-        <div class="font-headline-md text-headline-md text-on-surface">Men's Fellowship</div>
-        </div>
-        <div class="mt-md">
-        <p class="font-label-sm text-label-sm text-on-surface-variant">61% Average Attendance (-12%)</p>
-        </div>
-        </div>
-        <!-- Quick Action Card -->
-        <div class="bg-primary p-lg rounded-xl shadow-sm text-on-primary flex flex-col justify-between">
-        <p class="font-headline-md text-headline-md leading-tight">Generate Quarterly Review</p>
-        <button class="mt-md w-full bg-secondary text-on-secondary font-bold py-2 rounded-lg hover:bg-secondary-fixed-dim transition-colors flex items-center justify-center gap-xs">
-        <span class="material-symbols-outlined text-sm">file_download</span>
-                            Download PDF
-                        </button>
-        </div>
-        </div>
-        <!-- Middle Comparison Table -->
-        <div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden mb-xl">
-        <div class="p-lg border-b border-border flex justify-between items-center">
-        <h3 class="font-headline-md text-headline-md text-primary">Organisation Comparative Analysis</h3>
-        <div class="flex gap-sm">
-        <span class="flex items-center gap-xs text-on-surface-variant font-label-sm text-label-sm">
-        <span class="w-3 h-3 rounded-full bg-success"></span> Above Target
-                            </span>
-        <span class="flex items-center gap-xs text-on-surface-variant font-label-sm text-label-sm">
-        <span class="w-3 h-3 rounded-full bg-warning"></span> At Risk
-                            </span>
-        </div>
-        </div>
-        <div class="overflow-x-auto">
-        <table class="w-full text-left border-collapse">
-        <thead class="bg-surface-container-low font-label-md text-label-md text-on-surface-variant">
-        <tr>
-        <th class="px-lg py-md border-b border-border">Organisation Name</th>
-        <th class="px-lg py-md border-b border-border text-right">Registered Strength</th>
-        <th class="px-lg py-md border-b border-border text-right">Current Attendance</th>
-        <th class="px-lg py-md border-b border-border text-right">Variance (%)</th>
-        <th class="px-lg py-md border-b border-border text-center">Engagement Status</th>
-        </tr>
-        </thead>
-        <tbody class="font-body-md text-body-md divide-y divide-border">
-        <tr class="hover:bg-surface-container-lowest transition-colors">
-        <td class="px-lg py-md font-bold">Women's Fellowship</td>
-        <td class="px-lg py-md text-right font-data-label">142</td>
-        <td class="px-lg py-md text-right font-data-label">136</td>
-        <td class="px-lg py-md text-right font-data-label text-success">+4.2%</td>
-        <td class="px-lg py-md text-center">
-        <span class="bg-success/10 text-success px-3 py-1 rounded-full font-label-sm text-label-sm">Active</span>
-        </td>
-        </tr>
-        <tr class="hover:bg-surface-container-lowest transition-colors">
-        <td class="px-lg py-md font-bold">Christ's Little Band</td>
-        <td class="px-lg py-md text-right font-data-label">88</td>
-        <td class="px-lg py-md text-right font-data-label">72</td>
-        <td class="px-lg py-md text-right font-data-label text-warning">-18.1%</td>
-        <td class="px-lg py-md text-center">
-        <span class="bg-warning/10 text-warning px-3 py-1 rounded-full font-label-sm text-label-sm">Monitoring</span>
-        </td>
-        </tr>
-        <tr class="hover:bg-surface-container-lowest transition-colors">
-        <td class="px-lg py-md font-bold">Men's Fellowship</td>
-        <td class="px-lg py-md text-right font-data-label">65</td>
-        <td class="px-lg py-md text-right font-data-label">40</td>
-        <td class="px-lg py-md text-right font-data-label text-danger">-38.4%</td>
-        <td class="px-lg py-md text-center">
-        <span class="bg-error/10 text-error px-3 py-1 rounded-full font-label-sm text-label-sm">Critical</span>
-        </td>
-        </tr>
-        <tr class="hover:bg-surface-container-lowest transition-colors">
-        <td class="px-lg py-md font-bold">Youth Fellowship</td>
-        <td class="px-lg py-md text-right font-data-label">210</td>
-        <td class="px-lg py-md text-right font-data-label">198</td>
-        <td class="px-lg py-md text-right font-data-label text-success">+2.1%</td>
-        <td class="px-lg py-md text-center">
-        <span class="bg-success/10 text-success px-3 py-1 rounded-full font-label-sm text-label-sm">Active</span>
-        </td>
-        </tr>
-        </tbody>
-        </table>
-        </div>
-        </div>
-        <!-- Bottom Cross-Tab Matrix -->
-        <div class="bg-card rounded-xl shadow-sm border border-border mb-lg">
-        <div class="p-lg border-b border-border">
-        <h3 class="font-headline-md text-headline-md text-primary">Cross-Organisational Weekly Matrix</h3>
-        <p class="font-body-md text-body-md text-on-surface-variant">Tracking attendance density across the last 4 meeting cycles.</p>
-        </div>
-        <div class="p-lg overflow-x-auto">
-        <div class="grid grid-cols-5 gap-xs min-w-[800px]">
-        <!-- Labels Column -->
-        <div class="space-y-xs pt-10">
-        <div class="h-12 flex items-center font-label-md text-label-md">Women's Fellowship</div>
-        <div class="h-12 flex items-center font-label-md text-label-md">Men's Fellowship</div>
-        <div class="h-12 flex items-center font-label-md text-label-md">Christ's Little Band</div>
-        <div class="h-12 flex items-center font-label-md text-label-md">Youth Fellowship</div>
-        <div class="h-12 flex items-center font-label-md text-label-md">Girls Brigade</div>
-        </div>
-        <!-- Week 1 -->
-        <div class="flex flex-col items-center gap-xs">
-        <div class="h-10 font-label-sm text-label-sm text-on-surface-variant uppercase">Week 1</div>
-        <div class="w-full h-12 bg-primary/80 rounded-md flex items-center justify-center text-on-primary font-data-label">92%</div>
-        <div class="w-full h-12 bg-primary/20 rounded-md flex items-center justify-center text-primary font-data-label">62%</div>
-        <div class="w-full h-12 bg-primary/50 rounded-md flex items-center justify-center text-on-primary font-data-label">78%</div>
-        <div class="w-full h-12 bg-primary rounded-md flex items-center justify-center text-on-primary font-data-label">98%</div>
-        <div class="w-full h-12 bg-primary/40 rounded-md flex items-center justify-center text-on-primary font-data-label">74%</div>
-        </div>
-        <!-- Week 2 -->
-        <div class="flex flex-col items-center gap-xs">
-        <div class="h-10 font-label-sm text-label-sm text-on-surface-variant uppercase">Week 2</div>
-        <div class="w-full h-12 bg-primary/90 rounded-md flex items-center justify-center text-on-primary font-data-label">95%</div>
-        <div class="w-full h-12 bg-primary/10 rounded-md flex items-center justify-center text-primary font-data-label">58%</div>
-        <div class="w-full h-12 bg-primary/60 rounded-md flex items-center justify-center text-on-primary font-data-label">82%</div>
-        <div class="w-full h-12 bg-primary/90 rounded-md flex items-center justify-center text-on-primary font-data-label">94%</div>
-        <div class="w-full h-12 bg-primary/50 rounded-md flex items-center justify-center text-on-primary font-data-label">79%</div>
-        </div>
-        <!-- Week 3 -->
-        <div class="flex flex-col items-center gap-xs">
-        <div class="h-10 font-label-sm text-label-sm text-on-surface-variant uppercase">Week 3</div>
-        <div class="w-full h-12 bg-primary rounded-md flex items-center justify-center text-on-primary font-data-label">97%</div>
-        <div class="w-full h-12 bg-primary/30 rounded-md flex items-center justify-center text-primary font-data-label">65%</div>
-        <div class="w-full h-12 bg-primary/40 rounded-md flex items-center justify-center text-on-primary font-data-label">72%</div>
-        <div class="w-full h-12 bg-primary/80 rounded-md flex items-center justify-center text-on-primary font-data-label">91%</div>
-        <div class="w-full h-12 bg-primary/60 rounded-md flex items-center justify-center text-on-primary font-data-label">84%</div>
-        </div>
-        <!-- Week 4 -->
-        <div class="flex flex-col items-center gap-xs">
-        <div class="h-10 font-label-sm text-label-sm text-on-surface-variant uppercase text-primary font-bold">Trend</div>
-        <div class="w-full h-12 bg-success/20 rounded-md flex items-center justify-center text-success"><span class="material-symbols-outlined">trending_up</span></div>
-        <div class="w-full h-12 bg-error/20 rounded-md flex items-center justify-center text-error"><span class="material-symbols-outlined">trending_down</span></div>
-        <div class="w-full h-12 bg-surface-container-high rounded-md flex items-center justify-center text-on-surface-variant"><span class="material-symbols-outlined">trending_flat</span></div>
-        <div class="w-full h-12 bg-surface-container-high rounded-md flex items-center justify-center text-on-surface-variant"><span class="material-symbols-outlined">trending_flat</span></div>
-        <div class="w-full h-12 bg-success/20 rounded-md flex items-center justify-center text-success"><span class="material-symbols-outlined">trending_up</span></div>
-        </div>
-        </div>
-        </div>
-        </div>
-        <!-- Single Org Correlation Banner (Dynamic Injection Mockup) -->
-        <div class="bg-gold-muted border border-secondary/30 rounded-xl p-lg flex items-center justify-between gap-xl" id="correlation-banner">
-        <div class="flex items-center gap-md">
-        <div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-secondary">
-        <span class="material-symbols-outlined">insights</span>
-        </div>
-        <div>
-        <h4 class="font-headline-md text-headline-md text-secondary">Dues Correlation Insight</h4>
-        <p class="font-body-md text-body-md text-on-secondary-container max-w-2xl">
-                                A strong positive correlation (0.84) exists between attendance and dues payment for <span class="font-bold">Women's Fellowship</span>. Regular attendees are 70% more likely to be up-to-date with their assessments.
-                            </p>
-        </div>
-        </div>
-        <a class="whitespace-nowrap px-lg py-sm bg-secondary text-on-secondary rounded-lg font-bold hover:bg-on-secondary-container transition-colors flex items-center gap-xs" href="#e-02-dues-tab">
-                        View Dues Status
-                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
-        </a>
-        </div>
-        </main>
-        <script>
-            // Simple micro-interaction for the stats cards
-            document.querySelectorAll('.bg-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.classList.add('scale-[1.01]');
-                    card.style.transition = 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.classList.remove('scale-[1.01]');
-                });
-            });
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Organisation Attendance | MCG-SMS</title>
 
-            // Mock search interaction
-            const searchInput = document.querySelector('input[type="text"]');
-            searchInput.addEventListener('focus', () => {
-                searchInput.classList.add('w-80');
-                searchInput.style.transition = 'width 0.3s ease';
-            });
-            searchInput.addEventListener('blur', () => {
-                searchInput.classList.remove('w-80');
-            });
-        </script>
-    </body>
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              tertiary: "#2a2b2a",
+              "primary-fixed": "#ffdadb",
+              "primary-fixed-dim": "#ffb2b7",
+              "on-primary-fixed-variant": "#832233",
+              "secondary-fixed-dim": "#eec04f",
+              outline: "#897172",
+              "primary-light": "#A3283F",
+              error: "#ba1a1a",
+              border: "#E4E2DD",
+              "surface-container-highest": "#e9e1dd",
+              "on-secondary-fixed-variant": "#5a4300",
+              info: "#2563EB",
+              danger: "#DC2626",
+              "inverse-primary": "#ffb2b7",
+              "surface-bright": "#fff8f5",
+              "inverse-on-surface": "#f7efeb",
+              warning: "#D97706",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "tertiary-container": "#404140",
+              "on-primary-fixed": "#40000e",
+              "surface-dim": "#e0d8d5",
+              "surface-container-lowest": "#ffffff",
+              "gold-muted": "#FDF6E3",
+              "secondary-fixed": "#ffdf9a",
+              secondary: "#775a00",
+              "secondary-container": "#fece5b",
+              "surface-container": "#f4ece8",
+              "outline-variant": "#dcc0c1",
+              card: "#FFFFFF",
+              "on-surface": "#1e1b19",
+              "surface-variant": "#e9e1dd",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed-dim": "#c7c6c5",
+              "surface-tint": "#a33a49",
+              "on-background": "#1e1b19",
+              "surface-container-high": "#eee7e3",
+              "primary-muted": "#F5EAEC",
+              "on-tertiary-fixed": "#1a1c1b",
+              "on-error": "#ffffff",
+              "primary-container": "#7b1c2d",
+              "on-tertiary-container": "#adadab",
+              "text-secondary": "#6B7280",
+              success: "#16A34A",
+              "error-container": "#ffdad6",
+              "on-surface-variant": "#564243",
+              "inverse-surface": "#33302d",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#745700",
+              "surface-container-low": "#faf2ee",
+              "on-tertiary-fixed-variant": "#464746",
+              surface: "#F8F7F5",
+              "on-primary-container": "#ff8a95",
+              primary: "#5c0219",
+              background: "#fff8f5",
+              "tertiary-fixed": "#e3e2e0",
+              "on-secondary-fixed": "#251a00",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              xs: "4px",
+              sm: "8px",
+              xl: "32px",
+              "sidebar-width": "256px",
+              md: "16px",
+              lg: "24px",
+              "header-height": "64px",
+              base: "8px",
+            },
+            fontFamily: {
+              "headline-lg": ["Lora"],
+              "headline-md": ["Inter"],
+              "body-md": ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8f7f5;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+  </head>
+
+  <body class="bg-surface text-on-surface font-body-md antialiased flex h-screen overflow-hidden">
+    {% include 'components/sidebar.html' %}
+
+    <main class="flex-1 min-w-0 h-full overflow-y-auto bg-surface flex flex-col">
+      <header class="flex justify-between items-center w-full px-xl h-[80px] min-h-[80px] sticky top-0 z-40 bg-surface-container-lowest shadow-sm border-b border-border">
+        <nav class="flex items-center text-body-md text-on-surface-variant">
+          <a class="hover:text-primary-light transition-colors" href="{% url 'attendance:overview' %}">Attendance</a>
+          <span class="material-symbols-outlined text-[16px] mx-xs">chevron_right</span>
+          <span class="text-primary font-bold">Organisation Attendance</span>
+        </nav>
+      </header>
+
+      <div class="p-xl pb-24 max-w-6xl mx-auto w-full">
+        <h2 class="font-headline-lg text-[32px] font-bold text-primary tracking-tight">Organisation Attendance</h2>
+        <p class="text-body-md text-on-surface-variant mt-xs leading-relaxed">Record attendance for church organisations and fellowships.</p>
+
+        <div class="mt-sm flex flex-wrap gap-sm text-[11px]">
+          <span class="px-2 py-1 rounded-full bg-surface-container-high font-data-label">{{ total_records }} records</span>
+          <span class="px-2 py-1 rounded-full bg-primary-muted text-primary font-medium">{{ total_attendees }} total attendees</span>
+        </div>
+
+        {% if messages %}
+          <div class="mt-lg space-y-sm">
+            {% for message in messages %}
+              <div class="p-md rounded-lg border flex items-start gap-sm {% if message.tags == 'error' %}bg-error-container/30 text-error border-error/20{% else %}bg-success/10 text-success border-success/20{% endif %}">
+                <span class="material-symbols-outlined text-[20px]">{% if message.tags == 'error' %}error{% else %}check_circle{% endif %}</span>
+                <span>{{ message }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="mt-xl grid grid-cols-1 lg:grid-cols-12 gap-lg">
+          <!-- Form -->
+          <div class="lg:col-span-5">
+            <form method="post" action="{% url 'attendance:org_attendance' %}" class="bg-card rounded-xl shadow-sm border border-border p-lg space-y-lg">
+              {% csrf_token %}
+              <input type="hidden" name="action" value="create" />
+
+              <h3 class="font-headline-md text-[18px] font-semibold flex items-center gap-sm">
+                <span class="material-symbols-outlined text-primary">account_balance</span>
+                Record Organisation Attendance
+              </h3>
+
+              <div class="flex flex-col space-y-xs">
+                <label class="text-label-md font-medium">Organisation *</label>
+                <select name="org_id" required class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md">
+                  <option value="">Select organisation...</option>
+                  {% for org in organisations %}
+                    <option value="{{ org.id }}">{{ org.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <div class="flex flex-col space-y-xs">
+                <label class="text-label-md font-medium">Date *</label>
+                <input name="date" required type="date" value="{{ today }}" class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md" />
+              </div>
+
+              <div class="grid grid-cols-3 gap-md">
+                <div class="flex flex-col space-y-xs">
+                  <label class="text-label-md font-medium">Total Attendees *</label>
+                  <input name="attendees_count" type="number" min="0" value="0" required class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md" />
+                </div>
+                <div class="flex flex-col space-y-xs">
+                  <label class="text-label-md font-medium">Male</label>
+                  <input name="male_count" type="number" min="0" value="0" class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md" />
+                </div>
+                <div class="flex flex-col space-y-xs">
+                  <label class="text-label-md font-medium">Female</label>
+                  <input name="female_count" type="number" min="0" value="0" class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md" />
+                </div>
+              </div>
+
+              <div class="flex flex-col space-y-xs">
+                <label class="text-label-md font-medium">Remarks</label>
+                <textarea name="remarks" rows="3" placeholder="Any notes..." class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md"></textarea>
+              </div>
+
+              <button type="submit" class="w-full py-md px-lg bg-primary text-on-primary rounded-lg font-bold hover:bg-primary-light transition-all shadow-sm active:scale-95 flex items-center justify-center gap-xs">
+                <span class="material-symbols-outlined text-[18px]">save</span>
+                Save Attendance
+              </button>
+            </form>
+          </div>
+
+          <!-- Records -->
+          <div class="lg:col-span-7">
+            <div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+              <div class="p-lg border-b border-border bg-surface-container-low flex flex-col sm:flex-row justify-between gap-md">
+                <h3 class="font-headline-md text-[18px] font-semibold">Recent Organisation Records</h3>
+                <form method="get" class="flex gap-sm">
+                  <select name="org_filter" class="p-sm rounded-lg border border-border text-body-md bg-white">
+                    <option value="">All Organisations</option>
+                    {% for org in organisations %}
+                      <option value="{{ org.id }}" {% if org_filter == org.id|stringformat:"s" %}selected{% endif %}>{{ org.name }}</option>
+                    {% endfor %}
+                  </select>
+                  <input name="date" value="{{ date_filter }}" type="date" class="p-sm rounded-lg border border-border text-body-md" />
+                  <button type="submit" class="p-sm border border-border rounded-lg bg-white hover:bg-surface-container-low">
+                    <span class="material-symbols-outlined text-[18px]">search</span>
+                  </button>
+                </form>
+              </div>
+
+              <div class="divide-y divide-border max-h-[600px] overflow-y-auto">
+                {% for rec in records %}
+                  <div class="p-lg hover:bg-surface-container-lowest transition-colors">
+                    <div class="flex justify-between items-start gap-md mb-sm">
+                      <div>
+                        <p class="font-bold text-[14px]">{{ rec.organisation.name }}</p>
+                        <p class="text-[11px] text-on-surface-variant">{{ rec.date|date:"D, d M Y" }} • {{ rec.recorded_by|default:"System" }}</p>
+                      </div>
+                      <span class="font-data-label text-[16px] font-bold">{{ rec.attendees_count }}</span>
+                    </div>
+                    <div class="flex gap-sm text-[11px]">
+                      <span class="px-2 py-1 rounded-full bg-info/10 text-info">M: {{ rec.male_count }}</span>
+                      <span class="px-2 py-1 rounded-full bg-primary-muted text-primary">F: {{ rec.female_count }}</span>
+                    </div>
+                    {% if rec.remarks %}
+                      <p class="text-[11px] text-on-surface-variant mt-sm italic">{{ rec.remarks }}</p>
+                    {% endif %}
+                  </div>
+                {% empty %}
+                  <div class="p-xl text-center text-on-surface-variant">
+                    <span class="material-symbols-outlined text-[48px] opacity-30">account_balance</span>
+                    <p class="mt-sm">No organisation attendance records yet.</p>
+                  </div>
+                {% endfor %}
+              </div>
+
+              <div class="px-lg py-md bg-surface-container-low border-t border-border flex justify-between items-center">
+                <p class="text-label-md text-on-surface-variant">Showing {{ records.start_index }}–{{ records.end_index }} of {{ paginator.count }}</p>
+                <div class="flex gap-sm">
+                  {% if records.has_previous %}
+                    <a href="?page={{ records.previous_page_number }}&org_filter={{ org_filter }}&date={{ date_filter }}&q={{ q }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Previous</a>
+                  {% else %}
+                    <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Previous</button>
+                  {% endif %}
+                  {% if records.has_next %}
+                    <a href="?page={{ records.next_page_number }}&org_filter={{ org_filter }}&date={{ date_filter }}&q={{ q }}" class="px-md py-sm border border-border rounded-lg bg-white font-bold hover:bg-surface-container-high">Next</a>
+                  {% else %}
+                    <button disabled class="px-md py-sm border border-border rounded-lg bg-white font-bold opacity-50 cursor-not-allowed">Next</button>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {% include 'components/toast_messages.html' %}
+  </body>
 </html>
