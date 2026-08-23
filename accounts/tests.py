@@ -325,3 +325,112 @@ class UserListViewTestCase(TestCase):
         self.assertRedirects(response, reverse('accounts:user_list'))
         self.target_user.profile.refresh_from_db()
         self.assertEqual(self.target_user.profile.role, 'TREASURER')
+
+    def test_user_list_search(self):
+        self.client.force_login(self.admin_user)
+        # Create extra user
+        extra = User.objects.create_user(username='kwame', email='kwame@example.com', first_name='Kwame', last_name='Mensah')
+        UserProfile.objects.create(user=extra, role='CLASS_LEADER')
+        response = self.client.get(reverse('accounts:user_list') + '?q=kwame')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'kwame')
+        self.assertNotContains(response, 'target@test.com')
+
+    def test_user_list_role_filter(self):
+        self.client.force_login(self.admin_user)
+        response = self.client.get(reverse('accounts:user_list') + '?role_filter=MEMBER')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'target')
+
+    def test_create_user_success(self):
+        self.client.force_login(self.admin_user)
+        response = self.client.post(reverse('accounts:user_list'), {
+            'action': 'create_user',
+            'full_name': 'Abena Owusu',
+            'email': 'abena@example.com',
+            'role': 'TREASURER',
+            'phone': '0249999999',
+            'is_active': 'on',
+            'setup': 'temp',
+            'temp_password': 'TempPass123!',
+        })
+        self.assertRedirects(response, reverse('accounts:user_list'))
+        self.assertTrue(User.objects.filter(email='abena@example.com').exists())
+        new_user = User.objects.get(email='abena@example.com')
+        self.assertEqual(new_user.first_name, 'Abena')
+        self.assertEqual(new_user.last_name, 'Owusu')
+        self.assertEqual(new_user.profile.role, 'TREASURER')
+        self.assertEqual(new_user.profile.phone_number, '0249999999')
+        self.assertTrue(new_user.check_password('TempPass123!'))
+
+    def test_create_user_duplicate_email_fails(self):
+        self.client.force_login(self.admin_user)
+        response = self.client.post(reverse('accounts:user_list'), {
+            'action': 'create_user',
+            'full_name': 'Duplicate',
+            'email': 'target@test.com',
+            'role': 'MEMBER',
+        })
+        self.assertRedirects(response, reverse('accounts:user_list'))
+        # Should not create duplicate
+        self.assertEqual(User.objects.filter(email='target@test.com').count(), 1)
+
+    def test_toggle_user_status(self):
+        self.client.force_login(self.admin_user)
+        self.assertTrue(self.target_user.is_active)
+        response = self.client.post(reverse('accounts:user_list'), {
+            'action': 'toggle_status',
+            'user_id': self.target_user.id,
+        })
+        self.assertRedirects(response, reverse('accounts:user_list'))
+        self.target_user.refresh_from_db()
+        self.assertFalse(self.target_user.is_active)
+
+        # Toggle back
+        response = self.client.post(reverse('accounts:user_list'), {
+            'action': 'toggle_status',
+            'user_id': self.target_user.id,
+        })
+        self.target_user.refresh_from_db()
+        self.assertTrue(self.target_user.is_active)
+
+    def test_toggle_own_status_blocked(self):
+        self.client.force_login(self.admin_user)
+        response = self.client.post(reverse('accounts:user_list'), {
+            'action': 'toggle_status',
+            'user_id': self.admin_user.id,
+        })
+        self.assertRedirects(response, reverse('accounts:user_list'))
+        self.admin_user.refresh_from_db()
+        self.assertTrue(self.admin_user.is_active)  # Should remain active
+
+    def test_delete_user(self):
+        self.client.force_login(self.admin_user)
+        user_to_delete = User.objects.create_user(username='todelete', email='delete@test.com', password='pass')
+        UserProfile.objects.create(user=user_to_delete, role='MEMBER')
+        response = self.client.post(reverse('accounts:user_list'), {
+            'action': 'delete_user',
+            'user_id': user_to_delete.id,
+        })
+        self.assertRedirects(response, reverse('accounts:user_list'))
+        self.assertFalse(User.objects.filter(id=user_to_delete.id).exists())
+
+    def test_delete_own_account_blocked(self):
+        self.client.force_login(self.admin_user)
+        response = self.client.post(reverse('accounts:user_list'), {
+            'action': 'delete_user',
+            'user_id': self.admin_user.id,
+        })
+        self.assertRedirects(response, reverse('accounts:user_list'))
+        self.assertTrue(User.objects.filter(id=self.admin_user.id).exists())
+
+    def test_pagination(self):
+        self.client.force_login(self.admin_user)
+        # Create 15 users
+        for i in range(15):
+            u = User.objects.create_user(username=f'user{i}', email=f'user{i}@test.com', password='pass')
+            UserProfile.objects.create(user=u, role='MEMBER')
+        response = self.client.get(reverse('accounts:user_list'))
+        self.assertEqual(response.status_code, 200)
+        # Should paginate 10 per page
+        self.assertTrue(response.context['users'].paginator.num_pages >= 2)
