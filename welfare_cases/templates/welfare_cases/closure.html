@@ -1,384 +1,188 @@
+{% load static %}
 <!DOCTYPE html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Close Welfare Case | MCG-SMS</title>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Welfare Case Closure (J-06) - MCG-SMS</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Lora:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        /* Custom scrollbar for better UI consistency */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #F8F7F5;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #E4E2DD;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #dcc0c1;
-        }
-    </style>
-<script id="tailwind-config">
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
-            "colors": {
-                    "danger": "#DC2626",
-                    "on-tertiary-fixed-variant": "#464746",
-                    "border": "#E4E2DD",
-                    "primary-fixed": "#ffdadb",
-                    "on-secondary-fixed": "#251a00",
-                    "outline": "#897172",
-                    "info": "#2563EB",
-                    "secondary": "#775a00",
-                    "on-background": "#1e1b19",
-                    "inverse-surface": "#33302d",
-                    "on-tertiary-container": "#adadab",
-                    "on-primary": "#ffffff",
-                    "on-error": "#ffffff",
-                    "text-secondary": "#6B7280",
-                    "on-primary-fixed-variant": "#832233",
-                    "on-secondary-fixed-variant": "#5a4300",
-                    "secondary-fixed": "#ffdf9a",
-                    "inverse-primary": "#ffb2b7",
-                    "on-primary-container": "#ff8a95",
-                    "on-tertiary-fixed": "#1a1c1b",
-                    "surface-container": "#f4ece8",
-                    "tertiary-fixed-dim": "#c7c6c5",
-                    "on-tertiary": "#ffffff",
-                    "surface-container-high": "#eee7e3",
-                    "surface-variant": "#e9e1dd",
-                    "primary-container": "#7b1c2d",
-                    "error-container": "#ffdad6",
-                    "background": "#fff8f5",
-                    "primary-muted": "#F5EAEC",
-                    "surface-bright": "#fff8f5",
-                    "surface-container-lowest": "#ffffff",
-                    "card": "#FFFFFF",
-                    "on-secondary": "#ffffff",
-                    "warning": "#D97706",
-                    "on-primary-fixed": "#40000e",
-                    "error": "#ba1a1a",
-                    "primary": "#5c0219",
-                    "surface-tint": "#a33a49",
-                    "tertiary-container": "#404140",
-                    "primary-fixed-dim": "#ffb2b7",
-                    "gold-muted": "#FDF6E3",
-                    "secondary-fixed-dim": "#eec04f",
-                    "surface-dim": "#e0d8d5",
-                    "tertiary": "#2a2b2a",
-                    "surface-container-low": "#faf2ee",
-                    "on-surface": "#1e1b19",
-                    "on-surface-variant": "#564243",
-                    "primary-light": "#A3283F",
-                    "tertiary-fixed": "#e3e2e0",
-                    "outline-variant": "#dcc0c1",
-                    "surface": "#F8F7F5",
-                    "success": "#16A34A",
-                    "surface-container-highest": "#e9e1dd",
-                    "on-error-container": "#93000a",
-                    "inverse-on-surface": "#f7efeb",
-                    "secondary-container": "#fece5b",
-                    "on-secondary-container": "#745700"
+            colors: {
+              tertiary: "#2a2b2a",
+              "primary-fixed": "#ffdadb",
+              "primary-fixed-dim": "#ffb2b7",
+              "on-primary-fixed-variant": "#832233",
+              "secondary-fixed-dim": "#eec04f",
+              outline: "#897172",
+              "primary-light": "#A3283F",
+              error: "#ba1a1a",
+              border: "#E4E2DD",
+              "surface-container-highest": "#e9e1dd",
+              "on-secondary-fixed-variant": "#5a4300",
+              info: "#2563EB",
+              danger: "#DC2626",
+              "inverse-primary": "#ffb2b7",
+              "surface-bright": "#fff8f5",
+              "inverse-on-surface": "#f7efeb",
+              warning: "#D97706",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "tertiary-container": "#404140",
+              "on-primary-fixed": "#40000e",
+              "surface-dim": "#e0d8d5",
+              "surface-container-lowest": "#ffffff",
+              "gold-muted": "#FDF6E3",
+              "secondary-fixed": "#ffdf9a",
+              secondary: "#775a00",
+              "secondary-container": "#fece5b",
+              "surface-container": "#f4ece8",
+              "outline-variant": "#dcc0c1",
+              card: "#FFFFFF",
+              "on-surface": "#1e1b19",
+              "surface-variant": "#e9e1dd",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed-dim": "#c7c6c5",
+              "surface-tint": "#a33a49",
+              "on-background": "#1e1b19",
+              "surface-container-high": "#eee7e3",
+              "primary-muted": "#F5EAEC",
+              "on-tertiary-fixed": "#1a1c1b",
+              "on-error": "#ffffff",
+              "primary-container": "#7b1c2d",
+              "on-tertiary-container": "#adadab",
+              "text-secondary": "#6B7280",
+              success: "#16A34A",
+              "error-container": "#ffdad6",
+              "on-surface-variant": "#564243",
+              "inverse-surface": "#33302d",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#745700",
+              "surface-container-low": "#faf2ee",
+              "on-tertiary-fixed-variant": "#464746",
+              surface: "#F8F7F5",
+              "on-primary-container": "#ff8a95",
+              primary: "#5c0219",
+              background: "#fff8f5",
+              "tertiary-fixed": "#e3e2e0",
+              "on-secondary-fixed": "#251a00",
             },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
             },
-            "spacing": {
-                    "sidebar-width": "256px",
-                    "xs": "4px",
-                    "md": "16px",
-                    "sm": "8px",
-                    "base": "8px",
-                    "xl": "32px",
-                    "header-height": "64px",
-                    "lg": "24px"
+            spacing: {
+              xs: "4px",
+              sm: "8px",
+              xl: "32px",
+              "sidebar-width": "256px",
+              md: "16px",
+              lg: "24px",
+              "header-height": "64px",
+              base: "8px",
             },
-            "fontFamily": {
-                    "label-md": ["Inter"],
-                    "body-lg": ["Inter"],
-                    "headline-lg-mobile": ["Lora"],
-                    "body-md": ["Inter"],
-                    "headline-md": ["Inter"],
-                    "label-sm": ["Inter"],
-                    "data-display": ["JetBrains Mono"],
-                    "data-label": ["JetBrains Mono"],
-                    "headline-lg": ["Lora"]
+            fontFamily: {
+              "headline-lg": ["Lora"],
+              "headline-md": ["Inter"],
+              "body-md": ["Inter"],
             },
-            "fontSize": {
-                    "label-md": ["13px", {"lineHeight": "1.2", "fontWeight": "500"}],
-                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                    "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "headline-md": ["20px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                    "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                    "data-display": ["18px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                    "data-label": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
-                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
-            }
           },
         },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8f7f5;
       }
-    </script>
-</head>
-<body class="bg-surface font-body-md text-on-surface flex min-h-screen">
-{% include 'components/sidebar.html' %}
-<!-- Top App Bar -->
-<header class="fixed top-0 right-0 h-header-height bg-surface-container-lowest shadow-sm flex items-center justify-between px-xl  w-[calc(100%-theme(spacing.sidebar-width))] z-10">
-<div class="flex items-center gap-lg">
-<span class="font-headline-md text-headline-md font-black text-primary uppercase">Welfare Management</span>
-<div class="relative">
-<span class="absolute inset-y-0 left-0 pl-3 flex items-center text-outline pointer-events-none">
-<span class="material-symbols-outlined" data-icon="search">search</span>
-</span>
-<input class="bg-surface-container border-none rounded-full pl-10 pr-lg py-sm text-label-md focus:ring-2 focus:ring-primary w-64" placeholder="Search cases..." type="text"/>
-</div>
-</div>
-<div class="flex items-center gap-md">
-<button class="hover:bg-surface-container rounded-full p-2 text-on-surface-variant transition-colors">
-<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-</button>
-<button class="hover:bg-surface-container rounded-full p-2 text-on-surface-variant transition-colors">
-<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
-</button>
-<div class="w-8 h-8 rounded-full bg-primary-muted border border-border overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A professional portrait of a church administrator, a middle-aged man with a friendly and trustworthy expression, wearing a formal suit. He is set against a blurred background of a clean, bright administrative office with traditional mahogany furniture. The lighting is warm and natural, creating a dignified and welcoming atmosphere consistent with corporate institutional standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAo_7p31hDqML-Z1LYVif2sx-PJoH0KR6DiWM-cMUh1WFA0pHQIacl2tEmxJQBFcnb5KUJlRN-0t97UutivqLqqtRMUD93KliNb7lNVNUy66Jk0zsM2JyRb2kFvCNQNjYYP4Nev37t7cysWta-TQCpescPrAevufHK4NEpQye4q62PFrqHgf6IcsXzqtQMNp1wecaLA7CCe196bFzq0kRgGvex24fBT2N5TwsvnuDfRFbmF1eb5AdLLnvlGkn2ozCScsI3_L39S5s7"/>
-</div>
-</div>
-</header>
-<!-- Main Content Canvas -->
-<main class=" pt-header-height p-xl min-h-screen">
-<!-- Case Overview (Context for the Modal) -->
-<div class="mb-lg">
-<nav aria-label="Breadcrumb" class="flex mb-sm">
-<ol class="inline-flex items-center space-x-1 md:space-x-2 text-label-sm text-text-secondary">
-<li class="inline-flex items-center">
-<a class="hover:text-primary" href="#">Welfare</a>
-</li>
-<li>
-<div class="flex items-center">
-<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
-<a class="ml-1 hover:text-primary" href="#">Case Records</a>
-</div>
-</li>
-<li aria-current="page">
-<div class="flex items-center">
-<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
-<span class="ml-1 font-semibold text-primary">Case #WC-2024-0082</span>
-</div>
-</li>
-</ol>
-</nav>
-<h2 class="font-headline-lg text-headline-lg text-primary">Welfare Case Detail</h2>
-</div>
-<!-- Dashboard Content Grid (Visual Mock) -->
-<div class="grid grid-cols-12 gap-lg">
-<div class="col-span-8 space-y-lg">
-<div class="bg-card p-lg rounded-xl shadow-sm border-l-4 border-secondary-container">
-<div class="flex justify-between items-start mb-md">
-<div>
-<span class="px-sm py-1 bg-warning/10 text-warning text-label-sm rounded-full font-bold uppercase tracking-wider">Active Case</span>
-<h3 class="font-headline-md text-headline-md mt-sm">Elderly Support: Sister Gladys Osei</h3>
-</div>
-<div class="text-right">
-<p class="text-label-sm text-text-secondary">Opened Date</p>
-<p class="font-data-display text-data-display text-primary">14 Oct 2023</p>
-</div>
-</div>
-<p class="text-body-md text-on-surface-variant leading-relaxed mb-lg">
-                        Regular visitation and financial stipend for medication following hip surgery. Case is currently under monthly review by the Society Welfare Committee. Support includes physiotherapy transport and meal assistance.
-                    </p>
-<div class="flex gap-sm">
-<button class="bg-primary text-on-primary px-lg py-md rounded-lg font-label-md hover:bg-primary-light transition-all flex items-center gap-sm shadow-sm active:scale-[0.98]" onclick="document.getElementById('caseClosureModal').classList.remove('hidden')">
-<span class="material-symbols-outlined" data-icon="task_alt">task_alt</span>
-                            Close Case (J-06)
-                        </button>
-<button class="border border-border text-on-surface px-lg py-md rounded-lg font-label-md hover:bg-surface-container transition-all">
-                            Add Update
-                        </button>
-</div>
-</div>
-<div class="bg-card p-lg rounded-xl shadow-sm">
-<h4 class="font-label-md text-label-md uppercase text-text-secondary mb-md">Case History</h4>
-<div class="space-y-md">
-<div class="flex gap-md">
-<div class="flex flex-col items-center">
-<div class="w-3 h-3 rounded-full bg-success"></div>
-<div class="w-px h-full bg-border"></div>
-</div>
-<div>
-<p class="text-label-md font-bold">Monthly Stipend Disbursed</p>
-<p class="text-label-sm text-text-secondary italic">02 Mar 2024 • Admin</p>
-</div>
-</div>
-<div class="flex gap-md">
-<div class="flex flex-col items-center">
-<div class="w-3 h-3 rounded-full bg-info"></div>
-<div class="w-px h-full bg-border"></div>
-</div>
-<div>
-<p class="text-label-md font-bold">Home Visitation Report</p>
-<p class="text-label-sm text-text-secondary italic">20 Feb 2024 • Steward Mensah</p>
-<p class="text-body-md mt-sm text-on-surface-variant">Member is recovering well and showing improved mobility. Requested additional 2 weeks of support.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-span-4 space-y-lg">
-<div class="bg-card p-lg rounded-xl shadow-sm">
-<h4 class="font-label-md text-label-md uppercase text-text-secondary mb-md">Member Info</h4>
-<div class="flex items-center gap-md mb-lg">
-<div class="w-12 h-12 rounded-full overflow-hidden bg-surface">
-<img class="w-full h-full object-cover" data-alt="A dignified close-up portrait of an elderly Ghanaian woman in her 70s, wearing a traditional Kente headscarf. She has a serene, gentle smile and wise eyes. The photograph is taken in soft, warm lighting against a neutral, slightly textured background. The style is clear, respectful, and professional, characteristic of a formal church database." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnbZJhY0H50t-JkabWcjvgN5WbCawaQtOboNWO3QQ1Zxe0Y7lLdSb3ReNIVdlJm1DGd4wF2GrakXKTFpxXFbOdA4AptrHhrHwcC5DPJCog2UO4ktJGW4SEP35gkxjzBLua7zWeVeMScM6XrVIsFB9B44MC8W6-OajBIaHuFDqJjcNuRzNQ6hFEh26SxuedR4CVuP8q1e7OgHnjbYTP4m7ki8LlKNxlY0FLZ4N1oeHCH1tcli8b6joph0lDpwd_uC_y7Yv25RvYZQD8"/>
-</div>
-<div>
-<p class="font-bold text-body-lg">Gladys Osei</p>
-<p class="text-label-sm text-text-secondary">Class: Wesley Guild</p>
-</div>
-</div>
-<div class="space-y-sm">
-<div class="flex justify-between">
-<span class="text-label-sm text-text-secondary">Member ID</span>
-<span class="text-label-sm font-data-label">MCG-228-449</span>
-</div>
-<div class="flex justify-between">
-<span class="text-label-sm text-text-secondary">Category</span>
-<span class="text-label-sm">Active Society</span>
-</div>
-<div class="flex justify-between">
-<span class="text-label-sm text-text-secondary">Contact</span>
-<span class="text-label-sm">+233 24 000 0000</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- Modal: Welfare Case Closure (J-06) -->
-<div class="fixed inset-0 bg-on-background/40 backdrop-blur-sm z-50 flex items-center justify-center p-md transition-all duration-300 hidden" id="caseClosureModal">
-<div class="bg-card w-full max-w-xl rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
-<!-- Modal Header -->
-<div class="bg-primary text-on-primary p-lg flex justify-between items-center">
-<div>
-<h2 class="font-headline-md text-headline-md leading-none">Case Closure Form (J-06)</h2>
-<p class="text-label-sm text-on-primary/70 mt-xs">Official documentation for record archiving</p>
-</div>
-<button class="text-on-primary/80 hover:text-on-primary transition-colors" onclick="document.getElementById('caseClosureModal').classList.add('hidden')">
-<span class="material-symbols-outlined" data-icon="close">close</span>
-</button>
-</div>
-<!-- Modal Content -->
-<form class="p-lg space-y-lg">
-<div class="grid grid-cols-2 gap-lg">
-<!-- Date Closed -->
-<div class="space-y-xs">
-<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-xs">
-<span class="material-symbols-outlined text-sm" data-icon="calendar_month">calendar_month</span>
-                            Date of Closure
-                        </label>
-<input class="w-full rounded-lg border border-border px-md py-sm focus:ring-2 focus:ring-primary focus:border-primary text-body-md" type="date" value="2024-03-27"/>
-</div>
-<!-- Outcome Dropdown -->
-<div class="space-y-xs">
-<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-xs">
-<span class="material-symbols-outlined text-sm" data-icon="fact_check">fact_check</span>
-                            Case Outcome
-                        </label>
-<select class="w-full rounded-lg border border-border px-md py-sm focus:ring-2 focus:ring-primary focus:border-primary text-body-md" id="outcomeSelect">
-<option value="resolved">Resolved / Improved</option>
-<option value="deceased">Deceased</option>
-<option value="transferred">Transferred to External Org</option>
-<option value="withdrawn">Member Withdrawn</option>
-<option value="other">Other</option>
-</select>
-</div>
-</div>
-<!-- Closing Notes -->
-<div class="space-y-xs">
-<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-xs">
-<span class="material-symbols-outlined text-sm" data-icon="edit_note">edit_note</span>
-                        Closing Notes
-                    </label>
-<textarea class="w-full rounded-lg border border-border px-md py-sm focus:ring-2 focus:ring-primary focus:border-primary text-body-md placeholder:text-outline/50" placeholder="Provide final summary, recommendations, and list any final actions taken..." rows="4"></textarea>
-</div>
-<!-- Closed By -->
-<div class="space-y-xs">
-<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-xs">
-<span class="material-symbols-outlined text-sm" data-icon="person">person</span>
-                        Closed By (Authorized Official)
-                    </label>
-<div class="relative">
-<input class="w-full rounded-lg border border-border pl-md pr-xl py-sm focus:ring-2 focus:ring-primary focus:border-primary text-body-md" placeholder="Enter name of Society Steward or Welfare Leader" type="text"/>
-<span class="absolute right-3 top-1/2 -translate-y-1/2 text-outline">
-<span class="material-symbols-outlined" data-icon="verified">verified</span>
-</span>
-</div>
-</div>
-<!-- Sensitive Status Update (Hidden/Conditional Highlight) -->
-<div class="hidden animate-in slide-in-from-top-2 duration-300" id="deceasedPrompt">
-<div class="flex items-start gap-md p-md bg-danger/5 border border-danger/20 rounded-lg">
-<span class="material-symbols-outlined text-danger" data-icon="info" data-weight="fill">info</span>
-<div>
-<p class="text-label-md font-bold text-danger">Sensitive Status Update</p>
-<p class="text-body-md text-on-surface-variant">Selecting "Deceased" will flag this record for society roll updates. Please ensure you have also initiated the Society Funeral Grant protocol if applicable.</p>
-<label class="mt-md flex items-center gap-sm cursor-pointer group">
-<input class="rounded text-primary focus:ring-primary h-4 w-4 border-border" type="checkbox"/>
-<span class="text-label-sm text-on-surface group-hover:text-primary transition-colors">Queue member status update for society roll review</span>
-</label>
-</div>
-</div>
-</div>
-<!-- Form Footer Buttons -->
-<div class="flex items-center justify-end gap-md pt-lg border-t border-border">
-<button class="px-lg py-md rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container transition-all" onclick="document.getElementById('caseClosureModal').classList.add('hidden')" type="button">
-                        Cancel
-                    </button>
-<button class="bg-primary text-on-primary px-xl py-md rounded-lg font-label-md hover:bg-primary-light transition-all shadow-sm active:scale-[0.98]" type="button">
-                        Confirm Closure
-                    </button>
-</div>
-</form>
-</div>
-</div>
-<!-- Micro-interactions Script -->
-<script>
-        const outcomeSelect = document.getElementById('outcomeSelect');
-        const deceasedPrompt = document.getElementById('deceasedPrompt');
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+  </head>
 
-        outcomeSelect.addEventListener('change', (e) => {
-            if (e.target.value === 'deceased') {
-                deceasedPrompt.classList.remove('hidden');
-            } else {
-                deceasedPrompt.classList.add('hidden');
-            }
-        });
+  <body class="bg-surface text-on-surface font-body-md antialiased flex h-screen overflow-hidden">
+    {% include 'components/sidebar.html' %}
 
-        // Close modal on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.getElementById('caseClosureModal').classList.add('hidden');
-            }
-        });
+    <main class="flex-1 min-w-0 h-full overflow-y-auto bg-surface flex flex-col">
+      <header class="flex justify-between items-center w-full px-xl h-header-height sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
+        <nav class="flex items-center text-body-md text-on-surface-variant">
+          <a class="hover:text-primary-light transition-colors" href="{% url 'welfare_cases:welfare_cases_list' %}">Welfare</a>
+          <span class="material-symbols-outlined text-[16px] mx-xs">chevron_right</span>
+          <span class="text-primary font-bold">Close Case</span>
+        </nav>
+      </header>
 
-        // Close modal on outside click
-        document.getElementById('caseClosureModal').addEventListener('click', (e) => {
-            if (e.target.id === 'caseClosureModal') {
-                document.getElementById('caseClosureModal').classList.add('hidden');
-            }
-        });
-    </script>
-</body></html>
+      <div class="p-xl max-w-4xl mx-auto w-full pb-24">
+        <h2 class="font-headline-lg text-[32px] font-bold text-primary tracking-tight">Close Welfare Case</h2>
+        <p class="text-body-md text-on-surface-variant mt-xs leading-relaxed">Finalize and archive a welfare case after support has been completed.</p>
+
+        {% if messages %}
+          <div class="mt-lg space-y-sm">
+            {% for message in messages %}
+              <div class="p-md rounded-lg border flex items-start gap-sm {% if message.tags == 'error' %}bg-error-container/30 text-error border-error/20{% else %}bg-success/10 text-success border-success/20{% endif %}">
+                <span class="material-symbols-outlined text-[20px]">{% if message.tags == 'error' %}error{% else %}check_circle{% endif %}</span>
+                <span>{{ message }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'welfare_cases:welfare_closure' %}" class="mt-xl bg-card rounded-xl shadow-sm border border-border p-lg space-y-lg">
+          {% csrf_token %}
+
+          <div class="flex flex-col space-y-xs">
+            <label class="text-label-md font-medium text-on-surface-variant">Welfare Case *</label>
+            <select name="case_id" required class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md">
+              <option value="">Select case to close...</option>
+              {% for case in cases %}
+                <option value="{{ case.id }}" {% if preselected_case_id == case.id|stringformat:"s" %}selected{% endif %}>#{{ case.id }} — {{ case.title }} ({{ case.member.get_full_name }}) — {{ case.get_status_display }} — GHS {{ case.approved_amount|default:case.requested_amount }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="flex flex-col space-y-xs">
+            <label class="text-label-md font-medium text-on-surface-variant">Closure Notes</label>
+            <textarea name="closure_notes" rows="4" placeholder="Summarize outcome, beneficiary feedback, lessons learned, etc." class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light outline-none text-body-md"></textarea>
+          </div>
+
+          <div class="bg-surface-container-low rounded-lg p-md border border-border flex items-start gap-sm">
+            <span class="material-symbols-outlined text-on-surface-variant">info</span>
+            <div class="text-[11px] text-on-surface-variant leading-relaxed">
+              <p class="font-bold text-on-surface">What happens when you close a case?</p>
+              <ul class="mt-xs list-disc list-inside space-y-xs">
+                <li>Status will be set to <strong>Closed</strong> and closed timestamp recorded</li>
+                <li>Case will be archived and excluded from active lists</li>
+                <li>An activity log entry will be created</li>
+                <li>This action is audited and can be reversed by admin if needed</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="pt-md flex justify-end gap-md">
+            <a href="{% url 'welfare_cases:welfare_cases_list' %}" class="px-lg py-md rounded-lg border border-border font-bold hover:bg-surface-container-low transition-colors">Cancel</a>
+            <button type="submit" class="px-lg py-md rounded-lg bg-inverse-surface text-inverse-on-surface font-bold hover:bg-inverse-surface/90 transition-colors shadow-sm active:scale-95 flex items-center gap-xs">
+              <span class="material-symbols-outlined text-[18px]">archive</span>
+              Close Case
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    {% include 'components/toast_messages.html' %}
+  </body>
+</html>
