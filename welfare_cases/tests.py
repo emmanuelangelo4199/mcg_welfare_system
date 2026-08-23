@@ -12,11 +12,15 @@ class WelfareCaseModelTestCase(TestCase):
     def setUp(self):
         self.member = Member.objects.create(
             first_name='Abena',
+            last_name='Osei',
+            gender='F',
+            status='ACTIVE',
             case_type='MEDICAL',
             title='Hospital Admission Support',
             description='Emergency medical bill assistance',
             requested_amount=1500.00
         )
+        
 
     def test_welfare_case_creation(self):
         self.assertEqual(self.wcase.status, 'SUBMITTED')
@@ -54,7 +58,7 @@ class WelfareCaseModelTestCase(TestCase):
         self.assertEqual(self.wcase.priority, 'URGENT')
         self.assertFalse(self.wcase.is_confidential)
 
-    def test_disbursement(self):
+    def test_disbursement(self): 
         disbursement = WelfareDisbursement.objects.create(
             welfare_case=self.wcase,
             amount=1200.00,
