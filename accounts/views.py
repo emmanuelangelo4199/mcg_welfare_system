@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth import authenticate, login, logout, get_user_model, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from core.decorators import role_required
+from core.models import AuditLog
 from .models import UserProfile
 from members.models import Member
 
@@ -92,14 +93,89 @@ def password_reset_view(request):
 
 @login_required(login_url='accounts:login')
 def profile_view(request):
-    """Display the account that is currently authenticated, not a sample user."""
+    """Display and update the currently authenticated account."""
     user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
     member = Member.objects.filter(user=request.user).first()
+
+    if request.method == "POST":
+        action = request.POST.get("action", "").strip()
+
+        if action == "info":
+            email = request.POST.get("email", "").strip()
+            phone = request.POST.get("phone", "").strip()
+            has_error = False
+
+            if email and email != request.user.email:
+                if User.objects.filter(email=email).exclude(pk=request.user.pk).exists():
+                    messages.error(request, "That email address is already in use.")
+                    has_error = True
+                else:
+                    request.user.email = email
+                    request.user.save(update_fields=["email"])
+
+            if not has_error:
+                user_profile.phone_number = phone
+                user_profile.save(update_fields=["phone_number", "updated_at"])
+
+                AuditLog.objects.create(
+                    user=request.user,
+                    action="Updated profile information",
+                    model_name="UserProfile",
+                    object_id=str(user_profile.pk),
+                    details=f"Email: {email}, Phone: {phone}",
+                )
+                messages.success(request, "Profile information saved successfully.")
+
+            return redirect("accounts:profile")
+
+        elif action == "password":
+            current_password = request.POST.get("current_password", "")
+            new_password = request.POST.get("new_password", "")
+            confirm_password = request.POST.get("confirm_password", "")
+
+            if not request.user.check_password(current_password):
+                messages.error(request, "Current password is incorrect.")
+                return redirect("accounts:profile")
+
+            if new_password != confirm_password:
+                messages.error(request, "New password and confirmation do not match.")
+                return redirect("accounts:profile")
+
+            if len(new_password) < 8:
+                messages.error(request, "New password must be at least 8 characters long.")
+                return redirect("accounts:profile")
+
+            if not any(c.isupper() for c in new_password):
+                messages.error(request, "New password must contain at least one uppercase letter.")
+                return redirect("accounts:profile")
+
+            if not any(c in "!@#$%^&*()_+-=[]{}|;:,.<>?/" for c in new_password):
+                messages.error(request, "New password must contain at least one special character (!@#$ etc).")
+                return redirect("accounts:profile")
+
+            request.user.set_password(new_password)
+            request.user.save()
+            update_session_auth_hash(request, request.user)
+
+            AuditLog.objects.create(
+                user=request.user,
+                action="Changed password",
+                model_name="User",
+                object_id=str(request.user.pk),
+                details="Password updated via My Profile page",
+            )
+
+            messages.success(request, "Password updated successfully.")
+            return redirect("accounts:profile")
+
+    last_audited_log = AuditLog.objects.filter(user=request.user).order_by("-timestamp").first()
+    last_audited_date = last_audited_log.timestamp if last_audited_log else None
 
     context = {
         "active_nav": "accounts",
         "profile": user_profile,
         "member": member,
+        "last_audited": last_audited_date,
     }
     return render(request, "accounts/my_profile.html", context)
 

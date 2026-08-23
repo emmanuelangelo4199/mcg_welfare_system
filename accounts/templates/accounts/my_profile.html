@@ -1,265 +1,442 @@
-{% load static%}
+{% load static %}
 <!DOCTYPE html>
 <html class="light" lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-        <title>My Profile | MCG-SMS</title>
-        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Lora:wght@700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-        <link rel="icon" type="icon-image" href="{% static 'img/Methodist Church Ghana Logo.png' %}">
-        <script id="tailwind-config">
-            tailwind.config = {
-                darkMode: "class",
-                theme: {
-                    extend: {
-                        "colors": {
-                            "tertiary": "#2a2b2a",
-                            "primary-fixed": "#ffdadb",
-                            "primary-fixed-dim": "#ffb2b7",
-                            "on-primary-fixed-variant": "#832233",
-                            "secondary-fixed-dim": "#eec04f",
-                            "outline": "#897172",
-                            "primary-light": "#A3283F",
-                            "error": "#ba1a1a",
-                            "border": "#E4E2DD",
-                            "surface-container-highest": "#e9e1dd",
-                            "on-secondary-fixed-variant": "#5a4300",
-                            "info": "#2563EB",
-                            "danger": "#DC2626",
-                            "inverse-primary": "#ffb2b7",
-                            "surface-bright": "#fff8f5",
-                            "inverse-on-surface": "#f7efeb",
-                            "warning": "#D97706",
-                            "on-tertiary": "#ffffff",
-                            "on-primary": "#ffffff",
-                            "tertiary-container": "#404140",
-                            "on-primary-fixed": "#40000e",
-                            "surface-dim": "#e0d8d5",
-                            "surface-container-lowest": "#ffffff",
-                            "gold-muted": "#FDF6E3",
-                            "secondary-fixed": "#ffdf9a",
-                            "secondary": "#775a00",
-                            "secondary-container": "#fece5b",
-                            "surface-container": "#f4ece8",
-                            "outline-variant": "#dcc0c1",
-                            "card": "#FFFFFF",
-                            "on-surface": "#1e1b19",
-                            "surface-variant": "#e9e1dd",
-                            "on-secondary": "#ffffff",
-                            "tertiary-fixed-dim": "#c7c6c5",
-                            "surface-tint": "#a33a49",
-                            "on-background": "#1e1b19",
-                            "surface-container-high": "#eee7e3",
-                            "primary-muted": "#F5EAEC",
-                            "on-tertiary-fixed": "#1a1c1b",
-                            "on-error": "#ffffff",
-                            "primary-container": "#7b1c2d",
-                            "on-tertiary-container": "#adadab",
-                            "text-secondary": "#6B7280",
-                            "success": "#16A34A",
-                            "error-container": "#ffdad6",
-                            "on-surface-variant": "#564243",
-                            "inverse-surface": "#33302d",
-                            "on-error-container": "#93000a",
-                            "on-secondary-container": "#745700",
-                            "surface-container-low": "#faf2ee",
-                            "on-tertiary-fixed-variant": "#464746",
-                            "surface": "#F8F7F5",
-                            "on-primary-container": "#ff8a95",
-                            "primary": "#5c0219",
-                            "background": "#fff8f5",
-                            "tertiary-fixed": "#e3e2e0",
-                            "on-secondary-fixed": "#251a00"
-                        },
-                        "borderRadius": {
-                            "DEFAULT": "0.25rem",
-                            "lg": "0.5rem",
-                            "xl": "0.75rem",
-                            "full": "9999px"
-                        },
-                        "spacing": {
-                            "xs": "4px",
-                            "sm": "8px",
-                            "xl": "32px",
-                            "sidebar-width": "256px",
-                            "md": "16px",
-                            "lg": "24px",
-                            "header-height": "64px",
-                            "base": "8px"
-                        }
-                    }
-                }
-            }
-        </script>
-        <style>
-            body { font-family: 'Inter', sans-serif; background-color: #F8F7F5; }
-            .material-symbols-outlined {
-                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            }
-            .strength-bar { height: 4px; transition: all 0.3s ease; }
-        </style>
-    </head>
-    <body class="text-on-surface text-[13px] flex min-h-screen">
-        <!-- Side Navigation -->
-        {% include 'components/sidebar.html' %}
-        <!-- Main Content -->
-        <main class=" min-h-screen">
-            <!-- Top Navigation -->
-            <header class="flex justify-between items-center w-full px-xl h-header-height sticky top-0 z-40 bg-surface-container-lowest dark:bg-inverse-surface shadow-sm">
-            <div class="flex items-center space-x-md">
-            </div>
-            <div class="flex items-center space-x-lg">
-            <button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-xs rounded-full transition-colors">notifications</button>
-            <button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-xs rounded-full transition-colors">help_outline</button>
-            </div>
-            </header>
-            <div class="p-xl max-w-5xl mx-auto">
-            <!-- Breadcrumbs -->
-            <nav class="flex items-center text-label-md font-label-md text-on-surface-variant mb-md space-x-xs capitalize">
-            <a class="hover:text-primary-light" href="#">Dashboard</a>
-            <span class="material-symbols-outlined text-[16px]">chevron_right</span>
-            <span class="text-on-surface font-semibold">My Profile</span>
-            </nav>
-            <h2 class="text-headline-lg font-headline-lg text-primary mb-xl capitalize">My Profile</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
-            <!-- Personal Info Card -->
-            <div class="lg:col-span-7 bg-card rounded-xl shadow-sm border border-border overflow-hidden">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>My Profile | MCG-SMS</title>
+
+    <!-- Favicon -->
+    <link href="{% static 'img/Methodist Church Ghana Logo.png' %}" rel="icon" type="image/png" />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind Config -->
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              tertiary: "#2a2b2a",
+              "primary-fixed": "#ffdadb",
+              "primary-fixed-dim": "#ffb2b7",
+              "on-primary-fixed-variant": "#832233",
+              "secondary-fixed-dim": "#eec04f",
+              outline: "#897172",
+              "primary-light": "#A3283F",
+              error: "#ba1a1a",
+              border: "#E4E2DD",
+              "surface-container-highest": "#e9e1dd",
+              "on-secondary-fixed-variant": "#5a4300",
+              info: "#2563EB",
+              danger: "#DC2626",
+              "inverse-primary": "#ffb2b7",
+              "surface-bright": "#fff8f5",
+              "inverse-on-surface": "#f7efeb",
+              warning: "#D97706",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "tertiary-container": "#404140",
+              "on-primary-fixed": "#40000e",
+              "surface-dim": "#e0d8d5",
+              "surface-container-lowest": "#ffffff",
+              "gold-muted": "#FDF6E3",
+              "secondary-fixed": "#ffdf9a",
+              secondary: "#775a00",
+              "secondary-container": "#fece5b",
+              "surface-container": "#f4ece8",
+              "outline-variant": "#dcc0c1",
+              card: "#FFFFFF",
+              "on-surface": "#1e1b19",
+              "surface-variant": "#e9e1dd",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed-dim": "#c7c6c5",
+              "surface-tint": "#a33a49",
+              "on-background": "#1e1b19",
+              "surface-container-high": "#eee7e3",
+              "primary-muted": "#F5EAEC",
+              "on-tertiary-fixed": "#1a1c1b",
+              "on-error": "#ffffff",
+              "primary-container": "#7b1c2d",
+              "on-tertiary-container": "#adadab",
+              "text-secondary": "#6B7280",
+              success: "#16A34A",
+              "error-container": "#ffdad6",
+              "on-surface-variant": "#564243",
+              "inverse-surface": "#33302d",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#745700",
+              "surface-container-low": "#faf2ee",
+              "on-tertiary-fixed-variant": "#464746",
+              surface: "#F8F7F5",
+              "on-primary-container": "#ff8a95",
+              primary: "#5c0219",
+              background: "#fff8f5",
+              "tertiary-fixed": "#e3e2e0",
+              "on-secondary-fixed": "#251a00",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              xs: "4px",
+              sm: "8px",
+              xl: "32px",
+              "sidebar-width": "256px",
+              md: "16px",
+              lg: "24px",
+              "header-height": "64px",
+              base: "8px",
+            },
+            fontFamily: {
+              "headline-lg": ["Lora"],
+              "headline-md": ["Inter"],
+              "data-label": ["JetBrains Mono"],
+              "body-md": ["Inter"],
+              "label-md": ["Inter"],
+              "body-lg": ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8f7f5;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      .strength-bar {
+        height: 4px;
+        transition: all 0.3s ease;
+      }
+    </style>
+  </head>
+
+  <body class="bg-surface text-on-surface font-body-md antialiased flex h-screen overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+    <!-- Side Navigation -->
+    {% include 'components/sidebar.html' %}
+
+    <!-- Main Content -->
+    <main class="flex-1 min-w-0 h-full overflow-y-auto bg-surface">
+      <!-- Top Navigation -->
+      <header class="flex justify-between items-center w-full px-xl h-header-height sticky top-0 z-40 bg-surface-container-lowest shadow-sm">
+        <div class="flex items-center space-x-md">
+          <span class="font-label-md text-on-surface-variant capitalize tracking-wide">Account</span>
+        </div>
+        <div class="flex items-center space-x-lg">
+          <a
+            class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-xs rounded-full transition-colors"
+            href="{% url 'notifications:notification_board' %}"
+            title="Notifications"
+          >
+            notifications
+          </a>
+          <button
+            class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-xs rounded-full transition-colors"
+            type="button"
+            title="Help"
+          >
+            help_outline
+          </button>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="p-xl max-w-5xl mx-auto pb-24">
+        <!-- Breadcrumbs -->
+        <nav class="flex items-center text-label-md font-label-md text-on-surface-variant mb-md space-x-xs capitalize">
+          <a class="hover:text-primary-light transition-colors" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+          <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+          <span class="text-on-surface font-semibold">My Profile</span>
+        </nav>
+
+        <h2 class="font-headline-lg text-[32px] font-bold text-primary mb-xl capitalize tracking-tight">My Profile</h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
+          <!-- Personal Info Card -->
+          <div class="lg:col-span-7 bg-card rounded-xl shadow-sm border border-border overflow-hidden">
             <div class="px-lg py-md border-b border-border bg-surface-container-low flex justify-between items-center">
-            <h3 class="font-headline-md text-headline-md text-on-surface flex items-center capitalize">
-            <span class="material-symbols-outlined mr-sm text-primary">person</span>
-                                        Personal Information
-                                    </h3>
+              <h3 class="font-headline-md text-[18px] font-semibold text-on-surface flex items-center capitalize">
+                <span class="material-symbols-outlined mr-sm text-primary">person</span>
+                Personal Information
+              </h3>
             </div>
-            <div class="p-lg space-y-md">
-            <div class="flex flex-col space-y-xs">
-            <label class="text-label-md font-label-md text-on-surface-variant capitalize">Full Name</label>
-            <div class="flex items-center justify-between p-md bg-surface-container rounded-lg border border-border">
-            <span class="text-body-lg font-medium text-on-surface">{% firstof request.user.get_full_name request.user.username "Member" %}</span>
-            {% if member %}
-            <a class="text-primary-light text-label-md font-semibold hover:underline flex items-center capitalize" href="{% url 'members:member_profile' %}">
-                                                View Member Profile
-                                                <span class="material-symbols-outlined text-[16px] ml-xs">open_in_new</span>
-            </a>
-            {% else %}
-            <span class="text-label-sm text-on-surface-variant">No member record linked</span>
-            {% endif %}
-            </div>
-            <p class="text-label-sm text-on-surface-variant italic capitalize">Name is linked to your official membership record and cannot be changed here.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
-            <div class="flex flex-col space-y-xs">
-            <label class="text-label-md font-label-md text-on-surface-variant capitalize" for="email">Email Address</label>
-            <input class="p-md rounded-lg border border-border focus:ring-2 focus:ring-primary-light outline-none text-body-md placeholder:capitalize" id="email" type="email" value="{{ request.user.email }}"/>
-            </div>
-            <div class="flex flex-col space-y-xs">
-            <label class="text-label-md font-label-md text-on-surface-variant capitalize" for="phone">Phone Number</label>
-            <input class="p-md rounded-lg border border-border focus:ring-2 focus:ring-primary-light outline-none text-body-md placeholder:capitalize" id="phone" type="tel" value="{{ profile.phone_number|default:'' }}"/>
-            </div>
-            </div>
-            <div class="pt-md flex justify-end">
-            <button class="bg-primary hover:bg-primary-light text-on-primary px-lg py-md rounded-lg font-label-md transition-colors shadow-sm active:scale-95">
-                                            Save Changes
-                                        </button>
-            </div>
-            </div>
-            </div>
-            <!-- Profile Summary / Context -->
-            <div class="lg:col-span-5 space-y-lg">
+
+            <form method="post" action="{% url 'accounts:profile' %}">
+              {% csrf_token %}
+              <input type="hidden" name="action" value="info" />
+
+              <div class="p-lg space-y-lg">
+                <!-- Full Name (Read-only) -->
+                <div class="flex flex-col space-y-xs">
+                  <label class="text-label-md font-medium text-on-surface-variant capitalize">Full Name</label>
+                  <div class="flex items-center justify-between p-md bg-surface-container rounded-lg border border-border">
+                    <span class="text-body-lg font-medium text-on-surface">
+                      {% firstof request.user.get_full_name request.user.username "Member" %}
+                    </span>
+                    {% if member %}
+                      <a
+                        class="text-primary-light text-label-md font-semibold hover:underline flex items-center capitalize transition-colors"
+                        href="{% url 'members:member_profile' %}"
+                      >
+                        View Member Profile
+                        <span class="material-symbols-outlined text-[16px] ml-xs">open_in_new</span>
+                      </a>
+                    {% else %}
+                      <span class="text-label-sm text-on-surface-variant">No member record linked</span>
+                    {% endif %}
+                  </div>
+                  <p class="text-[11px] text-on-surface-variant italic capitalize">
+                    Name is linked to your official membership record and cannot be changed here.
+                  </p>
+                </div>
+
+                <!-- Email & Phone -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                  <div class="flex flex-col space-y-xs">
+                    <label class="text-label-md font-medium text-on-surface-variant capitalize" for="email">Email Address</label>
+                    <input
+                      class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light focus:border-primary-light outline-none text-body-md placeholder:capitalize transition-all"
+                      id="email"
+                      name="email"
+                      type="email"
+                      autocomplete="email"
+                      value="{{ request.user.email }}"
+                      placeholder="you@example.com"
+                    />
+                  </div>
+
+                  <div class="flex flex-col space-y-xs">
+                    <label class="text-label-md font-medium text-on-surface-variant capitalize" for="phone">Phone Number</label>
+                    <input
+                      class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light focus:border-primary-light outline-none text-body-md placeholder:capitalize transition-all"
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      autocomplete="tel"
+                      value="{{ profile.phone_number|default:'' }}"
+                      placeholder="+233 00 000 0000"
+                    />
+                  </div>
+                </div>
+
+                <!-- Save -->
+                <div class="pt-md flex justify-end">
+                  <button
+                    class="bg-primary hover:bg-primary-light text-on-primary px-lg py-md rounded-lg font-label-md font-semibold transition-all shadow-sm active:scale-95"
+                    type="submit"
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right Column: Security + Status -->
+          <div class="lg:col-span-5 space-y-lg">
             <!-- Security Section Card -->
             <div class="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
-            <div class="px-lg py-md border-b border-border bg-surface-container-low">
-            <h3 class="font-headline-md text-headline-md text-on-surface flex items-center capitalize">
-            <span class="material-symbols-outlined mr-sm text-primary">security</span>
-                                            Security &amp; Password
-                                        </h3>
+              <div class="px-lg py-md border-b border-border bg-surface-container-low">
+                <h3 class="font-headline-md text-[18px] font-semibold text-on-surface flex items-center capitalize">
+                  <span class="material-symbols-outlined mr-sm text-primary">security</span>
+                  Security &amp; Password
+                </h3>
+              </div>
+
+              <form id="password-form" method="post" action="{% url 'accounts:profile' %}">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="password" />
+
+                <div class="p-lg space-y-md">
+                  <!-- Current Password -->
+                  <div class="flex flex-col space-y-xs">
+                    <label class="text-label-md font-medium text-on-surface-variant capitalize" for="current-pass">Current Password</label>
+                    <input
+                      class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light focus:border-primary-light outline-none text-body-md placeholder:capitalize transition-all"
+                      id="current-pass"
+                      name="current_password"
+                      type="password"
+                      autocomplete="current-password"
+                      placeholder="••••••••••••"
+                    />
+                  </div>
+
+                  <!-- New Password -->
+                  <div class="flex flex-col space-y-xs">
+                    <label class="text-label-md font-medium text-on-surface-variant capitalize" for="new-pass">New Password</label>
+                    <div class="relative">
+                      <input
+                        class="w-full p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light focus:border-primary-light outline-none text-body-md placeholder:capitalize transition-all"
+                        id="new-pass"
+                        name="new_password"
+                        type="password"
+                        autocomplete="new-password"
+                        placeholder="Enter new password"
+                        oninput="checkStrength(this.value)"
+                      />
+                      <div class="absolute bottom-0 left-0 right-0 h-1 rounded-b-lg overflow-hidden flex">
+                        <div class="strength-bar flex-1 bg-surface-variant" id="str-1"></div>
+                        <div class="strength-bar flex-1 bg-surface-variant border-l border-white" id="str-2"></div>
+                        <div class="strength-bar flex-1 bg-surface-variant border-l border-white" id="str-3"></div>
+                        <div class="strength-bar flex-1 bg-surface-variant border-l border-white" id="str-4"></div>
+                      </div>
+                    </div>
+                    <div class="text-[11px] font-medium text-on-surface-variant mt-1 text-right capitalize" id="strength-text">
+                      Strength: Not Set
+                    </div>
+                  </div>
+
+                  <!-- Confirm Password -->
+                  <div class="flex flex-col space-y-xs">
+                    <label class="text-label-md font-medium text-on-surface-variant capitalize" for="confirm-pass">Confirm New Password</label>
+                    <input
+                      class="p-md rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary-light focus:border-primary-light outline-none text-body-md placeholder:capitalize transition-all"
+                      id="confirm-pass"
+                      name="confirm_password"
+                      type="password"
+                      autocomplete="new-password"
+                      placeholder="Confirm new password"
+                    />
+                  </div>
+
+                  <!-- Error -->
+                  <p id="password-error" class="hidden text-label-sm font-medium text-error bg-error-container/30 border border-error/20 rounded-lg p-sm">
+                    New password and confirmation do not match.
+                  </p>
+
+                  <!-- Password Rules -->
+                  <div class="bg-surface rounded-lg p-md border-l-4 border-secondary">
+                    <h4 class="text-label-md font-bold text-secondary mb-xs capitalize">Password Rules:</h4>
+                    <ul class="text-label-sm text-on-surface-variant space-y-xs capitalize">
+                      <li class="flex items-center">
+                        <span class="material-symbols-outlined text-[14px] mr-xs text-success">check_circle</span>
+                        At least 8 characters long
+                      </li>
+                      <li class="flex items-center">
+                        <span class="material-symbols-outlined text-[14px] mr-xs text-on-surface-variant opacity-40">circle</span>
+                        One uppercase letter (A-Z)
+                      </li>
+                      <li class="flex items-center">
+                        <span class="material-symbols-outlined text-[14px] mr-xs text-on-surface-variant opacity-40">circle</span>
+                        One special character (!@#$)
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- Submit -->
+                  <div class="pt-md flex justify-end">
+                    <button
+                      class="bg-primary hover:bg-primary-light text-on-primary px-lg py-md rounded-lg font-label-md font-semibold transition-all shadow-sm active:scale-95"
+                      type="submit"
+                    >
+                      Update Password
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
-            <div class="p-lg space-y-md">
-            <div class="flex flex-col space-y-xs">
-            <label class="text-label-md font-label-md text-on-surface-variant capitalize" for="current-pass">Current Password</label>
-            <input class="p-md rounded-lg border border-border focus:ring-2 focus:ring-primary-light outline-none text-body-md placeholder:capitalize" id="current-pass" placeholder="••••••••••••" type="password"/>
-            </div>
-            <div class="flex flex-col space-y-xs">
-            <label class="text-label-md font-label-md text-on-surface-variant capitalize" for="new-pass">New Password</label>
-            <div class="relative">
-            <input class="w-full p-md rounded-lg border border-border focus:ring-2 focus:ring-primary-light outline-none text-body-md placeholder:capitalize" id="new-pass" oninput="checkStrength(this.value)" type="password"/>
-            <div class="absolute bottom-0 left-0 right-0 h-1 rounded-b-lg overflow-hidden flex">
-            <div class="strength-bar flex-1 bg-surface-variant" id="str-1"></div>
-            <div class="strength-bar flex-1 bg-surface-variant border-l border-white" id="str-2"></div>
-            <div class="strength-bar flex-1 bg-surface-variant border-l border-white" id="str-3"></div>
-            <div class="strength-bar flex-1 bg-surface-variant border-l border-white" id="str-4"></div>
-            </div>
-            </div>
-            <div class="text-label-sm font-medium text-on-surface-variant mt-1 text-right capitalize" id="strength-text">Strength: Not Set</div>
-            </div>
-            <div class="flex flex-col space-y-xs">
-            <label class="text-label-md font-label-md text-on-surface-variant capitalize" for="confirm-pass">Confirm New Password</label>
-            <input class="p-md rounded-lg border border-border focus:ring-2 focus:ring-primary-light outline-none text-body-md placeholder:capitalize" id="confirm-pass" type="password"/>
-            </div>
-            <div class="bg-surface rounded-lg p-md border-l-4 border-secondary">
-            <h4 class="text-label-md font-bold text-secondary mb-xs capitalize">Password Rules:</h4>
-            <ul class="text-label-sm text-on-surface-variant space-y-xs capitalize">
-            <li class="flex items-center"><span class="material-symbols-outlined text-[14px] mr-xs text-success">check_circle</span> At least 8 characters long</li>
-            <li class="flex items-center"><span class="material-symbols-outlined text-[14px] mr-xs text-on-surface-variant opacity-40">circle</span> One uppercase letter (A-Z)</li>
-            <li class="flex items-center"><span class="material-symbols-outlined text-[14px] mr-xs text-on-surface-variant opacity-40">circle</span> One special character (!@#$)</li>
-            </ul>
-            </div>
-            <div class="pt-md flex justify-end">
-            <button class="bg-primary hover:bg-primary-light text-on-primary px-lg py-md rounded-lg font-label-md transition-colors shadow-sm active:scale-95">
-                                                Update Password
-                                            </button>
-            </div>
-            </div>
-            </div>
+
             <!-- System Status Info -->
-            <div class="bg-gold-muted rounded-xl p-lg border border-secondary-fixed-dim">
-            <div class="flex items-start">
-            <span class="material-symbols-outlined text-secondary mr-md">info</span>
-            <div>
-            <h4 class="text-label-md font-bold text-secondary capitalize">Account Status</h4>
-            <p class="text-body-md text-on-surface-variant mt-xs">Your account was last audited on 12th Oct 2023. Multi-factor authentication is currently <strong>enabled</strong> via email.</p>
+            <div class="bg-gold-muted rounded-xl p-lg border border-secondary-fixed-dim shadow-sm">
+              <div class="flex items-start">
+                <span class="material-symbols-outlined text-secondary mr-md mt-xs">info</span>
+                <div>
+                  <h4 class="text-label-md font-bold text-secondary capitalize">Account Status</h4>
+                  <p class="text-body-md text-on-surface-variant mt-xs leading-relaxed">
+                    {% if last_audited %}
+                      Your account was last audited on {{ last_audited|date:"jS M Y" }}.
+                    {% else %}
+                      Your account has not been audited yet.
+                    {% endif %}
+                    Multi-factor authentication is currently <strong class="text-on-surface">enabled</strong> via email.
+                  </p>
+                </div>
+              </div>
             </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            <!-- Profile Atmospheric Background Element (Subtle) -->
-            <div class="fixed bottom-0 right-0 p-xl opacity-5 pointer-events-none select-none">
-            <span class="material-symbols-outlined text-[240px] text-primary">account_circle</span>
-            </div>
-            </div>
-        </main>
-        <script>
-            function checkStrength(password) {
-                const bars = [document.getElementById('str-1'), document.getElementById('str-2'), document.getElementById('str-3'), document.getElementById('str-4')];
-                const text = document.getElementById('strength-text');
-                let strength = 0;
+          </div>
+        </div>
 
-                if (password.length > 0) strength++;
-                if (password.length > 7) strength++;
-                if (/[A-Z]/.test(password)) strength++;
-                if (/[!@#$%^&*]/.test(password)) strength++;
+        <!-- Subtle Background Watermark -->
+        <div class="fixed bottom-0 right-0 p-xl opacity-[0.03] pointer-events-none select-none">
+          <span class="material-symbols-outlined text-[240px] text-primary">account_circle</span>
+        </div>
+      </div>
+    </main>
 
-                bars.forEach((bar, index) => {
-                    bar.className = 'strength-bar flex-1 border-l border-white';
-                    if (index < strength) {
-                        if (strength === 1) bar.classList.add('bg-error');
-                        else if (strength === 2) bar.classList.add('bg-warning');
-                        else if (strength === 3) bar.classList.add('bg-info');
-                        else if (strength === 4) bar.classList.add('bg-success');
-                    } else {
-                        bar.classList.add('bg-surface-variant');
-                    }
-                });
+    <!-- Toast Messages -->
+    {% include 'components/toast_messages.html' %}
 
-                const labels = ['Not Set', 'Weak', 'Fair', 'Good', 'Strong'];
-                text.innerText = 'Strength: ' + labels[strength];
-                
-                const colors = ['text-on-surface-variant', 'text-error', 'text-warning', 'text-info', 'text-success'];
-                text.className = 'text-label-sm font-medium mt-1 text-right ' + colors[strength];
-            }
-        </script>
-    </body>
+    <!-- Scripts -->
+    <script>
+      function checkStrength(password) {
+        const bars = [
+          document.getElementById("str-1"),
+          document.getElementById("str-2"),
+          document.getElementById("str-3"),
+          document.getElementById("str-4"),
+        ];
+        const text = document.getElementById("strength-text");
+        let strength = 0;
+
+        if (password.length > 0) strength++;
+        if (password.length > 7) strength++;
+        if (/[A-Z]/.test(password)) strength++;
+        if (/[!@#$%^&*]/.test(password)) strength++;
+
+        bars.forEach((bar, index) => {
+          bar.className = "strength-bar flex-1 border-l border-white";
+          if (index < strength) {
+            if (strength === 1) bar.classList.add("bg-error");
+            else if (strength === 2) bar.classList.add("bg-warning");
+            else if (strength === 3) bar.classList.add("bg-info");
+            else if (strength === 4) bar.classList.add("bg-success");
+          } else {
+            bar.classList.add("bg-surface-variant");
+          }
+        });
+
+        const labels = ["Not Set", "Weak", "Fair", "Good", "Strong"];
+        text.innerText = "Strength: " + labels[strength];
+
+        const colors = [
+          "text-on-surface-variant",
+          "text-error",
+          "text-warning",
+          "text-info",
+          "text-success",
+        ];
+        text.className = "text-[11px] font-medium mt-1 text-right capitalize " + colors[strength];
+      }
+
+      // Client-side confirmation check before submitting the password form
+      document.getElementById("password-form").addEventListener("submit", function (event) {
+        const newPass = document.getElementById("new-pass").value;
+        const confirmPass = document.getElementById("confirm-pass").value;
+        const error = document.getElementById("password-error");
+
+        if (newPass !== confirmPass) {
+          event.preventDefault();
+          error.classList.remove("hidden");
+          document.getElementById("confirm-pass").classList.add("border-error", "ring-error");
+        } else {
+          error.classList.add("hidden");
+          document.getElementById("confirm-pass").classList.remove("border-error", "ring-error");
+        }
+      });
+    </script>
+  </body>
 </html>
