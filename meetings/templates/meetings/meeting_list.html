@@ -157,15 +157,22 @@
               <span class="material-symbols-outlined text-primary">help_outline</span>
             </button>
           </div>
-
-          <div class="flex items-center gap-sm pl-md border-l border-outline-variant">
+            <a
+            class="flex items-center gap-sm pl-2 sm:pl-md border-l border-outline-variant"
+            href="{% url 'accounts:profile' %}"
+            title="My profile">
             <div class="hidden text-right sm:block">
-              <p class="text-label-md font-bold text-on-surface">Very Rev. K. Mensah</p>
-              <p class="text-label-sm text-on-surface-variant">Superintendent</p>
+              <p class="max-w-[140px] truncate font-label-md text-label-md font-bold leading-tight text-on-surface">
+                {% firstof request.user.get_full_name request.user.username "Leader" %}
+              </p>
+              <p class="font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant">
+                {% firstof request.user.profile.get_role_display "Society Member" %}
+              </p>
             </div>
-            <div class="w-9 h-9 rounded-full bg-primary-muted text-primary flex items-center justify-center font-bold text-label-md border-2 border-primary/10">
-              {{ user_initials|default:"KM" }}
+            <div class="w-9 h-9 flex items-center justify-center rounded-full border-2 border-primary/10 bg-primary-muted font-bold text-label-md text-primary">
+              {{ user_initials|default:"DD" }}
             </div>
+          </a>
           </div>
         </div>
       </header>

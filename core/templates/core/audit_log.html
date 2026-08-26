@@ -285,7 +285,7 @@
                 <tr
                   class="hover:bg-surface-container-lowest transition-colors cursor-pointer"
                   data-timestamp="{{ row.log.timestamp|date:'Y-m-d H:i:s' }}"
-                  data-user="{{ row.log.user.get_full_name|default:row.log.user.username|default:'System' }}"
+                  data-user="{% firstof row.log.user.get_full_name row.log.user.username 'System' %}"
                   data-role="{% if row.log.user %}User{% else %}Automatic{% endif %}"
                   data-action="{{ row.log.action }}"
                   data-module="{{ row.log.model_name|default:'General' }}"
@@ -299,7 +299,7 @@
                         {% if row.log.user %}{{ row.log.user.username|slice:":2"|upper }}{% else %}<span class="material-symbols-outlined text-xs">settings_suggest</span>{% endif %}
                       </div>
                       <div>
-                        <p class="font-semibold text-on-surface">{{ row.log.user.get_full_name|default:row.log.user.username|default:"System Process" }}</p>
+                        <p class="font-semibold text-on-surface">{% firstof row.log.user.get_full_name row.log.user.username "System Process" %}</p>
                         <span class="text-xs {% if row.log.user %}bg-secondary-container text-on-secondary-container{% else %}bg-surface-container-highest text-on-surface-variant{% endif %} px-xs rounded font-label-sm text-label-sm">
                           {% if row.log.user %}User{% else %}Automatic{% endif %}
                         </span>
